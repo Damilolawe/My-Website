@@ -7,15 +7,15 @@ test("Awe Concepts appears across public pages without old studio name", async (
   for (const path of ["index.html","account.html","admin.html","order.html","contact.html","privacy.html","why-awe.html","404.html","inquiry-received.html"]) {
     const content = await source(path);
     assert.match(content, /AWE CONCEPTS/i, path);
-    assert.doesNotMatch(content, /AWE\\s*\\/\\s*DIGITAL/i, path);
+    assert.doesNotMatch(content, /AWE\s*\/\s*DIGITAL/i, path);
   }
 });
 test("Public contact email is correct and does not expose private SMTP material", async () => {
   const config = await source("config.js");
-  assert.match(config, /contact@aweconcepts\\.com/);
+  assert.match(config, /contact@aweconcepts\.com/);
   assert.doesNotMatch(config, /STRIPE_SECRET_KEY|SMTP_PASSWORD|SUPABASE_SERVICE_ROLE_KEY/);
   const privacy = await source("privacy.html");
-  assert.match(privacy, /mailto:contact@aweconcepts\\.com/);
+  assert.match(privacy, /mailto:contact@aweconcepts\.com/);
 });
 test("New domain and legacy origin are both supported by versioned API source", async () => {
   const inquiry = await source("supabase/functions/awe-inquiry/index.ts");
