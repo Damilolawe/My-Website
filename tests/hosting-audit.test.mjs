@@ -16,4 +16,5 @@ test("Firebase deploy fits Spark storage allowance and homepage assets are measu
   assert(report.homeReferencedBytes > 0);
   assert(report.homeReferencedBytes <= report.totalBytes);
   assert(report.largest.length > 0);
+  console.log("Firebase build audit:", JSON.stringify({total:report.totalFormatted,homeReferenced:report.homeReferencedFormatted,fileCount:report.files,htmlPages:report.pages,percentOfSparkStorage:report.sparkStorageUsedPercent,largestAssets:report.largest.slice(0,3).map(x=>({file:x.path,size:x.formatted}))}));
 });
