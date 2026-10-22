@@ -1,24 +1,6 @@
+import { aweClient } from "./service-client.mjs";
 export const $ = (s, r = document) => r.querySelector(s);
-export async function api(path, data) {
-  const r = await fetch("/api/" + path, {
-    method: data === undefined ? "GET" : "POST",
-    credentials: "same-origin",
-    headers:
-      data instanceof FormData ? {} : { "Content-Type": "application/json" },
-    body:
-      data === undefined
-        ? undefined
-        : data instanceof FormData
-          ? data
-          : JSON.stringify(data),
-  });
-  const type = r.headers.get("content-type") || "";
-  if (!type.includes("application/json"))
-    throw Error("Account services are not configured on this preview.");
-  const v = await r.json();
-  if (!r.ok) throw Error(v.error || "Please try again.");
-  return v;
-}
+export const api = (path, data) => aweClient.api(path, data);
 export function money(p) {
   return p?.amount
     ? new Intl.NumberFormat("en-US", {
