@@ -26,6 +26,8 @@ let step = 0,
   packageId = "express",
   me = null,
   orderId = null,
+  draftId = null,
+  draftVersion = null,
   uploaded = [],
   theaterController = null;
 // Only fictional data enters the public configurator preview. Customer content stays in memory until submission.
@@ -227,12 +229,13 @@ function draw() {
     const packages = catalog.packages.filter((p) => p.enabled);
     const p = packages.find((p) => p.id === packageId) || packages[0];
     if (p) packageId = p.id;
-    el.innerHTML = `<h2>One last look. Then your next chapter.</h2><div class="summary"><div class="panel"><dl><dt>Your website</dt><dd>${esc(input.type)}</dd><dt>Design direction</dt><dd>${esc(templates.find((t) => t.id === input.template)?.name)} · ${esc(input.design.font)} · ${esc(input.design.appearance)}<br>${esc(input.design.primary)} / ${esc(input.design.secondary)}</dd><dt>Public name & headline</dt><dd>${esc(input.content.name)}<br>${esc(input.content.headline)}</dd><dt>Sections</dt><dd>${input.design.sections.map(esc).join(", ")}</dd><dt>Materials</dt><dd>${files.length ? files.map((f) => esc(f.name)).join("<br>") : "No files selected"}</dd></dl><p class="muted">Use Back to change any details before checkout.</p></div><div class="panel"><label class="field">Your package<select id="package">${packages.length ? packages.map((p) => `<option value="${p.id}" ${p.id === packageId ? "selected" : ""}>${esc(p.name)} — ${money(p)}</option>`).join("") : "<option>Packages opening soon</option>"}</select></label><h3>${p ? money(p) : "Pricing to be announced"}</h3>${p ? `<p>Website purchase: ${money(p)}<br>Total: ${money(p)}</p><ul>${p.features.map((f) => `<li>${esc(f)}</li>`).join("")}</ul><h4>Hosting</h4><p class="terms">${esc(p.hosting)}</p><h4>Ownership</h4><p class="terms">${esc(p.ownership)}</p><h4>Revisions</h4><p class="terms">${esc(p.revisions)}</p>` : "<p>The studio is preparing package pricing and terms. Checkout will open once those details are ready.</p>"}<label><input type="checkbox" id="consent"> I have reviewed the package terms, <a href="/privacy.html" target="_blank">privacy information</a>, and have permission to use these materials.</label></div></div><div class="notice">${catalog.ordersEnabled ? "Test checkout only. No live payments are enabled." : "Explore freely. Orders and payments are not open yet."} Every website is personally reviewed before publication.</div><div id="sign-in"></div>`;
+    el.innerHTML = `<h2>One last look. Then your next chapter.</h2><div class="summary"><div class="panel"><dl><dt>Your website</dt><dd>${esc(input.type)}</dd><dt>Design direction</dt><dd>${esc(templates.find((t) => t.id === input.template)?.name)} · ${esc(input.design.font)} · ${esc(input.design.appearance)}<br>${esc(input.design.primary)} / ${esc(input.design.secondary)}</dd><dt>Public name & headline</dt><dd>${esc(input.content.name)}<br>${esc(input.content.headline)}</dd><dt>Sections</dt><dd>${input.design.sections.map(esc).join(", ")}</dd><dt>Materials</dt><dd>${files.length ? files.map((f) => esc(f.name)).join("<br>") : "No files selected"}</dd></dl><p class="muted">Use Back to change any details before checkout.</p></div><div class="panel"><label class="field">Your package<select id="package">${packages.length ? packages.map((p) => `<option value="${p.id}" ${p.id === packageId ? "selected" : ""}>${esc(p.name)} — ${money(p)}</option>`).join("") : "<option>Packages opening soon</option>"}</select></label><h3>${p ? money(p) : "Pricing to be announced"}</h3>${p ? `<p>Website purchase: ${money(p)}<br>Total: ${money(p)}</p><ul>${p.features.map((f) => `<li>${esc(f)}</li>`).join("")}</ul><h4>Hosting</h4><p class="terms">${esc(p.hosting)}</p><h4>Ownership</h4><p class="terms">${esc(p.ownership)}</p><h4>Revisions</h4><p class="terms">${esc(p.revisions)}</p>` : "<p>The studio is preparing package pricing and terms. Checkout will open once those details are ready.</p>"}<label><input type="checkbox" id="consent"> I have reviewed the package terms, <a href="/privacy.html" target="_blank">privacy information</a>, and have permission to use these materials.</label></div></div><div class="notice">${catalog.ordersEnabled ? "Test checkout only. No live payments are enabled." : "Explore freely. Orders and payments are not open yet."} Every website is personally reviewed before publication.</div><div class="panel"><h3>Save this design for later</h3><p class="muted">Save your website concept privately without paying. You can return to edit it, and the studio can review your submitted direction. Saving is not a paid order or a publication request.</p><button type="button" class="btn secondary" id="save-draft">Save my design ↗</button><p id="save-status" role="status" aria-live="polite"></p></div><div id="sign-in"></div>`;
     $("#package").onchange = (e) => {
       packageId = e.target.value;
       draw();
     };
     $("#next").disabled = !catalog.ordersEnabled || !p;
+    $("#save-draft").onclick = saveDraft;
   }
   $("#back").onclick = () => {
     step--;
@@ -304,4 +307,69 @@ async function checkout() {
     btn.textContent = "Continue to test checkout ↗";
   }
 }
+const isUuid=(value)=>/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/i.test(value||"");
+async function saveDraft() {
+  const button=$("#save-draft");
+  if (!button) return;
+  button.disabled=true;
+  try {
+    try {
+      await api("me");
+    } catch (error) {
+      if (error?.status === 401) {
+        authForm($("#sign-in"), saveDraft);
+        return;
+      }
+      throw error;
+    }
+    const data=draftId
+      ? await api(`drafts/${draftId}`,{input,version:draftVersion})
+      : await api("drafts",{input});
+    if (!isUuid(data?.id) || !Number.isSafeInteger(data.version))
+      throw Error("The studio could not confirm that your design was saved.");
+    draftId=data.id;
+    draftVersion=data.version;
+    // The project identifier is a lookup reference, never an authentication token.
+    history.replaceState(null,"",`/order.html?draft=${draftId}`);
+    const message=$("#save-status");
+    if (message) {
+      message.textContent="Design saved privately. You can resume it using this page or from your account. ";
+      const link=document.createElement("a");
+      link.href="/account.html";
+      link.textContent="Go to your projects ↗";
+      message.append(link);
+    }
+  } catch(error) {
+    report(error);
+  } finally {
+    button.disabled=false;
+  }
+}
+async function restoreDraft() {
+  const candidate=new URLSearchParams(location.search).get("draft");
+  if(!candidate) return;
+  if(!isUuid(candidate)){report(Error("Invalid draft link."));return;}
+  try {
+    const saved=await api(`drafts/${candidate}`);
+    if(saved?.id!==candidate || !Number.isSafeInteger(saved?.version) || !saved?.input)
+      throw Error("The studio could not load this saved design.");
+    draftId=saved.id;
+    draftVersion=saved.version;
+    input=normalize(saved.input);
+    files=[];
+    uploaded=[];
+    step=4;
+    draw();
+    const info=$("#save-status");
+    if(info) info.textContent="Saved design loaded. You can change the earlier steps and save again.";
+  } catch(error) {
+    if(error?.status===401) {
+      authForm(app,restoreDraft);
+    } else {
+      draw();
+      report(error);
+    }
+  }
+}
 draw();
+await restoreDraft();
