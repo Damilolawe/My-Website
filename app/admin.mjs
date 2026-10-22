@@ -213,7 +213,7 @@ function drawOrder() {
     )
     .join(
       "",
-    )}</div><button class="btn acid">Save & regenerate private draft ↗</button></form><div><div class="preview-shell"><div class="preview-top"><span>OWNER-ONLY DRAFT</span><div>${[
+    )}</div><button class="btn acid" ${o.payment !== "paid" ? "disabled" : ""}>Save & regenerate private draft ↗</button>${o.payment !== "paid" ? '<p class="muted">This is an unpaid saved concept. You can inspect it in the Visual Studio preview, but a verified purchase is required before regenerating or publishing a version.</p>' : ""}</form><div><div class="preview-shell"><div class="preview-top"><span>OWNER-ONLY DRAFT</span><div>${[
     ["Desktop", "100%"],
     ["Tablet", "768px"],
     ["Mobile", "320px"],
