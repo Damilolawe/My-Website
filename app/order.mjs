@@ -2,6 +2,7 @@ import {
   templates,
   types,
   sample,
+  sampleForTemplate,
   normalize,
   validate,
   esc,
@@ -62,7 +63,13 @@ function draw() {
     );
   }
   if (step === 1) {
-    el.innerHTML = `<h2>Find your kind of different.</h2><p class="muted">Six original directions. Live demonstrations use fictional content.</p><div class="template-grid">${catalog.templates.map((t) => `<article class="template-card" aria-pressed="${input.template === t.id}"><div class="template-art ${t.id}" style="--tile:${t.color}"><span class="eyebrow">${t.style}</span><p class="title">${t.tag}</p></div><div class="template-meta"><button class="template-select" data-template="${t.id}" aria-pressed="${input.template === t.id}"><strong>${t.name} ${input.template === t.id ? "✓" : ""}</strong><small>Select this direction</small></button><a class="demo-link" href="/templates/${t.id}.html" target="_blank" rel="noopener">Explore ↗</a></div></article>`).join("")}</div>`;
+    const active = catalog.templates.find((t)=>t.id===input.template) || templates[0];
+    el.innerHTML = '<div class="experience-picker-heading"><div><p class="eyebrow">SIX WORLDS. SIX DIRECTIONS.</p><h2>Don’t pick a color.<br><em>Pick a feeling.</em></h2><p class="muted">Every preview contains fictional sample work, not a real customer website.</p></div><div class="experience-picker-index"><strong>06</strong><small>ORIGINAL CREATIVE WORLDS</small></div></div>' +
+      '<div class="experience-theater" data-active="'+esc(active.id)+'"><div class="theater-header"><span class="eyebrow"><i class="theater-live"></i> LIVE TEMPLATE THEATER</span><div class="theater-tools"><button type="button" id="theater-desktop" aria-pressed="true">DESKTOP</button><button type="button" id="theater-mobile" aria-pressed="false">MOBILE</button><a href="/templates/'+esc(active.id)+'.html" target="_blank" rel="noopener" id="theater-open">OPEN FULL DEMO ↗</a></div></div><div class="theater-viewport"><iframe id="theater-frame" title="Fictional '+esc(active.name)+' template preview" src="/templates/'+esc(active.id)+'.html" sandbox="" loading="eager"></iframe></div><div class="theater-caption"><div><span class="eyebrow">NOW EXPLORING</span><h3>'+esc(active.name)+'</h3><p>'+esc(active.tag)+'</p></div><span class="eyebrow">SCROLL INSIDE TO EXPLORE ↗</span></div></div>' +
+      '<div class="template-grid premium-template-grid">' + catalog.templates.map((t,i)=>'<article class="template-card template-poster '+(input.template===t.id?'chosen':'')+'" data-poster="'+esc(t.id)+'"><button type="button" class="template-select" data-template="'+esc(t.id)+'" aria-pressed="'+String(input.template===t.id)+'"><span class="poster-art poster-'+esc(t.id)+'" style="--tile:'+esc(t.color)+'"><span class="poster-num">'+String(i+1).padStart(2,'0')+' / 06</span><strong>'+esc(t.name)+'</strong><span class="poster-symbol" aria-hidden="true">✳</span><span class="poster-style">'+esc(t.style)+'</span></span><span class="poster-meta"><strong>'+esc(t.tag)+'</strong><span>'+ (input.template===t.id?'SELECTED ✓':'EXPLORE DIRECTION ↗')+'</span></span></button></article>').join("")+'</div>';
+    const frame=el.querySelector("#theater-frame"),theater=el.querySelector(".experience-theater");
+    el.querySelector("#theater-mobile").onclick=()=>{theater.classList.add("is-mobile");el.querySelector("#theater-mobile").setAttribute("aria-pressed","true");el.querySelector("#theater-desktop").setAttribute("aria-pressed","false");};
+    el.querySelector("#theater-desktop").onclick=()=>{theater.classList.remove("is-mobile");el.querySelector("#theater-desktop").setAttribute("aria-pressed","true");el.querySelector("#theater-mobile").setAttribute("aria-pressed","false");};
     el.querySelectorAll("[data-template]").forEach(
       (b) =>
         (b.onclick = () => {
@@ -85,7 +92,7 @@ function draw() {
       };
       input.preferences = f.get("preferences");
       $("iframe", el).srcdoc = renderSite(
-        { ...sample, template: input.template, design: input.design },
+        { ...sampleForTemplate(input.template), design: input.design },
         { sample: true },
       );
     };
