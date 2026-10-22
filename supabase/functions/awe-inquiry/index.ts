@@ -57,7 +57,7 @@ Deno.serve(async req=>{
     const cleaned=validateInquiry(submitted);
     const supabaseUrl=Deno.env.get("SUPABASE_URL");
     const serverKey=Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-    const rateSalt=Deno.env.get("AWE_INQUIRY_RATE_SALT");
+    const rateSalt=Deno.env.get("AWE_INQUIRY_RATE_SALT") || serverKey; // Secret-only fallback until a dedicated salt is configured.
     if(!supabaseUrl||!serverKey||!rateSalt)
       return json({error:"The inquiry service is not ready. Please try again later."},503,origin);
     const fingerprint=await rateFingerprint(req,rateSalt);
