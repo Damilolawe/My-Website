@@ -13,7 +13,7 @@ const xmlText = (s) => String(s).replace(/&(#x[\da-f]+|#\d+|amp|lt|gt|quot|apos)
 });
 function extractDocx(bytes) {
   let zip;
-  try { zip = unzipSync(new Uint8Array(bytes), { filter: (f) => f.name === "word/document.xml" }); }
+  try { zip = unzipSync(new Uint8Array(bytes), { filter: (f) => f.name === "word/document.xml" && f.originalSize <= 1000000 }); }
   catch { throw Error("This DOCX cannot be read. Upload a valid .docx file."); }
   const file = zip["word/document.xml"];
   if (!file || file.length > 1000000) throw Error("DOCX main document is unavailable or too large.");
