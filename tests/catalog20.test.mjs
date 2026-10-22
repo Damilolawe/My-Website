@@ -39,9 +39,9 @@ test("every design supports six purpose-matched previews with an accurate narrat
       assert(demo.content.bio.toLowerCase().includes("fictional")||demo.content.bio.toLowerCase().includes("imagined"),"Clearly fictional biography required");
       const html=renderSite(demo,{sample:true});
       assert(html.includes('<h1 id="hero-title">'));
-      if(type==="Actor / model") assert(html.includes("Credits & on-screen work"));
+      if(type==="Actor / model") assert(html.includes("Credits &amp; on-screen work"));
       if(type==="Small business") assert(html.includes("What we offer"));
-      if(type==="Student résumé") assert(html.includes("Projects & experiments"));
+      if(type==="Student résumé") assert(html.includes("Projects &amp; experiments"));
     }
   }
 });
@@ -68,7 +68,7 @@ test("allowed static preview paths never accept arbitrary user-controlled URL se
         {headers:{"Content-Type":"text/html; charset=utf-8"}});
     };
     const content=await fetchPublicTemplate("playbill",{type:"Actor / model"});
-    assert(content.includes("Credits & on-screen work"));
+    assert(content.includes("Credits &amp; on-screen work"));
     await assert.rejects(fetchPublicTemplate("../../../admin",{type:"Actor / model"}),/Unknown template/);
   }finally{globalThis.fetch=original;}
 });
