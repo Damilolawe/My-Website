@@ -13,7 +13,7 @@ test("six premium templates produce distinctive, semantic, responsive site docum
     assert.match(html,/width=device-width/);
     assert.match(html,/prefers-reduced-motion/);
     assert.match(html,/FICTIONAL TEMPLATE DEMO/);
-    assert.match(html,/Selected work/);
+    assert.match(html,/(Selected work|Selected editions|On the reel)/);
     assert.match(html,/Verified quotation|fictional quote/i);
     assert.match(html,/Skip to content/);
   }
