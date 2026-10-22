@@ -194,6 +194,40 @@ export const sample = {
     testimonials: [{ quote: "A fictional quote for layout demonstration only.", attribution: "Sample testimonial — not a real client" }]
   },
 };
+/* All demo identities, roles and portfolio items below are explicitly fictional.
+ * Never substitute sample accomplishments for real customer information. */
+const demoIdentities = {
+  index: { name:"Avery Brooks",headline:"Building what comes next.",heroLabel:"Software developer / Curious by design",
+    bio:"A fictional emerging engineer turning difficult problems into simple, useful experiences.",
+    projects:[{title:"Field Notes",description:"A sample note-taking application designed around focus.",url:""},{title:"Atlas",description:"A fictional dashboard exploring data and motion.",url:""},{title:"First Principles",description:"A sample frontend development concept.",url:""}],
+    skills:"JavaScript / Interface design / Accessible web experiences",education:"Demo university · Sample degree",experience:"Example internship experience — replace with accurate information."},
+  folio: {name:"Isabel Quinn",headline:"A new way of seeing.",heroLabel:"Art direction / Photography / Stories",
+    bio:"A fictional image-maker drawn to movement, people and the beauty of an unfinished story.",
+    projects:[{title:"The Quiet Hours",description:"A conceptual photographic diary.",url:""},{title:"Soft Geometry",description:"An editorial exploration of form and light.",url:""},{title:"Open Water",description:"A fictional series built around texture and atmosphere.",url:""}],
+    skills:"Photography / Visual storytelling / Art direction"},
+  still: {name:"Noa Sterling",headline:"Presence, not noise.",heroLabel:"Independent creative practice",
+    bio:"An imagined studio working at the intersection of thoughtful design and quiet confidence.",
+    projects:[{title:"Form Study",description:"A fictional object and identity exploration.",url:""},{title:"The Archive",description:"A collection of minimal editorial concepts.",url:""}],
+    services:[{title:"Identity systems",description:"Conceptual brand direction.",url:""},{title:"Digital spaces",description:"Intentional website experiences.",url:""}]},
+  afterhours: {name:"Morgan Vale",headline:"Every story deserves a stage.",heroLabel:"Actor / Performer / Storyteller",
+    bio:"A fictional screen and stage performer exploring complicated characters and memorable moments.",
+    projects:[{title:"The Role",description:"A fictional short-film credit presented for template demonstration.",url:""},{title:"Behind the Scenes",description:"An imagined photography series and performance reel.",url:""}],
+    experience:"Sample theatrical credits — enter only verified roles and productions.",skills:"Acting / Performance / Collaboration"},
+  signal: {name:"Riley Sparks",headline:"Make a little noise.",heroLabel:"Creative direction / Big ideas",
+    bio:"A fictional multidisciplinary creative using color, rhythm and unexpected combinations.",
+    projects:[{title:"Signal Lost",description:"A fictional visual identity experiment.",url:""},{title:"Volume 01",description:"A conceptual editorial and motion study.",url:""},{title:"Play Mode",description:"An energetic interactive poster concept.",url:""}]},
+  daylight: {name:"Sunday Studio",headline:"Good ideas grow here.",heroLabel:"Independent studio / Small business",
+    bio:"A fictional creative service studio focused on good energy and memorable first impressions.",
+    projects:[{title:"The Welcome Kit",description:"A sample branded customer experience.",url:""},{title:"The Good Edit",description:"A fictional creative campaign.",url:""}],
+    services:[{title:"Brand refresh",description:"A sample service for emerging businesses.",url:""},{title:"Creative consultation",description:"An example project-planning offering.",url:""}]}
+};
+export function sampleForTemplate(id){
+  const type={index:"Student résumé",folio:"Creative portfolio",still:"Personal brand",afterhours:"Actor / model",signal:"Creative portfolio",daylight:"Small business"}[id]||"Professional portfolio";
+  const example=demoIdentities[id]||demoIdentities.index;
+  return {type,template:id,design:{animation:"expressive",appearance:id==="afterhours"?"dark":"light",sections},
+    content:{...sample.content,...example, cards:example.projects||sample.content.cards,
+      projects:"",services:example.services||sample.content.services,testimonials:[]}};
+}
 export function customerOrder(o) {
   return {
     id: o.id,
