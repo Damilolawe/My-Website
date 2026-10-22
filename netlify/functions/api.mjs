@@ -1,3 +1,4 @@
+import { checkoutReservationState, checkoutPackageIsValid } from "../../shared/checkout-recovery.mjs";
 import {
   env,
   fail,
@@ -220,9 +221,11 @@ export default async function (req) {
         return json({ id: aid, mime });
       }
       if (action === "checkout") {
+        if (env().ORDERS_ENABLED !== "true") fail("Orders are not open yet.", 503);
+        const stripeClient = stripe(); // Validate sandbox credentials before locking.
         if (o.payment !== "unpaid") fail("This order has already been paid.");
         if (o.stripe_session) {
-          const previous = await stripe().checkout.sessions.retrieve(
+          const previous = await stripeClient.checkout.sessions.retrieve(
             o.stripe_session,
           );
           if (previous.status === "open" && previous.url)
@@ -232,27 +235,35 @@ export default async function (req) {
             409,
           );
         }
-        const b = await body(req);
-        const input = validate(b.input);
-        const assets = await rows("awe_assets", `order_id=eq.${o.id}`);
-        if (
-          input.content.photoIds.some(
-            (a) => !assets.some((x) => x.id === a && x.public_allowed),
-          )
-        )
-          fail("Invalid portfolio image.");
-        // Reserve an immutable payload before talking to Stripe. Concurrency cannot alter the paid order.
-        const locked = await patch(
-          "awe_orders",
-          `id=eq.${o.id}&checkout_at=is.null&version=eq.${o.version}`,
-          {
-            input,
-            checkout_at: new Date().toISOString(),
-            version: o.version + 1,
-          },
-        );
         const p = o.package_snapshot;
-        const session = await stripe().checkout.sessions.create(
+        if (!checkoutPackageIsValid(p))
+          fail("Package terms are incomplete; checkout is unavailable.", 503);
+        const reservation = checkoutReservationState(o);
+        if (reservation === "manual-review")
+          fail("This checkout needs studio review before retrying. Contact the studio.", 409);
+        if (reservation === "new") {
+          const b = await body(req);
+          const input = validate(b.input);
+          const assets = await rows("awe_assets", `order_id=eq.${o.id}`);
+          if (
+            input.content.photoIds.some(
+              (a) => !assets.some((x) => x.id === a && x.public_allowed),
+            )
+          )
+            fail("Invalid portfolio image.");
+          // Reserve an immutable payload before talking to Stripe. Concurrency cannot alter the paid order.
+          const locked = await patch(
+            "awe_orders",
+            `id=eq.${o.id}&checkout_at=is.null&version=eq.${o.version}`,
+            {
+              input,
+              checkout_at: new Date().toISOString(),
+              version: o.version + 1,
+            },
+          );
+          if (!locked.length) fail("This order changed. Reload before checkout.", 409);
+        }
+        const session = await stripeClient.checkout.sessions.create(
           {
             mode: "payment",
             payment_method_types: ["card"],
@@ -274,9 +285,19 @@ export default async function (req) {
           },
           { idempotencyKey: `checkout-${o.id}` },
         );
-        await patch("awe_orders", `id=eq.${o.id}&stripe_session=is.null`, {
-          stripe_session: session.id,
-        });
+        if (!session?.id || !session?.url || session.status !== "open")
+          fail("Stripe did not return an open checkout. Contact the studio.", 502);
+        const recorded = await patch(
+          "awe_orders",
+          `id=eq.${o.id}&checkout_at=not.is.null&stripe_session=is.null&payment=eq.unpaid`,
+          { stripe_session: session.id },
+        );
+        if (!recorded.length) {
+          // A concurrent request may already have saved the same session.
+          const latest = (await rows("awe_orders", `id=eq.${o.id}`))[0];
+          if (latest?.stripe_session !== session.id)
+            fail("Checkout reconciliation needs studio review.", 409);
+        }
         return json({ url: session.url });
       }
       if (action === "revision") {
