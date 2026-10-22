@@ -31,7 +31,7 @@ gh api -H 'Accept: application/vnd.github.raw+json' \
   > /tmp/awe-firebase-setup.sh && bash /tmp/awe-firebase-setup.sh
 ```
 
-Review `scripts/setup-firebase-cloud-shell.sh` before running. It verifies your repository access, enables the IAM and Hosting APIs, provisions the Classic Hosting site if missing, and creates the dedicated `github-hosting@awe-digital.iam.gserviceaccount.com` service account. The only project roles it grants are Hosting Admin and API Keys Viewer, as needed by the existing live deployment action. It does not grant Authentication Admin, Cloud Run roles, project Editor, or Owner.
+Review `scripts/setup-firebase-cloud-shell.sh` before running. It verifies your repository access, enables the IAM and Hosting APIs, provisions the Classic Hosting site if missing, and creates the dedicated `github-hosting@awe-digital.iam.gserviceaccount.com` service account. The project roles it grants are Hosting Admin, API Keys Viewer, and read-only Service Usage Viewer. The latter allows the current Firebase CLI to check whether the Hosting API is enabled. It does not grant Authentication Admin, Cloud Run roles, project Editor, or Owner.
 
 The script sends the JSON key directly to GitHub's encrypted `FIREBASE_SERVICE_ACCOUNT` secret and deletes its local temporary copy. If upload fails, it attempts to revoke the unused key. An existing secret is retained on reruns. It sets `FIREBASE_PROJECT_ID=awe-digital` and dispatches the existing workflow on `main`. No application files or backend configuration are changed. GitHub Actions uses your existing account allowance; no paid service or spending limit is enabled.
 

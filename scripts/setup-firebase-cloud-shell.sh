@@ -23,7 +23,7 @@ gh api "repos/$awe_repo" --jq '.permissions.admin' | python3 -c \
 gcloud projects describe "$awe_project" --format='value(projectId)'
 
 echo 'Connecting only awe-digital Hosting to Damilolawe/My-Website.'
-echo 'This grants a dedicated service account Hosting Admin and API Keys Viewer.'
+echo 'This grants a dedicated service account Hosting Admin, API Keys Viewer, and Service Usage Viewer.'
 echo 'Its key goes directly to the encrypted GitHub Actions secret; it is never printed.'
 echo 'No billing account is linked or upgraded by this script.'
 
@@ -58,7 +58,7 @@ if [[ -z "$awe_accounts" ]]; then
   gcloud iam service-accounts create github-hosting --project="$awe_project" \
     --display-name='GitHub Classic Hosting deploy only' --quiet
 fi
-for awe_role in roles/firebasehosting.admin roles/serviceusage.apiKeysViewer; do
+for awe_role in roles/firebasehosting.admin roles/serviceusage.apiKeysViewer roles/serviceusage.serviceUsageViewer; do
   gcloud projects add-iam-policy-binding "$awe_project" \
     --member="serviceAccount:$awe_sa" --role="$awe_role" \
     --condition=None --quiet --format='none'
