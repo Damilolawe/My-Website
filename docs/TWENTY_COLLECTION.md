@@ -1,8 +1,8 @@
-# AWE / DIGITAL — The Twenty Collection
+# AWE CONCEPTS — The Twenty Collection
 
 ## What changed
 
-AWE Express now includes **twenty** separate layout systems. Six original IDs are preserved for backward compatibility, while fourteen new art directions are introduced. These are not twenty color presets: each has its own hero structure, content layout, visual motifs, background artwork, mobile rules and animation direction.
+Awe Concepts Express now includes **twenty** separate layout systems. Six original IDs are preserved for backward compatibility, while fourteen new art directions are introduced. These are not twenty color presets: each has its own hero structure, content layout, visual motifs, background artwork, mobile rules and animation direction.
 
 | ID | Design | Creative structure |
 |---|---|---|
@@ -54,7 +54,7 @@ Generated customer websites are static HTML and CSS. Animation presets are **non
 
 ## Database and delivery
 
-AWE / DIGITAL's dedicated Supabase project received 14 additional `awe_templates` rows via the idempotent script in `supabase/sql/register_twenty_templates.sql`. Existing IDs, owner preferences and private data remain unchanged. Templates still require the same verified payment, private draft, authenticated owner review, version-specific approval, and separate delivery path. **No real payments have been enabled by this release.**
+AWE CONCEPTS's dedicated Supabase project received 14 additional `awe_templates` rows via the idempotent script in `supabase/sql/register_twenty_templates.sql`. Existing IDs, owner preferences and private data remain unchanged. Templates still require the same verified payment, private draft, authenticated owner review, version-specific approval, and separate delivery path. **No real payments have been enabled by this release.**
 
 ## Validation and limitations
 

@@ -1,4 +1,4 @@
-# AWE / DIGITAL — Stripe sandbox integration release plan
+# AWE CONCEPTS — Stripe sandbox integration release plan
 
 Last reviewed October 22, 2026. This is a **test-only integration**. Never add live keys, enable live payments, or assume checkout works because a Stripe account exists.
 
@@ -6,7 +6,7 @@ Last reviewed October 22, 2026. This is a **test-only integration**. Never add l
 
 - Stripe **test sandbox account** has been opened and its dashboard reviewed.
 - No webhook destination or test checkout charge has yet been created.
-- AWE / DIGITAL is deployed via **Firebase Hosting Classic on Spark**.
+- AWE CONCEPTS is deployed via **Firebase Hosting Classic on Spark**.
 - Dedicated backend: Supabase project `hxxplkirfsewqsxodngv`, Edge Function `awe-api`.
 - Existing API handler includes a Stripe-hosted one-time Checkout session, signed webhook handler, payment persistence/replay protection and refund recognition.
 - Stripe's API secret and webhook signing secret have **not been verified in Supabase**. The database has zero verified payment records and no enabled pricing packages.
@@ -20,13 +20,13 @@ Last reviewed October 22, 2026. This is a **test-only integration**. Never add l
 
    `https://hxxplkirfsewqsxodngv.supabase.co/functions/v1/awe-api/stripe-webhook`
 
-   This must be the Supabase Edge API's dedicated `stripe-webhook` route, **not** `awe-digital.web.app/api/` or a Netlify endpoint.
+   This must be the Supabase Edge API's dedicated `stripe-webhook` route, **not** `Awe Concepts.web.app/api/` or a Netlify endpoint.
 4. Select the event types already supported by the code: `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`, `checkout.session.expired`, and `charge.refunded`. Do not register unrelated events without code review.
 5. Copy the **webhook destination's signing secret**, prefix `whsec_`, *inside the dashboards*, into Supabase Edge Functions Secrets as `STRIPE_WEBHOOK_SECRET`. This secret is **different from** the Stripe API key.
 6. Keep `ORDERS_ENABLED` absent or `false`. Even though the test credentials may be configured, enabling new orders without a verified user, package, and signed webhook is premature.
 7. Complete Supabase Auth email OTP verification and enroll the **actual verified owner account UUID** in `awe_owner`. Do not infer owner access from an email string.
 8. Use the owner dashboard's **Stripe test checkout readiness** section to inspect booleans and the count of enabled packages. It will never reveal actual secrets. The Stripe *external webhook verified* indicator remains unknown until a real Stripe event is received.
-9. Decide AWE Express's actual price, included deliverables, hosting period, domain rules, ownership, revision limits, refund/chargeback terms and terms version. Record terms in `awe_packages`. Do **not** invent numbers for the business owner.
+9. Decide Awe Concepts Express's actual price, included deliverables, hosting period, domain rules, ownership, revision limits, refund/chargeback terms and terms version. Record terms in `awe_packages`. Do **not** invent numbers for the business owner.
 10. Complete a **single sandbox-only** checkout using a verified test user, a legitimately priced enabled test package, and Stripe's official **test card** supplied by Stripe. No live card details should be entered. Validate successful and failed/canceled flows.
 11. In Stripe Workbench, confirm request logs, Checkout Session, event deliveries, and correct signed webhook delivery/HTTP success. Check in Supabase that the paid order references match Stripe session ID, amount and currency; `awe_payments` has exactly one recognized event record; replaying the same event makes no duplicate payment or work queue.
 12. Verify order post-payment generation, owner-only review, revision, approval, public site route, approved asset serving, and delivery email independently. Note: the Firebase customer-site publishing path is **not fully production-ready** as of this document; do not accept paid orders based only on Stripe success.
