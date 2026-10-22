@@ -41,7 +41,7 @@ test("all 14 alternative designs include their actual generated CSS in final HTM
 });
 test("purpose-specific work sections and honest content persist across all designs",()=>{
   const typeChecks=[
-    ["Actor / model","Credits &amp; selected work"],
+    ["Actor / model","Credits &amp; on-screen work"],
     ["Student résumé","Projects &amp; experiments"],
     ["Small business","What we offer"],
   ];
