@@ -689,3 +689,52 @@ th {
 .studio-preview-actions .muted{width:100%;margin:0}
 #studio-live-frame{max-width:100%;margin-inline:auto}
 @media(max-width:550px){.studio-tools{padding:15px}.studio-row{padding:12px}.studio-preview-actions .btn{font-size:10px;padding:9px}}
+
+
+/* Immersive AWE Express selection: real, accessible preview rather than a static swatch. */
+.experience-picker-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:35px}
+.experience-picker-heading h2{font:900 clamp(36px,5vw,70px)/.95 system-ui,sans-serif;letter-spacing:-.075em}
+.experience-picker-heading h2 em{font:italic 400 1.15em Georgia,serif}
+.experience-picker-index{text-align:right;font:11px monospace;white-space:nowrap}
+.experience-picker-index strong{display:block;font:900 clamp(50px,9vw,115px)/1 system-ui;letter-spacing:-.09em}
+.experience-picker-index small{font-size:9px;letter-spacing:.14em}
+.experience-theater{background:#121419;color:#f4f5f0;padding:15px;box-shadow:0 28px 85px #15172222;margin-bottom:38px}
+.theater-header{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:10px 12px 22px}
+.theater-tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.theater-tools button,.theater-tools a{color:inherit;text-decoration:none;background:none;border:1px solid #7779;padding:8px 13px;font:700 10px monospace;letter-spacing:.04em;cursor:pointer}
+.theater-tools button[aria-pressed=true]{background:#dcfc46;color:#111;border-color:#dcfc46}
+.theater-live{display:inline-block;width:8px;height:8px;background:#dcfc46;border-radius:50%;box-shadow:0 0 14px #dcfc46;margin-right:8px}
+.theater-viewport{min-height:570px;background:linear-gradient(130deg,#2d3139,#17191f);display:flex;justify-content:center;align-items:stretch;overflow:hidden;padding:0;transition:padding .4s}
+.theater-viewport iframe{display:block;width:100%;height:620px;border:0;background:#faf9f3;transition:width .55s cubic-bezier(.22,1,.36,1),border-radius .4s,box-shadow .4s}
+.experience-theater.is-mobile .theater-viewport{padding:20px}
+.experience-theater.is-mobile .theater-viewport iframe{width:min(375px,100%);border-radius:20px;box-shadow:0 20px 65px #0008}
+.theater-caption{padding:22px 12px 12px;display:flex;gap:20px;align-items:end;justify-content:space-between}
+.theater-caption h3{font:800 clamp(22px,3vw,40px)/1 system-ui;letter-spacing:-.07em;margin:5px 0 7px}
+.theater-caption p{font-size:13px;margin:0;color:#d5d4d3}
+.premium-template-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.template-poster{padding:0;border:0;overflow:hidden;background:transparent}
+.template-poster .template-select{display:block;width:100%;padding:0;text-align:left;border:0;background:none;cursor:pointer}
+.poster-art{height:clamp(225px,24vw,370px);position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:24px;overflow:hidden;isolation:isolate;background:var(--tile);color:white}
+.poster-num{font:700 10px monospace;letter-spacing:.15em;position:relative;z-index:2}
+.poster-art>strong{position:relative;z-index:2;font:900 clamp(28px,3.5vw,59px)/.9 system-ui;letter-spacing:-.08em;max-width:260px;text-transform:uppercase;overflow-wrap:anywhere}
+.poster-style{position:relative;z-index:2;text-transform:uppercase;font:700 10px monospace;letter-spacing:.1em}
+.poster-symbol{position:absolute;z-index:1;right:-10%;top:5%;font:400 clamp(170px,24vw,400px)/1 Georgia;color:#ffffff2f;transform:rotate(-15deg);transition:transform .75s cubic-bezier(.22,1,.36,1)}
+.poster-art:after{content:"";position:absolute;z-index:0;width:56%;height:75%;border:25px solid #fff4;border-radius:50%;top:10%;right:-7%;transform:rotate(-28deg)}
+.poster-index{background:linear-gradient(120deg,#0a2468,#3459dd 70%,#9bc1ff)}.poster-index:after{border-radius:0;transform:rotate(28deg)}
+.poster-folio{background:#e2c9aa;color:#46231f}.poster-folio>strong{font:italic 400 clamp(38px,4.5vw,78px)/.8 Georgia,serif;text-transform:none}.poster-folio .poster-symbol{color:#913e3838}
+.poster-still{background:#d0d1c2;color:#343a2e}.poster-still>strong{font:400 clamp(37px,4vw,70px)/1.02 Georgia,serif;text-transform:none}.poster-still:after{border-radius:50% 50% 0 0;border-color:#52604c65}
+.poster-afterhours{background:radial-gradient(circle at 70% 20%,#4d427a,#0a0b12 65%);color:#f3eefa}.poster-afterhours .poster-symbol{color:#b4acff66}
+.poster-signal{background:linear-gradient(130deg,#ea5b20 45%,#e8fa3d 46%);color:#171615}.poster-signal>strong{transform:rotate(-7deg);text-shadow:4px 5px #f7f8db}.poster-signal:after{border-color:#1919188c}
+.poster-daylight{background:linear-gradient(135deg,#d8b8f6,#7854d1);color:#271c46}.poster-daylight>strong{font-weight:950;letter-spacing:-.09em}.poster-daylight:after{border-radius:70px 20px}
+.poster-meta{min-height:86px;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:15px 2px}
+.poster-meta strong{font-size:15px;line-height:1.3;max-width:65%}.poster-meta>span{font:700 10px monospace;letter-spacing:.04em;text-align:right}
+.template-poster.chosen .poster-art{outline:5px solid #171917;outline-offset:-5px}
+.template-poster.chosen .poster-meta>span{color:#3e5724}
+.template-poster .template-select:hover .poster-symbol,.template-poster .template-select:focus-visible .poster-symbol{transform:rotate(22deg) scale(1.2)}
+.template-poster .template-select:hover .poster-art{filter:saturate(1.2)}
+.template-poster .template-select:focus-visible{outline:3px solid #6262e8;outline-offset:-3px}
+.wizard .work-area{animation:wizard-enter .45s both}
+@keyframes wizard-enter{from{opacity:.35;transform:translateY(17px)}to{opacity:1;transform:none}}
+@media(max-width:900px){.premium-template-grid{grid-template-columns:repeat(2,1fr)}.theater-viewport iframe{height:540px}.experience-picker-index small{white-space:normal}}
+@media(max-width:560px){.experience-picker-heading{align-items:start}.experience-picker-index{display:none}.premium-template-grid{gap:9px}.poster-art{height:240px;padding:13px}.poster-art>strong{font-size:clamp(23px,6vw,39px)}.poster-num,.poster-style{font-size:8px}.poster-meta{min-height:77px}.poster-meta strong{font-size:11px}.poster-meta>span{font-size:8px}.theater-header{align-items:start;flex-direction:column}.theater-tools button,.theater-tools a{font-size:9px;padding:7px 9px}.theater-viewport iframe{height:475px}.theater-caption>span{display:none}}
+@media(prefers-reduced-motion:reduce){.wizard .work-area{animation:none}.poster-symbol,.theater-viewport iframe{transition:none!important}}

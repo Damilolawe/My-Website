@@ -6,6 +6,8 @@ const files = [
   "studio.css",
   "case-studies.css",
   "script.js",
+  "showcase.js",
+  "showcase.css",
   "sculpture.js",
   "case-studies.js",
   "config.js",
@@ -29,28 +31,29 @@ await rm("dist", { recursive: true, force: true });
 await mkdir("dist");
 for (const file of files) await cp(file, "dist/" + file, { recursive: true });
 await mkdir("dist/templates", { recursive: true });
-const { templates, sample } = await import("../shared/model.mjs");
+const { templates, sampleForTemplate } = await import("../shared/model.mjs");
 const { renderSite } = await import("../shared/render.mjs");
 const { writeFile } = await import("node:fs/promises");
-for (const t of templates)
-  await writeFile(
-    `dist/templates/${t.id}.html`,
-    renderSite(
-      {
-        ...sample,
-        template: t.id,
-        design: {
-          primary: t.color,
-          appearance: t.id === "afterhours" ? "dark" : "light",
-          font: t.id === "folio" ? "serif" : "sans",
-          layout: ["index", "afterhours", "signal"].includes(t.id)
-            ? "split"
-            : "stacked",
-        },
-      },
-      { sample: true },
-    ),
-  );
+for (const t of templates) {
+  const demo = sampleForTemplate(t.id);
+  const config = {
+    ...demo,
+    template: t.id,
+    design: {
+      ...demo.design,
+      primary: t.color,
+      appearance: t.id === "afterhours" ? "dark" : "light",
+      font: t.id === "folio" ? "serif" : "sans",
+      layout: ["index", "afterhours", "signal"].includes(t.id) ? "split" : "stacked",
+    },
+  };
+  await writeFile(`dist/templates/${t.id}.html`, renderSite(config, { sample: true }));
+  // A separate, accessible still version lets the studio's Pause Motion control
+  // disable motion inside sandboxed demos without weakening iframe isolation.
+  await writeFile(`dist/templates/${t.id}--still.html`, renderSite({
+    ...config, design: { ...config.design, animation: "none" },
+  }, { sample: true }));
+}
 console.log(
   "Built Netlify public assets in dist/. Server functions remain outside public output.",
 );
