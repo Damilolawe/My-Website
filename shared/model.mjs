@@ -53,9 +53,11 @@ export const types = [
 export const sections = [
   "about",
   "work",
+  "services",
   "education",
   "experience",
   "skills",
+  "testimonials",
   "contact",
 ];
 export const esc = (x) =>
@@ -80,6 +82,17 @@ export function https(x) {
     return "";
   }
 }
+const cleanCards = (items, kind) =>
+  (Array.isArray(items) ? items : []).slice(0, 12).map((item) => ({
+    title: text(item?.title, 120),
+    description: text(item?.description, 1200),
+    url: https(item?.url),
+  })).filter((item) => item.title || item.description);
+const cleanTestimonials = (items) =>
+  (Array.isArray(items) ? items : []).slice(0, 8).map((item) => ({
+    quote: text(item?.quote, 700),
+    attribution: text(item?.attribution, 100),
+  })).filter((item) => item.quote);
 export function normalize(input = {}) {
   const t = templates.find((t) => t.id === input.template) || templates[0];
   const c = input.content || {},
@@ -97,7 +110,11 @@ export function normalize(input = {}) {
       animation: ["none", "subtle", "expressive"].includes(d.animation)
         ? d.animation
         : "subtle",
-      sections: sections.filter((s) => (d.sections || sections).includes(s)),
+      sections: [...new Set((Array.isArray(d.sections) ? d.sections : sections)
+        .filter((s) => sections.includes(s)))],
+      heroAlignment: ["left", "center", "right"].includes(d.heroAlignment) ? d.heroAlignment : "left",
+      density: ["airy", "balanced", "compact"].includes(d.density) ? d.density : "balanced",
+      corners: ["sharp", "soft", "round"].includes(d.corners) ? d.corners : "soft",
     },
     content: {
       name: text(c.name, 100),
@@ -114,6 +131,11 @@ export function normalize(input = {}) {
         .slice(0, 6)
         .map(https)
         .filter(Boolean),
+      heroLabel: text(c.heroLabel, 110),
+      ctaLabel: text(c.ctaLabel, 45) || "Explore my work",
+      cards: cleanCards(c.cards, "work"),
+      services: cleanCards(c.services, "service"),
+      testimonials: cleanTestimonials(c.testimonials),
       photoIds: (Array.isArray(c.photoIds) ? c.photoIds : [])
         .filter((x) => /^[0-9a-f-]{36}$/.test(x))
         .slice(0, 8),
@@ -158,6 +180,18 @@ export const sample = {
     experience: "Sample experience — tell your own story.",
     skills: "Design / Photography / Creative direction",
     links: [],
+    heroLabel: "Independent designer / Visual storyteller",
+    ctaLabel: "See selected projects",
+    cards: [
+      { title: "Form & Function", description: "A fictional visual identity and digital design study.", url: "" },
+      { title: "New Perspectives", description: "An experimental editorial concept built around everyday life.", url: "" },
+      { title: "Open Studio", description: "An ongoing fictional collection of photography and creative work.", url: "" }
+    ],
+    services: [
+      { title: "Art Direction", description: "Imagining compelling identities and experiences.", url: "" },
+      { title: "Web Design", description: "Thoughtful, responsive digital storytelling.", url: "" }
+    ],
+    testimonials: [{ quote: "A fictional quote for layout demonstration only.", attribution: "Sample testimonial — not a real client" }]
   },
 };
 export function customerOrder(o) {
