@@ -12,6 +12,31 @@ This setup deploys **only the public front-end**. Netlify Functions are not port
 
 ## Step 2 — Connect automatic deployments from GitHub
 
+### Browser-only setup for the existing awe-digital project
+
+No ChatGPT desktop app or Firebase plugin is required. Open https://shell.cloud.google.com/ in your own browser and sign in with the Google account that owns `awe-digital`. Cloud Shell itself is free. Do not start a paid trial, attach billing, or upgrade the Firebase Spark plan.
+
+Install GitHub CLI if needed, then authenticate directly with GitHub:
+
+```bash
+command -v gh >/dev/null || (sudo apt-get update && sudo apt-get install -y gh)
+gh auth login --hostname github.com --git-protocol https --web
+```
+
+Follow the GitHub CLI browser authorization instructions using `Damilolawe`. Keep any sign-in code in that official GitHub flow, never in chat. Then download and run the repository's setup script:
+
+```bash
+gh api -H 'Accept: application/vnd.github.raw+json' \
+  'repos/Damilolawe/My-Website/contents/scripts/setup-firebase-cloud-shell.sh?ref=main' \
+  > /tmp/awe-firebase-setup.sh && bash /tmp/awe-firebase-setup.sh
+```
+
+Review `scripts/setup-firebase-cloud-shell.sh` before running. It verifies your repository access, enables the IAM and Hosting APIs, provisions the Classic Hosting site if missing, and creates the dedicated `github-hosting@awe-digital.iam.gserviceaccount.com` service account. The only project roles it grants are Hosting Admin and API Keys Viewer, as needed by the existing live deployment action. It does not grant Authentication Admin, Cloud Run roles, project Editor, or Owner.
+
+The script sends the JSON key directly to GitHub's encrypted `FIREBASE_SERVICE_ACCOUNT` secret and deletes its local temporary copy. If upload fails, it attempts to revoke the unused key. An existing secret is retained on reruns. It sets `FIREBASE_PROJECT_ID=awe-digital` and dispatches the existing workflow on `main`. No application files or backend configuration are changed. GitHub Actions uses your existing account allowance; no paid service or spending limit is enabled.
+
+`SETUP COMPLETE` means the workflow was requested, not that the website was deployed. Inspect the build, checks, and actual deployment step before claiming success. If permission, organization policy, or free quota blocks setup, stop and report the error; do not enable billing or weaken policy.
+
 GitHub repository: https://github.com/Damilolawe/My-Website
 
 This repository includes `firebase.json` pointing to the output from `npm run build`, and `.github/workflows/firebase-hosting.yml` which builds, runs checks and deploys on new commits to `main` once configured.
@@ -32,7 +57,7 @@ Save the entire service account JSON key in **GitHub > Settings > Secrets and va
 - Name: `FIREBASE_SERVICE_ACCOUNT`
 - Value: **entire service-account JSON**. Enter directly into GitHub's secret editor, **never** in ChatGPT, git, `firebase.json`, `config.js`, commit messages or the public website.
 
-The workflow does not attempt to deploy until both values exist. If GitHub shows a green workflow with the notice 'Firebase deployment has NOT run', the site was **not** published: you must configure both values.
+The workflow fails explicitly until both values exist. Older runs could show green with the notice 'Firebase deployment has NOT run'; those runs did **not** publish the site.
 
 Then use **GitHub > Actions > Firebase Hosting (AWE / DIGITAL) > Run workflow** and inspect the deploy step. The site should appear at `https://PROJECT_ID.web.app`. Subsequent merges into `main` deploy automatically after passing build and tests.
 
@@ -67,3 +92,4 @@ Maintain origin checks, authorization, private asset boundaries, disabled live c
 Firebase Hosting Classic Spark has no per-production-deploy credit like Netlify, but still has storage/transfer allowances; use Firebase's current pricing page for exact limits. GitHub Actions minutes have their own quotas. Stay on Spark to avoid accidental Firebase billing; if usage caps are reached, service can become unavailable until reset.
 
 To manage automatic deployments without unnecessary builds, keep all work on feature branches and merge reviewed changes into `main` only when ready for production.
+

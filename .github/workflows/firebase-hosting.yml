@@ -15,10 +15,11 @@ jobs:
     env:
       FIREBASE_READY: ${{ vars.FIREBASE_PROJECT_ID != '' && secrets.FIREBASE_SERVICE_ACCOUNT != '' }}
     steps:
-      - name: Show setup instructions until Firebase is connected
+      - name: Require Firebase deployment credentials
         if: env.FIREBASE_READY != 'true'
         run: |
-          echo '::notice::Firebase deployment has NOT run. To activate: add repository variable FIREBASE_PROJECT_ID and Actions secret FIREBASE_SERVICE_ACCOUNT (service account JSON). See docs/FIREBASE_SETUP.md.'
+          echo '::error::Firebase deployment has NOT run. Add repository variable FIREBASE_PROJECT_ID and Actions secret FIREBASE_SERVICE_ACCOUNT. Browser-only setup: see docs/FIREBASE_SETUP.md.'
+          exit 1
       - name: Checkout
         if: env.FIREBASE_READY == 'true'
         uses: actions/checkout@v4
@@ -46,3 +47,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           projectId: ${{ vars.FIREBASE_PROJECT_ID }}
           channelId: live
+
