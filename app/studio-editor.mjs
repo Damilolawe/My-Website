@@ -118,10 +118,43 @@ export function enhanceEditor(form, original) {
       '<button type="button" class="btn secondary small" id="studio-saved">Saved private draft</button>'+
       '<p class="muted">This preview is local to your browser. Click Save &amp; Regenerate to create a private version for approval.</p>';
     const el=document.createElement("iframe");
-    el.id="studio-live-frame";el.title="Unsaved visual preview";el.setAttribute("sandbox","");
+    el.id="studio-live-frame";el.title="Unsaved visual preview. Click a section to edit.";el.setAttribute("sandbox","allow-same-origin");
     el.style.cssText="width:100%;height:540px;border:0;background:white;display:block;";
     if(saved){saved.hidden=true;saved.after(el);}else shell.append(el);
     shell.prepend(tabs);
+    // Generated HTML is escaped and has no scripts. The sandbox allows same-origin
+    // inspection only; scripts remain disabled. Clicking a preview element focuses
+    // its owning editor field without changing the saved/public document.
+    el.addEventListener("load", () => {
+      const doc=el.contentDocument;
+      if(!doc)return;
+      const mapping=[["#hero-title",'[name="headline"]'],[".hero-label",'[name="heroLabel"]'],[".hero-intro",'[name="bio"]'],[".hero-actions .pill-link",'[name="ctaLabel"]'],["#about .prose",'[name="bio"]'],["#education .prose",'[name="education"]'],["#experience .prose",'[name="experience"]'],["#skills .prose",'[name="skills"]']];
+      for(const [query,target] of mapping){
+        doc.querySelectorAll(query).forEach(node=>{
+          node.title="Click to edit this section";
+          node.style.cursor="pointer";
+          node.addEventListener("click",event=>{
+            event.preventDefault();
+            const field=form.querySelector(target);
+            if(!field)return;
+            field.scrollIntoView({block:"center",behavior:"smooth"});
+            field.focus({preventScroll:true});
+          });
+        });
+      }
+      doc.querySelectorAll(".work-card,.service-card,.quote").forEach((node,i)=>{
+        node.title="Click to edit this card";
+        node.style.cursor="pointer";
+        node.addEventListener("click",event=>{
+          if(event.target.closest("a"))event.preventDefault();
+          const type=node.classList.contains("work-card")?"cards":node.classList.contains("service-card")?"services":"testimonials";
+          const siblings=Array.from(node.parentNode.children);
+          const index=siblings.indexOf(node);
+          const field=options.querySelector('[data-studio-group="'+type+'"] [data-entry="'+index+'"] [data-prop]');
+          if(field){field.scrollIntoView({block:"center",behavior:"smooth"});field.focus({preventScroll:true});}
+        });
+      });
+    });
     liveBtn=tabs.querySelector("#studio-live");savedBtn=tabs.querySelector("#studio-saved");preview=el;
     liveBtn.onclick=()=>{preview.hidden=false;if(saved)saved.hidden=true;livePreview();};
     savedBtn.onclick=()=>{preview.hidden=true;if(saved)saved.hidden=false;};
