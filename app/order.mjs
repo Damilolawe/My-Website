@@ -3,6 +3,7 @@ import {
   types,
   sample,
   sampleForTemplate,
+  recommendedFor,
   normalize,
   validate,
   esc,
@@ -62,20 +63,22 @@ function draw() {
       (b) =>
         (b.onclick = () => {
           input.type = b.dataset.type;
+          input.design.sections = sampleForTemplate(input.template,input.type).design.sections;
           draw();
         }),
     );
   }
   if (step === 1) {
-    const active = catalog.templates.find((t)=>t.id===input.template) || templates[0];
-    el.innerHTML = '<div class="experience-picker-heading"><div><p class="eyebrow">SIX WORLDS. SIX DIRECTIONS.</p><h2>Don’t pick a color.<br><em>Pick a feeling.</em></h2><p class="muted">Every preview contains fictional sample work, not a real customer website.</p></div><div class="experience-picker-index"><strong>06</strong><small>ORIGINAL CREATIVE WORLDS</small></div></div>' +
+    const active = templates.find((t)=>t.id===input.template) || templates[0];
+    const offered = [...templates].sort((a,b)=>Number(recommendedFor(b,input.type))-Number(recommendedFor(a,input.type)));
+    el.innerHTML = '<div class="experience-picker-heading"><div><p class="eyebrow">TWENTY DISTINCT WORLDS. YOUR DIRECTION.</p><h2>Don’t pick a color.<br><em>Pick a feeling.</em></h2><p class="muted">Exploring '+esc(input.type)+' websites. Each preview uses fictional examples designed for that purpose.</p></div><div class="experience-picker-index"><strong>20</strong><small>ORIGINAL CREATIVE WORLDS</small></div></div>' +
       '<div class="experience-theater" data-active="'+esc(active.id)+'"><div class="theater-header"><span class="eyebrow"><i class="theater-live"></i> LIVE TEMPLATE THEATER</span><div class="theater-tools"><button type="button" id="theater-desktop" aria-pressed="true">DESKTOP</button><button type="button" id="theater-mobile" aria-pressed="false">MOBILE</button><a href="/templates/'+esc(active.id)+'.html" target="_blank" rel="noopener" id="theater-open">OPEN FULL DEMO ↗</a></div></div><div class="theater-viewport"><iframe id="theater-frame" title="Fictional '+esc(active.name)+' template preview" sandbox="" loading="eager"></iframe></div><div class="theater-caption"><div><span class="eyebrow">NOW EXPLORING</span><h3>'+esc(active.name)+'</h3><p>'+esc(active.tag)+'</p></div><span class="eyebrow">SCROLL INSIDE TO EXPLORE ↗</span></div></div>' +
-      '<div class="template-grid premium-template-grid">' + catalog.templates.map((t,i)=>'<article class="template-card template-poster '+(input.template===t.id?'chosen':'')+'" data-poster="'+esc(t.id)+'"><button type="button" class="template-select" data-template="'+esc(t.id)+'" aria-pressed="'+String(input.template===t.id)+'"><span class="poster-art poster-'+esc(t.id)+'" style="--tile:'+esc(t.color)+'"><span class="poster-num">'+String(i+1).padStart(2,'0')+' / 06</span><strong>'+esc(t.name)+'</strong><span class="poster-symbol" aria-hidden="true">✳</span><span class="poster-style">'+esc(t.style)+'</span></span><span class="poster-meta"><strong>'+esc(t.tag)+'</strong><span>'+ (input.template===t.id?'SELECTED ✓':'EXPLORE DIRECTION ↗')+'</span></span></button></article>').join("")+'</div>';
+      '<div class="template-grid premium-template-grid">' + offered.map((t,i)=>'<article class="template-card template-poster '+(input.template===t.id?'chosen':'')+'" data-poster="'+esc(t.id)+'"><button type="button" class="template-select" data-template="'+esc(t.id)+'" aria-pressed="'+String(input.template===t.id)+'"><span class="poster-art poster-'+esc(t.id)+'" style="--tile:'+esc(t.color)+'"><span class="poster-num">'+String(i+1).padStart(2,'0')+' / 06</span><strong>'+esc(t.name)+'</strong><span class="poster-symbol" aria-hidden="true">✳</span><span class="poster-style">'+esc(t.style)+'</span></span><span class="poster-meta"><strong>'+esc(t.tag)+'</strong><span>'+ (input.template===t.id?'SELECTED ✓':'EXPLORE DIRECTION ↗')+'</span></span></button></article>').join("")+'</div>';
     const frame=el.querySelector("#theater-frame"),theater=el.querySelector(".experience-theater");
     const controller=new AbortController();
     theaterController=controller;
     frame.srcdoc=previewMessage("Loading "+active.name+"…");
-    fetchPublicTemplate(active.id,{signal:controller.signal})
+    fetchPublicTemplate(active.id,{type:input.type,signal:controller.signal})
       .then((html)=>{if(!controller.signal.aborted && frame.isConnected)frame.srcdoc=html;})
       .catch((error)=>{
         if(controller.signal.aborted || !frame.isConnected)return;
@@ -106,7 +109,7 @@ function draw() {
       };
       input.preferences = f.get("preferences");
       $("iframe", el).srcdoc = renderSite(
-        { ...sampleForTemplate(input.template), design: input.design },
+        { ...sampleForTemplate(input.template,input.type), design: input.design },
         { sample: true },
       );
     };
