@@ -34,7 +34,7 @@ test("Firebase inquiries require a real Edge storage acknowledgment, not a stati
 test("Inquiry API requires an exact Firebase origin and does not allow wildcard CORS",async()=>{
   const src=await readFile(new URL("../supabase/functions/awe-inquiry/index.ts",import.meta.url),"utf8");
   assert(src.includes('https://awe-digital.web.app'));
-  assert(src.includes("origin !== SITE_ORIGIN"));
+  assert(src.includes("SITE_ORIGINS.has(origin)"));
   assert(src.includes("AWE_INQUIRY_RATE_SALT"));
   assert(src.includes("rateFingerprint(req"));
   assert(!src.includes('"Access-Control-Allow-Origin":"*"'));
