@@ -116,7 +116,7 @@ export function suggestionsFromText(value) {
   const warnings = [];
   if (!Object.values(proposed).some(Boolean)) warnings.push("No reliable fields were found. Please enter the information manually.");
   if (!buckets.education.length && !buckets.experience.length) warnings.push("Section headings were not recognized; manually review the source document.");
-  warnings.push("Only suggestions are shown. Verify every detail before applying. Contact details are never auto-published.");
+  warnings.push("Only suggestions are shown. Review and verify every detail before applying. Contact details are never auto-published.");
   return { fields:proposed, warnings, extractedCharacters:text.length, mode:"review-required" };
 }
 export function previewResume(bytes, mime) {
