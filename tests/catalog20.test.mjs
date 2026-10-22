@@ -75,7 +75,7 @@ test("allowed static preview paths never accept arbitrary user-controlled URL se
 test("homepage controls and order builder expose all twenty without old six-item catalogs",async()=>{
   const [home,show,order,build]=await Promise.all(
     ["index.html","showcase.js","app/order.mjs","scripts/build.mjs"].map(x=>readFile(x,"utf8")));
-  assert(home.includes("TWENTY WORLDS"));
+  assert(home.includes("DESIGN WITHOUT"));
   assert(home.includes('id="world-purpose"'));
   assert(home.includes('id="transformation-slider"'));
   assert(show.includes("templates.map"));

@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="/cinema.css">
   <script src="/cinema.js" defer></script>
   <link rel="stylesheet" href="/awe-relaunch.css">
+  <link rel="stylesheet" href="/hero-layout-fix.css">
   <script src="/awe-relaunch.js" defer></script>
   <script type="module" src="sculpture.js"></script>
   <script src="case-studies.js" defer></script>
@@ -75,7 +76,7 @@
         <div class="hero-bottom">
           <div class="hero-description">
             <span class="asterisk" aria-hidden="true"><svg class="spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2v36M2 20h36M7 7l26 26M7 33 33 7" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></span>
-            <p>20 distinct creative directions. A website built around who you are, with motion, polish, and a price that makes sense.<a class="hero-start" href="#contact">START SOMETHING ↗</a></p>
+            <p>Original design experiences built around who you are—with personality, movement, and thoughtful details at an approachable price.<a class="hero-start" href="#contact">START SOMETHING ↗</a></p>
           </div>
           <a href="#work" class="hero-scroll magnetic" aria-label="Explore selected work"><span class="hero-scroll-text">EXPLORE<br>THE WORK</span><span class="down-arrow" aria-hidden="true">↘</span></a>
         </div>
@@ -117,8 +118,8 @@
     <section class="awe-impact-statement" id="awe-impact" aria-labelledby="awe-impact-title">
       <div class="impact-wordmark" aria-hidden="true">AWE / DIGITAL / AWE / DIGITAL / AWE / DIGITAL</div>
       <div class="page-width">
-        <div class="impact-eyebrow mono"><span>NOT ANOTHER TEMPLATE SHOP</span><span>Nº / 020</span></div>
-        <h2 id="awe-impact-title"><span>TWENTY</span><span>DESIGN WORLDS.</span><em>Not twenty colorways.</em></h2>
+        <div class="impact-eyebrow mono"><span>NOT YOUR AVERAGE DESIGN STUDIO</span><span>THE AWE FACTOR</span></div>
+        <h2 id="awe-impact-title"><span>YOUR WORLD.</span><span>YOUR RULES.</span><em>Nothing ordinary.</em></h2>
         <div class="impact-bottom"><p>Move from a casting portfolio to a cinema. From an engineering résumé to a command line. From a local business to its own destination. Different industries deserve different experiences.</p><a href="#express-showcase">STEP INSIDE THE COLLECTION ↘</a></div>
       </div>
       <div class="impact-rings" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -152,18 +153,48 @@
 
     <section class="awe-transformation" id="transformation" aria-labelledby="transformation-title">
       <div class="page-width">
-        <div class="transformation-head"><p class="mono">THE DIFFERENCE / 001</p><h2 id="transformation-title">Ordinary is easy.<br><em>Unforgettable is designed.</em></h2><p>Move the slider. See how thoughtful composition, storytelling, and animation can completely change how a first impression feels.</p></div>
-        <div class="transformation-stage" id="transformation-stage" style="--reveal:50%">
-          <div class="transformation-base" aria-label="Generic website concept">
-            <div class="before-nav">LOGO <span>Home &nbsp; About &nbsp; Services &nbsp; Contact</span></div>
-            <div class="before-card"><span>Welcome to my website</span><h3>We offer services for everyone.</h3><p>I'm passionate about quality and customer satisfaction.</p><span class="before-button">LEARN MORE</span></div>
-          </div>
-          <div class="transformation-after" aria-label="AWE creative direction concept"><div class="after-grid" aria-hidden="true"></div><div class="after-top">AWE / DIGITAL <span>EDITORIAL CONCEPT N°01 ↗</span></div><div class="after-orbit" aria-hidden="true">✳</div><div class="after-copy"><span>THE NEXT GENERATION OF YOU</span><h3>MAKE<br>YOUR<br><em>MARK.</em></h3><div class="after-cta">LEAVE THEM LOOKING ↗</div></div></div>
-          <div class="transformation-split" aria-hidden="true"><span>⇄</span></div>
+        <div class="transformation-head">
+          <p class="mono">THE AWE TRANSFORMATION / INTERACTIVE DESIGN LAB</p>
+          <h2 id="transformation-title">See the difference.<br><em>Feel the difference.</em></h2>
+          <p>Choose a type of website, then drag the slider to reveal how a distinct visual identity changes the entire first impression. Every example is a fictional design concept.</p>
         </div>
-        <label class="transformation-slider-label" for="transformation-slider">DRAG TO REVEAL THE AWE FACTOR</label>
-        <input id="transformation-slider" type="range" min="0" max="100" value="50" aria-label="Compare generic and AWE Digital website designs">
-        <div class="transformation-foot"><span>01 / EXPECTED</span><span>02 / UNEXPECTED</span></div>
+        <div class="transformation-experiences" role="group" aria-label="Choose a before-and-after comparison">
+          <button type="button" class="transformation-choice is-selected" data-comparison="actor" aria-pressed="true"><span>01</span><strong>Actor Portfolio</strong><small>FROM BIO TO CINEMA ↗</small></button>
+          <button type="button" class="transformation-choice" data-comparison="business" aria-pressed="false"><span>02</span><strong>Small Business</strong><small>FROM BROCHURE TO BRAND ↗</small></button>
+          <button type="button" class="transformation-choice" data-comparison="developer" aria-pressed="false"><span>03</span><strong>Developer Portfolio</strong><small>FROM LIST TO EXPERIENCE ↗</small></button>
+          <button type="button" class="transformation-choice" data-comparison="creative" aria-pressed="false"><span>04</span><strong>Creative Studio</strong><small>FROM GALLERY TO EDITORIAL ↗</small></button>
+        </div>
+        <div class="transformation-stage" id="transformation-stage" data-comparison="actor" style="--reveal:50%">
+          <div class="transformation-base" id="comparison-before" aria-label="Generic concept before AWE art direction">
+            <div class="before-nav">YOUR WEBSITE <span>Home &nbsp; About &nbsp; Work &nbsp; Contact</span></div>
+            <div class="before-card"><span>Welcome to my page</span><h3>Actor and performer portfolio</h3><p>A short biography, a list of credits, and a basic contact section.</p><span class="before-button">VIEW DETAILS</span></div>
+          </div>
+          <div class="transformation-after" id="comparison-after" aria-label="Art-directed concept after AWE">
+            <div class="after-grid" aria-hidden="true"></div>
+            <div class="after-top">AWE / DIGITAL <span>CASTING PORTFOLIO / CONCEPT</span></div>
+            <div class="after-orbit" aria-hidden="true">✳</div>
+            <div class="after-copy"><span>THE NEXT ROLE BEGINS HERE</span><h3>EVERY<br>ROLE<br><em>HAS A STORY.</em></h3><div class="after-cta">ENTER THE STORY ↗</div></div>
+          </div>
+          <div class="transformation-split" aria-hidden="true"><span>⇄</span></div>
+          <div class="transformation-corner-label comparison-before-label" aria-hidden="true">STANDARD</div>
+          <div class="transformation-corner-label comparison-after-label" aria-hidden="true">AWE / DIGITAL</div>
+        </div>
+        <div class="transformation-controls">
+          <div>
+            <label class="transformation-slider-label" for="transformation-slider">DRAG TO REVEAL THE DESIGN</label>
+            <input id="transformation-slider" type="range" min="0" max="100" value="50" aria-label="Compare a standard website with an AWE Digital art-directed concept">
+          </div>
+          <div class="transformation-presets" aria-label="Comparison position presets">
+            <button type="button" data-reveal="0">BEFORE</button>
+            <button type="button" data-reveal="50" aria-pressed="true">SPLIT</button>
+            <button type="button" data-reveal="100">AFTER</button>
+          </div>
+        </div>
+        <div class="transformation-insight">
+          <div><span class="mono">WHAT CHANGES?</span><h3 id="comparison-insight-title">From basic biography to cinematic introduction.</h3><p id="comparison-insight-copy">A performance-led story, distinctive casting presentation, and intentional navigation—rather than another résumé-shaped landing page.</p></div>
+          <a id="comparison-learn-more" href="/why-awe.html?concept=actor">EXPLORE THE DESIGN STORY <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="transformation-foot"><span>STANDARD CONCEPT / BEFORE</span><span>ART-DIRECTED CONCEPT / AFTER</span></div>
       </div>
     </section>
 
@@ -286,10 +317,10 @@
     <section class="worlds" id="express-showcase" aria-labelledby="worlds-title">
       <div class="worlds-accent" aria-hidden="true"></div><span class="worlds-decoration" aria-hidden="true">AWE</span>
       <div class="page-width">
-        <div class="worlds-kicker"><span>AWE EXPRESS / THE TWENTY COLLECTION</span><strong>TWENTY ORIGINAL EXPERIENCES ✳</strong></div>
-        <h2 id="worlds-title" class="worlds-title">TWENTY WORLDS.<br><em>One original you.</em></h2>
-        <p class="worlds-description">A portfolio should feel like a premiere. A business should have its own personality. Try twenty art-directed experiences built to move, tell stories, and make an impression.</p>
-        <div class="worlds-purpose"><label for="world-purpose">WHO ARE WE CREATING FOR?</label><select id="world-purpose" aria-label="Preview templates for a website purpose"></select><span>20 ORIGINAL SYSTEMS / 6 REAL-WORLD PURPOSES</span></div>
+        <div class="worlds-kicker"><span>AWE EXPRESS / THE TWENTY COLLECTION</span><strong>ART DIRECTION WITH PURPOSE ✳</strong></div>
+        <h2 id="worlds-title" class="worlds-title">DESIGN WITHOUT<br><em>the ordinary.</em></h2>
+        <p class="worlds-description">A portfolio should feel like a premiere. A business should have its own personality. Explore art-directed experiences built to move, tell stories, and make an impression.</p>
+        <div class="worlds-purpose"><label for="world-purpose">WHO ARE WE CREATING FOR?</label><select id="world-purpose" aria-label="Preview templates for a website purpose"></select><span>A CREATIVE DIRECTION FOR YOUR PURPOSE</span></div>
         <div class="worlds-layout">
           <div class="worlds-rail" id="worlds-choices" aria-label="Choose from twenty website concepts"><p class="worlds-rail-note">TWENTY ORIGINAL CREATIVE WORLDS. PICK ONE TO PREVIEW.</p></div>
           <div class="worlds-screen" id="worlds-screen" data-world="afterhours">

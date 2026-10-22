@@ -16,8 +16,8 @@ test("20 designs change entire page architecture, not just hero color",()=>{
     assert(match,t.id+" has no custom work presentation");
     workStructures.add(match[1]);
     assert(html.includes("chapter-"+mode),t.id+" chapters do not match its design");
-    assert(html.includes('class="architect-masthead"'),t.id+" missing custom masthead");
-    assert(html.includes('class="architect-endmark"'),t.id+" missing closing art direction");
+    assert(html.includes('class="shell-header shell-'+t.id+'"'),t.id+" missing template-specific header");
+    assert(html.includes('class="shell-footer shell-footer-'+t.id+'"'),t.id+" missing template-specific footer");
     assert(html.includes("chapter-work"),t.id+" missing designed work chapter");
     assert(html.includes("case-entry"),t.id+" missing art-directed work");
     assert(!html.includes('class="work-grid"'),t.id+" fell back to generic work cards");
