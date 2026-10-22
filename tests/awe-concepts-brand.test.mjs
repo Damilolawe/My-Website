@@ -51,6 +51,7 @@ test("AWE Express remains the offer under Awe Concepts branding", async () => {
   assert.doesNotMatch(home + order + account, /Awe Concepts Express/i);
   for (const page of [order, account, await source("admin.html")]) {
     assert.match(page, /class="wordmark"[^>]*>AWE CONCEPTS<\/a>/);
-    assert.doesNotMatch(page, /AWE\\s*<i>\\/<\\/i>\\s*DIGITAL/i);
+    assert(!page.includes('AWE <i>/</i> DIGITAL'));
+
   }
 });
