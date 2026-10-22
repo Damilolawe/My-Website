@@ -39,7 +39,7 @@ export function renderPremium(input, options = {}) {
     "Small business":{about:"Our story",work:"How we work",services:"What we offer",experience:"Our experience",education:"Our background",skills:"What we do best",contact:"Get in touch"}
   };
   const labelFor=(id,fallback)=>titles[value.type]?.[id]||fallback;
-  const heading = (id, index, title, intro) => '<div class="section-head"><div class="eyebrow"><span class="number">' + String(index).padStart(2, "0") + ' / ' + E(id) + '</span></div><div><h2>' + E(title) + '</h2>' + (intro ? '<p>' + E(intro) + '</p>' : '') + '</div></div>';
+  const heading = (id, index, title, intro) => '<div class="section-head"><div class="eyebrow"><span class="number">' + String(index).padStart(2, "0") + ' / ' + E(id) + '</span></div><div><h2>' + E(labelFor(id,title)) + '</h2>' + (intro ? '<p>' + E(intro) + '</p>' : '') + '</div></div>';
   const section = (id, index) => {
     if (id === "about" && c.bio) return '<section class="section" id="about">' + heading(id,index,'Behind the work','A little about the person and thinking behind it.') + '<div class="prose">' + rich(c.bio) + '</div></section>';
     if (id === "work" && (items.length || c.photoIds.length > 1)) {
