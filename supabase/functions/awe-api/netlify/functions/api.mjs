@@ -221,9 +221,11 @@ export default async function (req) {
         return json({ id: aid, mime });
       }
       if (action === "checkout") {
+        if (env().ORDERS_ENABLED !== "true") fail("Orders are not open yet.", 503);
+        const stripeClient = stripe(); // Check test-mode credentials before locking the order.
         if (o.payment !== "unpaid") fail("This order has already been paid.");
         if (o.stripe_session) {
-          const previous = await stripe().checkout.sessions.retrieve(
+          const previous = await stripeClient.checkout.sessions.retrieve(
             o.stripe_session,
           );
           if (previous.status === "open" && previous.url)
@@ -254,7 +256,7 @@ export default async function (req) {
         );
         if (!locked.length) fail("This order changed. Reload before checkout.", 409);
         const p = o.package_snapshot;
-        const session = await stripe().checkout.sessions.create(
+        const session = await stripeClient.checkout.sessions.create(
           {
             mode: "payment",
             payment_method_types: ["card"],
