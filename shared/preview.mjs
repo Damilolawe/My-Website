@@ -1,3 +1,4 @@
+import {templates, typeSlugs} from "./model.mjs";
 /**
  * Only public, fictional template documents can enter a preview.
  *
@@ -7,9 +8,7 @@
  * This bypasses a navigation to a frame-blocked URL while preserving
  * those important response headers and disabling all scripts in previews.
  */
-export const TEMPLATE_IDS = Object.freeze([
-  "index", "folio", "still", "afterhours", "signal", "daylight",
-]);
+export const TEMPLATE_IDS = Object.freeze(templates.map(t=>t.id));
 
 export function previewMessage(message) {
   const text = String(message).replace(/[&<>"']/g, (c) =>
@@ -22,10 +21,11 @@ export function previewMessage(message) {
     '<p>' + text + '</p></body></html>';
 }
 
-export async function fetchPublicTemplate(id, { still = false, signal } = {}) {
+export async function fetchPublicTemplate(id, { still = false, signal, type } = {}) {
   // Never use input data as URLs, and never fetch customer content.
   if (!TEMPLATE_IDS.includes(id)) throw new Error("Unknown template.");
-  const path = "/templates/" + id + (still ? "--still" : "") + ".html";
+  const prefix = type && typeSlugs[type] ? typeSlugs[type] + "/" : "";
+  const path = "/templates/" + prefix + id + (still ? "--still" : "") + ".html";
   const response = await fetch(path, {
     signal, credentials: "same-origin", mode: "same-origin",
     headers: { Accept: "text/html" },
