@@ -42,4 +42,8 @@ test("Checkout never uses browser-supplied price and requires test credentials",
  assert(legacy.includes("unit_amount: p.amount"));
  assert(legacy.includes("const p = o.package_snapshot"));
  assert(legacy.includes('env().ORDERS_ENABLED !== "true"'));
+ const checkout = legacy.slice(legacy.indexOf('if (action === "checkout")'),legacy.indexOf('if (action === "revision")'));
+ assert(checkout.includes('if (env().ORDERS_ENABLED !== "true")'),"Disabling orders must also block already-created unpaid orders");
+ assert(checkout.indexOf('const stripeClient = stripe();') < checkout.indexOf('checkout_at: new Date()'),"Stripe config must be checked before the project is locked");
+ assert(checkout.includes('stripeClient.checkout.sessions.create('));
 });
