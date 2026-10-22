@@ -3,7 +3,8 @@ import { esc, templates, sections } from "/shared/model.mjs";
 import { enhanceEditor } from "./studio-editor.mjs";
 const app = $("#app");
 let selected = null,
-  overview = null;
+  overview = null,
+  inquiries = [];
 const field = (label, name, value = "", area = false) =>
   `<label class="field">${label}${area ? `<textarea name="${name}">${esc(value)}</textarea>` : `<input name="${name}" value="${esc(value)}">`}</label>`;
 const select = (label, name, values, current) =>
@@ -16,10 +17,20 @@ async function load() {
         '<div class="notice">This space is restricted to the studio owner.</div>';
       return;
     }
-    overview = await api("admin/overview");
+    const [ordersView, leadList] = await Promise.all([
+      api("admin/overview"),
+      api("admin/inquiries")
+    ]);
+    overview = ordersView;
+    inquiries = Array.isArray(leadList) ? leadList : [];
     drawOverview();
   } catch (e) {
-    authForm(app, load);
+    if (e?.status === 401 || /Sign in to continue/i.test(e?.message || "")) {
+      authForm(app, load);
+    } else {
+      app.innerHTML = '<div class="notice" role="alert">The studio data could not load. Check your account access and try again.</div><button class="btn secondary" id="studio-retry">Retry loading</button>';
+      $("#studio-retry").onclick = load;
+    }
   }
 }
 function drawOverview() {
@@ -35,6 +46,7 @@ function drawOverview() {
     });
   app.innerHTML = `<div class="toolbar"><button class="btn secondary small" id="refresh">Refresh dashboard</button><button class="btn small" id="jobs">Run queued jobs</button><button class="btn secondary small" id="logout">Sign out</button></div><p class="muted">Showing the latest ${orders.length} orders (maximum 500). Amounts are gross verified purchases, excluding refunded orders and processor fees.</p><div class="stats">${[
     ["Orders", orders.length],
+    ["New inquiries", inquiries.filter((q) => q.status === "new").length],
     ["Customers", customers],
     ["Awaiting payment", orders.filter((o) => o.payment === "unpaid").length],
     ["Confirmed purchases", orders.filter((o) => o.payment === "paid").length],
@@ -56,7 +68,7 @@ function drawOverview() {
     )
     .join(
       "",
-    )}</div><h2>Production queue</h2><label class="field">Filter orders<input id="search" placeholder="Name, email, status, or reference"></label><div class="table-scroll"><table><thead><tr><th>Customer</th><th>Website</th><th>Payment</th><th>Production</th><th></th></tr></thead><tbody id="orders"></tbody></table></div><h2 class="section-divider">Packages & availability</h2><p class="muted">Existing orders keep their original package terms and price. New terms apply only to future orders.</p><button id="new-package" class="btn secondary small">Add package</button><div id="packages"></div><h2 class="section-divider">Template library</h2><div class="checks">${overview.templates.map((t) => `<label><input type="checkbox" data-template="${t.id}" ${t.enabled ? "checked" : ""}> ${esc(t.label)}</label>`).join("")}</div><h2 class="section-divider">Custom project briefs</h2>${briefs.map((b) => `<details class="panel"><summary>${esc(b.email)} · ${new Date(b.created_at).toLocaleDateString()}</summary><p class="terms">${esc(b.content.idea)}</p><p>Budget: ${esc(b.content.budget)}<br>Timing: ${esc(b.content.timing)}</p></details>`).join("") || "<p>No briefs yet.</p>"}<h2 class="section-divider">Job recovery</h2>${jobs.map((j) => `<div class="panel"><p>${esc(j.kind)} / ${esc(j.order_id)} · attempt ${j.attempts}/5</p><p>${esc(j.error || "Queued")}</p><button class="btn secondary small" data-retry="${j.id}">Retry job</button></div>`).join("") || "<p>No pending jobs.</p>"}`;
+    )}</div><h2>Production queue</h2><label class="field">Filter orders<input id="search" placeholder="Name, email, status, or reference"></label><div class="table-scroll"><table><thead><tr><th>Customer</th><th>Website</th><th>Payment</th><th>Production</th><th></th></tr></thead><tbody id="orders"></tbody></table></div><h2 class="section-divider">New project inquiries</h2><p class="muted">These messages are private to the studio owner. Reply using your business email and update their status here.</p><div id="studio-inquiries">${inquiries.length ? inquiries.map((q) => `<article class="panel"><div class="toolbar"><strong>${esc(q.name)}</strong><span>${new Date(q.created_at).toLocaleString()}</span></div><p><strong>Email:</strong> ${esc(q.email)}<br><strong>Project:</strong> ${esc(q.project)}</p><p class="terms">${esc(q.message)}</p><label class="field">Follow-up status<select data-inquiry="${esc(q.id)}"><option value="new" ${q.status==="new"?"selected":""}>New</option><option value="contacted" ${q.status==="contacted"?"selected":""}>Contacted</option><option value="archived" ${q.status==="archived"?"selected":""}>Archived</option></select></label></article>`).join("") : '<p class="panel">No customer inquiries have been received yet.</p>'}</div><h2 class="section-divider">Packages & availability</h2><p class="muted">Existing orders keep their original package terms and price. New terms apply only to future orders.</p><button id="new-package" class="btn secondary small">Add package</button><div id="packages"></div><h2 class="section-divider">Template library</h2><div class="checks">${overview.templates.map((t) => `<label><input type="checkbox" data-template="${t.id}" ${t.enabled ? "checked" : ""}> ${esc(t.label)}</label>`).join("")}</div><h2 class="section-divider">Custom project briefs</h2>${briefs.map((b) => `<details class="panel"><summary>${esc(b.email)} · ${new Date(b.created_at).toLocaleDateString()}</summary><p class="terms">${esc(b.content.idea)}</p><p>Budget: ${esc(b.content.budget)}<br>Timing: ${esc(b.content.timing)}</p></details>`).join("") || "<p>No briefs yet.</p>"}<h2 class="section-divider">Job recovery</h2>${jobs.map((j) => `<div class="panel"><p>${esc(j.kind)} / ${esc(j.order_id)} · attempt ${j.attempts}/5</p><p>${esc(j.error || "Queued")}</p><button class="btn secondary small" data-retry="${j.id}">Retry job</button></div>`).join("") || "<p>No pending jobs.</p>"}`;
   function table(q = "") {
     $("#orders").innerHTML = orders
       .filter((o) =>
@@ -136,6 +148,18 @@ function drawOverview() {
       return `<details class="panel"><summary>${esc(d.name)} · ${d.enabled ? "Available" : "Disabled"} · ${money(d)}</summary><form data-package="${p.id}">${field("Package name", "name", d.name)}<div class="field-row">${field("Price in minor units (e.g. cents)", "amount", d.amount || "")}${field("Currency (e.g. usd)", "currency", d.currency)}</div>${field("Included features (one per line)", "features", (d.features || []).join("\n"), true)}${field("Hosting terms, duration & domain costs", "hosting", d.hosting, true)}${field("Ownership & transfer terms", "ownership", d.ownership, true)}${field("Revision policy", "revisions", d.revisions, true)}<label><input type="checkbox" name="filesIncluded" ${d.filesIncluded ? "checked" : ""}> Include downloadable website files after approval</label><br><label><input type="checkbox" name="enabled" ${d.enabled ? "checked" : ""}> Make package available</label><div class="toolbar"><button class="btn">Save package</button></div></form></details>`;
     })
     .join("");
+  app.querySelectorAll("[data-inquiry]").forEach((control) => {
+    control.onchange = async () => {
+      control.disabled = true;
+      try {
+        await api(`admin/inquiries/${control.dataset.inquiry}`, {status:control.value});
+        await load();
+      } catch (error) {
+        report(error);
+        control.disabled = false;
+      }
+    };
+  });
   app.querySelectorAll("[data-package]").forEach(
     (f) =>
       (f.onsubmit = async (e) => {
@@ -197,7 +221,27 @@ function drawOrder() {
     .map(([n, w]) => `<button data-width="${w}">${n}</button>`)
     .join(
       "",
-    )}</div></div>${o.draft_version ? `<iframe id="draft" src="/api/admin/orders/${o.id}/preview" title="Private website draft" sandbox="allow-same-origin"></iframe>` : "<p>Your draft will appear after verified payment and generation.</p>"}</div><div class="panel"><h3>Review decision</h3><p>Review the saved draft at each size. Publishing makes this exact version and its selected images publicly accessible.</p><label class="field">Review notes<textarea id="note" maxlength="2000"></textarea></label><div class="toolbar"><button id="reject" class="btn secondary" ${!o.draft_version ? "disabled" : ""}>Request revisions</button><button id="publish" class="btn acid" ${!o.draft_version || o.payment !== "paid" ? "disabled" : ""}>Approve & Publish ↗</button></div>${o.public_version ? `<a href="/sites/${o.slug}" target="_blank" rel="noopener">Current live website ↗</a><p><a href="/api/admin/orders/${o.id}/export">Download approved website files ↓</a></p>` : ""}<p class="muted">${esc(o.delivery_error || "")}</p></div><h3>Replace / add a photograph</h3><form id="replace-photo" class="panel"><label class="field">New image (4 MB maximum)<input type="file" name="file" accept=".jpg,.jpeg,.png,.webp" required></label><label><input name="rights" type="checkbox" required> I have permission to use this image publicly.</label><button class="btn secondary small">Upload to private materials</button><p class="muted">Select the new image in the editor and save a draft. Uploading alone does not change the live site.</p></form><h3>Customer materials</h3><ul>${assets.map((a) => `<li><a href="/api/assets/${a.id}" target="_blank" rel="noopener">${esc(a.name)} ↗</a> · ${a.public_allowed ? "approved for website" : "private document"}</li>`).join("")}</ul><h3>Revision requests</h3>${revisions.map((r) => `<p class="notice">${esc(r.message)}</p>`).join("") || "<p>No requests yet.</p>"}<h3>Version history</h3>${versions.map((v) => `<p>${new Date(v.created_at).toLocaleString()} <button class="btn small secondary" data-restore="${v.id}">Restore as private draft</button></p>`).join("")}<h3>Delivery records</h3>${deliveries.map((v) => `<p>${new Date(v.created_at).toLocaleString()} · Email accepted by provider</p>`).join("") || "<p>No delivery emails accepted yet.</p>"}<h3>Audit trail</h3><div class="audit">${events.map((e) => `<p>${esc(e.created_at)} / ${esc(e.kind)} / ${esc(JSON.stringify(e.details))}</p>`).join("")}</div></div></div><dialog class="modal" id="confirm"><h2>Ready for the world?</h2><p>Publish the saved draft for <strong>${esc(c.name)}</strong>? This replaces the public version and queues a delivery email.</p><p>Unsaved editor changes are not included.</p><div class="toolbar"><button class="btn secondary" id="cancel">Keep private</button><button class="btn acid" id="confirm-publish">Publish approved version</button></div></dialog>`;
+    )}</div></div>${o.draft_version ? `<iframe id="draft" title="Private website draft" sandbox="" referrerpolicy="no-referrer"></iframe>` : "<p>Your draft will appear after verified payment and generation.</p>"}</div><div class="panel"><h3>Review decision</h3><p>Review the saved draft at each size. Publishing makes this exact version and its selected images publicly accessible.</p><label class="field">Review notes<textarea id="note" maxlength="2000"></textarea></label><div class="toolbar"><button id="reject" class="btn secondary" ${!o.draft_version ? "disabled" : ""}>Request revisions</button><button id="publish" class="btn acid" ${!o.draft_version || o.payment !== "paid" ? "disabled" : ""}>Approve & Publish ↗</button></div>${o.public_version ? `<a href="/sites/${o.slug}" target="_blank" rel="noopener">Current live website ↗</a><p><a href="/api/admin/orders/${o.id}/export">Download approved website files ↓</a></p>` : ""}<p class="muted">${esc(o.delivery_error || "")}</p></div><h3>Replace / add a photograph</h3><form id="replace-photo" class="panel"><label class="field">New image (4 MB maximum)<input type="file" name="file" accept=".jpg,.jpeg,.png,.webp" required></label><label><input name="rights" type="checkbox" required> I have permission to use this image publicly.</label><button class="btn secondary small">Upload to private materials</button><p class="muted">Select the new image in the editor and save a draft. Uploading alone does not change the live site.</p></form><h3>Customer materials</h3><ul>${assets.map((a) => `<li><a href="/api/assets/${a.id}" target="_blank" rel="noopener">${esc(a.name)} ↗</a> · ${a.public_allowed ? "approved for website" : "private document"}</li>`).join("")}</ul><h3>Revision requests</h3>${revisions.map((r) => `<p class="notice">${esc(r.message)}</p>`).join("") || "<p>No requests yet.</p>"}<h3>Version history</h3>${versions.map((v) => `<p>${new Date(v.created_at).toLocaleString()} <button class="btn small secondary" data-restore="${v.id}">Restore as private draft</button></p>`).join("")}<h3>Delivery records</h3>${deliveries.map((v) => `<p>${new Date(v.created_at).toLocaleString()} · Email accepted by provider</p>`).join("") || "<p>No delivery emails accepted yet.</p>"}<h3>Audit trail</h3><div class="audit">${events.map((e) => `<p>${esc(e.created_at)} / ${esc(e.kind)} / ${esc(JSON.stringify(e.details))}</p>`).join("")}</div></div></div><dialog class="modal" id="confirm"><h2>Ready for the world?</h2><p>Publish the saved draft for <strong>${esc(c.name)}</strong>? This replaces the public version and queues a delivery email.</p><p>Unsaved editor changes are not included.</p><div class="toolbar"><button class="btn secondary" id="cancel">Keep private</button><button class="btn acid" id="confirm-publish">Publish approved version</button></div></dialog>`;
+  // The Supabase Edge API delivers a private preview as authenticated JSON.
+  // Do not navigate an iframe to an API URL: cross-origin bearer tokens cannot
+  // be attached to iframe navigation, and that would bypass our API client.
+  // srcdoc is intentionally sandboxed WITHOUT allow-same-origin or allow-scripts.
+  if (o.draft_version) {
+    const frame = $("#draft");
+    api(`admin/orders/${o.id}/preview`).then(({ html }) => {
+      if (typeof html !== "string" || html.length > 250000 || !/^<!doctype html>/i.test(html.trimStart()))
+        throw Error("The private preview could not be validated.");
+      if (frame?.isConnected && selected?.order?.id === o.id)
+        frame.srcdoc = html;
+    }).catch((error) => {
+      if (frame?.isConnected) {
+        const notice = document.createElement("p");
+        notice.setAttribute("role", "status");
+        notice.textContent = "Private preview unavailable: " + (error.message || "Please try again.");
+        frame.replaceWith(notice);
+      }
+    });
+  }
   const studio = enhanceEditor($("#editor"), o.input);
   $("#replace-photo").onsubmit = async (e) => {
     e.preventDefault();
