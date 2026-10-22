@@ -738,3 +738,58 @@ th {
 @media(max-width:900px){.premium-template-grid{grid-template-columns:repeat(2,1fr)}.theater-viewport iframe{height:540px}.experience-picker-index small{white-space:normal}}
 @media(max-width:560px){.experience-picker-heading{align-items:start}.experience-picker-index{display:none}.premium-template-grid{gap:9px}.poster-art{height:240px;padding:13px}.poster-art>strong{font-size:clamp(23px,6vw,39px)}.poster-num,.poster-style{font-size:8px}.poster-meta{min-height:77px}.poster-meta strong{font-size:11px}.poster-meta>span{font-size:8px}.theater-header{align-items:start;flex-direction:column}.theater-tools button,.theater-tools a{font-size:9px;padding:7px 9px}.theater-viewport iframe{height:475px}.theater-caption>span{display:none}}
 @media(prefers-reduced-motion:reduce){.wizard .work-area{animation:none}.poster-symbol,.theater-viewport iframe{transition:none!important}}
+
+
+/* 20 individual art-directed selection posters — identity before customization. */
+.poster-atlas{background:repeating-linear-gradient(90deg,#163e3c,#163e3c 1px,#cbe5db 1px,#cbe5db 28px);color:#122d2a}
+.poster-atlas strong{font:850 clamp(28px,4vw,75px)/.9 Arial,sans-serif;letter-spacing:-.08em}
+.poster-atlas:after{border-radius:0;border-color:#0c655b88;transform:rotate(25deg)}
+.poster-terminal{background:repeating-linear-gradient(0deg,#101e15,#101e15 3px,#1c3521 4px);color:#b2ffaf}
+.poster-terminal strong{font:750 clamp(27px,3.4vw,55px)/1 "Courier New",monospace;text-transform:lowercase}
+.poster-terminal:after{border:1px solid #aafaad;border-radius:0;transform:none;width:90%;height:75%;top:10%;right:5%}
+.poster-orbit{background:radial-gradient(circle at 75% 34%,#9a83ed,#1c0c48 68%);color:white}
+.poster-orbit:after{border-color:#ffffff38;transform:rotate(25deg) scaleX(.55)}
+.poster-orbit .poster-symbol{font-size:340px;color:#b4a3fe3b}
+.poster-playbill{background:repeating-linear-gradient(90deg,#e9d3b2,#e9d3b2 25px,#d6bb92 26px,#d6bb92 27px);color:#662a20}
+.poster-playbill strong{font:italic 400 clamp(38px,4.1vw,78px)/.9 Georgia,serif;text-transform:none}
+.poster-playbill:after{border-color:#87352988}
+.poster-monologue{background:#fff9eb;color:#1e2825}
+.poster-monologue strong{font:700 clamp(24px,3vw,56px)/1.1 "Courier New",monospace}
+.poster-monologue:after{border-radius:0;border-width:1px;border-color:#343b3766;transform:none}
+.poster-portraiture{background:linear-gradient(145deg,#ffe9d6,#d28876);color:#593027}
+.poster-portraiture strong{font:italic 400 clamp(32px,4vw,72px)/.9 Georgia,serif;text-transform:none}
+.poster-portraiture:after{border-radius:48% 48% 0 0;border-color:#7d403650}
+.poster-contactsheet{background:repeating-linear-gradient(0deg,#25352b,#25352b 70px,#688069 71px,#688069 74px);color:#e1f6d9}
+.poster-contactsheet:after{border-radius:0;border-color:#a0bc8f6d}
+.poster-atelier{background:linear-gradient(135deg,#d0c6b7,#ece8df);color:#45362d}
+.poster-atelier strong{font:italic 400 clamp(32px,4vw,80px)/.8 Georgia,serif;text-transform:none}
+.poster-atelier .poster-symbol{color:#957f6333}
+.poster-museum{background:#e6dfc6;color:#4b432e}
+.poster-museum strong{font:400 clamp(30px,4vw,72px)/.97 Georgia,serif;text-transform:none}
+.poster-museum:after{border-radius:0;border-color:#938355aa;border-width:20px}
+.poster-brutalist{background:#f84c56;color:#151718}
+.poster-brutalist strong{text-shadow:5px 6px #f6ec36;transform:rotate(-5deg)}
+.poster-brutalist:after{border-radius:0;border-width:30px;border-color:#151718b3;transform:rotate(13deg)}
+.poster-nocturne{background:radial-gradient(circle at 50% 35%,#71513b,#110f14 74%);color:#efd5a6}
+.poster-nocturne strong{font:italic 400 clamp(36px,4vw,72px)/.97 Georgia,serif;text-transform:none}
+.poster-nocturne:after{border-width:1px;border-color:#e4c69d80}
+.poster-foundry{background:linear-gradient(135deg,#e0a943,#d2bea0);color:#302719}
+.poster-foundry strong{font:1000 clamp(30px,4vw,70px)/.85 Arial,sans-serif;letter-spacing:-.08em}
+.poster-foundry:after{border-radius:0;transform:rotate(-18deg);border-color:#28251e90}
+.poster-bloom{background:#f2d6e2;color:#8b4169}
+.poster-bloom strong{font:italic 500 clamp(38px,4vw,70px)/.95 Georgia,serif;text-transform:none}
+.poster-bloom .poster-symbol{color:#c681ac66}.poster-bloom:after{border-radius:45% 30% 49% 30%;border-color:#b97f9d66}
+.poster-ledger{background:linear-gradient(135deg,#e0e9f2,#b3cfe8);color:#20405f}
+.poster-ledger strong{font:900 clamp(30px,4vw,68px)/.87 Arial,sans-serif}
+.poster-ledger:after{border-radius:0;border-color:#24608c6b;transform:skewY(-10deg)}
+.premium-template-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.premium-template-grid .template-poster{animation:poster-enter .55s both}
+.premium-template-grid .template-poster:nth-child(3n+2){animation-delay:.06s}
+.premium-template-grid .template-poster:nth-child(3n+3){animation-delay:.12s}
+@keyframes poster-enter{from{transform:translateY(20px);opacity:.5}to{transform:none;opacity:1}}
+.premium-template-grid .poster-art{height:clamp(220px,25vw,390px)}
+.premium-template-grid .poster-style{font-size:9px;line-height:1.35}
+.premium-template-grid .template-poster.chosen .poster-art{outline-offset:-9px;outline-width:8px}
+@media(max-width:850px){.premium-template-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:500px){.premium-template-grid{gap:10px}.premium-template-grid .poster-art{height:240px}.premium-template-grid .poster-art>strong{font-size:27px}}
+@media(prefers-reduced-motion:reduce){.premium-template-grid .template-poster{animation:none}}
