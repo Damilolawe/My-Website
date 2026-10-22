@@ -36,7 +36,7 @@ These internal `awe_*` identifiers are technical APIs and stable IDs, **not** th
 3. Optionally rename the **display name** of the existing Firebase project to `Awe Concepts` in Firebase Project settings; keep its project ID/site ID unchanged.
 4. Update the existing Stripe **sandbox's customer-facing business/statement/branding names** only via authorized sandbox settings; retain `acct_1UTP5yPuITKnGF9J` and the existing webhook. Leave live mode untouched.
 5. Renaming the GitHub repository is optional; existing private repo and CI/CD references should not be invalidated. If renamed, first update integrations, remote URLs and deployment GitHub App access.
-6. Confirm the existing (disabled) AWE Express package is relabeled to **Awe Concepts Express** in `public.awe_packages`. Do not change prices, enabled status, or past order snapshots.
+6. Keep the existing (disabled) AWE Express package named **AWE Express** in `public.awe_packages`. Do not change prices, enabled status, or past order snapshots.
 
 ## Release gate
 `ORDERS_ENABLED=false` until paid sandbox checkout, signed webhook, verified owner, approved site publication and email delivery all pass on the new host. No actual customer charges or paid upgrades as part of rebranding.

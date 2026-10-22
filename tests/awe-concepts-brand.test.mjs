@@ -40,3 +40,17 @@ test("Node package metadata and server delivery messages are branded",async()=>{
   const production=await source("supabase/functions/awe-api/platform/production.mjs");
   assert(production.includes("Your AWE CONCEPTS website is ready"));
 });
+
+test("AWE Express remains the offer under Awe Concepts branding", async () => {
+  const home = await source("index.html");
+  const order = await source("order.html");
+  const account = await source("account.html");
+  assert.match(home, /AWE Express/);
+  assert.match(order, /AWE Express/);
+  assert.match(account, /AWE Express/);
+  assert.doesNotMatch(home + order + account, /Awe Concepts Express/i);
+  for (const page of [order, account, await source("admin.html")]) {
+    assert.match(page, /class="wordmark"[^>]*>AWE CONCEPTS<\/a>/);
+    assert.doesNotMatch(page, /AWE\\s*<i>\\/<\\/i>\\s*DIGITAL/i);
+  }
+});
