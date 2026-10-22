@@ -22,6 +22,7 @@ const files = [
   "admin.html",
   "privacy.html",
   "contact.html",
+  "contact.js",
   "inquiry-received.html",
 ];
 await rm("dist", { recursive: true, force: true });
