@@ -99,7 +99,7 @@ function draw() {
     update();
   }
   if (step === 3) {
-    el.innerHTML = `<h2>The story only you can tell.</h2><p class="muted">Use information you want visitors to see. Leave home addresses and private phone numbers out. Résumés stay private; we don’t extract or publish them automatically.</p><form id="content" class="panel"><div class="field-row">${field("Public name *", "name", input.content.name)}${field("Headline *", "headline", input.content.headline)}</div>${field("Your biography", "bio", input.content.bio, "textarea")}${field("Selected projects / services", "projects", input.content.projects, "textarea")}<div class="field-row">${field("Education", "education", input.content.education, "textarea")}${field("Experience", "experience", input.content.experience, "textarea")}</div>${field("Skills", "skills", input.content.skills)}${field("Public contact email (optional)", "publicEmail", input.content.publicEmail)}${field("HTTPS profile links (one per line)", "links", input.content.links.join("\n"), "textarea")}<label class="field">Résumé & photographs (up to 12 files, 4 MB each)<input id="files" type="file" multiple accept=".pdf,.docx,.jpg,.jpeg,.png,.webp"></label><p class="muted">Selected photos will be included in your website after review. Only choose images you have permission to publish. PDF and DOCX documents remain private.</p><ul class="file-list" id="file-list"></ul><button type="button" class="btn secondary small" id="clear-files">Clear selected files</button></form>`;
+    el.innerHTML = `<h2>The story only you can tell.</h2><p class="muted">Use information you want visitors to see. Leave home addresses and private phone numbers out. Your résumé can suggest editable text after sign-in. Nothing from it is published until you explicitly apply changes and the studio owner approves the website.</p><form id="content" class="panel"><div class="field-row">${field("Public name *", "name", input.content.name)}${field("Headline *", "headline", input.content.headline)}</div>${field("Your biography", "bio", input.content.bio, "textarea")}${field("Selected projects / services", "projects", input.content.projects, "textarea")}<div class="field-row">${field("Education", "education", input.content.education, "textarea")}${field("Experience", "experience", input.content.experience, "textarea")}</div>${field("Skills", "skills", input.content.skills)}${field("Public contact email (optional)", "publicEmail", input.content.publicEmail)}${field("HTTPS profile links (one per line)", "links", input.content.links.join("\n"), "textarea")}<label class="field">Résumé & photographs (up to 12 files, 4 MB each)<input id="files" type="file" multiple accept=".pdf,.docx,.jpg,.jpeg,.png,.webp"></label><p class="muted">Selected photos will be included in your website after review. Only choose images you have permission to publish. PDF and DOCX documents remain private.</p><ul class="file-list" id="file-list"></ul><button type="button" class="btn secondary small" id="clear-files">Clear selected files</button><div class="notice"><h3>Import details from your résumé</h3><p>Choose a PDF or DOCX above, then preview suggestions. We do not automatically publish them, infer qualifications, or save the extraction result.</p><button type="button" class="btn secondary small" id="resume-analyze">Preview résumé suggestions ↗</button><p id="resume-feedback" role="status" class="feedback"></p><div id="resume-review"></div><div id="resume-auth"></div></div></form>`;
     const filelist = () => {
       $("#file-list").innerHTML = files
         .map(
@@ -124,6 +124,45 @@ function draw() {
       filelist();
     };
     filelist();
+    $("#resume-analyze").onclick = async () => {
+      const doc = files.find((f) => /\.pdf$|\.docx$/i.test(f.name));
+      if (!doc) { $("#resume-feedback").textContent = "Choose a PDF or DOCX résumé using the file picker first."; return; }
+      try { await api("me"); } catch {
+        $("#resume-feedback").textContent = "Sign in below to analyze your résumé privately.";
+        authForm($("#resume-auth"), () => { $("#resume-auth").innerHTML = ""; $("#resume-analyze").click(); });
+        return;
+      }
+      const button = $("#resume-analyze");
+      button.disabled = true;
+      $("#resume-feedback").textContent = "Reading your document privately…";
+      try {
+        const fd = new FormData();
+        fd.append("file", doc);
+        const result = await api("resume/preview", fd);
+        const fields = Object.entries(result.fields).filter(([_, value]) => !!value);
+        const box = $("#resume-review");
+        box.innerHTML = '<h4>Review extracted suggestions</h4><p class="muted">Uncheck anything you do not wish to apply. Read each field carefully—extraction can make mistakes.</p>' +
+          fields.map(([key, value]) =>
+            '<label class="field"><input type="checkbox" data-resume-field="' + esc(key) + '" checked> ' + esc(key) + '<textarea readonly rows="3">' + esc(value) + '</textarea></label>'
+          ).join("") +
+          result.warnings.map((w) => '<p class="muted">' + esc(w) + '</p>').join("") +
+          '<button type="button" class="btn acid small" id="apply-resume">Apply selected suggestions ↗</button>';
+        $("#resume-feedback").textContent = fields.length ? "Review the suggestions before applying." : "No usable fields found; enter your details manually.";
+        const apply = $("#apply-resume");
+        if (apply) apply.onclick = () => {
+          let changed = 0;
+          box.querySelectorAll("[data-resume-field]:checked").forEach((check) => {
+            const key = check.dataset.resumeField;
+            const destination = $("#content [name='" + key + "']");
+            if (destination && result.fields[key]) { destination.value = result.fields[key]; changed++; }
+          });
+          $("#content").dispatchEvent(new Event("input",{bubbles:true}));
+          $("#resume-feedback").textContent = changed + " reviewed field(s) applied. You can edit them before checkout.";
+          box.innerHTML = "";
+        };
+      } catch (e) { $("#resume-feedback").textContent = e.message || "Unable to analyze this document."; }
+      finally { button.disabled = false; }
+    };
     $("#content").oninput = () => {
       const f = Object.fromEntries(new FormData($("#content")));
       for (const k of [
