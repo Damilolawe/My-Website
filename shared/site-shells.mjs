@@ -51,7 +51,7 @@ function middle(v,hero,sections,interlude){
  case "afterhours":case "monologue":case "playbill":return '<div class="shell-opening shell-opening-performance">'+hero+'</div>'+interlude+'<div class="shell-mid shell-mid-performance">'+sections+'</div>';
  case "brutalist":case "signal":return interlude+'<div class="shell-opening shell-opening-graphic">'+hero+'</div><div class="shell-mid shell-mid-graphic">'+sections+'</div>';
  case "still":case "nocturne":case "portraiture":return '<div class="shell-opening shell-opening-quiet">'+hero+'</div><div class="shell-mid shell-mid-quiet">'+sections+'</div>'+interlude;
- case "contactsheets":return hero+sections+interlude;
+ case "contactsheet":return hero+sections+interlude;
  case "foundry":case "bloom":case "daylight":return '<div class="shell-opening shell-opening-business">'+hero+interlude+'</div><div class="shell-mid shell-mid-business">'+sections+'</div>';
  default:return hero+interlude+sections;
  }
