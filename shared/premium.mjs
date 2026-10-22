@@ -1,5 +1,6 @@
 import { normalize, esc, https } from "./model.mjs";
 import { experienceHero, experienceInterlude } from "./experiences.mjs";
+import { alternateCSS } from "./alternate-styles.mjs";
 import { experienceCSS } from "./experience-styles.mjs";
 
 /* Static, sandboxable HTML output: no third-party fonts, scripts, cookies or APIs.
@@ -29,6 +30,15 @@ export function renderPremium(input, options = {}) {
   const image = (id, alt, cls, eager) => '<img class="' + cls + '" src="' + E(assetBase + id + assetSuffix) + '" alt="' + E(alt) + '" loading="' + (eager ? "eager" : "lazy") + '">';
   const navIds = d.sections.filter((s) =>
     s === "contact" || (s === "work" ? items.length || c.photoIds.length > 1 : s === "services" ? c.services.length : s === "testimonials" ? c.testimonials.length : s === "about" ? c.bio : c[s]));
+  const titles={
+    "Student résumé":{about:"The person behind the work",work:"Projects & experiments",services:"Capabilities",experience:"Experience",education:"Education",skills:"Toolbox",contact:"Say hello"},
+    "Professional portfolio":{about:"A little about me",work:"Selected case studies",services:"What I do",experience:"Career highlights",education:"Background",skills:"Expertise",contact:"Work together"},
+    "Actor / model":{about:"Meet the performer",work:"Credits & on-screen work",services:"Creative disciplines",experience:"Roles & performances",education:"Training",skills:"Range & abilities",contact:"Casting & enquiries"},
+    "Creative portfolio":{about:"Behind the lens",work:"Selected portfolio",services:"Creative services",experience:"Exhibitions & commissions",education:"Training",skills:"Creative practice",contact:"Make something together"},
+    "Personal brand":{about:"The story so far",work:"Ideas & endeavors",services:"Ways to collaborate",experience:"The journey",education:"What shaped me",skills:"What I bring",contact:"Start a conversation"},
+    "Small business":{about:"Our story",work:"How we work",services:"What we offer",experience:"Our experience",education:"Our background",skills:"What we do best",contact:"Get in touch"}
+  };
+  const labelFor=(id,fallback)=>titles[value.type]?.[id]||fallback;
   const heading = (id, index, title, intro) => '<div class="section-head"><div class="eyebrow"><span class="number">' + String(index).padStart(2, "0") + ' / ' + E(id) + '</span></div><div><h2>' + E(title) + '</h2>' + (intro ? '<p>' + E(intro) + '</p>' : '') + '</div></div>';
   const section = (id, index) => {
     if (id === "about" && c.bio) return '<section class="section" id="about">' + heading(id,index,'Behind the work','A little about the person and thinking behind it.') + '<div class="prose">' + rich(c.bio) + '</div></section>';
