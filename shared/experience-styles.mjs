@@ -116,4 +116,21 @@ export const experienceCSS = `
 .index .work-card:first-child,.folio .work-card,.folio .work-card:first-child,.folio .work-card:nth-child(2),.still .work-card,.still .work-card:first-child,.still .work-card:nth-child(2),.afterhours .work-card,.afterhours .work-card:first-child,.afterhours .work-card:nth-child(2),.daylight .work-card:first-child{grid-column:auto;margin:0}
 .daylight .work-card:nth-child(2){transform:none}}
 @media(prefers-reduced-motion:reduce){.experience-track,.signal-tape span,.hero-variant *,.hero-variant *:before,.hero-variant *:after{animation:none!important;transition:none!important}.hero-variant .hero-media:hover>img{transform:none}}
+
+/* Universal premium interactions, progressively enhanced without client scripts. */
+.site-nav .nav-links a{position:relative;transition:color .25s}
+.site-nav .nav-links a:after{content:"";position:absolute;left:0;bottom:-6px;width:100%;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.site-nav .nav-links a:hover:after,.site-nav .nav-links a:focus-visible:after{transform:scaleX(1)}
+.work-card .work-card-body{transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.work-card:hover .work-card-body{transform:translateY(-4px)}
+.motion-expressive .hero-variant .hero-actions{animation:awe-chrome 1s .35s both}
+.motion-expressive .experience-interlude{overflow:hidden}
+.motion-expressive .service-card h3{transition:color .35s}
+.motion-expressive .service-card:hover h3{color:var(--accent)}
+@keyframes awe-reading{to{transform:scaleX(1)}}
+@supports (animation-timeline:scroll()) {
+ .motion-expressive:before{content:"";position:fixed;z-index:50;inset:0 auto auto 0;height:3px;width:100%;transform:scaleX(0);transform-origin:left;background:var(--accent);pointer-events:none;animation:awe-reading linear both;animation-timeline:scroll(root)}
+}
+@media(prefers-reduced-motion:reduce){.motion-expressive:before{animation:none!important;display:none}.motion-expressive .hero-variant .hero-actions{animation:none}}
+.motion-none:before{animation:none!important;display:none}
 `;
