@@ -1,6 +1,6 @@
 import { AWE_SUPABASE_URL, AWE_SUPABASE_PUBLISHABLE_KEY } from "./app/service-config.mjs";
 
-// AWE / DIGITAL inquiry form: a successful submission MUST be acknowledged by
+// AWE CONCEPTS inquiry form: a successful submission MUST be acknowledged by
 // the database-backed Supabase Edge Function, not by Firebase's static homepage.
 const form = document.querySelector('form[name="awe-inquiries"]');
 if (form) {
