@@ -4,6 +4,8 @@ import { alternateCSS } from "./alternate-styles.mjs";
 import { experienceCSS } from "./experience-styles.mjs";
 import {designSections,designedHeader,designedFooter} from "./full-page-layouts.mjs";
 import {fullPageCSS} from "./full-page-styles.mjs";
+import {siteChrome} from "./site-shells.mjs";
+import {shellCSS} from "./site-shell-styles.mjs";
 
 /* Static, sandboxable HTML output: no third-party fonts, scripts, cookies or APIs.
  * Keep the whole approved document immutable in awe_versions.html. */
@@ -67,10 +69,9 @@ export function renderPremium(input, options = {}) {
     .reduce((sum,x,i)=>sum+x*[0.2126,0.7152,0.0722][i],0);
   const onAccent = luminance > 0.179 ? '#10120d' : '#ffffff';
   const theme = ':root{--accent:' + accent + ';--secondary:' + second + ';--bg:' + (dark?'#141619':'#f7f6f2') + ';--fg:' + (dark?'#f8f7f2':'#191b20') + ';--surface:' + (dark?'#22232a':'#fff') + ';--muted:' + (dark?'#b8b9c0':'#585d62') + ';--border:' + (dark?'#ffffff36':'#17191726') + ';--radius:' + radius + ';--body-font:' + bodyFont + ';--label-font:ui-monospace,monospace;--on-accent:' + onAccent + '}';
-  const links = navIds.map(s=>'<a href="#' + E(s) + '">' + E(s) + '</a>').join('');
-  const ctaTarget = has('work') && (items.length || c.photoIds.length>1) ? '#work' : has('contact') ? '#contact' : '#main';
   const hero=experienceHero(t,{c,value,heroImage,ctaTarget});
-  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + theme + css + experienceCSS + alternateCSS + fullPageCSS + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
+  const page=siteChrome(value,{hero,sections:actualSections,interlude:experienceInterlude(t,c),navIds});
+  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
     (sample ? '<div class="demo-banner">FICTIONAL TEMPLATE DEMO — SAMPLE CONTENT ONLY</div>' : '') +
-    '<a href="#main" class="skip">Skip to content</a><header class="page"><nav class="site-nav" aria-label="Main navigation"><a href="#main" class="brand">' + E(c.name) + '</a><div class="nav-links">' + (d.navigation === 'compact' ? navIds.filter(x=>['work','contact'].includes(x)).map(s=>'<a href="#'+E(s)+'">'+E(s)+'</a>').join('') : links) + '</div></nav></header><main id="main" class="page">' + designedHeader(value,navIds) + hero + experienceInterlude(t,c) + actualSections + designedFooter(value) + '</main><footer class="page site-footer"><strong>' + E(c.name) + '</strong><span>Designed with intention</span><a href="#main">Back to top ↑</a></footer></body></html>';
+    '<a href="#main" class="skip">Skip to content</a>' + page + '</body></html>';
 }
