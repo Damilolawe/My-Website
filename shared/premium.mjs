@@ -2,6 +2,8 @@ import { normalize, esc, https } from "./model.mjs";
 import { experienceHero, experienceInterlude } from "./experiences.mjs";
 import { alternateCSS } from "./alternate-styles.mjs";
 import { experienceCSS } from "./experience-styles.mjs";
+import {designSections,designedHeader,designedFooter} from "./full-page-layouts.mjs";
+import {fullPageCSS} from "./full-page-styles.mjs";
 
 /* Static, sandboxable HTML output: no third-party fonts, scripts, cookies or APIs.
  * Keep the whole approved document immutable in awe_versions.html. */
@@ -53,7 +55,8 @@ export function renderPremium(input, options = {}) {
     if (id === 'contact') return '<section class="section" id="contact"><div class="contact-block"><div><p class="eyebrow">LET’S CONNECT</p><h2>Let’s make something happen.</h2></div><div class="contact-links">' + (c.publicEmail ? '<a class="pill-link" href="mailto:' + E(c.publicEmail) + '">Get in touch ↗</a>' : '') + join(c.links.map(u=>'<a href="' + E(u) + '" target="_blank" rel="noopener noreferrer">' + E(new URL(u).hostname) + ' ↗</a>')) + '</div></div></section>';
     return '';
   };
-  const actualSections = d.sections.map((s,i) => section(s,i+1)).filter(Boolean);
+  const composed = designSections(value,{assetBase,assetSuffix});
+  const actualSections = composed === null ? d.sections.map((s,i)=>section(s,i+1)).filter(Boolean).join("") : composed;
   const heroImage = c.photoIds[0] ? image(c.photoIds[0],c.name + ' portrait','hero-picture',true) : '';
   const accent = d.primary, second = d.secondary, dark = d.appearance === 'dark' || t === 'afterhours';
   const radius = {sharp:'0',soft:'14px',round:'36px'}[d.corners];
@@ -67,7 +70,7 @@ export function renderPremium(input, options = {}) {
   const links = navIds.map(s=>'<a href="#' + E(s) + '">' + E(s) + '</a>').join('');
   const ctaTarget = has('work') && (items.length || c.photoIds.length>1) ? '#work' : has('contact') ? '#contact' : '#main';
   const hero=experienceHero(t,{c,value,heroImage,ctaTarget});
-  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + theme + css + experienceCSS + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
+  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + theme + css + experienceCSS + alternateCSS + fullPageCSS + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
     (sample ? '<div class="demo-banner">FICTIONAL TEMPLATE DEMO — SAMPLE CONTENT ONLY</div>' : '') +
-    '<a href="#main" class="skip">Skip to content</a><header class="page"><nav class="site-nav" aria-label="Main navigation"><a href="#main" class="brand">' + E(c.name) + '</a><div class="nav-links">' + (d.navigation === 'compact' ? navIds.filter(x=>['work','contact'].includes(x)).map(s=>'<a href="#'+E(s)+'">'+E(s)+'</a>').join('') : links) + '</div></nav></header><main id="main" class="page">' + hero + experienceInterlude(t,c) + actualSections.join('') + '</main><footer class="page site-footer"><strong>' + E(c.name) + '</strong><span>Designed with intention</span><a href="#main">Back to top ↑</a></footer></body></html>';
+    '<a href="#main" class="skip">Skip to content</a><header class="page"><nav class="site-nav" aria-label="Main navigation"><a href="#main" class="brand">' + E(c.name) + '</a><div class="nav-links">' + (d.navigation === 'compact' ? navIds.filter(x=>['work','contact'].includes(x)).map(s=>'<a href="#'+E(s)+'">'+E(s)+'</a>').join('') : links) + '</div></nav></header><main id="main" class="page">' + designedHeader(value,navIds) + hero + experienceInterlude(t,c) + actualSections + designedFooter(value) + '</main><footer class="page site-footer"><strong>' + E(c.name) + '</strong><span>Designed with intention</span><a href="#main">Back to top ↑</a></footer></body></html>';
 }
