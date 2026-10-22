@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Start a project — AWE / DIGITAL</title><meta name="description" content="Tell AWE / DIGITAL about your portfolio, small business website or custom project."><link rel="stylesheet" href="/app/app.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Start a project — AWE / DIGITAL</title><meta name="description" content="Tell AWE / DIGITAL about your portfolio, small business website or custom project."><link rel="stylesheet" href="/app/app.css"><script src="/contact.js" defer></script></head>
 <body><header class="app-header"><a class="wordmark" href="/">AWE / DIGITAL</a><a href="/order.html">Explore Express ↗</a></header>
 <main class="app-main"><p class="eyebrow">LET'S BUILD SOMETHING EXTRAORDINARY</p><h1>Tell me about your project.</h1><p class="muted">Whether you're a student, actor, creative, or business owner, share what you have in mind. No account or payment required to inquire.</p>
-<form name="awe-inquiries" method="POST" action="/inquiry-received" data-netlify="true" netlify-honeypot="website" class="panel" aria-label="Contact AWE Digital">
+<form name="awe-inquiries" method="POST" action="/" data-netlify="true" netlify-honeypot="website" class="panel" aria-label="Contact AWE Digital">
 <input type="hidden" name="form-name" value="awe-inquiries"><p hidden><label>Do not fill this out: <input name="website" autocomplete="off" tabindex="-1"></label></p>
 <label class="field">Your name<input name="name" autocomplete="name" maxlength="100" required></label>
 <label class="field">Email address<input name="email" type="email" autocomplete="email" maxlength="254" required></label>
 <label class="field">What are you looking for?<select name="project"><option>Student / résumé portfolio</option><option>Actor or creative portfolio</option><option>Small business website</option><option>Custom web project</option><option>General inquiry</option></select></label>
 <label class="field">Tell me about your idea<textarea name="message" rows="6" minlength="10" maxlength="3000" required></textarea></label>
-<button class="btn acid" type="submit">SEND YOUR INQUIRY ↗</button><p class="muted">Your information is used to respond to your inquiry. Please do not send passwords or sensitive personal information.</p>
-</form><p><a href="/privacy.html">Privacy information ↗</a></p></main></body></html>
+<button class="btn acid" type="submit">SEND YOUR INQUIRY ↗</button><p id="inquiry-status" class="feedback" role="status" aria-live="polite"></p><p class="muted">Your information is used to respond to your inquiry. Please do not send passwords or sensitive personal information.</p>
+</form><section id="inquiry-success" class="panel" hidden tabindex="-1" aria-live="polite"><h2>Inquiry received.</h2><p>Thanks for telling me about your project. Your submission has been sent to the studio.</p><a class="btn secondary" href="/">Return to the studio ↗</a></section><p><a href="/privacy.html">Privacy information ↗</a></p></main></body></html>
