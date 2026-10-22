@@ -86,7 +86,7 @@ export async function owned(orderId, u, owner = false) {
   return o;
 }
 export function origin(req) {
-  if (req.headers.get("origin") !== env().SITE_ORIGIN)
+  if (![env().SITE_ORIGIN, "https://aweconcepts.com", "https://www.aweconcepts.com", "https://awe-digital.web.app"].includes(req.headers.get("origin")))
     fail("Request origin rejected.", 403);
 }
 export function stripe() {

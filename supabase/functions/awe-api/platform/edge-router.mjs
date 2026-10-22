@@ -22,7 +22,7 @@ function relocate(req,path) {
   return new Request(u,req);
 }
 function cors(req,res) {
-  const headers=new Headers(res.headers); const allowed=[env().SITE_ORIGIN,...(env().ALLOWED_ORIGINS||'').split(',').filter(Boolean)];
+  const headers=new Headers(res.headers); const allowed=[env().SITE_ORIGIN,'https://aweconcepts.com','https://www.aweconcepts.com','https://awe-digital.web.app',...(env().ALLOWED_ORIGINS||'').split(',').filter(Boolean)];
   if(allowed.includes(req.headers.get('origin')))headers.set('Access-Control-Allow-Origin',req.headers.get('origin'));
   headers.set('Vary','Origin'); headers.set('Access-Control-Allow-Headers','authorization, apikey, content-type, x-client-info');
   headers.set('Access-Control-Allow-Methods','GET, HEAD, POST, OPTIONS');

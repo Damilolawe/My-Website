@@ -1,9 +1,9 @@
 import {validateInquiry} from "./validate.mjs";
 
-const SITE_ORIGIN = "https://awe-digital.web.app";
+const SITE_ORIGINS = new Set(["https://awe-digital.web.app", "https://aweconcepts.com", "https://www.aweconcepts.com"]);
 const MAX_BODY_BYTES = 12_000;
 function json(data, status=200, requestOrigin="") {
-  const allowed = requestOrigin === SITE_ORIGIN;
+  const allowed = SITE_ORIGINS.has(requestOrigin);
   const headers = {
     "Content-Type": "application/json; charset=utf-8",
     "Cache-Control": "no-store",
@@ -11,7 +11,7 @@ function json(data, status=200, requestOrigin="") {
     "Vary": "Origin",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "apikey, content-type",
-    ...(allowed ? {"Access-Control-Allow-Origin":SITE_ORIGIN} : {}),
+    ...(allowed ? {"Access-Control-Allow-Origin":requestOrigin} : {}),
   };
   return new Response(status === 204 ? null : JSON.stringify(data),{status,headers});
 }
@@ -45,9 +45,9 @@ async function rateFingerprint(req, secret) {
 Deno.serve(async req=>{
   const origin=req.headers.get("origin") || "";
   if (req.method === "OPTIONS")
-    return origin === SITE_ORIGIN ? json({ok:true},204,origin) : json({error:"Origin rejected."},403,origin);
+    return SITE_ORIGINS.has(origin) ? json({ok:true},204,origin) : json({error:"Origin rejected."},403,origin);
   if (req.method !== "POST") return json({error:"Method not allowed."},405,origin);
-  if (origin !== SITE_ORIGIN) return json({error:"Origin rejected."},403,origin);
+  if (!SITE_ORIGINS.has(origin)) return json({error:"Origin rejected."},403,origin);
   if (!(req.headers.get("content-type")||"").startsWith("application/json"))
     return json({error:"Send JSON data."},415,origin);
   try {
