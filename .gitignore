@@ -3,3 +3,10 @@ dist/
 node_modules/
 qa-mobile.html
 qa-tablet.html
+
+.env
+.env.*
+!.env.example
+.netlify/
+
+supabase/.temp/

@@ -1,81 +1,52 @@
 # AWE / DIGITAL
 
-The independent web design and development studio of Damilola Awe. An electric editorial portfolio with functional concept sites and an interactive brief builder.
+Damilola Awe’s creative web studio: an animated agency homepage, interactive concept demos, AWE Express ordering, and AWE Custom inquiries. Netlify hosts the public site and server functions; a dedicated Supabase project stores private customer data. Stripe is hard-locked to test mode.
 
-## Run and build
+**Status:** implemented and locally tested; not yet verified on a deployed Netlify account. Orders default to closed. No live charges, paid upgrades, or customer publications have been made. See [PLATFORM.md](docs/PLATFORM.md) for setup, walkthroughs, security, costs, and exact limitations.
 
-No package install or paid service is required. Serve the repository with any local HTTP server (ES modules need HTTP rather than opening `index.html` as a file).
+## Development
 
-```sh
-python3 -m http.server 8080
-```
-
-Create a clean, deployable directory:
+Node 22 or newer:
 
 ```sh
-node scripts/build.mjs
+npm ci
+npm run build
+npm run check
+npm test
 ```
 
-Validate authored JavaScript and HTML links:
+`dist/` contains only public files. Serve that directory for the design preview. A static server does not run accounts, uploads, payments, or the dashboard API. Functions are in `netlify/functions/`; test those through Netlify development/deploy tooling or the included HTTP workflow tests. Never publish the repository root as the static output.
 
-```sh
-python3 scripts/check.py
-```
+## Netlify deployment
 
-## Cloudflare Pages
-
-Connect **Damilolawe/My-Website** to **Pages** (not a Workers deployment):
+Import **Damilolawe/My-Website**, branch `main`. Settings are committed in `netlify.toml`:
 
 | Setting | Value |
 | --- | --- |
-| Production branch | `main` |
-| Framework preset | None |
-| Root directory | repository root (leave empty) |
-| Build command | `node scripts/build.mjs` |
-| Build output directory | `dist` |
+| Build | `npm run build` |
+| Publish directory | `dist` |
+| Functions directory | `netlify/functions` |
+| Node | 22 |
 
-The output includes the homepage, three demos, a real `404.html`, security headers, and all local assets. There is no backend, paid API, or build-time dependency install. Existing deployments that publish the repository root still have the root HTML/assets, but `dist` is recommended so documentation and source tooling are not published.
+Keep the free plan and disable automatic paid upgrades. Configure server environment variables using `.env.example` as the checklist; do not place secrets in `config.js`, HTML, or build output. Initially leave `ORDERS_ENABLED=false`. A public brochure/design-explorer deployment can run without service credentials. Finish the backend setup and real sandbox testing before opening ordering.
 
-An authenticated Cloudflare account is required to create or connect the Pages project. Repository updates alone do not prove a live deployment. After deployment, verify the assigned `pages.dev` URL, the three demos, asset loading, headers, and unknown-path 404 response. Add a custom domain through that Pages project's Custom domains settings if desired; no domain has been assumed or purchased.
+Netlify sign-in was interrupted by automatic approval review reporting a ChatGPT usage limit. No successful deployment or public URL is claimed.
 
-## Contact configuration — intentionally disabled
+## Project map
 
-The owner chose to leave the public email unset. `config.js` therefore contains `contactEmail: ""`. The site explicitly states that public inquiries are not open yet. The brief builder works through local copy/download; it never pretends to submit a lead.
-
-To enable email inquiries, set a verified public email in `config.js`. The direct email and brief email-draft links then appear automatically. They open the visitor's email app; the visitor sends their own message. There is no form submission backend or inbox database.
-
-Do not place tokens, passwords, or private configuration in `config.js` or any static asset.
-
-## What visitors can try
-
-- Homepage: GSAP entrance/scroll reveals, magnetic controls, reading progress, a Three.js sculptural ribbon, and software-projected 3D when WebGL is unavailable. Rotation and wireframe controls work in both renderers. Rendering pauses offscreen or in a background tab.
-- **The Spotlight**: fictional actor portfolio with original vector artwork, scene selection, and film/stage credit filters.
-- **Slow Hours**: fictional café with menu/category and plant-based filters, sample cart, quantity controls, and computed totals. Nothing is ordered or charged.
-- **Orbit**: functional fictional workspace. Create, remove/undo, search/filter, and change the status of tasks. Export the current view as CSV; user-entered spreadsheet formula prefixes are neutralized.
-- **ResidenceOS and Cirvo**: original products, explicitly labeled in development. Stylized previews, not live university data. No other product repository is used or modified.
-- **Design playground**: three art directions, accent picker with automatic text contrast, custom headline, motion intensity, reset, and direction transfer to the brief.
-- **Project brief**: three steps, required idea validation, optional timing/budget/contact details, plain-text summary, copy, and `.txt` download. Details remain in the tab and reset on reload.
-
-## Editing map
-
-| File | Purpose |
+| Location | Purpose |
 | --- | --- |
-| `index.html` | Main content and original project art |
-| `styles.css` | Retained visual foundations |
-| `studio.css` | Current art direction, responsive layout, forms |
-| `script.js` | Navigation, motion, playground, brief builder |
-| `sculpture.js` | GPU artwork and software fallback |
-| `case-studies.js` / `.css` | Five accessible project dialogs |
-| `demos/` | Three standalone, functional concept experiences |
-| `config.js` | Public contact email configuration |
-| `_headers` | Cloudflare security and caching policy |
-| `scripts/build.mjs` | Clean static build |
-| `RELEASE.md` | Audit, verification, and launch limitations |
+| `index.html`, `styles.css`, `studio.css` | Original studio visual design and Express / Custom positioning |
+| `script.js`, `sculpture.js`, `case-studies.*` | GSAP, Three.js/software fallback, project dialogs and local brief builder |
+| `demos/` | Actor concept, café interaction and task dashboard demos |
+| `app/`, `order.html`, `account.html`, `admin.html` | Customer ordering and authenticated studio interface |
+| `shared/model.mjs`, `shared/render.mjs` | Validated data model, six reusable website directions and deterministic HTML generation |
+| `platform/` | Server authorization, storage, generation, jobs and approved file export |
+| `netlify/functions/` | API, verified Stripe webhooks, published tenant routes and scheduled worker |
+| `supabase/migrations/` | Private database, RLS, atomic payment/approval operations and storage bucket |
+| `tests/` | PostgreSQL, HTTP workflow, upload, signature and security regression tests |
+| `docs/PLATFORM.md` | Account setup, owner operations, cost estimates and limitations |
 
-## Accessibility and data
+Public `config.js` retains an empty contact email as previously requested. Once you choose a business contact, set it there and in `PUBLIC_CONTACT_EMAIL`, and update the privacy/support copy. The homepage brief remains a local copy/download tool; the account’s Custom brief submits to the dashboard when backend setup is complete.
 
-Semantic controls, skip links, native modal dialogs, focus return, responsive layouts, visible focus states, system reduced-motion support, and a persistent user motion toggle are included. The toggle stores only a local motion preference. No analytics, tracking pixels, cookies, or third-party form endpoints are configured. Optional Google Fonts requests reach Google's font servers; system font fallbacks are present.
-
-Pinned GSAP 3.13.0 and Three.js 0.180.0 are served locally; see `vendor/NOTICE.md` and retained license notices. Motion and content work without a CDN. A modern browser is recommended for native dialogs and view transitions; unsupported page transitions gracefully use normal navigation.
-
-No testimonials, sales metrics, client engagements, fixed service prices, or business policies have been fabricated. Fictional café prices and task records are demonstration data.
+No other repository or existing Supabase project has been modified. ResidenceOS and Cirvo remain labeled as original products in development. Fictional demos and template samples are labeled as such.

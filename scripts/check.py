@@ -4,7 +4,8 @@ from pathlib import Path
 from urllib.parse import urlparse, unquote
 from collections import Counter
 import re, subprocess
-root=Path(__file__).resolve().parent.parent
+source=Path(__file__).resolve().parent.parent
+root=source/'dist'
 class Page(HTMLParser):
     def __init__(self,path):
         super().__init__(); self.path=path; self.ids=[]; self.links=[]; self.title=False; self.h1=0; self.lang=False
@@ -17,7 +18,7 @@ class Page(HTMLParser):
         for key in ['href','src']:
             if a.get(key):self.links.append(a[key])
 pages={}
-for path in [root/'index.html',root/'404.html',*sorted((root/'demos').glob('*.html'))]:
+for path in sorted(root.rglob('*.html')):
     page=Page(path); page.feed(path.read_text());pages[path.resolve()]=page
 errors=[]
 for path,page in pages.items():
@@ -31,7 +32,7 @@ for path,page in pages.items():
         if target.is_dir():target=target/'index.html'
         if not target.exists():errors.append(f'{path.name}: missing {link}')
         if u.fragment and target in pages and unquote(u.fragment) not in pages[target].ids:errors.append(f'{path.name}: missing fragment {link}')
-for js in ['script.js','sculpture.js','case-studies.js','config.js','demos/demo.js','scripts/build.mjs']:
-    subprocess.run(['node','--check',str(root/js)],check=True)
+for js in [*source.glob('*.js'),*list((source/'demos').glob('*.js')),*list((source/'app').glob('*.mjs')),*list((source/'shared').glob('*.mjs')),*list((source/'platform').glob('*.mjs')),*list((source/'netlify/functions').glob('*.mjs'))]:
+    subprocess.run(['node','--check',str(js)],check=True)
 if errors:raise SystemExit('\n'.join(errors))
 print(f'PASS: {len(pages)} pages; local links, fragments, unique IDs, title/lang/h1; all authored JavaScript syntax.')

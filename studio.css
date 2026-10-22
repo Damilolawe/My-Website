@@ -15,3 +15,5 @@ html.has-js .reveal,html.has-js .hero-line>span,html.has-js .hero-line>em{opacit
 @media(max-width:600px){.hero-art{top:auto;bottom:10px;width:350px;max-width:90%;right:-2%}.art-controls,.art-label{right:12%}.browser-url{padding-inline:8px}.lab-stage{padding:9px}.lab-extra input[type=range]{width:45%}.lab-stage-footer>span:last-child{max-width:55%}}
 
 .hero-line.title-last>em{margin-left:.06em}.motion-paused{scroll-behavior:auto!important}.noscript-note{margin:110px 5vw 20px;padding:20px;border:1px solid var(--acid);font-size:14px;line-height:1.7}
+
+.service-options{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:40px 0}.service-option{padding:35px;border:1px solid currentColor}.service-option:first-child{background:#dcfc46;color:#171917}.service-option h3{font-size:42px;letter-spacing:-2px}.service-option p{margin:20px 0;max-width:500px}.service-option .text-link{color:inherit}@media(max-width:700px){.service-options{grid-template-columns:1fr}.service-option{padding:25px}}

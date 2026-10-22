@@ -27,7 +27,7 @@ References inspected:
 - https://www.awwwards.com/sites/mutt-agency (search listing; full retrieval unavailable)
 - https://gsap.com/docs/v3/GSAP/gsap.matchMedia()/
 - https://threejs.org/docs/
-- https://developers.cloudflare.com/pages/framework-guides/deploy-anything/
+- https://docs.netlify.com/build/functions/api/
 
 ## Verification performed
 
@@ -44,6 +44,4 @@ These are practical functional checks, not a comprehensive device lab, WCAG cert
 
 ## Launch state
 
-Source is prepared for Cloudflare Pages. This file does not claim a production deployment has succeeded. Cloudflare sign-in is required in the available browser; the final response records whether deployment was completed. No domain, account, email address, or paid plan has been assumed.
-
-Public email is intentionally unset, so the site can showcase work and generate downloadable briefs but cannot yet receive public inquiries. Configure a verified contact destination before using it as an unattended lead-generation channel.
+The studio is now prepared for Netlify. The platform implementation, test boundaries, account blockers and setup instructions are in [docs/PLATFORM.md](docs/PLATFORM.md). No successful production deployment is claimed. Orders are closed and Stripe is hard-locked to test mode.
