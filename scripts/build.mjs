@@ -34,26 +34,26 @@ await mkdir("dist/templates", { recursive: true });
 const { templates, sampleForTemplate } = await import("../shared/model.mjs");
 const { renderSite } = await import("../shared/render.mjs");
 const { writeFile } = await import("node:fs/promises");
-for (const t of templates)
-  await writeFile(
-    `dist/templates/${t.id}.html`,
-    renderSite(
-      {
-        ...sampleForTemplate(t.id),
-        template: t.id,
-        design: {
-          ...sampleForTemplate(t.id).design,
-          primary: t.color,
-          appearance: t.id === "afterhours" ? "dark" : "light",
-          font: t.id === "folio" ? "serif" : "sans",
-          layout: ["index", "afterhours", "signal"].includes(t.id)
-            ? "split"
-            : "stacked",
-        },
-      },
-      { sample: true },
-    ),
-  );
+for (const t of templates) {
+  const demo = sampleForTemplate(t.id);
+  const config = {
+    ...demo,
+    template: t.id,
+    design: {
+      ...demo.design,
+      primary: t.color,
+      appearance: t.id === "afterhours" ? "dark" : "light",
+      font: t.id === "folio" ? "serif" : "sans",
+      layout: ["index", "afterhours", "signal"].includes(t.id) ? "split" : "stacked",
+    },
+  };
+  await writeFile(`dist/templates/${t.id}.html`, renderSite(config, { sample: true }));
+  // A separate, accessible still version lets the studio's Pause Motion control
+  // disable motion inside sandboxed demos without weakening iframe isolation.
+  await writeFile(`dist/templates/${t.id}--still.html`, renderSite({
+    ...config, design: { ...config.design, animation: "none" },
+  }, { sample: true }));
+}
 console.log(
   "Built Netlify public assets in dist/. Server functions remain outside public output.",
 );
