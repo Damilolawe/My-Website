@@ -1,3 +1,4 @@
+import { newTemplates } from "./catalog-20.mjs";
 export const templates = [
   {
     id: "index",
@@ -41,6 +42,7 @@ export const templates = [
     tag: "A little personality goes far.",
     color: "#7252ce",
   },
+  ...newTemplates,
 ];
 export const types = [
   "Student résumé",
@@ -221,12 +223,96 @@ const demoIdentities = {
     projects:[{title:"The Welcome Kit",description:"A sample branded customer experience.",url:""},{title:"The Good Edit",description:"A fictional creative campaign.",url:""}],
     services:[{title:"Brand refresh",description:"A sample service for emerging businesses.",url:""},{title:"Creative consultation",description:"An example project-planning offering.",url:""}]}
 };
-export function sampleForTemplate(id){
-  const type={index:"Student résumé",folio:"Creative portfolio",still:"Personal brand",afterhours:"Actor / model",signal:"Creative portfolio",daylight:"Small business"}[id]||"Professional portfolio";
-  const example=demoIdentities[id]||demoIdentities.index;
-  return {type,template:id,design:{animation:"expressive",appearance:id==="afterhours"?"dark":"light",sections},
-    content:{...sample.content,...example, cards:example.projects||sample.content.cards,
-      projects:"",services:example.services||sample.content.services,testimonials:[]}};
+export const typeSlugs = {
+  "Student résumé":"student","Professional portfolio":"professional",
+  "Actor / model":"actor","Creative portfolio":"creative",
+  "Personal brand":"brand","Small business":"business"
+};
+export function recommendedFor(template, purpose) {
+  const ids={
+    "Student résumé":["index","atlas","terminal","orbit"],
+    "Professional portfolio":["index","atlas","terminal","ledger","orbit"],
+    "Actor / model":["afterhours","playbill","monologue","portraiture"],
+    "Creative portfolio":["folio","still","contactsheet","atelier","museum","brutalist","signal"],
+    "Personal brand":["nocturne","orbit","still","atelier","daylight"],
+    "Small business":["foundry","bloom","ledger","daylight"]
+  };
+  return (ids[purpose]||[]).includes(template.id) || (template.recommended||[]).includes(purpose);
+}
+const purposeDemos = {
+  "Student résumé": {
+    name:"Taylor Morgan",headline:"Curious mind. Real-world momentum.",heroLabel:"Computer science student / Emerging builder",
+    bio:"A fictional student combining analytical thinking, thoughtful design, and hands-on projects.",
+    cards:[{title:"Campus Companion",description:"Sample application concept supporting everyday campus life.",url:""},{title:"Data in Motion",description:"Conceptual data visualization project.",url:""},{title:"Accessible by Default",description:"Demonstration of inclusive interface thinking.",url:""}],
+    services:[],education:"Demo University — sample studies in computer science.",experience:"Example internship — fictional experience for preview only.",
+    skills:"JavaScript / Data visualization / Problem solving",ctaLabel:"Explore projects",
+    sections:["about","work","education","experience","skills","contact"]},
+  "Professional portfolio":{
+    name:"Alex Rivera",headline:"Designing meaningful digital experiences.",heroLabel:"Product designer / Digital strategist",
+    bio:"A fictional professional who brings research, storytelling, and thoughtful systems together.",
+    cards:[{title:"Experience System",description:"An illustrative UX case study for this concept.",url:""},{title:"Open Product",description:"A sample software product exploration.",url:""},{title:"A Better Journey",description:"Fictional discovery-to-delivery project.",url:""}],
+    services:[],education:"Sample training and professional development.",experience:"Sample career highlights; replace with verified positions.",
+    skills:"Product strategy / Accessibility / Prototyping",ctaLabel:"View case studies",
+    sections:["about","work","experience","skills","education","contact"]},
+  "Actor / model":{
+    name:"Jordan Monroe",headline:"Every role has a story.",heroLabel:"Actor / Performer / On-screen talent",
+    bio:"A fictional performer working across stage, screen, and expressive portraiture.",
+    cards:[{title:"The Beginning",description:"FICTIONAL FILM CREDIT — Lead, independent short. Demonstration only.",url:""},{title:"Under the Lights",description:"FICTIONAL THEATRE CREDIT — Ensemble. Demonstration only.",url:""},{title:"Casting Portraits",description:"Example headshot and lookbook gallery.",url:""}],
+    services:[],education:"Sample performance training — fictional.",experience:"Selected roles: fictional film and stage examples for design preview.",skills:"Performance / Movement / Collaboration",ctaLabel:"See credits & work",
+    sections:["about","work","experience","skills","contact"]},
+  "Creative portfolio":{
+    name:"Sage Ellis",headline:"There is a story in everything.",heroLabel:"Photographer / Artist / Image maker",
+    bio:"A fictional creative exploring shadow, texture, identity, and the moments in between.",
+    cards:[{title:"Still Life / 01",description:"Fictional photographic series exploring sculptural objects.",url:""},{title:"The In Between",description:"An imagined editorial story told in images.",url:""},{title:"Moving Pictures",description:"Sample direction for a motion design portfolio.",url:""}],
+    services:[{title:"Creative direction",description:"Example offering — tailor to your practice.",url:""}],
+    skills:"Photography / Art direction / Editorial design",ctaLabel:"View the collection",
+    sections:["about","work","services","contact"]},
+  "Personal brand":{
+    name:"Avery Lane",headline:"A point of view worth knowing.",heroLabel:"Founder / Creator / Independent thinker",
+    bio:"A fictional founder and storyteller sharing ideas, collaborations, and creative ambitions.",
+    cards:[{title:"The Perspective",description:"Fictional speaking and writing highlights.",url:""},{title:"Ideas in Practice",description:"Sample ventures and collaborations.",url:""}],
+    services:[{title:"Speaking & conversation",description:"Sample invitation to collaborate.",url:""},{title:"Creative partnerships",description:"Illustrative business partnership offering.",url:""}],
+    skills:"Leadership / Creative thinking / Storytelling",ctaLabel:"Explore my story",
+    sections:["about","work","services","contact"]},
+  "Small business":{
+    name:"Gather & Co.",headline:"Thoughtful service. Memorable moments.",heroLabel:"Independent local business / Welcome in",
+    bio:"A fictional neighborhood service studio making everyday moments more meaningful.",
+    cards:[{title:"Our Approach",description:"How we think about thoughtful service and customer care.",url:""},{title:"The Experience",description:"A fictional overview of the customer's journey.",url:""}],
+    services:[{title:"Signature service",description:"Fictional example of a core customer offering.",url:""},{title:"Private appointments",description:"Example bookable service — connect a real booking link later.",url:""},{title:"A little extra",description:"Optional tailored project experience.",url:""}],
+    skills:"",ctaLabel:"Explore our services",sections:["about","services","work","contact"]}
+};
+const originalByTemplate = {
+  index:"Student résumé",folio:"Creative portfolio",still:"Personal brand",
+  afterhours:"Actor / model",signal:"Creative portfolio",daylight:"Small business",
+  atlas:"Student résumé",terminal:"Student résumé",orbit:"Professional portfolio",
+  playbill:"Actor / model",monologue:"Actor / model",portraiture:"Actor / model",
+  contactsheet:"Creative portfolio",atelier:"Creative portfolio",museum:"Creative portfolio",
+  brutalist:"Creative portfolio",nocturne:"Personal brand",foundry:"Small business",
+  bloom:"Small business",ledger:"Small business"
+};
+export function sampleForTemplate(id,purpose){
+  const t=templates.find(x=>x.id===id)||templates[0];
+  const category=types.includes(purpose)?purpose:(originalByTemplate[t.id]||"Professional portfolio");
+  const kit=purposeDemos[category];
+  const old=demoIdentities[t.id];
+  const original=purpose===undefined && old;
+  const preview = original ? {
+    ...kit,...old,cards:old.projects||kit.cards,services:old.services||kit.services
+  } : {...kit};
+  const unique = purpose===undefined && !old;
+  const motif={atlas:"Think bigger. Build smarter.",terminal:"Hello, future.",orbit:"Ideas without limits.",
+    playbill:"This is the beginning.",monologue:"The scene is yours.",portraiture:"More than a face.",
+    contactsheet:"Frame by frame.",atelier:"Crafted, not copied.",museum:"Art speaks.",
+    brutalist:"Break the pattern.",nocturne:"An unforgettable presence.",
+    foundry:"Built on trust.",bloom:"Come as you are.",ledger:"Make every impression count."};
+  if(unique) preview.headline=motif[t.id]||preview.headline;
+  if(unique) preview.name=({atlas:"Kai Ellis",terminal:"Robin Code",orbit:"Cameron Vale",playbill:"Morgan Blake",monologue:"Skyler Hart",portraiture:"Taylor Monroe",contactsheet:"Ari Lens",atelier:"Sol Atelier",museum:"The New Archive",brutalist:"Rae Riot",nocturne:"Alex Noir",foundry:"Northline Workshop",bloom:"Bloom & Branch",ledger:"Everwell Partners"})[t.id]||preview.name;
+  const content={...sample.content,...preview,projects:"",links:[],photoIds:[],publicEmail:"",testimonials:[]};
+  return {type:category,template:t.id,design:{
+    primary:t.color,animation:"expressive",
+    appearance:["afterhours","nocturne","terminal","brutalist"].includes(t.id)?"dark":"light",
+    sections:kit.sections
+  },content};
 }
 export function customerOrder(o) {
   return {
