@@ -99,6 +99,33 @@ async function dispatch(req) {
     const v=o.draft_version?(await rows('awe_versions',`id=eq.${o.draft_version}&order_id=eq.${o.id}`))[0]:null;
     return json({html:v?.html||renderSite(normalize(o.input)),version:v?.id||null});
   }
+  // Configuration visibility is owner-only. Never expose Stripe keys,
+  // webhook signing secrets or their lengths to browser clients.
+  // These flags do NOT indicate a validated Stripe account or webhook delivery.
+  if(path==='admin/checkout-readiness'&&req.method==='GET') {
+    if(!(await isOwner(u)))fail('Owner access required.',403);
+    const settings=env();
+    const packages=await rows('awe_packages');
+    const enabledPackages=packages.filter(p=>
+      p.data?.enabled===true && Number.isInteger(p.data?.amount) &&
+      p.data.amount>0 && p.data.hosting && p.data.ownership &&
+      p.data.revisions && p.data.termsVersion);
+    const priorPayments=await rows('awe_payments','select=id&limit=1');
+    return json({
+      mode:'test-only',
+      serverTestKeyPresent:typeof settings.STRIPE_SECRET_KEY==='string' &&
+        settings.STRIPE_SECRET_KEY.startsWith('sk_test_'),
+      webhookSigningSecretPresent:typeof settings.STRIPE_WEBHOOK_SECRET==='string' &&
+        settings.STRIPE_WEBHOOK_SECRET.startsWith('whsec_'),
+      ordersEnabled:settings.ORDERS_ENABLED==='true',
+      enabledPackages:enabledPackages.length,
+      configuredOrigin:settings.SITE_ORIGIN || 'https://awe-digital.web.app',
+      recordedPaymentExists:priorPayments.length>0,
+      // Only Stripe Workbench can confirm the external destination is registered.
+      externalWebhookVerified:false,
+      livePaymentsAllowed:false
+    });
+  }
   if(p[0]==='admin'&&p[1]==='payments'&&req.method==='GET') {
     if(!(await isOwner(u)))fail('Owner access required.',403);
     return json(await rows('awe_payments','order=created_at.desc&limit=200'));
