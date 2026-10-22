@@ -5,7 +5,7 @@ import { normalize, sample, templates } from "../shared/model.mjs";
 import { renderSite } from "../shared/render.mjs";
 import { previewResume, suggestionsFromText } from "../platform/resume.mjs";
 
-test("six premium templates produce distinctive, semantic, responsive site documents", () => {
+test("twenty premium templates produce semantic, responsive site documents", () => {
   const documents=templates.map(t=>renderSite({...sample,template:t.id},{sample:true}));
   for (const html of documents) {
     assert.match(html,/<!doctype html>/i);
@@ -13,11 +13,11 @@ test("six premium templates produce distinctive, semantic, responsive site docum
     assert.match(html,/width=device-width/);
     assert.match(html,/prefers-reduced-motion/);
     assert.match(html,/FICTIONAL TEMPLATE DEMO/);
-    assert.match(html,/(Selected work|Selected editions|On the reel)/);
+    assert.match(html,/id="work"/);
     assert.match(html,/Verified quotation|fictional quote/i);
     assert.match(html,/Skip to content/);
   }
-  assert.equal(new Set(documents).size,6);
+  assert.equal(new Set(documents).size,20);
 });
 test("explicit section reordering and structured service cards persist, unsafe content stays escaped",()=>{
   const input=normalize({

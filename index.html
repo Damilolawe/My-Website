@@ -22,6 +22,8 @@
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="showcase.css">
   <script type="module" src="showcase.js"></script>
+  <link rel="stylesheet" href="/cinema.css">
+  <script src="/cinema.js" defer></script>
   <script type="module" src="sculpture.js"></script>
   <script src="case-studies.js" defer></script>
 </head>
@@ -62,15 +64,16 @@
           <span class="mono badge-outline"><span class="status-dot"></span> INDEPENDENT STUDIO · NEW YORK</span>
           <span class="mono hero-edition">DESIGNED WITH FEELING <span>—</span> BUILT WITH INTENTION</span>
         </div>
+        <div class="hero-supernote" aria-hidden="true"><span>NOT JUST A WEBSITE.</span><span>A FIRST IMPRESSION WITH A PULSE.</span></div>
         <h1 id="hero-title" class="hero-title">
-          <span class="hero-line"><span>BIG IDEAS.</span></span>
-          <span class="hero-line"><span>REAL IMPACT.</span></span>
-          <span class="hero-line title-last"><span>A LITTLE </span><em>awe.</em></span>
+          <span class="hero-line"><span>NOT MADE</span></span>
+          <span class="hero-line"><span>TO BLEND IN.</span></span>
+          <span class="hero-line title-last"><span>MADE TO </span><em>move.</em></span>
         </h1>
         <div class="hero-bottom">
           <div class="hero-description">
             <span class="asterisk" aria-hidden="true"><svg class="spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2v36M2 20h36M7 7l26 26M7 33 33 7" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></span>
-            <p>Distinctive websites for people going places. Students, creatives, and small businesses — let’s build your next big thing.<a class="hero-start" href="#contact">START SOMETHING ↗</a></p>
+            <p>20 distinct creative directions. A website built around who you are, with motion, polish, and a price that makes sense.<a class="hero-start" href="#contact">START SOMETHING ↗</a></p>
           </div>
           <a href="#work" class="hero-scroll magnetic" aria-label="Explore selected work"><span class="hero-scroll-text">EXPLORE<br>THE WORK</span><span class="down-arrow" aria-hidden="true">↘</span></a>
         </div>
@@ -79,7 +82,7 @@
         <div class="art-cross cross-a" aria-hidden="true"></div><div class="art-cross cross-b" aria-hidden="true"></div>
         <div class="art-fallback" aria-hidden="true"><span></span><span></span><span></span></div>
         <canvas id="sculpture" aria-hidden="true"></canvas>
-        <span class="art-label mono">STUDY 001 / FORM + FEELING</span>
+        <span class="art-label mono">AWE / MOTION EXPLORATION 001</span>
         <div class="art-controls"><button type="button" id="sculpture-spin" aria-label="Rotate the 3D sculpture">ROTATE FORM <span aria-hidden="true">↗</span></button><button type="button" id="sculpture-material" aria-pressed="false">WIREFRAME</button></div>
       </div>
       <div class="hero-footer page-width">
@@ -111,6 +114,23 @@
         <span>BUILT FOR REAL PEOPLE</span><span class="statement-symbol">+</span>
         <span>DETAILS MATTER</span><span class="statement-symbol">=</span>
         <strong>THE AWE FACTOR<span></span></strong>
+      </div>
+    </section>
+
+    <section class="awe-transformation" id="transformation" aria-labelledby="transformation-title">
+      <div class="page-width">
+        <div class="transformation-head"><p class="mono">THE DIFFERENCE / 001</p><h2 id="transformation-title">Ordinary is easy.<br><em>Unforgettable is designed.</em></h2><p>Move the slider. See how thoughtful composition, storytelling, and animation can completely change how a first impression feels.</p></div>
+        <div class="transformation-stage" id="transformation-stage" style="--reveal:50%">
+          <div class="transformation-base" aria-label="Generic website concept">
+            <div class="before-nav">LOGO <span>Home &nbsp; About &nbsp; Services &nbsp; Contact</span></div>
+            <div class="before-card"><span>Welcome to my website</span><h3>We offer services for everyone.</h3><p>I'm passionate about quality and customer satisfaction.</p><span class="before-button">LEARN MORE</span></div>
+          </div>
+          <div class="transformation-after" aria-label="AWE creative direction concept"><div class="after-grid" aria-hidden="true"></div><div class="after-top">AWE / DIGITAL <span>EDITORIAL CONCEPT N°01 ↗</span></div><div class="after-orbit" aria-hidden="true">✳</div><div class="after-copy"><span>THE NEXT GENERATION OF YOU</span><h3>MAKE<br>YOUR<br><em>MARK.</em></h3><div class="after-cta">LEAVE THEM LOOKING ↗</div></div></div>
+          <div class="transformation-split" aria-hidden="true"><span>⇄</span></div>
+        </div>
+        <label class="transformation-slider-label" for="transformation-slider">DRAG TO REVEAL THE AWE FACTOR</label>
+        <input id="transformation-slider" type="range" min="0" max="100" value="50" aria-label="Compare generic and AWE Digital website designs">
+        <div class="transformation-foot"><span>01 / EXPECTED</span><span>02 / UNEXPECTED</span></div>
       </div>
     </section>
 
@@ -233,19 +253,12 @@
     <section class="worlds" id="express-showcase" aria-labelledby="worlds-title">
       <div class="worlds-accent" aria-hidden="true"></div><span class="worlds-decoration" aria-hidden="true">AWE</span>
       <div class="page-width">
-        <div class="worlds-kicker"><span>THE AWE EXPRESS COLLECTION / 2026</span><strong>CREATIVE EXPERIENCES, NOT JUST TEMPLATES ✳</strong></div>
-        <h2 id="worlds-title" class="worlds-title">SIX WORLDS.<br><em>Infinite you.</em></h2>
-        <p class="worlds-description">A portfolio should feel like a premiere. A business should have its own personality. Try six art-directed experiences built to move, tell stories, and make an impression.</p>
+        <div class="worlds-kicker"><span>AWE EXPRESS / THE TWENTY COLLECTION</span><strong>TWENTY ORIGINAL EXPERIENCES ✳</strong></div>
+        <h2 id="worlds-title" class="worlds-title">TWENTY WORLDS.<br><em>One original you.</em></h2>
+        <p class="worlds-description">A portfolio should feel like a premiere. A business should have its own personality. Try twenty art-directed experiences built to move, tell stories, and make an impression.</p>
+        <div class="worlds-purpose"><label for="world-purpose">WHO ARE WE CREATING FOR?</label><select id="world-purpose" aria-label="Preview templates for a website purpose"></select><span>20 ORIGINAL SYSTEMS / 6 REAL-WORLD PURPOSES</span></div>
         <div class="worlds-layout">
-          <div class="worlds-rail" id="worlds-choices" aria-label="Choose a website concept">
-            <button class="worlds-choice" type="button" data-world="index" aria-pressed="false"><span>01</span><strong>The Index</strong><span aria-hidden="true">↗</span></button>
-            <button class="worlds-choice" type="button" data-world="folio" aria-pressed="false"><span>02</span><strong>Folio No. 01</strong><span aria-hidden="true">↗</span></button>
-            <button class="worlds-choice" type="button" data-world="still" aria-pressed="false"><span>03</span><strong>Still Studio</strong><span aria-hidden="true">↗</span></button>
-            <button class="worlds-choice" type="button" data-world="afterhours" aria-pressed="true"><span>04</span><strong>After Hours</strong><span aria-hidden="true">↗</span></button>
-            <button class="worlds-choice" type="button" data-world="signal" aria-pressed="false"><span>05</span><strong>Signal / Noise</strong><span aria-hidden="true">↗</span></button>
-            <button class="worlds-choice" type="button" data-world="daylight" aria-pressed="false"><span>06</span><strong>Daylight</strong><span aria-hidden="true">↗</span></button>
-            <p class="worlds-rail-note">INTERACTIVE FICTIONAL DESIGN CONCEPTS. EACH ONE HAS ITS OWN LAYOUT, ATMOSPHERE AND MOTION LANGUAGE.</p>
-          </div>
+          <div class="worlds-rail" id="worlds-choices" aria-label="Choose from twenty website concepts"><p class="worlds-rail-note">TWENTY ORIGINAL CREATIVE WORLDS. PICK ONE TO PREVIEW.</p></div>
           <div class="worlds-screen" id="worlds-screen" data-world="afterhours">
             <div class="worlds-toolbar"><div class="worlds-chrome" aria-hidden="true"><i></i><i></i><i></i></div><span class="worlds-domain">LIVE CREATIVE STUDY / AWE EXPRESS</span><div class="worlds-device-actions"><button type="button" id="worlds-desktop" aria-pressed="true">DESKTOP</button><button type="button" id="worlds-mobile" aria-pressed="false">MOBILE</button></div></div>
             <div class="worlds-view"><iframe id="worlds-frame" title="Fictional After Hours website demonstration" sandbox="" loading="lazy"></iframe></div>
