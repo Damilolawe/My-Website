@@ -53,7 +53,7 @@ export function renderPremium(input, options = {}) {
   const luminance = rgb.map(x=>x<=0.04045?x/12.92:((x+0.055)/1.055)**2.4)
     .reduce((sum,x,i)=>sum+x*[0.2126,0.7152,0.0722][i],0);
   const onAccent = luminance > 0.179 ? '#10120d' : '#ffffff';
-  const theme = ':root{--accent:' + accent + ';--secondary:' + second + ';--bg:' + (dark?'#141619':'#f7f6f2') + ';--fg:' + (dark?'#f8f7f2':'#191b20') + ';--surface:' + (dark?'#22232a':'#fff') + ';--muted:' + (dark?'#b8b9c0':'#585d62') + ';--border:' + (dark?'#ffffff36':'#17191726') + ';--radius:' + radius + ';--body-font:' + bodyFont + ';--label-font:ui-monospace,monospace;--on-accent:#10120d}';
+  const theme = ':root{--accent:' + accent + ';--secondary:' + second + ';--bg:' + (dark?'#141619':'#f7f6f2') + ';--fg:' + (dark?'#f8f7f2':'#191b20') + ';--surface:' + (dark?'#22232a':'#fff') + ';--muted:' + (dark?'#b8b9c0':'#585d62') + ';--border:' + (dark?'#ffffff36':'#17191726') + ';--radius:' + radius + ';--body-font:' + bodyFont + ';--label-font:ui-monospace,monospace;--on-accent:' + onAccent + '}';
   const links = navIds.map(s=>'<a href="#' + E(s) + '">' + E(s) + '</a>').join('');
   const ctaTarget = has('work') && (items.length || c.photoIds.length>1) ? '#work' : has('contact') ? '#contact' : '#main';
   const hero=experienceHero(t,{c,value,heroImage,ctaTarget});
