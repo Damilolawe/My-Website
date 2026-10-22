@@ -10,6 +10,8 @@ const files = [
   "showcase.css",
   "cinema.css",
   "cinema.js",
+  "awe-relaunch.css",
+  "awe-relaunch.js",
   "sculpture.js",
   "case-studies.js",
   "config.js",
