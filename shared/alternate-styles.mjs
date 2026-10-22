@@ -170,4 +170,55 @@ export const alternateCSS = `
 }
 @media(prefers-reduced-motion:reduce){.terminal-caret,.orbit-visual,.bloom-flower,.brutalist-icon,.contactsheet-grid i,.script-direction,.atelier-numeral,.nocturne-ring{animation:none!important}}
 .motion-none .terminal-caret,.motion-none .orbit-visual,.motion-none .bloom-flower,.motion-none .brutalist-icon,.motion-none .contactsheet-grid i,.motion-none .script-direction,.motion-none .atelier-numeral,.motion-none .nocturne-ring{animation:none!important}
+
+/* Original art direction for sites without imagery: no repeated generic sphere. */
+.atlas .experience-art{background:linear-gradient(115deg,#0e443c,#b4dcc7),repeating-linear-gradient(90deg,#e3ffdc 0 2px,transparent 2px 32px)}
+.atlas .art-orb{width:60%;top:13%;left:23%;border-radius:0;background:repeating-linear-gradient(90deg,#dff7df,#dff7df 10px,#0e746a 11px,#0e746a 24px);transform:rotate(13deg);box-shadow:16px 20px 0 #102b29}
+.atlas .art-orbit{border-radius:0;border-width:7px;transform:rotate(-20deg)}
+.terminal .experience-art{background:repeating-linear-gradient(0deg,#06160b,#06160b 8px,#143f20 9px),#0b220e}
+.terminal .experience-art:after{content:"> _";position:absolute;left:15%;top:30%;color:#a3ffb1;font:950 clamp(120px,18vw,290px)/1 monospace;letter-spacing:-.12em}
+.terminal .art-orb,.terminal .art-orbit{display:none}
+.orbit .experience-art{background:radial-gradient(circle at 50% 50%,#a896ff,#21124a 66%)}
+.orbit .art-orb{width:75%;left:12%;top:12%;background:radial-gradient(circle at 25% 23%,#ded2ff,#876bd8 42%,#26164e);box-shadow:inset -35px -40px 65px #08002088,0 0 90px #c6a5ff}
+.orbit .art-orbit{border:9px solid #dfd0ff9c;transform:rotate(-35deg) scaleX(.5)}
+.playbill .experience-art{background:linear-gradient(120deg,#50231e,#b05b3b,#d3a36a)}
+.playbill .art-orb{border-radius:50% 50% 0 0;background:linear-gradient(90deg,#dbb089,#3d1a1b);box-shadow:20px 0 0 #dfaa70,-20px 0 0 #a56d52}
+.playbill .art-orbit{border-radius:48% 48% 0 0;border:5px double #e8c59f;transform:none}
+.monologue .experience-art{background:repeating-linear-gradient(0deg,#d5c49d,#d5c49d 2px,#e9dfc7 2px,#e9dfc7 26px)}
+.monologue .art-orb{border-radius:0;background:#18191b;width:80%;height:45%;top:28%;left:10%;transform:rotate(-8deg);box-shadow:0 0 0 5px #fcfbeb}
+.monologue .art-orbit{display:none}
+.portraiture .experience-art{background:linear-gradient(150deg,#aa7063,#e9c3b6 50%,#6c4c4d)}
+.portraiture .art-orb{width:72%;left:14%;top:17%;border-radius:50% 50% 0 0;background:radial-gradient(ellipse at 50% 20%,#f4dbc0,#b67f74 66%)}
+.portraiture .art-orbit{border:5px solid #eee1d3;border-radius:49% 49% 0 0;transform:none}
+.contactsheet .experience-art{background:repeating-linear-gradient(90deg,#19382a 0 3px,#537257 3px 33px,#122a1d 33px 36px)}
+.contactsheet .art-orb{border-radius:0;width:80%;height:60%;top:15%;left:10%;background:repeating-linear-gradient(0deg,#d2e5bd 0 1px,#5f7a58 1px 42px);transform:rotate(-5deg);box-shadow:0 0 0 10px #0d1a10}
+.contactsheet .art-orbit{border:1px solid #d5e0bb;border-radius:0;transform:none}
+.atelier .experience-art{background:linear-gradient(145deg,#f4ede0,#cabbaa 65%,#7d736a)}
+.atelier .art-orb{border-radius:50% 50% 0 0;width:68%;left:16%;top:9%;height:100%;background:linear-gradient(100deg,#b9a997,#ddcebc 50%,#827a6b)}
+.atelier .art-orbit{border:1px solid #fcfbef;border-radius:0;transform:rotate(-11deg)}
+.museum .experience-art{background:#8e7957}
+.museum .art-orb{border-radius:4px;background:linear-gradient(45deg,#d8bb88,#796144);width:60%;height:65%;top:17%;left:20%;transform:rotate(18deg);box-shadow:30px 30px #ddc69c}
+.museum .art-orbit{border-width:18px;border-color:#e5d0ae;border-radius:0;transform:rotate(20deg)}
+.brutalist .experience-art{background:linear-gradient(150deg,#f4dc28,#f4dc28 45%,#090909 46%,#090909 70%,#ec4d5a 71%)}
+.brutalist .art-orb{border-radius:0;background:linear-gradient(45deg,#f2445a,#f4dc28);transform:rotate(-22deg);box-shadow:25px 15px 0 #000}
+.brutalist .art-orbit{border-width:20px;border-color:#070707;border-radius:0;transform:rotate(21deg)}
+.nocturne .experience-art{background:radial-gradient(ellipse at 50% 30%,#936f45,#0a0b10 68%)}
+.nocturne .art-orb{border-radius:50%;width:45%;left:27%;top:25%;background:radial-gradient(circle at 40% 35%,#fbe9aa,#bd9b65 55%,#513e2a);box-shadow:0 0 150px #f5bb7154}
+.nocturne .art-orbit{border:1px solid #d5a968;border-radius:50%;transform:rotate(33deg) scaleX(.72)}
+.foundry .experience-art{background:repeating-linear-gradient(90deg,#de9c2f 0 40px,#282727 41px 80px)}
+.foundry .art-orb{background:#f0c16a;width:68%;height:60%;top:20%;left:16%;border-radius:0;transform:rotate(27deg);box-shadow:25px 25px #2c2a28}
+.foundry .art-orbit{border:5px dashed #25231d;border-radius:0;transform:rotate(-20deg)}
+.bloom .experience-art{background:linear-gradient(145deg,#f8e6e5,#c791a3)}
+.bloom .art-orb{width:50%;top:20%;left:25%;background:#f5dfe0;box-shadow:0 0 0 60px #ad64884d,0 0 0 120px #c99eb354}
+.bloom .art-orbit{border:30px dotted #854567;border-radius:50%;transform:none}
+.ledger .experience-art{background:repeating-linear-gradient(0deg,#244a63,#244a63 4px,#2c6984 5px,#2c6984 35px)}
+.ledger .art-orb{width:70%;height:60%;top:20%;left:15%;border-radius:0;background:linear-gradient(135deg,#c4d6e1,#5f93b3);transform:skewY(-15deg)}
+.ledger .art-orbit{border:3px solid #cadce2;border-radius:0;transform:rotate(15deg)}
+@media(prefers-reduced-motion:no-preference){
+.motion-expressive .work-art{transition:filter .9s,transform .9s cubic-bezier(.22,1,.36,1)}
+.motion-expressive .work-card:hover .work-art{filter:saturate(1.4);transform:scale(1.035)}
+.motion-expressive .service-card{transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s}
+.motion-expressive .service-card:hover{transform:translateY(-11px);box-shadow:0 20px 60px #0003}
+}
+
 `;
