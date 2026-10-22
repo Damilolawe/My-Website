@@ -5,7 +5,7 @@ A premium, highly animated, accessible portfolio and lead-generation website for
 ## Stack
 - HTML, CSS, vanilla JavaScript
 - No paid framework, account, API, or build process
-- Cloudflare Pages static hosting (build command: leave blank; output directory: `/`)
+- Cloudflare Pages static hosting (build command: leave blank; output directory: `.`)
 - Works locally by opening `index.html`
 
 ## Features
@@ -17,7 +17,7 @@ A premium, highly animated, accessible portfolio and lead-generation website for
 ## Deployment to Cloudflare Pages
 1. In Cloudflare Dashboard open **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**.
 2. Authorize GitHub if prompted, then select **Damilolawe/My-Website**.
-3. Set production branch to `main`. Framework preset: **None**. Build command: **(blank)**. Build output directory: `/`.
+3. Set production branch to `main`. Framework preset: **None**. Build command: **(blank)**. Build output directory: `.`.
 4. Deploy. Cloudflare will assign a `pages.dev` URL, then you can add a custom domain under the project settings.
 
 ## Notes
