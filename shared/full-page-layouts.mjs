@@ -80,7 +80,7 @@ function heading(id,i,ctx){
   const titles={
     "Student résumé":{about:"Behind the ambition",work:"Projects & experiments",services:"What I can contribute",education:"Education",experience:"Experience",skills:"Skills & tools",testimonials:"References",contact:"Connect with me"},
     "Professional portfolio":{about:"My perspective",work:"Case studies",services:"Expertise",education:"Learning",experience:"The journey",skills:"Core capabilities",testimonials:"In their words",contact:"Start a conversation"},
-    "Actor / model":{about:"The performer",work:"Credits & selected work",services:"Creative disciplines",education:"Training",experience:"Selected performances",skills:"Special skills",testimonials:"What people say",contact:"Casting enquiries"},
+    "Actor / model":{about:"The performer",work:"Credits & on-screen work",services:"Creative disciplines",education:"Training",experience:"Selected performances",skills:"Special skills",testimonials:"What people say",contact:"Casting enquiries"},
     "Creative portfolio":{about:"The artist",work:"Selected collection",services:"Creative services",education:"Education",experience:"Selected commissions",skills:"The craft",testimonials:"In collaboration",contact:"Let's create"},
     "Personal brand":{about:"My story",work:"What I am building",services:"Ways to collaborate",education:"Background",experience:"Milestones",skills:"Strengths",testimonials:"In their words",contact:"Let's connect"},
     "Small business":{about:"Our story",work:"Our work",services:"What we offer",education:"Background",experience:"Our story",skills:"Why choose us",testimonials:"Customer feedback",contact:"Let's talk"}
