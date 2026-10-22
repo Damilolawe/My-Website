@@ -1,0 +1,43 @@
+/* Layout-level fix: the live demo gets a real grid column instead of floating over hero text. */
+@media (min-width: 961px) {
+  .hero{display:grid!important;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr)!important;align-items:center!important;gap:clamp(24px,3vw,60px)!important;padding:125px max(35px,5vw) 80px!important;min-height:850px!important}
+  .hero-inner.page-width{grid-column:1;grid-row:1;width:100%!important;max-width:none!important;margin:0!important;padding:20px 0 50px!important;min-width:0;z-index:3}
+  .hero-art{grid-column:2;grid-row:1;position:relative!important;inset:auto!important;right:auto!important;top:auto!important;left:auto!important;width:100%!important;max-width:680px!important;aspect-ratio:1/1.02!important;height:auto!important;max-height:none!important;margin:0!important;transform:none!important;z-index:2!important;align-self:center}
+  .awe-hero-showreel{inset:0!important;transform:perspective(1400px) rotateY(-5deg) rotateZ(1deg);padding:13px}
+  .awe-hero-showreel:hover,.awe-hero-showreel:focus-within{transform:perspective(1400px) rotateY(0deg)}
+  .hero-title{max-width:100%!important;font-size:clamp(46px,5.1vw,100px)!important;line-height:.91;letter-spacing:-.095em}
+  .hero-title .hero-line:nth-child(1),.hero-title .hero-line:nth-child(2),.hero-title .title-last{font-size:1em!important}
+  .hero-bottom{margin-top:45px;gap:20px;align-items:start;flex-wrap:wrap}
+  .hero-meta{flex-wrap:wrap;margin-bottom:40px}
+  .hero-supernote{gap:8px;flex-wrap:wrap}
+  .hero-footer{position:absolute;bottom:20px;left:5vw;right:5vw;width:auto;transform:none}
+}
+@media(min-width:961px) and (max-width:1280px){
+  .hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:22px!important;padding-inline:3vw!important}
+  .hero-title{font-size:clamp(47px,5.3vw,71px)!important}
+  .hero-description p{font-size:15px}
+  .reel-actor-copy strong{font-size:clamp(38px,4.6vw,63px)!important}
+  .reel-console-copy strong{font-size:clamp(35px,4.4vw,58px)!important}
+  .reel-boutique-copy strong{font-size:clamp(38px,4.6vw,62px)!important}
+}
+@media (max-width:960px){
+  .hero{display:flex!important;flex-direction:column!important;align-items:stretch!important;padding:105px 0 36px!important;min-height:0!important}
+  .hero-inner.page-width{order:1;width:min(100% - 36px,800px)!important;padding:10px 0 0!important;max-width:none!important;margin:0 auto!important}
+  .hero-title{max-width:100%!important;font-size:clamp(47px,10vw,102px)!important}
+  .hero-title .hero-line:nth-child(1),.hero-title .hero-line:nth-child(2),.hero-title .title-last{font-size:1em!important}
+  .hero-bottom{margin-top:35px}
+  .hero-art{order:2;position:relative!important;inset:auto!important;width:min(100% - 36px,700px)!important;max-width:700px!important;aspect-ratio:1.14!important;margin:35px auto 40px!important;transform:none!important;right:auto!important;top:auto!important}
+  .awe-hero-showreel{inset:0!important;transform:none!important}
+  .awe-hero-showreel:hover,.awe-hero-showreel:focus-within{transform:none!important}
+  .hero-footer{order:3;position:relative!important;bottom:auto!important;left:auto!important;transform:none!important;width:min(100% - 36px,800px)!important;margin:0 auto!important;gap:18px;flex-wrap:wrap}
+}
+@media(max-width:540px){
+  .hero-title{font-size:clamp(41px,10.6vw,65px)!important}
+  .hero-meta{align-items:flex-start;flex-wrap:wrap;gap:14px;margin-bottom:22px}
+  .hero-supernote{font-size:8px}
+  .hero-art{width:calc(100% - 20px)!important;aspect-ratio:1.05!important;margin:24px auto 30px!important}
+  .reel-browser{font-size:7px}
+  .showreel-deck{min-height:280px}
+  .hero-description{max-width:100%}
+  .hero-scroll{display:none}
+}
