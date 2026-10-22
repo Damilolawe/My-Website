@@ -1,0 +1,48 @@
+name: Firebase Hosting (AWE / DIGITAL)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      FIREBASE_READY: ${{ vars.FIREBASE_PROJECT_ID != '' && secrets.FIREBASE_SERVICE_ACCOUNT != '' }}
+    steps:
+      - name: Show setup instructions until Firebase is connected
+        if: env.FIREBASE_READY != 'true'
+        run: |
+          echo '::notice::Firebase deployment has NOT run. To activate: add repository variable FIREBASE_PROJECT_ID and Actions secret FIREBASE_SERVICE_ACCOUNT (service account JSON). See docs/FIREBASE_SETUP.md.'
+      - name: Checkout
+        if: env.FIREBASE_READY == 'true'
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        if: env.FIREBASE_READY == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        if: env.FIREBASE_READY == 'true'
+        run: npm ci
+      - name: Build the public site
+        if: env.FIREBASE_READY == 'true'
+        run: npm run build
+      - name: Verify site content and regressions
+        if: env.FIREBASE_READY == 'true'
+        run: |
+          npm run check
+          npm test
+      - name: Deploy only static assets to Firebase Hosting Classic
+        if: env.FIREBASE_READY == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: ${{ vars.FIREBASE_PROJECT_ID }}
+          channelId: live
