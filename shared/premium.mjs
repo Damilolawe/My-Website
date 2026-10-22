@@ -1,4 +1,6 @@
 import { normalize, esc, https } from "./model.mjs";
+import { experienceHero, experienceInterlude } from "./experiences.mjs";
+import { experienceCSS } from "./experience-styles.mjs";
 
 /* Static, sandboxable HTML output: no third-party fonts, scripts, cookies or APIs.
  * Keep the whole approved document immutable in awe_versions.html. */
@@ -42,14 +44,15 @@ export function renderPremium(input, options = {}) {
     return '';
   };
   const actualSections = d.sections.map((s,i) => section(s,i+1)).filter(Boolean);
-  const heroImage = c.photoIds[0] ? image(c.photoIds[0],c.name + ' portrait','hero-picture',true) : '<div class="hero-art" aria-hidden="true"></div>';
+  const heroImage = c.photoIds[0] ? image(c.photoIds[0],c.name + ' portrait','hero-picture',true) : '';
   const accent = d.primary, second = d.secondary, dark = d.appearance === 'dark' || t === 'afterhours';
   const radius = {sharp:'0',soft:'14px',round:'36px'}[d.corners];
   const bodyFont = d.font === 'serif' ? 'Georgia,serif' : d.font === 'mono' ? 'ui-monospace,monospace' : 'system-ui,Arial,sans-serif';
   const theme = ':root{--accent:' + accent + ';--secondary:' + second + ';--bg:' + (dark?'#141619':'#f7f6f2') + ';--fg:' + (dark?'#f8f7f2':'#191b20') + ';--surface:' + (dark?'#22232a':'#fff') + ';--muted:' + (dark?'#b8b9c0':'#585d62') + ';--border:' + (dark?'#ffffff36':'#17191726') + ';--radius:' + radius + ';--body-font:' + bodyFont + ';--label-font:ui-monospace,monospace;--on-accent:#10120d}';
   const links = navIds.map(s=>'<a href="#' + E(s) + '">' + E(s) + '</a>').join('');
   const ctaTarget = has('work') && (items.length || c.photoIds.length>1) ? '#work' : has('contact') ? '#contact' : '#main';
-  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + theme + css + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + '">' +
+  const hero=experienceHero(t,{c,value,heroImage,ctaTarget});
+  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + theme + css + experienceCSS + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
     (sample ? '<div class="demo-banner">FICTIONAL TEMPLATE DEMO — SAMPLE CONTENT ONLY</div>' : '') +
-    '<a href="#main" class="skip">Skip to content</a><header class="page"><nav class="site-nav" aria-label="Main navigation"><a href="#main" class="brand">' + E(c.name) + '</a><div class="nav-links">' + (d.navigation === 'compact' ? navIds.filter(x=>['work','contact'].includes(x)).map(s=>'<a href="#'+E(s)+'">'+E(s)+'</a>').join('') : links) + '</div></nav></header><main id="main" class="page"><section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><p class="eyebrow hero-label">' + E(c.heroLabel || value.type) + '</p><h1 id="hero-title">' + E(c.headline) + '</h1><p class="hero-intro">' + E(c.bio.split('\n')[0].slice(0, 210)) + '</p><div class="hero-actions"><a class="pill-link" href="' + ctaTarget + '">' + E(c.ctaLabel) + ' <span aria-hidden="true">↗</span></a><span class="eyebrow">Independent website</span></div></div><div class="hero-media">' + heroImage + '</div></section>' + actualSections.join('') + '</main><footer class="page site-footer"><strong>' + E(c.name) + '</strong><span>Designed with intention</span><a href="#main">Back to top ↑</a></footer></body></html>';
+    '<a href="#main" class="skip">Skip to content</a><header class="page"><nav class="site-nav" aria-label="Main navigation"><a href="#main" class="brand">' + E(c.name) + '</a><div class="nav-links">' + (d.navigation === 'compact' ? navIds.filter(x=>['work','contact'].includes(x)).map(s=>'<a href="#'+E(s)+'">'+E(s)+'</a>').join('') : links) + '</div></nav></header><main id="main" class="page">' + hero + experienceInterlude(t,c) + actualSections.join('') + '</main><footer class="page site-footer"><strong>' + E(c.name) + '</strong><span>Designed with intention</span><a href="#main">Back to top ↑</a></footer></body></html>';
 }
