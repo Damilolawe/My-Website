@@ -26,10 +26,19 @@ headers=(root/'_headers').read_text()
 contact=(root/'contact.html').read_text()
 if "form-action 'self'" not in headers:
     errors.append("CSP must permit same-origin inquiry form submissions")
-if not all(x in contact for x in ['name="awe-inquiries"', 'data-netlify="true"', 'name="form-name" value="awe-inquiries"', 'method="POST"', 'action="/inquiry-received"']):
+if not all(x in contact for x in ['name="awe-inquiries"', 'data-netlify="true"', 'name="form-name" value="awe-inquiries"', 'method="POST"', 'action="/"']):
     errors.append("Static Netlify inquiry form is missing required detection or submission fields")
+handler=root/'contact.js'
+if not handler.exists():
+    errors.append("Contact AJAX handler missing from deploy")
+else:
+    code=handler.read_text()
+    if not all(x in code for x in ["fetch('/'", "application/x-www-form-urlencoded", "new URLSearchParams(new FormData(form))"]):
+        errors.append("Contact AJAX handler must URL-encode POST to same-origin root")
+if not ('/contact.js' in contact and 'id="inquiry-status"' in contact and 'id="inquiry-success"' in contact):
+    errors.append("Contact status and inline confirmation elements missing")
 if not (root/'inquiry-received.html').exists():
-    errors.append("Contact success page missing from deploy")
+    errors.append("Contact fallback success page missing from deploy")
 for path,page in pages.items():
     for id,count in Counter(page.ids).items():
         if count>1:errors.append(f'{path.name}: duplicate #{id}')
