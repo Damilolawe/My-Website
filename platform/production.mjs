@@ -15,7 +15,7 @@ export async function saveDraft(order, input, actor = null) {
   const html = renderSite(data);
   if (
     html.length > 200000 ||
-    !html.includes("<h1>") ||
+    !/<h1(?:\s|>)/i.test(html) ||
     !html.includes("viewport")
   )
     fail("Generated page failed validation.");
