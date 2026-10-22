@@ -31,7 +31,7 @@ await rm("dist", { recursive: true, force: true });
 await mkdir("dist");
 for (const file of files) await cp(file, "dist/" + file, { recursive: true });
 await mkdir("dist/templates", { recursive: true });
-const { templates, sampleForTemplate } = await import("../shared/model.mjs");
+const { templates, types, typeSlugs, sampleForTemplate } = await import("../shared/model.mjs");
 const { renderSite } = await import("../shared/render.mjs");
 const { writeFile } = await import("node:fs/promises");
 for (const t of templates) {
@@ -53,6 +53,16 @@ for (const t of templates) {
   await writeFile(`dist/templates/${t.id}--still.html`, renderSite({
     ...config, design: { ...config.design, animation: "none" },
   }, { sample: true }));
+  for (const type of types) {
+    const dir = "dist/templates/" + typeSlugs[type];
+    await mkdir(dir, {recursive:true});
+    const purposeful = {...config,type,content:sampleForTemplate(t.id,type).content,
+      design:{...config.design,sections:sampleForTemplate(t.id,type).design.sections}};
+    await writeFile(dir + "/" + t.id + ".html",renderSite(purposeful,{sample:true}));
+    await writeFile(dir + "/" + t.id + "--still.html",renderSite({
+      ...purposeful,design:{...purposeful.design,animation:"none"}
+    },{sample:true}));
+  }
 }
 console.log(
   "Built Netlify public assets in dist/. Server functions remain outside public output.",
