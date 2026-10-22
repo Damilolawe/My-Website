@@ -21,6 +21,15 @@ pages={}
 for path in sorted(root.rglob('*.html')):
     page=Page(path); page.feed(path.read_text());pages[path.resolve()]=page
 errors=[]
+# Netlify Forms need an actual static HTML form and a CSP that permits same-origin POST.
+headers=(root/'_headers').read_text()
+contact=(root/'contact.html').read_text()
+if "form-action 'self'" not in headers:
+    errors.append("CSP must permit same-origin inquiry form submissions")
+if not all(x in contact for x in ['name="awe-inquiries"', 'data-netlify="true"', 'name="form-name" value="awe-inquiries"', 'method="POST"', 'action="/inquiry-received"']):
+    errors.append("Static Netlify inquiry form is missing required detection or submission fields")
+if not (root/'inquiry-received.html').exists():
+    errors.append("Contact success page missing from deploy")
 for path,page in pages.items():
     for id,count in Counter(page.ids).items():
         if count>1:errors.append(f'{path.name}: duplicate #{id}')
