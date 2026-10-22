@@ -20,7 +20,7 @@ const labels = [
   "Review & checkout",
 ];
 let step = 0,
-  input = normalize(sample),
+  input = normalize({...sample,design:{animation:"expressive"}}),
   files = [],
   catalog = { templates, packages: [], ordersEnabled: false },
   packageId = "express",
