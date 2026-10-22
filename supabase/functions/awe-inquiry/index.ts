@@ -13,7 +13,7 @@ function json(data, status=200, requestOrigin="") {
     "Access-Control-Allow-Headers": "apikey, content-type",
     ...(allowed ? {"Access-Control-Allow-Origin":SITE_ORIGIN} : {}),
   };
-  return new Response(JSON.stringify(data),{status,headers});
+  return new Response(status === 204 ? null : JSON.stringify(data),{status,headers});
 }
 async function boundedText(req) {
   const declared = req.headers.get("content-length");
