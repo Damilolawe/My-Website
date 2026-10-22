@@ -8,6 +8,8 @@ const files = [
   "script.js",
   "showcase.js",
   "showcase.css",
+  "cinema.css",
+  "cinema.js",
   "sculpture.js",
   "case-studies.js",
   "config.js",
