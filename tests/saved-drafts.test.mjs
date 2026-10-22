@@ -37,3 +37,11 @@ test("Customer account dashboard offers a resumable link only for saved designs"
   assert(account.includes("/order.html?draft="));
   assert(account.includes("encodeURIComponent(o.id)"));
 });
+
+test("Owner can inspect unpaid concepts but cannot regenerate or publish them without payment",async()=>{
+  const src=await read("app/admin.mjs");
+  assert(src.includes('o.payment !== "paid" ? "disabled" : ""'),"Regenerate must be disabled for unpaid concepts");
+  assert(src.includes("verified purchase is required"));
+  assert(src.includes('o.payment !== "paid" ? "disabled" : ""'),"Publish should not be available to unpaid projects");
+  assert(src.includes("enhanceEditor"),"Owner can still inspect an unpaid concept locally");
+});
