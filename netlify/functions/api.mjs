@@ -27,6 +27,7 @@ import {
 } from "../../shared/model.mjs";
 import { saveDraft, runJobs } from "../../platform/production.mjs";
 import { inspectUpload } from "../../platform/uploads.mjs";
+import { previewResume } from "../../platform/resume.mjs";
 import { exportApproved } from "../../platform/export.mjs";
 function owner(u) {
   assertOwner(u, env().OWNER_USER_ID);
@@ -105,6 +106,16 @@ export default async function (req) {
       });
     }
     const u = await user(req);
+    if (route === "resume" && key === "preview" && method === "POST") {
+      if (Number(req.headers.get("content-length") || 0) > 4500000)
+        fail("Résumé exceeds the 4 MB document limit.", 413);
+      const fd = await req.formData();
+      const file = fd.get("file");
+      if (!file || !["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"].includes(file.type))
+        fail("Choose a PDF or DOCX résumé.");
+      const { bytes, mime } = await inspectUpload(file);
+      return json(previewResume(bytes, mime));
+    }
     const admin = u.id === env().OWNER_USER_ID;
     if (route === "me") return json({ email: u.email, admin });
     if (route === "orders" && method === "GET" && !key)

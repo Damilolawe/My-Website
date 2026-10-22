@@ -1,5 +1,6 @@
 import { $, api, money, report, authForm } from "./common.mjs";
 import { esc, templates, sections } from "/shared/model.mjs";
+import { enhanceEditor } from "./studio-editor.mjs";
 const app = $("#app");
 let selected = null,
   overview = null;
@@ -197,6 +198,7 @@ function drawOrder() {
     .join(
       "",
     )}</div></div>${o.draft_version ? `<iframe id="draft" src="/api/admin/orders/${o.id}/preview" title="Private website draft" sandbox="allow-same-origin"></iframe>` : "<p>Your draft will appear after verified payment and generation.</p>"}</div><div class="panel"><h3>Review decision</h3><p>Review the saved draft at each size. Publishing makes this exact version and its selected images publicly accessible.</p><label class="field">Review notes<textarea id="note" maxlength="2000"></textarea></label><div class="toolbar"><button id="reject" class="btn secondary" ${!o.draft_version ? "disabled" : ""}>Request revisions</button><button id="publish" class="btn acid" ${!o.draft_version || o.payment !== "paid" ? "disabled" : ""}>Approve & Publish ↗</button></div>${o.public_version ? `<a href="/sites/${o.slug}" target="_blank" rel="noopener">Current live website ↗</a><p><a href="/api/admin/orders/${o.id}/export">Download approved website files ↓</a></p>` : ""}<p class="muted">${esc(o.delivery_error || "")}</p></div><h3>Replace / add a photograph</h3><form id="replace-photo" class="panel"><label class="field">New image (4 MB maximum)<input type="file" name="file" accept=".jpg,.jpeg,.png,.webp" required></label><label><input name="rights" type="checkbox" required> I have permission to use this image publicly.</label><button class="btn secondary small">Upload to private materials</button><p class="muted">Select the new image in the editor and save a draft. Uploading alone does not change the live site.</p></form><h3>Customer materials</h3><ul>${assets.map((a) => `<li><a href="/api/assets/${a.id}" target="_blank" rel="noopener">${esc(a.name)} ↗</a> · ${a.public_allowed ? "approved for website" : "private document"}</li>`).join("")}</ul><h3>Revision requests</h3>${revisions.map((r) => `<p class="notice">${esc(r.message)}</p>`).join("") || "<p>No requests yet.</p>"}<h3>Version history</h3>${versions.map((v) => `<p>${new Date(v.created_at).toLocaleString()} <button class="btn small secondary" data-restore="${v.id}">Restore as private draft</button></p>`).join("")}<h3>Delivery records</h3>${deliveries.map((v) => `<p>${new Date(v.created_at).toLocaleString()} · Email accepted by provider</p>`).join("") || "<p>No delivery emails accepted yet.</p>"}<h3>Audit trail</h3><div class="audit">${events.map((e) => `<p>${esc(e.created_at)} / ${esc(e.kind)} / ${esc(JSON.stringify(e.details))}</p>`).join("")}</div></div></div><dialog class="modal" id="confirm"><h2>Ready for the world?</h2><p>Publish the saved draft for <strong>${esc(c.name)}</strong>? This replaces the public version and queues a delivery email.</p><p>Unsaved editor changes are not included.</p><div class="toolbar"><button class="btn secondary" id="cancel">Keep private</button><button class="btn acid" id="confirm-publish">Publish approved version</button></div></dialog>`;
+  const studio = enhanceEditor($("#editor"), o.input);
   $("#replace-photo").onsubmit = async (e) => {
     e.preventDefault();
     const btn = $("button", e.target);
@@ -217,6 +219,7 @@ function drawOrder() {
     (b) =>
       (b.onclick = () => {
         if ($("#draft")) $("#draft").style.width = b.dataset.width;
+         if ($("#studio-live-frame")) $("#studio-live-frame").style.width = b.dataset.width;
       }),
   );
   $("#editor").onsubmit = async (e) => {
@@ -261,7 +264,7 @@ function drawOrder() {
           sections: f.getAll("sections"),
         },
       };
-      await api(`admin/orders/${o.id}/save`, { version: o.version, input });
+      await api(`admin/orders/${o.id}/save`, { version: o.version, input: studio.merge(input) });
       await openOrder(o.id);
     } catch (e) {
       report(e);
