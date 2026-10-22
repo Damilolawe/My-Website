@@ -69,6 +69,7 @@ export function renderPremium(input, options = {}) {
     .reduce((sum,x,i)=>sum+x*[0.2126,0.7152,0.0722][i],0);
   const onAccent = luminance > 0.179 ? '#10120d' : '#ffffff';
   const theme = ':root{--accent:' + accent + ';--secondary:' + second + ';--bg:' + (dark?'#141619':'#f7f6f2') + ';--fg:' + (dark?'#f8f7f2':'#191b20') + ';--surface:' + (dark?'#22232a':'#fff') + ';--muted:' + (dark?'#b8b9c0':'#585d62') + ';--border:' + (dark?'#ffffff36':'#17191726') + ';--radius:' + radius + ';--body-font:' + bodyFont + ';--label-font:ui-monospace,monospace;--on-accent:' + onAccent + '}';
+  const ctaTarget = has('work') && (items.length || c.photoIds.length>1) ? '#work' : has('contact') ? '#contact' : '#main';
   const hero=experienceHero(t,{c,value,heroImage,ctaTarget});
   const page=siteChrome(value,{hero,sections:actualSections,interlude:experienceInterlude(t,c),navIds});
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
