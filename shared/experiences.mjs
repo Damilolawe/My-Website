@@ -20,7 +20,36 @@ export function experienceHero(t,{c,value,heroImage,ctaTarget}) {
   }
 }
 export function experienceInterlude(t,c) {
-  const lines={index:"YOUR NEXT CHAPTER",folio:"IN THE DETAILS",still:"MADE WITH PURPOSE",afterhours:"ON THE REEL",signal:"NEVER BLEND IN",daylight:"THE GOOD STUFF",atlas:"CLARITY IN MOTION",terminal:"HELLO WORLD",orbit:"WITHOUT LIMITS",playbill:"TAKE THE STAGE",monologue:"THE NEXT SCENE",portraiture:"EVERY ANGLE",contactsheet:"THE CONTACT SHEET",atelier:"THE COLLECTION",museum:"A LIVING EXHIBITION",brutalist:"MAKE SOME NOISE",nocturne:"THE ART OF PRESENCE",foundry:"MADE TO LAST",bloom:"GOOD THINGS GROW",ledger:"THINK BIGGER"};
-  const label=lines[t]||"MADE WITH INTENTION";
-  return '<div class="experience-interlude" aria-label="'+e(label)+'"><div class="experience-track" aria-hidden="true">'+Array.from({length:4},()=>'<span>'+e(label)+' <b>✳︎</b> '+e(c.name)+' <b>↗︎</b></span>').join('')+'</div></div>';
+  // Twenty personalities, four fundamentally different editorial rhythms.
+  // Dynamic names/headlines are escaped, and no fake client claims are inserted.
+  const themes={
+    index:["THE NEXT CHAPTER","01 / THE DOSSIER","precise"],
+    folio:["THOUGHTFULLY, IN PRINT.","02 / A NEW PERSPECTIVE","editorial"],
+    still:["A QUIETER KIND OF IMPACT.","03 / THE COLLECTION","editorial"],
+    afterhours:["ROLL THE NEXT SCENE.","04 / THE SCREENING","cinema"],
+    signal:["MAKE SOMETHING LOUD.","05 / THE FREQUENCY","graphic"],
+    daylight:["THE GOOD STUFF STARTS HERE.","06 / THE DAYBOOK","graphic"],
+    atlas:["EVERY IDEA, MAPPED.","07 / THE RESEARCH","precise"],
+    terminal:["BUILD WHAT COMES NEXT.","08 / SYSTEM READY","precise"],
+    orbit:["TAKE UP MORE SPACE.","09 / THE MISSION","precise"],
+    playbill:["YOU'RE ON THE BILL.","10 / THE PROGRAM","cinema"],
+    monologue:["AND... ACTION.","11 / THE SCRIPT","cinema"],
+    portraiture:["BEYOND THE PORTRAIT.","12 / THE LOOKBOOK","editorial"],
+    contactsheet:["THE MOMENT, HELD.","13 / THE ARCHIVE","graphic"],
+    atelier:["EVERY DETAIL IS INTENTIONAL.","14 / THE COLLECTION","editorial"],
+    museum:["GOOD WORK BELONGS ON DISPLAY.","15 / THE EXHIBITION","editorial"],
+    brutalist:["NORMAL IS NOT THE BRIEF.","16 / THE MANIFESTO","graphic"],
+    nocturne:["THE ART OF LESS.","17 / THE SIGNATURE","editorial"],
+    foundry:["MAKE IT MEAN SOMETHING.","18 / THE WORKSHOP","precise"],
+    bloom:["MADE TO GROW.","19 / THE GARDEN","graphic"],
+    ledger:["THE WORK SPEAKS.","20 / THE BRIEF","precise"]
+  };
+  const [message,eyebrow,mode]=themes[t]||themes.index;
+  const safeName=e(c.name||"Selected work");
+  return '<aside class="experience-interlude studio-index studio-index--'+e(t)+' studio-index--'+mode+'" aria-label="'+e(message)+'">'+
+    '<div class="experience-track studio-index-inner">'+
+    '<span class="studio-index-number" aria-hidden="true">'+e(eyebrow.slice(0,2))+'</span>'+
+    '<div class="studio-index-message"><span class="studio-index-eyebrow">'+e(eyebrow)+'</span><strong>'+e(message)+'</strong><span class="studio-index-rule" aria-hidden="true"></span></div>'+
+    '<div class="studio-index-side"><span>'+safeName+'</span><span class="studio-index-glyph" aria-hidden="true">↗</span></div>'+
+    '</div></aside>';
 }

@@ -1,4 +1,5 @@
 import { normalize, esc, https } from "./model.mjs";
+import { collectionEditionCSS } from "./collection-edition.mjs";
 import { sampleArtwork, photoCSS } from "./photographic-direction.mjs";
 import { experienceHero, experienceInterlude } from "./experiences.mjs";
 import { alternateCSS } from "./alternate-styles.mjs";
@@ -74,7 +75,7 @@ export function renderPremium(input, options = {}) {
   const ctaTarget = has('work') && (items.length || c.photoIds.length>1) ? '#work' : has('contact') ? '#contact' : '#main';
   const hero=experienceHero(t,{c,value,heroImage,ctaTarget});
   const page=siteChrome(value,{hero,sections:actualSections,interlude:experienceInterlude(t,c),navIds});
-  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
+  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
     (sample ? '<div class="demo-banner">FICTIONAL TEMPLATE DEMO — SAMPLE CONTENT ONLY</div>' : '') +
     '<a href="#main" class="skip">Skip to content</a>' + page + '</body></html>';
 }

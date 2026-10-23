@@ -147,10 +147,115 @@ const artMarks = Object.freeze({
   "bloom": "B.",
   "ledger": "L."
 });
+// Non-repeating photo sequences for fictional project cards. Each sample
+// frame uses a distinct image; authorized customer projects never use these.
+const workImageSequence = Object.freeze({
+  "index": [
+    "photo-1763850407750-4671769329c1",
+    "photo-1776851629268-c878a7978c61",
+    "photo-1693823462803-8921d3f5ea2c"
+  ],
+  "folio": [
+    "photo-1718964312487-d5e3d56fd2ce",
+    "photo-1780260412556-b47b849785dd",
+    "photo-1771072428050-1492abb58f4a"
+  ],
+  "still": [
+    "photo-1762062087175-0de79d49bf6c",
+    "photo-1776851629268-c878a7978c61",
+    "photo-1763850407750-4671769329c1"
+  ],
+  "afterhours": [
+    "photo-1774016591378-925354a456ee",
+    "photo-1718964312487-d5e3d56fd2ce",
+    "photo-1630706437030-34c03d3e3ff4"
+  ],
+  "signal": [
+    "photo-1780260412556-b47b849785dd",
+    "photo-1771072428050-1492abb58f4a",
+    "photo-1763850407750-4671769329c1"
+  ],
+  "daylight": [
+    "photo-1767551715049-fcd9b818b2d4",
+    "photo-1718964312487-d5e3d56fd2ce",
+    "photo-1771072428050-1492abb58f4a"
+  ],
+  "atlas": [
+    "photo-1763850407750-4671769329c1",
+    "photo-1776851629268-c878a7978c61",
+    "photo-1762062087175-0de79d49bf6c"
+  ],
+  "terminal": [
+    "photo-1693823462803-8921d3f5ea2c",
+    "photo-1770734360042-676ef707d022",
+    "photo-1763850407750-4671769329c1"
+  ],
+  "orbit": [
+    "photo-1777047023536-8e47688b77f9",
+    "photo-1763850407750-4671769329c1",
+    "photo-1776851629268-c878a7978c61"
+  ],
+  "playbill": [
+    "photo-1774016591378-925354a456ee",
+    "photo-1718964312487-d5e3d56fd2ce",
+    "photo-1630706437030-34c03d3e3ff4"
+  ],
+  "monologue": [
+    "photo-1630706437030-34c03d3e3ff4",
+    "photo-1774016591378-925354a456ee",
+    "photo-1718964312487-d5e3d56fd2ce"
+  ],
+  "portraiture": [
+    "photo-1718964312487-d5e3d56fd2ce",
+    "photo-1630706437030-34c03d3e3ff4",
+    "photo-1780260412556-b47b849785dd"
+  ],
+  "contactsheet": [
+    "photo-1780260412556-b47b849785dd",
+    "photo-1718964312487-d5e3d56fd2ce",
+    "photo-1630706437030-34c03d3e3ff4"
+  ],
+  "atelier": [
+    "photo-1771072428050-1492abb58f4a",
+    "photo-1780260412556-b47b849785dd",
+    "photo-1718964312487-d5e3d56fd2ce"
+  ],
+  "museum": [
+    "photo-1762062087175-0de79d49bf6c",
+    "photo-1776851629268-c878a7978c61",
+    "photo-1763850407750-4671769329c1"
+  ],
+  "brutalist": [
+    "photo-1780260412556-b47b849785dd",
+    "photo-1763850407750-4671769329c1",
+    "photo-1771072428050-1492abb58f4a"
+  ],
+  "nocturne": [
+    "photo-1630706437030-34c03d3e3ff4",
+    "photo-1771072428050-1492abb58f4a",
+    "photo-1718964312487-d5e3d56fd2ce"
+  ],
+  "foundry": [
+    "photo-1693823462803-8921d3f5ea2c",
+    "photo-1763850407750-4671769329c1",
+    "photo-1776851629268-c878a7978c61"
+  ],
+  "bloom": [
+    "photo-1767551715049-fcd9b818b2d4",
+    "photo-1718964312487-d5e3d56fd2ce",
+    "photo-1771072428050-1492abb58f4a"
+  ],
+  "ledger": [
+    "photo-1776851629268-c878a7978c61",
+    "photo-1763850407750-4671769329c1",
+    "photo-1693823462803-8921d3f5ea2c"
+  ]
+});
 export function sampleArtwork(template, kind = "hero", index = 0) {
   const theme=themes[template];
   if(!theme)return "";
-  const photo=kind==="work"?theme.gallery:theme.photo;
+  const photos=workImageSequence[template]||[theme.gallery,theme.photo];
+  const photo=kind==="work"?photos[index%photos.length]:theme.photo;
   const size=kind==="work"?900:1600;
   const url="https://images.unsplash.com/"+photo+"?auto=format&amp;fit=crop&amp;w="+size+"&amp;q=78";
   const count=String(index+1).padStart(2,"0");
