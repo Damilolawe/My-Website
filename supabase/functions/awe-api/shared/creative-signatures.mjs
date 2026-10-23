@@ -1,4 +1,5 @@
 import { esc } from "./model.mjs";
+import { sampleArtwork, illustrationArtwork } from "./photographic-direction.mjs";
 
 // These chapters use the owner's normalized content. They never invent clients,
 // bookings, products or results, and they render without executable JavaScript.
@@ -7,13 +8,17 @@ const prose = (value) => E(value || "").replace(/\r?\n/g, "<br>");
 const short = (value, max = 220) => String(value || "").trim().slice(0, max);
 const destination = (ids) => ids.includes("work") ? "#work" : ids.includes("contact") ? "#contact" : "#main";
 
-export function signatureMarkup(value, navIds = []) {
+export function signatureMarkup(value, navIds = [], { sample = false, assetBase = "/api/assets/", assetSuffix = "" } = {}) {
   const { template, content: c } = value;
   const name = E(c.name);
   const line = E(c.headline);
   const next = destination(navIds);
   const first = c.cards?.[0];
   const second = c.cards?.[1];
+  const imageId = c.photoIds?.[1] || c.photoIds?.[0];
+  const image = imageId
+    ? '<img src="' + E(assetBase + imageId + assetSuffix) + '" alt="" loading="lazy">'
+    : sample ? sampleArtwork(template, "work", 0) : illustrationArtwork(template);
   switch (template) {
     case "atelier":
       return '<section class="signature signature-atelier" aria-labelledby="signature-atelier-title">' +
@@ -21,7 +26,7 @@ export function signatureMarkup(value, navIds = []) {
         '<div class="atelier-edition-stage"><span class="atelier-edition-number" aria-hidden="true">01</span>' +
         '<div class="atelier-edition-copy"><span class="signature-kicker">THE ART OF EXPRESSION</span><h2 id="signature-atelier-title">' + name + '</h2>' +
         '<p>' + line + '</p><a href="' + next + '">Discover the collection <span aria-hidden="true">↗︎</span></a></div>' +
-        '<div class="atelier-edition-composition" aria-hidden="true"><span class="atelier-edition-oval"></span><span class="atelier-edition-seam"></span><span class="atelier-edition-mark">A</span></div></div>' +
+        '<div class="atelier-edition-composition" aria-hidden="true"><div class="signature-image">' + image + '</div><span class="atelier-edition-oval"></span><span class="atelier-edition-seam"></span><span class="atelier-edition-mark">A</span></div></div>' +
         '<div class="atelier-edition-bottom"><span>FORM / PRESENCE / POINT OF VIEW</span><span>SCROLL TO EXPLORE ↓︎</span></div></section>';
     case "signal":
       return '<section class="signature signature-signal" aria-labelledby="signature-signal-title">' +
@@ -60,7 +65,7 @@ export function signatureMarkup(value, navIds = []) {
         '<div class="afterhours-sequence-main"><div class="afterhours-sequence-type"><span class="signature-kicker">A STORY IN FRAMES</span>' +
         '<h2 id="signature-afterhours-title">THE<br><em>NEXT</em><br>SCENE.</h2><p>' + name + ' / ' + line + '</p>' +
         '<a href="' + next + '">Enter the portfolio ↗︎</a></div>' +
-        '<div class="afterhours-sequence-stills"><div class="afterhours-sequence-frame" aria-hidden="true"><span>FRAME 01 / A NEW PERSPECTIVE</span><b>01</b></div>' +
+        '<div class="afterhours-sequence-stills"><div class="afterhours-sequence-frame" aria-hidden="true"><div class="signature-image">' + image + '</div><span>FRAME 01 / A NEW PERSPECTIVE</span><b>01</b></div>' +
         (shots.length ? shots.map((shot, i) => '<details><summary><span>0' + (i + 1) + ' / ' + E(short(shot.title, 90)) + '</span><span aria-hidden="true">+</span></summary>' +
           '<p>' + prose(short(shot.description, 300) || "A selected piece from the portfolio.") + '</p></details>').join("") :
           '<p class="afterhours-sequence-empty">A space for the work that deserves to be seen.</p>') +
@@ -84,9 +89,12 @@ export const signatureCSS = `
 .signature details[open] summary span:last-child{transform:rotate(45deg)}
 .signature details p{margin:0 0 25px;max-width:45ch;font-size:16px;line-height:1.6}
 .signature :is(a,summary):focus-visible{outline:3px solid var(--accent);outline-offset:5px}
+.signature-image,.signature-image :is(img,.study-shot,.editorial-illustration){position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.signature-image .study-shot{min-height:0}
+.signature-image .study-shot::before{background-size:cover}
 
 /* An editorial issue: hairlines, outsized type, sculptural figure and spacious pacing. */
-.signature-atelier{background:#eae4d9;color:#252321;padding:clamp(18px,3vw,42px)}
+.signature-atelier{background:color-mix(in srgb,var(--secondary) 18%,#eae4d9);color:#252321;padding:clamp(18px,3vw,42px)}
 .atelier-edition-top,.atelier-edition-bottom{display:flex;justify-content:space-between;gap:20px;border-block:1px solid #3936317a;padding:13px 0;font:700 10px/1.5 ui-monospace,monospace;letter-spacing:.13em}
 .atelier-edition-stage{min-height:clamp(560px,58vw,820px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:center;position:relative}
 .atelier-edition-number{position:absolute;top:1%;left:-.06em;font:italic 400 clamp(160px,31vw,490px)/.8 Georgia,serif;letter-spacing:-.12em;color:#9a897c38;pointer-events:none}
@@ -95,6 +103,7 @@ export const signatureCSS = `
 .atelier-edition-copy p{font:400 clamp(17px,2vw,25px)/1.4 Georgia,serif;max-width:26ch}
 .atelier-edition-copy a{font:700 12px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em}
 .atelier-edition-composition{height:clamp(410px,47vw,670px);align-self:center;position:relative;background:linear-gradient(130deg,color-mix(in srgb,var(--secondary) 45%,#302821),#171717);box-shadow:24px 24px 0 color-mix(in srgb,var(--accent) 30%,#b7aa98)}
+.atelier-edition-composition .signature-image{filter:grayscale(.35) contrast(1.12)}
 .atelier-edition-oval{position:absolute;inset:10% 18%;border:clamp(13px,3vw,45px) solid #e8e0d0;border-radius:48% 48% 40% 40%;transform:rotate(-18deg);box-shadow:inset -20px -20px 35px #0007,15px 20px 35px #0007}
 .atelier-edition-seam{position:absolute;inset:7%;border:1px solid #f7f1e477}
 .atelier-edition-mark{position:absolute;right:4%;bottom:-.16em;color:#eae4d9;font:italic 400 clamp(190px,30vw,430px)/.9 Georgia,serif;mix-blend-mode:difference}
@@ -145,8 +154,10 @@ export const signatureCSS = `
 .afterhours-sequence-type a{font:800 11px ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}
 .afterhours-sequence-stills{padding:30px 0}
 .afterhours-sequence-frame{position:relative;display:flex;justify-content:space-between;align-items:flex-start;min-height:360px;padding:20px;background:linear-gradient(135deg,#54312c 0%,#131d23 42%,#050607 100%);box-shadow:inset 0 0 0 12px #0b0a0b,0 0 0 1px #f3ece24d;overflow:hidden;font:700 10px ui-monospace,monospace;letter-spacing:.13em}
-.afterhours-sequence-frame:before{content:"";position:absolute;inset:25% 16% 8%;border:1px solid #d6b79b66;border-radius:48% 48% 5% 5%;transform:rotate(-14deg);box-shadow:35px 50px 100px #b9806280}
-.afterhours-sequence-frame b{position:absolute;right:3%;bottom:-.3em;font:900 250px/.9 Impact,sans-serif;opacity:.16}
+.afterhours-sequence-frame .signature-image{filter:grayscale(.35) contrast(1.25);opacity:.64}
+.afterhours-sequence-frame:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#0b0a0bb8,transparent),linear-gradient(0deg,#0b0a0ba6,transparent 55%);pointer-events:none}
+.afterhours-sequence-frame>span{position:relative;z-index:2}
+.afterhours-sequence-frame b{position:absolute;z-index:2;right:3%;bottom:-.3em;font:900 250px/.9 Impact,sans-serif;opacity:.3}
 .afterhours-sequence-stills details{border-color:#f3ece27a}
 .afterhours-sequence-stills p{color:#d6c9bd}
 .afterhours-sequence-empty{font:italic 20px Georgia,serif}
