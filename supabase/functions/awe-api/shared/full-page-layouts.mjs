@@ -46,22 +46,22 @@ function caseBody(item,i,ctx){
   return '<div class="case-body"><span class="case-counter">'+String(i+1).padStart(2,"0")+' / '+E(ctx.typeLabel)+'</span>'+
    '<h3>'+E(item.title||"Selected work")+'</h3>'+
    (item.description?'<p>'+prose(item.description)+'</p>':"")+
-   (https(item.url)?'<a href="'+E(item.url)+'" target="_blank" rel="noopener noreferrer">Explore this work ↗</a>':"")+'</div>';
+   (https(item.url)?'<a href="'+E(item.url)+'" target="_blank" rel="noopener noreferrer">Explore this work ↗︎</a>':"")+'</div>';
 }
 function workMarkup(mode,items,ctx){
   const figures=items.map((item,i)=>{
     const media=visual(item,i,ctx),body=caseBody(item,i,ctx);
     switch(mode){
-      case "index-records":return '<article class="case-entry case-record">'+body+media+'<span class="record-arrow" aria-hidden="true">↗</span></article>';
+      case "index-records":return '<article class="case-entry case-record">'+body+media+'<span class="record-arrow" aria-hidden="true">↗︎</span></article>';
       case "editorial-spreads":return '<article class="case-entry case-spread"><div class="spread-figure">'+media+'<span>PLATE / '+String(i+1).padStart(2,"0")+'</span></div>'+body+'</article>';
       case "gallery-installation":return '<article class="case-entry case-installation">'+media+'<div class="gallery-plaque">'+body+'</div></article>';
-      case "cinematic-reel":return '<article class="case-entry case-scene"><div class="scene-frame"><span class="scene-timecode">00 : '+String(i+1).padStart(2,"0")+' : 24</span>'+media+'<span class="scene-play" aria-hidden="true">▶</span></div>'+body+'</article>';
-      case "poster-wall":return '<article class="case-entry case-poster"><span class="poster-snipe" aria-hidden="true">✳</span>'+media+body+'</article>';
+      case "cinematic-reel":return '<article class="case-entry case-scene"><div class="scene-frame"><span class="scene-timecode">00 : '+String(i+1).padStart(2,"0")+' : 24</span>'+media+'<span class="scene-play" aria-hidden="true">▶︎</span></div>'+body+'</article>';
+      case "poster-wall":return '<article class="case-entry case-poster"><span class="poster-snipe" aria-hidden="true">✳︎</span>'+media+body+'</article>';
       case "playful-scrapbook":return '<article class="case-entry case-note"><span class="note-tape" aria-hidden="true"></span>'+media+body+'</article>';
       case "research-index":return '<article class="case-entry case-research"><div class="research-line"><span>REF_'+String(i+1).padStart(3,"0")+'</span><span>ANALYSIS / OUTPUT</span></div>'+body+media+'</article>';
       case "command-console":return '<article class="case-entry case-command"><div class="command-prompt">visitor@portfolio:~$ <span>cat projects/'+String(i+1).padStart(2,"0")+'.md</span></div>'+body+'<div class="command-end">$ _</div></article>';
       case "space-mission":return '<article class="case-entry case-mission"><div class="mission-node">'+media+'<span>ORBIT / '+String(i+1).padStart(2,"0")+'</span></div>'+body+'</article>';
-      case "theatre-program":return '<article class="case-entry case-program"><div class="program-number">'+String(i+1).padStart(2,"0")+'</div>'+body+'<div class="program-divider" aria-hidden="true">❦</div></article>';
+      case "theatre-program":return '<article class="case-entry case-program"><div class="program-number">'+String(i+1).padStart(2,"0")+'</div>'+body+'<div class="program-divider" aria-hidden="true">❦︎</div></article>';
       case "screenplay-scenes":return '<article class="case-entry case-screenplay"><p class="script-location">SCENE '+String(i+1).padStart(2,"0")+'. INT. PORTFOLIO — DAY</p>'+caseBody(item,i,ctx)+'<p class="script-end">CUT TO:</p></article>';
       case "portrait-gallery":return '<article class="case-entry case-portrait"><div class="portrait-mat">'+media+'</div>'+body+'</article>';
       case "photographic-contact":return '<article class="case-entry case-contact-frame">'+media+'<div class="contact-frame-info">'+body+'</div><span class="negative-id">FRAME '+String(i+1).padStart(2,"0")+'</span></article>';
@@ -70,8 +70,8 @@ function workMarkup(mode,items,ctx){
       case "experimental-flyers":return '<article class="case-entry case-flyer"><span class="flyer-stamp" aria-hidden="true">N° '+String(i+1).padStart(2,"0")+'</span>'+body+media+'</article>';
       case "luxury-chapters":return '<article class="case-entry case-noir"><div class="noir-number">'+String(i+1).padStart(2,"0")+'</div>'+media+body+'</article>';
       case "industrial-projects":return '<article class="case-entry case-job"><div class="job-index">'+String(i+1).padStart(2,"0")+'</div>'+body+media+'</article>';
-      case "botanical-journal":return '<article class="case-entry case-journal"><span class="journal-spark" aria-hidden="true">✽</span>'+media+body+'</article>';
-      case "business-briefs":return '<article class="case-entry case-report"><div class="report-tag">'+String(i+1).padStart(2,"0")+' / REPORT</div>'+body+'<span class="report-arrow" aria-hidden="true">↗</span></article>';
+      case "botanical-journal":return '<article class="case-entry case-journal"><span class="journal-spark" aria-hidden="true">✽︎</span>'+media+body+'</article>';
+      case "business-briefs":return '<article class="case-entry case-report"><div class="report-tag">'+String(i+1).padStart(2,"0")+' / REPORT</div>'+body+'<span class="report-arrow" aria-hidden="true">↗︎</span></article>';
     }
   });
   return '<div class="art-directed-work mode-'+mode+'">'+figures.join("")+'</div>';
@@ -106,15 +106,15 @@ export function designSections(value,{assetBase="/api/assets/",assetSuffix=""}={
   for(const [index,id] of d.sections.entries()){
     if(id==="about"&&c.bio){
       sections.push(shell(id,index+1,ctx,'<div class="architect-story"><span class="story-opening" aria-hidden="true">“</span><p>'+prose(c.bio)+'</p>'+
-        '<span class="story-signature">'+E(c.name)+'</span><span class="story-art" aria-hidden="true">✳</span></div>'));
+        '<span class="story-signature">'+E(c.name)+'</span><span class="story-art" aria-hidden="true">✳︎</span></div>'));
     } else if(id==="work"&&(items.length||c.photoIds.length>1)){
       const workItems=items.length?items:c.photoIds.slice(1).map((_,i)=>({title:"Selected work "+(i+1),description:"",url:""}));
       sections.push(shell(id,index+1,ctx,workMarkup(def.mode,workItems,ctx)));
     } else if(id==="services"&&c.services.length){
       const cards=c.services.map((item,i)=>'<article class="offer"><div class="offer-number">'+String(i+1).padStart(2,"0")+'</div><div><h3>'+E(item.title)+'</h3>'+
         (item.description?'<p>'+prose(item.description)+'</p>':"")+
-        (https(item.url)?'<a href="'+E(item.url)+'" target="_blank" rel="noopener noreferrer">Learn more ↗</a>':"")+
-        '</div><span class="offer-symbol" aria-hidden="true">↗</span></article>').join("");
+        (https(item.url)?'<a href="'+E(item.url)+'" target="_blank" rel="noopener noreferrer">Learn more ↗︎</a>':"")+
+        '</div><span class="offer-symbol" aria-hidden="true">↗︎</span></article>').join("");
       sections.push(shell(id,index+1,ctx,'<div class="art-directed-services">'+cards+'</div>'));
     } else if(["education","experience","skills"].includes(id)&&c[id]){
       sections.push(shell(id,index+1,ctx,'<div class="architect-history"><p class="history-tag">'+E(id)+' / '+E(c.name)+'</p><div>'+prose(c[id])+'</div></div>'));
@@ -122,9 +122,9 @@ export function designSections(value,{assetBase="/api/assets/",assetSuffix=""}={
       sections.push(shell(id,index+1,ctx,'<div class="architect-testimonials">'+c.testimonials.map(x=>'<blockquote><p>“'+E(x.quote)+'”</p>'+
         (x.attribution?'<cite>— '+E(x.attribution)+'</cite>':"")+'</blockquote>').join("")+'</div>'));
     } else if(id==="contact"){
-      const links=(c.publicEmail?'<a class="architect-contact-button" href="mailto:'+E(c.publicEmail)+'">Send an email <span aria-hidden="true">↗</span></a>':"")+
-        (c.links||[]).filter(https).map(x=>'<a href="'+E(x)+'" target="_blank" rel="noopener noreferrer">'+E(new URL(x).hostname)+' ↗</a>').join("");
-      sections.push(shell(id,index+1,ctx,'<div class="architect-contact"><span class="contact-emblem" aria-hidden="true">✳</span><p>'+
+      const links=(c.publicEmail?'<a class="architect-contact-button" href="mailto:'+E(c.publicEmail)+'">Send an email <span aria-hidden="true">↗︎</span></a>':"")+
+        (c.links||[]).filter(https).map(x=>'<a href="'+E(x)+'" target="_blank" rel="noopener noreferrer">'+E(new URL(x).hostname)+' ↗︎</a>').join("");
+      sections.push(shell(id,index+1,ctx,'<div class="architect-contact"><span class="contact-emblem" aria-hidden="true">✳︎</span><p>'+
         E(value.type==="Small business"?"Your next project starts with a conversation.":value.type==="Actor / model"?"Available for casting enquiries and creative conversations.":"Something worth making starts here.")+
         '</p><div class="architect-contact-links">'+links+'</div></div>'));
     }
@@ -138,7 +138,7 @@ export function designedHeader(value,ids){
 }
 export function designedFooter(value){
   const def=architectures[value.template];
-  return '<div class="architect-endmark"><span>'+def.no+' / '+E(def.word)+'</span><span>✳</span><span>'+E(value.content.name)+'</span></div>';
+  return '<div class="architect-endmark"><span>'+def.no+' / '+E(def.word)+'</span><span>✳︎</span><span>'+E(value.content.name)+'</span></div>';
 }
 export function architectureMode(id){return architectures[id]?.mode||null;}
 
