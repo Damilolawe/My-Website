@@ -101,6 +101,73 @@ try {
   await testPage(page,origin+"/templates/creative/afterhours.html","AUDIT_AFTERHOURS",{waitMs:900});
   await context.close();
  }
+ // Re-audit P1: all 20 sample architectures at 360px, with explicit
+ // narrower 320/345px and 375px checks for the reported After Hours defects.
+ {
+  const context=await browser.newContext({viewport:{width:360,height:800},isMobile:true,hasTouch:true,deviceScaleFactor:1});
+  const page=await context.newPage();
+  const examined=[];
+  const cases=[
+    ...templates.map(t=>({id:t.id,type:"creative",width:360})),
+    ...[320,345,375].flatMap(width=>[{id:"afterhours",type:"creative",width},{id:"afterhours",type:"actor",width}])
+  ];
+  for(const item of cases){
+    await page.setViewportSize({width:item.width,height:800});
+    const url=origin+"/templates/"+item.type+"/"+item.id+".html";
+    const response=await page.goto(url,{waitUntil:"domcontentloaded",timeout:25000});
+    if(response?.status()!==200){failures.push("MOBILE_TEMPLATE "+item.id+" "+item.width+": HTTP "+response?.status());continue;}
+    await page.evaluate(()=>document.fonts.ready);
+    const geometry=await page.evaluate(()=>{
+      const width=document.documentElement.clientWidth;
+      const get=selector=>[...document.querySelectorAll(selector)].slice(0,4).map(el=>{
+        const r=el.getBoundingClientRect();
+        return {left:r.left,right:r.right,width:r.width,scrollWidth:el.scrollWidth,clientWidth:el.clientWidth};
+      });
+      return {
+        width,scrollWidth:document.documentElement.scrollWidth,
+        headings:get(".hero-variant h1"),media:get(".hero-variant .hero-media"),
+        work:get(".case-entry .case-image"),captions:get(".case-body"),
+        contact:!!document.querySelector("#contact .contact-setup-note, #contact .architect-contact-links a")
+      };
+    });
+    examined.push({id:item.id,width:item.width,scroll:geometry.scrollWidth,contact:geometry.contact});
+    if(geometry.scrollWidth>geometry.width+1)failures.push("MOBILE_TEMPLATE "+item.id+" "+item.width+": horizontal overflow "+(geometry.scrollWidth-geometry.width));
+    for(const key of ["headings","media","work","captions"]){
+      for(const g of geometry[key]){
+        if(g.right>geometry.width+2||g.left<-2)
+          failures.push("MOBILE_TEMPLATE "+item.id+" "+item.width+": "+key+" clipped ["+Math.round(g.left)+","+Math.round(g.right)+"] of "+geometry.width);
+      }
+    }
+    if(!geometry.contact)failures.push("MOBILE_TEMPLATE "+item.id+" "+item.width+": contact section has no action/explanation");
+  }
+  console.log("PICKY_AUDIT_MOBILE_TEMPLATE_GEOMETRY",JSON.stringify(examined));
+  await context.close();
+ }
+ // Re-audit P2/P3: selected templates render into a branded gallery without
+ // a stale name or empty iframe. Mobile mode must remain readable.
+ {
+  const context=await browser.newContext({viewport:{width:1440,height:900}});
+  const page=await context.newPage();
+  await page.goto(origin+"/",{waitUntil:"domcontentloaded",timeout:25000});
+  await page.locator("#express-showcase").scrollIntoViewIfNeeded();
+  for(const id of ["afterhours","folio","signal"]){
+    await page.locator('#worlds-choices button[data-world="'+id+'"]').click();
+    try{await page.locator("#worlds-loading").waitFor({state:"hidden",timeout:18000});}
+    catch{failures.push("PICKY_AUDIT_SHOWCASE "+id+": branded loader did not clear");continue;}
+    const name=await page.locator("#worlds-name").textContent();
+    const heading=await page.frameLocator("#worlds-frame").locator("h1").first().textContent().catch(()=>null);
+    if(!heading?.trim())failures.push("PICKY_AUDIT_SHOWCASE "+id+": iframe has no headline after load");
+    const selected=templates.find(t=>t.id===id);
+    if(name?.trim()!==selected?.name)failures.push("PICKY_AUDIT_SHOWCASE "+id+": stale name "+name);
+  }
+  await page.locator("#worlds-mobile").click();
+  const preview=await page.locator("#worlds-frame").boundingBox();
+  if(!preview||preview.height<750)failures.push("PICKY_AUDIT_SHOWCASE mobile preview too short");
+  const ornament=await page.locator(".worlds-accent").evaluate(el=>getComputedStyle(el).display);
+  if(ornament!=="none")failures.push("PICKY_AUDIT_SHOWCASE ornament still crowds controls");
+  console.log("PICKY_AUDIT_GALLERY",JSON.stringify({preview,ornament}));
+  await context.close();
+ }
  // iPhone-size, touch scrolling with motion enabled: detect tab reloads and
  // silent jumps that responsive screenshots alone cannot identify.
  {

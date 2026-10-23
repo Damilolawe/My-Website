@@ -77,3 +77,6 @@ text-align:center;color:#f7fbe8;font:800 11px/1.6 ui-monospace,monospace;letter-
 .worlds-screen.is-changing iframe{opacity:1!important;transform-origin:top left}
 @media(max-width:650px){.worlds-screen.is-mobile .worlds-view{padding:13px 0 18px}
 .worlds-screen.is-mobile .worlds-view iframe{width:min(375px,100%)!important;border-radius:12px}}
+
+/* Re-audit P3: the orbit ornament adds noise beside the device controls. */
+#express-showcase .worlds-accent{display:none!important}
