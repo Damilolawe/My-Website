@@ -50,6 +50,9 @@ jobs:
       - name: Validate public static customer pages
         if: env.FIREBASE_READY == 'true'
         run: npm run check
+      - name: Audit publicly deployable files and storage use
+        if: env.FIREBASE_READY == 'true'
+        run: node scripts/hosting-audit.mjs
       - name: Deploy only static assets to Firebase Hosting Classic
         if: env.FIREBASE_READY == 'true'
         uses: FirebaseExtended/action-hosting-deploy@v0
