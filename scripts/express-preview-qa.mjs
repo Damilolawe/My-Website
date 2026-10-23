@@ -106,6 +106,8 @@ try{
     failures.push("Builder: DESKTOP theater button did not restore layout");
    await page.waitForFunction(()=>/\<body class="folio[\s"]/.test(document.querySelector("#theater-frame")?.getAttribute("srcdoc")||""),
     null,{timeout:10000}).catch(()=>failures.push("Builder: selected Folio preview did not render"));
+   await page.locator("#next").scrollIntoViewIfNeeded();
+   await page.waitForTimeout(450);
    console.log("BUILDER_BEFORE_NEXT",JSON.stringify(await page.evaluate(()=>({
     activeStep:document.querySelector(".steps .active")?.textContent,
     currentTitle:document.querySelector("#step h2")?.textContent,
