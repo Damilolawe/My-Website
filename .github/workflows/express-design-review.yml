@@ -25,6 +25,8 @@ jobs:
         run: |
           google-chrome --version
           npm install --no-save --ignore-scripts playwright-core@1.56.1
+      - name: Install lightweight Playwright video encoder for motion capture
+        run: node node_modules/playwright-core/cli.js install ffmpeg
       - name: Test 20 complete designs at 7 widths, capture heroes and interiors
         run: node scripts/express-preview-qa.mjs
       - name: Upload full design review contact sheets and interior captures
