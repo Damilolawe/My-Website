@@ -9,7 +9,8 @@ test("all twenty complete pages receive original, identity-specific interior art
  assert.equal(templates.length,20);
  const contacts=new Set();
  for(const {id} of templates){
-  const html=renderSite(sampleForTemplate(id),{sample:true});
+  const demo=sampleForTemplate(id);
+  const html=renderSite({...demo,design:{...demo.design,sections:["about","work","services","contact"]},content:{...demo.content,bio:demo.content.bio||"Fictional biography.",services:demo.content.services?.length?demo.content.services:[{title:"Sample studio service",description:"Fictional service for layout demonstration.",url:""}]}},{sample:true});
   assert(html.includes('contact-'+id),id+" lacks contact composition");
   assert(html.includes('story-'+id),id+" lacks biography composition");
   assert(html.includes('services-'+id),id+" lacks services composition");
