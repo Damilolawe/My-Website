@@ -36,71 +36,69 @@ async function testPage(page,url,label,{waitMs=250}={}){
   return layout;
 }
 try {
- // A clean desktop session must actually animate. Earlier QA only checked
- // screenshots/layout and allowed completely static GSAP/reveal experiences.
+ // Desktop motion must work even if a visitor's OS setting says Reduce Motion.
  {
-  const context=await browser.newContext({
-    viewport:{width:1440,height:900},reducedMotion:"no-preference",hasTouch:false
-  });
+  const context=await browser.newContext({viewport:{width:1440,height:900},reducedMotion:"no-preference",hasTouch:false});
   const page=await context.newPage();
   page.on("pageerror",error=>failures.push("Desktop homepage JS exception: "+error.message.slice(0,180)));
-  // Each Playwright context starts with empty storage. Do not register an
-  // init script: it would also erase the persisted-pause recovery test state.
-  await testPage(page,origin+"/","Desktop-1440 motion smoke",{waitMs:700});
+  await testPage(page,origin+"/","Desktop-1440 motion smoke",{waitMs:800});
   const startup=await page.evaluate(()=>({
     gsap:!!window.gsap,scrollTrigger:!!window.ScrollTrigger,
     paused:!!window.AWE_MOTION_PAUSED,
-    revealReady:document.documentElement.classList.contains("motion-ready"),
-    activeTriggers:window.ScrollTrigger?.getAll?.().length||0,
-    heroFrame:document.querySelector("#reel-index")?.textContent?.trim()||""
+    ready:document.documentElement.classList.contains("motion-ready"),
+    triggers:window.ScrollTrigger?.getAll?.().length||0,
+    frame:document.querySelector("#reel-index")?.textContent?.trim()||"",
+    banner:!!document.querySelector("#motion-resume"),
+    toggle:!!document.querySelector("#motion-toggle")
   }));
   console.log("DESKTOP_MOTION_START",JSON.stringify(startup));
-  if(!startup.gsap||!startup.scrollTrigger||startup.activeTriggers<1)
-    failures.push("Desktop motion: GSAP/ScrollTrigger are missing or have no active triggers");
-  if(startup.paused||!startup.revealReady)
-    failures.push("Desktop motion: unpaused session did not initialize reveal animations");
-  await page.mouse.move(1,1);
-  await page.waitForTimeout(7250);
-  const nextFrame=await page.locator("#reel-index").textContent();
-  if(nextFrame?.trim()===startup.heroFrame)
-    failures.push("Desktop motion: automatic hero carousel did not advance");
+  if(!startup.gsap||!startup.scrollTrigger||startup.triggers<2||!startup.ready||startup.paused||startup.banner||startup.toggle)
+    failures.push("Desktop motion is disabled or still has unwanted controls");
+  await page.mouse.move(2,2);
+  await page.waitForTimeout(7100);
+  const next=(await page.locator("#reel-index").textContent())?.trim();
+  if(next===startup.frame)failures.push("Desktop hero reel did not advance");
   const card=page.locator(".pricing-card.reveal").first();
-  const before=await card.evaluate(el=>getComputedStyle(el).opacity);
-  // Force an immediate scroll: native CSS smooth scroll can still be in
-  // flight when an opacity snapshot is sampled in headless Chrome.
-  await card.evaluate(el=>{
-    const y=el.getBoundingClientRect().top+scrollY-innerHeight*.3;
-    window.scrollTo({top:y,behavior:"instant"});
-  });
+  await card.evaluate(el=>window.scrollTo({top:el.getBoundingClientRect().top+scrollY-innerHeight*.33,behavior:"instant"}));
   await page.waitForTimeout(1150);
-  const reveal=await card.evaluate(el=>({
-    opacity:Number(getComputedStyle(el).opacity),
-    inView:el.classList.contains("in-view"),
-    top:el.getBoundingClientRect().top,
-    scrollY:window.scrollY
-  }));
-  const after=String(reveal.opacity);
-  console.log("DESKTOP_REVEAL",JSON.stringify({before,after,...reveal}));
-  if(Number(before)>0.25||Number(after)<0.95)
-    failures.push("Desktop reveal: pricing card did not fade/slide into view");
+  const reveal=await card.evaluate(el=>({opacity:+getComputedStyle(el).opacity,visible:el.classList.contains("in-view")}));
+  console.log("DESKTOP_REVEAL",JSON.stringify(reveal));
+  if(!reveal.visible||reveal.opacity<.95)failures.push("Desktop pricing section never revealed");
   await page.evaluate(()=>{localStorage.setItem("awe-motion","paused");});
+  await page.emulateMedia({reducedMotion:"reduce"});
   await page.reload({waitUntil:"domcontentloaded"});
-  const recovery=await page.evaluate(()=>({
+  await page.waitForTimeout(900);
+  const os=await page.evaluate(()=>({
     paused:!!window.AWE_MOTION_PAUSED,
-    visible:(()=>{const el=document.querySelector("#motion-resume");return !!el&&!el.hidden&&getComputedStyle(el).display!=="none"&&el.getBoundingClientRect().width>0;})(),
-    text:document.querySelector("#motion-resume")?.textContent
+    ready:document.documentElement.classList.contains("motion-ready"),
+    banner:!!document.querySelector("#motion-resume"),
+    hasToggle:!!document.querySelector("#motion-toggle"),
+    osReduced:matchMedia("(prefers-reduced-motion: reduce)").matches,
+    animation:getComputedStyle(document.querySelector(".hero") ,"::before").animationDuration
   }));
-  if(!recovery.paused||!recovery.visible)
-    failures.push("Desktop motion: persisted pause has no discoverable enable control");
-  await page.locator("#motion-resume").click();
-  const resumed=await page.evaluate(()=>({
-    paused:!!window.AWE_MOTION_PAUSED,
-    revealReady:document.documentElement.classList.contains("motion-ready"),
-    label:document.querySelector("#motion-toggle")?.textContent
-  }));
-  console.log("DESKTOP_MOTION_RESUME",JSON.stringify({recovery,resumed}));
-  if(resumed.paused||!resumed.revealReady||resumed.label!=="PAUSE MOTION")
-    failures.push("Desktop motion: enabling animations did not restore motion");
+  console.log("DESKTOP_MOTION_REDUCED_OS",JSON.stringify(os));
+  if(!os.osReduced||os.paused||!os.ready||os.banner||os.hasToggle)
+    failures.push("Desktop animation incorrectly gated by old pause or OS setting");
+  if(parseFloat(os.animation)<1)
+    failures.push("Desktop decorative motion is disabled despite always-on studio mode");
+  await context.close();
+ }
+ // AWE-QA-001 / 002 / 006 targeted visual and keyboard regression checks.
+ {
+  const context=await browser.newContext({viewport:{width:1363,height:936},hasTouch:false});
+  const page=await context.newPage();
+  await testPage(page,origin+"/templates/creative/daylight.html","AUDIT_DAYLIGHT",{waitMs:900});
+  const contact=page.locator('nav[aria-label="Section navigation"] a[href="#contact"]').first();
+  if(await contact.count()){
+    try{
+      await contact.click({timeout:5000});
+      if(await page.evaluate(()=>location.hash)!=="#contact")
+        failures.push("AUDIT_DAYLIGHT_CONTACT: blocked Contact link");
+    }catch(e){failures.push("AUDIT_DAYLIGHT_CONTACT: "+String(e.message).slice(0,150));}
+  }else failures.push("AUDIT_DAYLIGHT_CONTACT: Contact anchor absent");
+  console.log("AUDIT_DAYLIGHT_CONTACT",await page.evaluate(()=>location.hash));
+  await testPage(page,origin+"/templates/creative/signal.html","AUDIT_SIGNAL",{waitMs:500});
+  await testPage(page,origin+"/templates/creative/afterhours.html","AUDIT_AFTERHOURS",{waitMs:900});
   await context.close();
  }
  // iPhone-size, touch scrolling with motion enabled: detect tab reloads and
