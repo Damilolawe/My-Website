@@ -73,9 +73,9 @@ async function dispatch(req) {
   // Supabase Auth handles signup, passwordless recovery, refresh and revocation directly.
   if(path.startsWith('auth/'))fail('Use Supabase Auth for sign-in.',404);
   if(path==='catalog') {
-    const response=await legacyApi(relocate(req,'/api/catalog'));
-    if(!response.ok)return response;
-    const catalog=await response.json();
+    const catalogResponse=await legacyApi(relocate(req,'/api/catalog'));
+    if(!catalogResponse.ok)return catalogResponse;
+    const catalog=await catalogResponse.json();
     // The legacy public catalog never exposes test-only package records.
     // Only a verified, assigned customer can see the short-lived QA offer.
     if(req.headers.get('authorization')) {
