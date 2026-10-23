@@ -1,0 +1,39 @@
+name: AWE Express design review (PR)
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'shared/**'
+      - 'supabase/functions/awe-api/shared/**'
+      - 'scripts/express-preview-qa.mjs'
+      - '.github/workflows/express-design-review.yml'
+permissions:
+  contents: read
+jobs:
+  visual-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Use runner Chrome with Playwright core
+        run: |
+          google-chrome --version
+          npm install --no-save --ignore-scripts playwright-core@1.56.1
+      - name: Install lightweight Playwright video encoder for motion capture
+        run: node node_modules/playwright-core/cli.js install ffmpeg
+      - name: Test 20 complete designs at 7 widths, capture heroes and interiors
+        run: node scripts/express-preview-qa.mjs
+      - name: Upload full design review contact sheets and interior captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: express-architecture-review
+          path: qa-express-artifacts/
+          retention-days: 14
+          if-no-files-found: ignore

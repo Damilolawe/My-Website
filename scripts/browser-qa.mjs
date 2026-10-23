@@ -10,7 +10,13 @@ const viewports=[
   {name:"Android-360",width:360,height:800,mobile:true},
   {name:"Tablet-portrait",width:768,height:1024,mobile:true},
   {name:"Tablet-landscape",width:1024,height:768,mobile:false},
+  {name:"iPhone-320",width:320,height:740,mobile:true},
+  {name:"iPhone-375",width:375,height:812,mobile:true},
+  {name:"Android-430",width:430,height:932,mobile:true},
+  {name:"Tablet-1024",width:1024,height:768,mobile:false},
+  {name:"Desktop-1366",width:1366,height:900,mobile:false},
   {name:"Desktop-1440",width:1440,height:900,mobile:false},
+  {name:"Desktop-1920",width:1920,height:1080,mobile:false},
 ];
 const browser=await chromium.launch({channel:"chrome",headless:true,args:["--disable-dev-shm-usage","--no-sandbox"]});
 const failures=[];
@@ -30,7 +36,7 @@ async function testPage(page,url,label,{waitMs=250}={}){
       .slice(0,4)
   }));
   const delta=layout.scroll-layout.client;
-  if(delta>1)failures.push(label+": horizontal overflow "+delta+"px ("+layout.scroll+"/"+layout.client+")");
+  if(delta>0)failures.push(label+": horizontal overflow "+delta+"px ("+layout.scroll+"/"+layout.client+")");
   if(layout.missingAnchors.length)failures.push(label+": missing fragment anchors "+layout.missingAnchors.join(","));
   console.log("QA",label,"HTTP",response?.status(),"horizontalOverflow",delta,"anchors",layout.missingAnchors.length);
   return layout;
@@ -177,7 +183,7 @@ try {
   await testPage(page,origin+"/account.html",size.name+" account",{waitMs:250});
   await testPage(page,origin+"/admin.html",size.name+" owner login",{waitMs:250});
   await testPage(page,origin+"/contact.html",size.name+" contact",{waitMs:250});
-  if(size.width===360||size.width===768){
+  if([320,360,375,430,768,1024,1366,1920].includes(size.width)){
     for(const entry of templates){
       const label=size.name+" template "+entry.id;
       await testPage(page,origin+"/templates/"+entry.id+".html",label,{waitMs:180});
@@ -229,7 +235,7 @@ try {
       } else failures.push(label+": missing template section navigation");
     }
   }
-  if(size.width===1440){
+  if(size.width===1440||size.width===1366){
     for(const template of ["afterhours","folio","atelier"]){
       await testPage(page,origin+"/templates/"+template+".html",size.name+" flagship "+template,{waitMs:1100});
       const firstFold=await page.evaluate(slug=>{
