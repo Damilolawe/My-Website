@@ -66,7 +66,22 @@ function draw() {
     el.querySelectorAll("[data-type]").forEach(
       (b) =>
         (b.onclick = () => {
-          input.type = b.dataset.type;
+          if (input.type !== b.dataset.type) {
+            input.type = b.dataset.type;
+            const featured = {
+              "Student résumé": "index",
+              "Professional portfolio": "ledger",
+              "Actor / model": "afterhours",
+              "Creative portfolio": "folio",
+              "Personal brand": "nocturne",
+              "Small business": "bloom",
+            };
+            input.template = featured[input.type] || "index";
+            const chosen = templates.find((t) => t.id === input.template) || templates[0];
+            input.design.primary = chosen.color;
+            input.design.appearance = ["afterhours","nocturne","terminal","brutalist"].includes(chosen.id) ? "dark" : "light";
+            input.design.font = chosen.id === "folio" ? "serif" : "sans";
+          }
           input.design.sections = sampleForTemplate(input.template,input.type).design.sections;
           draw();
         }),
