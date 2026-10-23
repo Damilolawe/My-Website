@@ -20,7 +20,7 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
       button.setAttribute("aria-pressed",String(selected===item.id));
       const count=document.createElement("span");count.textContent=String(index+1).padStart(2,"0");
       const title=document.createElement("strong");title.textContent=item.name;
-      const symbol=document.createElement("span");symbol.setAttribute("aria-hidden","true");symbol.textContent=recommendedFor(item,purpose)?"✳":"↗";
+      const symbol=document.createElement("span");symbol.setAttribute("aria-hidden","true");symbol.textContent=recommendedFor(item,purpose)?"✳︎":"↗︎";
       if(recommendedFor(item,purpose))button.classList.add("is-recommended");
       button.append(count,title,symbol);
       button.addEventListener("click",()=>choose(item.id));

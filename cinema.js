@@ -11,28 +11,28 @@
     actor:{
       label:"ACTOR PORTFOLIO",beforeTitle:"Actor and performer portfolio",beforeCopy:"A short biography, a list of credits, and a basic contact section.",
       nav:"Home  About  Work  Contact",beforeName:"YOUR WEBSITE",
-      kicker:"THE NEXT ROLE BEGINS HERE",title:"EVERY<br>ROLE<br><em>HAS A STORY.</em>",cta:"ENTER THE STORY ↗",edition:"CASTING PORTFOLIO / CONCEPT",
+      kicker:"THE NEXT ROLE BEGINS HERE",title:"EVERY<br>ROLE<br><em>HAS A STORY.</em>",cta:"ENTER THE STORY ↗︎",edition:"CASTING PORTFOLIO / CONCEPT",
       insight:"From basic biography to cinematic introduction.",
       explanation:"A performance-led story, distinctive casting presentation, and intentional navigation—rather than another résumé-shaped landing page."
     },
     business:{
       label:"SMALL BUSINESS",beforeTitle:"Welcome to our local business",beforeCopy:"We provide quality products and excellent customer service.",
       nav:"Home  Services  About  Contact",beforeName:"LOCAL BUSINESS",
-      kicker:"THOUGHTFUL BY NATURE",title:"GOOD<br>THINGS<br><em>GROW HERE.</em>",cta:"EXPLORE OUR STUDIO ↗",edition:"BOUTIQUE BUSINESS / CONCEPT",
+      kicker:"THOUGHTFUL BY NATURE",title:"GOOD<br>THINGS<br><em>GROW HERE.</em>",cta:"EXPLORE OUR STUDIO ↗︎",edition:"BOUTIQUE BUSINESS / CONCEPT",
       insight:"From generic brochure to recognizable brand.",
       explanation:"A stronger business identity, inviting storytelling, a clear service path, and memorable presentation can help people understand why to choose you."
     },
     developer:{
       label:"DEVELOPER PORTFOLIO",beforeTitle:"Hi, I am a developer",beforeCopy:"These are my skills. Here is a list of the projects I have completed.",
       nav:"Home  Skills  Projects  Contact",beforeName:"MY PORTFOLIO",
-      kicker:"> USER@PORTFOLIO:~$ OPEN",title:"BUILD<br>WHAT'S<br><em>NEXT_</em>",cta:"RUN PROJECTS ↗",edition:"DEVELOPER PORTFOLIO / CONCEPT",
+      kicker:"> USER@PORTFOLIO:~$ OPEN",title:"BUILD<br>WHAT'S<br><em>NEXT_</em>",cta:"RUN PROJECTS ↗︎",edition:"DEVELOPER PORTFOLIO / CONCEPT",
       insight:"From a list of skills to a working digital identity.",
       explanation:"A technical portfolio can reflect how you think and build. The console-style narrative helps projects feel tangible, organized, and intentional."
     },
     creative:{
       label:"CREATIVE STUDIO",beforeTitle:"My creative work and gallery",beforeCopy:"Here are images and projects I have created over time.",
       nav:"Home  Gallery  About  Contact",beforeName:"CREATIVE PORTFOLIO",
-      kicker:"ISSUE 001 / SELECTED WORK",title:"THE<br>ART OF<br><em>SEEING.</em>",cta:"TURN THE PAGE ↗",edition:"CREATIVE EDITORIAL / CONCEPT",
+      kicker:"ISSUE 001 / SELECTED WORK",title:"THE<br>ART OF<br><em>SEEING.</em>",cta:"TURN THE PAGE ↗︎",edition:"CREATIVE EDITORIAL / CONCEPT",
       insight:"From image collection to editorial storytelling.",
       explanation:"A thoughtful creative portfolio uses composition, pacing, and distinctive presentation to give individual pieces the attention they deserve."
     }

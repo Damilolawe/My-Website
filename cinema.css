@@ -25,7 +25,7 @@
 .worlds-choice>strong{font-size:clamp(18px,2vw,27px)}
 .worlds-choice.is-recommended>span:first-child{color:#dcfc46}
 .worlds-screen{position:sticky;top:16px;align-self:start}
-.worlds-screen:after{content:"✳";position:absolute;z-index:3;right:-25px;top:-35px;font:100px/1 Arial;color:#dcfc46;pointer-events:none;animation:cinema-sun 25s linear infinite}
+.worlds-screen:after{content:"";position:absolute;z-index:3;right:-25px;top:-35px;font:100px/1 Arial;color:#dcfc46;pointer-events:none;animation:cinema-sun 25s linear infinite}
 .worlds-kicker strong:after{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:#dcfc46;margin-left:20px;box-shadow:0 0 20px #d6f94a;animation:cinema-blink 2s ease-in-out infinite alternate}
 .worlds-current strong{font-size:clamp(30px,3vw,47px)}
 .worlds-rail-note{font:10px/1.8 monospace}
@@ -119,3 +119,6 @@ html.motion-paused .hero:before,html.motion-paused .worlds-kicker strong:after,h
 @media(max-width:980px){.transformation-experiences{grid-template-columns:repeat(2,1fr)}.transformation-insight{grid-template-columns:1fr}.transformation-insight>a{justify-self:start}}
 @media(max-width:580px){.transformation-experiences{gap:7px}.transformation-choice{min-height:133px;padding:14px}.transformation-choice>strong{font-size:19px}.transformation-choice>small{font-size:8px}.transformation-controls{display:block}.transformation-presets{justify-content:center;margin-top:25px}.transformation-presets button{flex:1;padding:12px 7px}.transformation-corner-label{font-size:7px;top:14px}.comparison-after-label{left:10px}.comparison-before-label{right:10px}.transformation-insight{padding:30px 0}.transformation-insight>a{white-space:normal;font-size:10px}}
 @media(prefers-reduced-motion:reduce){.transformation-choice,.transformation-insight>a{transition:none}}
+
+/* Device-independent eight-spoked mark for the sticky showcase. */
+.worlds-screen::after{content:"";display:block;width:100px;height:100px;background:#dcfc46;-webkit-mask:url("/assets/icons/asterisk.svg") center/contain no-repeat;mask:url("/assets/icons/asterisk.svg") center/contain no-repeat}
