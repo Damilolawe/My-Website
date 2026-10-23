@@ -93,7 +93,7 @@
   stage.addEventListener("pointerup",()=>{dragging=false;});
   stage.addEventListener("pointercancel",()=>{dragging=false;});
   setScenario("actor");
-  if(window.gsap&&window.ScrollTrigger&&!window.AWE_MOTION_PAUSED
+  if(document.querySelector(".transformation-head h2")&&document.querySelector(".awe-transformation")&&window.gsap&&window.ScrollTrigger&&!window.AWE_MOTION_PAUSED
      &&!matchMedia("(prefers-reduced-motion:reduce)").matches){
     gsap.registerPlugin(ScrollTrigger);
     gsap.from(".transformation-head h2",{y:60,opacity:0,duration:1,ease:"power3.out",
