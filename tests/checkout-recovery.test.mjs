@@ -82,7 +82,7 @@ test("deployed and legacy API both gate and recover checkout with one idempotenc
     assert(flow.includes('reservation === "manual-review"'), path);
     assert(flow.includes('reservation === "new"'), path);
     assert(flow.includes("if (!locked.length)"), path);
-    assert(flow.includes("idempotencyKey: `checkout-${o.id}`"), path);
+    assert(flow.includes("idempotencyKey: qaAllowed ? `checkout-qa-v2-${o.id}` : `checkout-${o.id}`"), path);
     assert(flow.includes("checkout_at=not.is.null&stripe_session=is.null&payment=eq.unpaid"), path);
     assert(flow.includes("latest?.stripe_session !== session.id"), path);
     assert(flow.includes('session.status !== "open"'), path);
