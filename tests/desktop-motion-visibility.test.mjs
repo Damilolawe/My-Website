@@ -9,7 +9,7 @@ test("Desktop entrances use fail-open IntersectionObserver and persistently paus
  assert(main.includes("function syncReveals()"));
  assert(main.includes("revealObserver=new IntersectionObserver"));
  assert(main.includes("$('.reveal').forEach"),"Must iterate the NodeList, not the first element");
- assert(!main.includes("$('.reveal').forEach"),"Cannot call forEach on a single Element");
+ assert.doesNotMatch(main,/(^|[^$])\\$\\('\\.reveal'\\)\\.forEach/m,"Cannot call forEach on a single Element");
  assert(main.includes("document.documentElement.classList.toggle('motion-ready',active)"));
  assert(markup.includes('id="motion-resume"'));
  assert(main.includes("resumeButton?.addEventListener('click'"));
