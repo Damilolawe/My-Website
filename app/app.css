@@ -808,3 +808,20 @@ th {
 background:#dcfc46;color:#141914;font:800 13px/1.2 Arial,sans-serif;border:2px solid #141914;
 text-decoration:none;opacity:0;pointer-events:none}
 .skip-link:focus-visible,.skip-link:focus{transform:translateY(0);opacity:1;pointer-events:auto;outline:3px solid #141914;outline-offset:2px}
+
+/* Re-audit: show full opening composition in builder's 375px preview. */
+.experience-theater{position:relative}
+.theater-viewport{min-height:0!important;overflow:hidden;isolation:isolate}
+.theater-canvas{position:relative;min-width:0;overflow:hidden}
+.theater-viewport iframe{background:#101714;max-width:none}
+.experience-theater.is-mobile .theater-viewport{padding:20px 8px!important}
+.experience-theater.is-mobile .theater-viewport iframe{height:880px!important;min-height:880px;width:min(375px,100%);transform:none!important}
+.theater-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+gap:17px;background:radial-gradient(ellipse at 75% 30%,#dcfc4621,transparent 64%),#101714;
+text-align:center;padding:30px;color:#f5f7ef;z-index:3;font:700 11px/1.5 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.11em}
+.theater-loading[hidden]{display:none!important}
+.theater-loading strong{font:850 clamp(20px,3vw,35px)/1 Arial,system-ui,sans-serif;letter-spacing:-.05em}
+.theater-loading-mark{font:70px/1 Georgia,serif;color:#dcfc46;animation:theater-loader 5s linear infinite}
+@keyframes theater-loader{to{transform:rotate(360deg)}}
+@media(max-width:560px){.experience-theater.is-mobile .theater-viewport{padding:9px 0!important}
+.experience-theater.is-mobile .theater-viewport iframe{width:min(375px,100%)!important;min-height:880px}}

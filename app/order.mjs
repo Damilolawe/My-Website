@@ -97,7 +97,7 @@ function draw() {
       '<div class="experience-theater'+(theaterPreferredMode==='mobile'?' is-mobile':'')+'" data-active="'+esc(active.id)+'">' +
         '<div class="theater-header"><div class="theater-identity"><span class="eyebrow"><i class="theater-live" aria-hidden="true"></i> THE LIVE TEMPLATE THEATER · 01—20</span><strong>Explore the actual website, not a static mockup.</strong></div>' +
         '<div class="theater-tools" aria-label="Preview screen size"><button type="button" id="theater-desktop" aria-pressed="'+String(theaterPreferredMode==='desktop')+'">DESKTOP</button><button type="button" id="theater-mobile" aria-pressed="'+String(theaterPreferredMode==='mobile')+'">MOBILE</button><a href="'+demoPath(active.id)+'" target="_blank" rel="noopener" id="theater-open">VIEW FULL WEBSITE ↗︎</a></div></div>' +
-        '<div class="theater-viewport"><div class="theater-browser"><div class="theater-browserbar"><span class="browser-lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="browser-url">'+esc(active.name)+' / fictional website preview</span><span class="browser-mode">'+(theaterPreferredMode==='mobile'?'MOBILE':'DESKTOP')+'</span></div><div class="theater-canvas"><iframe id="theater-frame" title="Fictional '+esc(active.name)+' website" sandbox="" loading="eager"></iframe></div></div></div>' +
+        '<div class="theater-viewport"><div class="theater-browser"><div class="theater-browserbar"><span class="browser-lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="browser-url">'+esc(active.name)+' / fictional website preview</span><span class="browser-mode">'+(theaterPreferredMode==='mobile'?'MOBILE':'DESKTOP')+'</span></div><div class="theater-canvas"><iframe id="theater-frame" title="Fictional '+esc(active.name)+' website" sandbox="" loading="eager"></iframe><div class="theater-loading" role="status" aria-live="polite" hidden><span aria-hidden="true" class="theater-loading-mark">✳︎</span><strong>CRAFTING THE PREVIEW</strong><span id="theater-loading-name">'+esc(active.name)+'</span></div></div></div></div>' +
         '<div class="theater-caption"><div><span class="eyebrow">NOW EXPLORING · '+esc(input.type.toUpperCase())+'</span><h3>'+esc(active.name)+'</h3><p>'+esc(active.tag)+'</p></div><p class="theater-hint">SCROLL INSIDE THE SITE TO EXPLORE EVERY SECTION ↗︎</p></div>' +
         '<div class="theater-reassurance">This is a fictional demonstration. Your content, images, and colors are customized in the next steps. Select another direction below without losing your place.</div>' +
       '</div>' +
@@ -105,6 +105,7 @@ function draw() {
     const frame=el.querySelector("#theater-frame");
     const theater=el.querySelector(".experience-theater");
     const canvas=el.querySelector(".theater-canvas");
+    const loading=el.querySelector(".theater-loading"),loadingName=el.querySelector("#theater-loading-name");
     const modeText=el.querySelector(".browser-mode");
     const lifetime=new AbortController();
     theaterController=lifetime;
@@ -124,22 +125,28 @@ function draw() {
         // Keep the real desktop breakpoint even when the theater itself is narrower.
         const scale=Math.min(1,Math.max(.15,canvas.clientWidth/1280));
         frame.style.width="1280px";
-        frame.style.height="930px";
+        frame.style.height="1280px";
         frame.style.transform="scale("+scale+")";
-        canvas.style.height=Math.round(930*scale)+"px";
+        canvas.style.height=Math.round(1280*scale)+"px";
       }
     };
     const loadTemplate=(id)=>{
       activeRequest?.abort();
       activeRequest=new AbortController();
       const thisRequest=activeRequest;
-      frame.srcdoc=previewMessage("Preparing "+(templates.find(t=>t.id===id)?.name||"template")+"…");
+      loadingName.textContent=templates.find(t=>t.id===id)?.name||"Website concept";
+      loading.hidden=false;
+      if(!frame.srcdoc)frame.srcdoc=previewMessage("Preparing your website preview…");
       fetchPublicTemplate(id,{type:input.type,signal:activeRequest.signal})
         .then((html)=>{
-          if(!lifetime.signal.aborted&&!thisRequest.signal.aborted&&frame.isConnected&&input.template===id)frame.srcdoc=html;
+          if(!lifetime.signal.aborted&&!thisRequest.signal.aborted&&frame.isConnected&&input.template===id){
+            frame.onload=()=>{if(!thisRequest.signal.aborted&&input.template===id)loading.hidden=true;};
+            frame.srcdoc=html;
+          }
         })
         .catch((error)=>{
           if(lifetime.signal.aborted||thisRequest.signal.aborted||!frame.isConnected)return;
+          frame.onload=()=>{if(!thisRequest.signal.aborted)loading.hidden=true;};
           frame.srcdoc=previewMessage("This preview could not load. Use View Full Website above to explore the template.");
           console.warn("Template preview unavailable",error);
         });
