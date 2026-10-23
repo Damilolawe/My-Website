@@ -1,7 +1,7 @@
 // Public browser QA. Runs in GitHub Actions, never signs in or creates records.
 import assert from "node:assert/strict";
 import {mkdir} from "node:fs/promises";
-import {chromium} from "playwright";
+import {chromium} from "playwright-core";
 import {templates} from "../shared/model.mjs";
 
 const origin="https://aweconcepts.com";
@@ -12,7 +12,7 @@ const viewports=[
   {name:"Tablet-landscape",width:1024,height:768,mobile:false},
   {name:"Desktop-1440",width:1440,height:900,mobile:false},
 ];
-const browser=await chromium.launch({headless:true,args:["--disable-dev-shm-usage"]});
+const browser=await chromium.launch({channel:"chrome",headless:true,args:["--disable-dev-shm-usage","--no-sandbox"]});
 const failures=[];
 const softWarnings=[];
 await mkdir("qa-browser-artifacts",{recursive:true});
