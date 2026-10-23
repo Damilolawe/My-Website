@@ -6,6 +6,19 @@ import {normalize, validate, customerOrder} from '../shared/model.mjs';
 import {renderSite} from '../shared/render.mjs';
 import {runJobs} from './production.mjs';
 
+// Continue verified checkout and owner-approved publication work after the
+// HTTP response. Supabase keeps the isolate alive for registered tasks.
+// The durable awe_jobs table is the source of truth; the existing owner-only
+// Retry/Run Jobs controls remain available for later provider outages.
+function startBackgroundJobs() {
+  if (typeof EdgeRuntime === "undefined" ||
+      typeof EdgeRuntime.waitUntil !== "function") return;
+  const task = runJobs(3).catch(error => {
+    console.error("AWE worker task failed", error?.status || 500);
+  });
+  EdgeRuntime.waitUntil(task);
+}
+
 const limit = 4500000;
 async function bounded(req) {
   if (!req.body) return req;
@@ -32,7 +45,12 @@ function cors(req,res) {
 }
 async function dispatch(req) {
   const url=new URL(req.url), path=url.pathname.replace(/^\/functions\/v1\/awe-api\/?/,'').replace(/^\/awe-api\/?/,'');
-  if(path==='stripe-webhook')return webhook(req);
+  if(path==='stripe-webhook') {
+    const verified = await webhook(req);
+    // Reject missing or invalid signatures before starting any worker.
+    if (verified.ok) startBackgroundJobs();
+    return verified;
+  }
   if(req.method==='OPTIONS') { origin(req); return new Response(null,{status:204}); }
   if(!['GET','HEAD','POST'].includes(req.method))fail('Method not allowed.',405);
   if(req.method==='POST') origin(req);
@@ -155,6 +173,12 @@ async function dispatch(req) {
     fail('Inquiry endpoint not found.',404);
   }
   const response=await legacyApi(relocate(req,'/api/'+path));
+  if (response.ok && req.method==='POST' && p.length===4 &&
+      p[0]==='admin' && p[1]==='orders' && p[3]==='publish') {
+    // The legacy handler verifies owner JWT and commits approval atomically.
+    // Never kick off delivery if authorization or publishing failed.
+    startBackgroundJobs();
+  }
   if(response.ok && p.at(-1)==='preview')return json({html:await response.text()});
   return response;
 }
