@@ -1,13 +1,14 @@
 import {alternateHero} from "./alternate-experiences.mjs";
 import {esc} from "./model.mjs";
+import { illustrationArtwork } from "./photographic-direction.mjs";
 const e=(s)=>esc(s);
-const art='<div class="experience-art" aria-hidden="true"><span class="art-orb"></span><span class="art-orbit"></span><span class="art-shard"></span><span class="art-signature">A / D</span></div>';
+
 const kicker=(c,t)=>'<p class="eyebrow hero-label">'+e(c.heroLabel||t)+'</p>';
 const headline=(c)=>'<h1 id="hero-title">'+e(c.headline)+'</h1>';
 const copy=(c,t,cta)=>'<div class="hero-copy">'+kicker(c,t)+headline(c)+(c.bio?'<p class="hero-intro">'+e(c.bio.split("\n")[0].slice(0,210))+'</p>':'')+'<div class="hero-actions"><a class="pill-link" href="'+cta+'">'+e(c.ctaLabel)+' ↗︎</a></div></div>';
 export function experienceHero(t,{c,value,heroImage,ctaTarget}) {
   const words=copy(c,value.type,ctaTarget);
-  const image='<div class="hero-media">'+(heroImage||art)+'</div>';
+  const image='<div class="hero-media">'+(heroImage||illustrationArtwork(t))+'</div>';
   switch(t){
     case "index": return '<section class="hero hero-variant index-hero" aria-labelledby="hero-title"><div class="index-lines" aria-hidden="true"></div><span class="index-overline eyebrow">01 / YOUR NEXT CHAPTER</span>'+words+'<div class="index-identity">'+image+'<div class="identity-stamp"><span class="eyebrow">PORTFOLIO / PROFILE</span><strong>'+e(c.name)+'</strong><span aria-hidden="true">✳︎</span></div></div></section>';
     case "folio": return '<section class="hero hero-variant folio-hero" aria-labelledby="hero-title"><div class="folio-masthead eyebrow"><span>THE SELECTED WORKS</span><span>AN INDEPENDENT PORTFOLIO</span></div><div class="folio-words">'+words+'</div><div class="folio-picture">'+image+'<span class="folio-volume eyebrow">VOL. 001 / ✳︎</span></div><div class="folio-colophon eyebrow">'+e(c.name)+' / STORY · IMAGE · IDEAS</div></section>';
