@@ -264,7 +264,7 @@ try {
     const h=hero?.getBoundingClientRect();
     const contact=document.querySelector("#contact .architect-contact-links");
     return {width:innerWidth,docWidth:document.documentElement.scrollWidth,
-      heading:h?{left:h.left,right:h.right,width:h.width}:null,
+      heading:h?{left:h.left,right:h.right,width:h.width,fontSize:getComputedStyle(hero).fontSize}:null,
       cards:all,contactText:contact?.textContent?.trim()||"",
       contactLinks:contact?.querySelectorAll("a").length||0};
    });
