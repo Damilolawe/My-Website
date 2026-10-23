@@ -95,7 +95,7 @@ async function deliver(o, version) {
   if (!v || v.order_id !== o.id) fail("Approved website version is missing.");
   await verifyPublication({
     siteUrl: url,
-    publicApiUrl: `${env().SUPABASE_URL.replace(/\\/+$/, "")}/functions/v1/awe-api/public/${o.slug}`,
+    publicApiUrl: `${env().SUPABASE_URL.replace(new RegExp("/+$"), "")}/functions/v1/awe-api/public/${o.slug}`,
     version,
     assets: v.asset_ids,
   });
