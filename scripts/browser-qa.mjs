@@ -117,6 +117,22 @@ try {
       const label=size.name+" template "+entry.id;
       await testPage(page,origin+"/templates/"+entry.id+".html",label,{waitMs:180});
       if(["afterhours","folio","atelier"].includes(entry.id)){
+        if(size.width===360){
+          const fold=await page.evaluate(slug=>{
+            const heading=document.querySelector(slug==="folio"?".folio-words h1":slug==="atelier"?".atelier-copy h1":".afterhours-words h1");
+            const art=document.querySelector(slug==="folio"?".folio-picture .hero-media":slug==="atelier"?".atelier-photo .hero-media":".afterhours-screen > .hero-media");
+            const nav=document.querySelector(".shell-header");
+            const rect=el=>{const r=el?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,width:r.width,height:r.height}:null};
+            return {title:rect(heading),photo:rect(art),nav:rect(nav),viewport:innerHeight};
+          },entry.id);
+          console.log("MOBILE_TEMPLATE_FIRST_FOLD",entry.id,JSON.stringify(fold));
+          if(!fold.title||fold.title.top>fold.viewport-40)
+            failures.push("Mobile "+entry.id+": headline starts below first screen");
+          if(!fold.photo||fold.photo.top>fold.viewport-40)
+            failures.push("Mobile "+entry.id+": photography not visible in first screen");
+          if(fold.nav&&fold.photo&&fold.photo.top<fold.nav.bottom-2)
+            failures.push("Mobile "+entry.id+": art overlaps navigation");
+        }
         await page.waitForTimeout(1100);
         await page.screenshot({path:"qa-browser-artifacts/"+size.name+"-"+entry.id+".png",fullPage:false});
       }
