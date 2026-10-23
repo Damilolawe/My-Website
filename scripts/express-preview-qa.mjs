@@ -77,6 +77,11 @@ try{
    await page.locator('[data-template="folio"]').waitFor({timeout:10000});
    const choices=await page.locator("[data-template]").count();
    if(choices!==20)failures.push("Builder: "+choices+" template choices rather than 20");
+   await page.evaluate(()=>{
+     const b=document.querySelector('[data-template="folio"]');
+     window.__aweTestClicks=0;
+     b.addEventListener("click",()=>{window.__aweTestClicks++;},true);
+   });
    console.log("BUILDER_TEMPLATE_HANDLER",JSON.stringify(await page.evaluate(()=>{
      const b=document.querySelector('[data-template="folio"]');
      return {hasButton:!!b,onclick:typeof b?.onclick,dataset:b?.dataset.template,step:document.querySelector(".steps .active")?.textContent};
@@ -89,6 +94,15 @@ try{
     feedback:document.querySelector("#feedback")?.textContent
    }));
    console.log("BUILDER_AFTER_TEMPLATE",JSON.stringify(selectedFolio));
+   console.log("BUILDER_CLICK_DISPATCHED",await page.evaluate(()=>window.__aweTestClicks));
+   if(selectedFolio.selected!=="folio"){
+     await page.evaluate(()=>document.querySelector('[data-template="folio"]')?.onclick?.());
+     console.log("BUILDER_DIRECT_HANDLER",JSON.stringify(await page.evaluate(()=>({
+       selected:document.querySelector(".template-select[aria-pressed='true']")?.dataset.template,
+       name:document.querySelector(".theater-caption h3")?.textContent
+     }))));
+   }
+
    if(selectedFolio.selected!=="folio" || selectedFolio.name!=="Folio No. 01")
     failures.push("Builder interaction: selecting Folio did not update gallery to Folio");
 
