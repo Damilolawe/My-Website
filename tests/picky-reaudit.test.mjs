@@ -22,9 +22,9 @@ test("No fictional template promises empty contact; a real configured email stay
 });
 test("Twenty architectures use distinct fictional work and biography, regardless of shared purpose",()=>{
  const rows=templates.map(t=>sampleForTemplate(t.id,"Creative portfolio").content);
- assert.equal(new Set(rows.map(x=>x.bio)).size,20);
- assert.equal(new Set(rows.map(x=>x.cards[0].title)).size,20);
- assert.equal(new Set(rows.map(x=>x.cards[1].title)).size,20);
+ assert.equal(new Set(rows.map(x=>x.bio)).size,21);
+ assert.equal(new Set(rows.map(x=>x.cards[0].title)).size,21);
+ assert.equal(new Set(rows.map(x=>x.cards[1].title)).size,21);
 });
 test("Preview geometry and async transitions have explicit regression guards",async()=>{
  const [gallery,builder,galleryCss,builderCss,qa]=await Promise.all([
@@ -51,3 +51,4 @@ test("320px After Hours final-edge type preserves cinematic words without clippi
  assert(css.includes("font-size:35px!important;letter-spacing:-.045em!important"));
  assert.equal(css,await read("supabase/functions/awe-api/shared/collection-edition.mjs"));
 });
+

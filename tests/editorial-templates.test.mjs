@@ -8,7 +8,7 @@ import {sampleArtwork,illustrationArtwork} from "../shared/photographic-directio
 test("All twenty fictional template demos use a photography-forward composition",()=>{
  for(const t of templates){
   const html=renderSite(sampleForTemplate(t.id),{sample:true});
-  if(["terminal","monologue"].includes(t.id)){
+  if(["terminal","monologue","arcade"].includes(t.id)){
     assert(html.includes('hero-variant '+t.id+'-hero'),t.id+" missing intentional text-first hero");
   }else{
     assert(html.includes('study-shot--'+t.id),t.id+" missing photography");
@@ -25,7 +25,7 @@ test("Customer sites have no third party photo loading or stock imagery",()=>{
   const html=renderSite(sampleForTemplate(t.id));
   assert(!html.includes("images.unsplash.com"),t.id+" leaked sample photography");
   assert(!html.includes('<div class="study-shot '),t.id+" leaked sample elements");
-  if(["terminal","monologue"].includes(t.id)){
+  if(["terminal","monologue","arcade"].includes(t.id)){
     assert(html.includes('hero-variant '+t.id+'-hero'),t.id+" missing designed text-first architecture");
   }else{
     assert(html.includes('class="editorial-illustration editorial-illustration--'+t.id),t.id+" missing stand-alone branded artwork");
@@ -52,3 +52,4 @@ test("Static demo image sources are allowlisted and the production renderer matc
  const headers=await readFile(new URL("../_headers",import.meta.url),"utf8");
  assert(headers.includes("img-src 'self' data: https://images.unsplash.com"));
 });
+

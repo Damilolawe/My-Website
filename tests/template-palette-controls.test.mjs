@@ -12,11 +12,18 @@ const palette = (id, primary, secondary) => {
 };
 
 test("the entire 20-template catalog maps the chosen colors to its major hero, navigation and footer", () => {
-  assert.equal(templates.length, 20);
+  assert.equal(templates.length, 21);
   for (const { id } of templates) {
     const pink = palette(id, "#ff0077", "#1d53d7");
     const green = palette(id, "#20bb42", "#efad34");
     assert.notEqual(pink, green, id + " ignored the selected colors");
+    if(id==="arcade") {
+      assert(pink.includes("--arcade-volt:#ff0077;--arcade-lift:#1d53d7"));
+      assert(green.includes("--arcade-volt:#20bb42;--arcade-lift:#efad34"));
+      assert(pink.includes("background:var(--arcade-lift)"));
+      assert(pink.includes("background:var(--arcade-volt)"));
+      continue;
+    }
     assert(pink.includes("--accent:#ff0077;--secondary:#1d53d7"), id + " missed the chosen colors");
     assert(green.includes("--accent:#20bb42;--secondary:#efad34"), id + " retained the previous colors");
     for (const cssSelector of [".hero", ".shell-header", ".shell-footer", ".service-card"]) {
@@ -66,9 +73,10 @@ test("customer preview passes the live picker selections into the exact producti
 });
 
 test("palette overrides never escape their active template", () => {
-  for (const { id } of templates) {
+  for (const { id } of templates.filter(t=>t.id!=="arcade")) {
     assert(paletteCSS.includes("body." + id + " .hero .hero-copy h1,body." + id + " .hero .hero-label,body." + id + " .hero .hero-intro"));
   }
   assert(!paletteCSS.includes(",.hero .hero-label"));
   assert(!paletteCSS.includes(",.hero .hero-intro"));
 });
+

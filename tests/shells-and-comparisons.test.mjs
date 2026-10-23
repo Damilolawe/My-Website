@@ -6,8 +6,8 @@ import {renderSite} from "../shared/render.mjs";
 import {shellIdentities} from "../shared/site-shells.mjs";
 
 test("every customer design has a separate outer shell and page ordering",()=>{
-  assert.equal(Object.keys(shellIdentities).length,20);
-  assert.equal(new Set(Object.values(shellIdentities)).size,20);
+  assert.equal(Object.keys(shellIdentities).length,21);
+  assert.equal(new Set(Object.values(shellIdentities)).size,21);
   for(const t of templates){
     const html=renderSite(sampleForTemplate(t.id),{sample:true});
     assert(html.includes('class="shell-header shell-'+t.id+'"'),"Missing "+t.id+" header");
@@ -64,3 +64,4 @@ test("website copy promotes design quality without excessive template-count repe
   assert(!order.includes("TWENTY DISTINCT WORLDS"));
   assert(!order.includes("ORIGINAL CREATIVE WORLDS"));
 });
+

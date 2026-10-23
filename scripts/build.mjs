@@ -53,7 +53,8 @@ for (const t of templates) {
     design: {
       ...demo.design,
       primary: t.color,
-      appearance: t.id === "afterhours" ? "dark" : "light",
+      secondary: t.id === "arcade" ? "#11120f" : demo.design.secondary,
+      appearance: ["afterhours", "arcade"].includes(t.id) ? "dark" : "light",
       font: t.id === "folio" ? "serif" : "sans",
       layout: ["index", "afterhours", "signal"].includes(t.id) ? "split" : "stacked",
     },
@@ -78,3 +79,4 @@ for (const t of templates) {
 console.log(
   "Built Netlify public assets in dist/. Server functions remain outside public output.",
 );
+

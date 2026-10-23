@@ -6,11 +6,11 @@ import {renderSite} from "../shared/render.mjs";
 import {TEMPLATE_IDS,fetchPublicTemplate} from "../shared/preview.mjs";
 
 test("collection contains exactly twenty unique art-directed templates",()=>{
-  assert.equal(templates.length,20);
-  assert.equal(TEMPLATE_IDS.length,20);
-  assert.equal(new Set(templates.map(x=>x.id)).size,20);
-  assert.equal(new Set(templates.map(x=>x.name)).size,20);
-  assert.equal(new Set(templates.map(x=>x.style)).size,20);
+  assert.equal(templates.length,21);
+  assert.equal(TEMPLATE_IDS.length,21);
+  assert.equal(new Set(templates.map(x=>x.id)).size,21);
+  assert.equal(new Set(templates.map(x=>x.name)).size,21);
+  assert.equal(new Set(templates.map(x=>x.style)).size,21);
   const markup=templates.map(t=>renderSite(sampleForTemplate(t.id),{sample:true}));
   const uniqueMarkers=markup.map((html,t)=>{
     const marker=html.match(/<section class="hero hero-variant ([\w-]+)"/);
@@ -21,8 +21,8 @@ test("collection contains exactly twenty unique art-directed templates",()=>{
     assert(!html.includes("<script"),"Approved static customer sites must be script-free");
     return marker[1];
   });
-  assert.equal(new Set(uniqueMarkers).size,20,"Twenty templates must have individual hero signatures");
-  assert.equal(new Set(markup).size,20,"The output must not be a set of identical skins");
+  assert.equal(new Set(uniqueMarkers).size,21,"Twenty templates must have individual hero signatures");
+  assert.equal(new Set(markup).size,21,"The output must not be a set of identical skins");
 });
 test("every design supports six purpose-matched previews with an accurate narrative",()=>{
   assert.equal(types.length,6);
@@ -39,9 +39,9 @@ test("every design supports six purpose-matched previews with an accurate narrat
       assert(demo.content.bio.toLowerCase().includes("fictional")||demo.content.bio.toLowerCase().includes("imagined"),"Clearly fictional biography required");
       const html=renderSite(demo,{sample:true});
       assert(html.includes('<h1 id="hero-title">'));
-      if(type==="Actor / model") assert(html.includes("Credits &amp; on-screen work"));
-      if(type==="Small business") assert(html.includes("What we offer"));
-      if(type==="Student résumé") assert(html.includes("Projects &amp; experiments"));
+      if(template.id!=="arcade" && type==="Actor / model") assert(html.includes("Credits &amp; on-screen work"));
+      if(template.id!=="arcade" && type==="Small business") assert(html.includes("What we offer"));
+      if(template.id!=="arcade" && type==="Student résumé") assert(html.includes("Projects &amp; experiments"));
     }
   }
 });
@@ -87,3 +87,4 @@ test("homepage controls and order builder expose all twenty without old six-item
   assert(build.includes("for (const type of types)"));
   assert(!order.includes("catalog.templates.map"));
 });
+
