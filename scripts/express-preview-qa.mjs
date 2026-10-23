@@ -10,7 +10,7 @@ import {templates} from "../shared/model.mjs";
 const root=resolve("dist");
 const output=resolve("qa-express-artifacts");
 await mkdir(output,{recursive:true});
-const MIME={".html":"text/html; charset=utf-8",".css":"text/css",".js":"text/javascript",
+const MIME={".html":"text/html; charset=utf-8",".css":"text/css",".js":"text/javascript", ".mjs":"text/javascript",
  ".svg":"image/svg+xml",".png":"image/png",".jpg":"image/jpeg",".webp":"image/webp"};
 const server=createServer(async(req,res)=>{
  const path=decodeURIComponent(new URL(req.url,"http://localhost").pathname);
