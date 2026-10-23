@@ -174,6 +174,53 @@ export function createAweClient({
     }
     return data;
   }
-  return { api, beginEmailSignIn, verifyEmailCode, logout, session, clear, accessToken };
+  async function download(route) {
+    // Do not grant arbitrary binary access. All three routes are authenticated
+    // and individually authorized again by the Supabase Edge server.
+    const uuid = "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
+    const permitted = new RegExp("^(?:orders/" + uuid + "/export|admin/orders/" +
+      uuid + "/export|assets/" + uuid + ")$", "i");
+    if (!permitted.test(route)) fail("Invalid download route.");
+    const token = await accessToken();
+    if (!token) {
+      const error = Error("Sign in to download your files.");
+      error.status = 401;
+      throw error;
+    }
+    const response = await fetcher(url + "/functions/v1/" + functionName + "/" + route, {
+      method: "GET",
+      headers: { apikey: publishableKey, Authorization: "Bearer " + token },
+      credentials: "omit",
+      cache: "no-store"
+    });
+    if (!response.ok) {
+      if (response.status === 401) clear();
+      let errorData;
+      if ((response.headers.get("content-type") || "").includes("application/json"))
+        errorData = await response.json().catch(() => null);
+      const error = Error(messageFor(errorData, response.status));
+      error.status = response.status;
+      throw error;
+    }
+    const mime = (response.headers.get("content-type") || "").split(";")[0].trim().toLowerCase();
+    const allowed = new Set(["application/zip", "image/jpeg", "image/png", "image/webp",
+      "application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]);
+    if (!allowed.has(mime)) fail("The studio returned an unexpected file type.");
+    const declared = Number(response.headers.get("content-length") || 0);
+    const maxBytes = 8_000_000;
+    if (declared > maxBytes) fail("The download is too large. Request a file transfer from the studio.");
+    const blob = await response.blob();
+    if (!blob.size || blob.size > maxBytes) fail("The download is empty or too large.");
+    const matches = /^.*?filename="([a-zA-Z0-9._-]{1,120})"/i.exec(
+      response.headers.get("content-disposition") || "");
+    const extensions = {"application/zip":"zip","image/jpeg":"jpg","image/png":"png",
+      "image/webp":"webp","application/pdf":"pdf",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document":"docx"};
+    const basename = route.split("/").filter(Boolean).at(-1) === "export" ?
+      route.split("/").at(-2) : route.split("/").at(-1);
+    const filename = matches?.[1] || (basename + "." + extensions[mime]);
+    return { blob, filename, mime };
+  }
+  return { api, download, beginEmailSignIn, verifyEmailCode, logout, session, clear, accessToken };
 }
 export const aweClient = createAweClient();
