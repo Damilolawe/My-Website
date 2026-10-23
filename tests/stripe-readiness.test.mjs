@@ -57,7 +57,7 @@ test("Owner checkout readiness queries the actual payment event key",async()=>{
  const readiness=api.slice(start,end);
  assert(readiness.includes("rows('awe_payments','select=event_id&limit=1')"));
  assert(!readiness.includes("rows('awe_payments','select=id&limit=1')"));
- assert(schema.includes("create table awe_payments("));
+ assert(schema.includes("create table public.awe_payments("));
  assert(schema.includes("event_id text primary key"));
  assert(readiness.includes("recordedPaymentExists:priorPayments.length>0"));
 });
