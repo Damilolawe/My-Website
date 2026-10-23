@@ -64,7 +64,7 @@ try{
  // Public AWE Express builder is exercised without signing in or placing an order.
  // This verifies the real selector, preview width controls and color-picker path.
  {
-  const context=await browser.newContext({viewport:{width:1366,height:900}});
+  const context=await browser.newContext({viewport:{width:1366,height:900},reducedMotion:"reduce"});
   const page=await context.newPage();
   page.on("pageerror",error=>console.log("BUILDER_PAGE_ERROR",error.stack||error.message));
   page.on("console",msg=>{if(msg.type()==="error")console.log("BUILDER_CONSOLE_ERROR",msg.text());});
@@ -77,15 +77,8 @@ try{
    await page.locator('[data-template="folio"]').waitFor({timeout:10000});
    const choices=await page.locator("[data-template]").count();
    if(choices!==20)failures.push("Builder: "+choices+" template choices rather than 20");
-   await page.evaluate(()=>{
-     const b=document.querySelector('[data-template="folio"]');
-     window.__aweTestClicks=0;
-     b.addEventListener("click",()=>{window.__aweTestClicks++;},true);
-   });
-   console.log("BUILDER_TEMPLATE_HANDLER",JSON.stringify(await page.evaluate(()=>{
-     const b=document.querySelector('[data-template="folio"]');
-     return {hasButton:!!b,onclick:typeof b?.onclick,dataset:b?.dataset.template,step:document.querySelector(".steps .active")?.textContent};
-   })));
+   await page.locator('[data-template="folio"]').scrollIntoViewIfNeeded();
+   await page.waitForTimeout(500);
    await page.locator('[data-template="folio"]').click();
    const selectedFolio=await page.evaluate(()=>({
     name:document.querySelector(".theater-caption h3")?.textContent,
@@ -94,7 +87,6 @@ try{
     feedback:document.querySelector("#feedback")?.textContent
    }));
    console.log("BUILDER_AFTER_TEMPLATE",JSON.stringify(selectedFolio));
-   console.log("BUILDER_CLICK_DISPATCHED",await page.evaluate(()=>window.__aweTestClicks));
    if(selectedFolio.selected!=="folio"){
      await page.evaluate(()=>document.querySelector('[data-template="folio"]')?.onclick?.());
      console.log("BUILDER_DIRECT_HANDLER",JSON.stringify(await page.evaluate(()=>({
