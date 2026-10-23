@@ -278,8 +278,9 @@ try {
      console.log("NARROW_OVERFLOW_ELEMENTS",width,id,JSON.stringify(offenders));
      failures.push("Narrow "+width+" "+id+": horizontal page clipping/overflow");
    }
-   if(!geometry.heading||geometry.heading.left< -5||geometry.heading.right>width+5)
-     failures.push("Narrow "+width+" "+id+": headline outside screen");
+   if(!geometry.heading||geometry.heading.left< -1||geometry.heading.right>width+1)
+     failures.push("Narrow "+width+" "+id+": headline clipped beyond visible viewport ("+
+       (geometry.heading?.left??"missing")+".."+(geometry.heading?.right??"missing")+")");
    for(const card of geometry.cards)
      if(card.right>width+4||card.left< -5||card.width>width+5)
        failures.push("Narrow "+width+" "+id+": case image exceeds viewport");
