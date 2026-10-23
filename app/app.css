@@ -802,3 +802,9 @@ th {
 .app-header .wordmark{display:inline-flex;align-items:center;flex:0 1 auto;min-width:0}
 .app-header .wordmark img{display:block;width:clamp(126px,16vw,190px);height:auto;max-width:100%}
 @media(max-width:500px){.app-header .wordmark img{width:126px}}
+
+/* AWE-QA-004 — accessible keyboard-only skip link */
+.skip-link{position:fixed;z-index:9999;left:12px;top:12px;transform:translateY(-165%);padding:12px 18px;
+background:#dcfc46;color:#141914;font:800 13px/1.2 Arial,sans-serif;border:2px solid #141914;
+text-decoration:none;opacity:0;pointer-events:none}
+.skip-link:focus-visible,.skip-link:focus{transform:translateY(0);opacity:1;pointer-events:auto;outline:3px solid #141914;outline-offset:2px}

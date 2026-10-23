@@ -3,7 +3,7 @@ const canvas = document.querySelector('#sculpture');
 const host = document.querySelector('#hero-art');
 // On mobile Safari, WebGL is decorative but may be restored under GPU/memory
 // pressure. Keep the CSS showreel without allocating any mobile 3D context.
-const mobileOrReduced = matchMedia('(max-width: 900px), (pointer: coarse), (prefers-reduced-motion: reduce)').matches;
+const mobileOrReduced = matchMedia('(max-width: 900px), (pointer: coarse)').matches;
 if (canvas && host && !mobileOrReduced) {
   try {
     const context=canvas.getContext('webgl2',{alpha:true,antialias:window.devicePixelRatio<2,powerPreference:'low-power'});
