@@ -314,6 +314,8 @@ const galleryIdentities = {
  ledger:["Jordan Park","Everwell Partners","Clarity creates momentum.","Better decisions start here."]
 };
 
+/* Editorial fictional content by architecture; customer-entered content remains untouched. */
+const galleryStories=Object.freeze({"index":["Making complexity feel effortless.","An imaginary interface designer building tools around clear human decisions.",["Signal Map","Community Table","The Clarity System"]],"folio":["Stories in the margins.","An independent fictional editorial artist assembling magazines, still photographs, and personal essays.",["Issue / 04","Notes from Elsewhere","The Last Page"]],"still":["Observe the ordinary.","A fictional still-life photographer exploring ceramic objects, texture, quiet light, and negative space.",["Morning Objects","Collected Forms","Space Between"]],"afterhours":["Something cinematic is happening.","A fictional film director exploring nocturnal portraiture, slow-burn stories, and dramatic performance.",["Midnight Take","The Long Way Home","Reel / 003"]],"signal":["Culture needs volume.","An imagined poster collective making album campaigns, disruptive typography, and bold music imagery.",["NOISE / 01","Broadcast Club","High Voltage"]],"daylight":["Everyday can feel extraordinary.","A fictional neighborhood creative shop designing friendly packaging and inclusive community experiences.",["Sunday Rituals","Little Joys","Open Door"]],"atlas":["Research has a visual language.","An imaginary field researcher mapping places, discoveries, and public information.",["Field Notes / 08","Open Coordinates","Research Index"]],"terminal":["Ideas worth building.","A fictional software developer exploring accessible tools, command interfaces, and offline-first thinking.",["Console / 01","Protocol Zero","Open Source Lab"]],"orbit":["Move beyond the dashboard.","An imaginary digital product team creating playful tools for complicated human journeys.",["Mission Control","Near / Far","Next Horizon"]],"playbill":["An entrance changes everything.","A fictional performance troupe exploring stagecraft, backstage photography, and theater identities.",["Act One","House Lights","The Ensemble"]],"monologue":["The stage belongs to the voice.","A fictional actor and writer combining close-up portraits, scripts, and intimate performance.",["Scene / 02","Off Book","A Quiet Line"]],"portraiture":["Look again.","A fictional portrait photographer composing human expression through sculptural light and color.",["Faces / 12","Soft Focus","Chromatic Portraits"]],"contactsheet":["Edit with intention.","A fictional image-maker building a visual narrative from raw contact sheets and precise sequencing.",["Frames / 24","Untitled Light","Proof / Selects"]],"atelier":["Designed down to the stitch.","A fictional fashion atelier studying textures, tailoring, and restrained editorial presentation.",["Collection / 01","Thread Studies","Between Seasons"]],"museum":["Give the work room.","A fictional independent gallery collecting unexpected sculptures and inviting new perspectives.",["Room / 06","The Archive","Open Gallery"]],"brutalist":["The rules are optional.","An imaginary graphic design studio challenging conventions with raw collage and graphic systems.",["Rough Draft","CUT / PASTE","NO RULES"]],"nocturne":["Less can mean more.","A fictional art director shaping intimate luxury experiences through materials and shadow.",["Velvet Hours","Private Study","The Signature"]],"foundry":["Craft that stays with you.","A fictional small workshop building thoughtful goods, process stories, and practical brand systems.",["Workshop / 03","Northline Goods","Built to Keep"]],"bloom":["Room to grow.","An imagined floristry studio combining organic arrangements, seasonal color, and hospitality.",["First Bloom","The Greenhouse","Gathered"]],"ledger":["Make it make sense.","A fictional advisory practice translating complex data into clear, calm decisions.",["Annual Outlook","Good Measure","Decision Notes"]]});
 export function sampleForTemplate(id,purpose){
   const t=templates.find(x=>x.id===id)||templates[0];
   const category=types.includes(purpose)?purpose:(originalByTemplate[t.id]||"Professional portfolio");
@@ -330,10 +332,14 @@ export function sampleForTemplate(id,purpose){
     preview.name=category==="Small business"?business:person;
     preview.headline=statement;
     preview.heroLabel=signature+" / "+category;
-    preview.cards=(kit.cards||[]).map((item,i)=>({
-      ...item,
-      title:([signature.replace(/[.,]$/,""),"Study "+String(i+1).padStart(2,"0"),"Selected / "+String(i+1).padStart(2,"0")][i]||item.title)+" — "+item.title
-    }));
+    const story=galleryStories[t.id];
+    if(story){
+      preview.heroLabel=story[0]+" / "+category;
+      preview.bio='A fictional demonstration: '+story[1];
+      preview.cards=story[2].map((title,i)=>({
+        title,description:["A fictional commissioned concept in "+story[0].toLowerCase(),"A different sample project exploring "+signature.toLowerCase(),"A fictional visual study for the "+t.name+" collection."][i],url:""
+      }));
+    }
   }
   const unique = purpose===undefined && !old;
   const motif={atlas:"Think bigger. Build smarter.",terminal:"Hello, future.",orbit:"Ideas without limits.",

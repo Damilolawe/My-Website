@@ -97,7 +97,7 @@ function draw() {
       '<div class="experience-theater'+(theaterPreferredMode==='mobile'?' is-mobile':'')+'" data-active="'+esc(active.id)+'">' +
         '<div class="theater-header"><div class="theater-identity"><span class="eyebrow"><i class="theater-live" aria-hidden="true"></i> THE LIVE TEMPLATE THEATER · 01—20</span><strong>Explore the actual website, not a static mockup.</strong></div>' +
         '<div class="theater-tools" aria-label="Preview screen size"><button type="button" id="theater-desktop" aria-pressed="'+String(theaterPreferredMode==='desktop')+'">DESKTOP</button><button type="button" id="theater-mobile" aria-pressed="'+String(theaterPreferredMode==='mobile')+'">MOBILE</button><a href="'+demoPath(active.id)+'" target="_blank" rel="noopener" id="theater-open">VIEW FULL WEBSITE ↗︎</a></div></div>' +
-        '<div class="theater-viewport"><div class="theater-browser"><div class="theater-browserbar"><span class="browser-lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="browser-url">'+esc(active.name)+' / fictional website preview</span><span class="browser-mode">'+(theaterPreferredMode==='mobile'?'MOBILE':'DESKTOP')+'</span></div><div class="theater-canvas"><iframe id="theater-frame" title="Fictional '+esc(active.name)+' website" sandbox="" loading="eager"></iframe></div></div></div>' +
+        '<div class="theater-viewport"><div class="theater-browser"><div class="theater-browserbar"><span class="browser-lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="browser-url">'+esc(active.name)+' / fictional website preview</span><span class="browser-mode">'+(theaterPreferredMode==='mobile'?'MOBILE':'DESKTOP')+'</span></div><div class="theater-canvas"><iframe id="theater-frame" title="Fictional '+esc(active.name)+' website" sandbox="" loading="eager"></iframe><div class="theater-loading" role="status" aria-live="polite" hidden><span aria-hidden="true" class="theater-loading-mark">✳︎</span><strong>CRAFTING THE PREVIEW</strong><span id="theater-loading-name">'+esc(active.name)+'</span></div></div></div></div>' +
         '<div class="theater-caption"><div><span class="eyebrow">NOW EXPLORING · '+esc(input.type.toUpperCase())+'</span><h3>'+esc(active.name)+'</h3><p>'+esc(active.tag)+'</p></div><p class="theater-hint">SCROLL INSIDE THE SITE TO EXPLORE EVERY SECTION ↗︎</p></div>' +
         '<div class="theater-reassurance">This is a fictional demonstration. Your content, images, and colors are customized in the next steps. Select another direction below without losing your place.</div>' +
       '</div>' +
@@ -105,6 +105,7 @@ function draw() {
     const frame=el.querySelector("#theater-frame");
     const theater=el.querySelector(".experience-theater");
     const canvas=el.querySelector(".theater-canvas");
+    const loading=el.querySelector(".theater-loading"),loadingName=el.querySelector("#theater-loading-name");
     const modeText=el.querySelector(".browser-mode");
     const lifetime=new AbortController();
     theaterController=lifetime;
@@ -124,22 +125,28 @@ function draw() {
         // Keep the real desktop breakpoint even when the theater itself is narrower.
         const scale=Math.min(1,Math.max(.15,canvas.clientWidth/1280));
         frame.style.width="1280px";
-        frame.style.height="930px";
+        frame.style.height="1280px";
         frame.style.transform="scale("+scale+")";
-        canvas.style.height=Math.round(930*scale)+"px";
+        canvas.style.height=Math.round(1280*scale)+"px";
       }
     };
     const loadTemplate=(id)=>{
       activeRequest?.abort();
       activeRequest=new AbortController();
       const thisRequest=activeRequest;
-      frame.srcdoc=previewMessage("Preparing "+(templates.find(t=>t.id===id)?.name||"template")+"…");
+      loadingName.textContent=templates.find(t=>t.id===id)?.name||"Website concept";
+      loading.hidden=false;
+      if(!frame.srcdoc)frame.srcdoc=previewMessage("Preparing your website preview…");
       fetchPublicTemplate(id,{type:input.type,signal:activeRequest.signal})
         .then((html)=>{
-          if(!lifetime.signal.aborted&&!thisRequest.signal.aborted&&frame.isConnected&&input.template===id)frame.srcdoc=html;
+          if(!lifetime.signal.aborted&&!thisRequest.signal.aborted&&frame.isConnected&&input.template===id){
+            frame.onload=()=>{if(!thisRequest.signal.aborted&&input.template===id)loading.hidden=true;};
+            frame.srcdoc=html;
+          }
         })
         .catch((error)=>{
           if(lifetime.signal.aborted||thisRequest.signal.aborted||!frame.isConnected)return;
+          frame.onload=()=>{if(!thisRequest.signal.aborted)loading.hidden=true;};
           frame.srcdoc=previewMessage("This preview could not load. Use View Full Website above to explore the template.");
           console.warn("Template preview unavailable",error);
         });
@@ -178,7 +185,7 @@ function draw() {
     loadTemplate(active.id);
   }
   if (step === 2) {
-    el.innerHTML = `<h2>Give it your signature.</h2><div class="split"><form id="design" class="panel"><div class="field-row"><label class="field">Primary color<input name="primary" type="color" value="${input.design.primary}"></label><label class="field">Secondary color<input name="secondary" type="color" value="${input.design.secondary}"></label></div><p class="muted">Your primary color updates the hero, main accents, and buttons. Your secondary color changes the backgrounds, navigation, cards, and footer. Watch the sample preview update as you choose.</p>${select("Typography", "font", ["sans", "serif", "mono"], input.design.font)}${select("Appearance", "appearance", ["light", "dark"], input.design.appearance)}${select("Layout", "layout", ["stacked", "split"], input.design.layout)}${select("Navigation", "navigation", ["full", "compact"], input.design.navigation)}${select("Motion", "animation", ["none", "subtle", "expressive"], input.design.animation)}${select("Hero alignment", "heroAlignment", ["left", "center", "right"], input.design.heroAlignment)}${select("Page spacing", "density", ["airy", "balanced", "compact"], input.design.density)}${select("Corner style", "corners", ["sharp", "soft", "round"], input.design.corners)}<p class="field">Website sections</p><div class="checks">${sections.map((s) => `<label><input type="checkbox" name="sections" value="${s}" ${input.design.sections.includes(s) ? "checked" : ""}> ${s}</label>`).join("")}</div>${field("Anything else in mind?", "preferences", input.preferences, "textarea")}</form><div class="preview-shell"><div class="preview-top"><span>SAMPLE CONFIGURATION</span><div><button id="wide" aria-label="Desktop preview">DESKTOP</button><button id="narrow" aria-label="Mobile preview">MOBILE</button></div></div><iframe title="Fictional template configuration preview" sandbox=""></iframe><p class="muted">This is sample content. Your personalized site is reviewed privately before delivery.</p></div></div>`;
+    el.innerHTML = `<h2>Give it your signature.</h2><div class="split"><form id="design" class="panel"><div class="field-row"><label class="field">Primary color<input name="primary" type="color" value="${input.design.primary}"></label><label class="field">Secondary color<input name="secondary" type="color" value="${input.design.secondary}"></label></div><p class="muted">Primary changes accents, buttons and selected hero highlights. Secondary influences backgrounds and interface surfaces. Photo imagery itself stays the same as you change colors; watch the preview adapt.</p>${select("Typography", "font", ["sans", "serif", "mono"], input.design.font)}${select("Appearance", "appearance", ["light", "dark"], input.design.appearance)}${select("Layout", "layout", ["stacked", "split"], input.design.layout)}${select("Navigation", "navigation", ["full", "compact"], input.design.navigation)}${select("Motion", "animation", ["none", "subtle", "expressive"], input.design.animation)}${select("Hero alignment", "heroAlignment", ["left", "center", "right"], input.design.heroAlignment)}${select("Page spacing", "density", ["airy", "balanced", "compact"], input.design.density)}${select("Corner style", "corners", ["sharp", "soft", "round"], input.design.corners)}<p class="field">Website sections</p><div class="checks">${sections.map((s) => `<label><input type="checkbox" name="sections" value="${s}" ${input.design.sections.includes(s) ? "checked" : ""}> ${s}</label>`).join("")}</div>${field("Anything else in mind?", "preferences", input.preferences, "textarea")}</form><div class="preview-shell"><div class="preview-top"><span>SAMPLE CONFIGURATION</span><div><button id="wide" aria-label="Desktop preview">DESKTOP</button><button id="narrow" aria-label="Mobile preview">MOBILE</button></div></div><iframe title="Fictional template configuration preview" sandbox=""></iframe><p class="muted">This is sample content. Your personalized site is reviewed privately before delivery.</p></div></div>`;
     const update = () => {
       const f = new FormData($("#design"));
       input.design = {

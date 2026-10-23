@@ -58,3 +58,22 @@ html.motion-paused .worlds-choice,html.motion-paused .worlds-view iframe{transit
 .worlds-screen{z-index:2;isolation:isolate}.worlds-toolbar,.worlds-device-actions{position:relative;z-index:5}
 .worlds-device-actions{padding:2px;background:#191d20;isolation:isolate}
 .worlds-device-actions button{position:relative;z-index:1;min-height:34px;min-width:64px}
+
+/* Re-audit: full first-fold frame and branded, non-flashing loading. */
+.worlds-view{position:relative;display:block!important;min-width:0;min-height:0;overflow:hidden;isolation:isolate}
+.worlds-view iframe{position:absolute;left:0;top:0;width:1280px;height:1280px;transform-origin:top left;
+border:0;background:#121715;max-width:none;display:block}
+.worlds-screen.is-mobile .worlds-view{width:100%;height:auto!important;min-height:0;padding:24px 10px 30px;
+display:flex!important;justify-content:center}
+.worlds-screen.is-mobile .worlds-view iframe{position:relative;left:auto;top:auto;display:block;transform:none!important;
+width:min(375px,100%)!important;height:880px!important;min-height:880px;border-radius:19px}
+.worlds-loading{position:absolute;inset:0;z-index:20;display:flex;flex-direction:column;gap:20px;align-items:center;
+justify-content:center;padding:30px;background:radial-gradient(ellipse at 70% 30%,#d6fc4620,transparent 63%),#101714;
+text-align:center;color:#f7fbe8;font:800 11px/1.6 ui-monospace,monospace;letter-spacing:.14em}
+.worlds-loading[hidden]{display:none!important}
+.worlds-loading strong{font:850 clamp(19px,3vw,33px)/1 Arial,system-ui,sans-serif;letter-spacing:-.055em}
+.worlds-loading-mark{font:70px/1 Georgia,serif;color:#dcfc46;animation:worlds-orbit 3s linear infinite}
+.worlds-loading span:last-child{color:#bbcaab;letter-spacing:.11em}
+.worlds-screen.is-changing iframe{opacity:1!important;transform-origin:top left}
+@media(max-width:650px){.worlds-screen.is-mobile .worlds-view{padding:13px 0 18px}
+.worlds-screen.is-mobile .worlds-view iframe{width:min(375px,100%)!important;border-radius:12px}}

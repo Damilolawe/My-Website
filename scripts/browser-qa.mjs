@@ -248,6 +248,67 @@ try {
   }
   await context.close();
  }
+ // Re-audit: exercise actual narrow CSS viewports, not a 360px CSS thumbnail
+ // inside a browser viewport of some unrelated width.
+ for(const width of [320,345,360,375]){
+  const context=await browser.newContext({viewport:{width,height:812},isMobile:true,hasTouch:true,deviceScaleFactor:2});
+  const page=await context.newPage();
+  for(const id of ["afterhours","folio","atelier","signal"]){
+   await page.goto(origin+"/templates/creative/"+id+".html",{waitUntil:"domcontentloaded",timeout:25000});
+   await page.waitForTimeout(130);
+   const geometry=await page.evaluate(()=>{
+    const all=[...document.querySelectorAll(".case-image")].slice(0,4).map(el=>{
+      const r=el.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width};
+    });
+    const hero=document.querySelector(".hero-variant h1");
+    const h=hero?.getBoundingClientRect();
+    const contact=document.querySelector("#contact .architect-contact-links");
+    return {width:innerWidth,docWidth:document.documentElement.scrollWidth,
+      heading:h?{left:h.left,right:h.right,width:h.width}:null,
+      cards:all,contactText:contact?.textContent?.trim()||"",
+      contactLinks:contact?.querySelectorAll("a").length||0};
+   });
+   console.log("NARROW_TEMPLATE",width,id,JSON.stringify(geometry));
+   if(geometry.docWidth>width+2)failures.push("Narrow "+width+" "+id+": horizontal page clipping/overflow");
+   if(!geometry.heading||geometry.heading.left< -5||geometry.heading.right>width+5)
+     failures.push("Narrow "+width+" "+id+": headline outside screen");
+   for(const card of geometry.cards)
+     if(card.right>width+4||card.left< -5||card.width>width+5)
+       failures.push("Narrow "+width+" "+id+": case image exceeds viewport");
+   if(!geometry.contactLinks&&!/add your own email|contact method|contact link/i.test(geometry.contactText))
+     failures.push("Narrow "+width+" "+id+": contact section offers no action or setup message");
+  }
+  await context.close();
+ }
+ // Gallery should reveal a complete cinematic first impression and never
+ // report a new preview name while its old HTML is still visible.
+ {
+  const context=await browser.newContext({viewport:{width:1440,height:900}});
+  const page=await context.newPage();
+  await page.goto(origin+"/",{waitUntil:"domcontentloaded"});
+  await page.locator("#express-showcase").scrollIntoViewIfNeeded();
+  await page.waitForTimeout(2100);
+  await page.locator("#worlds-desktop").click();
+  await page.waitForTimeout(300);
+  const desktop=await page.evaluate(()=>{
+    const frame=document.querySelector("#worlds-frame");
+    const view=document.querySelector(".worlds-view");
+    return {frameHeight:frame.getBoundingClientRect().height,viewHeight:view.getBoundingClientRect().height,
+      loading:document.querySelector("#worlds-loading")?.hidden};
+  });
+  console.log("AUDIT_THEATER_DESKTOP",JSON.stringify(desktop));
+  if(desktop.viewHeight<630||desktop.frameHeight<630)
+    failures.push("Theater desktop first impression too short");
+  await page.locator("#worlds-mobile").click();
+  await page.waitForTimeout(160);
+  const mobile=await page.evaluate(()=>{
+    const frame=document.querySelector("#worlds-frame");
+    return {height:frame.getBoundingClientRect().height,width:frame.getBoundingClientRect().width};
+  });
+  console.log("AUDIT_THEATER_MOBILE",JSON.stringify(mobile));
+  if(mobile.height<760||mobile.width<320)failures.push("Theater mobile viewport still excessively cropped");
+  await context.close();
+ }
 } finally {
  await browser.close();
 }

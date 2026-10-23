@@ -127,7 +127,9 @@ export function designSections(value,{assetBase="/api/assets/",assetSuffix="",sa
         (c.links||[]).filter(https).map(x=>'<a href="'+E(x)+'" target="_blank" rel="noopener noreferrer">'+E(new URL(x).hostname)+' ↗︎</a>').join("");
       sections.push(shell(id,index+1,ctx,'<div class="architect-contact"><span class="contact-emblem" aria-hidden="true">✳︎</span><p>'+
         E(value.type==="Small business"?"Your next project starts with a conversation.":value.type==="Actor / model"?"Available for casting enquiries and creative conversations.":"Something worth making starts here.")+
-        '</p><div class="architect-contact-links">'+links+'</div></div>'));
+        '</p><div class="architect-contact-links">'+(links||'<p class="contact-setup-note">'+
+          (ctx.sample?'Fictional portfolio demonstration — add your own email or contact link when building your site.':'This website has not published a contact method yet. Please check back for an updated way to get in touch.')+
+        '</p>')+'</div></div>'));
     }
   }
   return sections.join("");

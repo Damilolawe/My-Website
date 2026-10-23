@@ -57,7 +57,7 @@ test("customer preview passes the live picker selections into the exact producti
   assert(code.includes('name="secondary" type="color"'));
   assert(code.includes('$("#design").oninput = update'));
   assert(code.includes('design: input.design'));
-  assert(code.includes("Your primary color updates the hero"));
+  assert(code.includes("Primary changes accents, buttons and selected hero highlights"));
   const production = await file("supabase/functions/awe-api/shared/premium.mjs");
   const edge = await file("supabase/functions/awe-api/shared/theme-palette.mjs");
   assert(production.includes("paletteInline(accent,second,dark)"));

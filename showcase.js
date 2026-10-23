@@ -6,12 +6,22 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
   if(!root)return;
   const rail=root.querySelector("#worlds-choices"),frame=root.querySelector("#worlds-frame"),screen=root.querySelector("#worlds-screen");
   const name=root.querySelector("#worlds-name"),full=root.querySelector("#worlds-open");
+  const loading=root.querySelector("#worlds-loading"),loadingName=root.querySelector("#worlds-loading-name");
+  const view=root.querySelector(".worlds-view");
   const desktop=root.querySelector("#worlds-desktop"),mobile=root.querySelector("#worlds-mobile");
   const select=root.querySelector("#world-purpose");
   let selected="afterhours",purpose="Creative portfolio",version=0,controller=null;
   // Large sandbox previews are loaded near the gallery instead of on first paint.
   const deferPreview=matchMedia("(max-width: 900px), (pointer: coarse)").matches;
   let previewReady=!deferPreview;
+  function syncFrame(){
+    if(screen.classList.contains("is-mobile")){frame.style.width="";frame.style.height="";frame.style.transform="";view.style.height="";return;}
+    const scale=Math.min(1,Math.max(1,view.clientWidth)/1280);
+    frame.style.width="1280px";frame.style.height="1280px";frame.style.transform="scale("+scale+")";
+    view.style.height=Math.round(1280*scale)+"px";
+  }
+  if("ResizeObserver" in window)new ResizeObserver(syncFrame).observe(view);
+  else addEventListener("resize",syncFrame,{passive:true});
   const savedNames=new Map(templates.map(x=>[x.id,x.name]));
   function templatePath(id){return "/templates/"+typeSlugs[purpose]+"/"+id+".html";}
   function populate(){
@@ -36,22 +46,27 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
     selected=id;version++;const mine=version;
     controller?.abort();controller=new AbortController();
     rail.querySelectorAll("[data-world]").forEach(btn=>btn.setAttribute("aria-pressed",String(btn.dataset.world===id)));
-    name.textContent=savedNames.get(id);
     full.href=templatePath(id);screen.dataset.world=id;
+    loading.hidden=false;loadingName.textContent=savedNames.get(id).toUpperCase();
+    loading.setAttribute("aria-label","Loading "+savedNames.get(id)+" website preview");
     const still=false; // Desktop previews retain authored motion.
     screen.classList.toggle("is-changing",!still);
     frame.title="Fictional "+savedNames.get(id)+" website for "+purpose;
     if(!previewReady)return;
-    frame.srcdoc=previewMessage("Preparing a "+purpose+" design…");
+    // Preserve the previous frame under the branded loading surface.
     try{
       const html=await fetchPublicTemplate(id,{type:purpose,still,signal:controller.signal});
       if(controller.signal.aborted||mine!==version)return;
-      frame.onload=()=>screen.classList.remove("is-changing");
+      frame.onload=()=>{
+        if(mine!==version)return;
+        name.textContent=savedNames.get(id);loading.hidden=true;
+        screen.classList.remove("is-changing");syncFrame();
+      };
       frame.srcdoc=html;
     }catch(error){
       if(controller.signal.aborted||mine!==version)return;
+      frame.onload=()=>{if(mine!==version)return;name.textContent=savedNames.get(id);loading.hidden=true;screen.classList.remove("is-changing");};
       frame.srcdoc=previewMessage("The preview could not load. Try Open Full Demo.");
-      screen.classList.remove("is-changing");
       console.warn("Template preview unavailable",error);
     }
   }
@@ -59,6 +74,7 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
     screen.classList.toggle("is-mobile",mobileView);
     desktop.setAttribute("aria-pressed",String(!mobileView));
     mobile.setAttribute("aria-pressed",String(mobileView));
+    syncFrame();
   }
   for(const type of types){
     const option=document.createElement("option");option.value=type;option.textContent=type;select.append(option);
@@ -85,7 +101,8 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
   document.addEventListener("awe:motion",()=>choose(selected));
   populate();
   if(!previewReady){
-    frame.srcdoc=previewMessage("Preview loads as you approach the design gallery.");
+    frame.srcdoc=previewMessage("The collection is coming into view.");
+    name.textContent="Selecting a design";
     choose(selected);
     if("IntersectionObserver" in window){
       const observer=new IntersectionObserver(entries=>{
@@ -95,4 +112,5 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
       observer.observe(root);
     }else{previewReady=true;choose(selected);}
   }else choose(selected);
+  syncFrame();
 })();
