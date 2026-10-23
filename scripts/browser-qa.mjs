@@ -269,7 +269,15 @@ try {
       contactLinks:contact?.querySelectorAll("a").length||0};
    });
    console.log("NARROW_TEMPLATE",width,id,JSON.stringify(geometry));
-   if(geometry.docWidth>width+2)failures.push("Narrow "+width+" "+id+": horizontal page clipping/overflow");
+   if(geometry.docWidth>width+2){
+     const offenders=await page.evaluate(()=>[...document.querySelectorAll("*")]
+       .map(el=>({selector:el.tagName.toLowerCase()+"."+String(el.className||"").replace(/\s+/g,".").slice(0,70),
+         rect:el.getBoundingClientRect()}))
+       .filter(x=>x.rect.right>innerWidth+2||x.rect.left< -2)
+       .slice(0,12).map(x=>({selector:x.selector,left:Math.round(x.rect.left),right:Math.round(x.rect.right)})));
+     console.log("NARROW_OVERFLOW_ELEMENTS",width,id,JSON.stringify(offenders));
+     failures.push("Narrow "+width+" "+id+": horizontal page clipping/overflow");
+   }
    if(!geometry.heading||geometry.heading.left< -5||geometry.heading.right>width+5)
      failures.push("Narrow "+width+" "+id+": headline outside screen");
    for(const card of geometry.cards)
@@ -306,7 +314,8 @@ try {
     return {height:frame.getBoundingClientRect().height,width:frame.getBoundingClientRect().width};
   });
   console.log("AUDIT_THEATER_MOBILE",JSON.stringify(mobile));
-  if(mobile.height<760||mobile.width<320)failures.push("Theater mobile viewport still excessively cropped");
+  if(mobile.height<760||mobile.width<320||mobile.width>380)
+    failures.push("Theater mobile viewport is cropped or not a true mobile width");
   await context.close();
  }
 } finally {
