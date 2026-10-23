@@ -17,13 +17,13 @@
       gsap.registerPlugin(ScrollTrigger);
       motionContext=gsap.context(()=>{
         $$('.reveal').forEach(el=>{gsap.from(el,{y:35,opacity:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 96%',once:true},clearProps:'transform,opacity'});});
-        gsap.from('.hero-line>span,.hero-line>em',{yPercent:110,duration:1.25,stagger:.09,ease:'power4.out',clearProps:'transform'});
-        gsap.from('.hero-meta,.hero-bottom,.hero-art',{opacity:0,duration:1.4,delay:.35,clearProps:'opacity'});
-        if(innerWidth>900){gsap.to('.hero-title',{y:70,opacity:.3,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});}
+        if(document.querySelectorAll('.hero-line>span,.hero-line>em').length)gsap.from('.hero-line>span,.hero-line>em',{yPercent:110,duration:1.25,stagger:.09,ease:'power4.out',clearProps:'transform'});
+        if(document.querySelectorAll('.hero-meta,.hero-bottom,.hero-art').length)gsap.from('.hero-meta,.hero-bottom,.hero-art',{opacity:0,duration:1.4,delay:.35,clearProps:'opacity'});
+        if(innerWidth>900&&$('.hero-title')&&$('.hero')){gsap.to('.hero-title',{y:70,opacity:.3,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});}
         if(document.querySelector('#express-showcase')){
-          gsap.from('.worlds-title',{y:70,opacity:0,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'#express-showcase',start:'top 82%',once:true}});
-          gsap.from('.worlds-choice',{x:-40,opacity:0,duration:.6,stagger:.1,ease:'power2.out',scrollTrigger:{trigger:'.worlds-layout',start:'top 82%',once:true}});
-          gsap.from('.worlds-screen',{y:60,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.worlds-layout',start:'top 82%',once:true}});
+          if($('.worlds-title'))gsap.from('.worlds-title',{y:70,opacity:0,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'#express-showcase',start:'top 82%',once:true}});
+          if(document.querySelectorAll('.worlds-choice').length)gsap.from('.worlds-choice',{x:-40,opacity:0,duration:.6,stagger:.1,ease:'power2.out',scrollTrigger:{trigger:'.worlds-layout',start:'top 82%',once:true}});
+          if($('.worlds-screen')&&$('.worlds-layout'))gsap.from('.worlds-screen',{y:60,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.worlds-layout',start:'top 82%',once:true}});
         }
       });
     }

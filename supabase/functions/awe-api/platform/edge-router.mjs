@@ -1,7 +1,7 @@
 import legacyApi from '../netlify/functions/api.mjs';
 import legacySite from '../netlify/functions/site.mjs';
 import webhook from '../netlify/functions/webhook.mjs';
-import {env, json, fail, user, isOwner, rows, insert, patch, owned, id, body, origin, rpc} from './backend.mjs';
+import {env, json, fail, user, isOwner, rows, insert, patch, owned, id, body, origin, originAllowed, rpc} from './backend.mjs';
 import {normalize, validate, customerOrder} from '../shared/model.mjs';
 import {renderSite} from '../shared/render.mjs';
 import {runJobs} from './production.mjs';
@@ -36,9 +36,10 @@ function relocate(req,path) {
   return new Request(u,req);
 }
 function cors(req,res) {
-  const headers=new Headers(res.headers); const allowed=[env().SITE_ORIGIN,'https://aweconcepts.com','https://www.aweconcepts.com','https://awe-digital.web.app',...(env().ALLOWED_ORIGINS||'').split(',').filter(Boolean)];
-  if(allowed.includes(req.headers.get('origin')))headers.set('Access-Control-Allow-Origin',req.headers.get('origin'));
-  headers.set('Vary','Origin'); headers.set('Access-Control-Allow-Headers','authorization, apikey, content-type, x-client-info');
+  const headers=new Headers(res.headers);
+  if(originAllowed(req)) headers.set('Access-Control-Allow-Origin',req.headers.get('origin'));
+  headers.set('Vary',headers.has('Vary')?headers.get('Vary')+', Origin':'Origin');
+  headers.set('Access-Control-Max-Age','3600'); headers.set('Access-Control-Allow-Headers','authorization, apikey, content-type, x-client-info');
   headers.set('Access-Control-Allow-Methods','GET, HEAD, POST, OPTIONS');
   headers.set('Access-Control-Expose-Headers','X-AWE-Version, Content-Disposition');
   headers.set('X-Content-Type-Options','nosniff');

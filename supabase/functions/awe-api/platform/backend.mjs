@@ -3,7 +3,7 @@ import Stripe from "stripe";
 export const env = () => {
   const e = typeof Deno !== "undefined" ? Deno.env.toObject() : process.env;
   return { ...e, SUPABASE_PUBLISHABLE_KEY: e.SUPABASE_PUBLISHABLE_KEY || e.SUPABASE_ANON_KEY,
-    SITE_ORIGIN: e.SITE_ORIGIN || "https://awe-digital.web.app" };
+    SITE_ORIGIN: e.SITE_ORIGIN || "https://aweconcepts.com" };
 };
 // Pin the single studio-owner identity, never just an email or user-editable
 // metadata. Membership in the service-only owner table remains mandatory.
@@ -99,9 +99,30 @@ export async function owned(orderId, u, owner = false) {
   if (!o || (!owner && o.user_id !== u.id)) fail("Order not found.", 404);
   return o;
 }
+// CORS and request validation MUST use the same production origin set.
+// The custom hostname and Firebase transition host remain valid together.
+// Only exact HTTPS origins are permitted; no wildcards or opaque origins.
+export function allowedOrigins() {
+  const defaults = ["https://aweconcepts.com", "https://www.aweconcepts.com", "https://awe-digital.web.app"];
+  const configured = [env().SITE_ORIGIN, ...(env().ALLOWED_ORIGINS || "").split(",")];
+  const origins = new Set(defaults);
+  for (const value of configured) {
+    const candidate = String(value || "").trim().replace(/\/$/, "");
+    if (!candidate) continue;
+    try {
+      const url = new URL(candidate);
+      if (url.protocol === "https:" && url.origin === candidate &&
+          !url.username && !url.password && url.port === "")
+        origins.add(candidate);
+    } catch { /* Ignore malformed optional configuration. */ }
+  }
+  return origins;
+}
+export function originAllowed(req) {
+  return allowedOrigins().has(req.headers.get("origin"));
+}
 export function origin(req) {
-  if (![env().SITE_ORIGIN, "https://aweconcepts.com", "https://www.aweconcepts.com", "https://awe-digital.web.app", ...(env().ALLOWED_ORIGINS || "").split(",").filter(Boolean)].includes(req.headers.get("origin")))
-    fail("Request origin rejected.", 403);
+  if (!originAllowed(req)) fail("Request origin rejected.", 403);
 }
 export function stripe() {
   if (!env().STRIPE_SECRET_KEY?.startsWith("sk_test_"))
