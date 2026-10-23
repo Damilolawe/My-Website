@@ -1,6 +1,7 @@
 import { rows, rpc, patch, insert, id, env, fail } from "./backend.mjs";
 import { renderSite } from "../shared/render.mjs";
 import { validate } from "../shared/model.mjs";
+import { verifyPublication } from "./verify-publication.mjs";
 export async function saveDraft(order, input, actor = null) {
   const data = validate(input);
   const assets = await rows("awe_assets", `order_id=eq.${order.id}`);
@@ -90,20 +91,14 @@ async function deliver(o, version) {
   )
     return;
   const url = `${env().SITE_ORIGIN}/sites/${o.slug}`;
-  const r = await fetch(url, {
-    signal: AbortSignal.timeout(15000),
-    redirect: "error",
-  });
-  if (!r.ok || r.headers.get("x-awe-version") !== version)
-    fail("Published version verification failed.");
   const v = (await rows("awe_versions", `id=eq.${version}`))[0];
-  for (const asset of v.asset_ids) {
-    const ar = await fetch(
-      `${env().SITE_ORIGIN}/sites/${o.slug}/assets/${asset}`,
-      { method: "HEAD", signal: AbortSignal.timeout(10000) },
-    );
-    if (!ar.ok) fail("Published asset verification failed.");
-  }
+  if (!v || v.order_id !== o.id) fail("Approved website version is missing.");
+  await verifyPublication({
+    siteUrl: url,
+    publicApiUrl: `${env().SUPABASE_URL.replace(/\\/+$/, "")}/functions/v1/awe-api/public/${o.slug}`,
+    version,
+    assets: v.asset_ids,
+  });
   if (!env().RESEND_API_KEY || !env().EMAIL_FROM)
     fail("Delivery email is not configured.", 503);
   const result = await fetch("https://api.resend.com/emails", {
