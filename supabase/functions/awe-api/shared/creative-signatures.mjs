@@ -1,5 +1,6 @@
 import { esc } from "./model.mjs";
 import { sampleArtwork, illustrationArtwork } from "./photographic-direction.mjs";
+import { extendedMarkup, extendedCSS } from "./creative-chapters-extended.mjs";
 
 // These chapters use the owner's normalized content. They never invent clients,
 // bookings, products or results, and they render without executable JavaScript.
@@ -72,11 +73,11 @@ export function signatureMarkup(value, navIds = [], { sample = false, assetBase 
         '</div></div><div class="afterhours-sequence-foot" aria-hidden="true">◼︎ ◼︎ ◼︎ ◼︎ ◼︎ ◼︎ ◼︎ ◼︎ ◼︎ ◼︎ ◼︎ ◼︎</div></section>';
     }
     default:
-      return "";
+      return extendedMarkup(value, navIds, { sample, assetBase, assetSuffix });
   }
 }
 
-export const signatureCSS = `
+const signatureCSS = `
 .signature{position:relative;min-width:0;overflow:clip;margin:clamp(55px,9vw,140px) 0;isolation:isolate}
 .signature *{box-sizing:border-box}
 .signature-kicker{font:700 11px/1.4 ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase}
@@ -188,3 +189,26 @@ export const signatureCSS = `
 @media(prefers-reduced-motion:reduce){.orbit-console-rotor{animation:none}}
 .motion-none .orbit-console-rotor{animation:none}
 `;
+
+const originalChapters = ["atelier", "signal", "orbit", "afterhours"];
+const chapterStarts = [
+  "/* An editorial issue", "/* Printed creative broadcast",
+  "/* A restrained technical instrument", "/* A film sequence",
+];
+const originalMedia = signatureCSS.indexOf("@media(max-width:800px)");
+const extendedMedia = extendedCSS.indexOf("@media(max-width:800px)");
+
+export function signatureCSSFor(template) {
+  const common = signatureCSS.slice(0, signatureCSS.indexOf(chapterStarts[0]));
+  const index = originalChapters.indexOf(template);
+  if (index !== -1) {
+    const start = signatureCSS.indexOf(chapterStarts[index]);
+    const end = index === originalChapters.length - 1 ? originalMedia : signatureCSS.indexOf(chapterStarts[index + 1]);
+    return common + signatureCSS.slice(start, end) + signatureCSS.slice(originalMedia);
+  }
+  const prefix = ".signature-" + template + "{";
+  const start = extendedCSS.indexOf(prefix);
+  if (start === -1) return "";
+  const next = extendedCSS.indexOf("\n.signature-", start + prefix.length);
+  return common + extendedCSS.slice(start, next === -1 ? extendedMedia : next) + extendedCSS.slice(extendedMedia);
+}

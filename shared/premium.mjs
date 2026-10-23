@@ -10,7 +10,7 @@ import {siteChrome} from "./site-shells.mjs";
 import {shellCSS} from "./site-shell-styles.mjs";
 import {exemplarCSS} from "./exemplar-redesign.mjs";
 import {paletteCSS,paletteInline} from "./theme-palette.mjs";
-import {signatureMarkup,signatureCSS} from "./creative-signatures.mjs";
+import {signatureMarkup,signatureCSSFor} from "./creative-signatures.mjs";
 
 /* Static, sandboxable HTML output: no third-party fonts, scripts, cookies or APIs.
  * Keep the whole approved document immutable in awe_versions.html. */
@@ -78,7 +78,7 @@ export function renderPremium(input, options = {}) {
   const hero=experienceHero(t,{c,value,heroImage,ctaTarget});
   const signature = signatureMarkup(value,navIds,{sample,assetBase,assetSuffix});
   const page=siteChrome(value,{hero,sections:signature+actualSections,interlude:experienceInterlude(t,c),navIds});
-  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + exemplarCSS + (signature ? signatureCSS : '') + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
+  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + exemplarCSS + (signature ? signatureCSSFor(t) : '') + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
     (sample ? '<div class="demo-banner">FICTIONAL TEMPLATE DEMO — SAMPLE CONTENT ONLY</div>' : '') +
     '<a href="#main" class="skip">Skip to content</a>' + page + '</body></html>';
 }
