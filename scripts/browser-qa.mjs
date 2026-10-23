@@ -99,6 +99,17 @@ try {
   if(size.width===1440){
     for(const template of ["afterhours","folio","atelier"]){
       await testPage(page,origin+"/templates/"+template+".html",size.name+" flagship "+template,{waitMs:1100});
+      const firstFold=await page.evaluate(slug=>{
+        const title=document.querySelector(slug==="folio"?".folio-words h1":slug==="afterhours"?".afterhours-words h1":".atelier-copy h1");
+        const media=document.querySelector(slug==="folio"?".folio-picture .hero-media":slug==="afterhours"?".afterhours-screen > .hero-media":".atelier-photo .hero-media");
+        const rect=el=>{const r=el?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,width:r.width,height:r.height}:null};
+        return {title:rect(title),media:rect(media),viewport:innerHeight};
+      },template);
+      console.log("FLAGSHIP_FIRST_FOLD",template,JSON.stringify(firstFold));
+      if(!firstFold.title||firstFold.title.top>firstFold.viewport-90||firstFold.title.bottom<0)
+        failures.push("Desktop flagship "+template+": headline is below the first fold");
+      if(!firstFold.media||firstFold.media.width<230||firstFold.media.height<270)
+        failures.push("Desktop flagship "+template+": image area is undersized");
       await page.screenshot({path:"qa-browser-artifacts/"+size.name+"-"+template+".png",fullPage:false});
     }
   }
