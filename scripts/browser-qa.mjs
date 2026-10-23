@@ -130,6 +130,8 @@ try {
             failures.push("Mobile "+entry.id+": headline starts below first screen");
           if(!fold.photo||fold.photo.top>fold.viewport-40)
             failures.push("Mobile "+entry.id+": photography not visible in first screen");
+          if(entry.id==="folio"&&fold.photo&&fold.title&&fold.photo.bottom>fold.title.top-4)
+            failures.push("Mobile Folio: cover image intersects headline instead of having its own space");
           if(fold.nav&&fold.photo&&fold.photo.top<fold.nav.bottom-2)
             failures.push("Mobile "+entry.id+": art overlaps navigation");
         }
