@@ -329,6 +329,9 @@ try {
     return {frameHeight:frame.getBoundingClientRect().height,viewHeight:view.getBoundingClientRect().height,
       loading:document.querySelector("#worlds-loading")?.hidden};
   });
+  const decoration=await page.locator(".worlds-accent").evaluate(el=>getComputedStyle(el).display);
+  console.log("AUDIT_THEATER_ORNAMENT",decoration);
+  if(decoration!=="none")failures.push("Theater ornament still crowds the device controls");
   console.log("AUDIT_THEATER_DESKTOP",JSON.stringify(desktop));
   if(desktop.viewHeight<630||desktop.frameHeight<630)
     failures.push("Theater desktop first impression too short");

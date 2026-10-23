@@ -83,3 +83,6 @@ text-align:center;color:#f7fbe8;font:800 11px/1.6 ui-monospace,monospace;letter-
 .worlds-screen.is-mobile .worlds-view iframe{
  transition:none!important;max-width:100%!important
 }
+
+/* Re-audit P3: no orbit/asterisk crossing the theater device selectors. */
+#express-showcase .worlds-accent{display:none!important}
