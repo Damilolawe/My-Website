@@ -1,7 +1,7 @@
 // Public browser QA. Runs in GitHub Actions, never signs in or creates records.
 import assert from "node:assert/strict";
 import {mkdir} from "node:fs/promises";
-import {chromium} from "playwright";
+import {chromium} from "playwright-core";
 import {templates} from "../shared/model.mjs";
 
 const origin="https://aweconcepts.com";
@@ -12,7 +12,7 @@ const viewports=[
   {name:"Tablet-landscape",width:1024,height:768,mobile:false},
   {name:"Desktop-1440",width:1440,height:900,mobile:false},
 ];
-const browser=await chromium.launch({headless:true,args:["--disable-dev-shm-usage"]});
+const browser=await chromium.launch({channel:"chrome",headless:true,args:["--disable-dev-shm-usage","--no-sandbox"]});
 const failures=[];
 const softWarnings=[];
 await mkdir("qa-browser-artifacts",{recursive:true});
@@ -74,7 +74,22 @@ try {
   await testPage(page,origin+"/contact.html",size.name+" contact",{waitMs:250});
   if(size.width===360||size.width===768){
     for(const entry of templates){
-      await testPage(page,origin+"/templates/"+entry.id+".html",size.name+" "+entry.id,{waitMs:180});
+      const label=size.name+" template "+entry.id;
+      await testPage(page,origin+"/templates/"+entry.id+".html",label,{waitMs:180});
+      // Exercise a real section link, not just existence of href/#target.
+      const first=page.locator('nav[aria-label="Section navigation"] a[href^="#"]').first();
+      if(await first.count()) {
+        const href=await first.getAttribute("href");
+        try {
+          await first.click({timeout:4500});
+          const hash=await page.evaluate(()=>decodeURIComponent(location.hash));
+          if(hash!==href)failures.push(label+": section link navigated to "+hash+" instead of "+href);
+          const target=await page.evaluate(h=>!!document.getElementById(h.slice(1)),href);
+          if(!target)failures.push(label+": section link target missing "+href);
+        } catch(error){
+          failures.push(label+": section navigation click failed: "+String(error.message).slice(0,160));
+        }
+      } else failures.push(label+": missing template section navigation");
     }
   }
   await context.close();
