@@ -8,8 +8,12 @@ import {sampleArtwork,illustrationArtwork} from "../shared/photographic-directio
 test("All twenty fictional template demos use a photography-forward composition",()=>{
  for(const t of templates){
   const html=renderSite(sampleForTemplate(t.id),{sample:true});
-  assert(html.includes('study-shot--'+t.id),t.id+" missing photography");
-  assert(html.includes("images.unsplash.com/photo-"),t.id+" missing photography source");
+  if(["terminal","monologue"].includes(t.id)){
+    assert(html.includes('hero-variant '+t.id+'-hero'),t.id+" missing intentional text-first hero");
+  }else{
+    assert(html.includes('study-shot--'+t.id),t.id+" missing photography");
+    assert(html.includes("images.unsplash.com/photo-"),t.id+" missing photography source");
+  }
   assert(html.includes("FICTIONAL TEMPLATE DEMO"),t.id+" not labeled fictional");
   assert(html.includes("PHOTO STUDY / "),t.id+" missing image credit");
   assert(!html.includes("<script"),t.id+" includes executable script");
@@ -20,7 +24,11 @@ test("Customer sites have no third party photo loading or stock imagery",()=>{
   const html=renderSite(sampleForTemplate(t.id));
   assert(!html.includes("images.unsplash.com"),t.id+" leaked sample photography");
   assert(!html.includes('<div class="study-shot '),t.id+" leaked sample elements");
-  assert(html.includes('class="editorial-illustration editorial-illustration--'+t.id),t.id+" missing stand-alone branded artwork");
+  if(["terminal","monologue"].includes(t.id)){
+    assert(html.includes('hero-variant '+t.id+'-hero'),t.id+" missing designed text-first architecture");
+  }else{
+    assert(html.includes('class="editorial-illustration editorial-illustration--'+t.id),t.id+" missing stand-alone branded artwork");
+  }
  }
 });
 test("Customer images replace all sample and illustrative hero media",()=>{
