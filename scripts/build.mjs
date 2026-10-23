@@ -34,6 +34,8 @@ const files = [
   "contact.html",
   "contact.js",
   "inquiry-received.html",
+  "site-viewer.html",
+  "site-viewer.js",
 ];
 await rm("dist", { recursive: true, force: true });
 await mkdir("dist");
