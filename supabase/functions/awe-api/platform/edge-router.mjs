@@ -2,7 +2,7 @@ import {sandboxCustomerAllowed, sandboxOrderAllowed} from "../shared/sandbox-che
 import legacyApi from '../netlify/functions/api.mjs';
 import legacySite from '../netlify/functions/site.mjs';
 import webhook from '../netlify/functions/webhook.mjs';
-import {env, json, fail, user, isOwner, rows, insert, patch, owned, id, body, origin, originAllowed, rpc} from './backend.mjs';
+import {env, json, fail, user, isOwner, rows, insert, patch, owned, id, body, origin, originAllowed, rpc, liveCheckoutConfigured} from './backend.mjs';
 import {normalize, validate, customerOrder} from '../shared/model.mjs';
 import {renderSite} from '../shared/render.mjs';
 import {runJobs} from './production.mjs';
@@ -57,7 +57,7 @@ async function dispatch(req) {
   if(req.method==='OPTIONS') { origin(req); return new Response(null,{status:204}); }
   if(!['GET','HEAD','POST'].includes(req.method))fail('Method not allowed.',405);
   if(req.method==='POST') origin(req);
-  if(path==='health')return json({service:'awe-api',version:1,testPaymentsOnly:true});
+  if(path==='health')return json({service:'awe-api',version:1,testPaymentsOnly:!liveCheckoutConfigured()});
   if(path==='public/manifest' && req.method==='GET') {
     // No private drafts: only immutable owner-approved current public versions.
     return json(await approvedSiteManifest(rows),200,{'Cache-Control':'no-store'});
@@ -84,7 +84,7 @@ async function dispatch(req) {
       if(customer) {
         const tests=(await rows('awe_packages')).filter(p=>sandboxCustomerAllowed(p.data,customer,env()));
         catalog.packages.push(...tests.map(p=>({id:p.id,...p.data})));
-        if(tests.length)catalog.ordersEnabled=true;
+        if(tests.length){catalog.ordersEnabled=true;catalog.paymentMode='test';}
       }
     }
     return json(catalog);
@@ -118,7 +118,7 @@ async function dispatch(req) {
       const v=pkg?.data;
       const qaAllowed=sandboxOrderAllowed(v,u,o.id,env());
       if(v?.testOnly===true&&!qaAllowed)fail('This test package is not available for this project.',403);
-      if(env().ORDERS_ENABLED!=='true'&&!qaAllowed)fail('Orders are not open yet.',503);
+      if(!liveCheckoutConfigured()&&!qaAllowed)fail('Orders are not open yet.',503);
       if(!v?.enabled||!Number.isInteger(v.amount)||v.amount<=0||!v.hosting||!v.ownership||!v.revisions||!v.termsVersion)fail('This package is not ready.',503);
       if(b.consent!==true||b.termsVersion!==v.termsVersion)fail('Review the current package terms.');
       if(!(await rows('awe_templates',`id=eq.${data.template}&enabled=eq.true`)).length)fail('This template is unavailable.');
@@ -151,23 +151,26 @@ async function dispatch(req) {
     const settings=env();
     const packages=await rows('awe_packages');
     const enabledPackages=packages.filter(p=>
-      p.data?.enabled===true && Number.isInteger(p.data?.amount) &&
+      p.data?.enabled===true && p.data?.testOnly!==true && Number.isInteger(p.data?.amount) &&
       p.data.amount>0 && p.data.hosting && p.data.ownership &&
       p.data.revisions && p.data.termsVersion);
     const priorPayments=await rows('awe_payments','select=event_id&limit=1');
     return json({
-      mode:'test-only',
+      mode:liveCheckoutConfigured()?'live':'test-only',
       serverTestKeyPresent:typeof settings.STRIPE_SECRET_KEY==='string' &&
         settings.STRIPE_SECRET_KEY.startsWith('sk_test_'),
       webhookSigningSecretPresent:typeof settings.STRIPE_WEBHOOK_SECRET==='string' &&
         settings.STRIPE_WEBHOOK_SECRET.startsWith('whsec_'),
-      ordersEnabled:settings.ORDERS_ENABLED==='true',
+      ordersEnabled:liveCheckoutConfigured(),
+       liveActivationRequested:settings.LIVE_CHECKOUT_ENABLED==='true',
+       liveSecretKeyPresent:settings.STRIPE_LIVE_SECRET_KEY?.startsWith('sk_live_')===true,
+       liveWebhookSigningSecretPresent:settings.STRIPE_LIVE_WEBHOOK_SECRET?.startsWith('whsec_')===true,
       enabledPackages:enabledPackages.length,
       configuredOrigin:settings.SITE_ORIGIN || 'https://awe-digital.web.app',
       recordedPaymentExists:priorPayments.length>0,
       // Only Stripe Workbench can confirm the external destination is registered.
       externalWebhookVerified:false,
-      livePaymentsAllowed:false
+      livePaymentsAllowed:liveCheckoutConfigured() && enabledPackages.length>0
     });
   }
   if(p[0]==='admin'&&p[1]==='payments'&&req.method==='GET') {
