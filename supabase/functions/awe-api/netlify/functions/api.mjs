@@ -16,6 +16,7 @@ import {
   owned,
   origin,
   stripe,
+  liveCheckoutConfigured,
   json,
   body,
   cookie,
@@ -63,8 +64,9 @@ export default async function (req) {
         templates: templates.filter((t) => enabled.includes(t.id)),
         packages,
         accountsReady: ready(),
-        ordersEnabled: env().ORDERS_ENABLED === "true",
-        testMode: true,
+        ordersEnabled: liveCheckoutConfigured(),
+        testMode: !liveCheckoutConfigured(),
+        paymentMode: liveCheckoutConfigured() ? "live" : "closed",
         contact: env().PUBLIC_CONTACT_EMAIL || "",
       });
     }
@@ -131,7 +133,7 @@ export default async function (req) {
         ).map(customerOrder),
       );
     if (route === "orders" && method === "POST" && !key) {
-      if (env().ORDERS_ENABLED !== "true")
+      if (!liveCheckoutConfigured())
         fail("Orders are not open yet.", 503);
       const b = await body(req);
       const data = validate(b.input);
@@ -226,8 +228,8 @@ export default async function (req) {
       if (action === "checkout") {
         const qaAllowed = sandboxOrderAllowed(o.package_snapshot, u, o.id, env());
         if (o.package_snapshot?.testOnly === true && !qaAllowed) fail("This test checkout is not available.", 403);
-        if (env().ORDERS_ENABLED !== "true" && !qaAllowed) fail("Orders are not open yet.", 503);
-        const stripeClient = stripe(); // Check test-mode credentials before locking the order.
+        if (!liveCheckoutConfigured() && !qaAllowed) fail("Orders are not open yet.", 503);
+        const stripeClient = stripe(qaAllowed ? "test" : "live"); // Separate payment environments.
         if (o.payment !== "unpaid") fail("This order has already been paid.");
         if (o.stripe_session) {
           const previous = await stripeClient.checkout.sessions.retrieve(
@@ -288,7 +290,7 @@ export default async function (req) {
             success_url: `${env().SITE_ORIGIN}/account.html?order=${o.id}`,
             cancel_url: `${env().SITE_ORIGIN}/account.html?order=${o.id}`,
           },
-          { idempotencyKey: qaAllowed ? `checkout-qa-v2-${o.id}` : `checkout-${o.id}` },
+          { idempotencyKey: qaAllowed ? `checkout-qa-v2-${o.id}` : `checkout-live-${o.id}` },
         );
         if (!session?.id || !session?.url || session.status !== "open")
           fail("Stripe did not return an open checkout. Contact the studio.", 502);
