@@ -105,6 +105,95 @@ try{
   }
   await context.close();
  }
+
+ // Public AWE Express builder is exercised without signing in or placing an order.
+ // This verifies the real selector, preview width controls and color-picker path.
+ {
+  const context=await browser.newContext({viewport:{width:1366,height:900}});
+  const page=await context.newPage();
+  await page.route(/^https:\/\/(?!127\.0\.0\.1)/,route=>route.abort());
+  try{
+   await page.goto(base+"/order.html",{waitUntil:"domcontentloaded",timeout:20000});
+   await page.locator('[data-type="Creative portfolio"]').waitFor({timeout:12000});
+   await page.locator('[data-type="Creative portfolio"]').click();
+   await page.locator("#next").click();
+   await page.locator('[data-template="folio"]').waitFor({timeout:10000});
+   const choices=await page.locator("[data-template]").count();
+   if(choices!==20)failures.push("Builder: "+choices+" template choices rather than 20");
+   await page.locator('[data-template="folio"]').click();
+   await page.locator("#theater-mobile").click();
+   if(!await page.locator(".experience-theater").evaluate(el=>el.classList.contains("is-mobile")))
+    failures.push("Builder: MOBILE theater button did not switch layout");
+   await page.locator("#theater-desktop").click();
+   if(await page.locator(".experience-theater").evaluate(el=>el.classList.contains("is-mobile")))
+    failures.push("Builder: DESKTOP theater button did not restore layout");
+   await page.waitForFunction(()=>document.querySelector("#theater-frame")?.getAttribute("srcdoc")?.includes("folio-hero"),
+    {timeout:15000}).catch(()=>failures.push("Builder: selected Folio preview did not render"));
+   await page.locator("#next").click();
+   await page.locator('input[name="primary"]').waitFor({timeout:6000});
+   await page.locator('input[name="primary"]').fill("#b33392");
+   await page.locator('input[name="secondary"]').fill("#cfd94a");
+   const markup=await page.locator("#step iframe").evaluate(el=>el.getAttribute("srcdoc"));
+   if(!markup?.includes("--accent:#b33392;--secondary:#cfd94a"))
+    failures.push("Builder: selected palette did not propagate into preview HTML");
+   if(!markup?.includes("folio-hero"))
+    failures.push("Builder: selected template was lost in preview");
+   await page.locator("#narrow").click();
+   if(await page.locator("#step iframe").evaluate(el=>el.style.width)!=="320px")
+    failures.push("Builder: MOBILE preview button did not set narrow width");
+   await page.locator("#wide").click();
+   if(await page.locator("#step iframe").evaluate(el=>el.style.width)!=="100%")
+    failures.push("Builder: DESKTOP preview button did not restore full width");
+   await page.screenshot({path:output+"/builder-style-preview.png",fullPage:false,animations:"disabled"});
+  }catch(e){failures.push("Builder interaction: "+String(e.message).slice(0,180));}
+  await context.close();
+ }
+ // Preserve an authentic before/after baseline for three creative exemplars.
+ // This is a public production snapshot, not a pre-existing screenshot fabricated
+ // from the new designs. If production cannot be reached, report that limitation.
+ const comparisons=[];
+ for(const id of ["folio","signal","ledger"]){
+  for(const w of [320,375,1366]){
+   const h=w>=1000?900:812;
+   const context=await browser.newContext({viewport:{width:w,height:h},
+    isMobile:w<500,hasTouch:w<500,reducedMotion:"reduce"});
+   const page=await context.newPage();
+   try{
+    const existing=await page.goto("https://aweconcepts.com/templates/"+id+".html",
+     {waitUntil:"domcontentloaded",timeout:12000});
+    if(existing?.status()!==200)throw Error("production HTTP "+existing?.status());
+    await page.locator(".hero").screenshot({path:output+"/BEFORE-"+id+"-"+w+".png",
+     animations:"disabled",timeout:8000});
+    const old=output+"/BEFORE-"+id+"-"+w+".png";
+    await page.goto(base+"/templates/"+id+".html",{waitUntil:"domcontentloaded",timeout:12000});
+    const current=output+"/AFTER-"+id+"-"+w+".png";
+    await page.locator(".hero").screenshot({path:current,animations:"disabled",timeout:8000});
+    const left=await sharp(old).resize(620,410,{fit:"contain",background:"#171a1f"}).png().toBuffer();
+    const right=await sharp(current).resize(620,410,{fit:"contain",background:"#171a1f"}).png().toBuffer();
+    await sharp({create:{width:1272,height:460,channels:4,background:"#f9f7f3"}})
+     .composite([{input:left,left:8,top:42},{input:right,left:644,top:42},
+      {input:Buffer.from('<svg width="1260" height="38"><text x="10" y="28" font-family="Arial" font-size="21">BEFORE — live production</text><text x="648" y="28" font-family="Arial" font-size="21">AFTER — pull request</text></svg>'),left:6,top:0}])
+     .png().toFile(output+"/COMPARE-"+id+"-"+w+".png");
+    comparisons.push({template:id,width:w,baseline:"https://aweconcepts.com/templates/"+id+".html"});
+   }catch(e){console.warn("BEFORE_CAPTURE_UNAVAILABLE",id,w,String(e.message).slice(0,180));}
+   await context.close();
+  }
+ }
+ await writeFile(output+"/comparisons.json",JSON.stringify({capturedAt:new Date().toISOString(),comparisons},null,2));
+ // Brief motion capture under normal animation preferences (never reduced-motion).
+ try{
+  const ctx=await browser.newContext({viewport:{width:960,height:620},
+   reducedMotion:"no-preference",recordVideo:{dir:output,size:{width:960,height:620}}});
+  const motion=await ctx.newPage();
+  await motion.goto(base+"/templates/signal.html",{waitUntil:"domcontentloaded",timeout:12000});
+  await motion.waitForTimeout(800);
+  await motion.locator("#work").scrollIntoViewIfNeeded();
+  await motion.waitForTimeout(1100);
+  await motion.locator("#contact").scrollIntoViewIfNeeded();
+  await motion.waitForTimeout(900);
+  await motion.close();
+  await ctx.close();
+ }catch(e){console.warn("MOTION_CAPTURE_UNAVAILABLE",String(e.message).slice(0,180));}
  await contactSheet(375);
  await contactSheet(1366);
  await writeFile(output+"/results.json",JSON.stringify({failures,results},null,2));
