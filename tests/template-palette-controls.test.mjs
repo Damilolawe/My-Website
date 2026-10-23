@@ -64,3 +64,11 @@ test("customer preview passes the live picker selections into the exact producti
   assert(production.includes("+ shellCSS + paletteCSS +"));
   assert.equal(edge,await file("shared/theme-palette.mjs"),"Production Edge and browser must use identical palette logic");
 });
+
+test("palette overrides never escape their active template", () => {
+  for (const { id } of templates) {
+    assert(paletteCSS.includes("body." + id + " .hero .hero-copy h1,body." + id + " .hero .hero-label,body." + id + " .hero .hero-intro"));
+  }
+  assert(!paletteCSS.includes(",.hero .hero-label"));
+  assert(!paletteCSS.includes(",.hero .hero-intro"));
+});
