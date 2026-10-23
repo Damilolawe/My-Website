@@ -47,3 +47,17 @@ test("Checkout never uses browser-supplied price and requires test credentials",
  assert(checkout.indexOf('const stripeClient = stripe();') < checkout.indexOf('checkout_at: new Date()'),"Stripe config must be checked before the project is locked");
  assert(checkout.includes('stripeClient.checkout.sessions.create('));
 });
+
+test("Owner checkout readiness queries the actual payment event key",async()=>{
+ const api=await source("supabase/functions/awe-api/platform/edge-router.mjs");
+ const schema=await source("supabase/migrations/20261022024259_awe_platform.sql");
+ const start=api.indexOf("if(path==='admin/checkout-readiness'");
+ const end=api.indexOf("if(p[0]==='admin'&&p[1]==='payments'",start);
+ assert(start>=0&&end>start);
+ const readiness=api.slice(start,end);
+ assert(readiness.includes("rows('awe_payments','select=event_id&limit=1')"));
+ assert(!readiness.includes("rows('awe_payments','select=id&limit=1')"));
+ assert(schema.includes("create table public.awe_payments("));
+ assert(schema.includes("event_id text primary key"));
+ assert(readiness.includes("recordedPaymentExists:priorPayments.length>0"));
+});
