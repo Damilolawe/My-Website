@@ -41,3 +41,56 @@
   .hero-description{max-width:100%}
   .hero-scroll{display:none}
 }
+
+/* Mobile hero fit — size the showreel by its content, not by a fixed ratio.
+   Its controls previously spilled below the frame and collided with the
+   "scroll to see" footer on narrow iPhone screens. */
+@media (max-width:960px){
+  .hero-art{
+    height:auto!important;
+    aspect-ratio:auto!important;
+    min-height:0!important;
+    overflow:visible!important;
+    margin-bottom:0!important;
+  }
+  .hero-art .awe-hero-showreel{
+    position:relative!important;
+    inset:auto!important;
+    width:100%;
+    min-width:0;
+    height:auto;
+    transform:none!important;
+  }
+  .hero-art .showreel-deck{
+    flex:none;
+    height:clamp(325px,58vw,490px);
+    min-height:0;
+  }
+  .hero-art .showreel-controls{
+    position:relative;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    min-height:48px;
+    padding-bottom:3px;
+  }
+  .hero-footer.page-width{
+    margin-top:30px!important;
+    padding-block:16px 22px;
+    border-top:1px solid rgba(217,252,62,.24);
+    position:relative!important;
+    inset:auto!important;
+    min-height:54px;
+    align-items:center;
+  }
+}
+@media (max-width:540px){
+  .hero-art .showreel-deck{height:clamp(315px,100vw,450px)}
+  .hero-art .awe-hero-showreel{padding:10px}
+  .hero-art .showreel-controls{min-height:56px;row-gap:12px}
+  .hero-art .showreel-dots{min-width:75px}
+  .hero-footer.page-width{margin-top:33px!important;gap:15px}
+  .hero-footer .mono{font-size:10px;line-height:1.6}
+}

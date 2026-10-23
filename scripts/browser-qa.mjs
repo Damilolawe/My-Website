@@ -93,6 +93,20 @@ try {
       assert.equal(await selection.getAttribute("aria-pressed"),"true","Selected design must update state: "+world);
     }
   }
+  if(size.width<=768){
+    const heroFit=await page.evaluate(()=>{
+      const q=s=>document.querySelector(s)?.getBoundingClientRect();
+      const controls=q(".hero-art .showreel-controls"),footer=q(".hero-footer"),art=q(".hero-art"),deck=q(".showreel-deck");
+      return {controlsBottom:controls?.bottom,footerTop:footer?.top,artBottom:art?.bottom,deckHeight:deck?.height};
+    });
+    if(heroFit.footerTop===undefined||heroFit.controlsBottom===undefined)
+      failures.push(size.name+": missing showreel controls or footer");
+    else if(heroFit.footerTop-heroFit.controlsBottom<20)
+      failures.push(size.name+": showreel/footer collision "+Math.round(heroFit.footerTop-heroFit.controlsBottom)+"px clearance");
+    if(heroFit.artBottom!==undefined&&heroFit.controlsBottom>heroFit.artBottom+1)
+      failures.push(size.name+": showreel controls overflow outside hero art");
+    console.log("MOBILE_HERO_CLEARANCE",size.name,JSON.stringify(heroFit));
+  }
   await page.screenshot({path:"qa-browser-artifacts/"+size.name+"-homepage.png",fullPage:false});
   await testPage(page,origin+"/order.html",size.name+" builder",{waitMs:300});
   await testPage(page,origin+"/account.html",size.name+" account",{waitMs:250});
