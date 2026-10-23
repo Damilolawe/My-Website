@@ -1,7 +1,10 @@
 // Three.js is loaded only for the decorative hero; essential UI is in script.js.
 const canvas = document.querySelector('#sculpture');
 const host = document.querySelector('#hero-art');
-if (canvas && host) {
+// On mobile Safari, WebGL is decorative but may be restored under GPU/memory
+// pressure. Keep the CSS showreel without allocating any mobile 3D context.
+const mobileOrReduced = matchMedia('(max-width: 900px), (pointer: coarse), (prefers-reduced-motion: reduce)').matches;
+if (canvas && host && !mobileOrReduced) {
   try {
     const context=canvas.getContext('webgl2',{alpha:true,antialias:window.devicePixelRatio<2,powerPreference:'low-power'});
     if(!context)throw new Error('Use CPU artwork fallback');
@@ -43,7 +46,9 @@ if (canvas && host) {
     document.addEventListener('visibilitychange',sync);
     document.addEventListener('awe:motion',event=>{paused=event.detail.paused;sync();});
     canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();visible=false;if(frame)cancelAnimationFrame(frame);host.classList.remove('ready');});
-    canvas.addEventListener('webglcontextrestored',()=>location.reload());
+    // Three.js handles context recovery. Reloading the document here caused
+    // a visible jump to the top on browsers that reclaimed WebGL resources.
+    canvas.addEventListener('webglcontextrestored',()=>{visible=true;sync();host.classList.add('ready');});
     render(0);host.classList.add('ready');
   } catch { drawFallback(); }
 }
