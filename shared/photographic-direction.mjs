@@ -23,9 +23,9 @@ const themes = Object.freeze({
     "motto": "OBJECT / SPACE"
   },
   "afterhours": {
-    "photo": "photo-1774016591378-925354a456ee",
+    "photo": "photo-1759503076789-f35229bf5123",
     "gallery": "photo-1771072428050-1492abb58f4a",
-    "credit": "Cemrecan Yurtman",
+    "credit": "Rizky Sabriansyah",
     "motto": "A FILM BY / YOU"
   },
   "signal": {
