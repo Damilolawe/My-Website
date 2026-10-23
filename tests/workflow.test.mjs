@@ -417,7 +417,7 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
         );
       },
     );
-    await t.test("approved export is owner-gated and contains portable assets",async()=>{assert.equal((await request(`orders/${oid}/export`)).status,403);const r=await request(`admin/orders/${oid}/export`,{actor:'owner'});assert.equal(r.status,200);const files=unzipSync(new Uint8Array(await r.arrayBuffer()));assert(files['index.html']);assert(files['assets/'+aid+'.webp']);assert(!strFromU8(files['index.html']).includes('/api/assets/'));});
+    await t.test("approved export is owner-gated and contains portable assets",async()=>{assert.equal((await request(`orders/${oid}/export`)).status,403);const r=await request(`admin/orders/${oid}/export`,{actor:'owner'});assert.equal(r.status,200);const files=unzipSync(new Uint8Array(await r.arrayBuffer()));assert(files['index.html']);assert(files['assets/'+aid+'.jpg']);assert(!strFromU8(files['index.html']).includes('/api/assets/'));});
     await t.test(
       "email failure is retained and retry records successful acceptance",
       async () => {
