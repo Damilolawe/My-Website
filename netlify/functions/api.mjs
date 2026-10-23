@@ -287,7 +287,7 @@ export default async function (req) {
             success_url: `${env().SITE_ORIGIN}/account.html?order=${o.id}`,
             cancel_url: `${env().SITE_ORIGIN}/account.html?order=${o.id}`,
           },
-          { idempotencyKey: `checkout-${o.id}` },
+          { idempotencyKey: qaAllowed ? `checkout-qa-v2-${o.id}` : `checkout-${o.id}` },
         );
         if (!session?.id || !session?.url || session.status !== "open")
           fail("Stripe did not return an open checkout. Contact the studio.", 502);
