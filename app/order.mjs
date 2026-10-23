@@ -66,7 +66,13 @@ function draw() {
     el.querySelectorAll("[data-type]").forEach(
       (b) =>
         (b.onclick = () => {
-          input.type = b.datase  if (step === 1) {
+          input.type = b.dataset.type;
+          input.design.sections = sampleForTemplate(input.template,input.type).design.sections;
+          draw();
+        }),
+    );
+  }
+  if (step === 1) {
     const active = templates.find((t) => t.id === input.template) || templates[0];
     const offered = [...templates].sort((a,b) => Number(recommendedFor(b,input.type)) - Number(recommendedFor(a,input.type)));
     const demoPath = (id) => "/templates/" + typeSlugs[input.type] + "/" + encodeURIComponent(id) + ".html";
@@ -154,12 +160,6 @@ function draw() {
     });
     syncFrameSize();
     loadTemplate(active.id);
-  }
-=== "afterhours" ? "dark" : "light";
-          input.design.font = t.id === "folio" ? "serif" : "sans";
-          draw();
-        }),
-    );
   }
   if (step === 2) {
     el.innerHTML = `<h2>Give it your signature.</h2><div class="split"><form id="design" class="panel"><div class="field-row"><label class="field">Primary color<input name="primary" type="color" value="${input.design.primary}"></label><label class="field">Secondary color<input name="secondary" type="color" value="${input.design.secondary}"></label></div><p class="muted">Your primary color updates the hero, main accents, and buttons. Your secondary color changes the backgrounds, navigation, cards, and footer. Watch the sample preview update as you choose.</p>${select("Typography", "font", ["sans", "serif", "mono"], input.design.font)}${select("Appearance", "appearance", ["light", "dark"], input.design.appearance)}${select("Layout", "layout", ["stacked", "split"], input.design.layout)}${select("Navigation", "navigation", ["full", "compact"], input.design.navigation)}${select("Motion", "animation", ["none", "subtle", "expressive"], input.design.animation)}${select("Hero alignment", "heroAlignment", ["left", "center", "right"], input.design.heroAlignment)}${select("Page spacing", "density", ["airy", "balanced", "compact"], input.design.density)}${select("Corner style", "corners", ["sharp", "soft", "round"], input.design.corners)}<p class="field">Website sections</p><div class="checks">${sections.map((s) => `<label><input type="checkbox" name="sections" value="${s}" ${input.design.sections.includes(s) ? "checked" : ""}> ${s}</label>`).join("")}</div>${field("Anything else in mind?", "preferences", input.preferences, "textarea")}</form><div class="preview-shell"><div class="preview-top"><span>SAMPLE CONFIGURATION</span><div><button id="wide" aria-label="Desktop preview">DESKTOP</button><button id="narrow" aria-label="Mobile preview">MOBILE</button></div></div><iframe title="Fictional template configuration preview" sandbox=""></iframe><p class="muted">This is sample content. Your personalized site is reviewed privately before delivery.</p></div></div>`;
