@@ -34,12 +34,13 @@ test("owner dashboard uses authenticated API and escapes all user text",async()=
   assert(src.includes('sandbox=""'));
   assert(!src.includes('src="/api/admin/orders/'));
 });
-test("existing Stripe checks and customer roles remain unchanged in Edge snapshot",async()=>{
+test("Stripe live gate and owner authorization remain enforced in Edge snapshot",async()=>{
   const backend=await readFile(repoPath("supabase/functions/awe-api/platform/backend.mjs"),"utf8");
   const legacy=await readFile(repoPath("supabase/functions/awe-api/netlify/functions/api.mjs"),"utf8");
   assert(backend.includes("await rows(\"awe_owner\""));
   assert(backend.includes("return false"));
   assert(legacy.includes("const admin = await isOwner(u)"));
-  assert(legacy.includes('env().ORDERS_ENABLED !== "true"'));
+  assert(legacy.includes("!liveCheckoutConfigured()"));
+  assert(backend.includes("STRIPE_LIVE_SECRET_KEY"));
   assert(backend.includes("sk_test_"));
 });
