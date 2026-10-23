@@ -1,4 +1,5 @@
 import { AWE_SUPABASE_URL, AWE_SUPABASE_PUBLISHABLE_KEY, AWE_EDGE_FUNCTION } from "./service-config.mjs";
+import { prepareImageUpload } from "./image-upload.mjs";
 
 const STORAGE_KEY = "awe:auth-session:v1";
 const PUBLIC_ROUTES = new Set(["catalog", "health"]);
@@ -145,6 +146,8 @@ export function createAweClient({
       error.status = 401;
       throw error;
     }
+    if (payload instanceof FormData && route.endsWith("/upload"))
+      await prepareImageUpload(payload);
     const uri = "/functions/v1/" + functionName + "/" + route;
     let response;
     try {
