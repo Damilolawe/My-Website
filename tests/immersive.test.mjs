@@ -62,7 +62,7 @@ test("motion-free demo variants and contrast tokens are generated safely",async(
   const builder=await readFile("scripts/build.mjs","utf8");
   const stage=await readFile("showcase.js","utf8");
   assert(builder.includes("--still.html"));
-  assert(stage.includes("AWE_MOTION_PAUSED"));
+  assert(stage.includes("const still=false;"));
   assert(stage.includes('document.addEventListener("awe:motion"'));
   const index=sampleForTemplate("index");
   const light=renderSite({...index,design:{...index.design,primary:"#eeeeee"}});

@@ -12,6 +12,7 @@ const files = [
   "cinema.js",
   "awe-relaunch.css",
   "hero-layout-fix.css",
+  "studio-reimagined.css",
   "why-awe.html",
   "why-awe.css",
   "why-awe.js",

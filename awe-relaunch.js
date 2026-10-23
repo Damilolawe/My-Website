@@ -8,7 +8,6 @@
   const anchor=show.querySelector("#reel-explore");
   const count=show.querySelector("#reel-index");
   const ids=["/templates/actor/afterhours.html","/templates/student/terminal.html","/templates/business/bloom.html"];
-  const reduced=window.matchMedia("(prefers-reduced-motion: reduce)");
   const compactTouch=window.matchMedia("(max-width: 900px), (pointer: coarse)");
   let index=0, interval=null,observed=false;
   function choose(nextIndex){
@@ -25,7 +24,7 @@
   }
   function shouldPlay(){
     // Stop automatic deck changes during mobile scrolling; buttons still work.
-    return observed&&!document.hidden&&!reduced.matches&&!compactTouch.matches&&!window.AWE_MOTION_PAUSED;
+    return observed&&!document.hidden&&!compactTouch.matches;
   }
   function reset(){
     if(interval!==null){clearInterval(interval);interval=null;}
@@ -41,7 +40,6 @@
   show.addEventListener("focusout",reset);
   document.addEventListener("visibilitychange",reset);
   document.addEventListener("awe:motion",reset);
-  reduced.addEventListener?.("change",reset);
   if("IntersectionObserver" in window){
     const watcher=new IntersectionObserver(entries=>{observed=entries[0]?.isIntersecting??false;reset();},{threshold:.25});
     watcher.observe(show);
@@ -51,7 +49,7 @@
     let context=null;
     const startMotion=()=>{
       context?.revert();context=null;
-      if(window.AWE_MOTION_PAUSED||reduced.matches||compactTouch.matches)return;
+      if(compactTouch.matches)return;
       window.gsap.registerPlugin(window.ScrollTrigger);
       context=window.gsap.context(()=>{
       if(document.querySelector(".awe-impact-statement h2 span") && document.querySelector(".awe-impact-statement"))window.gsap.from(".awe-impact-statement h2 span",{

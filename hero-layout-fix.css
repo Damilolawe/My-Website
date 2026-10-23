@@ -107,13 +107,18 @@
     transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);
   }
 }
-.motion-resume-banner{
-  position:fixed;z-index:120;top:90px;right:clamp(15px,3vw,44px);
-  padding:12px 17px;border:1px solid #0e140c;background:#d9fc46;color:#101709;
-  font:800 11px/1.35 ui-monospace,monospace;letter-spacing:.06em;
-  box-shadow:0 12px 32px #0007;cursor:pointer;
+
+/* Requested desktop animation showcase; phone scrolling stays lightweight. */
+@media(min-width:961px){
+ html.awe-motion-on.motion-ready .reveal:not(.in-view){
+ opacity:0;transform:translate3d(0,32px,0);
+ transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1)}
+ html.awe-motion-on.motion-ready .reveal.in-view{
+ opacity:1;transform:translate3d(0,0,0);
+ transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1)}
+ .hero:before{animation:cinema-glow 14s ease-in-out infinite alternate!important}
+ .impact-rings{animation:ring-spin 24s linear infinite!important}
+ .reel-cursor{animation:reel-blink 1s steps(1) infinite!important}
+ .worlds-accent{animation:worlds-orbit 18s linear infinite!important}
+ .reel-boutique-petal{animation:petal-turn 20s linear infinite!important}
 }
-.motion-resume-banner[hidden]{display:none!important}
-.motion-resume-banner:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.motion-resume-banner:disabled{cursor:default;background:#e1e0d8;color:#333}
-@media(max-width:900px){.motion-resume-banner{top:82px;right:12px;font-size:10px}}

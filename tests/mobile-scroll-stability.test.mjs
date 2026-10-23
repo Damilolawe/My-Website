@@ -12,9 +12,9 @@ test("Home never reloads on WebGL recovery and mobile skips decorative GPU rende
 });
 test("Mobile avoids automatic carousel churn and scroll-triggered animation refresh",async()=>{
  const [main,hero,transform]=await Promise.all(["script.js","awe-relaunch.js","cinema.js"].map(read));
- assert(main.includes("!compactTouch.matches && window.gsap"));
- assert(hero.includes("!compactTouch.matches&&!window.AWE_MOTION_PAUSED"));
- assert(hero.includes("reduced.matches||compactTouch.matches"));
+ assert(main.includes("if(compactTouch.matches||!window.gsap||!window.ScrollTrigger)return;"));
+ assert(hero.includes("!compactTouch.matches;"));
+ assert(hero.includes("if(compactTouch.matches)return;"));
  assert(transform.includes("(pointer:coarse)"));
 });
 test("Mobile gallery preview is deferred until gallery approaches",async()=>{

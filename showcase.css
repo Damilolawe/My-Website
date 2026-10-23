@@ -52,3 +52,9 @@ html.motion-paused .worlds-choice,html.motion-paused .worlds-view iframe{transit
 
 /* Large decorative accent rendered as an SVG mask, never an emoji glyph. */
 .worlds-accent::after{content:"";width:40px;height:40px;background:#dcfc46;display:block;-webkit-mask:url("/assets/icons/asterisk.svg") center/contain no-repeat;mask:url("/assets/icons/asterisk.svg") center/contain no-repeat}
+
+/* AWE-QA-005 — ornament stays behind the mobile/desktop switch */
+.worlds-accent{z-index:0;top:110px;right:1.5%;opacity:.5;pointer-events:none}
+.worlds-screen{z-index:2;isolation:isolate}.worlds-toolbar,.worlds-device-actions{position:relative;z-index:5}
+.worlds-device-actions{padding:2px;background:#191d20;isolation:isolate}
+.worlds-device-actions button{position:relative;z-index:1;min-height:34px;min-width:64px}

@@ -84,7 +84,8 @@ test("homepage genuinely includes interaction, working links and demo module ass
   assert(html.includes('id="awe-impact-title"'));
   assert(html.includes('data-reel-select="2"'));
   assert(js.includes('addEventListener("click"'));
-  assert(js.includes('prefers-reduced-motion'));
+  assert(js.includes('compactTouch.matches'));
+  assert(!js.includes('reduced.matches'));
   assert(js.includes("/templates/student/terminal.html"));
   assert(styles.includes(".reel-console"));
   assert(styles.includes(".reel-cinema"));

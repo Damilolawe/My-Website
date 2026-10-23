@@ -38,7 +38,7 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
     rail.querySelectorAll("[data-world]").forEach(btn=>btn.setAttribute("aria-pressed",String(btn.dataset.world===id)));
     name.textContent=savedNames.get(id);
     full.href=templatePath(id);screen.dataset.world=id;
-    const still=!!window.AWE_MOTION_PAUSED || matchMedia("(prefers-reduced-motion:reduce)").matches;
+    const still=false; // Desktop previews retain authored motion.
     screen.classList.toggle("is-changing",!still);
     frame.title="Fictional "+savedNames.get(id)+" website for "+purpose;
     if(!previewReady)return;
