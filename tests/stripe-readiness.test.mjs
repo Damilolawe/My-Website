@@ -43,7 +43,9 @@ test("Checkout never uses browser-supplied price and requires test credentials",
  assert(legacy.includes("const p = o.package_snapshot"));
  assert(legacy.includes('env().ORDERS_ENABLED !== "true"'));
  const checkout = legacy.slice(legacy.indexOf('if (action === "checkout")'),legacy.indexOf('if (action === "revision")'));
- assert(checkout.includes('if (env().ORDERS_ENABLED !== "true")'),"Disabling orders must also block already-created unpaid orders");
+ assert(checkout.includes('env().ORDERS_ENABLED !== "true" && !qaAllowed'),"Closed ordering only permits the narrowly assigned sandbox test");
+ assert(checkout.includes('sandboxOrderAllowed(o.package_snapshot, u, o.id, env())'));
+ assert(checkout.includes('o.package_snapshot?.testOnly === true && !qaAllowed'));
  assert(checkout.indexOf('const stripeClient = stripe();') < checkout.indexOf('checkout_at: new Date()'),"Stripe config must be checked before the project is locked");
  assert(checkout.includes('stripeClient.checkout.sessions.create('));
 });
@@ -61,3 +63,4 @@ test("Owner checkout readiness queries the actual payment event key",async()=>{
  assert(schema.includes("event_id text primary key"));
  assert(readiness.includes("recordedPaymentExists:priorPayments.length>0"));
 });
+

@@ -1,3 +1,4 @@
+import {sandboxCustomerAllowed, sandboxOrderAllowed} from "../shared/sandbox-checkout.mjs";
 import legacyApi from '../netlify/functions/api.mjs';
 import legacySite from '../netlify/functions/site.mjs';
 import webhook from '../netlify/functions/webhook.mjs';
@@ -71,7 +72,23 @@ async function dispatch(req) {
   }
   // Supabase Auth handles signup, passwordless recovery, refresh and revocation directly.
   if(path.startsWith('auth/'))fail('Use Supabase Auth for sign-in.',404);
-  if(path==='catalog')return legacyApi(relocate(req,'/api/catalog'));
+  if(path==='catalog') {
+    const catalogResponse=await legacyApi(relocate(req,'/api/catalog'));
+    if(!catalogResponse.ok)return catalogResponse;
+    const catalog=await catalogResponse.json();
+    // The legacy public catalog never exposes test-only package records.
+    // Only a verified, assigned customer can see the short-lived QA offer.
+    if(req.headers.get('authorization')) {
+      let customer;
+      try { customer=await user(req); } catch(error) { if(error.status!==401)throw error; }
+      if(customer) {
+        const tests=(await rows('awe_packages')).filter(p=>sandboxCustomerAllowed(p.data,customer,env()));
+        catalog.packages.push(...tests.map(p=>({id:p.id,...p.data})));
+        if(tests.length)catalog.ordersEnabled=true;
+      }
+    }
+    return json(catalog);
+  }
   const u=await user(req);
   if(req.method==='POST') {
     const allowed=await rpc('awe_take_rate',{p_user:u.id,p_limit:90});
@@ -99,6 +116,9 @@ async function dispatch(req) {
       validate(data);
       const pkg=(await rows('awe_packages',`id=eq.${encodeURIComponent(b.packageId)}`))[0];
       const v=pkg?.data;
+      const qaAllowed=sandboxOrderAllowed(v,u,o.id,env());
+      if(v?.testOnly===true&&!qaAllowed)fail('This test package is not available for this project.',403);
+      if(env().ORDERS_ENABLED!=='true'&&!qaAllowed)fail('Orders are not open yet.',503);
       if(!v?.enabled||!Number.isInteger(v.amount)||v.amount<=0||!v.hosting||!v.ownership||!v.revisions||!v.termsVersion)fail('This package is not ready.',503);
       if(b.consent!==true||b.termsVersion!==v.termsVersion)fail('Review the current package terms.');
       if(!(await rows('awe_templates',`id=eq.${data.template}&enabled=eq.true`)).length)fail('This template is unavailable.');
@@ -195,3 +215,4 @@ export default async function edge(req) {
   return cors(req,response);
 }
 export {bounded};
+

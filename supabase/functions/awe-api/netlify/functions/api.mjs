@@ -1,3 +1,4 @@
+import { sandboxOrderAllowed } from "../../shared/sandbox-checkout.mjs";
 import { checkoutReservationState, checkoutPackageIsValid } from "../../shared/checkout-recovery.mjs";
 import {
   env,
@@ -50,7 +51,7 @@ export default async function (req) {
       let packages = [],
         enabled = templates.map((t) => t.id);
       if (ready()) {
-        packages = (await rows("awe_packages")).map((p) => ({
+        packages = (await rows("awe_packages")).filter(p => p.data?.testOnly !== true).map((p) => ({
           id: p.id,
           ...p.data,
         }));
@@ -139,6 +140,7 @@ export default async function (req) {
       )[0];
       if (!pkg?.data.enabled) fail("This package is not available.");
       const p = pkg.data;
+      if (p.testOnly === true) fail("Test checkout is limited to its assigned saved draft.", 403);
       if (
         !Number.isInteger(p.amount) ||
         p.amount <= 0 ||
@@ -222,7 +224,9 @@ export default async function (req) {
         return json({ id: aid, mime });
       }
       if (action === "checkout") {
-        if (env().ORDERS_ENABLED !== "true") fail("Orders are not open yet.", 503);
+        const qaAllowed = sandboxOrderAllowed(o.package_snapshot, u, o.id, env());
+        if (o.package_snapshot?.testOnly === true && !qaAllowed) fail("This test checkout is not available.", 403);
+        if (env().ORDERS_ENABLED !== "true" && !qaAllowed) fail("Orders are not open yet.", 503);
         const stripeClient = stripe(); // Check test-mode credentials before locking the order.
         if (o.payment !== "unpaid") fail("This order has already been paid.");
         if (o.stripe_session) {
@@ -560,4 +564,5 @@ export const config = {
     windowLimit: 90,
   },
 };
+
 
