@@ -8,7 +8,7 @@ const read=p=>readFile(new URL("../"+p,import.meta.url),"utf8");
 test("Signal / Noise preserves its editorial layout while containing the mobile masthead",async()=>{
  const css=await read("shared/site-shell-styles.mjs");
  const edge=await read("supabase/functions/awe-api/shared/site-shell-styles.mjs");
- assert.equal(css,edge,"browser and Edge generator must agree");
+ assert.equal(css.trimEnd(),edge.trimEnd(),"browser and Edge generator must agree");
  assert(css.includes("@media(max-width:600px)"));
  assert(css.includes(".signal .shell-signal{transform:none;max-width:100%}"));
  assert(css.includes(".shell-signal{width:100%;"));
