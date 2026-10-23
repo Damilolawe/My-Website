@@ -1,4 +1,5 @@
 import { $, api, report, authForm, money } from "./common.mjs";
+import { aweClient } from "./service-client.mjs";
 import { esc } from "/shared/model.mjs";
 const app = $("#app");
 async function load() {
@@ -46,8 +47,23 @@ async function load() {
         btn.disabled = false;
       }
     };
-  } catch {
-    authForm(app, load);
+  } catch (error) {
+    if (error?.status === 401 || !aweClient.session()) {
+      authForm(app, load);
+      return;
+    }
+    // A backend failure must not restart an already successful email login.
+    app.innerHTML = '<section class="panel" role="alert"><h2>Your email is verified.</h2>' +
+      '<p>Your account is still signed in, but the studio service could not load.</p>' +
+      '<p id="account-error"></p><div class="toolbar">' +
+      '<button class="btn" id="account-retry">Retry loading</button>' +
+      '<button class="btn secondary" id="account-signout">Sign out</button></div></section>';
+    $("#account-error").textContent = String(error?.message || "Account service unavailable.");
+    $("#account-retry").onclick = load;
+    $("#account-signout").onclick = async () => {
+      await api("auth/logout", {});
+      authForm(app, load);
+    };
   }
 }
 load();

@@ -1,4 +1,4 @@
-import { Image } from 'imagescript';
+// Only load image codec for upload requests, not owner/account API initialization.
 import { Buffer } from 'node:buffer';
 import { fail } from './backend.mjs';
 // Images are re-encoded without input metadata. WebP is converted to PNG by the client.
@@ -20,6 +20,7 @@ export async function inspectUpload(file) {
           if(len<2)throw Error();if([0xc0,0xc1,0xc2].includes(marker)){height=bytes.readUInt16BE(i+3);width=bytes.readUInt16BE(i+5);break;}i+=len;}
       }
       if(!width||!height||width*height>4000000)fail('Resize your image to at most 4 megapixels before uploading.');
+      const { Image } = await import('imagescript');
       const image=await Image.decode(bytes);
       if(Math.max(width,height)>1600)image.resize(Math.round(width*1600/Math.max(width,height)),Math.round(height*1600/Math.max(width,height)));
       bytes=Buffer.from(await image.encodeJPEG(82));mime='image/jpeg';

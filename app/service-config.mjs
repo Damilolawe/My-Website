@@ -1,5 +1,5 @@
 /**
- * AWE / DIGITAL production client endpoints. This is intentionally public data.
+ * Awe Concepts production client endpoints. This is intentionally public data.
  * The sb_publishable_ key is safe in the browser; NEVER put a secret/service_role
  * key in this module, the Firebase output, or any GitHub-tracked client asset.
  */
