@@ -393,7 +393,7 @@ async function checkout() {
     location.assign(url.href);
   } finally {
     btn.disabled = false;
-    btn.textContent = checkoutLabel() + " ↗︎";
+    btn.textContent = catalog.paymentMode === "test" ? "Continue to test checkout ↗︎" : "Continue to secure checkout ↗︎";
   }
 }
 const isUuid=(value)=>/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/i.test(value||"");
