@@ -50,6 +50,6 @@ export function experienceInterlude(t,c) {
     '<div class="experience-track studio-index-inner">'+
     '<span class="studio-index-number" aria-hidden="true">'+e(eyebrow.slice(0,2))+'</span>'+
     '<div class="studio-index-message"><span class="studio-index-eyebrow">'+e(eyebrow)+'</span><strong>'+e(message)+'</strong><span class="studio-index-rule" aria-hidden="true"></span></div>'+
-    '<div class="studio-index-side"><span>'+safeName+'</span><span class="studio-index-glyph" aria-hidden="true">↗</span></div>'+
+    '<div class="studio-index-side"><span>'+safeName+'</span><span class="studio-index-glyph" aria-hidden="true">↗︎</span></div>'+
     '</div></aside>';
 }
