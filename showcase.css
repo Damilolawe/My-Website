@@ -40,7 +40,7 @@
 .worlds-cta{display:inline-flex;gap:25px;align-items:center;background:#dcfc46;color:#10130b;text-decoration:none;padding:17px 25px;font:800 12px Arial,sans-serif;white-space:nowrap;transition:transform .3s}
 .worlds-cta:hover{transform:translateY(-6px)}
 .worlds-accent{position:absolute;top:0;right:8%;width:240px;height:240px;border:1px solid #dcfc4644;border-radius:50%;pointer-events:none;animation:worlds-orbit 18s linear infinite}
-.worlds-accent:after{content:"✳︎";position:absolute;top:-25px;left:30px;color:#dcfc46;font-size:40px}
+.worlds-accent:after{content:"";position:absolute;top:-25px;left:30px;color:#dcfc46;font-size:40px}
 .worlds-decoration{position:absolute;bottom:0;right:-12%;font:900 clamp(150px,30vw,500px)/.8 Arial,sans-serif;color:#ffffff06;z-index:-1;letter-spacing:-.1em;pointer-events:none}
 @keyframes worlds-orbit{to{transform:rotate(360deg)}}
 .worlds-choice:focus-visible,.worlds-device-actions button:focus-visible,.worlds-cta:focus-visible,.worlds-open:focus-visible{outline:3px solid #dcfc46;outline-offset:4px}
