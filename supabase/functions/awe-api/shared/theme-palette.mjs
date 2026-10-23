@@ -49,7 +49,7 @@ const specials={
  signal:{'.shell-signal':'background:var(--accent);color:var(--on-accent);box-shadow:0 15px var(--secondary)'},
  daylight:{'.shell-daylight':'background:var(--secondary);color:var(--on-secondary)','.daylight-hero::before':'background:var(--secondary)'}
 };
-const rule=(id,sel,css)=>'body.'+id+' '+sel+'{'+css+'}';
+const rule=(id,sel,css)=>sel.split(',').map(part=>'body.'+id+' '+part.trim()).join(',')+'{'+css+'}';
 export const paletteCSS=templates.map(id=>{
  const text=darkHeroes.has(id)?'#ffffff':accentHeroes.has(id)?'var(--on-accent)':softHeroes.has(id)?'var(--fg)':'var(--on-secondary)';
  return 'body.'+id+'{--bg:var(--palette-bg);--surface:var(--palette-surface)}'+
