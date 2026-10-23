@@ -15,7 +15,7 @@ test("Firebase serves an approved-site viewer without deploying private API func
   assert.equal(cfg.hosting.public, "dist");
   assert(!JSON.stringify(cfg.hosting.rewrites).includes("/api"));
   const csp = cfg.hosting.headers[0].headers.find(x=>x.key==="Content-Security-Policy").value;
-  assert(csp.includes("img-src 'self' data: https://hxxplkirfsewqsxodngv.supabase.co"));
+  assert(csp.includes("img-src 'self' data: blob: https://hxxplkirfsewqsxodngv.supabase.co"));
   assert(csp.includes("script-src 'self'"));
   const html = await read("dist/site-viewer.html");
   assert(html.includes('data-awe-public-viewer="v1"'));
