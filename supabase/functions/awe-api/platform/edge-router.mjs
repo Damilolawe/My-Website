@@ -5,6 +5,7 @@ import {env, json, fail, user, isOwner, rows, insert, patch, owned, id, body, or
 import {normalize, validate, customerOrder} from '../shared/model.mjs';
 import {renderSite} from '../shared/render.mjs';
 import {runJobs} from './production.mjs';
+import {approvedSiteManifest} from './public-manifest.mjs';
 
 // Continue verified checkout and owner-approved publication work after the
 // HTTP response. Supabase keeps the isolate alive for registered tasks.
@@ -55,6 +56,10 @@ async function dispatch(req) {
   if(!['GET','HEAD','POST'].includes(req.method))fail('Method not allowed.',405);
   if(req.method==='POST') origin(req);
   if(path==='health')return json({service:'awe-api',version:1,testPaymentsOnly:true});
+  if(path==='public/manifest' && req.method==='GET') {
+    // No private drafts: only immutable owner-approved current public versions.
+    return json(await approvedSiteManifest(rows),200,{'Cache-Control':'no-store'});
+  }
   if(path.startsWith('public/')) {
     const response=await legacySite(relocate(req,'/sites/'+path.slice(7)));
     if(response.ok && (response.headers.get('content-type')||'').includes('text/html')) {
