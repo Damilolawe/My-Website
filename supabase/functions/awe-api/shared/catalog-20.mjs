@@ -13,5 +13,6 @@ export const newTemplates = [
   {id:"foundry",name:"The Foundry",style:"Industrial service brand",tag:"The work speaks for itself.",color:"#e0a33c",recommended:["Small business"]},
   {id:"bloom",name:"Bloom House",style:"Organic lifestyle brand",tag:"Made to feel like you.",color:"#af7091",recommended:["Small business","Personal brand"]},
   {id:"ledger",name:"Ledger & Co.",style:"Modern consultancy",tag:"Business with a point of view.",color:"#3469b6",recommended:["Small business","Professional portfolio"]},
+  {id:"arcade",name:"Arcade Night",style:"Esports broadcast",tag:"Make every moment feel like an event.",color:"#c8ff3a",recommended:["Creative portfolio","Small business","Personal brand"]},
 ];
 

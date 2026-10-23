@@ -16,8 +16,8 @@ test("All 20 demos have distinct fictional identities in every purpose",()=>{
       headlines.add(sample.content.headline);
       assert(renderSite(sample,{sample:true}).includes('FICTIONAL TEMPLATE DEMO'));
     }
-    assert.equal(names.size,20);
-    assert.equal(headlines.size,20);
+    assert.equal(names.size,21);
+    assert.equal(headlines.size,21);
   }
 });
 test("Gallery theater maintains accurate device rendering and in-place template switching",async()=>{
@@ -38,3 +38,4 @@ test("Layout changes address the actual chapter markup rather than only dead car
   assert(exemplar.includes('.ledger .business-briefs .case-report'));
   assert(layout.includes('class="report-media"'));
 });
+

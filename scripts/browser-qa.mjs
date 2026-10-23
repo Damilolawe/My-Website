@@ -141,8 +141,8 @@ try {
     else if(msg.type()==="error")softWarnings.push(size.name+": "+msg.text().slice(0,160));
   });
   await testPage(page,origin+"/",size.name+" homepage",{waitMs:650});
-  assert.equal(await page.locator("#worlds-choices .worlds-choice").count(),20,
-    size.name+": 20 template selectors should be available");
+  assert.equal(await page.locator("#worlds-choices .worlds-choice").count(),templates.length,
+    size.name+": every template selector should be available");
   const menu=page.locator("#menu-toggle");
   if(await menu.isVisible()){
     await menu.click();
@@ -151,7 +151,7 @@ try {
     assert.equal(await menu.getAttribute("aria-expanded"),"false",size.name+": mobile menu did not close");
   }
   if(size.width===360) {
-    for(let i=0;i<20;i++){
+    for(let i=0;i<templates.length;i++){
       const selection=page.locator("#worlds-choices .worlds-choice").nth(i);
       const world=await selection.getAttribute("data-world");
       await selection.click();
@@ -354,3 +354,4 @@ if(failures.length){
  console.error("Browser QA findings:",JSON.stringify(failures,null,2));
  process.exitCode=1;
 }else console.log("Public responsive and gallery browser QA passed for all requested viewports.");
+

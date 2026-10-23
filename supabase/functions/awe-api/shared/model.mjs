@@ -104,7 +104,7 @@ export function normalize(input = {}) {
     template: t.id,
     design: {
       primary: /^#[0-9a-f]{6}$/i.test(d.primary) ? d.primary : t.color,
-      secondary: /^#[0-9a-f]{6}$/i.test(d.secondary) ? d.secondary : "#ece9e0",
+      secondary: /^#[0-9a-f]{6}$/i.test(d.secondary) ? d.secondary : t.id === "arcade" ? "#11120f" : "#ece9e0",
       font: ["sans", "serif", "mono"].includes(d.font) ? d.font : "sans",
       appearance: d.appearance === "dark" ? "dark" : "light",
       layout: d.layout === "split" ? "split" : "stacked",
@@ -221,7 +221,12 @@ const demoIdentities = {
   daylight: {name:"Sunday Studio",headline:"Good ideas grow here.",heroLabel:"Independent studio / Small business",
     bio:"A fictional creative service studio focused on good energy and memorable first impressions.",
     projects:[{title:"The Welcome Kit",description:"A sample branded customer experience.",url:""},{title:"The Good Edit",description:"A fictional creative campaign.",url:""}],
-    services:[{title:"Brand refresh",description:"A sample service for emerging businesses.",url:""},{title:"Creative consultation",description:"An example project-planning offering.",url:""}]}
+    services:[{title:"Brand refresh",description:"A sample service for emerging businesses.",url:""},{title:"Creative consultation",description:"An example project-planning offering.",url:""}]},
+  arcade: {name:"Nova Circuit",headline:"The arena is yours.",heroLabel:"Fictional esports event / Broadcast concept",
+    bio:"A fictional esports production concept for tournaments, launches, and the communities that show up for them.",
+    projects:[{title:"Opening Round",description:"A fictional tournament broadcast concept — no real event or results.",url:""},{title:"The Stage",description:"An imagined player introduction and live-show visual package.",url:""},{title:"Final Signal",description:"An illustrative event identity and social campaign.",url:""}],
+    services:[{title:"Event identity",description:"A sample visual system for a competitive event.",url:""},{title:"Broadcast design",description:"An illustrative scorecard and stream package.",url:""}],
+    skills:"Art direction / Event identity / Broadcast graphics"}
 };
 export const typeSlugs = {
   "Student résumé":"student","Professional portfolio":"professional",
@@ -235,7 +240,7 @@ export function recommendedFor(template, purpose) {
     "Actor / model":["afterhours","playbill","monologue","portraiture"],
     "Creative portfolio":["folio","still","contactsheet","atelier","museum","brutalist","signal"],
     "Personal brand":["nocturne","orbit","still","atelier","daylight"],
-    "Small business":["foundry","bloom","ledger","daylight"]
+    "Small business":["foundry","bloom","ledger","daylight","arcade"]
   };
   return (ids[purpose]||[]).includes(template.id) || (template.recommended||[]).includes(purpose);
 }
@@ -288,7 +293,7 @@ const originalByTemplate = {
   playbill:"Actor / model",monologue:"Actor / model",portraiture:"Actor / model",
   contactsheet:"Creative portfolio",atelier:"Creative portfolio",museum:"Creative portfolio",
   brutalist:"Creative portfolio",nocturne:"Personal brand",foundry:"Small business",
-  bloom:"Small business",ledger:"Small business"
+  bloom:"Small business",ledger:"Small business",arcade:"Creative portfolio"
 };
 /* Unique fictional gallery identities. Editable customer values are never replaced. */
 const galleryIdentities = {
@@ -311,7 +316,8 @@ const galleryIdentities = {
  nocturne:["Alex Noir","Velvet & Form","Consider every detail.","An understated impression."],
  foundry:["Drew Mercer","Northline Workshop","Made with purpose. Built to last.","Work with substance."],
  bloom:["Jamie Rose","Bloom & Branch","Good things take shape.","Care in every detail."],
- ledger:["Jordan Park","Everwell Partners","Clarity creates momentum.","Better decisions start here."]
+ ledger:["Jordan Park","Everwell Partners","Clarity creates momentum.","Better decisions start here."],
+ arcade:["Nova Circuit","Night Shift Arena","The arena is yours.","An imagined competitive broadcast."]
 };
 
 /* Editorial fictional content by architecture; customer-entered content remains untouched. */
@@ -349,10 +355,24 @@ export function sampleForTemplate(id,purpose){
     foundry:"Built on trust.",bloom:"Come as you are.",ledger:"Make every impression count."};
   if(unique) preview.headline=motif[t.id]||preview.headline;
   if(unique) preview.name=({atlas:"Kai Ellis",terminal:"Robin Code",orbit:"Cameron Vale",playbill:"Morgan Blake",monologue:"Skyler Hart",portraiture:"Taylor Monroe",contactsheet:"Ari Lens",atelier:"Sol Atelier",museum:"The New Archive",brutalist:"Rae Riot",nocturne:"Alex Noir",foundry:"Northline Workshop",bloom:"Bloom & Branch",ledger:"Everwell Partners"})[t.id]||preview.name;
+  if(t.id==="arcade" && purpose!==undefined){
+    const directions={
+      "Student résumé":["Ari Level","Build the next level.","An imagined student developer exploring games, accessibility and interface systems.",["Control Scheme","Match Point","Open Lobby"]],
+      "Professional portfolio":["Jordan Flux","Every launch deserves a stage.","A fictional product designer creating tools for competitive communities.",["Arena Interface","Event System","Player Journey"]],
+      "Actor / model":["Rae Knight","Own the spotlight.","An imagined host and performer presenting competitive events and creative broadcasts.",["Opening Sequence","Stage Presence","Broadcast Reel"]],
+      "Creative portfolio":["Nova Circuit","The arena is yours.","A fictional esports art direction studio making tournament identities and broadcast systems.",["Opening Round","The Stage","Final Signal"]],
+      "Personal brand":["Alex Voltage","Make your moment count.","A fictional creator sharing commentary, projects and competitive culture.",["The Channel","Community Nights","Creator Kit"]],
+      "Small business":["Night Shift Arena","Play beyond the ordinary.","An imagined event business bringing people together around games and launches.",["The Venue","Event Nights","The Experience"]]
+    };
+    const [name,headline,bio,projects]=directions[category];
+    Object.assign(preview,{name,headline,bio,heroLabel:"Competitive culture / "+category,
+      cards:projects.map(title=>({title,description:"A fictional concept for the Arcade Night template preview.",url:""}))});
+  }
   const content={...sample.content,...preview,projects:"",links:[],photoIds:[],publicEmail:"",testimonials:[]};
   return {type:category,template:t.id,design:{
     primary:t.color,animation:"expressive",
-    appearance:["afterhours","nocturne","terminal","brutalist"].includes(t.id)?"dark":"light",
+    secondary:t.id==="arcade"?"#11120f":"#ece9e0",
+    appearance:["afterhours","nocturne","terminal","brutalist","arcade"].includes(t.id)?"dark":"light",
     sections:kit.sections
   },content};
 }
@@ -360,8 +380,6 @@ export function customerOrder(o) {
   return {
     id: o.id,
     created_at: o.created_at,
-    can_resume: o.payment === "unpaid" && !o.checkout_at && !o.stripe_session,
-    version: o.version,
     status:
       {
         received: "Order received",

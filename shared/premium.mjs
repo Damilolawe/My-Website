@@ -11,6 +11,7 @@ import {shellCSS} from "./site-shell-styles.mjs";
 import {exemplarCSS} from "./exemplar-redesign.mjs";
 import {paletteCSS,paletteInline} from "./theme-palette.mjs";
 import {signatureMarkup,signatureCSSFor} from "./creative-signatures.mjs";
+import {renderArcadeNight} from "./arcade-night.mjs";
 
 /* Static, sandboxable HTML output: no third-party fonts, scripts, cookies or APIs.
  * Keep the whole approved document immutable in awe_versions.html. */
@@ -33,6 +34,7 @@ const css = (
 export function renderPremium(input, options = {}) {
   const { assetBase = "/api/assets/", sample = false, assetSuffix = "" } = options;
   const value = normalize(input);
+  if (value.template === "arcade") return renderArcadeNight(value, options);
   const c = value.content, d = value.design, t = value.template;
   const items = c.cards.length ? c.cards : cardFallback(c.projects);
   const has = (id) => d.sections.includes(id);

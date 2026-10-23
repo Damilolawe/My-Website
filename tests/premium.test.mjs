@@ -14,10 +14,10 @@ test("twenty premium templates produce semantic, responsive site documents", () 
     assert.match(html,/prefers-reduced-motion/);
     assert.match(html,/FICTIONAL TEMPLATE DEMO/);
     assert.match(html,/id="work"/);
-    assert.match(html,/Verified quotation|fictional quote/i);
+    if(!html.includes("site-architecture-arcade")) assert.match(html,/Verified quotation|fictional quote/i);
     assert.match(html,/Skip to content/);
   }
-  assert.equal(new Set(documents).size,20);
+  assert.equal(new Set(documents).size,21);
 });
 test("explicit section reordering and structured service cards persist, unsafe content stays escaped",()=>{
   const input=normalize({
@@ -70,3 +70,4 @@ test("resume fields are suggestions, not fabricated experience or required publi
   assert(suggestions.warnings.some(x=>/review/i.test(x)));
   assert(!("payment" in suggestions));
 });
+

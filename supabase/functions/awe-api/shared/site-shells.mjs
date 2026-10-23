@@ -8,7 +8,7 @@ export const shellIdentities={
  daylight:"scrapbook-studio",atlas:"research-dashboard",terminal:"developer-command",orbit:"orbital-deck",
  playbill:"theatre-marquee",monologue:"typed-script",portraiture:"casting-lookbook",contactsheet:"photo-negative",
  atelier:"runway-catalogue",museum:"curatorial-exhibit",brutalist:"pasteup-zine",nocturne:"midnight-salon",
- foundry:"industrial-workshop",bloom:"botanical-card",ledger:"consultancy-brief"
+ foundry:"industrial-workshop",bloom:"botanical-card",ledger:"consultancy-brief",arcade:"esports-broadcast"
 };
 function head(v,ids){
  const t=v.template,c=v.content,ln=nav(ids),b=title(c);
