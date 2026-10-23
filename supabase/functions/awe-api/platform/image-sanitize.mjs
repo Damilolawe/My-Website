@@ -68,7 +68,7 @@ export function cleanPng(bytes) {
    if(type==="IHDR") {
      if(ihdr||len!==13)throw Error("Invalid PNG header.");
      dimension(read32(bytes,pos+8),read32(bytes,pos+12));
-     if(bytes[pos+20]!==0||bytes[pos+21]!==0||bytes[pos+22]>1)
+     if(bytes[pos+18]!==0||bytes[pos+19]!==0||bytes[pos+20]>1)
        throw Error("Unsupported PNG encoding.");
      ihdr=true;
    } else if(type==="IDAT")idat=true;
