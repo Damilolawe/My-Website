@@ -48,7 +48,7 @@ test("legacy direct HTML publication remains verifiable for existing server test
     }
     throw Error("Unexpected request: "+url);
   };
-  assert.deepEqual(await verifyPublication({siteUrl:SITE,publicApiUrl:API,version:VERSION,assets:[ASSET],fetcher}),{url:SITE,version:VERSION});
+  assert.deepEqual(await verifyPublication({siteUrl:SITE,publicApiUrl:API,version:VERSION,assets:[ASSET],fetcher}),{url:SITE,version:VERSION,mode:"direct"});
   assert.equal(count,2);
 });
 
@@ -86,4 +86,24 @@ test("API public endpoint remains approval gated and delivers only selected asse
  const production = await read("supabase/functions/awe-api/platform/production.mjs");
  assert(production.includes("verifyPublication({"));
  assert(production.includes("awe-api/public/"));
+});
+
+test("standalone static customer website verifies local images and current approval",async()=>{
+ const html='<!doctype html><html><head><meta name="awe-approved-version" content="'+VERSION+'"></head><body><h1>Ready</h1><img src="assets/'+ASSET+'.png"></body></html>';
+ const seen=[];
+ const fetcher=async(url,opts)=>{
+   seen.push([url,opts.method]);
+   if(url===SITE)return new Response(html);
+   if(url===SITE+"/assets/"+ASSET+".png")return new Response(null,{status:200});
+   if(url===API)return Response.json({version:VERSION,html});
+   throw Error("Unexpected resource "+url);
+ };
+ const result=await verifyPublication({siteUrl:SITE,publicApiUrl:API,version:VERSION,assets:[ASSET],fetcher});
+ assert.deepEqual(result,{url:SITE,version:VERSION,mode:"static"});
+ assert.deepEqual(seen.map(x=>x[0]),[SITE,SITE+"/assets/"+ASSET+".png",API]);
+});
+test("unapproved or stale static HTML can never pass version verification",async()=>{
+ const old='<html><head><meta name="awe-approved-version" content="00000000-0000-4000-8000-000000000000"></head><body><h1>Stale</h1></body></html>';
+ const fetcher=async()=>new Response(old);
+ await assert.rejects(()=>verifyPublication({siteUrl:SITE,publicApiUrl:API,version:VERSION,fetcher}),/approved viewer or static page/);
 });
