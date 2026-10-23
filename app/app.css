@@ -825,3 +825,32 @@ text-align:center;padding:30px;color:#f5f7ef;z-index:3;font:700 11px/1.5 ui-mono
 @keyframes theater-loader{to{transform:rotate(360deg)}}
 @media(max-width:560px){.experience-theater.is-mobile .theater-viewport{padding:9px 0!important}
 .experience-theater.is-mobile .theater-viewport iframe{width:min(375px,100%)!important;min-height:880px}}
+
+/* Cohesive editorial visual identity on contact, customer, order and admin pages. */
+.app-header{background:#0c1210;color:#f4f5e6;border-bottom:4px solid #dcfc46;
+ padding:18px 4vw;box-shadow:0 13px 35px #1023191b}
+.app-header .wordmark img{max-width:190px;max-height:58px;object-fit:contain}
+.app-header nav{align-items:center;flex-wrap:wrap;gap:12px 25px}
+.app-header nav a{font-weight:750;letter-spacing:.03em;text-decoration:none;transition:color .2s}
+.app-header nav a:hover{color:#dcfc46}
+.app-header nav a:focus-visible{outline-color:#dcfc46}
+body{background:#f0f1e6;color:#18201a}
+.app-main{position:relative}
+.app-main:before{content:"A / C";position:absolute;right:4vw;top:20px;pointer-events:none;
+ font:900 clamp(65px,14vw,230px)/1 Arial,sans-serif;letter-spacing:-.11em;color:#b7cba918;z-index:-1}
+.intro{border-bottom:1px solid #34442b36;padding-bottom:40px;margin-bottom:45px}
+.intro h1{font-size:clamp(54px,7.4vw,110px);letter-spacing:-.085em}
+.intro h1 em{color:#486a35}
+.intro .eyebrow,.step-count{font-weight:850;color:#47692e;letter-spacing:.14em}
+.wizard{border-top:0;gap:clamp(24px,4vw,55px)}
+.steps li.active{color:#274d21;border-color:#3d802d}
+.choice-card,.panel,.template-card{box-shadow:0 8px 33px #1521190a}
+.choice-card[aria-pressed=true]{background:#e5f4cb;border-color:#294322}
+@media(max-width:650px){
+ .app-header{padding:15px 18px;align-items:flex-start}
+ .app-header .wordmark img{width:155px;height:auto}
+ .app-header nav{font-size:10px;justify-content:flex-end;gap:9px}
+ .app-main{padding:35px 18px}
+ .intro{padding-bottom:23px}
+ .intro h1{font-size:clamp(42px,11vw,72px)}
+}
