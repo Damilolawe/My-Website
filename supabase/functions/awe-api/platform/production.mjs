@@ -112,7 +112,7 @@ async function deliver(o, version) {
       from: env().EMAIL_FROM,
       to: [o.email],
       subject: "Your AWE CONCEPTS website is ready",
-      text: `Your website has been reviewed and is ready to share.\n\n${url}\n\nHosting: ${o.package_snapshot.hosting}\nOwnership: ${o.package_snapshot.ownership}\nRevisions: ${o.package_snapshot.revisions}\n\nShare the link on your résumé and profiles. Sign in at ${env().SITE_ORIGIN}/account.html to request changes.\n\nDamilola Awe\nAWE CONCEPTS`,
+      text: `Your website has been reviewed and is ready to share.\n\n${url}\n\nHosting: ${o.package_snapshot.hosting}\nOwnership: ${o.package_snapshot.ownership}\nRevisions: ${o.package_snapshot.revisions}\n\nShare the link on your résumé and profiles. Sign in at ${env().SITE_ORIGIN}/account.html to request changes.\n\nAWE CONCEPTS`,
     }),
     signal: AbortSignal.timeout(20000),
   });
