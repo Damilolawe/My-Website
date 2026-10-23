@@ -13,9 +13,10 @@ test("All twenty fictional template demos use a photography-forward composition"
   }else{
     assert(html.includes('study-shot--'+t.id),t.id+" missing photography");
     assert(html.includes("images.unsplash.com/photo-"),t.id+" missing photography source");
+    assert(html.includes("PHOTO STUDY / "),t.id+" missing photo credit");
   }
   assert(html.includes("FICTIONAL TEMPLATE DEMO"),t.id+" not labeled fictional");
-  assert(html.includes("PHOTO STUDY / "),t.id+" missing image credit");
+
   assert(!html.includes("<script"),t.id+" includes executable script");
  }
 });
