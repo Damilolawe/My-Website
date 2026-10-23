@@ -74,7 +74,22 @@ try {
   await testPage(page,origin+"/contact.html",size.name+" contact",{waitMs:250});
   if(size.width===360||size.width===768){
     for(const entry of templates){
-      await testPage(page,origin+"/templates/"+entry.id+".html",size.name+" "+entry.id,{waitMs:180});
+      const label=size.name+" template "+entry.id;
+      await testPage(page,origin+"/templates/"+entry.id+".html",label,{waitMs:180});
+      // Exercise a real section link, not just existence of href/#target.
+      const first=page.locator('nav[aria-label="Section navigation"] a[href^="#"]').first();
+      if(await first.count()) {
+        const href=await first.getAttribute("href");
+        try {
+          await first.click({timeout:4500});
+          const hash=await page.evaluate(()=>decodeURIComponent(location.hash));
+          if(hash!==href)failures.push(label+": section link navigated to "+hash+" instead of "+href);
+          const target=await page.evaluate(h=>!!document.getElementById(h.slice(1)),href);
+          if(!target)failures.push(label+": section link target missing "+href);
+        } catch(error){
+          failures.push(label+": section navigation click failed: "+String(error.message).slice(0,160));
+        }
+      } else failures.push(label+": missing template section navigation");
     }
   }
   await context.close();
