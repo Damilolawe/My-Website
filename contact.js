@@ -42,7 +42,7 @@ if (form) {
       status.textContent=(error.name==="TimeoutError"?"The request timed out.":error.message || "Unable to submit.")+
         " Your information has not been confirmed as received. Please try again.";
       status.dataset.state="error";
-      button.textContent="TRY SENDING AGAIN ↗";
+      button.textContent="TRY SENDING AGAIN ↗︎";
     } finally {
       submitting=false;
       button.disabled=false;
