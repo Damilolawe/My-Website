@@ -1,0 +1,35 @@
+name: Awe Concepts production browser QA
+on:
+  workflow_run:
+    workflows: ["Firebase Hosting (Awe Concepts)"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  responsive:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Install pinned headless Chromium QA tooling
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Verify all responsive public layouts and 20 template previews
+        run: node scripts/browser-qa.mjs
+      - name: Upload browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: awe-production-browser-qa
+          path: qa-browser-artifacts/
+          if-no-files-found: ignore
+          retention-days: 7
