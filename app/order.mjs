@@ -110,13 +110,14 @@ function draw() {
     const loadTemplate=(id)=>{
       activeRequest?.abort();
       activeRequest=new AbortController();
+      const thisRequest=activeRequest;
       frame.srcdoc=previewMessage("Preparing "+(templates.find(t=>t.id===id)?.name||"template")+"…");
       fetchPublicTemplate(id,{type:input.type,signal:activeRequest.signal})
         .then((html)=>{
-          if(!lifetime.signal.aborted&&!activeRequest.signal.aborted&&frame.isConnected&&input.template===id)frame.srcdoc=html;
+          if(!lifetime.signal.aborted&&!thisRequest.signal.aborted&&frame.isConnected&&input.template===id)frame.srcdoc=html;
         })
         .catch((error)=>{
-          if(lifetime.signal.aborted||activeRequest.signal.aborted||!frame.isConnected)return;
+          if(lifetime.signal.aborted||thisRequest.signal.aborted||!frame.isConnected)return;
           frame.srcdoc=previewMessage("This preview could not load. Use View Full Website above to explore the template.");
           console.warn("Template preview unavailable",error);
         });
