@@ -271,7 +271,7 @@ export default async function (req) {
         const session = await stripeClient.checkout.sessions.create(
           {
             mode: "payment",
-            payment_method_types: ["card"],
+            integration_identifier: "awe_express_" + o.id.slice(0, 8).replace(/[0-9a-f]/g, (c) => "abcdefghijklmnop"[parseInt(c, 16)]),
             client_reference_id: o.id,
             customer_email: o.email,
             line_items: [
@@ -545,6 +545,7 @@ export default async function (req) {
     }
     return json({ error: "Not found" }, 404);
   } catch (e) {
+    console.error("AWE API failure classification", JSON.stringify({name:e.name,type:e.type,code:e.code,param:e.param,status:e.status || e.statusCode,requestId:e.requestId}));
     return json(
       {
         error: e.status
