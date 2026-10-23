@@ -35,6 +35,128 @@ const architectures={
   ledger:{mode:"business-briefs",word:"The outcomes",no:"20",detail:"Clarity in everything we deliver."},
 };
 
+const artDirection = {
+  "index": [
+    "01 / CAREER DOSSIER",
+    "PROFILE / CONTEXT",
+    "The next chapter starts with a conversation.",
+    "A structured research table: evidence before embellishment."
+  ],
+  "folio": [
+    "02 / ART-DIRECTED EDITION",
+    "FROM THE EDITOR",
+    "Let's make the next edition together.",
+    "Offset print spreads, airy typography and an ink-dark closing page."
+  ],
+  "still": [
+    "03 / QUIET GALLERY",
+    "THE VIEWING ROOM",
+    "Begin with a conversation.",
+    "Gallery pacing, central text and near-silent transitions."
+  ],
+  "afterhours": [
+    "04 / CINEMATIC REEL",
+    "BEHIND THE SCENES",
+    "Ready for the next scene?",
+    "Widescreen type, filmic chapters and blackout contact."
+  ],
+  "signal": [
+    "05 / GRAPHIC BROADCAST",
+    "OFF THE RECORD",
+    "MAKE SOMETHING LOUD TOGETHER.",
+    "Oversize poster panels, sharp borders and strong full-bleed contact."
+  ],
+  "daylight": [
+    "06 / PLAYFUL DAYBOOK",
+    "IN THE STUDIO",
+    "There's room for more good ideas.",
+    "Scrapbook panels, shaped service notes and animated but nonblocking decorations."
+  ],
+  "atlas": [
+    "07 / SPATIAL RESEARCH",
+    "THE FIELD GUIDE",
+    "Let's map the next chapter.",
+    "Wayfinding geometry, research legends and filing-system sections."
+  ],
+  "terminal": [
+    "08 / DIGITAL SYSTEM",
+    "README / ABOUT",
+    "Let's build something useful.",
+    "Monospace console chapters and purposeful terminal-style outputs."
+  ],
+  "orbit": [
+    "09 / SPATIAL EXPLORATION",
+    "THE FLIGHT LOG",
+    "Start a new orbit.",
+    "Concentric reading path and spatial mission framing."
+  ],
+  "playbill": [
+    "10 / THEATRICAL PROGRAMME",
+    "IN THE PROGRAMME",
+    "Your next act starts here.",
+    "Programme margins, ticket rules and performance-style credits."
+  ],
+  "monologue": [
+    "11 / SCREENPLAY",
+    "THE WRITER'S NOTE",
+    "Write the next scene.",
+    "Readable script folios, margin-based copy and scene transitions."
+  ],
+  "portraiture": [
+    "12 / CASTING DOSSIER",
+    "THE SITTING",
+    "Let's create the next portrait.",
+    "Portrait-first pacing, mat framing and concise biographical dossier."
+  ],
+  "contactsheet": [
+    "13 / NEGATIVE ARCHIVE",
+    "DEVELOPMENT NOTES",
+    "Let's capture the next frame.",
+    "Photographic negatives, frame numbers and archival captions."
+  ],
+  "atelier": [
+    "14 / MATERIAL STUDY",
+    "IN THE ATELIER",
+    "Craft the next collection.",
+    "Fine print rules, fashion folios and hand-crafted editorial spacing."
+  ],
+  "museum": [
+    "15 / CURATORIAL ROOMS",
+    "THE CURATOR'S NOTE",
+    "Continue the conversation.",
+    "Museum labels, object plinths and text-as-exhibition."
+  ],
+  "brutalist": [
+    "16 / INDEPENDENT PRESS",
+    "THE MANIFESTO",
+    "Don't be a stranger.",
+    "Severe black rules, offset newsprint panels and public-facing type."
+  ],
+  "nocturne": [
+    "17 / PRIVATE SALON",
+    "THE SIGNATURE",
+    "Make an introduction.",
+    "Asymmetrical salon sections with long editorial lines."
+  ],
+  "foundry": [
+    "18 / INDUSTRIAL WORKSHOP",
+    "THE SPECIFICATION",
+    "Start a project with purpose.",
+    "Specification-style rows, bold counters and steel-plate section cuts."
+  ],
+  "bloom": [
+    "19 / BOTANICAL JOURNAL",
+    "IN THE GARDEN",
+    "Let's grow something good.",
+    "Botanical leaf shapes, organic reading margins and garden notes."
+  ],
+  "ledger": [
+    "20 / CONSULTANCY BRIEF",
+    "THE OVERVIEW",
+    "Let's discuss the brief.",
+    "Outcome-led reports, numbered offers and disciplined closing brief."
+  ]
+};
 function visual(item,i,ctx){
   const id=ctx.c.photoIds[i+1];
   if(id){
@@ -95,7 +217,7 @@ function shell(id,index,ctx,inside){
     '<span class="chapter-kicker">'+E(def.word)+' / '+E(id)+'</span>'+
     '<h2>'+E(heading(id,index,ctx))+'</h2>'+
     (id==="work"?'<p>'+E(def.detail)+'</p>':"")+'</div>'+
-    '<div class="chapter-content">'+inside+'</div></section>';
+    '<span class="chapter-edge" aria-hidden="true">'+E(artDirection[ctx.t]?.[0]||def.word)+'</span>'+ '<div class="chapter-content">'+inside+'</div></section>';
 }
 export function designSections(value,{assetBase="/api/assets/",assetSuffix="",sample=false}={}){
   const {content:c,design:d,template:t}=value;
@@ -106,8 +228,8 @@ export function designSections(value,{assetBase="/api/assets/",assetSuffix="",sa
   const sections=[];
   for(const [index,id] of d.sections.entries()){
     if(id==="about"&&c.bio){
-      sections.push(shell(id,index+1,ctx,'<div class="architect-story"><span class="story-opening" aria-hidden="true">“</span><p>'+prose(c.bio)+'</p>'+
-        '<span class="story-signature">'+E(c.name)+'</span><span class="story-art" aria-hidden="true">✳︎</span></div>'));
+      sections.push(shell(id,index+1,ctx,'<div class="architect-story story-'+E(ctx.t)+'"><span class="story-opening" aria-hidden="true">“</span><p>'+prose(c.bio)+'</p>'+
+        '<span class="story-signature">'+E(c.name)+'</span><span class="story-art" aria-hidden="true">✳︎</span>'+ '<span class="story-metadata">'+E(artDirection[t]?.[1]||"THE STORY")+'</span></div>'));
     } else if(id==="work"&&(items.length||c.photoIds.length>1)){
       const workItems=items.length?items:c.photoIds.slice(1).map((_,i)=>({title:"Selected work "+(i+1),description:"",url:""}));
       sections.push(shell(id,index+1,ctx,workMarkup(def.mode,workItems,ctx)));
@@ -116,7 +238,7 @@ export function designSections(value,{assetBase="/api/assets/",assetSuffix="",sa
         (item.description?'<p>'+prose(item.description)+'</p>':"")+
         (https(item.url)?'<a href="'+E(item.url)+'" target="_blank" rel="noopener noreferrer">Learn more ↗︎</a>':"")+
         '</div><span class="offer-symbol" aria-hidden="true">↗︎</span></article>').join("");
-      sections.push(shell(id,index+1,ctx,'<div class="art-directed-services">'+cards+'</div>'));
+      sections.push(shell(id,index+1,ctx,'<div class="art-directed-services services-'+E(t)+'">'+cards+'</div>'));
     } else if(["education","experience","skills"].includes(id)&&c[id]){
       sections.push(shell(id,index+1,ctx,'<div class="architect-history"><p class="history-tag">'+E(id)+' / '+E(c.name)+'</p><div>'+prose(c[id])+'</div></div>'));
     } else if(id==="testimonials"&&c.testimonials.length){
@@ -125,9 +247,9 @@ export function designSections(value,{assetBase="/api/assets/",assetSuffix="",sa
     } else if(id==="contact"){
       const links=(c.publicEmail?'<a class="architect-contact-button" href="mailto:'+E(c.publicEmail)+'">Send an email <span aria-hidden="true">↗︎</span></a>':"")+
         (c.links||[]).filter(https).map(x=>'<a href="'+E(x)+'" target="_blank" rel="noopener noreferrer">'+E(new URL(x).hostname)+' ↗︎</a>').join("");
-      sections.push(shell(id,index+1,ctx,'<div class="architect-contact"><span class="contact-emblem" aria-hidden="true">✳︎</span><p>'+
-        E(value.type==="Small business"?"Your next project starts with a conversation.":value.type==="Actor / model"?"Available for casting enquiries and creative conversations.":"Something worth making starts here.")+
-        '</p><div class="architect-contact-links">'+links+'</div></div>'));
+      sections.push(shell(id,index+1,ctx,'<div class="architect-contact contact-'+E(t)+'"><span class="contact-emblem" aria-hidden="true">✳︎</span><p>'+
+        E(artDirection[t]?.[2]||"Start a conversation.")+
+        '</p><div class="architect-contact-links">'+links+'</div><span class="contact-metadata">'+E(artDirection[t]?.[0]||def.word)+'</span></div>'));
     }
   }
   return sections.join("");
