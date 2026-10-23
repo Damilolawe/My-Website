@@ -43,6 +43,7 @@ try {
     viewport:{width:1440,height:900},reducedMotion:"no-preference",hasTouch:false
   });
   const page=await context.newPage();
+  page.on("pageerror",error=>failures.push("Desktop homepage JS exception: "+error.message.slice(0,180)));
   // Each Playwright context starts with empty storage. Do not register an
   // init script: it would also erase the persisted-pause recovery test state.
   await testPage(page,origin+"/","Desktop-1440 motion smoke",{waitMs:700});
@@ -65,17 +66,28 @@ try {
     failures.push("Desktop motion: automatic hero carousel did not advance");
   const card=page.locator(".pricing-card.reveal").first();
   const before=await card.evaluate(el=>getComputedStyle(el).opacity);
-  await card.scrollIntoViewIfNeeded();
-  await page.waitForTimeout(1050);
-  const after=await card.evaluate(el=>getComputedStyle(el).opacity);
-  console.log("DESKTOP_REVEAL",{before,after});
+  // Force an immediate scroll: native CSS smooth scroll can still be in
+  // flight when an opacity snapshot is sampled in headless Chrome.
+  await card.evaluate(el=>{
+    const y=el.getBoundingClientRect().top+scrollY-innerHeight*.3;
+    window.scrollTo({top:y,behavior:"instant"});
+  });
+  await page.waitForTimeout(1150);
+  const reveal=await card.evaluate(el=>({
+    opacity:Number(getComputedStyle(el).opacity),
+    inView:el.classList.contains("in-view"),
+    top:el.getBoundingClientRect().top,
+    scrollY:window.scrollY
+  }));
+  const after=String(reveal.opacity);
+  console.log("DESKTOP_REVEAL",JSON.stringify({before,after,...reveal}));
   if(Number(before)>0.25||Number(after)<0.95)
     failures.push("Desktop reveal: pricing card did not fade/slide into view");
   await page.evaluate(()=>{localStorage.setItem("awe-motion","paused");});
   await page.reload({waitUntil:"domcontentloaded"});
   const recovery=await page.evaluate(()=>({
     paused:!!window.AWE_MOTION_PAUSED,
-    visible:!!document.querySelector("#motion-resume")?.offsetParent,
+    visible:(()=>{const el=document.querySelector("#motion-resume");return !!el&&!el.hidden&&getComputedStyle(el).display!=="none"&&el.getBoundingClientRect().width>0;})(),
     text:document.querySelector("#motion-resume")?.textContent
   }));
   if(!recovery.paused||!recovery.visible)

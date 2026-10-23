@@ -8,6 +8,8 @@ test("Desktop entrances use fail-open IntersectionObserver and persistently paus
  const [main,markup,css]=await Promise.all(["script.js","index.html","hero-layout-fix.css"].map(read));
  assert(main.includes("function syncReveals()"));
  assert(main.includes("revealObserver=new IntersectionObserver"));
+ assert(main.includes("$('.reveal').forEach"),"Must iterate the NodeList, not the first element");
+ assert(!main.includes("$('.reveal').forEach"),"Cannot call forEach on a single Element");
  assert(main.includes("document.documentElement.classList.toggle('motion-ready',active)"));
  assert(markup.includes('id="motion-resume"'));
  assert(main.includes("resumeButton?.addEventListener('click'"));
@@ -38,4 +40,5 @@ test("Production browser QA checks real motion and recovery, not just static scr
  for(const term of ["DESKTOP_MOTION_START","DESKTOP_REVEAL","DESKTOP_MOTION_RESUME","hero carousel did not advance"])
   assert(qa.includes(term),term);
  assert(qa.includes("iPhone-390 scroll stability"));
+ assert(qa.includes('page.on("pageerror"'),"Desktop smoke must catch startup exceptions");
 });
