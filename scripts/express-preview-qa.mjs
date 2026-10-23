@@ -66,6 +66,8 @@ try{
  {
   const context=await browser.newContext({viewport:{width:1366,height:900}});
   const page=await context.newPage();
+  page.on("pageerror",error=>console.log("BUILDER_PAGE_ERROR",error.stack||error.message));
+  page.on("console",msg=>{if(msg.type()==="error")console.log("BUILDER_CONSOLE_ERROR",msg.text());});
   await page.route(/^https:\/\/(?!127\.0\.0\.1)/,route=>route.abort());
   try{
    await page.goto(base+"/order.html",{waitUntil:"domcontentloaded",timeout:20000});
@@ -75,6 +77,10 @@ try{
    await page.locator('[data-template="folio"]').waitFor({timeout:10000});
    const choices=await page.locator("[data-template]").count();
    if(choices!==20)failures.push("Builder: "+choices+" template choices rather than 20");
+   console.log("BUILDER_TEMPLATE_HANDLER",JSON.stringify(await page.evaluate(()=>{
+     const b=document.querySelector('[data-template="folio"]');
+     return {hasButton:!!b,onclick:typeof b?.onclick,dataset:b?.dataset.template,step:document.querySelector(".steps .active")?.textContent};
+   })));
    await page.locator('[data-template="folio"]').click();
    const selectedFolio=await page.evaluate(()=>({
     name:document.querySelector(".theater-caption h3")?.textContent,
