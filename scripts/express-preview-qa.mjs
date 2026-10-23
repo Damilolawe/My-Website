@@ -130,6 +130,14 @@ try{
    await page.waitForFunction(()=>document.querySelector("#theater-frame")?.getAttribute("srcdoc")?.includes("folio-hero"),
     {timeout:15000}).catch(()=>failures.push("Builder: selected Folio preview did not render"));
    await page.locator("#next").click();
+   const debugStep=await page.evaluate(()=>({
+    title:document.querySelector("#step h2")?.textContent,
+    text:document.querySelector("#step")?.textContent?.slice(0,280),
+    feedback:document.querySelector("#feedback")?.textContent,
+    styleInput:!!document.querySelector('input[name="primary"]'),
+    nextLabel:document.querySelector("#next")?.textContent
+   }));
+   console.log("BUILDER_AFTER_NEXT",JSON.stringify(debugStep));
    await page.locator('input[name="primary"]').waitFor({timeout:6000});
    await page.locator('input[name="primary"]').fill("#b33392");
    await page.locator('input[name="secondary"]').fill("#cfd94a");
