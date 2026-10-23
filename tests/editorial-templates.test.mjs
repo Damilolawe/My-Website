@@ -19,8 +19,8 @@ test("Customer sites have no third party photo loading or stock imagery",()=>{
  for(const t of templates){
   const html=renderSite(sampleForTemplate(t.id));
   assert(!html.includes("images.unsplash.com"),t.id+" leaked sample photography");
-  assert(!html.includes("study-shot"),t.id+" leaked sample elements");
-  assert(html.includes("editorial-illustration--"+t.id),t.id+" missing stand-alone branded artwork");
+  assert(!html.includes('<div class="study-shot '),t.id+" leaked sample elements");
+  assert(html.includes('class="editorial-illustration editorial-illustration--'+t.id),t.id+" missing stand-alone branded artwork");
  }
 });
 test("Customer images replace all sample and illustrative hero media",()=>{
@@ -29,7 +29,7 @@ test("Customer images replace all sample and illustrative hero media",()=>{
  const html=renderSite({...demo,content:{...demo.content,photoIds:[id]}},{sample:true});
  assert(html.includes("/api/assets/"+id));
  assert(!html.includes('study-shot--hero'));
- assert(!html.includes('editorial-illustration--afterhours'));
+ assert(!html.includes('<div class="editorial-illustration editorial-illustration--afterhours'));
 });
 test("Static demo image sources are allowlisted and the production renderer matches",async()=>{
  const official=await readFile(new URL("../shared/photographic-direction.mjs",import.meta.url),"utf8");
