@@ -43,7 +43,8 @@ try {
     viewport:{width:1440,height:900},reducedMotion:"no-preference",hasTouch:false
   });
   const page=await context.newPage();
-  await page.addInitScript(()=>{try{localStorage.removeItem("awe-motion");}catch{}});
+  // Each Playwright context starts with empty storage. Do not register an
+  // init script: it would also erase the persisted-pause recovery test state.
   await testPage(page,origin+"/","Desktop-1440 motion smoke",{waitMs:700});
   const startup=await page.evaluate(()=>({
     gsap:!!window.gsap,scrollTrigger:!!window.ScrollTrigger,
