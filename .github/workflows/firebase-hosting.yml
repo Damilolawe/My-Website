@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      AWE_SITE_ORIGIN: ${{ vars.AWE_SITE_ORIGIN || 'https://awe-digital.web.app' }}
+      AWE_SITE_ORIGIN: https://aweconcepts.com
       FIREBASE_READY: ${{ vars.FIREBASE_PROJECT_ID != '' && secrets.FIREBASE_SERVICE_ACCOUNT != '' }}
     steps:
       - name: Require Firebase deployment credentials
