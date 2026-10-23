@@ -60,7 +60,7 @@ function draw() {
   const el = $("#step");
   $("#feedback").textContent = "";
   if (step === 0) {
-    el.innerHTML = `<h2>What’s your next move?</h2><p class="muted">A first impression, a fresh start, a new opportunity.</p><div class="choices">${types.map((t, i) => `<button class="choice-card" data-type="${esc(t)}" aria-pressed="${input.type === t}"><span class="arrow">↗</span><small>0${i + 1} / MADE FOR YOU</small><strong>${t}</strong></button>`).join("")}</div><p class="muted">Something more ambitious? <a href="/account.html?custom=1">Tell us about an AWE Custom project ↗</a></p>`;
+    el.innerHTML = `<h2>What’s your next move?</h2><p class="muted">A first impression, a fresh start, a new opportunity.</p><div class="choices">${types.map((t, i) => `<button class="choice-card" data-type="${esc(t)}" aria-pressed="${input.type === t}"><span class="arrow">↗</span><small>0${i + 1} / MADE FOR YOU</small><strong>${t}</strong></button>`).join("")}</div><p class="muted">Something more ambitious? <a href="/account.html?custom=1">Tell us about an Awe Concepts Custom project ↗</a></p>`;
     el.querySelectorAll("[data-type]").forEach(
       (b) =>
         (b.onclick = () => {

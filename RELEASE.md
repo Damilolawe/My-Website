@@ -1,4 +1,4 @@
-# AWE / DIGITAL — release notes
+# AWE CONCEPTS — release notes
 
 ## Initial audit
 

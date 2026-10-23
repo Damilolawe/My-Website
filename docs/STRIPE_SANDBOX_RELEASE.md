@@ -1,4 +1,4 @@
-# AWE / DIGITAL — Stripe sandbox integration release plan
+# AWE CONCEPTS — Stripe sandbox integration release plan
 
 Last reviewed October 22, 2026. This is a **test-only integration**. Never add live keys, enable live payments, or assume checkout works because a Stripe account exists.
 
@@ -6,7 +6,7 @@ Last reviewed October 22, 2026. This is a **test-only integration**. Never add l
 
 - Stripe **test sandbox account** has been opened and its dashboard reviewed.
 - No webhook destination or test checkout charge has yet been created.
-- AWE / DIGITAL is deployed via **Firebase Hosting Classic on Spark**.
+- AWE CONCEPTS is deployed via **Firebase Hosting Classic on Spark**.
 - Dedicated backend: Supabase project `hxxplkirfsewqsxodngv`, Edge Function `awe-api`.
 - Existing API handler includes a Stripe-hosted one-time Checkout session, signed webhook handler, payment persistence/replay protection and refund recognition.
 - Stripe's API secret and webhook signing secret have **not been verified in Supabase**. The database has zero verified payment records and no enabled pricing packages.
@@ -20,7 +20,7 @@ Last reviewed October 22, 2026. This is a **test-only integration**. Never add l
 
    `https://hxxplkirfsewqsxodngv.supabase.co/functions/v1/awe-api/stripe-webhook`
 
-   This must be the Supabase Edge API's dedicated `stripe-webhook` route, **not** `awe-digital.web.app/api/` or a Netlify endpoint.
+   This must be the Supabase Edge API's dedicated `stripe-webhook` route, **not** `Awe Concepts.web.app/api/` or a Netlify endpoint.
 4. Select the event types already supported by the code: `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`, `checkout.session.expired`, and `charge.refunded`. Do not register unrelated events without code review.
 5. Copy the **webhook destination's signing secret**, prefix `whsec_`, *inside the dashboards*, into Supabase Edge Functions Secrets as `STRIPE_WEBHOOK_SECRET`. This secret is **different from** the Stripe API key.
 6. Keep `ORDERS_ENABLED` absent or `false`. Even though the test credentials may be configured, enabling new orders without a verified user, package, and signed webhook is premature.

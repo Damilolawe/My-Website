@@ -1,6 +1,7 @@
-# AWE / DIGITAL
+<!-- Public brand: Awe Concepts; previous Firebase hosting kept during domain transition. -->
+# AWE CONCEPTS
 
-Damilola Awe’s creative web studio: an animated agency homepage, interactive concept demos, AWE Express ordering, and AWE Custom inquiries. Netlify hosts the public site and server functions; a dedicated Supabase project stores private customer data. Stripe is hard-locked to test mode.
+Damilola Awe’s creative web studio: an animated agency homepage, interactive concept demos, AWE Express ordering, and Awe Concepts Custom inquiries. Netlify hosts the public site and server functions; a dedicated Supabase project stores private customer data. Stripe is hard-locked to test mode.
 
 **Status:** implemented and locally tested; not yet verified on a deployed Netlify account. Orders default to closed. No live charges, paid upgrades, or customer publications have been made. See [PLATFORM.md](docs/PLATFORM.md) for setup, walkthroughs, security, costs, and exact limitations.
 

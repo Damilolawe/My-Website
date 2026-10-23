@@ -1,11 +1,11 @@
-# AWE / DIGITAL — platform and launch guide
+# AWE CONCEPTS — platform and launch guide
 
 Updated October 22, 2026. This is a working implementation with local verification, not a claim that paid commerce is live.
 
 ## What is finished in code
 
 - Preserved the cinematic homepage, GSAP motion, Three.js artwork with software fallback, five case studies, three interactive demos, design lab and downloadable brief.
-- Added AWE Express and AWE Custom service paths.
+- Added AWE Express and Awe Concepts Custom service paths.
 - Six original template directions: The Index, Folio No. 01, Still Studio, After Hours, Signal / Noise and Daylight. They share a safe renderer, with typography, compositions, framing, spacing and responsive variations.
 - Five-step Express flow: purpose, template, style, content/materials, review. Stripe supplies the separate checkout step; the account page supplies confirmation/status.
 - Generic live configurator with colors, fonts, light/dark appearance, split/stacked layouts, navigation, motion and section choices. Customer text is never fed into this generic preview.

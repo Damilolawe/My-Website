@@ -5,9 +5,14 @@ export const env = () => {
   return { ...e, SUPABASE_PUBLISHABLE_KEY: e.SUPABASE_PUBLISHABLE_KEY || e.SUPABASE_ANON_KEY,
     SITE_ORIGIN: e.SITE_ORIGIN || "https://awe-digital.web.app" };
 };
+// Pin the single studio-owner identity, never just an email or user-editable
+// metadata. Membership in the service-only owner table remains mandatory.
+const STUDIO_OWNER_USER_ID = "220ddd21-710f-4dea-bc24-e34c8ba9cef8";
+const STUDIO_OWNER_EMAIL = "contact@aweconcepts.com";
 export async function isOwner(u) {
-  if (!u?.email_confirmed_at) return false;
-  if (env().OWNER_USER_ID) return u.id === env().OWNER_USER_ID;
+  if (!u?.email_confirmed_at ||
+      u.id !== STUDIO_OWNER_USER_ID ||
+      u.email?.trim().toLowerCase() !== STUDIO_OWNER_EMAIL) return false;
   return (await rows("awe_owner", `user_id=eq.${uuid(u.id)}&limit=1`)).length === 1;
 }
 export function fail(message, status = 400) {
@@ -95,7 +100,7 @@ export async function owned(orderId, u, owner = false) {
   return o;
 }
 export function origin(req) {
-  if (![env().SITE_ORIGIN, ...(env().ALLOWED_ORIGINS || "").split(",").filter(Boolean)].includes(req.headers.get("origin")))
+  if (![env().SITE_ORIGIN, "https://aweconcepts.com", "https://www.aweconcepts.com", "https://awe-digital.web.app", ...(env().ALLOWED_ORIGINS || "").split(",").filter(Boolean)].includes(req.headers.get("origin")))
     fail("Request origin rejected.", 403);
 }
 export function stripe() {

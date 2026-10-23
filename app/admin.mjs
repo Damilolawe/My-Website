@@ -1,4 +1,5 @@
-import { $, api, money, report, authForm } from "./common.mjs";
+import { $, api, money, report } from "./common.mjs";
+import { aweClient } from "./service-client.mjs";
 import { esc, templates, sections } from "/shared/model.mjs";
 import { enhanceEditor } from "./studio-editor.mjs";
 const app = $("#app");
@@ -10,12 +11,72 @@ const field = (label, name, value = "", area = false) =>
   `<label class="field">${label}${area ? `<textarea name="${name}">${esc(value)}</textarea>` : `<input name="${name}" value="${esc(value)}">`}</label>`;
 const select = (label, name, values, current) =>
   `<label class="field">${label}<select name="${name}">${values.map((v) => `<option ${v === current ? "selected" : ""}>${v}</option>`).join("")}</select></label>`;
+// This admin entrypoint only requests OTP for the owner's business mailbox.
+// Actual privileges are checked by the server against a pinned Supabase Auth
+// identity AND the restricted awe_owner authorization table.
+const OWNER_EMAIL = "contact@aweconcepts.com";
+function ownerSignIn() {
+  app.innerHTML = `<section class="panel" aria-labelledby="owner-login-heading">
+    <p class="eyebrow">AWE CONCEPTS / PRIVATE STUDIO</p>
+    <h2 id="owner-login-heading">Owner sign-in</h2>
+    <p class="muted">Access to the studio is restricted to its verified owner.</p>
+    <form id="owner-login-form">
+      <p class="muted">Verification codes are sent only to <strong>${OWNER_EMAIL}</strong>.</p>
+      <label class="field" id="owner-code-field" hidden>Verification code
+        <input name="token" autocomplete="one-time-code" inputmode="numeric"
+          pattern="[0-9]{6,10}" minlength="6" maxlength="10" disabled required></label>
+      <button type="submit" class="btn acid" id="owner-login-submit">Send owner sign-in code ↗</button>
+    </form>
+    <p id="owner-login-feedback" role="status" aria-live="polite"></p>
+    <p class="muted"><a href="/account.html">Customer account ↗</a></p>
+  </section>`;
+  const form = $("#owner-login-form");
+  const feedback = $("#owner-login-feedback");
+  const button = $("#owner-login-submit");
+  let requested = false;
+  form.onsubmit = async (event) => {
+    event.preventDefault();
+    button.disabled = true;
+    try {
+      if (!requested) {
+        await api("auth/start", { email: OWNER_EMAIL });
+        requested = true;
+        $("#owner-code-field").hidden = false;
+        form.elements.token.disabled = false;
+        form.elements.token.focus();
+        button.textContent = "Verify owner code ↗";
+        feedback.textContent = "Check the business mailbox for your one-time code.";
+      } else {
+        await api("auth/verify", { email: OWNER_EMAIL, token: form.elements.token.value.trim() });
+        form.elements.token.value = "";
+        await load();
+      }
+    } catch (error) {
+      feedback.textContent = String(error?.message || "Sign-in failed. Try again.");
+    } finally {
+      button.disabled = false;
+    }
+  };
+}
+function ownerDenied() {
+  app.innerHTML = `<div class="panel" role="alert"><h2>Private studio</h2>
+    <p>Only the verified Awe Concepts owner can open this dashboard.</p>
+    <button class="btn secondary" id="owner-switch">Switch to owner sign-in</button>
+    <a class="btn secondary" href="/account.html">Customer account ↗</a></div>`;
+  $("#owner-switch").onclick = async () => {
+    await api("auth/logout", {});
+    ownerSignIn();
+  };
+}
 async function load() {
+  if (!aweClient.session()) {
+    ownerSignIn();
+    return;
+  }
   try {
     const me = await api("me");
-    if (!me.admin) {
-      app.innerHTML =
-        '<div class="notice">This space is restricted to the studio owner.</div>';
+    if (!me.admin || me.email?.toLowerCase() !== OWNER_EMAIL) {
+      ownerDenied();
       return;
     }
     const [ordersView, leadList, readiness] = await Promise.all([
@@ -27,12 +88,24 @@ async function load() {
     inquiries = Array.isArray(leadList) ? leadList : [];
     checkoutReadiness = readiness;
     drawOverview();
-  } catch (e) {
-    if (e?.status === 401 || /Sign in to continue/i.test(e?.message || "")) {
-      authForm(app, load);
+  } catch (error) {
+    if (error?.status === 401 || !aweClient.session()) {
+      ownerSignIn();
+    } else if (error?.status === 403) {
+      ownerDenied();
     } else {
-      app.innerHTML = '<div class="notice" role="alert">The studio data could not load. Check your account access and try again.</div><button class="btn secondary" id="studio-retry">Retry loading</button>';
+      // Keep the authenticated session when the backend is temporarily down.
+      app.innerHTML = `<div class="panel" role="alert"><h2>The studio could not load</h2>
+        <p>You're still signed in. Your dashboard data is unavailable right now.</p>
+        <p id="studio-error" role="status"></p>
+        <button class="btn secondary" id="studio-retry">Retry loading</button>
+        <button class="btn secondary" id="studio-signout">Sign out</button></div>`;
+      $("#studio-error").textContent = String(error?.message || "Studio service unavailable.");
       $("#studio-retry").onclick = load;
+      $("#studio-signout").onclick = async () => {
+        await api("auth/logout", {});
+        ownerSignIn();
+      };
     }
   }
 }

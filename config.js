@@ -1,5 +1,5 @@
 /* Public configuration only. Never put keys or credentials in this file. */
 window.AWE_CONFIG = Object.freeze({
-  // Intentionally unset at the owner's request. Set a public email to enable inquiry drafts.
-  contactEmail: ""
+  // Public business contact address; SMTP credentials remain server-side.
+  contactEmail: "contact@aweconcepts.com"
 });

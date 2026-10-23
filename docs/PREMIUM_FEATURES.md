@@ -1,4 +1,4 @@
-# AWE / DIGITAL — Premium customer-site improvements
+# AWE CONCEPTS — Premium customer-site improvements
 
 ## Customer websites
 All six Express directions now generate a full-width responsive editorial site, with distinct layouts (professional grid, publication, luxury, cinematic, bold, playful) rather than sharing a bare section list. Optional structured project cards, services, quotes, portfolio photos and profile links are rendered into semantic HTML. Layout options add hero alignment, page density and corner treatment. Sections can be reordered by the studio owner.

@@ -1,8 +1,8 @@
-# AWE / DIGITAL — Immersive Website Collection
+# AWE CONCEPTS — Immersive Website Collection
 
 ## Six purpose-built visual systems
 
-Every AWE Express customer template now uses a dedicated hero composition and a distinct page rhythm:
+Every Awe Concepts Express customer template now uses a dedicated hero composition and a distinct page rhythm:
 
 | Template | Creative direction | Signature layout and motion |
 |---|---|---|
@@ -17,7 +17,7 @@ The templates use **self-contained CSS animations** with no third-party font or 
 
 Templates all continue to honor customer-chosen palette, typography, sections, imagery, motion intensity and the same owner-only publish flow. They never create sample testimonials or fictional accomplishments on behalf of customers.
 
-## Public studio and AWE Express discovery
+## Public studio and Awe Concepts Express discovery
 
 The homepage has a live six-template *Creative Worlds* theater. Visitors can select between six genuine fictional demo pages, scroll the previews, switch desktop/mobile viewport widths and open full-size versions.
 

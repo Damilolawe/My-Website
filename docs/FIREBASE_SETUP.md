@@ -1,20 +1,20 @@
-# AWE / DIGITAL — Firebase Hosting Classic (free Spark plan)
+# AWE CONCEPTS — Firebase Hosting Classic (free Spark plan)
 
 This setup deploys **only the public front-end**. Netlify Functions are not portable to Firebase Hosting Spark and are deliberately **not deployed or silently replaced**. API-backed account operations, order submission, private drafts, uploaded files, payments, published customer sites, Stripe webhooks and scheduled jobs remain unavailable until those server routes are explicitly migrated and tested in Supabase Edge Functions (or a separately approved server).
 
 ## Step 1 — Create the project, no billing
 
 1. Visit https://console.firebase.google.com/ with your Google account.
-2. **Create a project**. Use a name such as AWE DIGITAL; the generated *project ID* must be unique.
+2. **Create a project**. Use a name such as Awe Concepts; the generated *project ID* must be unique.
 3. Stay on **Spark (Free)**. Do **not** choose App Hosting or enable Blaze / Cloud Billing.
 4. Open **Build > Hosting** and select **Get started** (Hosting Classic). Do not initialize a replacement website in a new repository.
 5. Copy the exact Firebase **project ID** (not the display name). It identifies your temporary URLs `https://PROJECT_ID.web.app` and `https://PROJECT_ID.firebaseapp.com`.
 
 ## Step 2 — Connect automatic deployments from GitHub
 
-### Browser-only setup for the existing awe-digital project
+### Browser-only setup for the existing Awe Concepts project
 
-No ChatGPT desktop app or Firebase plugin is required. Open https://shell.cloud.google.com/ in your own browser and sign in with the Google account that owns `awe-digital`. Cloud Shell itself is free. Do not start a paid trial, attach billing, or upgrade the Firebase Spark plan.
+No ChatGPT desktop app or Firebase plugin is required. Open https://shell.cloud.google.com/ in your own browser and sign in with the Google account that owns `Awe Concepts`. Cloud Shell itself is free. Do not start a paid trial, attach billing, or upgrade the Firebase Spark plan.
 
 Install GitHub CLI if needed, then authenticate directly with GitHub:
 
@@ -31,9 +31,9 @@ gh api -H 'Accept: application/vnd.github.raw+json' \
   > /tmp/awe-firebase-setup.sh && bash /tmp/awe-firebase-setup.sh
 ```
 
-Review `scripts/setup-firebase-cloud-shell.sh` before running. It verifies your repository access, enables the IAM and Hosting APIs, provisions the Classic Hosting site if missing, and creates the dedicated `github-hosting@awe-digital.iam.gserviceaccount.com` service account. The project roles it grants are Hosting Admin, API Keys Viewer, and read-only Service Usage Viewer. The latter allows the current Firebase CLI to check whether the Hosting API is enabled. It does not grant Authentication Admin, Cloud Run roles, project Editor, or Owner.
+Review `scripts/setup-firebase-cloud-shell.sh` before running. It verifies your repository access, enables the IAM and Hosting APIs, provisions the Classic Hosting site if missing, and creates the dedicated `github-hosting@Awe Concepts.iam.gserviceaccount.com` service account. The project roles it grants are Hosting Admin, API Keys Viewer, and read-only Service Usage Viewer. The latter allows the current Firebase CLI to check whether the Hosting API is enabled. It does not grant Authentication Admin, Cloud Run roles, project Editor, or Owner.
 
-The script sends the JSON key directly to GitHub's encrypted `FIREBASE_SERVICE_ACCOUNT` secret and deletes its local temporary copy. If upload fails, it attempts to revoke the unused key. An existing secret is retained on reruns. It sets `FIREBASE_PROJECT_ID=awe-digital` and dispatches the existing workflow on `main`. No application files or backend configuration are changed. GitHub Actions uses your existing account allowance; no paid service or spending limit is enabled.
+The script sends the JSON key directly to GitHub's encrypted `FIREBASE_SERVICE_ACCOUNT` secret and deletes its local temporary copy. If upload fails, it attempts to revoke the unused key. An existing secret is retained on reruns. It sets `FIREBASE_PROJECT_ID=Awe Concepts` and dispatches the existing workflow on `main`. No application files or backend configuration are changed. GitHub Actions uses your existing account allowance; no paid service or spending limit is enabled.
 
 `SETUP COMPLETE` means the workflow was requested, not that the website was deployed. Inspect the build, checks, and actual deployment step before claiming success. If permission, organization policy, or free quota blocks setup, stop and report the error; do not enable billing or weaken policy.
 
@@ -59,7 +59,7 @@ Save the entire service account JSON key in **GitHub > Settings > Secrets and va
 
 The workflow fails explicitly until both values exist. Older runs could show green with the notice 'Firebase deployment has NOT run'; those runs did **not** publish the site.
 
-Then use **GitHub > Actions > Firebase Hosting (AWE / DIGITAL) > Run workflow** and inspect the deploy step. The site should appear at `https://PROJECT_ID.web.app`. Subsequent merges into `main` deploy automatically after passing build and tests.
+Then use **GitHub > Actions > Firebase Hosting (AWE CONCEPTS) > Run workflow** and inspect the deploy step. The site should appear at `https://PROJECT_ID.web.app`. Subsequent merges into `main` deploy automatically after passing build and tests.
 
 Alternative: use **Firebase CLI** `firebase init hosting:github` from a cloned repository after creating the Firebase project. The Firebase CLI can create and securely upload the GitHub service account secret automatically. If choosing the CLI, review its generated workflow to avoid duplicate production deployments with this repository's existing workflow.
 
