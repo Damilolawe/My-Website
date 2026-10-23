@@ -66,3 +66,6 @@
 @media(max-width:950px){.chapter-composition{grid-template-columns:1fr}.chapter-art{min-height:500px}.story-preface{grid-template-columns:1fr}.story-preface h2{grid-row:auto}.process-steps{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.story-nav{height:72px;padding:0 17px}.story-nav nav{gap:15px;font-size:9px}.story-nav nav a:first-child{display:none}.story-brand{font-size:21px}.story-meta>span:last-child{display:none}.story-hero-inner{width:90%;margin:80px auto}.story-hero h1{font-size:clamp(54px,14vw,100px)}.story-hero-bottom{flex-direction:column;align-items:start}.story-preface{padding:100px 6%}.story-preface h2{font-size:clamp(60px,13vw,90px)}.story-chapter{padding:50px 5% 100px}.chapter-art{min-height:430px;padding:24px}.chapter-art strong{font-size:clamp(48px,12vw,90px)}.chapter-details h2{font-size:clamp(45px,11vw,77px)}.process-steps{grid-template-columns:1fr}.story-outro h2{font-size:clamp(55px,12vw,90px)}.story-outro>div{display:block}.story-outro a{display:inline-block;margin:15px 10px 0 0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.story-orbit,.flower,.cursor{animation:none!important}}
+
+/* New AW vector lockup */
+.story-brand img{display:block;width:clamp(135px,17vw,190px);height:auto}
