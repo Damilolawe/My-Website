@@ -14,6 +14,7 @@ test("Arcade Night has its own esports broadcast composition and six honest prev
     assert.match(html, /JetBrains Mono/);
     assert.match(html, /FICTIONAL TEMPLATE DEMO/);
     assert.match(html, /contact-setup-note/);
+    assert.match(html, /class="arcade-actions architect-contact-links"/);
     assert.doesNotMatch(html, /<script|images\.unsplash\.com|href="mailto:hello@example.com"/);
   }
 });

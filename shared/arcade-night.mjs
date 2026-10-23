@@ -47,7 +47,7 @@ export function renderArcadeNight(value, { sample = false, assetBase = "/api/ass
   const testimonials = () => '<section class="arcade-section" id="testimonials" aria-labelledby="arcade-testimonials-title">' + label("05", "VOICES") + '<h2 id="arcade-testimonials-title">FROM THE CROWD<span class="arcade-dot">.</span></h2><div class="arcade-quotes">' +
     c.testimonials.map(item => '<blockquote><p>“' + E(item.quote) + '”</p>' + (item.attribution ? '<cite>' + E(item.attribution) + '</cite>' : '') + '</blockquote>').join("") + '</div></section>';
   const contact = () => '<section class="arcade-contact" id="contact" aria-labelledby="arcade-contact-title">' + label("06", "NEXT UP") + '<h2 id="arcade-contact-title">MAKE THE<br>NEXT MOVE<span class="arcade-dot">.</span></h2>' +
-    '<p>' + E(c.headline) + '</p><div class="arcade-actions">' + (c.publicEmail ? '<a class="arcade-button arcade-button-primary" href="mailto:' + E(c.publicEmail) + '">GET IN TOUCH ' + arrow + '</a>' : '') + links(c) +
+    '<p>' + E(c.headline) + '</p><div class="arcade-actions architect-contact-links">' + (c.publicEmail ? '<a class="arcade-button arcade-button-primary" href="mailto:' + E(c.publicEmail) + '">GET IN TOUCH ' + arrow + '</a>' : '') + links(c) +
     (!c.publicEmail && !c.links.length ? '<span class="arcade-contact-note contact-setup-note">' + (sample ? 'FICTIONAL DEMO — ADD A CONTACT METHOD TO ACTIVATE THIS SECTION.' : 'THE SITE OWNER HAS NOT PUBLISHED A CONTACT METHOD.') + '</span>' : '') + '</div></section>';
   const sections = { about, work, services, education: () => record("education"), experience: () => record("experience"), skills: () => record("skills"), testimonials, contact };
   const body = selected.filter(has).map(id => sections[id]()).join("");
