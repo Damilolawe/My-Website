@@ -52,3 +52,10 @@ test("Static demo image sources are allowlisted and the production renderer matc
  const headers=await readFile(new URL("../_headers",import.meta.url),"utf8");
  assert(headers.includes("img-src 'self' data: https://images.unsplash.com"));
 });
+
+test("Flagship first-screen composition is explicitly layered",async()=>{
+ const css=await readFile(new URL("../shared/photographic-direction.mjs",import.meta.url),"utf8");
+ assert(css.includes("grid-row:2"),"Folio must share image and headline grid row");
+ assert(css.includes("align-self:start"),"Mobile film headline must begin in first screen");
+ assert(css.includes("margin:-300px"),"Fashion headline must overlay its campaign portrait");
+});
