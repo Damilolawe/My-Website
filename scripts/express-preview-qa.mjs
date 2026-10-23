@@ -76,14 +76,24 @@ try{
    const choices=await page.locator("[data-template]").count();
    if(choices!==20)failures.push("Builder: "+choices+" template choices rather than 20");
    await page.locator('[data-template="folio"]').click();
+   const selectedFolio=await page.evaluate(()=>({
+    name:document.querySelector(".theater-caption h3")?.textContent,
+    selected:document.querySelector(".template-select[aria-pressed='true']")?.dataset.template,
+    activeStep:document.querySelector(".steps .active")?.textContent,
+    feedback:document.querySelector("#feedback")?.textContent
+   }));
+   console.log("BUILDER_AFTER_TEMPLATE",JSON.stringify(selectedFolio));
+   if(selectedFolio.selected!=="folio" || selectedFolio.name!=="Folio No. 01")
+    failures.push("Builder interaction: selecting Folio did not update gallery to Folio");
+
    await page.locator("#theater-mobile").click();
    if(!await page.locator(".experience-theater").evaluate(el=>el.classList.contains("is-mobile")))
     failures.push("Builder: MOBILE theater button did not switch layout");
    await page.locator("#theater-desktop").click();
    if(await page.locator(".experience-theater").evaluate(el=>el.classList.contains("is-mobile")))
     failures.push("Builder: DESKTOP theater button did not restore layout");
-   await page.waitForFunction(()=>document.querySelector("#theater-frame")?.getAttribute("srcdoc")?.includes("folio-hero"),
-    {timeout:15000}).catch(()=>failures.push("Builder: selected Folio preview did not render"));
+   await page.waitForFunction(()=>/\<body class="folio[\s"]/.test(document.querySelector("#theater-frame")?.getAttribute("srcdoc")||""),
+    null,{timeout:10000}).catch(()=>failures.push("Builder: selected Folio preview did not render"));
    console.log("BUILDER_BEFORE_NEXT",JSON.stringify(await page.evaluate(()=>({
     activeStep:document.querySelector(".steps .active")?.textContent,
     currentTitle:document.querySelector("#step h2")?.textContent,
