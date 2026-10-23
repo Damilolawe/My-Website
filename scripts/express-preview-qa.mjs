@@ -61,6 +61,67 @@ async function inspect(page,id,w){
  });
 }
 try{
+ // Public AWE Express builder is exercised without signing in or placing an order.
+ // This verifies the real selector, preview width controls and color-picker path.
+ {
+  const context=await browser.newContext({viewport:{width:1366,height:900}});
+  const page=await context.newPage();
+  await page.route(/^https:\/\/(?!127\.0\.0\.1)/,route=>route.abort());
+  try{
+   await page.goto(base+"/order.html",{waitUntil:"domcontentloaded",timeout:20000});
+   await page.locator('[data-type="Creative portfolio"]').waitFor({timeout:12000});
+   await page.locator('[data-type="Creative portfolio"]').click();
+   await page.locator("#next").click();
+   await page.locator('[data-template="folio"]').waitFor({timeout:10000});
+   const choices=await page.locator("[data-template]").count();
+   if(choices!==20)failures.push("Builder: "+choices+" template choices rather than 20");
+   await page.locator('[data-template="folio"]').click();
+   await page.locator("#theater-mobile").click();
+   if(!await page.locator(".experience-theater").evaluate(el=>el.classList.contains("is-mobile")))
+    failures.push("Builder: MOBILE theater button did not switch layout");
+   await page.locator("#theater-desktop").click();
+   if(await page.locator(".experience-theater").evaluate(el=>el.classList.contains("is-mobile")))
+    failures.push("Builder: DESKTOP theater button did not restore layout");
+   await page.waitForFunction(()=>document.querySelector("#theater-frame")?.getAttribute("srcdoc")?.includes("folio-hero"),
+    {timeout:15000}).catch(()=>failures.push("Builder: selected Folio preview did not render"));
+   console.log("BUILDER_BEFORE_NEXT",JSON.stringify(await page.evaluate(()=>({
+    activeStep:document.querySelector(".steps .active")?.textContent,
+    currentTitle:document.querySelector("#step h2")?.textContent,
+    currentTemplate:document.querySelector(".theater-caption h3")?.textContent,
+    selected:document.querySelector(".template-select[aria-pressed='true']")?.dataset.template,
+    feedback:document.querySelector("#feedback")?.textContent
+   }))));
+   await page.locator("#next").click();
+   const debugStep=await page.evaluate(()=>({
+    activeStep:document.querySelector(".steps .active")?.textContent,
+    title:document.querySelector("#step h2")?.textContent,
+    text:document.querySelector("#step")?.textContent?.slice(0,280),
+    feedback:document.querySelector("#feedback")?.textContent,
+    styleInput:!!document.querySelector('input[name="primary"]'),
+    nextLabel:document.querySelector("#next")?.textContent,
+    selected:document.querySelector(".template-select[aria-pressed='true']")?.dataset.template
+   }));
+   console.log("BUILDER_AFTER_NEXT",JSON.stringify(debugStep));
+   await page.locator('input[name="primary"]').waitFor({timeout:6000});
+   await page.locator('input[name="primary"]').fill("#b33392");
+   await page.locator('input[name="secondary"]').fill("#cfd94a");
+   const markup=await page.locator("#step iframe").evaluate(el=>el.getAttribute("srcdoc"));
+   if(!markup?.includes("--accent:#b33392;--secondary:#cfd94a"))
+    failures.push("Builder: selected palette did not propagate into preview HTML");
+   if(!markup?.includes("folio-hero"))
+    failures.push("Builder: selected template was lost in preview");
+   await page.locator("#narrow").click();
+   if(await page.locator("#step iframe").evaluate(el=>el.style.width)!=="320px")
+    failures.push("Builder: MOBILE preview button did not set narrow width");
+   await page.locator("#wide").click();
+   if(await page.locator("#step iframe").evaluate(el=>el.style.width)!=="100%")
+    failures.push("Builder: DESKTOP preview button did not restore full width");
+   await page.screenshot({path:output+"/builder-style-preview.png",fullPage:false,animations:"disabled"});
+  }catch(e){failures.push("Builder interaction: "+String(e.message).slice(0,180));}
+  await context.close();
+ }
+
+ if(failures.some(f=>f.startsWith("Builder interaction:")))throw new Error("Builder regression: "+failures.find(f=>f.startsWith("Builder interaction:")));
  for(const size of sizes){
   const context=await browser.newContext({viewport:{width:size.w,height:size.h},
    isMobile:size.w<=430,hasTouch:size.w<=430,reducedMotion:"reduce"});
@@ -106,56 +167,6 @@ try{
   await context.close();
  }
 
- // Public AWE Express builder is exercised without signing in or placing an order.
- // This verifies the real selector, preview width controls and color-picker path.
- {
-  const context=await browser.newContext({viewport:{width:1366,height:900}});
-  const page=await context.newPage();
-  await page.route(/^https:\/\/(?!127\.0\.0\.1)/,route=>route.abort());
-  try{
-   await page.goto(base+"/order.html",{waitUntil:"domcontentloaded",timeout:20000});
-   await page.locator('[data-type="Creative portfolio"]').waitFor({timeout:12000});
-   await page.locator('[data-type="Creative portfolio"]').click();
-   await page.locator("#next").click();
-   await page.locator('[data-template="folio"]').waitFor({timeout:10000});
-   const choices=await page.locator("[data-template]").count();
-   if(choices!==20)failures.push("Builder: "+choices+" template choices rather than 20");
-   await page.locator('[data-template="folio"]').click();
-   await page.locator("#theater-mobile").click();
-   if(!await page.locator(".experience-theater").evaluate(el=>el.classList.contains("is-mobile")))
-    failures.push("Builder: MOBILE theater button did not switch layout");
-   await page.locator("#theater-desktop").click();
-   if(await page.locator(".experience-theater").evaluate(el=>el.classList.contains("is-mobile")))
-    failures.push("Builder: DESKTOP theater button did not restore layout");
-   await page.waitForFunction(()=>document.querySelector("#theater-frame")?.getAttribute("srcdoc")?.includes("folio-hero"),
-    {timeout:15000}).catch(()=>failures.push("Builder: selected Folio preview did not render"));
-   await page.locator("#next").click();
-   const debugStep=await page.evaluate(()=>({
-    title:document.querySelector("#step h2")?.textContent,
-    text:document.querySelector("#step")?.textContent?.slice(0,280),
-    feedback:document.querySelector("#feedback")?.textContent,
-    styleInput:!!document.querySelector('input[name="primary"]'),
-    nextLabel:document.querySelector("#next")?.textContent
-   }));
-   console.log("BUILDER_AFTER_NEXT",JSON.stringify(debugStep));
-   await page.locator('input[name="primary"]').waitFor({timeout:6000});
-   await page.locator('input[name="primary"]').fill("#b33392");
-   await page.locator('input[name="secondary"]').fill("#cfd94a");
-   const markup=await page.locator("#step iframe").evaluate(el=>el.getAttribute("srcdoc"));
-   if(!markup?.includes("--accent:#b33392;--secondary:#cfd94a"))
-    failures.push("Builder: selected palette did not propagate into preview HTML");
-   if(!markup?.includes("folio-hero"))
-    failures.push("Builder: selected template was lost in preview");
-   await page.locator("#narrow").click();
-   if(await page.locator("#step iframe").evaluate(el=>el.style.width)!=="320px")
-    failures.push("Builder: MOBILE preview button did not set narrow width");
-   await page.locator("#wide").click();
-   if(await page.locator("#step iframe").evaluate(el=>el.style.width)!=="100%")
-    failures.push("Builder: DESKTOP preview button did not restore full width");
-   await page.screenshot({path:output+"/builder-style-preview.png",fullPage:false,animations:"disabled"});
-  }catch(e){failures.push("Builder interaction: "+String(e.message).slice(0,180));}
-  await context.close();
- }
  // Preserve an authentic before/after baseline for three creative exemplars.
  // This is a public production snapshot, not a pre-existing screenshot fabricated
  // from the new designs. If production cannot be reached, report that limitation.
