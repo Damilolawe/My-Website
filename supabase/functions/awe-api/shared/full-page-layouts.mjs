@@ -72,7 +72,7 @@ function workMarkup(mode,items,ctx){
       case "luxury-chapters":return '<article class="case-entry case-noir"><div class="noir-number">'+String(i+1).padStart(2,"0")+'</div>'+media+body+'</article>';
       case "industrial-projects":return '<article class="case-entry case-job"><div class="job-index">'+String(i+1).padStart(2,"0")+'</div>'+body+media+'</article>';
       case "botanical-journal":return '<article class="case-entry case-journal"><span class="journal-spark" aria-hidden="true">✽︎</span>'+media+body+'</article>';
-      case "business-briefs":return '<article class="case-entry case-report"><div class="report-tag">'+String(i+1).padStart(2,"0")+' / REPORT</div>'+body+'<span class="report-arrow" aria-hidden="true">↗︎</span></article>';
+      case "business-briefs":return '<article class="case-entry case-report"><div class="report-tag">'+String(i+1).padStart(2,"0")+' / CASE STUDY</div><div class="report-media">'+media+'</div>'+body+'<span class="report-arrow" aria-hidden="true">↗︎</span></article>';
     }
   });
   return '<div class="art-directed-work mode-'+mode+'">'+figures.join("")+'</div>';

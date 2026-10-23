@@ -1,0 +1,44 @@
+
+/* AWE Express: gallery is a working browser, not a cropped decoration. */
+.experience-theater{background:#101218;color:#f5f5f0;padding:0;border:1px solid #2b3038;box-shadow:0 24px 75px #0a0d142b;margin:34px 0 48px;overflow:hidden}
+.experience-theater .theater-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px clamp(15px,2.5vw,36px);border-bottom:1px solid #353944}
+.theater-identity{display:grid;gap:8px;min-width:0}
+.theater-identity strong{font:600 clamp(16px,1.8vw,25px)/1.13 system-ui;letter-spacing:-.045em;color:#fff}
+.theater-identity .eyebrow{font-size:10px;letter-spacing:.13em;color:#c1c5ce}
+.experience-theater .theater-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.experience-theater .theater-tools button,.experience-theater .theater-tools a{min-height:44px;padding:12px 15px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #545d6c;border-radius:2px;color:#fff;background:#20242c;font:700 11px/1.1 ui-monospace,monospace;letter-spacing:.025em;text-decoration:none}
+.experience-theater .theater-tools button:hover,.experience-theater .theater-tools a:hover{border-color:#f2f2eb;background:#353944}
+.experience-theater .theater-tools button[aria-pressed=true]{background:#dcfc46;color:#111;border-color:#dcfc46}
+.experience-theater .theater-tools button:focus-visible,.experience-theater .theater-tools a:focus-visible{outline:3px solid #dcfc46;outline-offset:3px}
+.experience-theater .theater-viewport{display:flex;align-items:flex-start;justify-content:center;min-height:0;padding:clamp(12px,2.7vw,36px);background:radial-gradient(ellipse at 50% 0%,#3b404b 0%,#212631 48%,#17191f 100%);overflow:hidden;transition:none}
+.theater-browser{width:100%;max-width:1280px;margin:0 auto;background:#fff;min-width:0;box-shadow:0 20px 70px #080a13a8;border:1px solid #5f6570;transition:width .35s cubic-bezier(.22,1,.36,1)}
+.theater-browserbar{height:38px;padding:0 14px;display:flex;align-items:center;gap:14px;background:#ebedef;color:#424951;border-bottom:1px solid #c1c6ca;font:600 10px/1.3 ui-monospace,monospace;overflow:hidden}
+.theater-browserbar .browser-lights{display:flex;gap:5px;flex:none}
+.browser-lights i{display:block;width:8px;height:8px;border:1px solid #9aa1a8;border-radius:50%;background:#cbd0d5}
+.theater-browserbar .browser-url{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;opacity:.85}
+.theater-browserbar .browser-mode{margin-left:auto;font-weight:800;white-space:nowrap}
+.theater-canvas{width:100%;position:relative;overflow:hidden;background:#f3f1eb;min-height:1px}
+.experience-theater .theater-canvas iframe{display:block;position:absolute;inset:0 auto auto 0;width:1280px;height:900px;border:0;background:#f7f7f4;transform-origin:top left;border-radius:0;box-shadow:none;transition:none!important}
+.experience-theater.is-mobile .theater-browser{width:min(100%,392px);border:7px solid #292e36;border-radius:27px;overflow:hidden;box-shadow:0 25px 75px #030408aa}
+.experience-theater.is-mobile .theater-browserbar{border-radius:17px 17px 0 0}
+.experience-theater.is-mobile .theater-canvas iframe{position:relative;inset:auto;width:100%;height:740px;transform:none!important}
+.experience-theater .theater-caption{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:25px;align-items:end;padding:24px clamp(15px,2.5vw,36px) 28px}
+.experience-theater .theater-caption h3{font:650 clamp(28px,3vw,43px)/1.04 system-ui;letter-spacing:-.06em;color:#fff}
+.experience-theater .theater-caption p{font-size:14px;max-width:590px;color:#cdd2dc}
+.experience-theater .theater-caption .theater-hint{font:650 11px/1.7 ui-monospace,monospace;letter-spacing:.02em;max-width:210px;color:#d7e0e6;text-align:right}
+.theater-reassurance{font:500 12px/1.55 system-ui;color:#abb4c0;border-top:1px solid #353944;padding:14px clamp(15px,2.5vw,36px)}
+.experience-theater .theater-live{box-shadow:none}
+@media(max-width:770px){
+.experience-theater .theater-header{flex-direction:column;align-items:stretch}
+.experience-theater .theater-tools{justify-content:flex-start}
+.experience-theater .theater-caption{grid-template-columns:1fr}
+.experience-theater .theater-caption .theater-hint{text-align:left;max-width:none}
+}
+@media(max-width:420px){
+.experience-theater .theater-header{padding:18px 12px}
+.experience-theater .theater-tools button,.experience-theater .theater-tools a{flex:1 1 auto;padding:10px 8px;font-size:10px}
+.experience-theater .theater-viewport{padding:9px}
+.experience-theater .theater-caption{padding:18px 14px}
+.experience-theater.is-mobile .theater-canvas iframe{height:670px}
+}
+@media(prefers-reduced-motion:reduce){.theater-browser{transition:none!important}}

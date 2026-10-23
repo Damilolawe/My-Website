@@ -290,6 +290,30 @@ const originalByTemplate = {
   brutalist:"Creative portfolio",nocturne:"Personal brand",foundry:"Small business",
   bloom:"Small business",ledger:"Small business"
 };
+/* Unique fictional gallery identities. Editable customer values are never replaced. */
+const galleryIdentities = {
+ index:["Avery Brooks","North & Number","Designed to make sense.","Clarity, structured."],
+ folio:["Isabel Quinn","The Margin Studio","A life in chapters.","An edited collection."],
+ still:["Noa Sterling","Common Objects","Give the work some room.","A quieter perspective."],
+ afterhours:["Morgan Vale","Afterglow Films","Every frame has a pulse.","A story after dark."],
+ signal:["Riley Sparks","Static Youth","Make something impossible to ignore.","Where culture meets expression."],
+ daylight:["Remy Summers","Good Day Club","A little more wonder.","Ideas with an open door."],
+ atlas:["Milan Rivers","Fieldwork Lab","Find the pattern. Change the map.","A collection of discoveries."],
+ terminal:["Robin Code","Build State","Curiosity is the starting command.","Ideas, engineered."],
+ orbit:["Cameron Vale","New Orbit","The next frontier is personal.","A different point of view."],
+ playbill:["Ari Bennett","House Lights","There is more to the story.","An opening night to remember."],
+ monologue:["Jules Arden","Scene One","The story begins with a voice.","A new chapter, in motion."],
+ portraiture:["Taylor Monroe","The Portrait Room","Every face tells another story.","In every light, a new perspective."],
+ contactsheet:["Ari Lens","Frame Theory","A moment worth holding.","The art of the edit."],
+ atelier:["Sol Morgan","Maison Sol","Details are everything.","A study in materials and form."],
+ museum:["Rae Ellis","The New Archive","Make room for a new idea.","An exhibition of possibility."],
+ brutalist:["Nico Cross","Hard Copy Studio","Break the expected.","Every surface is a statement."],
+ nocturne:["Alex Noir","Velvet & Form","Consider every detail.","An understated impression."],
+ foundry:["Drew Mercer","Northline Workshop","Made with purpose. Built to last.","Work with substance."],
+ bloom:["Jamie Rose","Bloom & Branch","Good things take shape.","Care in every detail."],
+ ledger:["Jordan Park","Everwell Partners","Clarity creates momentum.","Better decisions start here."]
+};
+
 export function sampleForTemplate(id,purpose){
   const t=templates.find(x=>x.id===id)||templates[0];
   const category=types.includes(purpose)?purpose:(originalByTemplate[t.id]||"Professional portfolio");
@@ -299,6 +323,18 @@ export function sampleForTemplate(id,purpose){
   const preview = original ? {
     ...kit,...old,cards:old.projects||kit.cards,services:old.services||kit.services
   } : {...kit};
+  // The public theater uses different fictional identities, not one generic profile
+  // with twenty colorways. Project descriptions remain truthful-to-purpose.
+  if (purpose!==undefined && galleryIdentities[t.id]) {
+    const [person,business,statement,signature]=galleryIdentities[t.id];
+    preview.name=category==="Small business"?business:person;
+    preview.headline=statement;
+    preview.heroLabel=signature+" / "+category;
+    preview.cards=(kit.cards||[]).map((item,i)=>({
+      ...item,
+      title:([signature.replace(/[.,]$/,""),"Study "+String(i+1).padStart(2,"0"),"Selected / "+String(i+1).padStart(2,"0")][i]||item.title)+" — "+item.title
+    }));
+  }
   const unique = purpose===undefined && !old;
   const motif={atlas:"Think bigger. Build smarter.",terminal:"Hello, future.",orbit:"Ideas without limits.",
     playbill:"This is the beginning.",monologue:"The scene is yours.",portraiture:"More than a face.",

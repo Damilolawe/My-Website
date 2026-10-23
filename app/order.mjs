@@ -3,6 +3,7 @@ import {
   types,
   sample,
   sampleForTemplate,
+  typeSlugs,
   recommendedFor,
   normalize,
   validate,
@@ -30,6 +31,7 @@ let step = 0,
   draftVersion = null,
   uploaded = [],
   theaterController = null;
+let theaterPreferredMode = typeof window !== "undefined" && window.matchMedia("(max-width: 720px)").matches ? "mobile" : "desktop";
 // Only fictional data enters the public configurator preview. Customer content stays in memory until submission.
 input.content = {
   name: "",
@@ -64,42 +66,115 @@ function draw() {
     el.querySelectorAll("[data-type]").forEach(
       (b) =>
         (b.onclick = () => {
-          input.type = b.dataset.type;
+          if (input.type !== b.dataset.type) {
+            input.type = b.dataset.type;
+            const featured = {
+              "Student résumé": "index",
+              "Professional portfolio": "ledger",
+              "Actor / model": "afterhours",
+              "Creative portfolio": "folio",
+              "Personal brand": "nocturne",
+              "Small business": "bloom",
+            };
+            input.template = featured[input.type] || "index";
+            const chosen = templates.find((t) => t.id === input.template) || templates[0];
+            input.design.primary = chosen.color;
+            input.design.appearance = ["afterhours","nocturne","terminal","brutalist"].includes(chosen.id) ? "dark" : "light";
+            input.design.font = chosen.id === "folio" ? "serif" : "sans";
+          }
           input.design.sections = sampleForTemplate(input.template,input.type).design.sections;
           draw();
         }),
     );
   }
   if (step === 1) {
-    const active = templates.find((t)=>t.id===input.template) || templates[0];
-    const offered = [...templates].sort((a,b)=>Number(recommendedFor(b,input.type))-Number(recommendedFor(a,input.type)));
-    el.innerHTML = '<div class="experience-picker-heading"><div><p class="eyebrow">FIND YOUR CREATIVE DIRECTION.</p><h2>Don’t pick a color.<br><em>Pick a feeling.</em></h2><p class="muted">Exploring '+esc(input.type)+' websites. Each preview uses fictional examples designed for that purpose.</p></div><div class="experience-picker-index"><strong>✳︎</strong><small>DESIGNED FOR YOUR STORY</small></div></div>' +
-      '<div class="experience-theater" data-active="'+esc(active.id)+'"><div class="theater-header"><span class="eyebrow"><i class="theater-live"></i> LIVE TEMPLATE THEATER</span><div class="theater-tools"><button type="button" id="theater-desktop" aria-pressed="true">DESKTOP</button><button type="button" id="theater-mobile" aria-pressed="false">MOBILE</button><a href="/templates/'+({ "Student résumé":"student","Professional portfolio":"professional","Actor / model":"actor","Creative portfolio":"creative","Personal brand":"brand","Small business":"business"}[input.type])+"/"+esc(active.id)+'.html" target="_blank" rel="noopener" id="theater-open">OPEN FULL DEMO ↗︎</a></div></div><div class="theater-viewport"><iframe id="theater-frame" title="Fictional '+esc(active.name)+' template preview" sandbox="" loading="eager"></iframe></div><div class="theater-caption"><div><span class="eyebrow">NOW EXPLORING</span><h3>'+esc(active.name)+'</h3><p>'+esc(active.tag)+'</p></div><span class="eyebrow">SCROLL INSIDE TO EXPLORE ↗︎</span></div></div>' +
-      '<div class="template-grid premium-template-grid">' + offered.map((t,i)=>'<article class="template-card template-poster '+(input.template===t.id?'chosen':'')+'" data-poster="'+esc(t.id)+'"><button type="button" class="template-select" data-template="'+esc(t.id)+'" aria-pressed="'+String(input.template===t.id)+'"><span class="poster-art poster-'+esc(t.id)+'" style="--tile:'+esc(t.color)+'"><span class="poster-num">'+String(i+1).padStart(2,'0')+'</span><strong>'+esc(t.name)+'</strong><span class="poster-symbol" aria-hidden="true">✳︎</span><span class="poster-style">'+esc(t.style)+(recommendedFor(t,input.type)?' · RECOMMENDED':'')+'</span></span><span class="poster-meta"><strong>'+esc(t.tag)+'</strong><span>'+ (input.template===t.id?'SELECTED ✓︎':'EXPLORE DIRECTION ↗︎')+'</span></span></button></article>').join("")+'</div>';
-    const frame=el.querySelector("#theater-frame"),theater=el.querySelector(".experience-theater");
-    const controller=new AbortController();
-    theaterController=controller;
-    frame.srcdoc=previewMessage("Loading "+active.name+"…");
-    fetchPublicTemplate(active.id,{type:input.type,signal:controller.signal})
-      .then((html)=>{if(!controller.signal.aborted && frame.isConnected)frame.srcdoc=html;})
-      .catch((error)=>{
-        if(controller.signal.aborted || !frame.isConnected)return;
-        frame.srcdoc=previewMessage("Preview unavailable. Select Open Full Demo above to see this design.");
-        console.warn("Template preview unavailable",error);
-      });
-    el.querySelector("#theater-mobile").onclick=()=>{theater.classList.add("is-mobile");el.querySelector("#theater-mobile").setAttribute("aria-pressed","true");el.querySelector("#theater-desktop").setAttribute("aria-pressed","false");};
-    el.querySelector("#theater-desktop").onclick=()=>{theater.classList.remove("is-mobile");el.querySelector("#theater-desktop").setAttribute("aria-pressed","true");el.querySelector("#theater-mobile").setAttribute("aria-pressed","false");};
-    el.querySelectorAll("[data-template]").forEach(
-      (b) =>
-        (b.onclick = () => {
-          input.template = b.dataset.template;
-          const t = templates.find((t) => t.id === input.template);
-          input.design.primary = t.color;
-          input.design.appearance = t.id === "afterhours" ? "dark" : "light";
-          input.design.font = t.id === "folio" ? "serif" : "sans";
-          draw();
-        }),
-    );
+    const active = templates.find((t) => t.id === input.template) || templates[0];
+    const offered = [...templates].sort((a,b) => Number(recommendedFor(b,input.type)) - Number(recommendedFor(a,input.type)));
+    const demoPath = (id) => "/templates/" + typeSlugs[input.type] + "/" + encodeURIComponent(id) + ".html";
+    const choice = (t,i) => '<article class="template-card template-poster '+(input.template===t.id?'chosen':'')+'" data-poster="'+esc(t.id)+'"><button type="button" class="template-select" data-template="'+esc(t.id)+'" aria-pressed="'+String(input.template===t.id)+'"><span class="poster-art poster-'+esc(t.id)+'" style="--tile:'+esc(t.color)+'"><span class="poster-num">'+String(i+1).padStart(2,'0')+'</span><strong>'+esc(t.name)+'</strong><span class="poster-symbol" aria-hidden="true"></span><span class="poster-style">'+esc(t.style)+(recommendedFor(t,input.type)?' · RECOMMENDED':'')+'</span></span><span class="poster-meta"><strong>'+esc(t.tag)+'</strong><span>'+(input.template===t.id?'SELECTED ✓︎':'EXPLORE DIRECTION ↗︎')+'</span></span></button></article>';
+    el.innerHTML = '<div class="experience-picker-heading"><div><p class="eyebrow">TWENTY DISTINCT DESIGN DIRECTIONS</p><h2>Don’t pick a color.<br><em>Pick a feeling.</em></h2><p class="muted">Explore real, scrollable example websites for '+esc(input.type)+'. The people and projects shown are fictional.</p></div><div class="experience-picker-index" aria-hidden="true"><strong></strong><small>AN ORIGINAL STARTING POINT</small></div></div>' +
+      '<div class="experience-theater'+(theaterPreferredMode==='mobile'?' is-mobile':'')+'" data-active="'+esc(active.id)+'">' +
+        '<div class="theater-header"><div class="theater-identity"><span class="eyebrow"><i class="theater-live" aria-hidden="true"></i> THE LIVE TEMPLATE THEATER · 01—20</span><strong>Explore the actual website, not a static mockup.</strong></div>' +
+        '<div class="theater-tools" aria-label="Preview screen size"><button type="button" id="theater-desktop" aria-pressed="'+String(theaterPreferredMode==='desktop')+'">DESKTOP</button><button type="button" id="theater-mobile" aria-pressed="'+String(theaterPreferredMode==='mobile')+'">MOBILE</button><a href="'+demoPath(active.id)+'" target="_blank" rel="noopener" id="theater-open">VIEW FULL WEBSITE ↗︎</a></div></div>' +
+        '<div class="theater-viewport"><div class="theater-browser"><div class="theater-browserbar"><span class="browser-lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="browser-url">'+esc(active.name)+' / fictional website preview</span><span class="browser-mode">'+(theaterPreferredMode==='mobile'?'MOBILE':'DESKTOP')+'</span></div><div class="theater-canvas"><iframe id="theater-frame" title="Fictional '+esc(active.name)+' website" sandbox="" loading="eager"></iframe></div></div></div>' +
+        '<div class="theater-caption"><div><span class="eyebrow">NOW EXPLORING · '+esc(input.type.toUpperCase())+'</span><h3>'+esc(active.name)+'</h3><p>'+esc(active.tag)+'</p></div><p class="theater-hint">SCROLL INSIDE THE SITE TO EXPLORE EVERY SECTION ↗︎</p></div>' +
+        '<div class="theater-reassurance">This is a fictional demonstration. Your content, images, and colors are customized in the next steps. Select another direction below without losing your place.</div>' +
+      '</div>' +
+      '<div class="template-grid premium-template-grid">' + offered.map(choice).join('') + '</div>';
+    const frame=el.querySelector("#theater-frame");
+    const theater=el.querySelector(".experience-theater");
+    const canvas=el.querySelector(".theater-canvas");
+    const modeText=el.querySelector(".browser-mode");
+    const lifetime=new AbortController();
+    theaterController=lifetime;
+    let activeRequest=null;
+    const syncFrameSize=()=>{
+      const mobile=theaterPreferredMode==="mobile";
+      theater.classList.toggle("is-mobile",mobile);
+      el.querySelector("#theater-mobile").setAttribute("aria-pressed",String(mobile));
+      el.querySelector("#theater-desktop").setAttribute("aria-pressed",String(!mobile));
+      modeText.textContent=mobile?"MOBILE":"DESKTOP";
+      if(mobile){
+        frame.style.width="";
+        frame.style.height="";
+        frame.style.transform="";
+        canvas.style.height="auto";
+      } else {
+        // Keep the real desktop breakpoint even when the theater itself is narrower.
+        const scale=Math.min(1,Math.max(.15,canvas.clientWidth/1280));
+        frame.style.width="1280px";
+        frame.style.height="930px";
+        frame.style.transform="scale("+scale+")";
+        canvas.style.height=Math.round(930*scale)+"px";
+      }
+    };
+    const loadTemplate=(id)=>{
+      activeRequest?.abort();
+      activeRequest=new AbortController();
+      const thisRequest=activeRequest;
+      frame.srcdoc=previewMessage("Preparing "+(templates.find(t=>t.id===id)?.name||"template")+"…");
+      fetchPublicTemplate(id,{type:input.type,signal:activeRequest.signal})
+        .then((html)=>{
+          if(!lifetime.signal.aborted&&!thisRequest.signal.aborted&&frame.isConnected&&input.template===id)frame.srcdoc=html;
+        })
+        .catch((error)=>{
+          if(lifetime.signal.aborted||thisRequest.signal.aborted||!frame.isConnected)return;
+          frame.srcdoc=previewMessage("This preview could not load. Use View Full Website above to explore the template.");
+          console.warn("Template preview unavailable",error);
+        });
+    };
+    lifetime.signal.addEventListener("abort",()=>activeRequest?.abort(),{once:true});
+    window.addEventListener("resize",syncFrameSize,{signal:lifetime.signal});
+    const setMode=(mode)=>{theaterPreferredMode=mode;syncFrameSize();};
+    el.querySelector("#theater-desktop").onclick=()=>setMode("desktop");
+    el.querySelector("#theater-mobile").onclick=()=>setMode("mobile");
+    el.querySelectorAll("[data-template]").forEach((button)=>{
+      button.onclick=()=>{
+        const id=button.dataset.template;
+        const template=templates.find(t=>t.id===id);
+        if(!template)return;
+        input.template=id;
+        input.design.primary=template.color;
+        input.design.appearance=["afterhours","nocturne","terminal","brutalist"].includes(id)?"dark":"light";
+        input.design.font=id==="folio"?"serif":"sans";
+        theater.dataset.active=id;
+        el.querySelector(".theater-caption h3").textContent=template.name;
+        el.querySelector(".theater-caption p").textContent=template.tag;
+        el.querySelector(".browser-url").textContent=template.name+" / fictional website preview";
+        el.querySelector("#theater-open").href=demoPath(id);
+        frame.title="Fictional "+template.name+" website";
+        el.querySelectorAll("[data-template]").forEach(b=>{
+          const selected=b.dataset.template===id;
+          b.setAttribute("aria-pressed",String(selected));
+          b.closest(".template-poster").classList.toggle("chosen",selected);
+          b.querySelector(".poster-meta>span").textContent=selected?"SELECTED ✓︎":"EXPLORE DIRECTION ↗︎";
+        });
+        // Update only the iframe, never redraw the wizard or reset the scroll position.
+        loadTemplate(id);
+      };
+    });
+    syncFrameSize();
+    loadTemplate(active.id);
   }
   if (step === 2) {
     el.innerHTML = `<h2>Give it your signature.</h2><div class="split"><form id="design" class="panel"><div class="field-row"><label class="field">Primary color<input name="primary" type="color" value="${input.design.primary}"></label><label class="field">Secondary color<input name="secondary" type="color" value="${input.design.secondary}"></label></div><p class="muted">Your primary color updates the hero, main accents, and buttons. Your secondary color changes the backgrounds, navigation, cards, and footer. Watch the sample preview update as you choose.</p>${select("Typography", "font", ["sans", "serif", "mono"], input.design.font)}${select("Appearance", "appearance", ["light", "dark"], input.design.appearance)}${select("Layout", "layout", ["stacked", "split"], input.design.layout)}${select("Navigation", "navigation", ["full", "compact"], input.design.navigation)}${select("Motion", "animation", ["none", "subtle", "expressive"], input.design.animation)}${select("Hero alignment", "heroAlignment", ["left", "center", "right"], input.design.heroAlignment)}${select("Page spacing", "density", ["airy", "balanced", "compact"], input.design.density)}${select("Corner style", "corners", ["sharp", "soft", "round"], input.design.corners)}<p class="field">Website sections</p><div class="checks">${sections.map((s) => `<label><input type="checkbox" name="sections" value="${s}" ${input.design.sections.includes(s) ? "checked" : ""}> ${s}</label>`).join("")}</div>${field("Anything else in mind?", "preferences", input.preferences, "textarea")}</form><div class="preview-shell"><div class="preview-top"><span>SAMPLE CONFIGURATION</span><div><button id="wide" aria-label="Desktop preview">DESKTOP</button><button id="narrow" aria-label="Mobile preview">MOBILE</button></div></div><iframe title="Fictional template configuration preview" sandbox=""></iframe><p class="muted">This is sample content. Your personalized site is reviewed privately before delivery.</p></div></div>`;
