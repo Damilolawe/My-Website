@@ -76,13 +76,13 @@ test("deployed and legacy API both gate and recover checkout with one idempotenc
     const end = file.indexOf('if (action === "revision")', begin);
     assert(begin >= 0 && end > begin, "Checkout handler missing: " + path);
     const flow = file.slice(begin, end);
-    assert(flow.includes('env().ORDERS_ENABLED !== "true"'), path);
-    assert(flow.indexOf("const stripeClient = stripe();") < flow.indexOf("checkout_at: new Date()"), path);
+    assert(flow.includes("!liveCheckoutConfigured() && !qaAllowed"), path);
+    assert(flow.indexOf('const stripeClient = stripe(qaAllowed ? "test" : "live");') < flow.indexOf("checkout_at: new Date()"), path);
     assert(flow.includes("checkoutPackageIsValid(p)"), path);
     assert(flow.includes('reservation === "manual-review"'), path);
     assert(flow.includes('reservation === "new"'), path);
     assert(flow.includes("if (!locked.length)"), path);
-    assert(flow.includes("idempotencyKey: qaAllowed ? `checkout-qa-v2-${o.id}` : `checkout-${o.id}`"), path);
+    assert(flow.includes("idempotencyKey: qaAllowed ? `checkout-qa-v2-${o.id}` : `checkout-live-${o.id}`"), path);
     assert(flow.includes("checkout_at=not.is.null&stripe_session=is.null&payment=eq.unpaid"), path);
     assert(flow.includes("latest?.stripe_session !== session.id"), path);
     assert(flow.includes('session.status !== "open"'), path);
