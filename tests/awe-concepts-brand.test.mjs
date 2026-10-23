@@ -26,10 +26,10 @@ test("New domain and legacy origin are both supported by versioned API source", 
   assert(inquiry.includes('"Access-Control-Allow-Origin":requestOrigin'));
   const api = await source("supabase/functions/awe-api/platform/edge-router.mjs");
   const auth = await source("supabase/functions/awe-api/platform/backend.mjs");
-  for (const content of [api,auth]) {
-    assert(content.includes("https://aweconcepts.com"));
-    assert(content.includes("https://awe-digital.web.app"));
-  }
+  assert(api.includes("originAllowed(req)"),"API CORS must use shared server origin policy");
+  assert(auth.includes("https://aweconcepts.com"));
+  assert(auth.includes("https://awe-digital.web.app"));
+  assert(auth.includes("export function allowedOrigins()"));
 });
 test("Node package metadata and server delivery messages are branded",async()=>{
   const pkg = JSON.parse(await source("package.json"));
