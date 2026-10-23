@@ -163,6 +163,8 @@ export const shellCSS = `/* Twenty independent site shells — differentiated ma
  .shell-footer>strong{font-size:clamp(53px,13vw,88px)!important;overflow-wrap:anywhere}
  .shell-footer{padding:45px 0 20px}.shell-footer-bottom{font-size:10px}
  .shell-afterhours,.shell-signal{width:100%}
+ /* At narrow widths the angled Signal masthead used to extend ~2px outside the viewport. */
+ .signal .shell-signal{transform:none;max-width:100%}
  .shell-still .shell-nav-links,.shell-daylight .shell-nav-links,.shell-atelier .shell-nav-links{display:flex;flex-wrap:wrap;gap:13px}
  .shell-folio .folio-rule{flex-wrap:wrap}.shell-folio .shell-brand{font-size:48px!important}
  .shell-playbill .shell-brand,.shell-atelier .shell-brand,.shell-nocturne>.shell-brand{font-size:48px!important}
