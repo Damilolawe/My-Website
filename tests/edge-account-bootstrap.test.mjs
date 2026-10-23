@@ -5,9 +5,12 @@ const file = p => readFile(new URL("../" + p, import.meta.url), "utf8");
 
 test("Unrelated Edge API routes do not import the unsupported native image module", async () => {
   const code = await file("supabase/functions/awe-api/platform/uploads.mjs");
-  assert(!code.includes("import { Image } from 'imagescript';"));
-  assert(code.includes("await import('imagescript')"));
-  assert(code.indexOf("await import('imagescript')") > code.indexOf("export async function inspectUpload"));
+  assert(!code.includes("imagescript"));
+  assert(code.includes("sanitizeImage(bytes,mime)"));
+  assert(code.includes("import { sanitizeImage }"));
+  const map=JSON.parse(await file("supabase/functions/awe-api/deno.json"));
+  assert(!("imagescript" in map.imports));
+  assert(!code.includes("sharp"));
 });
 test("Existing customer OTP stays authenticated on studio outage", async () => {
   const code = await file("app/account.mjs");
