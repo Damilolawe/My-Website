@@ -36,10 +36,18 @@ test("Preview geometry and async transitions have explicit regression guards",as
  assert(builderCss.includes("theater-loading"));
  assert(qa.includes("AUDIT_THEATER_DESKTOP"));
  assert(qa.includes("NARROW_TEMPLATE"));
+ assert(qa.includes("geometry.heading.right>width+1"),"Narrow-title assertion must catch even small 320px clipping");
 });
 test("Photo hero palette changes large surfaces and copy is accurate",async()=>{
  const [css,builder]=await Promise.all(["shared/collection-edition.mjs","app/order.mjs"].map(read));
  assert(css.includes("body.afterhours .afterhours-screen::before"));
  assert(css.includes("color-mix(in srgb,var(--accent) 32%"));
  assert(builder.includes("Photo imagery itself stays the same"));
+});
+
+test("320px After Hours final-edge type preserves cinematic words without clipping",async()=>{
+ const css=await read("shared/collection-edition.mjs");
+ assert(css.includes("320px final-edge typography"));
+ assert(css.includes("font-size:35px!important;letter-spacing:-.045em!important"));
+ assert.equal(css,await read("supabase/functions/awe-api/shared/collection-edition.mjs"));
 });
