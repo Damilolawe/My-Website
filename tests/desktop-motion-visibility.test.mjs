@@ -8,8 +8,8 @@ test("Desktop entrances use fail-open IntersectionObserver and persistently paus
  const [main,markup,css]=await Promise.all(["script.js","index.html","hero-layout-fix.css"].map(read));
  assert(main.includes("function syncReveals()"));
  assert(main.includes("revealObserver=new IntersectionObserver"));
- assert(main.includes("$('.reveal').forEach"),"Must iterate the NodeList, not the first element");
- assert.doesNotMatch(main,/(^|[^$])\\$\\('\\.reveal'\\)\\.forEach/m,"Cannot call forEach on a single Element");
+ assert(main.includes("document.querySelectorAll(\'.reveal\').forEach"),"Must iterate the NodeList of reveal elements");
+ assert.equal(main.includes("document.querySelector(\'.reveal\').forEach"),false,"A single element cannot be iterated");
  assert(main.includes("document.documentElement.classList.toggle('motion-ready',active)"));
  assert(markup.includes('id="motion-resume"'));
  assert(main.includes("resumeButton?.addEventListener('click'"));
