@@ -25,10 +25,10 @@ function ownerSignIn() {
       <label class="field" id="owner-code-field" hidden>Verification code
         <input name="token" autocomplete="one-time-code" inputmode="numeric"
           pattern="[0-9]{6,10}" minlength="6" maxlength="10" disabled required></label>
-      <button type="submit" class="btn acid" id="owner-login-submit">Send owner sign-in code ↗</button>
+      <button type="submit" class="btn acid" id="owner-login-submit">Send owner sign-in code ↗︎</button>
     </form>
     <p id="owner-login-feedback" role="status" aria-live="polite"></p>
-    <p class="muted"><a href="/account.html">Customer account ↗</a></p>
+    <p class="muted"><a href="/account.html">Customer account ↗︎</a></p>
   </section>`;
   const form = $("#owner-login-form");
   const feedback = $("#owner-login-feedback");
@@ -44,7 +44,7 @@ function ownerSignIn() {
         $("#owner-code-field").hidden = false;
         form.elements.token.disabled = false;
         form.elements.token.focus();
-        button.textContent = "Verify owner code ↗";
+        button.textContent = "Verify owner code ↗︎";
         feedback.textContent = "Check the business mailbox for your one-time code.";
       } else {
         await api("auth/verify", { email: OWNER_EMAIL, token: form.elements.token.value.trim() });
@@ -62,7 +62,7 @@ function ownerDenied() {
   app.innerHTML = `<div class="panel" role="alert"><h2>Private studio</h2>
     <p>Only the verified Awe Concepts owner can open this dashboard.</p>
     <button class="btn secondary" id="owner-switch">Switch to owner sign-in</button>
-    <a class="btn secondary" href="/account.html">Customer account ↗</a></div>`;
+    <a class="btn secondary" href="/account.html">Customer account ↗︎</a></div>`;
   $("#owner-switch").onclick = async () => {
     await api("auth/logout", {});
     ownerSignIn();
@@ -154,7 +154,7 @@ function drawOverview() {
       )
       .map(
         (o) =>
-          `<tr><td>${esc(o.input.content.name)}<br><small>${esc(o.email)}</small></td><td>${esc(o.input.template)}</td><td>${esc(o.payment)}</td><td>${esc(o.status.replaceAll("_", " "))}</td><td><button class="btn secondary small" data-order="${o.id}">Review ↗</button></td></tr>`,
+          `<tr><td>${esc(o.input.content.name)}<br><small>${esc(o.email)}</small></td><td>${esc(o.input.template)}</td><td>${esc(o.payment)}</td><td>${esc(o.status.replaceAll("_", " "))}</td><td><button class="btn secondary small" data-order="${o.id}">Review ↗︎</button></td></tr>`,
       )
       .join("");
     $("#orders")
@@ -276,7 +276,7 @@ function drawOrder() {
   } = selected;
   const c = o.input.content,
     d = o.input.design;
-  app.innerHTML = `<div class="toolbar"><button id="back" class="btn secondary small">← All orders</button><span class="availability">${esc(o.status.replaceAll("_", " "))}</span></div><h2>${esc(c.name)} / ${esc(o.input.template)}</h2><p class="muted">${esc(o.email)} · ${esc(o.id)} · payment ${esc(o.payment)}</p><div class="split"><form id="editor" class="panel"><h3>Content & creative direction</h3>${field("Public name", "name", c.name)}${field("Headline", "headline", c.headline)}${["bio", "projects", "education", "experience", "skills"].map((k) => field(k[0].toUpperCase() + k.slice(1), k, c[k], true)).join("")}${field("Public email", "publicEmail", c.publicEmail)}${field("Profile links (one per line)", "links", c.links.join("\n"), true)}${select(
+  app.innerHTML = `<div class="toolbar"><button id="back" class="btn secondary small">←︎ All orders</button><span class="availability">${esc(o.status.replaceAll("_", " "))}</span></div><h2>${esc(c.name)} / ${esc(o.input.template)}</h2><p class="muted">${esc(o.email)} · ${esc(o.id)} · payment ${esc(o.payment)}</p><div class="split"><form id="editor" class="panel"><h3>Content & creative direction</h3>${field("Public name", "name", c.name)}${field("Headline", "headline", c.headline)}${["bio", "projects", "education", "experience", "skills"].map((k) => field(k[0].toUpperCase() + k.slice(1), k, c[k], true)).join("")}${field("Public email", "publicEmail", c.publicEmail)}${field("Profile links (one per line)", "links", c.links.join("\n"), true)}${select(
     "Template",
     "template",
     templates.map((t) => t.id),
@@ -289,7 +289,7 @@ function drawOrder() {
     )
     .join(
       "",
-    )}</div><button class="btn acid" ${o.payment !== "paid" ? "disabled" : ""}>Save & regenerate private draft ↗</button>${o.payment !== "paid" ? '<p class="muted">This is an unpaid saved concept. You can inspect it in the Visual Studio preview, but a verified purchase is required before regenerating or publishing a version.</p>' : ""}</form><div><div class="preview-shell"><div class="preview-top"><span>OWNER-ONLY DRAFT</span><div>${[
+    )}</div><button class="btn acid" ${o.payment !== "paid" ? "disabled" : ""}>Save & regenerate private draft ↗︎</button>${o.payment !== "paid" ? '<p class="muted">This is an unpaid saved concept. You can inspect it in the Visual Studio preview, but a verified purchase is required before regenerating or publishing a version.</p>' : ""}</form><div><div class="preview-shell"><div class="preview-top"><span>OWNER-ONLY DRAFT</span><div>${[
     ["Desktop", "100%"],
     ["Tablet", "768px"],
     ["Mobile", "320px"],
@@ -297,7 +297,7 @@ function drawOrder() {
     .map(([n, w]) => `<button data-width="${w}">${n}</button>`)
     .join(
       "",
-    )}</div></div>${o.draft_version ? `<iframe id="draft" title="Private website draft" sandbox="" referrerpolicy="no-referrer"></iframe>` : "<p>Your draft will appear after verified payment and generation.</p>"}</div><div class="panel"><h3>Review decision</h3><p>Review the saved draft at each size. Publishing makes this exact version and its selected images publicly accessible.</p><label class="field">Review notes<textarea id="note" maxlength="2000"></textarea></label><div class="toolbar"><button id="reject" class="btn secondary" ${!o.draft_version ? "disabled" : ""}>Request revisions</button><button id="publish" class="btn acid" ${!o.draft_version || o.payment !== "paid" ? "disabled" : ""}>Approve & Publish ↗</button></div>${o.public_version ? `<a href="/sites/${o.slug}" target="_blank" rel="noopener">Current live website ↗</a><p><a href="/api/admin/orders/${o.id}/export">Download approved website files ↓</a></p>` : ""}<p class="muted">${esc(o.delivery_error || "")}</p></div><h3>Replace / add a photograph</h3><form id="replace-photo" class="panel"><label class="field">New image (4 MB maximum)<input type="file" name="file" accept=".jpg,.jpeg,.png,.webp" required></label><label><input name="rights" type="checkbox" required> I have permission to use this image publicly.</label><button class="btn secondary small">Upload to private materials</button><p class="muted">Select the new image in the editor and save a draft. Uploading alone does not change the live site.</p></form><h3>Customer materials</h3><ul>${assets.map((a) => `<li><a href="/api/assets/${a.id}" target="_blank" rel="noopener">${esc(a.name)} ↗</a> · ${a.public_allowed ? "approved for website" : "private document"}</li>`).join("")}</ul><h3>Revision requests</h3>${revisions.map((r) => `<p class="notice">${esc(r.message)}</p>`).join("") || "<p>No requests yet.</p>"}<h3>Version history</h3>${versions.map((v) => `<p>${new Date(v.created_at).toLocaleString()} <button class="btn small secondary" data-restore="${v.id}">Restore as private draft</button></p>`).join("")}<h3>Delivery records</h3>${deliveries.map((v) => `<p>${new Date(v.created_at).toLocaleString()} · Email accepted by provider</p>`).join("") || "<p>No delivery emails accepted yet.</p>"}<h3>Audit trail</h3><div class="audit">${events.map((e) => `<p>${esc(e.created_at)} / ${esc(e.kind)} / ${esc(JSON.stringify(e.details))}</p>`).join("")}</div></div></div><dialog class="modal" id="confirm"><h2>Ready for the world?</h2><p>Publish the saved draft for <strong>${esc(c.name)}</strong>? This replaces the public version and queues a delivery email.</p><p>Unsaved editor changes are not included.</p><div class="toolbar"><button class="btn secondary" id="cancel">Keep private</button><button class="btn acid" id="confirm-publish">Publish approved version</button></div></dialog>`;
+    )}</div></div>${o.draft_version ? `<iframe id="draft" title="Private website draft" sandbox="" referrerpolicy="no-referrer"></iframe>` : "<p>Your draft will appear after verified payment and generation.</p>"}</div><div class="panel"><h3>Review decision</h3><p>Review the saved draft at each size. Publishing makes this exact version and its selected images publicly accessible.</p><label class="field">Review notes<textarea id="note" maxlength="2000"></textarea></label><div class="toolbar"><button id="reject" class="btn secondary" ${!o.draft_version ? "disabled" : ""}>Request revisions</button><button id="publish" class="btn acid" ${!o.draft_version || o.payment !== "paid" ? "disabled" : ""}>Approve & Publish ↗︎</button></div>${o.public_version ? `<a href="/sites/${o.slug}" target="_blank" rel="noopener">Current live website ↗︎</a><p><a href="/api/admin/orders/${o.id}/export">Download approved website files ↓︎</a></p>` : ""}<p class="muted">${esc(o.delivery_error || "")}</p></div><h3>Replace / add a photograph</h3><form id="replace-photo" class="panel"><label class="field">New image (4 MB maximum)<input type="file" name="file" accept=".jpg,.jpeg,.png,.webp" required></label><label><input name="rights" type="checkbox" required> I have permission to use this image publicly.</label><button class="btn secondary small">Upload to private materials</button><p class="muted">Select the new image in the editor and save a draft. Uploading alone does not change the live site.</p></form><h3>Customer materials</h3><ul>${assets.map((a) => `<li><a href="/api/assets/${a.id}" target="_blank" rel="noopener">${esc(a.name)} ↗︎</a> · ${a.public_allowed ? "approved for website" : "private document"}</li>`).join("")}</ul><h3>Revision requests</h3>${revisions.map((r) => `<p class="notice">${esc(r.message)}</p>`).join("") || "<p>No requests yet.</p>"}<h3>Version history</h3>${versions.map((v) => `<p>${new Date(v.created_at).toLocaleString()} <button class="btn small secondary" data-restore="${v.id}">Restore as private draft</button></p>`).join("")}<h3>Delivery records</h3>${deliveries.map((v) => `<p>${new Date(v.created_at).toLocaleString()} · Email accepted by provider</p>`).join("") || "<p>No delivery emails accepted yet.</p>"}<h3>Audit trail</h3><div class="audit">${events.map((e) => `<p>${esc(e.created_at)} / ${esc(e.kind)} / ${esc(JSON.stringify(e.details))}</p>`).join("")}</div></div></div><dialog class="modal" id="confirm"><h2>Ready for the world?</h2><p>Publish the saved draft for <strong>${esc(c.name)}</strong>? This replaces the public version and queues a delivery email.</p><p>Unsaved editor changes are not included.</p><div class="toolbar"><button class="btn secondary" id="cancel">Keep private</button><button class="btn acid" id="confirm-publish">Publish approved version</button></div></dialog>`;
   // The Supabase Edge API delivers a private preview as authenticated JSON.
   // Do not navigate an iframe to an API URL: cross-origin bearer tokens cannot
   // be attached to iframe navigation, and that would bypass our API client.
