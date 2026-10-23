@@ -253,7 +253,7 @@ try {
  for(const width of [320,345,360,375]){
   const context=await browser.newContext({viewport:{width,height:812},isMobile:true,hasTouch:true,deviceScaleFactor:2});
   const page=await context.newPage();
-  for(const id of ["afterhours","folio","atelier","signal"]){
+  for(const {id} of templates){
    await page.goto(origin+"/templates/creative/"+id+".html",{waitUntil:"domcontentloaded",timeout:25000});
    await page.waitForTimeout(130);
    const geometry=await page.evaluate(()=>{
@@ -286,6 +286,30 @@ try {
        failures.push("Narrow "+width+" "+id+": case image exceeds viewport");
    if(!geometry.contactLinks&&!/add your own email|contact method|contact link/i.test(geometry.contactText))
      failures.push("Narrow "+width+" "+id+": contact section offers no action or setup message");
+  }
+  // The embedded theater is narrower than the physical phone; verify that
+  // its *real inner frame width* also keeps essential content inside view.
+  if(width===320||width===360){
+    await page.goto(origin+"/",{waitUntil:"domcontentloaded",timeout:25000});
+    await page.locator("#express-showcase").scrollIntoViewIfNeeded();
+    await page.locator("#worlds-mobile").click();
+    await page.locator("#worlds-loading").waitFor({state:"hidden",timeout:18000});
+    const inside=page.frameLocator("#worlds-frame");
+    await inside.locator(".site-architecture").waitFor({state:"visible",timeout:12000});
+    const inner=await inside.locator("body").evaluate(()=>{
+      const w=innerWidth;
+      const rect=el=>{if(!el)return null;const r=el.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width};};
+      const heading=document.querySelector(".hero-variant h1");
+      const cards=[...document.querySelectorAll(".case-image")].slice(0,3).map(rect);
+      return {width:w,docWidth:document.documentElement.scrollWidth,title:rect(heading),cards};
+    });
+    console.log("NESTED_PHONE_THEATER",width,JSON.stringify(inner));
+    if(inner.docWidth>inner.width+2)
+      failures.push("Nested phone "+width+": embedded document overflows by "+(inner.docWidth-inner.width));
+    if(!inner.title||inner.title.left< -1||inner.title.right>inner.width+1)
+      failures.push("Nested phone "+width+": cinematic headline clipped");
+    for(const card of inner.cards)if(card.left< -4||card.right>inner.width+4)
+      failures.push("Nested phone "+width+": case card clipped at "+Math.round(card.left)+"/"+Math.round(card.right));
   }
   await context.close();
  }
