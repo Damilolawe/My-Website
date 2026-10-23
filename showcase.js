@@ -9,6 +9,9 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
   const desktop=root.querySelector("#worlds-desktop"),mobile=root.querySelector("#worlds-mobile");
   const select=root.querySelector("#world-purpose");
   let selected="afterhours",purpose="Creative portfolio",version=0,controller=null;
+  // Large sandbox previews are loaded near the gallery instead of on first paint.
+  const deferPreview=matchMedia("(max-width: 900px), (pointer: coarse)").matches;
+  let previewReady=!deferPreview;
   const savedNames=new Map(templates.map(x=>[x.id,x.name]));
   function templatePath(id){return "/templates/"+typeSlugs[purpose]+"/"+id+".html";}
   function populate(){
@@ -38,6 +41,7 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
     const still=!!window.AWE_MOTION_PAUSED || matchMedia("(prefers-reduced-motion:reduce)").matches;
     screen.classList.toggle("is-changing",!still);
     frame.title="Fictional "+savedNames.get(id)+" website for "+purpose;
+    if(!previewReady)return;
     frame.srcdoc=previewMessage("Preparing a "+purpose+" design…");
     try{
       const html=await fetchPublicTemplate(id,{type:purpose,still,signal:controller.signal});
@@ -79,5 +83,16 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
     next.focus();choose(next.dataset.world);
   });
   document.addEventListener("awe:motion",()=>choose(selected));
-  populate();choose(selected);
+  populate();
+  if(!previewReady){
+    frame.srcdoc=previewMessage("Preview loads as you approach the design gallery.");
+    choose(selected);
+    if("IntersectionObserver" in window){
+      const observer=new IntersectionObserver(entries=>{
+        if(!entries.some(entry=>entry.isIntersecting))return;
+        observer.disconnect();previewReady=true;choose(selected);
+      },{rootMargin:"450px 0px"});
+      observer.observe(root);
+    }else{previewReady=true;choose(selected);}
+  }else choose(selected);
 })();

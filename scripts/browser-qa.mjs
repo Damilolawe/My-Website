@@ -36,6 +36,32 @@ async function testPage(page,url,label,{waitMs=250}={}){
   return layout;
 }
 try {
+ // iPhone-size, touch scrolling with motion enabled: detect tab reloads and
+ // silent jumps that responsive screenshots alone cannot identify.
+ {
+  const context=await browser.newContext({
+    viewport:{width:390,height:844},isMobile:true,hasTouch:true,
+    deviceScaleFactor:2,reducedMotion:"no-preference"
+  });
+  const page=await context.newPage();
+  let mainNavigations=0;
+  page.on("framenavigated",frame=>{if(frame===page.mainFrame())mainNavigations++;});
+  await testPage(page,origin+"/","iPhone-390 scroll stability",{waitMs:850});
+  const first=await page.evaluate(()=>{
+    const max=Math.max(0,document.documentElement.scrollHeight-innerHeight);
+    window.scrollTo({top:Math.min(max-40,Math.max(950,max*.35)),behavior:"instant"});
+    return scrollY;
+  });
+  if(first<500) failures.push("iPhone-390 scroll stability: could not enter the homepage");
+  await page.waitForTimeout(8300); // Outlast the previous 6800ms autoplay interval.
+  const after=await page.evaluate(()=>scrollY);
+  if(after<first-120)failures.push("iPhone-390 unexpected upward reset from "+first+" to "+after);
+  if(mainNavigations!==1)failures.push("iPhone-390 homepage navigated or reloaded "+mainNavigations+" times");
+  const heroRenderer=await page.locator("#hero-art").getAttribute("data-renderer");
+  if(heroRenderer)failures.push("iPhone-390 allocated unnecessary mobile 3D renderer: "+heroRenderer);
+  console.log("SCROLL_STABILITY",JSON.stringify({first,after,mainNavigations,heroRenderer}));
+  await context.close();
+ }
  for(const size of viewports) {
   const context=await browser.newContext({
     viewport:{width:size.width,height:size.height},

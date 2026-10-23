@@ -2,6 +2,7 @@
   'use strict';
   const $=(s,root=document)=>root.querySelector(s), $$=(s,root=document)=>[...root.querySelectorAll(s)];
   const reduce=matchMedia('(prefers-reduced-motion: reduce)'), fine=matchMedia('(hover: hover) and (pointer: fine)');
+  const compactTouch=matchMedia('(max-width: 900px), (pointer: coarse)');
   let motionPreference=null;
   try{motionPreference=localStorage.getItem('awe-motion');}catch{}
   let paused=reduce.matches||motionPreference==='paused', motionContext;
@@ -13,7 +14,8 @@
     motionButton.textContent=paused?'ENABLE MOTION':'PAUSE MOTION';
     motionButton.setAttribute('aria-pressed',String(paused));
     motionContext?.revert();
-    if(!paused && window.gsap && window.ScrollTrigger){
+    // Avoid scroll-driven layout refreshes on iOS as its browser chrome resizes.
+    if(!paused && !compactTouch.matches && window.gsap && window.ScrollTrigger){
       gsap.registerPlugin(ScrollTrigger);
       motionContext=gsap.context(()=>{
         $$('.reveal').forEach(el=>{gsap.from(el,{y:35,opacity:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 96%',once:true},clearProps:'transform,opacity'});});

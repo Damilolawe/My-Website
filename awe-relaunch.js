@@ -9,6 +9,7 @@
   const count=show.querySelector("#reel-index");
   const ids=["/templates/actor/afterhours.html","/templates/student/terminal.html","/templates/business/bloom.html"];
   const reduced=window.matchMedia("(prefers-reduced-motion: reduce)");
+  const compactTouch=window.matchMedia("(max-width: 900px), (pointer: coarse)");
   let index=0, interval=null,observed=false;
   function choose(nextIndex){
     index=(nextIndex+views.length)%views.length;
@@ -23,7 +24,8 @@
     anchor.href=ids[index];
   }
   function shouldPlay(){
-    return observed&&!document.hidden&&!reduced.matches&&!window.AWE_MOTION_PAUSED;
+    // Stop automatic deck changes during mobile scrolling; buttons still work.
+    return observed&&!document.hidden&&!reduced.matches&&!compactTouch.matches&&!window.AWE_MOTION_PAUSED;
   }
   function reset(){
     if(interval!==null){clearInterval(interval);interval=null;}
@@ -47,7 +49,7 @@
   choose(0);
   if(window.gsap&&window.ScrollTrigger){
     const startMotion=()=>{
-      if(window.AWE_MOTION_PAUSED||reduced.matches)return;
+      if(window.AWE_MOTION_PAUSED||reduced.matches||compactTouch.matches)return;
       window.gsap.registerPlugin(window.ScrollTrigger);
       if(document.querySelector(".awe-impact-statement h2 span") && document.querySelector(".awe-impact-statement"))window.gsap.from(".awe-impact-statement h2 span",{
         y:110,rotation:-2,opacity:.1,stagger:.17,ease:"power3.out",duration:1.2,
