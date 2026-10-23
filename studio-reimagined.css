@@ -1,0 +1,79 @@
+/* AWE CONCEPTS / STUDIO EDITION 04. Art direction, not generic web-app cards. */
+:root{--awe-citrus:#dcfc46;--awe-ink:#101411}
+.site-header{border-bottom:1px solid #f3ffe61d;box-shadow:0 12px 40px #0004}
+.site-header .nav-link{position:relative}
+.site-header .nav-link:after{content:"";position:absolute;left:0;bottom:-8px;width:0;height:2px;background:var(--awe-citrus);transition:width .35s}
+.site-header .nav-link:hover:after,.site-header .nav-link:focus-visible:after{width:100%}
+.hero{background:radial-gradient(ellipse at 84% 40%,#555c2e42,transparent 41%),radial-gradient(ellipse at 22% 76%,#00594134,transparent 42%),#0a0d0b}
+.hero-grid{opacity:.32}
+.hero-noise-light{background:radial-gradient(ellipse,#bbdd5c25,transparent 66%);filter:blur(52px)}
+.hero-title{text-shadow:0 12px 33px #0005}
+.hero-description{border-top:1px solid #d7fd6b30;padding-top:12px}
+.hero-description p{font-size:clamp(16px,1.25vw,19px);line-height:1.65;letter-spacing:-.02em}
+.hero-art .awe-hero-showreel{background:#17221c;box-shadow:0 42px 115px #000b,0 0 0 1px #b7e64d47}
+.hero-art .showreel-deck{border:1px solid #f2f5e62d}
+.section-heading-copy{font-size:clamp(16px,1.2vw,19px);line-height:1.65}
+.section-title{text-wrap:balance}
+.work{background:#101511}
+.project-card .project-visual{transition:filter .55s ease,box-shadow .55s ease}
+.project-card:hover .project-visual{box-shadow:0 20px 70px #0009;filter:brightness(1.05)}
+.project-card .project-caption{border-top:1px solid #f8fcf130;padding-top:19px;margin-top:4px}
+.services{background:radial-gradient(ellipse at 95% 0,#b5d85b10,transparent 50%),#0e1210}
+.service-row:hover{background:#d8fc450b;border-color:#d8fc4660}
+.pricing{background:linear-gradient(175deg,#151a17,#0d100e)}
+.pricing-card{border-radius:2px;border-color:#effcc836;position:relative;background:radial-gradient(ellipse at 100% 0,#dcfc4612,transparent 67%),#151a16}
+.pricing-card:before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:#e8f4c236;transition:background .3s}
+.pricing-card:hover:before,.pricing-card:focus-within:before{background:var(--awe-citrus)}
+.pricing-featured{background:radial-gradient(ellipse at 100% 0,#d8fb4e22,transparent 64%),#1c271d;border-color:#cbf65293}
+.worlds{background:radial-gradient(ellipse at 92% 20%,#b0d85c0b,transparent 52%),#0a0e0c}
+.worlds-screen{border-color:#c4ef8742;background:#171d18;box-shadow:0 35px 90px #000a}
+.worlds-choice[aria-pressed=true]{background:#c6f25c12}
+.worlds-bottom{display:flex;flex-wrap:wrap}
+.worlds-contact-link{color:#eff2e3;text-underline-offset:7px;font:700 11px/1.5 ui-monospace,monospace;letter-spacing:.08em;margin-left:auto;white-space:nowrap}
+.worlds-contact-link:hover{color:var(--awe-citrus)}
+.lab-layout{box-shadow:0 24px 65px #21322120}
+.contact{background:radial-gradient(ellipse at 86% 7%,#cfec701b,transparent 42%),#0a0d0b}
+.studio-journey{position:relative;overflow:hidden;background:#e9eee0;color:#172318;border-top:9px solid #d9fc46}
+.studio-journey:before{content:"";position:absolute;inset:-40% -10% auto auto;width:60vw;aspect-ratio:1;border:1px solid #58723b21;border-radius:50%;box-shadow:0 0 0 4vw #7298550b,0 0 0 13vw #72985507;pointer-events:none}
+.journey-topline{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid #1c2e2260;padding-bottom:23px;font:750 10px/1.6 ui-monospace,monospace;letter-spacing:.12em}
+.journey-heading{display:grid;grid-template-columns:1.45fr .55fr;align-items:end;gap:5%;padding:80px 0 75px}
+.journey-eyebrow{font:700 10px/1.4 ui-monospace,monospace;letter-spacing:.15em}
+.journey-heading h2{font:900 clamp(66px,8.8vw,155px)/.87 Arial,system-ui,sans-serif;letter-spacing:-.105em;text-transform:uppercase;margin:24px 0 0;text-wrap:balance}
+.journey-heading h2 em{font:italic 400 1.03em/.94 Georgia,serif;text-transform:none;color:#4b6736;letter-spacing:-.075em}
+.journey-heading>p{font:400 clamp(17px,1.25vw,21px)/1.65 Arial,sans-serif;max-width:360px;letter-spacing:-.02em}
+.journey-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid #22342955;background:#f4f3ea}
+.journey-step{position:relative;display:flex;flex-direction:column;min-height:420px;padding:clamp(24px,3vw,48px);border-right:1px solid #22342955;transition:background .35s,color .35s}
+.journey-step:last-child{border-right:0}
+.journey-step:hover{background:#d9fc46;color:#172318}
+.journey-number,.journey-foot{font:800 10px ui-monospace,monospace;letter-spacing:.12em}
+.journey-symbol{position:absolute;right:30px;top:25px;font:350 38px/1 Georgia,serif;transition:transform .35s}
+.journey-step:hover .journey-symbol{transform:translate(5px,-5px) rotate(-12deg)}
+.journey-step h3{font:800 clamp(39px,4vw,68px)/.94 Arial,sans-serif;letter-spacing:-.085em;margin:100px 0 22px}
+.journey-step p{max-width:380px;font-size:15px;line-height:1.7}
+.journey-foot{display:block;margin-top:auto;padding-top:28px;border-top:1px solid #31462b55}
+.journey-finish{display:flex;justify-content:space-between;align-items:center;gap:35px;padding:35px 0 0}
+.journey-finish p{max-width:580px;font:15px/1.6 Arial,sans-serif}
+.journey-finish a{display:inline-flex;gap:35px;align-items:center;min-height:56px;padding:17px 24px;background:#19271c;color:#e9ffb1;text-decoration:none;font:800 11px ui-monospace,monospace;white-space:nowrap;transition:transform .3s,background .3s}
+.journey-finish a:hover{background:#365b2c;transform:translateY(-4px)}
+.journey-finish a:focus-visible{outline:3px solid #17261a;outline-offset:4px}
+@media(max-width:960px){
+ .journey-heading{grid-template-columns:1fr;gap:25px;padding:55px 0}
+ .journey-heading>p{max-width:620px}
+ .journey-step{min-height:340px;padding:23px}
+ .journey-step h3{margin-top:75px;font-size:clamp(35px,4.8vw,53px)}
+ .journey-finish{flex-wrap:wrap}
+ .worlds-contact-link{margin-left:0}
+}
+@media(max-width:680px){
+ .studio-journey{padding-block:65px}
+ .journey-topline{font-size:8px}
+ .journey-topline span:last-child{display:none}
+ .journey-heading h2{font-size:clamp(49px,13.6vw,91px)}
+ .journey-grid{grid-template-columns:1fr}
+ .journey-step{min-height:265px;padding:28px;border-right:0;border-bottom:1px solid #22342955}
+ .journey-step:last-child{border-bottom:0}
+ .journey-step h3{margin:47px 0 15px;font-size:clamp(38px,11vw,57px)}
+ .journey-step p{font-size:14px}
+ .journey-finish a{white-space:normal;width:100%;justify-content:space-between}
+}
+@media(prefers-reduced-motion:reduce){.journey-step:hover .journey-symbol{transform:none}}
