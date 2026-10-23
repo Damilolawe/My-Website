@@ -48,9 +48,12 @@
   }else{observed=true;reset();}
   choose(0);
   if(window.gsap&&window.ScrollTrigger){
+    let context=null;
     const startMotion=()=>{
+      context?.revert();context=null;
       if(window.AWE_MOTION_PAUSED||reduced.matches||compactTouch.matches)return;
       window.gsap.registerPlugin(window.ScrollTrigger);
+      context=window.gsap.context(()=>{
       if(document.querySelector(".awe-impact-statement h2 span") && document.querySelector(".awe-impact-statement"))window.gsap.from(".awe-impact-statement h2 span",{
         y:110,rotation:-2,opacity:.1,stagger:.17,ease:"power3.out",duration:1.2,
         scrollTrigger:{trigger:".awe-impact-statement",start:"top 76%",once:true}
@@ -59,7 +62,9 @@
         y:55,opacity:0,stagger:.16,duration:.8,ease:"power2.out",
         scrollTrigger:{trigger:".impact-bottom",start:"top 85%",once:true}
       });
+      });
     };
+    document.addEventListener('awe:motion',startMotion);
     startMotion();
   }
 })();

@@ -36,6 +36,60 @@ async function testPage(page,url,label,{waitMs=250}={}){
   return layout;
 }
 try {
+ // A clean desktop session must actually animate. Earlier QA only checked
+ // screenshots/layout and allowed completely static GSAP/reveal experiences.
+ {
+  const context=await browser.newContext({
+    viewport:{width:1440,height:900},reducedMotion:"no-preference",hasTouch:false
+  });
+  const page=await context.newPage();
+  await page.addInitScript(()=>{try{localStorage.removeItem("awe-motion");}catch{}});
+  await testPage(page,origin+"/","Desktop-1440 motion smoke",{waitMs:700});
+  const startup=await page.evaluate(()=>({
+    gsap:!!window.gsap,scrollTrigger:!!window.ScrollTrigger,
+    paused:!!window.AWE_MOTION_PAUSED,
+    revealReady:document.documentElement.classList.contains("motion-ready"),
+    activeTriggers:window.ScrollTrigger?.getAll?.().length||0,
+    heroFrame:document.querySelector("#reel-index")?.textContent?.trim()||""
+  }));
+  console.log("DESKTOP_MOTION_START",JSON.stringify(startup));
+  if(!startup.gsap||!startup.scrollTrigger||startup.activeTriggers<1)
+    failures.push("Desktop motion: GSAP/ScrollTrigger are missing or have no active triggers");
+  if(startup.paused||!startup.revealReady)
+    failures.push("Desktop motion: unpaused session did not initialize reveal animations");
+  await page.mouse.move(1,1);
+  await page.waitForTimeout(7250);
+  const nextFrame=await page.locator("#reel-index").textContent();
+  if(nextFrame?.trim()===startup.heroFrame)
+    failures.push("Desktop motion: automatic hero carousel did not advance");
+  const card=page.locator(".pricing-card.reveal").first();
+  const before=await card.evaluate(el=>getComputedStyle(el).opacity);
+  await card.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(1050);
+  const after=await card.evaluate(el=>getComputedStyle(el).opacity);
+  console.log("DESKTOP_REVEAL",{before,after});
+  if(Number(before)>0.25||Number(after)<0.95)
+    failures.push("Desktop reveal: pricing card did not fade/slide into view");
+  await page.evaluate(()=>{localStorage.setItem("awe-motion","paused");});
+  await page.reload({waitUntil:"domcontentloaded"});
+  const recovery=await page.evaluate(()=>({
+    paused:!!window.AWE_MOTION_PAUSED,
+    visible:!!document.querySelector("#motion-resume")?.offsetParent,
+    text:document.querySelector("#motion-resume")?.textContent
+  }));
+  if(!recovery.paused||!recovery.visible)
+    failures.push("Desktop motion: persisted pause has no discoverable enable control");
+  await page.locator("#motion-resume").click();
+  const resumed=await page.evaluate(()=>({
+    paused:!!window.AWE_MOTION_PAUSED,
+    revealReady:document.documentElement.classList.contains("motion-ready"),
+    label:document.querySelector("#motion-toggle")?.textContent
+  }));
+  console.log("DESKTOP_MOTION_RESUME",JSON.stringify({recovery,resumed}));
+  if(resumed.paused||!resumed.revealReady||resumed.label!=="PAUSE MOTION")
+    failures.push("Desktop motion: enabling animations did not restore motion");
+  await context.close();
+ }
  // iPhone-size, touch scrolling with motion enabled: detect tab reloads and
  // silent jumps that responsive screenshots alone cannot identify.
  {

@@ -8,17 +8,45 @@
   let paused=reduce.matches||motionPreference==='paused', motionContext;
   window.AWE_MOTION_PAUSED=paused;
   const motionButton=$('#motion-toggle');
+  const resumeButton=$('#motion-resume');
+  let revealObserver=null;
+  // Observe desktop entrances independently of GSAP so animation still works
+  // if a nonessential animation library fails. The baseline remains readable.
+  function syncReveals(){
+    revealObserver?.disconnect();revealObserver=null;
+    const active=!paused&&!compactTouch.matches&&!reduce.matches&&'IntersectionObserver' in window;
+    document.documentElement.classList.toggle('motion-ready',active);
+    if(!active)return;
+    revealObserver=new IntersectionObserver(entries=>{
+      for(const entry of entries){
+        if(!entry.isIntersecting)continue;
+        entry.target.classList.add('in-view');
+        revealObserver?.unobserve(entry.target);
+      }
+    },{rootMargin:'0px 0px -7% 0px',threshold:.07});
+    $('.reveal').forEach(el=>{if(!el.classList.contains('in-view'))revealObserver.observe(el);});
+  }
   function applyMotion(){
     window.AWE_MOTION_PAUSED=paused;
     document.documentElement.classList.toggle('motion-paused',paused);
     motionButton.textContent=paused?'ENABLE MOTION':'PAUSE MOTION';
     motionButton.setAttribute('aria-pressed',String(paused));
+    // An old persisted pause otherwise silently disables every animation on
+    // future desktop visits. Make the state visible and one-click reversible.
+    if(resumeButton){
+      resumeButton.hidden=!paused;
+      resumeButton.disabled=reduce.matches;
+      resumeButton.textContent=reduce.matches?'ANIMATIONS OFF · SYSTEM SETTING':'ENABLE ANIMATIONS ↗︎';
+      resumeButton.title=reduce.matches?'Turn off Reduce Motion in your system settings to allow animation.':'Restore animations on this website';
+    }
+    syncReveals();
     motionContext?.revert();
     // Avoid scroll-driven layout refreshes on iOS as its browser chrome resizes.
     if(!paused && !compactTouch.matches && window.gsap && window.ScrollTrigger){
       gsap.registerPlugin(ScrollTrigger);
       motionContext=gsap.context(()=>{
-        $$('.reveal').forEach(el=>{gsap.from(el,{y:35,opacity:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 96%',once:true},clearProps:'transform,opacity'});});
+        // Section entrances are handled by the IntersectionObserver above.
+        // Do not animate the same elements twice with GSAP and CSS.
         if(document.querySelectorAll('.hero-line>span,.hero-line>em').length)gsap.from('.hero-line>span,.hero-line>em',{yPercent:110,duration:1.25,stagger:.09,ease:'power4.out',clearProps:'transform'});
         if(document.querySelectorAll('.hero-meta,.hero-bottom,.hero-art').length)gsap.from('.hero-meta,.hero-bottom,.hero-art',{opacity:0,duration:1.4,delay:.35,clearProps:'opacity'});
         if(innerWidth>900&&$('.hero-title')&&$('.hero')){gsap.to('.hero-title',{y:70,opacity:.3,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});}
@@ -32,6 +60,12 @@
     document.dispatchEvent(new CustomEvent('awe:motion',{detail:{paused}}));
   }
   motionButton.addEventListener('click',()=>{paused=!paused;motionPreference=paused?'paused':'enabled';try{localStorage.setItem('awe-motion',paused?'paused':'enabled');}catch{}applyMotion();});
+  resumeButton?.addEventListener('click',()=>{
+    if(reduce.matches)return;
+    paused=false;motionPreference='enabled';
+    try{localStorage.setItem('awe-motion','enabled');}catch{}
+    applyMotion();
+  });
   reduce.addEventListener('change',e=>{paused=e.matches||motionPreference==='paused';applyMotion();});
   applyMotion();
   $('#year').textContent=String(new Date().getFullYear());
