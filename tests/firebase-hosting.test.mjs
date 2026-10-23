@@ -6,9 +6,10 @@ test("Firebase Spark deploy targets only generated public static assets",async()
   const config=JSON.parse(await readFile("firebase.json","utf8"));
   assert.equal(config.hosting.public,"dist");
   assert.equal("functions" in config,false,"Hosting on Spark cannot deploy Cloud Functions");
-  assert.equal("rewrites" in config.hosting,false,"Do not route private APIs to public static content");
+  assert.deepEqual(config.hosting.rewrites,[{source:"/sites/**",destination:"/site-viewer.html"}],"Only public approved sites may use a static rewrite");
   assert.equal("redirects" in config.hosting,false,"Do not redirect private routes");
   assert(!JSON.stringify(config).includes("netlify/functions"));
+  assert(!JSON.stringify(config.hosting.rewrites).includes("/api/"),"No private API rewrite");
 });
 test("Firebase headers preserve privacy barriers and sandboxed template previews",async()=>{
   const config=JSON.parse(await readFile("firebase.json","utf8"));
