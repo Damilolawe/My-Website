@@ -1,10 +1,11 @@
 import { esc } from "./model.mjs";
+import { illustrationArtwork } from "./photographic-direction.mjs";
 const E=(s)=>esc(s);
 const lead=(c,t,cta)=>'<div class="hero-copy"><p class="eyebrow hero-label">'+E(c.heroLabel||t)+'</p><h1 id="hero-title">'+E(c.headline)+'</h1>'+(c.bio?'<p class="hero-intro">'+E(c.bio.split("\n")[0].slice(0,210))+'</p>':'')+'<div class="hero-actions"><a class="pill-link" href="'+cta+'">'+E(c.ctaLabel)+' ↗︎</a></div></div>';
-const frame=(image)=>'<div class="hero-media">'+(image||'<div class="experience-art" aria-hidden="true"><span class="art-orb"></span><span class="art-orbit"></span><span class="art-shard"></span></div>')+'</div>';
+const frame=(image,template)=>'<div class="hero-media">'+(image||illustrationArtwork(template))+'</div>';
 export const alternateIds=["atlas","terminal","orbit","playbill","monologue","portraiture","contactsheet","atelier","museum","brutalist","nocturne","foundry","bloom","ledger"];
 export function alternateHero(t,{c,value,heroImage,ctaTarget}) {
-  const words=lead(c,value.type,ctaTarget),media=frame(heroImage),name=E(c.name);
+  const words=lead(c,value.type,ctaTarget),media=frame(heroImage,t),name=E(c.name);
   switch(t){
     case "atlas":
       return '<section class="hero hero-variant atlas-hero" aria-labelledby="hero-title"><div class="atlas-top eyebrow"><span>001 — FULL PROFILE</span><span>DESIGNING THE FUTURE</span></div><div class="atlas-layout"><aside class="atlas-side eyebrow">01 / OVERVIEW <span>● ACTIVE STORY</span></aside>'+words+'<div class="atlas-visual">'+media+'<div class="atlas-caption">PROFILE / '+name+'</div></div></div><div class="atlas-bottom eyebrow">RESEARCH / DESIGN / DELIVERY <b aria-hidden="true">↗︎</b></div></section>';
@@ -37,4 +38,3 @@ export function alternateHero(t,{c,value,heroImage,ctaTarget}) {
     default:return null;
   }
 }
-

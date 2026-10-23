@@ -7,6 +7,7 @@
  * photo IDs are allowlisted by normalization, URLs allowlist HTTPS.
  */
 import {esc,https} from "./model.mjs";
+import { sampleArtwork, illustrationArtwork } from "./photographic-direction.mjs";
 
 const E=esc;
 const prose=value=>E(value).replace(/\r?\n/g,"<br>");
@@ -40,7 +41,7 @@ function visual(item,i,ctx){
     return '<div class="case-image"><img src="'+E(ctx.assetBase+id+ctx.assetSuffix)+'" loading="lazy" alt="'+E(item.title||ctx.c.name)+'"></div>';
   }
   // Each mode has its own visual geometry defined by page architecture CSS.
-  return '<div class="case-image case-art" aria-hidden="true"><i></i><b></b><span>'+String(i+1).padStart(2,"0")+'</span></div>';
+  return '<div class="case-image case-art">'+(ctx.sample?sampleArtwork(ctx.t,'work',i):illustrationArtwork(ctx.t))+'</div>';
 }
 function caseBody(item,i,ctx){
   return '<div class="case-body"><span class="case-counter">'+String(i+1).padStart(2,"0")+' / '+E(ctx.typeLabel)+'</span>'+
@@ -96,11 +97,11 @@ function shell(id,index,ctx,inside){
     (id==="work"?'<p>'+E(def.detail)+'</p>':"")+'</div>'+
     '<div class="chapter-content">'+inside+'</div></section>';
 }
-export function designSections(value,{assetBase="/api/assets/",assetSuffix=""}={}){
+export function designSections(value,{assetBase="/api/assets/",assetSuffix="",sample=false}={}){
   const {content:c,design:d,template:t}=value;
   const def=architectures[t];
   if(!def)return null;
-  const ctx={c,d,t,value,assetBase,assetSuffix,typeLabel:value.type==="Actor / model"?"CREDIT":value.type==="Small business"?"PROJECT":"WORK"};
+  const ctx={c,d,t,value,assetBase,assetSuffix,sample,typeLabel:value.type==="Actor / model"?"CREDIT":value.type==="Small business"?"PROJECT":"WORK"};
   const items=c.cards?.length?c.cards:String(c.projects||"").split(/\n\s*\n/).filter(Boolean).map(x=>({title:x.split("\n")[0],description:x.split("\n").slice(1).join("\n"),url:""}));
   const sections=[];
   for(const [index,id] of d.sections.entries()){
@@ -141,4 +142,3 @@ export function designedFooter(value){
   return '<div class="architect-endmark"><span>'+def.no+' / '+E(def.word)+'</span><span>✳︎</span><span>'+E(value.content.name)+'</span></div>';
 }
 export function architectureMode(id){return architectures[id]?.mode||null;}
-

@@ -1,4 +1,5 @@
 import { normalize, esc, https } from "./model.mjs";
+import { sampleArtwork, photoCSS } from "./photographic-direction.mjs";
 import { experienceHero, experienceInterlude } from "./experiences.mjs";
 import { alternateCSS } from "./alternate-styles.mjs";
 import { experienceCSS } from "./experience-styles.mjs";
@@ -58,9 +59,9 @@ export function renderPremium(input, options = {}) {
     if (id === 'contact') return '<section class="section" id="contact"><div class="contact-block"><div><p class="eyebrow">LET’S CONNECT</p><h2>Let’s make something happen.</h2></div><div class="contact-links">' + (c.publicEmail ? '<a class="pill-link" href="mailto:' + E(c.publicEmail) + '">Get in touch ↗︎</a>' : '') + join(c.links.map(u=>'<a href="' + E(u) + '" target="_blank" rel="noopener noreferrer">' + E(new URL(u).hostname) + ' ↗︎</a>')) + '</div></div></section>';
     return '';
   };
-  const composed = designSections(value,{assetBase,assetSuffix});
+  const composed = designSections(value,{assetBase,assetSuffix,sample});
   const actualSections = composed === null ? d.sections.map((s,i)=>section(s,i+1)).filter(Boolean).join("") : composed;
-  const heroImage = c.photoIds[0] ? image(c.photoIds[0],c.name + ' portrait','hero-picture',true) : '';
+  const heroImage = c.photoIds[0] ? image(c.photoIds[0],c.name + ' portrait','hero-picture',true) : (sample ? sampleArtwork(t,'hero') : '');
   const accent = d.primary, second = d.secondary, dark = d.appearance === 'dark' || t === 'afterhours';
   const radius = {sharp:'0',soft:'14px',round:'36px'}[d.corners];
   const bodyFont = d.font === 'serif' ? 'Georgia,serif' : d.font === 'mono' ? 'ui-monospace,monospace' : 'system-ui,Arial,sans-serif';
@@ -73,8 +74,7 @@ export function renderPremium(input, options = {}) {
   const ctaTarget = has('work') && (items.length || c.photoIds.length>1) ? '#work' : has('contact') ? '#contact' : '#main';
   const hero=experienceHero(t,{c,value,heroImage,ctaTarget});
   const page=siteChrome(value,{hero,sections:actualSections,interlude:experienceInterlude(t,c),navIds});
-  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
+  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
     (sample ? '<div class="demo-banner">FICTIONAL TEMPLATE DEMO — SAMPLE CONTENT ONLY</div>' : '') +
     '<a href="#main" class="skip">Skip to content</a>' + page + '</body></html>';
 }
-
