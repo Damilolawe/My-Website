@@ -134,6 +134,12 @@ try {
             failures.push("Mobile Folio: cover image intersects headline instead of having its own space");
           if(fold.nav&&fold.photo&&fold.photo.top<fold.nav.bottom-2)
             failures.push("Mobile "+entry.id+": art overlaps navigation");
+          if(entry.id==="afterhours" && fold.nav?.bottom>250)
+            failures.push("Mobile After Hours: header consumes too much of the first viewport");
+          if(entry.id==="atelier" && fold.nav?.bottom>240)
+            failures.push("Mobile Atelier: header is too tall");
+          if(entry.id==="folio" && fold.nav?.bottom>235)
+            failures.push("Mobile Folio: compact editorial masthead too tall");
         }
         await page.waitForTimeout(1100);
         await page.screenshot({path:"qa-browser-artifacts/"+size.name+"-"+entry.id+".png",fullPage:false});
