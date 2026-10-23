@@ -16,7 +16,9 @@ test("No fictional template promises empty contact; a real configured email stay
  input.content.publicEmail="hello@client-example.org";
  const html=renderSite(input);
  assert(html.includes("mailto:hello@client-example.org"));
- assert(!html.includes('contact-setup-note'));
+ assert(!html.includes('<p class="contact-setup-note">'));
+ assert(!html.includes('This website has not published a contact method yet.'));
+
 });
 test("Twenty architectures use distinct fictional work and biography, regardless of shared purpose",()=>{
  const rows=templates.map(t=>sampleForTemplate(t.id,"Creative portfolio").content);

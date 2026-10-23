@@ -335,7 +335,7 @@ export function sampleForTemplate(id,purpose){
     const story=galleryStories[t.id];
     if(story){
       preview.heroLabel=story[0]+" / "+category;
-      preview.bio=story[1];
+      preview.bio='A fictional demonstration: '+story[1];
       preview.cards=story[2].map((title,i)=>({
         title,description:["A fictional commissioned concept in "+story[0].toLowerCase(),"A different sample project exploring "+signature.toLowerCase(),"A fictional visual study for the "+t.name+" collection."][i],url:""
       }));
