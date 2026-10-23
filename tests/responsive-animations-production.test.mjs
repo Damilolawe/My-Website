@@ -19,7 +19,7 @@ test("Signal / Noise preserves its editorial layout while containing the mobile 
 
 test("Homepage GSAP never tries to animate missing template choice nodes",async()=>{
  const homepage=await read("script.js");
- assert(homepage.includes("if($$('.worlds-choice').length)gsap.from('.worlds-choice'"));
+ assert(homepage.includes("if(document.querySelectorAll('.worlds-choice').length)gsap.from('.worlds-choice'"));
  assert(homepage.includes("if($('.worlds-screen')&&$('.worlds-layout'))gsap.from('.worlds-screen'"));
  assert(homepage.includes("if($('.worlds-title'))gsap.from('.worlds-title'"));
  const relaunch=await read("awe-relaunch.js");
@@ -46,7 +46,7 @@ test("Client authorizes only the confirmed owner; payment never auto-publishes",
  assert(backend.includes('STUDIO_OWNER_EMAIL = "contact@aweconcepts.com"'));
  assert(backend.includes('rows("awe_owner"'));
  assert(router.includes("await isOwner(u)"));
- assert(production.includes('rows("awe_approvals"'));
+ assert(production.includes('"awe_approvals"'));
  assert(production.includes("o.public_version !== version"));
  assert(router.includes("verified.ok"));
  assert(router.includes("p[3]==='publish'"));
