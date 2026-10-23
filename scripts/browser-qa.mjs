@@ -123,7 +123,9 @@ try {
             const art=document.querySelector(slug==="folio"?".folio-picture .hero-media":slug==="atelier"?".atelier-photo .hero-media":".afterhours-screen > .hero-media");
             const nav=document.querySelector(".shell-header");
             const rect=el=>{const r=el?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,width:r.width,height:r.height}:null};
-            return {title:rect(heading),photo:rect(art),nav:rect(nav),viewport:innerHeight};
+            const photoLabel=slug==="atelier"?document.querySelector(".atelier-photo .study-motto"):null;
+            const photoCredit=slug==="atelier"?document.querySelector(".atelier-photo .study-credit"):null;
+            return {title:rect(heading),photo:rect(art),nav:rect(nav),motto:rect(photoLabel),credit:rect(photoCredit),viewport:innerHeight};
           },entry.id);
           console.log("MOBILE_TEMPLATE_FIRST_FOLD",entry.id,JSON.stringify(fold));
           if(!fold.title||fold.title.top>fold.viewport-40)
@@ -138,6 +140,8 @@ try {
             failures.push("Mobile After Hours: header consumes too much of the first viewport");
           if(entry.id==="atelier" && fold.nav?.bottom>240)
             failures.push("Mobile Atelier: header is too tall");
+          if(entry.id==="atelier" && fold.credit&&fold.motto && fold.credit.top<fold.motto.bottom+8 && fold.credit.bottom>fold.motto.top)
+            failures.push("Mobile Atelier: image credit overlaps its editorial caption");
           if(entry.id==="folio" && fold.nav?.bottom>235)
             failures.push("Mobile Folio: compact editorial masthead too tall");
         }
