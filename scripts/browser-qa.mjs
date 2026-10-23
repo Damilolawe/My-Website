@@ -76,6 +76,10 @@ try {
     for(const entry of templates){
       const label=size.name+" template "+entry.id;
       await testPage(page,origin+"/templates/"+entry.id+".html",label,{waitMs:180});
+      if(["afterhours","folio","atelier"].includes(entry.id)){
+        await page.waitForTimeout(1100);
+        await page.screenshot({path:"qa-browser-artifacts/"+size.name+"-"+entry.id+".png",fullPage:false});
+      }
       // Exercise a real section link, not just existence of href/#target.
       const first=page.locator('nav[aria-label="Section navigation"] a[href^="#"]').first();
       if(await first.count()) {
@@ -90,6 +94,12 @@ try {
           failures.push(label+": section navigation click failed: "+String(error.message).slice(0,160));
         }
       } else failures.push(label+": missing template section navigation");
+    }
+  }
+  if(size.width===1440){
+    for(const template of ["afterhours","folio","atelier"]){
+      await testPage(page,origin+"/templates/"+template+".html",size.name+" flagship "+template,{waitMs:1100});
+      await page.screenshot({path:"qa-browser-artifacts/"+size.name+"-"+template+".png",fullPage:false});
     }
   }
   await context.close();
