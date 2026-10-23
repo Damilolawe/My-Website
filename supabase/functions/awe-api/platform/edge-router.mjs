@@ -128,7 +128,7 @@ async function dispatch(req) {
       p.data?.enabled===true && Number.isInteger(p.data?.amount) &&
       p.data.amount>0 && p.data.hosting && p.data.ownership &&
       p.data.revisions && p.data.termsVersion);
-    const priorPayments=await rows('awe_payments','select=id&limit=1');
+    const priorPayments=await rows('awe_payments','select=event_id&limit=1');
     return json({
       mode:'test-only',
       serverTestKeyPresent:typeof settings.STRIPE_SECRET_KEY==='string' &&
