@@ -797,3 +797,8 @@ th {
 /* Use a true vector for the template posters / selector, not an emoji star. */
 .poster-symbol{display:block;font-size:0;width:clamp(170px,24vw,400px);height:clamp(170px,24vw,400px);background:currentColor;-webkit-mask:url("/assets/icons/asterisk.svg") center/contain no-repeat;mask:url("/assets/icons/asterisk.svg") center/contain no-repeat}
 .experience-picker-index strong{font-size:0;display:block;margin-left:auto;width:clamp(50px,9vw,115px);height:clamp(50px,9vw,115px);background:currentColor;-webkit-mask:url("/assets/icons/asterisk.svg") center/contain no-repeat;mask:url("/assets/icons/asterisk.svg") center/contain no-repeat}
+
+/* Consistent studio and AWE Express brand marks */
+.app-header .wordmark{display:inline-flex;align-items:center;flex:0 1 auto;min-width:0}
+.app-header .wordmark img{display:block;width:clamp(126px,16vw,190px);height:auto;max-width:100%}
+@media(max-width:500px){.app-header .wordmark img{width:126px}}
