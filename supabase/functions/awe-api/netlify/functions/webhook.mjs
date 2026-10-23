@@ -1,19 +1,29 @@
 import { stripe, env, rpc, rows, json } from "../../platform/backend.mjs";
 export default async (req) => {
   if (req.method !== "POST") return json({ error: "Method not allowed" }, 405);
+  // Verify each environment with its own signing secret, including
+  // refunds/delayed events after new live checkouts are closed.
   let event;
   try {
     const raw = await req.text();
     if (raw.length > 262144) return json({ error: "Too large" }, 413);
-    event = await stripe().webhooks.constructEventAsync(
-      raw,
-      req.headers.get("stripe-signature"),
-      env().STRIPE_WEBHOOK_SECRET,
-    );
-    if (event.livemode)
-      return json({ error: "Live payments are disabled" }, 400);
+    const signature = req.headers.get("stripe-signature");
+    for (const [mode, secret] of [
+      ["live", env().STRIPE_LIVE_WEBHOOK_SECRET],
+      ["test", env().STRIPE_WEBHOOK_SECRET],
+    ]) {
+      if (typeof secret !== "string" || !secret.startsWith("whsec_")) continue;
+      try {
+        const verified = await stripe(mode).webhooks.constructEventAsync(raw, signature, secret);
+        if (verified.livemode !== (mode === "live"))
+          return json({ error: "Payment mode mismatch" }, 400);
+        event = verified;
+        break;
+      } catch { /* Signature did not match this payment environment. */ }
+    }
+    if (!event) return json({ error: "Invalid webhook signature" }, 400);
   } catch {
-    return json({ error: "Invalid signature or test configuration" }, 400);
+    return json({ error: "Invalid webhook request" }, 400);
   }
   try {
     const x = event.data.object;
