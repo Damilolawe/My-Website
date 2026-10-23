@@ -24,7 +24,7 @@
         revealObserver?.unobserve(entry.target);
       }
     },{rootMargin:'0px 0px -7% 0px',threshold:.07});
-    $('.reveal').forEach(el=>{if(!el.classList.contains('in-view'))revealObserver.observe(el);});
+    document.querySelectorAll('.reveal').forEach(el=>{if(!el.classList.contains('in-view'))revealObserver.observe(el);});
   }
   function applyMotion(){
     window.AWE_MOTION_PAUSED=paused;
