@@ -3,7 +3,7 @@ import Stripe from "stripe";
 export const env = () => {
   const e = typeof Deno !== "undefined" ? Deno.env.toObject() : process.env;
   return { ...e, SUPABASE_PUBLISHABLE_KEY: e.SUPABASE_PUBLISHABLE_KEY || e.SUPABASE_ANON_KEY,
-    SITE_ORIGIN: e.SITE_ORIGIN || "https://awe-digital.web.app" };
+    SITE_ORIGIN: e.SITE_ORIGIN || "https://aweconcepts.com" };
 };
 // Pin the single studio-owner identity, never just an email or user-editable
 // metadata. Membership in the service-only owner table remains mandatory.
