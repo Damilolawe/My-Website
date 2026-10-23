@@ -276,7 +276,20 @@ async function checkout() {
   btn.disabled = true;
   try {
     const p = catalog.packages.find((p) => p.id === packageId);
-    if (!orderId) {
+    if (!orderId && draftId) {
+      const prepared = await api(`drafts/${draftId}/prepare`, {
+        input,
+        version: draftVersion,
+        packageId,
+        termsVersion: p.termsVersion,
+        consent: true,
+      });
+      if (prepared?.id !== draftId || !Number.isSafeInteger(prepared.version))
+        throw Error("The studio could not prepare your saved design for checkout.");
+      orderId = prepared.id;
+      draftVersion = prepared.version;
+      $("#back").hidden = true;
+    } else if (!orderId) {
       const o = await api("orders", {
         input,
         packageId,
@@ -373,3 +386,4 @@ async function restoreDraft() {
 }
 draw();
 await restoreDraft();
+
