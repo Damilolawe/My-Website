@@ -18,7 +18,7 @@ export function renderArcadeNight(value, { sample = false, assetBase = "/api/ass
   const cards = c.cards.length ? c.cards : fallback;
   const hasWork = selected.includes("work") && (cards.length || c.photoIds.length > 1);
   const hasServices = selected.includes("services") && c.services.length;
-  const has = id => selected.includes(id) && (id === "contact" || id === "work" && hasWork || id === "services" && hasServices || id === "testimonials" && c.testimonials.length || id === "about" && c.bio || c[id]);
+  const has = id => selected.includes(id) && (id === "contact" && Boolean(c.publicEmail || c.links.length) || id === "work" && hasWork || id === "services" && hasServices || id === "testimonials" && c.testimonials.length || id === "about" && c.bio || c[id]);
   const ids = selected.filter(has);
   const target = hasWork ? "#work" : has("contact") ? "#contact" : "#main";
   const nav = (d.navigation === "compact" ? ids.filter(id => id === "work" || id === "contact") : ids)

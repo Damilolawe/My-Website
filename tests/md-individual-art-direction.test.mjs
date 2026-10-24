@@ -36,12 +36,13 @@ test("Source-based builds render distinct compositions in every published purpos
        assert(html.includes('class="fe-project fe-feature"'),'Folio selected work missing');
      } else {
        assert(html.includes('art-scene-'+d.id),d.id+' new hero absent');
-   assert(html.includes('md-edition-'+d.id),d.id+' new midpage absent');
+   assert(!html.includes('<aside class="md-edition-break'),d.id+' generic design-description panel remains');
      }
    assert(html.includes("FICTIONAL TEMPLATE DEMO"));
    assert(html.includes("prefers-reduced-motion"));
    assert(html.includes('aria-label="Section navigation"'));
-   assert(html.includes('href="#contact"'));
+   if(d.id==="folio") assert(html.includes('href="#contact"'));
+   else assert(!html.includes('href="#contact"'),d.id+' advertises contact without an address');
    assert(html.includes('id="work"'));
    assert(!html.includes("<script"),d.id+" active scripts");
    assert(!html.includes('href="javascript:'),d.id+" dangerous link");

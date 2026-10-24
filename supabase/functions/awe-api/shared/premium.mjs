@@ -1,5 +1,6 @@
 import { normalize, esc, https } from "./model.mjs";
 import { collectionEditionCSS } from "./collection-edition.mjs";
+import { premiumStudyIds } from "./premium-art-direction-35.mjs";
 import { folioVisualCSS } from "./folio-visual-fixes.mjs";
 import { sampleArtwork, photoCSS } from "./photographic-direction.mjs";
 import { experienceHero, experienceInterlude } from "./experiences.mjs";
@@ -55,11 +56,12 @@ export function renderPremium(input, options = {}) {
   if (value.template === "runwaymulti") return renderRunwayMultiPreview(value, options);
   if (freeDesignFor(value.template)) return renderFreeDesign(value, options);
   const c = value.content, d = value.design, t = value.template;
+  const cleanElements = premiumStudyIds.includes(t);
   const items = c.cards.length ? c.cards : cardFallback(c.projects);
   const has = (id) => d.sections.includes(id);
   const image = (id, alt, cls, eager) => '<img class="' + cls + '" src="' + E(assetBase + id + assetSuffix) + '" alt="' + E(alt) + '" loading="' + (eager ? "eager" : "lazy") + '">';
   const navIds = d.sections.filter((s) =>
-    s === "contact" || (s === "work" ? items.length || c.photoIds.length > 1 : s === "services" ? c.services.length : s === "testimonials" ? c.testimonials.length : s === "about" ? c.bio : c[s]));
+    (s === "contact" && (!cleanElements || Boolean(c.publicEmail || c.links.length))) || (s === "work" ? items.length || c.photoIds.length > 1 : s === "services" ? c.services.length : s === "testimonials" ? c.testimonials.length : s === "about" ? c.bio : c[s]));
   const titles={
     "Student résumé":{about:"The person behind the work",work:"Projects & experiments",services:"Capabilities",experience:"Experience",education:"Education",skills:"Toolbox",contact:"Say hello"},
     "Professional portfolio":{about:"A little about me",work:"Selected case studies",services:"What I do",experience:"Career highlights",education:"Background",skills:"Expertise",contact:"Work together"},
@@ -83,7 +85,7 @@ export function renderPremium(input, options = {}) {
     if (id === 'contact') return '<section class="section" id="contact"><div class="contact-block"><div><p class="eyebrow">LET’S CONNECT</p><h2>Let’s make something happen.</h2></div><div class="contact-links">' + (c.publicEmail ? '<a class="pill-link" href="mailto:' + E(c.publicEmail) + '">Get in touch ↗︎</a>' : '') + join(c.links.map(u=>'<a href="' + E(u) + '" target="_blank" rel="noopener noreferrer">' + E(new URL(u).hostname) + ' ↗︎</a>')) + (c.publicEmail || c.links.length ? '' : '<p class="contact-setup-note">'+(sample?'Fictional demonstration — add a public email or contact link to activate this section.':'The site owner has not published a contact method yet.')+'</p>') + '</div></div></section>';
     return '';
   };
-  const composed = designSections(value,{assetBase,assetSuffix,sample});
+  const composed = designSections(value,{assetBase,assetSuffix,sample,streamlined:cleanElements});
   const actualSections = composed === null ? d.sections.map((s,i)=>section(s,i+1)).filter(Boolean).join("") : composed;
   const heroImage = c.photoIds[0] ? image(c.photoIds[0],c.name + ' portrait','hero-picture',true) : (sample && !directionFor(t) ? sampleArtwork(t,'hero') : '');
   const accent = d.primary, second = d.secondary, dark = d.appearance === 'dark' || t === 'afterhours';
@@ -98,7 +100,7 @@ export function renderPremium(input, options = {}) {
   const ctaTarget = has('work') && (items.length || c.photoIds.length>1) ? '#work' : has('contact') ? '#contact' : '#main';
   const hero=mdHero(value,heroImage,ctaTarget) || experienceHero(t,{c,value,heroImage,ctaTarget});
   const signature = signatureMarkup(value,navIds,{sample,assetBase,assetSuffix});
-  const page=siteChrome(value,{hero,sections:signature+(uploadedDesignFor(t)?mdSourceFeature(value)+authoredBeat(value):'')+actualSections,interlude:directionFor(t) ? '' : experienceInterlude(t,c),navIds});
+  const page=siteChrome(value,{hero,sections:signature+(uploadedDesignFor(t)?mdSourceFeature(value)+(cleanElements ? '' : authoredBeat(value)):'')+actualSections,interlude:cleanElements || directionFor(t) ? '' : experienceInterlude(t,c),navIds});
   // Original directions ship a purpose-built, compact stylesheet; legacy templates keep their exact styling.
   let styleBundle=uploadedDesignFor(t)
     ? theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + (signature ? signatureCSSFor(t) : '') + exactGuideCSSFor(t) + mdCSSFor(t) + mdPaletteFor(value,{sample}) + artDirectionCSS + mdSourceFeatureCSS

@@ -3,13 +3,20 @@ import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
 import {renderSite} from "../shared/render.mjs";
 import {sampleForTemplate,templates,types} from "../shared/model.mjs";
+import {premiumStudyIds} from "../shared/premium-art-direction-35.mjs";
 const read=p=>readFile(new URL("../"+p,import.meta.url),"utf8");
 test("No fictional template promises empty contact; a real configured email stays clickable",()=>{
  for(const purpose of types)for(const t of templates.filter(x=>x.id!=="runwayml"&&x.id!=="runwaymulti")){
   const cfg=sampleForTemplate(t.id,purpose);
   const html=renderSite(cfg,{sample:true});
-  assert(html.includes('id="contact"'),t.id+"/"+purpose+" missing contact");
-  assert(html.includes('contact-setup-note'),t.id+"/"+purpose+" missing setup instruction");
+  if(premiumStudyIds.includes(t.id)){
+    assert(!html.includes('id="contact"'),t.id+"/"+purpose+" renders empty contact panel");
+    assert(!/<(?:p|span) class="[^"]*contact-setup-note/.test(html),t.id+"/"+purpose+" reintroduces placeholder text");
+    assert(!html.includes('href="#contact"'),t.id+"/"+purpose+" links to hidden contact");
+  }else{
+    assert(html.includes('id="contact"'),t.id+"/"+purpose+" missing contact");
+    assert(html.includes('contact-setup-note'),t.id+"/"+purpose+" missing setup instruction");
+  }
   assert(!html.includes('href="mailto:hello@example.com"'),"Fake contact link leaked");
  }
  const input=sampleForTemplate("afterhours","Creative portfolio");
