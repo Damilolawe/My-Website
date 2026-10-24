@@ -95,24 +95,28 @@ function heading(id,i,ctx){
 }
 function shell(id,index,ctx,inside){
   const def=architectures[ctx.t];
+  const intro=ctx.streamlined
+    ? '<div class="chapter-intro chapter-intro--content"><h2>'+E(heading(id,index,ctx))+'</h2></div>'
+    : '<div class="chapter-intro"><span class="chapter-num">'+def.no+' : '+String(index).padStart(2,"0")+'</span>'+
+      '<span class="chapter-kicker">'+E(def.word)+' / '+E(id)+'</span>'+
+      '<h2>'+E(heading(id,index,ctx))+'</h2>'+
+      (id==="work"?'<p>'+E(def.detail)+'</p>':"")+'</div>';
   return '<section class="chapter chapter-'+E(id)+' chapter-'+def.mode+'" id="'+id+'">'+
-    '<div class="chapter-intro"><span class="chapter-num">'+def.no+' : '+String(index).padStart(2,"0")+'</span>'+
-    '<span class="chapter-kicker">'+E(def.word)+' / '+E(id)+'</span>'+
-    '<h2>'+E(heading(id,index,ctx))+'</h2>'+
-    (id==="work"?'<p>'+E(def.detail)+'</p>':"")+'</div>'+
-    '<div class="chapter-content">'+inside+'</div></section>';
+    intro+'<div class="chapter-content">'+inside+'</div></section>';
 }
-export function designSections(value,{assetBase="/api/assets/",assetSuffix="",sample=false}={}){
+export function designSections(value,{assetBase="/api/assets/",assetSuffix="",sample=false,streamlined=false}={}){
   const {content:c,design:d,template:t}=value;
   const def=architectures[t];
   if(!def)return null;
-  const ctx={c,d,t,value,assetBase,assetSuffix,sample,typeLabel:value.type==="Actor / model"?"CREDIT":value.type==="Small business"?"PROJECT":"WORK"};
+  const ctx={c,d,t,value,assetBase,assetSuffix,sample,streamlined,typeLabel:value.type==="Actor / model"?"CREDIT":value.type==="Small business"?"PROJECT":"WORK"};
   const items=c.cards?.length?c.cards:String(c.projects||"").split(/\n\s*\n/).filter(Boolean).map(x=>({title:x.split("\n")[0],description:x.split("\n").slice(1).join("\n"),url:""}));
   const sections=[];
   for(const [index,id] of d.sections.entries()){
     if(id==="about"&&c.bio){
-      sections.push(shell(id,index+1,ctx,'<div class="architect-story"><span class="story-opening" aria-hidden="true">“</span><p>'+prose(c.bio)+'</p>'+
-        '<span class="story-signature">'+E(c.name)+'</span><span class="story-art" aria-hidden="true">✳︎</span></div>'));
+      sections.push(shell(id,index+1,ctx,streamlined
+        ? '<div class="architect-story architect-story--content"><p>'+prose(c.bio)+'</p></div>'
+        : '<div class="architect-story"><span class="story-opening" aria-hidden="true">“</span><p>'+prose(c.bio)+'</p>'+
+          '<span class="story-signature">'+E(c.name)+'</span><span class="story-art" aria-hidden="true">✳︎</span></div>'));
     } else if(id==="work"&&(items.length||c.photoIds.length>1)){
       const workItems=items.length?items:c.photoIds.slice(1).map((_,i)=>({title:"Selected work "+(i+1),description:"",url:""}));
       sections.push(shell(id,index+1,ctx,workMarkup(def.mode,workItems,ctx)));
@@ -130,11 +134,17 @@ export function designSections(value,{assetBase="/api/assets/",assetSuffix="",sa
     } else if(id==="contact"){
       const links=(c.publicEmail?'<a class="architect-contact-button" href="mailto:'+E(c.publicEmail)+'">Send an email <span aria-hidden="true">↗︎</span></a>':"")+
         (c.links||[]).filter(https).map(x=>'<a href="'+E(x)+'" target="_blank" rel="noopener noreferrer">'+E(new URL(x).hostname)+' ↗︎</a>').join("");
-      sections.push(shell(id,index+1,ctx,'<div class="architect-contact"><span class="contact-emblem" aria-hidden="true">✳︎</span><p>'+
-        E(value.type==="Small business"?"Your next project starts with a conversation.":value.type==="Actor / model"?"Available for casting enquiries and creative conversations.":"Something worth making starts here.")+
-        '</p><div class="architect-contact-links">'+(links||'<p class="contact-setup-note">'+
-          (ctx.sample?'Fictional portfolio demonstration — add your own email or contact link when building your site.':'This website has not published a contact method yet. Please check back for an updated way to get in touch.')+
-        '</p>')+'</div></div>'));
+      if(streamlined){
+        // No fabricated contact cards, boilerplate statements or decorative glyphs.
+        // Genuine contact links remain accessible when the client supplies them.
+        if(links) sections.push('<section class="chapter chapter-contact chapter-'+def.mode+' chapter-contact--minimal" id="contact"><div class="architect-contact-links architect-contact-links--minimal">'+links+'</div></section>');
+      }else{
+        sections.push(shell(id,index+1,ctx,'<div class="architect-contact"><span class="contact-emblem" aria-hidden="true">✳︎</span><p>'+
+          E(value.type==="Small business"?"Your next project starts with a conversation.":value.type==="Actor / model"?"Available for casting enquiries and creative conversations.":"Something worth making starts here.")+
+          '</p><div class="architect-contact-links">'+(links||'<p class="contact-setup-note">'+
+            (ctx.sample?'Fictional portfolio demonstration — add your own email or contact link when building your site.':'This website has not published a contact method yet. Please check back for an updated way to get in touch.')+
+          '</p>')+'</div></div>'));
+      }
     }
   }
   return sections.join("");
