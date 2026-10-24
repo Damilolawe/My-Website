@@ -3,17 +3,18 @@ import assert from "node:assert/strict";
 import {readFile,stat} from "node:fs/promises";
 import {templates,types,typeSlugs,sampleForTemplate,recommendedFor,normalize} from "../shared/model.mjs";
 import {renderSite} from "../shared/render.mjs";
+import {freeDesignFor} from "../shared/free-designmd.mjs";
 import {TEMPLATE_IDS,fetchPublicTemplate} from "../shared/preview.mjs";
 
 test("collection contains exactly forty unique art-directed templates",()=>{
-  assert.equal(templates.length,27);
-  assert.equal(TEMPLATE_IDS.length,27);
-  assert.equal(new Set(templates.map(x=>x.id)).size,27);
-  assert.equal(new Set(templates.map(x=>x.name)).size,27);
-  assert.equal(new Set(templates.map(x=>x.style)).size,27);
+  assert.equal(templates.length,37);
+  assert.equal(TEMPLATE_IDS.length,37);
+  assert.equal(new Set(templates.map(x=>x.id)).size,37);
+  assert.equal(new Set(templates.map(x=>x.name)).size,37);
+  assert.equal(new Set(templates.map(x=>x.style)).size,37);
   const markup=templates.map(t=>renderSite(sampleForTemplate(t.id),{sample:true}));
   const uniqueMarkers=markup.map((html,t)=>{
-    const marker=html.match(/<section class="hero hero-variant (?:md-hero md-)?([\w-]+)(?:\s|")/);
+    const marker=freeDesignFor(templates[t].id)?html.match(/<section class="fd-hero" data-architecture="([\w-]+)"/):html.match(/<section class="hero hero-variant (?:md-hero md-)?([\w-]+)(?:\s|")/);
     assert(marker,templates[t].id+" missing distinct hero");
     assert(html.includes('<h1 id="hero-title">'),"Accessible main headline missing");
     assert(html.includes("FICTIONAL TEMPLATE DEMO"),"No customer information belongs in sample");
@@ -21,8 +22,8 @@ test("collection contains exactly forty unique art-directed templates",()=>{
     assert(!html.includes("<script"),"Approved static customer sites must be script-free");
     return marker[1];
   });
-  assert.equal(new Set(uniqueMarkers).size,27,"Every template must have an individual hero signature");
-  assert.equal(new Set(markup).size,27,"The output must not be a set of identical skins");
+  assert.equal(new Set(uniqueMarkers).size,37,"Every template must have an individual hero signature");
+  assert.equal(new Set(markup).size,37,"The output must not be a set of identical skins");
 });
 test("every design supports six purpose-matched previews with an accurate narrative",()=>{
   assert.equal(types.length,6);
@@ -39,9 +40,9 @@ test("every design supports six purpose-matched previews with an accurate narrat
       assert(demo.content.bio.toLowerCase().includes("fictional")||demo.content.bio.toLowerCase().includes("imagined"),"Clearly fictional biography required");
       const html=renderSite(demo,{sample:true});
       assert(html.includes('<h1 id="hero-title">'));
-      if(template.id!=="arcade" && type==="Actor / model") assert(html.includes("Credits &amp; on-screen work"));
-      if(template.id!=="arcade" && type==="Small business") assert(html.includes("What we offer"));
-      if(template.id!=="arcade" && type==="Student résumé") assert(html.includes("Projects &amp; experiments"));
+      if(template.id!=="arcade" && !freeDesignFor(template.id) && type==="Actor / model") assert(html.includes("Credits &amp; on-screen work"));
+      if(template.id!=="arcade" && !freeDesignFor(template.id) && type==="Small business") assert(html.includes("What we offer"));
+      if(template.id!=="arcade" && !freeDesignFor(template.id) && type==="Student résumé") assert(html.includes("Projects &amp; experiments"));
     }
   }
 });
