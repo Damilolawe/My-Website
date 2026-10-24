@@ -25,7 +25,7 @@ function header(v,cls,names){
  return '<header class="'+cls+'"><a href="#main" class="trio-logo">'+E(v.content.name)+'</a><nav aria-label="Section navigation">'+links+'</nav><details class="trio-menu"><summary>Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation">'+links+'</nav></details></header>';
 }
 const footer=v=>'<footer class="trio-footer"><strong>'+E(v.content.name)+'</strong><nav aria-label="Footer navigation">'+anchor("main","Top ↑︎")+anchor("work","Collection")+anchor("contact","Contact")+'</nav><small>Independent visual design study / Edition 001</small></footer>';
-const contact=v=>'<section class="trio-contact" id="contact"><span class="trio-label">03 / CONTINUE THE STORY</span><h2>THE NEXT<br>CHAPTER.</h2>'+(v.content.publicEmail?'<a href="mailto:'+E(v.content.publicEmail)+'" class="trio-button">Get in touch ↗︎</a>':'<p class="contact-setup-note">Add a real public contact email or link to receive inquiries.</p>')+'</section>';
+const contact=v=>'<section class="trio-contact" id="contact"><span class="trio-label">03 / CONTINUE THE STORY</span><h2>THE NEXT<br>CHAPTER.</h2>'+(v.content.publicEmail?'<a href="mailto:'+E(v.content.publicEmail)+'" class="trio-button">Get in touch ↗︎</a>':'<p class="contact-setup-note">Add a contact email or public link to receive inquiries.</p>')+'</section>';
 function nike(v,opts){
  const c=v.content,r=data(v),nav=[["about","Campaign"],["work","Collection"],["contact","Connect"]];
  const cards=r.slice(0,5).map((x,i)=>'<article class="nike-product">'+media(v,i+1,opts)+'<h3>'+E(x.title)+'</h3><p>'+E(x.description)+'</p><span>MOVE / '+String(i+1).padStart(2,"0")+'</span></article>').join("");
