@@ -49,3 +49,14 @@ export const directionCSS = `
 @media(max-width:850px){.ref-hero,.fieldnotes .ref-hero,.cutouts .ref-hero,.orchard .ref-hero,.negative .ref-hero,.workshop .ref-hero,.hearth .ref-hero,.couture .ref-hero{grid-template-columns:1fr;min-height:0}.ref-media,.negative .ref-media,.couture .ref-media,.runway .ref-media,.obsidian .ref-media{min-height:360px}.ref-art,.negative .ref-art,.couture .ref-art,.runway .ref-art,.obsidian .ref-art{min-height:360px}.specimen .ref-media{width:100%}.ref-hero h1{font-size:clamp(3.5rem,10vw,7rem)}}
 @media(max-width:560px){.ref-hero h1,.specimen h1,.runway .ref-words h1,.obsidian h1,.kinetic h1{font-size:clamp(3.6rem,12vw,6.2rem)}.ref-media,.negative .ref-media,.couture .ref-media,.obsidian .ref-media{min-height:270px}.ref-art,.negative .ref-art,.couture .ref-art,.obsidian .ref-art{min-height:270px}.ref-art span{font-size:clamp(4rem,20vw,7rem)}.ref-hero .work-grid,.fieldnotes .work-grid{grid-template-columns:1fr}.ref-hero{padding-top:75px}}
 `;
+
+// Ship only the chosen design system; omit all other directions to keep output within publication limits.
+export function directionCSSFor(id){
+ const marker=".fieldnotes .ref-media";
+ const mediaAt=directionCSS.indexOf("@media(max-width:850px)");
+ const first=directionCSS.indexOf(marker);
+ const base=directionCSS.slice(0,first);
+ const variants=directionCSS.slice(first,mediaAt).split("\n");
+ const single=variants.find(line=>line.startsWith("."+id+" ")||line.startsWith("."+id+"{"))||"";
+ return base+single+"\n"+directionCSS.slice(mediaAt);
+}
