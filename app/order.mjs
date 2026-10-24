@@ -11,11 +11,12 @@ import {
   sections,
 } from "/shared/model.mjs";
 import { renderSite } from "/shared/render.mjs";
+import { tiers, minimumTier, packageTier, templateFitsTier, tierLevel } from "/shared/tiers.mjs";
 import { fetchPublicTemplate, previewMessage } from "/shared/preview.mjs";
 import { $, api, money, report, authForm } from "./common.mjs";
 const labels = [
-  "Your purpose",
-  "Your starting point",
+  "Choose your tier",
+  "Explore templates",
   "Your style",
   "Your story",
   "Review & checkout",
@@ -24,7 +25,9 @@ let step = 0,
   input = normalize({...sample,design:{animation:"expressive"}}),
   files = [],
   catalog = { templates, packages: [], ordersEnabled: false },
-  packageId = "express",
+  packageId = null,
+  selectedTier = null,
+  purposeFilter = "All",
   me = null,
   orderId = null,
   draftId = null,
@@ -49,6 +52,28 @@ const app = $("#app");
 try {
   catalog = await api("catalog");
 } catch {}
+function activePackagesForTier(tier) {
+  return (catalog.packages || []).filter(p => p.enabled && packageTier(p) === tier)
+    .sort((a,b) => a.amount - b.amount);
+}
+function selectedPackage() {
+  const available = activePackagesForTier(selectedTier);
+  return available.find(p => p.id === packageId) || available[0] || null;
+}
+function syncPackage() {
+  packageId = selectedPackage()?.id || null;
+}
+function setTemplate(id) {
+  const template = (catalog.templates || templates).find(t => t.id === id);
+  if (!template) return;
+  input.template = template.id;
+  input.design.primary = template.color;
+  input.design.appearance = ["afterhours","nocturne","terminal","brutalist","arcade"].includes(id) ? "dark" : "light";
+  input.design.font = id === "folio" ? "serif" : id === "arcade" ? "mono" : "sans";
+  input.design.secondary = id === "arcade" ? "#11120f" : "#ece9e0";
+  input.design.corners = id === "arcade" ? "sharp" : "soft";
+  input.design.sections = sampleForTemplate(id,input.type).design.sections;
+}
 function field(label, name, value = "", kind = "input") {
   return `<label class="field">${label}${kind === "textarea" ? `<textarea name="${name}" maxlength="${name === "projects" ? 5000 : 3000}">${esc(value)}</textarea>` : `<input name="${name}" value="${esc(value)}" maxlength="${name === "name" ? 100 : name === "headline" ? 160 : 1500}">`}</label>`;
 }
@@ -59,36 +84,45 @@ function checkoutLabel() { return catalog.paymentMode === 'test' ? 'Continue to 
 function draw() {
   theaterController?.abort();
   theaterController = null;
-  app.innerHTML = `<div class="wizard"><ol class="steps">${labels.map((l, i) => `<li class="${i === step ? "active" : ""}" ${i === step ? 'aria-current="step"' : ""}>0${i + 1} / ${l}</li>`).join("")}</ol><div class="work-area"><span class="step-count">0${step + 1} / 05 — ${labels[step].toUpperCase()}</span><div id="step"></div><div class="actions"><button class="btn secondary" id="back" ${step === 0 || orderId ? "hidden" : ""}>←︎ Back</button><button class="btn acid" id="next">${step === 4 ? checkoutLabel() : "Next step"} ↗︎</button></div></div></div>`;
+  app.innerHTML = `<div class="wizard"><ol class="steps">${labels.map((l, i) => `<li class="${i === step ? "active" : ""}" ${i === step ? 'aria-current="step"' : ""}>0${i + 1} / ${l}</li>`).join("")}</ol><div class="work-area"><span class="step-count">0${step + 1} / 05 — ${labels[step].toUpperCase()}</span><div id="step"></div><div class="actions"><button class="btn secondary" id="back" ${step === 0 || orderId ? "hidden" : ""}>←︎ Back</button><button class="btn acid" id="next">${step === 4 ? checkoutLabel() : step === 0 ? "Browse templates" : "Next step"} ↗︎</button></div></div></div>`;
   const el = $("#step");
   $("#feedback").textContent = "";
   if (step === 0) {
-    el.innerHTML = `<h2>What’s your next move?</h2><p class="muted">A first impression, a fresh start, a new opportunity.</p><div class="choices">${types.map((t, i) => `<button class="choice-card" data-type="${esc(t)}" aria-pressed="${input.type === t}"><span class="arrow">↗︎</span><small>0${i + 1} / MADE FOR YOU</small><strong>${t}</strong></button>`).join("")}</div><p class="muted">Something more ambitious? <a href="/account.html?custom=1">Tell us about an Awe Concepts Custom project ↗︎</a></p>`;
-    el.querySelectorAll("[data-type]").forEach(
-      (b) =>
-        (b.onclick = () => {
-          if (input.type !== b.dataset.type) {
-            input.type = b.dataset.type;
-            const featured = {
-              "Student résumé": "index",
-              "Professional portfolio": "ledger",
-              "Actor / model": "afterhours",
-              "Creative portfolio": "folio",
-              "Personal brand": "nocturne",
-              "Small business": "bloom",
-            };
-            input.template = featured[input.type] || "index";
-            const chosen = templates.find((t) => t.id === input.template) || templates[0];
-            input.design.primary = chosen.color;
-            input.design.appearance = ["afterhours","nocturne","terminal","brutalist","arcade"].includes(chosen.id) ? "dark" : "light";
-            input.design.font = chosen.id === "folio" ? "serif" : chosen.id === "arcade" ? "mono" : "sans";
-            input.design.secondary = chosen.id === "arcade" ? "#11120f" : "#ece9e0";
-            input.design.corners = chosen.id === "arcade" ? "sharp" : "soft";
-          }
-          input.design.sections = sampleForTemplate(input.template,input.type).design.sections;
-          draw();
-        }),
-    );
+    const cards = tiers.map((t, i) => {
+      const packageForTier = activePackagesForTier(t.id)[0];
+      const details = packageForTier?.features?.length
+        ? packageForTier.features.slice(0, 4).map(f => '<li>' + esc(f) + '</li>').join("")
+        : '<li>' + esc(t.note) + '</li><li>Choose your design before customizing</li>';
+      const price = packageForTier ? money(packageForTier) : t.inquiry;
+      const note = packageForTier ? "Available package" : "Starting inquiry price";
+      return '<button type="button" class="tier-choice" data-tier="' + t.id + '" aria-pressed="' +
+        String(selectedTier === t.id) + '"><span class="tier-choice-index">0' + (i + 1) +
+        ' / ' + esc(note) + '</span><strong>' + esc(t.name) + '</strong><span class="tier-choice-price">' +
+        esc(price) + '</span><span class="tier-choice-intro">' + esc(t.note) +
+        '</span><ul>' + details + '</ul><span class="tier-choice-link">EXPLORE ' +
+        esc(t.name.toUpperCase()) + ' TEMPLATES ↗︎</span></button>';
+    }).join("");
+    el.innerHTML = '<div class="tier-lead"><p class="eyebrow">01 / THE RIGHT STARTING POINT</p>' +
+      '<h2>Start with your budget.<br><em>Find your direction.</em></h2>' +
+      '<p class="muted">Choose the level that works for you. Higher tiers include access to designs from lower tiers. Every design is built to look professional.</p></div>' +
+      '<div class="tier-choices">' + cards + '</div><p class="tier-disclaimer">Package prices, included services and ownership terms are confirmed before checkout. Starting prices shown without an active package are for inquiries only. <a href="/contact.html">Have a custom project? ↗︎</a></p>';
+    el.querySelectorAll("[data-tier]").forEach(button => {
+      button.onclick = () => {
+        const tier = button.dataset.tier;
+        if (tier !== selectedTier) {
+          selectedTier = tier;
+          packageId = null;
+          syncPackage();
+          const available = (catalog.templates || templates).filter(t => minimumTier(t.id) === tier);
+          if (available.length) setTemplate(available[0].id);
+          purposeFilter = "All";
+        }
+        step = 1;
+        draw();
+        app.scrollIntoView({ block: "start", behavior: "instant" });
+      };
+    });
+    $("#next").disabled = !selectedTier;
   }
   if (step === 1) {
     const active = templates.find((t) => t.id === input.template) || templates[0];
