@@ -1,6 +1,7 @@
 import { newTemplates } from "./catalog-20.mjs";
 import { originalDirections, directionFor } from "./refero-originals.mjs";
 import {uploadedDesignFor} from "./uploaded-designs.mjs";
+import {freeDesignTemplates, freeDesignFor} from "./free-designmd.mjs";
 export const templates = [
   {
     id: "index",
@@ -47,6 +48,7 @@ export const templates = [
   {id:"liquidmetal",name:"Liquid Metal",style:"Graphite machined glass",tag:"A refined metallic presence.",color:"#E8EAEE"},
   ...newTemplates,
   ...originalDirections,
+  ...freeDesignTemplates,
 ];
 export const types = [
   "Student résumé",
@@ -330,7 +332,7 @@ const galleryIdentities = {
 const galleryStories=Object.freeze({"index":["Making complexity feel effortless.","An imaginary interface designer building tools around clear human decisions.",["Signal Map","Community Table","The Clarity System"]],"folio":["Stories in the margins.","An independent fictional editorial artist assembling magazines, still photographs, and personal essays.",["Issue / 04","Notes from Elsewhere","The Last Page"]],"still":["Observe the ordinary.","A fictional still-life photographer exploring ceramic objects, texture, quiet light, and negative space.",["Morning Objects","Collected Forms","Space Between"]],"afterhours":["Something cinematic is happening.","A fictional film director exploring nocturnal portraiture, slow-burn stories, and dramatic performance.",["Midnight Take","The Long Way Home","Reel / 003"]],"signal":["Culture needs volume.","An imagined poster collective making album campaigns, disruptive typography, and bold music imagery.",["NOISE / 01","Broadcast Club","High Voltage"]],"daylight":["Everyday can feel extraordinary.","A fictional neighborhood creative shop designing friendly packaging and inclusive community experiences.",["Sunday Rituals","Little Joys","Open Door"]],"atlas":["Research has a visual language.","An imaginary field researcher mapping places, discoveries, and public information.",["Field Notes / 08","Open Coordinates","Research Index"]],"terminal":["Ideas worth building.","A fictional software developer exploring accessible tools, command interfaces, and offline-first thinking.",["Console / 01","Protocol Zero","Open Source Lab"]],"orbit":["Move beyond the dashboard.","An imaginary digital product team creating playful tools for complicated human journeys.",["Mission Control","Near / Far","Next Horizon"]],"playbill":["An entrance changes everything.","A fictional performance troupe exploring stagecraft, backstage photography, and theater identities.",["Act One","House Lights","The Ensemble"]],"monologue":["The stage belongs to the voice.","A fictional actor and writer combining close-up portraits, scripts, and intimate performance.",["Scene / 02","Off Book","A Quiet Line"]],"portraiture":["Look again.","A fictional portrait photographer composing human expression through sculptural light and color.",["Faces / 12","Soft Focus","Chromatic Portraits"]],"contactsheet":["Edit with intention.","A fictional image-maker building a visual narrative from raw contact sheets and precise sequencing.",["Frames / 24","Untitled Light","Proof / Selects"]],"atelier":["Designed down to the stitch.","A fictional fashion atelier studying textures, tailoring, and restrained editorial presentation.",["Collection / 01","Thread Studies","Between Seasons"]],"museum":["Give the work room.","A fictional independent gallery collecting unexpected sculptures and inviting new perspectives.",["Room / 06","The Archive","Open Gallery"]],"brutalist":["The rules are optional.","An imaginary graphic design studio challenging conventions with raw collage and graphic systems.",["Rough Draft","CUT / PASTE","NO RULES"]],"nocturne":["Less can mean more.","A fictional art director shaping intimate luxury experiences through materials and shadow.",["Velvet Hours","Private Study","The Signature"]],"foundry":["Craft that stays with you.","A fictional small workshop building thoughtful goods, process stories, and practical brand systems.",["Workshop / 03","Northline Goods","Built to Keep"]],"bloom":["Room to grow.","An imagined floristry studio combining organic arrangements, seasonal color, and hospitality.",["First Bloom","The Greenhouse","Gathered"]],"ledger":["Make it make sense.","A fictional advisory practice translating complex data into clear, calm decisions.",["Annual Outlook","Good Measure","Decision Notes"]]});
 export function sampleForTemplate(id,purpose){
   const t=templates.find(x=>x.id===id)||templates[0];
-  const category=types.includes(purpose)?purpose:(originalByTemplate[t.id]||"Professional portfolio");
+  const category=types.includes(purpose)?purpose:(originalByTemplate[t.id]||freeDesignFor(t.id)?.recommended?.[0]||"Professional portfolio");
   const kit=purposeDemos[category];
   const old=demoIdentities[t.id];
   const original=purpose===undefined && old;
@@ -366,6 +368,15 @@ export function sampleForTemplate(id,purpose){
       {title: originalDirection.name + " / Working Process", description: "A fictional independent commission with original art direction.", url: ""},
       {title: originalDirection.name + " / Next Edition", description: "An illustrative case study for this website format.", url: ""}
     ];
+  }
+  const freeDirection=freeDesignFor(t.id);
+  if(freeDirection){
+    preview.name=category==="Small business"?freeDirection.name+" Studio":freeDirection.name+" / Independent";
+    preview.headline=freeDirection.tag;
+    preview.heroLabel=freeDirection.style+" / "+category;
+    preview.bio="A fictional example inspired by "+freeDirection.name+": "+freeDirection.description;
+    preview.cards=[{title:freeDirection.name+" / Edition 01",description:"An imaginary "+freeDirection.style.toLowerCase()+" exploration.",url:""},{title:freeDirection.name+" / Working Process",description:"A fictional study of typography, form and composition.",url:""},{title:freeDirection.name+" / Next Edition",description:"An illustrative follow-up project, not a real client engagement.",url:""}];
+    preview.services=[{title:"Art direction",description:"Fictional creative practice."},{title:"Design systems",description:"Sample identity and web experiences."}];
   }
   if(t.id==="liquidmetal"){
     Object.assign(preview,{
@@ -404,9 +415,9 @@ export function sampleForTemplate(id,purpose){
   }
   const content={...sample.content,...preview,projects:"",links:[],photoIds:[],publicEmail:"",testimonials:[]};
   return {type:category,template:t.id,design:{
-    primary:uploadedDirection?.accent||t.color,animation:"expressive",
-    secondary:(t.id==="liquidmetal"?"#15181D":uploadedDirection?.surface)||(t.id==="arcade"?"#11120f":originalDirection ? (["negative","nightgrid","signaldeck","obsidian"].includes(t.id)?"#242431":"#dedbd4") : "#ece9e0"),
-    appearance:t.id==="liquidmetal" ? "dark" : uploadedDirection ? (["afterhours","signal","orbit","monologue","nocturne","nightgrid","signaldeck","obsidian"].includes(t.id)?"dark":"light") : (["afterhours","nocturne","terminal","brutalist","arcade"].includes(t.id)?"dark":"light"),
+    primary:uploadedDirection?.accent||freeDirection?.color||t.color,animation:"expressive",
+    secondary:(t.id==="liquidmetal"?"#15181D":uploadedDirection?.surface||freeDirection?.colors.surface)||(t.id==="arcade"?"#11120f":originalDirection ? (["negative","nightgrid","signaldeck","obsidian"].includes(t.id)?"#242431":"#dedbd4") : "#ece9e0"),
+    appearance:t.id==="liquidmetal" ? "dark" : freeDirection ? (["acidchrome","voidstage"].includes(t.id)?"dark":"light") : uploadedDirection ? (["afterhours","signal","orbit","monologue","nocturne","nightgrid","signaldeck","obsidian"].includes(t.id)?"dark":"light") : (["afterhours","nocturne","terminal","brutalist","arcade"].includes(t.id)?"dark":"light"),
     sections:kit.sections
   },content};
 }
