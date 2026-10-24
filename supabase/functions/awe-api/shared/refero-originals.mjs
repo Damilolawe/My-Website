@@ -1,25 +1,85 @@
-// Original Awe Concepts template architecture directions.
-// Refero URLs are research attribution, NOT copied source assets or vendored DESIGN.md files.
-// Do not copy third-party trademarks, screenshots or proprietary fonts into customer sites.
-export const originalDirections = [
-  {id:"fieldnotes",name:"Field Notes",style:"Architectural field journal",tag:"A story worth studying.",color:"#a48e6b",recommended:["Student résumé","Professional portfolio"],tier:"starter",reference:"Pravah",referenceUrl:"https://styles.refero.design/style/30a8b128-a5bb-4d86-85eb-743b78091596",character:"field log"},
-  {id:"cutouts",name:"Cutout Studio",style:"Layered creative scrapbook",tag:"Collect the unexpected.",color:"#d97363",recommended:["Creative portfolio","Actor / model"],tier:"starter",reference:"Flim",referenceUrl:"https://styles.refero.design/style/94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc",character:"paper collage"},
-  {id:"orchard",name:"Orchard Press",style:"Warm highlighter editorial",tag:"Ideas in full bloom.",color:"#b6bd39",recommended:["Small business","Personal brand"],tier:"starter",reference:"Perk",referenceUrl:"https://styles.refero.design/style/75c06591-34d2-493a-bd49-70551b5e4a53",character:"editorial highlight"},
-  {id:"specimen",name:"Type Specimen",style:"Typographic art archive",tag:"Let every word perform.",color:"#35302d",recommended:["Creative portfolio","Professional portfolio"],tier:"starter",reference:"Sociotype",referenceUrl:"https://styles.refero.design/style/973332dc-4e10-4e90-85d8-3bce9c3cd3ed",character:"type atlas"},
-  {id:"gazette",name:"The Gazette",style:"Independent creative newspaper",tag:"Your story makes the front page.",color:"#a24536",recommended:["Personal brand","Creative portfolio"],tier:"starter",reference:"Miranda",referenceUrl:"https://styles.refero.design/style/3f6e3076-e77f-487e-b212-3b5946a34e87",character:"press broadsheet"},
-  {id:"negative",name:"Negative Space",style:"High contrast photography folio",tag:"A fresh angle on the ordinary.",color:"#d3b78d",recommended:["Actor / model","Creative portfolio"],tier:"starter",reference:"Peak Design",referenceUrl:"https://styles.refero.design/style/6f3fb64d-d4c9-4ec1-86a1-7983e5180985",character:"cinematic half-light"},
-  {id:"workshop",name:"Blueprint Workshop",style:"Modular technical portfolio",tag:"Build with clarity.",color:"#4a9293",recommended:["Professional portfolio","Student résumé"],tier:"starter",reference:"Prisma",referenceUrl:"https://styles.refero.design/style/8e9e585f-5ad4-4273-8418-e1f82cdb51cf",character:"blueprint lines"},
-  {id:"hearth",name:"Hearth & Home",style:"Soft editorial hospitality",tag:"Make room for a little wonder.",color:"#af8171",recommended:["Small business","Personal brand"],tier:"starter",reference:"Home",referenceUrl:"https://styles.refero.design/style/2230ba53-445e-411d-b483-16410a072639",character:"warm print atelier"},
-  {id:"clinical",name:"The Outline",style:"Airy precision profile",tag:"Thoughtful by design.",color:"#6c8cac",recommended:["Professional portfolio","Student résumé"],tier:"starter",reference:"Ui",referenceUrl:"https://styles.refero.design/style/0fd67ec5-7e9c-4ca9-b368-5d9c7388477a",character:"clinical rhythm"},
-  {id:"carryall",name:"Carryall Goods",style:"Swiss product collection",tag:"Made to keep moving.",color:"#e0b232",recommended:["Small business","Creative portfolio"],tier:"starter",reference:"Freitag",referenceUrl:"https://styles.refero.design/style/d75a643b-a518-4550-b430-679cd989a447",character:"industrial inventory"},
-  {id:"threshold",name:"Threshold",style:"Inviting place-based studio",tag:"A place for your next idea.",color:"#de7069",recommended:["Small business","Personal brand"],tier:"starter",reference:"Airbnb",referenceUrl:"https://styles.refero.design/style/c2325884-4391-4688-85cd-e143f5107517",character:"open threshold"},
-  {id:"runway",name:"Gallery White",style:"Full-bleed fashion portfolio",tag:"Style without explanation.",color:"#9b938d",recommended:["Actor / model","Creative portfolio"],tier:"starter",reference:"Zara",referenceUrl:"https://styles.refero.design/style/97823ba1-ee1e-489d-aefd-8d72a578669a",character:"fashion negative space"},
-  {id:"porcelain",name:"Porcelain Sound",style:"Scandinavian product stories",tag:"Beautifully understated.",color:"#b5aa91",recommended:["Small business","Personal brand"],tier:"starter",reference:"Bang & Olufsen",referenceUrl:"https://styles.refero.design/style/27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5",character:"sculptural product"},
-  {id:"kinetic",name:"Kinetic Club",style:"Active lifestyle campaign",tag:"Movement tells the story.",color:"#ec613f",recommended:["Personal brand","Small business"],tier:"starter",reference:"Nike",referenceUrl:"https://styles.refero.design/style/d7ace114-0548-41f5-a2ff-2afbf32be94d",character:"kinetic typography"},
-  {id:"nightgrid",name:"Night Grid",style:"Precision night console",tag:"Turn focus into momentum.",color:"#b99bea",recommended:["Professional portfolio","Student résumé"],tier:"signature",reference:"Warp",referenceUrl:"https://styles.refero.design/style/d4c51049-58eb-404a-9fcb-f195928b1c99",character:"night cockpit"},
-  {id:"couture",name:"Couture Notes",style:"Modern tailoring lookbook",tag:"Made to be remembered.",color:"#bd9976",recommended:["Actor / model","Creative portfolio"],tier:"signature",reference:"Adam Lippes",referenceUrl:"https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24",character:"couture vertical"},
-  {id:"signaldeck",name:"Signal Deck",style:"Interactive command narrative",tag:"Every detail counts.",color:"#fa7254",recommended:["Professional portfolio","Creative portfolio"],tier:"signature",reference:"Raycast",referenceUrl:"https://styles.refero.design/style/3b6a17f0-3bdf-418c-a95e-0b89e5a8b2f8",character:"command tiles"},
-  {id:"obsidian",name:"Obsidian Film",style:"Experimental cinema portfolio",tag:"Beyond the usual frame.",color:"#678ce7",recommended:["Actor / model","Creative portfolio"],tier:"signature",reference:"ORYZO AI",referenceUrl:"https://styles.refero.design/style/1f204e95-454a-437e-845b-c1b169d35607",character:"cinema aperture"},
-  {id:"highlighter",name:"Highlighter",style:"Editorial metrics and strategy",tag:"Make the important visible.",color:"#d7e64f",recommended:["Professional portfolio","Small business"],tier:"signature",reference:"Ramp",referenceUrl:"https://styles.refero.design/style/b38702a0-75ab-474c-9106-00b624535825",character:"finance markup"},
+// Only the five uploaded-MD-derived additions remain from the previous speculative 19.
+// Fourteen unbacked concepts are retired; source documents are kept outside the public build.
+export const originalDirections=[
+  {
+    "id": "nightgrid",
+    "name": "Night Grid",
+    "style": "Obsidian terminal cockpit",
+    "tag": "Make every command count.",
+    "color": "#cbb0f7",
+    "recommended": [
+      "Professional portfolio",
+      "Student résumé",
+      "Creative portfolio"
+    ],
+    "tier": "signature",
+    "reference": "Warp",
+    "character": "terminal cockpit",
+    "referenceUrl": "https://styles.refero.design/style/d4c51049-58eb-404a-9fcb-f195928b1c99"
+  },
+  {
+    "id": "couture",
+    "name": "Couture Notes",
+    "style": "Cream couture editorial",
+    "tag": "A collection in every detail.",
+    "color": "#000000",
+    "recommended": [
+      "Actor / model",
+      "Creative portfolio",
+      "Small business"
+    ],
+    "tier": "signature",
+    "reference": "Adam Lippes",
+    "character": "couture lookbook",
+    "referenceUrl": "https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24"
+  },
+  {
+    "id": "signaldeck",
+    "name": "Signal Deck",
+    "style": "Dark command key workspace",
+    "tag": "Something extraordinary, on command.",
+    "color": "#ff6363",
+    "recommended": [
+      "Professional portfolio",
+      "Creative portfolio",
+      "Small business"
+    ],
+    "tier": "signature",
+    "reference": "Raycast",
+    "character": "command keys",
+    "referenceUrl": "https://styles.refero.design/style/3b6a17f0-3bdf-418c-a95e-0b89e5a8b2f8"
+  },
+  {
+    "id": "obsidian",
+    "name": "Obsidian Film",
+    "style": "Warm darkroom reveal",
+    "tag": "A world beyond the obvious.",
+    "color": "#dc5000",
+    "recommended": [
+      "Creative portfolio",
+      "Actor / model",
+      "Small business"
+    ],
+    "tier": "signature",
+    "reference": "ORYZO AI",
+    "character": "darkroom object",
+    "referenceUrl": "https://styles.refero.design/style/1f204e95-454a-437e-845b-c1b169d35607"
+  },
+  {
+    "id": "highlighter",
+    "name": "Highlighter",
+    "style": "Financial highlighter editorial",
+    "tag": "Make the important unmistakable.",
+    "color": "#e4f222",
+    "recommended": [
+      "Professional portfolio",
+      "Small business",
+      "Personal brand"
+    ],
+    "tier": "signature",
+    "reference": "Ramp",
+    "character": "finance editorial",
+    "referenceUrl": "https://styles.refero.design/style/b38702a0-75ab-474c-9106-00b624535825"
+  }
 ];
-export const directionFor = id => originalDirections.find(d => d.id === id) || null;
+export const directionFor=id=>originalDirections.find(d=>d.id===id)||null;

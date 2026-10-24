@@ -1,5 +1,6 @@
 import { newTemplates } from "./catalog-20.mjs";
 import { originalDirections, directionFor } from "./refero-originals.mjs";
+import {uploadedDesignFor} from "./uploaded-designs.mjs";
 export const templates = [
   {
     id: "index",
@@ -350,6 +351,7 @@ export function sampleForTemplate(id,purpose){
     }
   }
   const originalDirection=directionFor(t.id);
+  const uploadedDirection=uploadedDesignFor(t.id);
   if (originalDirection) {
     const identity = originalDirection.name + " Studio";
     preview.name = identity;
@@ -385,9 +387,9 @@ export function sampleForTemplate(id,purpose){
   }
   const content={...sample.content,...preview,projects:"",links:[],photoIds:[],publicEmail:"",testimonials:[]};
   return {type:category,template:t.id,design:{
-    primary:t.color,animation:"expressive",
-    secondary:t.id==="arcade"?"#11120f":originalDirection ? (["negative","nightgrid","signaldeck","obsidian"].includes(t.id)?"#242431":"#dedbd4") : "#ece9e0",
-    appearance:["afterhours","nocturne","terminal","brutalist","arcade"].includes(t.id)?"dark":"light",
+    primary:uploadedDirection?.accent||t.color,animation:"expressive",
+    secondary:uploadedDirection?.surface||(t.id==="arcade"?"#11120f":originalDirection ? (["negative","nightgrid","signaldeck","obsidian"].includes(t.id)?"#242431":"#dedbd4") : "#ece9e0"),
+    appearance:uploadedDirection ? (["afterhours","signal","orbit","monologue","nocturne","nightgrid","signaldeck","obsidian"].includes(t.id)?"dark":"light") : (["afterhours","nocturne","terminal","brutalist","arcade"].includes(t.id)?"dark":"light"),
     sections:kit.sections
   },content};
 }

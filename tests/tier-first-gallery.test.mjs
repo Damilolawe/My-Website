@@ -4,8 +4,8 @@ import { readFile } from "node:fs/promises";
 import { templates } from "../shared/model.mjs";
 import { tiers, minimumTier, tierLevel, packageTier, templateFitsTier, packageAllowsTemplate } from "../shared/tiers.mjs";
 
-test("all 40 available design directions have a defined minimum access tier", () => {
-  assert.equal(templates.length, 40);
+test("all 26 available design directions have a defined minimum access tier", () => {
+  assert.equal(templates.length, 26);
   assert.deepEqual(tiers.map(t => t.id), ["starter","signature","premium"]);
   const ids = templates.map(t => t.id);
   assert.equal(new Set(ids).size, ids.length);
@@ -15,7 +15,7 @@ test("all 40 available design directions have a defined minimum access tier", ()
   }
   assert(templates.some(t => minimumTier(t.id) === "starter"));
   assert(templates.some(t => minimumTier(t.id) === "signature"));
-  assert.equal(templates.filter(t => minimumTier(t.id) === "starter").length,20);
+  assert.equal(templates.filter(t => minimumTier(t.id) === "starter").length,6);
   assert.equal(templates.filter(t => minimumTier(t.id) === "signature").length,20);
 });
 

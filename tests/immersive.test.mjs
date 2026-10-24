@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { templates, sampleForTemplate } from "../shared/model.mjs";
 import { renderSite } from "../shared/render.mjs";
+import {uploadedDesignFor} from "../shared/uploaded-designs.mjs";
 
 test("every customer template has a distinct, semantic hero composition and fictional demo identity",()=>{
   const expected=["index-hero","folio-hero","still-hero","afterhours-hero","signal-hero","daylight-hero"];
@@ -11,13 +12,14 @@ test("every customer template has a distinct, semantic hero composition and fict
     const demo=sampleForTemplate(t.id);
     const html=renderSite(demo,{sample:true});
     assert.match(html,/<!doctype html>/i);
-    assert(html.includes('class="hero hero-variant '+expected[i]+'"'));
+    const marker=uploadedDesignFor(t.id) ? "md-hero md-"+t.id+"-hero" : expected[i];
+    assert(html.includes('class="hero hero-variant '+marker+'"'),t.id);
     assert(html.includes('<h1 id="hero-title">'));
     assert(html.includes('FICTIONAL TEMPLATE DEMO'));
     assert(html.includes('viewport'));
     assert(html.includes('prefers-reduced-motion'));
     assert(html.includes('motion-expressive'));
-    assert(html.includes('experience-interlude'));
+    assert(html.includes('experience-interlude')||html.includes('md-hero'));
     assert(!html.includes('src="https://'));
     assert(!html.includes('<script'));
     headlines.add(demo.content.headline);

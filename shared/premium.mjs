@@ -9,11 +9,12 @@ import {fullPageCSS} from "./full-page-styles.mjs";
 import {siteChrome} from "./site-shells.mjs";
 import {shellCSS} from "./site-shell-styles.mjs";
 import {exemplarCSS} from "./exemplar-redesign.mjs";
-import {paletteCSS,paletteInline,directionPaletteCSS} from "./theme-palette.mjs";
+import {paletteCSS,paletteInline} from "./theme-palette.mjs";
 import {signatureMarkup,signatureCSSFor} from "./creative-signatures.mjs";
 import {renderArcadeNight} from "./arcade-night.mjs";
-import {directionHero,directionCSSFor} from "./reference-direction.mjs";
 import {directionFor} from "./refero-originals.mjs";
+import {mdHero,mdCSSFor,mdPaletteFor} from "./md-rebuild.mjs";
+import {uploadedDesignFor} from "./uploaded-designs.mjs";
 
 /* Static, sandboxable HTML output: no third-party fonts, scripts, cookies or APIs.
  * Keep the whole approved document immutable in awe_versions.html. */
@@ -79,12 +80,12 @@ export function renderPremium(input, options = {}) {
   const onAccent = luminance > 0.179 ? '#10120d' : '#ffffff';
   const theme = ':root{--accent:' + accent + ';--secondary:' + second + ';--bg:' + (dark?'#141619':'#f7f6f2') + ';--fg:' + (dark?'#f8f7f2':'#191b20') + ';--surface:' + (dark?'#22232a':'#fff') + ';--muted:' + (dark?'#b8b9c0':'#585d62') + ';--border:' + (dark?'#ffffff36':'#17191726') + ';--radius:' + radius + ';--body-font:' + bodyFont + ';--label-font:ui-monospace,monospace;--on-accent:' + onAccent + ';' + paletteInline(accent,second,dark) + '}';
   const ctaTarget = has('work') && (items.length || c.photoIds.length>1) ? '#work' : has('contact') ? '#contact' : '#main';
-  const hero=directionHero(value,heroImage,ctaTarget) || experienceHero(t,{c,value,heroImage,ctaTarget});
+  const hero=mdHero(value,heroImage,ctaTarget) || experienceHero(t,{c,value,heroImage,ctaTarget});
   const signature = signatureMarkup(value,navIds,{sample,assetBase,assetSuffix});
   const page=siteChrome(value,{hero,sections:signature+actualSections,interlude:directionFor(t) ? '' : experienceInterlude(t,c),navIds});
   // Original directions ship a purpose-built, compact stylesheet; legacy templates keep their exact styling.
-  const styleBundle=directionFor(t)
-    ? theme + css + fullPageCSS + shellCSS + paletteCSS + directionPaletteCSS + directionCSSFor(t)
+  const styleBundle=uploadedDesignFor(t)
+    ? theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + (signature ? signatureCSSFor(t) : '') + mdCSSFor(t) + mdPaletteFor(value,{sample})
     : theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + exemplarCSS + (signature ? signatureCSSFor(t) : '');
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + styleBundle + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
     (sample ? '<div class="demo-banner">FICTIONAL TEMPLATE DEMO — SAMPLE CONTENT ONLY</div>' : '') +

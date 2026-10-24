@@ -4,6 +4,7 @@ import { readFile } from "node:fs/promises";
 import { templates, sampleForTemplate } from "../shared/model.mjs";
 import { renderSite } from "../shared/render.mjs";
 import { paletteCSS, directionPaletteCSS, paletteTokens, paletteInline } from "../shared/theme-palette.mjs";
+import { uploadedDesignFor } from "../shared/uploaded-designs.mjs";
 
 const file = p => readFile(new URL("../" + p, import.meta.url), "utf8");
 const palette = (id, primary, secondary) => {
@@ -12,7 +13,7 @@ const palette = (id, primary, secondary) => {
 };
 
 test("the entire 20-template catalog maps the chosen colors to its major hero, navigation and footer", () => {
-  assert.equal(templates.length, 40);
+  assert.equal(templates.length, 26);
   for (const { id } of templates) {
     const pink = palette(id, "#ff0077", "#1d53d7");
     const green = palette(id, "#20bb42", "#efad34");
@@ -26,6 +27,13 @@ test("the entire 20-template catalog maps the chosen colors to its major hero, n
     }
     assert(pink.includes("--accent:#ff0077;--secondary:#1d53d7"), id + " missed the chosen colors");
     assert(green.includes("--accent:#20bb42;--secondary:#efad34"), id + " retained the previous colors");
+    if(uploadedDesignFor(id)){
+      assert(pink.includes("body."+id+"{--bg:"),id+" missing source-based canvas rules");
+      assert(pink.includes("md-"+id+"-hero"),id+" missing distinctive architecture");
+      assert(pink.includes("--accent:#ff0077"),id+" ignored custom primary");
+      assert(pink.includes("--secondary:#1d53d7"),id+" ignored custom secondary");
+      continue;
+    }
     const activeCSS=(directionPaletteCSS.includes("body." + id + " ") ? directionPaletteCSS : paletteCSS);
     for (const cssSelector of [".hero", ".shell-header", ".shell-footer", ".service-card"]) {
       assert(activeCSS.includes("body." + id + " " + cssSelector + "{"), id + " lacks palette override for " + cssSelector);
@@ -76,6 +84,7 @@ test("customer preview passes the live picker selections into the exact producti
 
 test("palette overrides never escape their active template", () => {
   for (const { id } of templates.filter(t=>t.id!=="arcade")) {
+    if(uploadedDesignFor(id))continue; // Those templates use scoped markdown-derived palettes.
     const activeCSS=directionPaletteCSS.includes("body." + id + " ")?directionPaletteCSS:paletteCSS;
     assert(activeCSS.includes("body." + id + " .hero .hero-copy h1,body." + id + " .hero .hero-label,body." + id + " .hero .hero-intro"));
   }

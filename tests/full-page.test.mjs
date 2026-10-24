@@ -26,8 +26,8 @@ test("20 designs change entire page architecture, not just hero color",()=>{
     assert(html.includes("FICTIONAL TEMPLATE DEMO"));
     assert(!html.includes("<script"));
   }
-  assert.equal(modes.size,39);
-  assert.equal(workStructures.size,39);
+  assert.equal(modes.size,25);
+  assert.equal(workStructures.size,25);
 });
 test("all 14 alternative designs include their actual generated CSS in final HTML",()=>{
   const html=renderSite(sampleForTemplate("playbill"),{sample:true});
