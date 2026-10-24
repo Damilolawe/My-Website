@@ -11,6 +11,7 @@ animation:trio-reveal 1s linear both;animation-timeline:view();animation-range:e
 }}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.trio-site *,.trio-site *::before,.trio-site *::after{animation:none!important;animation-timeline:auto!important;transition:none!important;transform:none!important;translate:none!important}}
 .trio-site.motion-none *,.trio-site.motion-none *::before,.trio-site.motion-none *::after{animation:none!important;animation-timeline:auto!important;transition:none!important;transform:none!important;translate:none!important}
+html:has(body.trio-site.motion-none){scroll-behavior:auto!important}
 `;
 const nikeMotion = `
 @keyframes nk-sprint{from{opacity:0;transform:translateY(44px) skewY(3deg);filter:blur(5px)}to{opacity:1;transform:translateY(0) skewY(0);filter:blur(0)}}
