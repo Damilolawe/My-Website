@@ -290,7 +290,7 @@ try {
    for(const card of geometry.cards)
      if(card.right>width+4||card.left< -5||card.width>width+5)
        failures.push("Narrow "+width+" "+id+": case image exceeds viewport");
-   if(!geometry.contactLinks&&!/add your own email|contact method|contact link/i.test(geometry.contactText))
+   if(!geometry.contactLinks&&!/add your own email|add a contact email|contact method|contact link/i.test(geometry.contactText))
      failures.push("Narrow "+width+" "+id+": contact section offers no action or setup message");
   }
   // The embedded theater is narrower than the physical phone; verify that
