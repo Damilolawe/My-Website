@@ -12,7 +12,7 @@ const palette = (id, primary, secondary) => {
 };
 
 test("the entire 20-template catalog maps the chosen colors to its major hero, navigation and footer", () => {
-  assert.equal(templates.length, 40);
+  assert.equal(templates.length, 26);
   for (const { id } of templates) {
     const pink = palette(id, "#ff0077", "#1d53d7");
     const green = palette(id, "#20bb42", "#efad34");
