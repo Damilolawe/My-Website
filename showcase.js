@@ -23,7 +23,7 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
   if("ResizeObserver" in window)new ResizeObserver(syncFrame).observe(view);
   else addEventListener("resize",syncFrame,{passive:true});
   const savedNames=new Map(templates.map(x=>[x.id,x.name]));
-  function templatePath(id){return "/templates/"+typeSlugs[purpose]+"/"+id+".html";}
+  function templatePath(id){return id==="runwaymulti"?"/experiments/runwayml-multipage/":"/templates/"+id+".html";}
   function populate(){
     const options=[...templates].sort((a,b)=>Number(recommendedFor(b,purpose))-Number(recommendedFor(a,purpose)));
     const fragment=document.createDocumentFragment();
@@ -51,7 +51,7 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
     loading.setAttribute("aria-label","Loading "+savedNames.get(id)+" website preview");
     const still=false; // Desktop previews retain authored motion.
     screen.classList.toggle("is-changing",!still);
-    frame.title="Fictional "+savedNames.get(id)+" website for "+purpose;
+    frame.title="Original "+savedNames.get(id)+" website design preview";
     if(!previewReady)return;
     // Preserve the previous frame under the branded loading surface.
     try{
