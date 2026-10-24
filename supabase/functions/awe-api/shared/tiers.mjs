@@ -21,6 +21,7 @@ export const tierLevel = id => Object.hasOwn(levels, id) ? levels[id] : -1;
 export function packageTier(pkg) {
   if (!pkg) return null;
   if (tierLevel(pkg.tier) !== -1) return pkg.tier;
+  if (pkg.testOnly === true) return "premium"; // A scoped QA offer never changes public pricing.
   // Compatibility for existing USD packages before explicit tier metadata was added.
   if (pkg.currency === "usd" && Number.isInteger(pkg.amount) && pkg.amount > 0) {
     return pkg.amount >= 25000 ? "premium" : pkg.amount >= 15000 ? "signature" : "starter";
