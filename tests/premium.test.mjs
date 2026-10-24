@@ -17,7 +17,7 @@ test("twenty premium templates produce semantic, responsive site documents", () 
     if(!html.includes("site-architecture-arcade")) assert.match(html,/Verified quotation|fictional quote/i);
     assert.match(html,/Skip to content/);
   }
-  assert.equal(new Set(documents).size,21);
+  assert.equal(new Set(documents).size,40);
 });
 test("explicit section reordering and structured service cards persist, unsafe content stays escaped",()=>{
   const input=normalize({
