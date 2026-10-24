@@ -183,7 +183,7 @@ async function dispatch(req) {
         settings.STRIPE_WEBHOOK_SECRET.startsWith('whsec_'),
       ordersEnabled:liveCheckoutConfigured(),
        liveActivationRequested:settings.LIVE_CHECKOUT_ENABLED==='true',
-       liveSecretKeyPresent:settings.STRIPE_LIVE_SECRET_KEY?.startsWith('sk_live_')===true,
+       liveSecretKeyPresent:(settings.STRIPE_LIVE_SECRET_KEY?.startsWith('sk_live_')===true || settings.STRIPE_LIVE_SECRET_KEY?.startsWith('rk_live_')===true),
        liveWebhookSigningSecretPresent:settings.STRIPE_LIVE_WEBHOOK_SECRET?.startsWith('whsec_')===true,
       enabledPackages:enabledPackages.length,
       configuredOrigin:settings.SITE_ORIGIN || 'https://awe-digital.web.app',
