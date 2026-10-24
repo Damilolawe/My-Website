@@ -11,8 +11,8 @@ test("RunwayML source is preserved and template registered once",async()=>{
  assert(src.includes("Cinematic Hero"));
  assert.equal(templates.filter(t=>t.id==="runwayml").length,1);
  assert.equal(templates.at(-2).id,"runwayml");
- assert.equal(minimumTier("runwayml"),"signature");
- assert(!templateFitsTier("runwayml","starter"));
+ assert.equal(minimumTier("runwayml"),"starter");
+ assert(templateFitsTier("runwayml","starter"));
  assert(templateFitsTier("runwayml","signature"));
 });
 test("RunwayML does not change demo identity or layout with category",()=>{
