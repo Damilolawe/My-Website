@@ -4,7 +4,7 @@ import {readFile} from "node:fs/promises";
 import {templates} from "../shared/model.mjs";
 test("Picky re-audit checks every design at all four true narrow widths",async()=>{
  const qa=await readFile(new URL("../scripts/browser-qa.mjs",import.meta.url),"utf8");
- assert.equal(templates.length,40);
+ assert.equal(templates.length,26);
  assert(qa.includes("for(const width of [320,345,360,375])"));
  assert(qa.includes("for(const {id} of templates)"));
  assert(qa.includes("NESTED_PHONE_THEATER"));
