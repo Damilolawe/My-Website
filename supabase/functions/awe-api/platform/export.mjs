@@ -1,5 +1,6 @@
 import { zipSync, strToU8 } from "fflate";
 import { rows, sb, fail } from "./backend.mjs";
+import {renderApprovedRunwayPages} from "../shared/runway-customer-pages.mjs";
 
 const EXT = new Map([["image/jpeg", "jpg"], ["image/png", "png"], ["image/webp", "webp"]]);
 
@@ -13,7 +14,9 @@ export async function exportApproved(o) {
   if (!v || typeof v.html !== "string" || !Array.isArray(v.asset_ids))
     fail("The approved website version could not be found.", 404);
 
-  let exportedHtml = v.html;
+  const pages=v.input?.template==="runwaymulti"
+    ? renderApprovedRunwayPages(v.input)
+    : {"index.html":v.html};
   const files = {};
   let total = 0;
   for (const aid of v.asset_ids) {
@@ -28,14 +31,15 @@ export async function exportApproved(o) {
       fail("Website files exceed the secure download limit. Request a transfer from the studio.", 413);
     const destination = `assets/${aid}.${extension}`;
     files[destination] = bytes;
-    exportedHtml = exportedHtml.replaceAll(`src="/api/assets/${aid}"`,
+    for(const name of Object.keys(pages))pages[name]=pages[name].replaceAll(`src="/api/assets/${aid}"`,
       `src="${destination}"`);
   }
-  if (exportedHtml.includes('src="/api/assets/'))
-    fail("Unresolved private asset reference.", 409);
-  files["index.html"] = strToU8(exportedHtml);
+  for(const [name,html] of Object.entries(pages)) {
+    if(html.includes('src="/api/assets/'))fail("Unresolved private asset reference.",409);
+    files[name]=strToU8(html);
+  }
   files["README.txt"] = strToU8(
-    `Your approved Awe Concepts website.\n\nOpen index.html to preview it locally.\n\nUpload index.html and the assets folder to a static website host.\nHosting: ${o.package_snapshot.hosting}\nOwnership: ${o.package_snapshot.ownership}\nRevisions: ${o.package_snapshot.revisions}\n`
+    `Your approved Awe Concepts website.\n\nOpen index.html to preview it locally.\n\nUpload all HTML pages and the assets folder to a static website host.\nHosting: ${o.package_snapshot.hosting}\nOwnership: ${o.package_snapshot.ownership}\nRevisions: ${o.package_snapshot.revisions}\n`
   );
   return new Response(zipSync(files, { level: 1 }), {
     headers: {
