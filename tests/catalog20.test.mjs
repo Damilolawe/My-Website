@@ -7,8 +7,8 @@ import {freeDesignFor} from "../shared/free-designmd.mjs";
 import {TEMPLATE_IDS,fetchPublicTemplate} from "../shared/preview.mjs";
 
 test("collection contains exactly forty unique art-directed templates",()=>{
-  assert.equal(templates.length,37);
-  assert.equal(TEMPLATE_IDS.length,37);
+  assert.equal(templates.length,38);
+  assert.equal(TEMPLATE_IDS.length,38);
   assert.equal(new Set(templates.map(x=>x.id)).size,37);
   assert.equal(new Set(templates.map(x=>x.name)).size,37);
   assert.equal(new Set(templates.map(x=>x.style)).size,37);
