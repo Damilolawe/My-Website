@@ -22,6 +22,7 @@ import {mdHero,mdCSSFor,mdPaletteFor} from "./md-rebuild.mjs";
 import {uploadedDesignFor} from "./uploaded-designs.mjs";
 import {exactGuideCSSFor} from "./exact-design-css.mjs";
 import {authoredBeat} from "./md-art-direction.mjs";
+import {mdSourceFeature,mdSourceFeatureCSS} from "./md-source-feature.mjs";
 import {artDirectionCSS} from "./md-art-styles.mjs";
 
 /* Static, sandboxable HTML output: no third-party fonts, scripts, cookies or APIs.
@@ -94,10 +95,10 @@ export function renderPremium(input, options = {}) {
   const ctaTarget = has('work') && (items.length || c.photoIds.length>1) ? '#work' : has('contact') ? '#contact' : '#main';
   const hero=mdHero(value,heroImage,ctaTarget) || experienceHero(t,{c,value,heroImage,ctaTarget});
   const signature = signatureMarkup(value,navIds,{sample,assetBase,assetSuffix});
-  const page=siteChrome(value,{hero,sections:signature+(uploadedDesignFor(t)?authoredBeat(value):'')+actualSections,interlude:directionFor(t) ? '' : experienceInterlude(t,c),navIds});
+  const page=siteChrome(value,{hero,sections:signature+(uploadedDesignFor(t)?mdSourceFeature(value)+authoredBeat(value):'')+actualSections,interlude:directionFor(t) ? '' : experienceInterlude(t,c),navIds});
   // Original directions ship a purpose-built, compact stylesheet; legacy templates keep their exact styling.
   const styleBundle=uploadedDesignFor(t)
-    ? theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + (signature ? signatureCSSFor(t) : '') + exactGuideCSSFor(t) + mdCSSFor(t) + mdPaletteFor(value,{sample}) + artDirectionCSS
+    ? theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + (signature ? signatureCSSFor(t) : '') + exactGuideCSSFor(t) + mdCSSFor(t) + mdPaletteFor(value,{sample}) + artDirectionCSS + mdSourceFeatureCSS
     : theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + exemplarCSS + (signature ? signatureCSSFor(t) : '');
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + styleBundle + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
     (sample ? '<div class="demo-banner">FICTIONAL TEMPLATE DEMO — SAMPLE CONTENT ONLY</div>' : '') +
