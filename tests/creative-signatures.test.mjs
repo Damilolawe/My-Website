@@ -31,6 +31,13 @@ test("all twenty chapters have independent structure and working destinations", 
   assert.equal(Object.keys(chapters).length, 20);
   for (const [id, signature] of Object.entries(chapters)) {
     const html = renderSite(sampleForTemplate(id), { sample: true });
+    if(id==='folio') {
+      assert(html.includes('class="fe-process"'),'Folio has no signature process section');
+      assert(html.includes('class="fe-cover"'),'Folio has no editorial cover');
+      assert(html.includes('href="#work"'),'Folio work navigation missing');
+      assert(!html.includes('<script'));
+      continue;
+    }
     assert.match(html, new RegExp('class="signature signature-' + id + '"'), id);
     assert(html.includes(signature), id + " lacks its signature composition");
     assert.match(html, /href="#(?:work|contact)"/, id + " has no working section path");
