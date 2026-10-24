@@ -22,7 +22,9 @@ test("all 35 templates remove generic interludes, decorative symbols, and unconf
     const html=renderSite(sampleForTemplate(id),{sample:true});
     for(const re of clutter) assert(!re.test(html),id+" reintroduced boilerplate: "+re);
     assert(!html.includes("Something worth making starts here."),id+" repeated contact tagline");
-    assert(!html.includes("Black opening titles alternating"),id+" leaked a design instruction into content");
+    const forbidden = "Black opening titles alternating";
+    const position = html.indexOf(forbidden);
+    assert(position<0,id+" leaked a design instruction: "+html.slice(Math.max(0,position-170),position+forbidden.length+220));
     assert(!html.includes("Fictional portfolio demonstration — add your own email"),id+" renders a duplicate placeholder contact panel");
     if(uploadedDesignFor(id)) assert(html.includes("class=\"art-scene"),id+" lost original authored art");
     assert(html.includes('id="hero-title"')||id==="arcade",id+" lost its hero");
