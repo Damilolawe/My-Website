@@ -21,6 +21,10 @@ export function enhanceEditor(form, original) {
     '<label class="field">Corner style<select name="corners"><option value="sharp">Sharp</option><option value="soft">Soft</option><option value="round">Rounded</option></select></label></div>' +
     '<label class="field">Hero eyebrow / label<input name="heroLabel" maxlength="110" value="' + esc(original.content.heroLabel || "") + '"></label>' +
     '<label class="field">Primary button text<input name="ctaLabel" maxlength="45" value="' + esc(original.content.ctaLabel || "Explore my work") + '"></label>' +
+
+    (original.template === "folio"
+      ? '<label class="field">Hero video URL (YouTube, Vimeo or HTTPS MP4/WebM)<input name="heroVideoUrl" maxlength="800" value="' + esc(original.content.heroVideoUrl || "") + '"></label>'
+      : "") +
     '<h4>Arrange sections</h4><p class="muted">Select the section checkboxes above, then reorder the sections below.</p><div id="studio-sections" class="studio-arrangement"></div>' +
     '<h4>Project showcase cards</h4><p class="muted">Each card can have a title, description, and optional HTTPS project link.</p><div data-studio-group="cards"></div><button class="btn secondary small" type="button" data-add="cards">+ Add project</button>' +
     '<h4>Services & offerings</h4><div data-studio-group="services"></div><button class="btn secondary small" type="button" data-add="services">+ Add service</button>' +
@@ -30,7 +34,7 @@ export function enhanceEditor(form, original) {
   const groupCaps={cards:12,services:12,testimonials:8};
   const field = (k,v,property,label,area) => '<label class="field">' + label + (area ?
     '<textarea data-prop="' + property + '" rows="3" maxlength="1200">' + esc(v[property] || "") + '</textarea>' :
-    '<input data-prop="' + property + '" value="' + esc(v[property] || "") + '" maxlength="' + (property==="url"?"800":"120") + '">') + '</label>';
+    '<input data-prop="' + property + '" value="' + esc(v[property] || "") + '" maxlength="' + ((property==="url"||property==="videoUrl")?"800":"120") + '">') + '</label>';
   let redrawPending = false;
   function collectGroup(name) {
     const target=options.querySelector('[data-studio-group="'+name+'"]');
@@ -47,7 +51,7 @@ export function enhanceEditor(form, original) {
       '<div class="studio-row" data-entry="'+i+'"><div class="studio-row-head"><strong>' + (name==="cards" ? "Project" : name==="services" ? "Service" : "Testimonial") + ' ' + (i+1) +
       '</strong><div><button type="button" data-move="-1" aria-label="Move up" '+(i===0?"disabled":"")+'>↑</button><button type="button" data-move="1" aria-label="Move down" '+(i===state[name].length-1?"disabled":"")+'>↓</button><button type="button" data-delete="1" aria-label="Remove entry">✕</button></div></div>' +
       (name==="testimonials" ? field(name,item,"quote","Verified quotation",true) + field(name,item,"attribution","Attribution",false)
-        : field(name,item,"title","Title",false) + field(name,item,"description","Description",true) + field(name,item,"url","Optional HTTPS link",false)) + '</div>'
+        : field(name,item,"title","Title",false) + field(name,item,"description","Description",true) + field(name,item,"url","Optional HTTPS link",false) + (name==="cards" ? field(name,item,"videoUrl","Optional video URL (YouTube, Vimeo or HTTPS MP4/WebM)",false) : "")) + '</div>'
     ).join("");
     target.querySelectorAll("button[data-move],button[data-delete]").forEach(btn=>{
       btn.onclick=()=>{collectGroup(name); const i=Number(btn.closest("[data-entry]").dataset.entry);
@@ -104,6 +108,7 @@ export function enhanceEditor(form, original) {
       heroAlignment:f.get("heroAlignment"),density:f.get("density"),corners:f.get("corners"),
       sections:f.getAll("sections")},
       content:{...base.content,heroLabel:f.get("heroLabel"),ctaLabel:f.get("ctaLabel"),
+        heroVideoUrl:base.template==="folio" ? String(f.get("heroVideoUrl")||"") : base.content.heroVideoUrl,
         cards:state.cards.filter(x=>x.title?.trim()||x.description?.trim()),
         services:state.services.filter(x=>x.title?.trim()||x.description?.trim()),
         testimonials:state.testimonials.filter(x=>x.quote?.trim())}};
@@ -128,7 +133,7 @@ export function enhanceEditor(form, original) {
     el.addEventListener("load", () => {
       const doc=el.contentDocument;
       if(!doc)return;
-      const mapping=[["#hero-title",'[name="headline"]'],[".hero-label",'[name="heroLabel"]'],[".hero-intro",'[name="bio"]'],[".hero-actions .pill-link",'[name="ctaLabel"]'],["#about .prose",'[name="bio"]'],["#education .prose",'[name="education"]'],["#experience .prose",'[name="experience"]'],["#skills .prose",'[name="skills"]']];
+      const mapping=[["#hero-title",'[name="headline"]'],[".fe-hero h1",'[name="headline"]'],[".fe-hero .fe-intro",'[name="bio"]'],[".hero-label",'[name="heroLabel"]'],[".hero-intro",'[name="bio"]'],[".hero-actions .pill-link",'[name="ctaLabel"]'],["#about .prose",'[name="bio"]'],["#education .prose",'[name="education"]'],["#experience .prose",'[name="experience"]'],["#skills .prose",'[name="skills"]']];
       for(const [query,target] of mapping){
         doc.querySelectorAll(query).forEach(node=>{
           node.title="Click to edit this section";
@@ -142,12 +147,12 @@ export function enhanceEditor(form, original) {
           });
         });
       }
-      doc.querySelectorAll(".work-card,.service-card,.quote").forEach((node,i)=>{
+      doc.querySelectorAll(".work-card,.service-card,.quote,.fe-project").forEach((node,i)=>{
         node.title="Click to edit this card";
         node.style.cursor="pointer";
         node.addEventListener("click",event=>{
           if(event.target.closest("a"))event.preventDefault();
-          const type=node.classList.contains("work-card")?"cards":node.classList.contains("service-card")?"services":"testimonials";
+          const type=(node.classList.contains("work-card")||node.classList.contains("fe-project"))?"cards":node.classList.contains("service-card")?"services":"testimonials";
           const siblings=Array.from(node.parentNode.children);
           const index=siblings.indexOf(node);
           const field=options.querySelector('[data-studio-group="'+type+'"] [data-entry="'+index+'"] [data-prop]');

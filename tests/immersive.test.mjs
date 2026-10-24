@@ -13,14 +13,18 @@ test("every customer template has a distinct, semantic hero composition and fict
     const html=renderSite(demo,{sample:true});
     assert.match(html,/<!doctype html>/i);
     const marker=uploadedDesignFor(t.id) ? "md-hero md-"+t.id+"-hero" : expected[i];
-    assert(html.includes('class="hero hero-variant '+marker+'"'),t.id);
+    if(t.id==='folio'){
+       assert(html.includes('class="fe-hero'),'Folio hero absent');
+       assert(html.includes('class="fe-strip"'),'Folio editorial transition absent');
+     } else assert(html.includes('class="hero hero-variant '+marker+'"'),t.id);
     assert(html.includes('<h1 id="hero-title">'));
     assert(html.includes('FICTIONAL TEMPLATE DEMO'));
     assert(html.includes('viewport'));
     assert(html.includes('prefers-reduced-motion'));
     assert(html.includes('motion-expressive'));
-    assert(html.includes('experience-interlude')||html.includes('md-hero'));
-    assert(!html.includes('src="https://'));
+    assert(t.id==='folio' ? html.includes('fe-strip') : html.includes('experience-interlude')||html.includes('md-hero'));
+    if(t.id==="folio") assert(!html.includes('src="https://') || /src="https:\/\/images\.unsplash\.com\//.test(html),"Folio demo must only use the allowlisted image host");
+    else assert(!html.includes('src="https://'));
     assert(!html.includes('<script'));
     headlines.add(demo.content.headline);
   });

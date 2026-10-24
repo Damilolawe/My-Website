@@ -33,6 +33,13 @@ test("the entire 20-template catalog maps the chosen colors to its major hero, n
       assert(!pink.includes("--accent:#ff0077"),"Liquid Metal must not introduce forbidden saturated palette overrides");
       continue;
     }
+    if(id==="folio") {
+      assert(pink.includes("--rust:#ff0077"),"Folio accent picker not applied");
+      assert(green.includes("--rust:#20bb42"),"Folio accent picker not applied");
+      assert(pink.includes("color-mix(in srgb,#1d53d7 40%"),"Folio surface picker not applied");
+      assert(green.includes("color-mix(in srgb,#efad34 40%"),"Folio surface picker not applied");
+      continue;
+    }
     if(id==="arcade") {
       assert(pink.includes("--arcade-volt:#ff0077;--arcade-lift:#1d53d7"));
       assert(green.includes("--arcade-volt:#20bb42;--arcade-lift:#efad34"));

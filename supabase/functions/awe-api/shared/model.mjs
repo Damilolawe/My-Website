@@ -100,6 +100,7 @@ const cleanCards = (items, kind) =>
     title: text(item?.title, 120),
     description: text(item?.description, 1200),
     url: https(item?.url),
+    ...(https(item?.videoUrl) ? {videoUrl: https(item.videoUrl)} : {}),
   })).filter((item) => item.title || item.description);
 const cleanTestimonials = (items) =>
   (Array.isArray(items) ? items : []).slice(0, 8).map((item) => ({
@@ -149,6 +150,7 @@ export function normalize(input = {}) {
       cards: cleanCards(c.cards, "work"),
       services: cleanCards(c.services, "service"),
       testimonials: cleanTestimonials(c.testimonials),
+      heroVideoUrl: https(c.heroVideoUrl),
       photoIds: (Array.isArray(c.photoIds) ? c.photoIds : [])
         .filter((x) => /^[0-9a-f-]{36}$/.test(x))
         .slice(0, 8),
@@ -460,21 +462,27 @@ export function sampleForTemplate(id,purpose){
   // Keep its editorial identity while avoiding repeated implementation jargon.
   if(purpose===undefined && t.id==="folio"){
     preview.name="Folio No. 01";
-    preview.headline="Let your work speak volumes.";
-    preview.heroLabel="ART / IMAGE / OBJECT / VOLUME 001";
-    preview.bio="An independent visual journal exploring the relationship between image, space and the written word.";
+    preview.headline="We make images that linger.";
+    preview.heroLabel="INDEPENDENT CREATIVE PRACTICE / ISSUE 001";
+    preview.bio="A fictional visual practice exploring identity, art direction and the unexpected beauty of everyday objects.";
     preview.cards=[
-      {title:"The image",description:"Portraiture, texture and a sense of place.",url:""},
-      {title:"The detail",description:"Letters, materials and the beauty of small choices.",url:""},
-      {title:"The composition",description:"A dialogue between rhythm, whitespace and form.",url:""}
+      {title:"The Art of Stillness",description:"A fictional editorial exploration of material, proportion and quiet beauty.",url:""},
+      {title:"A Sense of Belonging",description:"An imagined architectural and visual identity story.",url:""},
+      {title:"The Unexpected",description:"A conceptual study in texture, tension and play.",url:""}
     ];
+    preview.services=[
+      {title:"Observe",description:"Look closely. Listen and explore the idea.",url:""},
+      {title:"Distill",description:"Find the essence and remove the unnecessary.",url:""},
+      {title:"Make",description:"Shape every image and detail with intention.",url:""}
+    ];
+    preview.skills="Art direction / Visual identity / Editorial design / Digital experiences";
   }
   const content={...sample.content,...preview,projects:"",links:[],photoIds:[],publicEmail:"",testimonials:[]};
   return {type:category,template:t.id,design:{
     primary:uploadedDirection?.accent||freeDirection?.color||t.color,animation:"expressive",
     secondary:(t.id==="liquidmetal"?"#15181D":uploadedDirection?.surface||freeDirection?.colors.surface)||(t.id==="arcade"?"#11120f":originalDirection ? (["negative","nightgrid","signaldeck","obsidian"].includes(t.id)?"#242431":"#dedbd4") : "#ece9e0"),
     appearance:t.id==="liquidmetal" ? "dark" : freeDirection ? (["acidchrome","voidstage"].includes(t.id)?"dark":"light") : uploadedDirection ? (["afterhours","signal","orbit","monologue","nocturne","nightgrid","signaldeck","obsidian"].includes(t.id)?"dark":"light") : (["afterhours","nocturne","terminal","brutalist","arcade"].includes(t.id)?"dark":"light"),
-    sections:purpose===undefined && (originalDirection||uploadedDirection||freeDirection) ? ["about","work","contact"] : kit.sections
+    sections:t.id==="folio" ? ["work","services","about",...kit.sections.filter(s=>!["work","services","about","contact"].includes(s)),"contact"] : purpose===undefined && (originalDirection||uploadedDirection||freeDirection) ? ["about","work","contact"] : kit.sections
   },content};
 }
 export function customerOrder(o) {

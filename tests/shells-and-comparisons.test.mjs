@@ -22,6 +22,14 @@ test("every customer design has a separate outer shell and page ordering",()=>{
       assert(!html.includes("<script"),"Static customer pages must remain script-free");
       continue;
     }
+    if(t.id==='folio'){
+      assert(html.includes('class="fe-brand"'),'Folio wordmark missing');
+      assert(html.includes('class="fe-contact"'),'Folio footer missing');
+      assert(html.includes('aria-label="Section navigation"'),'Folio navigation missing');
+      assert(html.includes('id="main"'),'Folio skip target missing');
+      assert(!html.includes('<script'));
+      continue;
+    }
     if(t.id==="liquidmetal"){
       assert(html.includes('class="shell-header shell-liquidmetal'),"Missing special Liquid Metal header");
       assert(html.includes('class="shell-footer shell-footer-liquidmetal'),"Missing special Liquid Metal footer");
@@ -55,6 +63,13 @@ test("purpose-aware pages preserve specialized content with each outer shell",()
         assert(html.includes('class="fd-grid"'),t.id+" needs distinct projects");
         assert(!html.includes('id="testimonials"'),t.id+" must not invent endorsements");
         assert(html.includes("motion-expressive"),t.id+" needs animation setting");
+        continue;
+      }
+      if(t.id==='folio'){
+        assert(html.includes('class="folio-editorial'),'Folio redesigned identity missing');
+        assert(html.includes('class="fe-project fe-feature"'),'Folio work missing');
+        assert(!html.includes('id="testimonials"'),'Fake testimonials forbidden');
+        assert(html.includes('motion-expressive'));
         continue;
       }
       assert(html.includes('class="site-architecture site-architecture-'+t.id+'"'));
