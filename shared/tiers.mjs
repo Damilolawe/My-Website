@@ -12,6 +12,7 @@ const minimums = Object.freeze({
   index: "starter", daylight: "starter", atlas: "starter",
   terminal: "starter", ledger: "starter", bloom: "starter",
   runwayml: "starter", runwaymulti: "signature",
+  nike: "signature", clay: "signature", ferrari: "signature",
   liquidmetal: "signature",
   folio: "signature", still: "signature", afterhours: "signature",
   signal: "signature", orbit: "signature", playbill: "signature",

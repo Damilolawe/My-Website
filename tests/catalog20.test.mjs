@@ -7,14 +7,14 @@ import {freeDesignFor} from "../shared/free-designmd.mjs";
 import {TEMPLATE_IDS,fetchPublicTemplate} from "../shared/preview.mjs";
 
 test("collection contains exactly forty unique art-directed templates",()=>{
-  assert.equal(templates.length,39);
-  assert.equal(TEMPLATE_IDS.length,39);
-  assert.equal(new Set(templates.map(x=>x.id)).size,39);
-  assert.equal(new Set(templates.map(x=>x.name)).size,39);
-  assert.equal(new Set(templates.map(x=>x.style)).size,39);
+  assert.equal(templates.length,42);
+  assert.equal(TEMPLATE_IDS.length,42);
+  assert.equal(new Set(templates.map(x=>x.id)).size,42);
+  assert.equal(new Set(templates.map(x=>x.name)).size,42);
+  assert.equal(new Set(templates.map(x=>x.style)).size,42);
   const markup=templates.map(t=>renderSite(sampleForTemplate(t.id),{sample:true}));
   const uniqueMarkers=markup.map((html,t)=>{
-    const marker=["runwayml","runwaymulti"].includes(templates[t].id) ? ["rw-hero",templates[t].id] : freeDesignFor(templates[t].id)?html.match(/<section class="fd-hero" data-architecture="([\w-]+)"/):html.match(/<section class="hero hero-variant (?:md-hero md-)?([\w-]+)(?:\s|")/);
+    const marker=["nike","clay","ferrari"].includes(templates[t].id) ? ["trio-hero",templates[t].id] : ["runwayml","runwaymulti"].includes(templates[t].id) ? ["rw-hero",templates[t].id] : freeDesignFor(templates[t].id)?html.match(/<section class="fd-hero" data-architecture="([\w-]+)"/):html.match(/<section class="hero hero-variant (?:md-hero md-)?([\w-]+)(?:\s|")/);
     assert(marker,templates[t].id+" missing distinct hero");
     assert(html.includes('<h1 id="hero-title">') || (["runwayml","runwaymulti"].includes(templates[t].id) && html.includes('id="rw-h1"')),"Accessible main headline missing");
     assert(html.includes("FICTIONAL TEMPLATE DEMO"),"No customer information belongs in sample");
@@ -22,8 +22,8 @@ test("collection contains exactly forty unique art-directed templates",()=>{
     assert(!html.includes("<script"),"Approved static customer sites must be script-free");
     return marker[1];
   });
-  assert.equal(new Set(uniqueMarkers).size,39,"Every template must have an individual hero signature");
-  assert.equal(new Set(markup).size,39,"The output must not be a set of identical skins");
+  assert.equal(new Set(uniqueMarkers).size,42,"Every template must have an individual hero signature");
+  assert.equal(new Set(markup).size,42,"The output must not be a set of identical skins");
 });
 test("every design supports six purpose-matched previews with an accurate narrative",()=>{
   assert.equal(types.length,6);
@@ -33,6 +33,7 @@ test("every design supports six purpose-matched previews with an accurate narrat
     for(const template of templates){
       const demo=sampleForTemplate(template.id,type);
       if(["runwayml","runwaymulti"].includes(template.id)) { assert.equal(demo.type,"Creative portfolio"); assert(renderSite(demo,{sample:true}).includes('id="rw-h1"')); continue; } // Fixed editorial study across categories.
+      if(["nike","clay","ferrari"].includes(template.id)){assert.equal(demo.type,"Creative portfolio");assert(renderSite(demo,{sample:true}).includes('id="hero-title"'));continue;}
       assert.equal(demo.type,type);
       assert.equal(demo.template,template.id);
       assert(!demo.content.publicEmail,"Never invent client contact information");

@@ -12,6 +12,8 @@ test("All twenty fictional template demos use a photography-forward composition"
   const html=renderSite(sampleForTemplate(t.id),{sample:true});
   if(t.id==="runwayml"||t.id==="runwaymulti"){
     assert(html.includes('class="rw-site'),"RunwayML independent cinematic composition missing");
+  }else if(["nike","clay","ferrari"].includes(t.id)){
+    assert(html.includes("trio-"+t.id),t.id+" missing unique original design");
   }else if(t.id==="liquidmetal"){
     assert(html.includes("liquidmetal-hero"),"Liquid Metal independent composition missing");
   }else if(freeDesignFor(t.id)){
@@ -37,6 +39,8 @@ test("Customer sites have no third party photo loading or stock imagery",()=>{
   assert(!html.includes('<div class="study-shot '),t.id+" leaked sample elements");
   if(t.id==="runwayml"||t.id==="runwaymulti"){
     assert(html.includes('class="rw-site'),"RunwayML independent cinematic composition missing");
+  }else if(["nike","clay","ferrari"].includes(t.id)){
+    assert(html.includes("trio-"+t.id),t.id+" missing unique original design");
   }else if(t.id==="liquidmetal"){
     assert(html.includes("liquidmetal-hero"),"Liquid Metal customer source architecture missing");
   }else if(freeDesignFor(t.id)){
