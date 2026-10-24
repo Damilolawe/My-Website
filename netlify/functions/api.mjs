@@ -284,7 +284,7 @@ export default async function (req) {
                 price_data: {
                   currency: p.currency,
                   unit_amount: p.amount,
-                  product_data: { name: p.name },
+                  product_data: { name: p.name, ...(p.refunds ? { description: p.refunds.slice(0, 280) } : {}) },
                 },
                 quantity: 1,
               },
