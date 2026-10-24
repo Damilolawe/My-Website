@@ -65,6 +65,7 @@ test("both production API entry points enforce tier policy for orders and draft 
   ]) {
     const code = await readFile(new URL(path, import.meta.url),"utf8");
     assert(code.includes("packageAllowsTemplate"),path);
+    assert(code.includes(path.includes("edge-router") ? "packageAllowsTemplate(v,data.template)" : "packageAllowsTemplate(p, data.template)"), "Missing actual order guard: " + path);
   }
   const a = await readFile(new URL("../shared/tiers.mjs", import.meta.url),"utf8");
   const b = await readFile(new URL("../supabase/functions/awe-api/shared/tiers.mjs", import.meta.url),"utf8");
