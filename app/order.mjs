@@ -68,7 +68,7 @@ function setTemplate(id) {
   if (!template) return;
   input.template = template.id;
   input.design.primary = template.color;
-  input.design.appearance = ["afterhours","nocturne","terminal","brutalist","arcade"].includes(id) ? "dark" : "light";
+  input.design.appearance = ["afterhours","nocturne","terminal","brutalist","arcade","runwayml","runwaymulti"].includes(id) ? "dark" : "light";
   input.design.font = id === "folio" ? "serif" : id === "arcade" ? "mono" : "sans";
   input.design.secondary = id === "arcade" ? "#11120f" : "#ece9e0";
   input.design.corners = id === "arcade" ? "sharp" : "soft";
@@ -136,7 +136,7 @@ function draw() {
       esc(type === "Student résumé" ? "Student" : type === "Professional portfolio" ? "Professional" : type === "Creative portfolio" ? "Creative" : type === "Small business" ? "Business" : type) + '</button>').join("");
     const tierButtons = tiers.map(t => '<button type="button" class="tier-switch" data-switch-tier="' + t.id +
       '" aria-pressed="' + String(t.id === selectedTier) + '">' + esc(t.name) + '</button>').join("");
-    const demoPath = (id) => "/templates/" + typeSlugs[input.type] + "/" + encodeURIComponent(id) + ".html";
+    const demoPath = (id) => id==="runwaymulti" ? "/experiments/runwayml-multipage/" : "/templates/" + encodeURIComponent(id) + ".html";
     const choice = (t,i) => '<article class="template-card template-poster '+(input.template===t.id?'chosen':'')+'" data-poster="'+esc(t.id)+'"><button type="button" class="template-select" data-template="'+esc(t.id)+'" aria-pressed="'+String(input.template===t.id)+'"><span class="poster-art poster-'+esc(t.id)+'" style="--tile:'+esc(t.color)+'"><span class="poster-num">'+String(i+1).padStart(2,'0')+'</span><strong>'+esc(t.name)+'</strong><span class="poster-symbol" aria-hidden="true"></span><span class="poster-style">'+esc(t.style)+(recommendedFor(t,input.type)?' · RECOMMENDED':'')+'</span></span><span class="poster-meta"><strong>'+esc(t.tag)+'</strong><span>'+(input.template===t.id?'SELECTED ✓︎':'EXPLORE DIRECTION ↗︎')+'</span></span></button></article>';
     el.innerHTML = '<div class="tier-gallery-top"><div><p class="eyebrow">02 / FIND YOUR DESIGN</p><h2>' +
       esc(tiers.find(t => t.id === selectedTier)?.name || "Your") +
@@ -190,7 +190,7 @@ function draw() {
       loadingName.textContent=templates.find(t=>t.id===id)?.name||"Website concept";
       loading.hidden=false;
       if(!frame.srcdoc)frame.srcdoc=previewMessage("Preparing your website preview…");
-      fetchPublicTemplate(id,{type:input.type,signal:activeRequest.signal})
+      fetchPublicTemplate(id,{signal:activeRequest.signal})
         .then((html)=>{
           if(!lifetime.signal.aborted&&!thisRequest.signal.aborted&&frame.isConnected&&input.template===id){
             frame.onload=()=>{if(!thisRequest.signal.aborted&&input.template===id)loading.hidden=true;};
