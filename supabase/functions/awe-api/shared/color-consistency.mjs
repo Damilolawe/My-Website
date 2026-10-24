@@ -10,7 +10,7 @@ const luminance=hex=>rgb(hex).map(x=>{x/=255;return x<=0.04045?x/12.92:((x+.055)
 const ratio=(a,b)=>{const x=luminance(a),y=luminance(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);};
 export function readableOn(background){
   if(!HEX.test(background))throw new TypeError("Expected 6-digit hex color");
-  return ratio("#ffffff",background)>=ratio("#080808",background)?"#ffffff":"#080808";
+  return ratio("#ffffff",background)>=ratio("#000000",background)?"#ffffff":"#000000";
 }
 const BODY=id=>id==="folio"?"body.folio-editorial":id==="liquidmetal"?"body.liquidmetal":
   id==="arcade"?"body.arcade-night":["runwayml","runwaymulti"].includes(id)?"body.rw-site":
@@ -35,6 +35,9 @@ const ALL=[...SKIP,...NAV,...Object.keys(LOCAL)];
 const allowed=new Set(ALL);
 export function applyColorConsistency(html,id,design={}){
   if(typeof html!=="string"||!html.includes("</head>"))return html;
+  // RunwayML's original single-page renderer must remain byte-for-byte identical;
+  // both Runway variants already passed their 390px and 1440px contrast audits.
+  if(id==="runwayml"||id==="runwaymulti")return html;
   const primary=HEX.test(design.primary??"")?design.primary:"#343434";
   const secondary=HEX.test(design.secondary??"")?design.secondary:"#e5e5e5";
   const dark=design.appearance==="dark"||id==="afterhours";
