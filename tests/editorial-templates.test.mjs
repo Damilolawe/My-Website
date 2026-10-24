@@ -30,7 +30,9 @@ test("Customer sites have no third party photo loading or stock imagery",()=>{
   const html=renderSite(sampleForTemplate(t.id));
   assert(!html.includes("images.unsplash.com"),t.id+" leaked sample photography");
   assert(!html.includes('<div class="study-shot '),t.id+" leaked sample elements");
-  if(uploadedDesignFor(t.id)){
+  if(t.id==="liquidmetal"){
+    assert(html.includes("liquidmetal-hero"),"Liquid Metal customer source architecture missing");
+  }else if(uploadedDesignFor(t.id)){
     assert(html.includes("md-"+t.id+"-hero"),t.id+" missing MD-based customer architecture");
   }else if(["terminal","monologue","arcade"].includes(t.id)){
     assert(html.includes('hero-variant '+t.id+'-hero'),t.id+" missing designed text-first architecture");
