@@ -5,7 +5,7 @@ const glyphs = {
 fieldnotes:"01—22",cutouts:"✂",orchard:"◉",specimen:"Aa",gazette:"№ 01",
 negative:"◐",workshop:"⌗",hearth:"◒",clinical:"+",carryall:"001",
 threshold:"⌂",runway:"STUDIO",porcelain:"◎",kinetic:"MOVE",nightgrid:">_",
-couture:"ATELIER",signaldeck:"▦",obsidian:"◑",highlighter:"↗"
+couture:"ATELIER",signaldeck:"▦",obsidian:"◑",highlighter:"↗︎"
 };
 export function directionHero(value,heroImage,ctaTarget) {
  const d=directionFor(value.template),c=value.content;
@@ -58,5 +58,28 @@ export function directionCSSFor(id){
  const base=directionCSS.slice(0,first);
  const variants=directionCSS.slice(first,mediaAt).split("\n");
  const single=variants.find(line=>line.startsWith("."+id+" ")||line.startsWith("."+id+"{"))||"";
- return base+single+"\n"+directionCSS.slice(mediaAt);
+ const chapter='.ref-topline{display:flex;justify-content:space-between;gap:15px;padding:9px 0;border-bottom:1px solid var(--border);font:600 .65rem/1.4 ui-monospace,monospace;letter-spacing:.09em;text-transform:uppercase}.art-directed-work.mode-ref-'+id+'{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,3vw,44px)}.case-original{position:relative;min-width:0;overflow:hidden;background:var(--surface);border:1px solid var(--border);display:flex;flex-direction:column}.case-original .case-image{min-height:290px;background:var(--secondary);display:flex;align-items:center;justify-content:center;gap:12px;color:var(--accent);position:relative;overflow:hidden}.ref-case-art strong{font:800 clamp(5rem,10vw,10rem)/1 Georgia,serif;letter-spacing:-.08em}.ref-case-art span{position:absolute;bottom:15px;left:20px;font:700 .75rem ui-monospace,monospace;text-transform:uppercase}.ref-case-counter{position:absolute;top:15px;left:15px;background:var(--bg);color:var(--fg);z-index:2;padding:6px 9px;font:600 .65rem ui-monospace,monospace}.ref-case-body{padding:22px;flex:1}.ref-case-body h3{font-size:clamp(1.8rem,3vw,3.6rem)}.ref-case-body p{color:var(--muted)}.ref-case-body a{text-decoration:underline}.case-original:nth-child(3n){grid-column:span 2}.case-original:nth-child(3n) .case-image{min-height:370px}@media(max-width:600px){.art-directed-work.mode-ref-'+id+'{grid-template-columns:1fr}.case-original:nth-child(3n){grid-column:auto}}';
+ const modes={
+  fieldnotes:'grid-template-columns:1.4fr .6fr',
+  cutouts:'transform:rotate(-1deg);box-shadow:10px 10px 0 var(--accent)',
+  orchard:'border-radius:80px 80px 10px 10px',
+  specimen:'border-top:7px solid currentColor',
+  gazette:'border-bottom:5px double currentColor',
+  negative:'filter:grayscale(1)',
+  workshop:'border:2px dashed currentColor',
+  hearth:'border-radius:90px 90px 10px 10px',
+  clinical:'border-radius:22px',
+  carryall:'border:8px solid var(--accent)',
+  threshold:'border-radius:130px 130px 10px 10px',
+  runway:'min-height:550px',
+  porcelain:'border-radius:50% 50% 0 0',
+  kinetic:'transform:skewY(-2deg)',
+  nightgrid:'border-radius:20px',
+  couture:'border-radius:200px 200px 0 0',
+  signaldeck:'border-radius:22px',
+  obsidian:'border-radius:50% 50% 0 0',
+  highlighter:'border-top:14px solid var(--accent)'
+ };
+ const extra=' .art-directed-work.mode-ref-'+id+' .case-original{'+(modes[id]||'border:1px solid var(--border)')+'}';
+ return base+single+"\n"+chapter+extra+directionCSS.slice(mediaAt);
 }
