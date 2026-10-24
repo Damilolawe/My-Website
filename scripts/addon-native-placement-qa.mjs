@@ -92,10 +92,15 @@ try{
  webForms.externalFormBlockedByCsp=messages.some(x=>/form-action|Refused to send form|violates.*Content Security Policy/i.test(x))&&externalRequests===0;
  webForms.externalFormRequests=externalRequests;
  webForms.cspConsoleSample=messages.filter(x=>/form-action|Content Security Policy/i.test(x)).slice(0,2);
- await page.locator("#internal button").evaluate(button=>button.click());
- await page.waitForTimeout(350);
- webForms.internalFormSubmissionWithoutService404=(await page.locator("body").innerText()).includes("No form receiver deployed");
+ webForms.urlAfterExternalAttempt=page.url();
  await page.close();
+ const internalPage=await browser.newPage();
+ await internalPage.goto("http://127.0.0.1:"+server.address().port+"/",{waitUntil:"domcontentloaded"});
+ await internalPage.locator("#internal button").evaluate(button=>button.click());
+ await internalPage.waitForTimeout(500);
+ webForms.internalFormSubmissionWithoutService404=(await internalPage.locator("body").innerText()).includes("No form receiver deployed");
+ webForms.urlAfterInternalAttempt=internalPage.url();
+ await internalPage.close();
 }finally{await new Promise(resolve=>server.close(resolve));await browser.close();}
 const testNormalized=normalize({...sampleForTemplate("index"),addons:[{id:"booking",price:49}],content:{...sampleForTemplate("index").content,logoUrl:"https://example.org/logo.png"}});
 const transport={
