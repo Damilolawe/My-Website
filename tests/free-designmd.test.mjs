@@ -7,7 +7,7 @@ import {renderSite} from "../shared/render.mjs";
 import {minimumTier,templateFitsTier} from "../shared/tiers.mjs";
 const ids=["acidchrome","voidstage","studiomargaux","neomemphis","monobrutalist","vestigefolio","botanicalpress","limepress","gazettebroadside","risograph"];
 test("Ten original DESIGN.md files are preserved and appended without disturbing older entries",async()=>{
- assert.deepEqual(templates.slice(-12,-2).map(t=>t.id),ids); // Existing ten stay in sequence; RunwayML is appended last.
+ assert.deepEqual(templates.slice(-15,-5).map(t=>t.id),ids); // Existing ten stay in sequence; RunwayML is appended last.
  assert.deepEqual(freeDesignTemplates.map(t=>t.id),ids);
  for(const d of freeDesignTemplates){
   const raw=await readFile(new URL("../"+d.sourcePath,import.meta.url),"utf8");
