@@ -4,13 +4,13 @@ import {readFile} from "node:fs/promises";
 import {renderSite} from "../shared/render.mjs";
 import {templates,sampleForTemplate} from "../shared/model.mjs";
 import {sampleArtwork,illustrationArtwork} from "../shared/photographic-direction.mjs";
-import {directionFor} from "../shared/refero-originals.mjs";
+import {uploadedDesignFor} from "../shared/uploaded-designs.mjs";
 
 test("All twenty fictional template demos use a photography-forward composition",()=>{
  for(const t of templates){
   const html=renderSite(sampleForTemplate(t.id),{sample:true});
-  if(directionFor(t.id)){
-    assert(html.includes('class="ref-art"'),t.id+" missing independently generated reference study");
+  if(uploadedDesignFor(t.id)){
+    assert(html.includes("md-"+t.id+"-hero"),t.id+" missing MD-based architecture");
   }else if(["terminal","monologue","arcade"].includes(t.id)){
     assert(html.includes('hero-variant '+t.id+'-hero'),t.id+" missing intentional text-first hero");
   }else{
@@ -28,8 +28,8 @@ test("Customer sites have no third party photo loading or stock imagery",()=>{
   const html=renderSite(sampleForTemplate(t.id));
   assert(!html.includes("images.unsplash.com"),t.id+" leaked sample photography");
   assert(!html.includes('<div class="study-shot '),t.id+" leaked sample elements");
-  if(directionFor(t.id)){
-    assert(html.includes('class="ref-art"'),t.id+" missing original geometric artwork");
+  if(uploadedDesignFor(t.id)){
+    assert(html.includes("md-"+t.id+"-hero"),t.id+" missing MD-based customer architecture");
   }else if(["terminal","monologue","arcade"].includes(t.id)){
     assert(html.includes('hero-variant '+t.id+'-hero'),t.id+" missing designed text-first architecture");
   }else{
