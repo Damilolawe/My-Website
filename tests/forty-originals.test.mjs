@@ -30,11 +30,13 @@ test("all 18 uploaded-MD builds have unique architecture, use validated content 
   const sample=sampleForTemplate(d.id);
   const html=renderSite(sample,{sample:true});
   assert(html.startsWith("<!doctype html>"),d.id);
-  assert(html.includes('data-architecture="'+d.layout+'"'),d.id+" layout lost");
-  assert(html.includes("md-"+d.id+"-hero"),d.id+" missing authored hero");
+  if(d.id==='folio') assert(html.includes('class="folio-editorial'),'Folio redesigned layout missing');
+   else assert(html.includes('data-architecture="'+d.layout+'"'),d.id+" layout lost");
+  if(d.id==='folio') assert(html.includes('class="fe-hero'),'Folio editorial hero missing');
+   else assert(html.includes('md-'+d.id+'-hero'),d.id+' missing authored hero');
   assert(html.includes("FICTIONAL TEMPLATE DEMO"),d.id+" fake demo disclaimer missing");
   assert(html.includes('id="work"'),d.id+" work section missing");
-  assert(html.includes("contact-setup-note"),d.id+" no unverified contact links");
+  assert(html.includes('contact-setup-note'),d.id+' no unverified contact links');
   assert(html.includes("prefers-reduced-motion:reduce"),d.id+" reduced motion unavailable");
   assert(!html.includes("<script"),d.id+" executable scripts forbidden");
   assert(html.length<250000,d.id+" publication-size limit exceeded "+html.length);
