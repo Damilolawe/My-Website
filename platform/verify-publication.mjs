@@ -24,7 +24,7 @@ function verifyStaticPage(html, version, assets) {
   return names;
 }
 async function verifyApprovedSubpages(fetcher,siteUrl,version,requiredPages) {
-  const base=siteUrl.replace(/\\/$/, "");
+  const base=siteUrl.replace(/\/$/, "");
   for (const name of requiredPages) {
     if (!["research.html","work.html","studio.html","journal.html"].includes(name))
       fail("Unexpected approved document.");
@@ -35,7 +35,7 @@ async function verifyApprovedSubpages(fetcher,siteUrl,version,requiredPages) {
     const html=await response.text();
     if (!/^<!doctype html>/i.test(html.slice(0,60)) ||
         !html.includes('<meta name="awe-approved-version" content="'+version+'">') ||
-        !/<h1(?:\\s|>)/i.test(html) || /<script\\b|<iframe\\b/i.test(html))
+        !/<h1(?:\s|>)/i.test(html) || /<script\b|<iframe\b/i.test(html))
       fail("Multi-page publication verification failed.");
   }
 }
