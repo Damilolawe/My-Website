@@ -7,7 +7,7 @@ import {renderSite} from "../shared/render.mjs";
 
 test("20 designs change entire page architecture, not just hero color",()=>{
   const modes=new Set(),workStructures=new Set();
-  for(const t of templates.filter(t=>t.id!=="arcade")){
+  for(const t of templates.filter(t=>!["arcade","liquidmetal"].includes(t.id))){
     const html=renderSite(sampleForTemplate(t.id),{sample:true});
     const mode=architectureMode(t.id);
     assert(mode,t.id+" is missing full-page composition");

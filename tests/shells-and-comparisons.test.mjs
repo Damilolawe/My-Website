@@ -6,10 +6,19 @@ import {renderSite} from "../shared/render.mjs";
 import {shellIdentities} from "../shared/site-shells.mjs";
 
 test("every customer design has a separate outer shell and page ordering",()=>{
-  assert.equal(Object.keys(shellIdentities).length,26);
-  assert.equal(new Set(Object.values(shellIdentities)).size,26);
+  assert.equal(Object.keys(shellIdentities).length,27);
+  assert.equal(new Set(Object.values(shellIdentities)).size,27);
   for(const t of templates){
     const html=renderSite(sampleForTemplate(t.id),{sample:true});
+    if(t.id==="liquidmetal"){
+      assert(html.includes('class="shell-header shell-liquidmetal'),"Missing special Liquid Metal header");
+      assert(html.includes('class="shell-footer shell-footer-liquidmetal'),"Missing special Liquid Metal footer");
+      assert(html.includes('data-architecture="metal-machined-glass"'));
+      assert(html.includes('aria-label="Section navigation"'));
+      assert(html.includes('id="main"'));
+      assert(!html.includes("<script"));
+      continue;
+    }
     assert(html.includes('class="shell-header shell-'+t.id+'"'),"Missing "+t.id+" header");
     assert(html.includes('class="shell-footer shell-footer-'+t.id+'"'),"Missing "+t.id+" footer");
     assert(html.includes('data-architecture="'+shellIdentities[t.id]+'"'),"Missing unique architecture");
@@ -28,6 +37,12 @@ test("purpose-aware pages preserve specialized content with each outer shell",()
     for(const t of templates){
       const html=renderSite(sampleForTemplate(t.id,purpose),{sample:true});
       assert(html.includes('class="site-architecture site-architecture-'+t.id+'"'));
+      if(t.id==="liquidmetal"){
+        assert(html.includes("lm-work-grid"),"Liquid Metal independent portfolio missing");
+        assert(!html.includes('id="testimonials"'));
+        assert(html.includes("motion-expressive"));
+        continue;
+      }
       assert(html.includes("chapter-work"),"Work chapter missing in "+t.id+" / "+purpose);
       assert(!html.includes('id="testimonials"'),"No fictional testimonials allowed");
       assert(html.includes('motion-expressive'));

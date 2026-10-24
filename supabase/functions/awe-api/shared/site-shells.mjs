@@ -5,6 +5,7 @@ const nav=(ids)=>ids.map(id=>'<a href="#'+E(id)+'">'+E(id==="work"?"Projects":id
 const title=(c)=>'<a class="shell-brand" href="#main">'+E(c.name)+'</a>';
 const small=(text)=>'<span class="shell-note">'+E(text)+'</span>';
 export const shellIdentities={
+ liquidmetal:"metal-machined-glass",
  index:"career-dossier",folio:"editorial-issue",still:"museum-minimal",afterhours:"cinema-credits",signal:"graphic-broadcast",
  daylight:"scrapbook-studio",atlas:"research-dashboard",terminal:"developer-command",orbit:"orbital-deck",
  playbill:"theatre-marquee",monologue:"typed-script",portraiture:"casting-lookbook",contactsheet:"photo-negative",

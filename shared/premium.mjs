@@ -12,6 +12,7 @@ import {exemplarCSS} from "./exemplar-redesign.mjs";
 import {paletteCSS,paletteInline} from "./theme-palette.mjs";
 import {signatureMarkup,signatureCSSFor} from "./creative-signatures.mjs";
 import {renderArcadeNight} from "./arcade-night.mjs";
+import {renderLiquidMetal} from "./liquid-metal.mjs";
 import {directionFor} from "./refero-originals.mjs";
 import {mdHero,mdCSSFor,mdPaletteFor} from "./md-rebuild.mjs";
 import {uploadedDesignFor} from "./uploaded-designs.mjs";
@@ -39,6 +40,7 @@ export function renderPremium(input, options = {}) {
   const { assetBase = "/api/assets/", sample = false, assetSuffix = "" } = options;
   const value = normalize(input);
   if (value.template === "arcade") return renderArcadeNight(value, options);
+  if (value.template === "liquidmetal") return renderLiquidMetal(value, options);
   const c = value.content, d = value.design, t = value.template;
   const items = c.cards.length ? c.cards : cardFallback(c.projects);
   const has = (id) => d.sections.includes(id);

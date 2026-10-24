@@ -6,11 +6,11 @@ import {renderSite} from "../shared/render.mjs";
 import {TEMPLATE_IDS,fetchPublicTemplate} from "../shared/preview.mjs";
 
 test("collection contains exactly forty unique art-directed templates",()=>{
-  assert.equal(templates.length,26);
-  assert.equal(TEMPLATE_IDS.length,26);
-  assert.equal(new Set(templates.map(x=>x.id)).size,26);
-  assert.equal(new Set(templates.map(x=>x.name)).size,26);
-  assert.equal(new Set(templates.map(x=>x.style)).size,26);
+  assert.equal(templates.length,27);
+  assert.equal(TEMPLATE_IDS.length,27);
+  assert.equal(new Set(templates.map(x=>x.id)).size,27);
+  assert.equal(new Set(templates.map(x=>x.name)).size,27);
+  assert.equal(new Set(templates.map(x=>x.style)).size,27);
   const markup=templates.map(t=>renderSite(sampleForTemplate(t.id),{sample:true}));
   const uniqueMarkers=markup.map((html,t)=>{
     const marker=html.match(/<section class="hero hero-variant (?:md-hero md-)?([\w-]+)(?:\s|")/);
@@ -21,8 +21,8 @@ test("collection contains exactly forty unique art-directed templates",()=>{
     assert(!html.includes("<script"),"Approved static customer sites must be script-free");
     return marker[1];
   });
-  assert.equal(new Set(uniqueMarkers).size,26,"Forty templates must have individual hero signatures");
-  assert.equal(new Set(markup).size,26,"The output must not be a set of identical skins");
+  assert.equal(new Set(uniqueMarkers).size,27,"Every template must have an individual hero signature");
+  assert.equal(new Set(markup).size,27,"The output must not be a set of identical skins");
 });
 test("every design supports six purpose-matched previews with an accurate narrative",()=>{
   assert.equal(types.length,6);
