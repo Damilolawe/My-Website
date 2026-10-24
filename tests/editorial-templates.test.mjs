@@ -5,12 +5,15 @@ import {renderSite} from "../shared/render.mjs";
 import {templates,sampleForTemplate} from "../shared/model.mjs";
 import {sampleArtwork,illustrationArtwork} from "../shared/photographic-direction.mjs";
 import {uploadedDesignFor} from "../shared/uploaded-designs.mjs";
+import {freeDesignFor} from "../shared/free-designmd.mjs";
 
 test("All twenty fictional template demos use a photography-forward composition",()=>{
  for(const t of templates){
   const html=renderSite(sampleForTemplate(t.id),{sample:true});
   if(t.id==="liquidmetal"){
     assert(html.includes("liquidmetal-hero"),"Liquid Metal independent composition missing");
+  }else if(freeDesignFor(t.id)){
+    assert(html.includes("data-architecture="),t.id+" missing FreeDesignMD-specific architecture");
   }else if(uploadedDesignFor(t.id)){
     assert(html.includes("md-"+t.id+"-hero"),t.id+" missing MD-based architecture");
   }else if(["terminal","monologue","arcade"].includes(t.id)){
@@ -32,6 +35,8 @@ test("Customer sites have no third party photo loading or stock imagery",()=>{
   assert(!html.includes('<div class="study-shot '),t.id+" leaked sample elements");
   if(t.id==="liquidmetal"){
     assert(html.includes("liquidmetal-hero"),"Liquid Metal customer source architecture missing");
+  }else if(freeDesignFor(t.id)){
+    assert(html.includes("data-architecture="),t.id+" missing FreeDesignMD-specific architecture");
   }else if(uploadedDesignFor(t.id)){
     assert(html.includes("md-"+t.id+"-hero"),t.id+" missing MD-based customer architecture");
   }else if(["terminal","monologue","arcade"].includes(t.id)){
