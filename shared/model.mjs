@@ -418,12 +418,36 @@ export function sampleForTemplate(id,purpose){
     Object.assign(preview,{name,headline,bio,heroLabel:"Competitive culture / "+category,
       cards:projects.map(title=>({title,description:"A fictional concept for the Arcade Night template preview.",url:""}))});
   }
+  // Canonical gallery previews use each design guide's identity and visual
+  // language. Do not force MD-sourced designs into sample resumes, businesses,
+  // fake biographies, or purpose-dependent story layouts.
+  if(purpose===undefined && (originalDirection||uploadedDirection||freeDirection)){
+    const source=uploadedDirection||freeDirection||originalDirection;
+    preview.name=source.name||t.name;
+    preview.headline=source.tag||t.tag;
+    preview.heroLabel=source.style||source.layout||t.style;
+    preview.bio=source.description||source.character||t.style;
+    const traits=[
+      source.layout||source.style||"Composition",
+      source.character||source.fonts?.display||"Typography",
+      source.description||source.style||"Visual language"
+    ];
+    preview.cards=traits.map((detail,i)=>({
+      title:["Composition","Type and detail","Visual language"][i],
+      description:String(detail).slice(0,320),
+      url:""
+    }));
+    preview.services=[];
+    preview.education="";
+    preview.experience="";
+    preview.skills="";
+  }
   const content={...sample.content,...preview,projects:"",links:[],photoIds:[],publicEmail:"",testimonials:[]};
   return {type:category,template:t.id,design:{
     primary:uploadedDirection?.accent||freeDirection?.color||t.color,animation:"expressive",
     secondary:(t.id==="liquidmetal"?"#15181D":uploadedDirection?.surface||freeDirection?.colors.surface)||(t.id==="arcade"?"#11120f":originalDirection ? (["negative","nightgrid","signaldeck","obsidian"].includes(t.id)?"#242431":"#dedbd4") : "#ece9e0"),
     appearance:t.id==="liquidmetal" ? "dark" : freeDirection ? (["acidchrome","voidstage"].includes(t.id)?"dark":"light") : uploadedDirection ? (["afterhours","signal","orbit","monologue","nocturne","nightgrid","signaldeck","obsidian"].includes(t.id)?"dark":"light") : (["afterhours","nocturne","terminal","brutalist","arcade"].includes(t.id)?"dark":"light"),
-    sections:kit.sections
+    sections:purpose===undefined && (originalDirection||uploadedDirection||freeDirection) ? ["about","work","contact"] : kit.sections
   },content};
 }
 export function customerOrder(o) {
