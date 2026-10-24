@@ -213,7 +213,7 @@ function draw() {
       const template = offered.find(t => t.id === id);
       if (!template) return;
       setTemplate(id);
-      theater.dataset.active = id;
+      theater.dataset.active=id;
       el.querySelector(".theater-caption h3").textContent = template.name;
       el.querySelector(".theater-caption p").textContent = template.tag;
       el.querySelector(".browser-url").textContent = template.name + " / fictional website preview";
