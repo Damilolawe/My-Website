@@ -1,3 +1,4 @@
+import {originalDirections} from "./refero-originals.mjs";
 /* Selected template palette overrides preset hero and chrome colors. */
 const color=/^#[a-f0-9]{6}$/i;
 const rgb=s=>[1,3,5].map(i=>parseInt(s.slice(i,i+2),16));
@@ -18,7 +19,7 @@ export function paletteTokens(primary,secondary,dark=false){
  'on-secondary':on(secondary)};
 }
 export const paletteInline=(primary,secondary,dark=false)=>Object.entries(paletteTokens(primary,secondary,dark)).map(([k,v])=>'--'+k+':'+v).join(';');
-const templates=['index','folio','still','afterhours','signal','daylight','atlas','terminal','orbit','playbill','monologue','portraiture','contactsheet','atelier','museum','brutalist','nocturne','foundry','bloom','ledger'];
+const templates=['index','folio','still','afterhours','signal','daylight','atlas','terminal','orbit','playbill','monologue','portraiture','contactsheet','atelier','museum','brutalist','nocturne','foundry','bloom','ledger'].concat(originalDirections.map(d=>d.id));
 const soft='linear-gradient(130deg,var(--palette-primary-soft),var(--palette-secondary-soft))';
 const deep='radial-gradient(circle at 65% 28%,var(--palette-deep-primary),var(--palette-deep-secondary) 83%)';
 const heroes={index:soft,folio:soft,still:soft,afterhours:deep,signal:soft,daylight:soft,
@@ -53,7 +54,7 @@ const rule=(id,sel,css)=>sel.split(',').map(part=>'body.'+id+' '+part.trim()).jo
 export const paletteCSS=templates.map(id=>{
  const text=darkHeroes.has(id)?'#ffffff':accentHeroes.has(id)?'var(--on-accent)':softHeroes.has(id)?'var(--fg)':'var(--on-secondary)';
  return 'body.'+id+'{--bg:var(--palette-bg);--surface:var(--palette-surface)}'+
- rule(id,'.hero','background:'+heroes[id]+';color:'+text)+
+ rule(id,'.hero','background:'+(heroes[id]||'var(--secondary)')+';color:'+text)+
  rule(id,'.hero .hero-copy h1,.hero .hero-label,.hero .hero-intro','color:inherit')+
  rule(id,'.shell-header','background:var(--palette-secondary-soft);color:var(--fg);border-color:var(--accent)')+
  rule(id,'.shell-footer','background:var(--palette-secondary-strong);color:var(--palette-on-secondary-strong)')+
