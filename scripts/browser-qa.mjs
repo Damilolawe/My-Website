@@ -100,8 +100,20 @@ try {
       if(await page.evaluate(()=>location.hash)!=="#contact")
         failures.push("AUDIT_DAYLIGHT_CONTACT: blocked Contact link");
     }catch(e){failures.push("AUDIT_DAYLIGHT_CONTACT: "+String(e.message).slice(0,150));}
-  }else failures.push("AUDIT_DAYLIGHT_CONTACT: Contact anchor absent");
-  console.log("AUDIT_DAYLIGHT_CONTACT",await page.evaluate(()=>location.hash));
+  }else{
+    const state=await page.evaluate(()=>({
+      contactSection:!!document.getElementById("contact"),
+      emptyNote:!!document.querySelector(".contact-setup-note,.contact-emblem"),
+      brokenAnchors:[...document.querySelectorAll('a[href="#contact"]')].length
+    }));
+    if(state.contactSection||state.emptyNote||state.brokenAnchors)
+      failures.push("AUDIT_DAYLIGHT_CONTACT: Empty or unreachable contact panel remains");
+  }
+  console.log("AUDIT_DAYLIGHT_CONTACT",await page.evaluate(()=>({
+    hash:location.hash,
+    hasContactSection:!!document.getElementById("contact"),
+    hasEmptyPlaceholder:!!document.querySelector(".contact-setup-note")
+  })));
   await testPage(page,origin+"/templates/creative/signal.html","AUDIT_SIGNAL",{waitMs:500});
   await testPage(page,origin+"/templates/creative/afterhours.html","AUDIT_AFTERHOURS",{waitMs:900});
   await context.close();
