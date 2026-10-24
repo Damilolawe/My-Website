@@ -100,6 +100,7 @@ const cleanCards = (items, kind) =>
     title: text(item?.title, 120),
     description: text(item?.description, 1200),
     url: https(item?.url),
+    ...(https(item?.videoUrl) ? {videoUrl: https(item.videoUrl)} : {}),
   })).filter((item) => item.title || item.description);
 const cleanTestimonials = (items) =>
   (Array.isArray(items) ? items : []).slice(0, 8).map((item) => ({
@@ -149,6 +150,7 @@ export function normalize(input = {}) {
       cards: cleanCards(c.cards, "work"),
       services: cleanCards(c.services, "service"),
       testimonials: cleanTestimonials(c.testimonials),
+      heroVideoUrl: https(c.heroVideoUrl),
       photoIds: (Array.isArray(c.photoIds) ? c.photoIds : [])
         .filter((x) => /^[0-9a-f-]{36}$/.test(x))
         .slice(0, 8),
