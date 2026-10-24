@@ -30,7 +30,7 @@ The existing [Firebase Hosting workflow](.github/workflows/firebase-hosting.yml)
 | `script.js`, `sculpture.js`, `case-studies.*` | GSAP, Three.js/software fallback, project dialogs and homepage inquiry brief |
 | `demos/` | Actor concept, café interaction and task dashboard demos |
 | `app/`, `order.html`, `account.html`, `admin.html` | Customer ordering and authenticated studio interface |
-| `shared/model.mjs`, `shared/render.mjs` | Validated data model, six reusable website directions and deterministic HTML generation |
+| `shared/model.mjs`, `shared/render.mjs` | Validated data model, template catalog and deterministic HTML generation |
 | `platform/` | Server authorization, storage, generation, jobs and approved file export |
 | `supabase/functions/` | Production API, inquiry intake, verified Stripe webhooks and worker |
 | `supabase/migrations/` | Private database, RLS, atomic payment/approval operations and storage bucket |

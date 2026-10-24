@@ -78,7 +78,7 @@ for (const t of templates) {
   }
 }
 console.log(
-  "Built Netlify public assets in dist/. Server functions remain outside public output.",
+  "Built Firebase public assets in dist/. Supabase functions remain outside public output.",
 );
 
 
