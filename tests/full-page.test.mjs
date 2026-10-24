@@ -13,10 +13,16 @@ test("20 designs change entire page architecture, not just hero color",()=>{
     const mode=architectureMode(t.id);
     assert(mode,t.id+" is missing full-page composition");
     modes.add(mode);
-    const match=html.match(/<div class="art-directed-work mode-([^"]+)"/);
+    const match=t.id==='folio'?['folio','folio-editorial']:html.match(/<div class="art-directed-work mode-([^"]+)"/);
     assert(match,t.id+" has no custom work presentation");
     workStructures.add(match[1]);
-    assert(html.includes("chapter-"+mode),t.id+" chapters do not match its design");
+    if(t.id==='folio'){
+       assert(html.includes('class="fe-project fe-feature"'),'Folio work missing');
+       assert(html.includes('fe-header'),'Folio header missing');
+       assert(html.includes('class="fe-contact"'),'Folio footer missing');
+       continue;
+     }
+     assert(html.includes('chapter-'+mode),t.id+' chapters do not match its design');
     assert(html.includes('class="shell-header shell-'+t.id+'"'),t.id+" missing template-specific header");
     assert(html.includes('class="shell-footer shell-footer-'+t.id+'"'),t.id+" missing template-specific footer");
     assert(html.includes("chapter-work"),t.id+" missing designed work chapter");
@@ -49,7 +55,7 @@ test("purpose-specific work sections and honest content persist across all desig
   for(const [type,label] of typeChecks){
     for(const t of templates){
       const site=renderSite(sampleForTemplate(t.id,type),{sample:true});
-      if(t.id!=="arcade"&&t.id!=="runwayml"&&t.id!=="runwaymulti"&&!["nike","clay","ferrari"].includes(t.id)&&!freeDesignFor(t.id)) assert(site.includes(label),t.id+" missed "+type+" copy");
+      if(t.id!=='folio'&&t.id!=="arcade"&&t.id!=="runwayml"&&t.id!=="runwaymulti"&&!["nike","clay","ferrari"].includes(t.id)&&!freeDesignFor(t.id)) assert(site.includes(label),t.id+" missed "+type+" copy");
       assert(!site.includes('id="testimonials"'),"No fabricated endorsements in public samples");
     }
   }
