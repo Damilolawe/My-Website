@@ -14,7 +14,7 @@ export function directionHero(value,heroImage,ctaTarget) {
  const words='<div class="ref-words hero-copy"><span class="eyebrow hero-label">'+E(c.heroLabel||d.style)+'</span><h1 id="hero-title">'+E(c.headline)+'</h1><p class="hero-intro">'+E(String(c.bio||d.tag).split("\n")[0].slice(0,210))+'</p><div class="hero-actions"><a class="pill-link" href="'+ctaTarget+'">'+E(c.ctaLabel||"Explore work")+' ↗︎</a></div></div>';
  const stamp='<span class="ref-stamp eyebrow">'+E(c.name)+' / '+E(d.character)+'</span>';
  const kicker='<span class="ref-index eyebrow">ORIGINAL / '+E(d.id.toUpperCase())+'</span>';
- return '<section class="hero hero-variant ref-hero ref-'+E(d.id)+'-hero" data-architecture="'+E(d.character)+'" aria-labelledby="hero-title">'+kicker+words+'<div class="ref-media">'+media+stamp+'</div></section>';
+ return '<section class="hero hero-variant ref-'+E(d.id)+' ref-hero ref-'+E(d.id)+'-hero" data-architecture="'+E(d.character)+'" aria-labelledby="hero-title">'+kicker+words+'<div class="ref-media">'+media+stamp+'</div></section>';
 }
 export const directionCSS = `
 .ref-hero{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(24px,5vw,85px);align-items:center;position:relative;min-height:710px}
