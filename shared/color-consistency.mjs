@@ -23,7 +23,7 @@ const BODY=id=>id==="folio"?"body.folio-editorial":id==="liquidmetal"?"body.liqu
 const SKIP=["index","still","daylight","atlas","playbill","contactsheet","ledger","couture"];
 const NAV=["orbit","monologue","nocturne"];
 const LOCAL={
-  monologue:'.case-screenplay,.case-screenplay h3,.case-screenplay p,.case-screenplay span{color:var(--awe-header-ink)!important}',
+  monologue:'.case-screenplay,.case-screenplay h3,.case-screenplay p,.case-screenplay span{color:var(--awe-header-ink)!important}.case-screenplay:nth-child(even),.case-screenplay:nth-child(even) h3,.case-screenplay:nth-child(even) p,.case-screenplay:nth-child(even) span{color:#ffffff!important}',
   playbill:'.md-playbill-hero .md-lead{color:var(--on-accent)!important}',
   contactsheet:'.md-contactsheet-hero .md-lead{color:#ffffff!important}',
   brutalist:'.md-brutalist-hero .md-lead{color:#202020!important}',
