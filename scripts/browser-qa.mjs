@@ -215,15 +215,24 @@ try {
         await page.screenshot({path:"qa-browser-artifacts/"+size.name+"-"+entry.id+".png",fullPage:false});
       }
       // Exercise a real section link, not just existence of href/#target.
-      const first=page.locator('nav[aria-label="Section navigation"] a[href^="#"]').first();
+      // Test each template's ACTUAL navigation. The Runway cinematic edition
+      // has a real mobile details menu and its Signature edition links pages.
+      const menu=page.locator(".rw-menu:visible:not([open]) > summary");
+      if(await menu.count()) await menu.click();
+      const first=page.locator('nav[aria-label="Section navigation"] a[href^="#"]:visible, nav[aria-label="Primary navigation"] a[href^="#"]:visible, .rw-menu nav a[href^="#"]:visible, .rw-menu nav a[href^="/experiments/runwayml-multipage/"]:visible, .rw-header-nav a[href^="/experiments/runwayml-multipage/"]:visible').first();
       if(await first.count()) {
         const href=await first.getAttribute("href");
         try {
           await first.click({timeout:4500});
-          const hash=await page.evaluate(()=>decodeURIComponent(location.hash));
-          if(hash!==href)failures.push(label+": section link navigated to "+hash+" instead of "+href);
-          const target=await page.evaluate(h=>!!document.getElementById(h.slice(1)),href);
-          if(!target)failures.push(label+": section link target missing "+href);
+          if(href.startsWith("#")){
+            const hash=await page.evaluate(()=>decodeURIComponent(location.hash));
+            if(hash!==href)failures.push(label+": section link navigated to "+hash+" instead of "+href);
+            const target=await page.evaluate(h=>!!document.getElementById(h.slice(1)),href);
+            if(!target)failures.push(label+": section link target missing "+href);
+          }else{
+            const path=await page.evaluate(()=>location.pathname);
+            if(path!==href.split("#")[0])failures.push(label+": multipage link navigated to "+path+" instead of "+href);
+          }
         } catch(error){
           failures.push(label+": section navigation click failed: "+String(error.message).slice(0,160));
         }
@@ -255,15 +264,15 @@ try {
   const context=await browser.newContext({viewport:{width,height:812},isMobile:true,hasTouch:true,deviceScaleFactor:2});
   const page=await context.newPage();
   for(const {id} of templates){
-   await page.goto(origin+"/templates/creative/"+id+".html",{waitUntil:"domcontentloaded",timeout:25000});
+   await page.goto(origin+"/templates/"+id+".html",{waitUntil:"domcontentloaded",timeout:25000});
    await page.waitForTimeout(130);
    const geometry=await page.evaluate(()=>{
     const all=[...document.querySelectorAll(".case-image")].slice(0,4).map(el=>{
       const r=el.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width};
     });
-    const hero=document.querySelector(".hero-variant h1");
+    const hero=document.querySelector(".hero-variant h1, .fd-hero h1, .rw-hero h1");
     const h=hero?.getBoundingClientRect();
-    const contact=document.querySelector("#contact .architect-contact-links, #contact .lm-contact-links");
+    const contact=document.querySelector("#contact .architect-contact-links, #contact .lm-contact-links, #contact .fd-contact, #contact.rw-manifesto");
     const setup=document.querySelector("#contact .contact-setup-note");
     return {width:innerWidth,docWidth:document.documentElement.scrollWidth,
       heading:h?{left:h.left,right:h.right,width:h.width,fontSize:getComputedStyle(hero).fontSize}:null,
@@ -275,7 +284,7 @@ try {
    console.log("NARROW_TEMPLATE",width,id,JSON.stringify(geometry));
    if(uploadedDesignFor(id)&&(geometry.authoredScenes!==1||geometry.authoredChapters!==1))
      failures.push("Narrow "+width+" "+id+": authored source scene and editorial chapter are missing");
-   if(geometry.docWidth>width+2){
+   if(geometry.width>width+2 || geometry.docWidth>width+2){
      const offenders=await page.evaluate(()=>[...document.querySelectorAll("*")]
        .map(el=>({selector:el.tagName.toLowerCase()+"."+String(el.className||"").replace(/\s+/g,".").slice(0,70),
          rect:el.getBoundingClientRect()}))
