@@ -22,6 +22,14 @@ test("real charges remain closed without all explicit launch conditions", () => 
     assert.throws(() => stripe("live"), /Live checkout is not configured/);
     process.env.STRIPE_LIVE_SECRET_KEY = "sk_live_synthetic_test";
     assert.equal(liveCheckoutConfigured(), true);
+    assert.doesNotThrow(() => stripe("live"));
+    process.env.STRIPE_LIVE_SECRET_KEY = "rk_live_restricted_test_fixture";
+    assert.equal(liveCheckoutConfigured(), true);
+    assert.doesNotThrow(() => stripe("live"));
+    process.env.STRIPE_LIVE_SECRET_KEY = "rk_test_wrong_mode";
+    assert.equal(liveCheckoutConfigured(), false);
+    assert.throws(() => stripe("live"), /Live checkout is not configured/);
+    process.env.STRIPE_LIVE_SECRET_KEY = "rk_live_restricted_test_fixture";
     assert.throws(() => stripe("unknown"), /Unknown payment mode/);
     process.env.ORDERS_ENABLED = "false";
     assert.equal(liveCheckoutConfigured(), false);
