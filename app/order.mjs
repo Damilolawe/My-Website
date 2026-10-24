@@ -293,9 +293,10 @@ function draw() {
       "Personal brand":{name:"Your public brand name",headline:"Your signature statement",bio:"Origin story & perspective",projects:"Milestones, ventures & thought leadership",cards:"Highlights — title | impact / story | HTTPS URL",services:"Speaking, partnerships & offerings",experience:"Background and achievements",skills:"Core strengths",media:"Portraits, press images & résumé (optional)",hint:"Lead with your real story, experiences and offers."},
       "Small business":{name:"Public business name",headline:"Customer-focused promise",bio:"The story behind the business",projects:"Case studies & customer experiences",cards:"Featured work — title | customer value | HTTPS URL",services:"Services, offerings & products",experience:"Your experience & qualifications (optional)",skills:"Specialties & value (optional)",media:"Products, team photos & business imagery",hint:"Make it easy to understand what you sell and how customers contact you. Use authentic reviews only."}
     })[input.type];
+    const projectEditorCount = Math.min(12, Math.max(input.template === "folio" ? 3 : 6, input.content.cards?.length || 0));
     const folioProjectFields = hasCustomEditorialMedia(input.template)
       ? '<div class="notice"><h3>Customize the selected projects</h3><p>Each project has its own title, description, link and optional video. Upload the hero image first, followed by the project pictures in order.</p></div>' +
-        Array.from({length:input.template === "folio" ? 3 : 6},(_,i) => i).map(i => {
+        Array.from({length:projectEditorCount},(_,i) => i).map(i => {
           const card = input.content.cards?.[i] || {};
           return '<fieldset class="panel"><legend>Project ' + (i+1) + '</legend>' +
             field('Project title', 'folioTitle'+i, card.title || '') +
@@ -394,7 +395,7 @@ function draw() {
         return Object.fromEntries(fields.map((name,i)=>[name,parts[i]||""]));
       });
       input.content.cards = hasCustomEditorialMedia(input.template)
-        ? Array.from({length:input.template === "folio" ? 3 : 6},(_,i) => i).map(i=>({
+        ? Array.from({length:projectEditorCount},(_,i) => i).map(i=>({
             title: String(f["folioTitle"+i] || ""),
             description: String(f["folioDescription"+i] || ""),
             url: String(f["folioUrl"+i] || ""),
