@@ -43,6 +43,7 @@ export async function fetchPublicTemplate(id, { still = false, signal, type } = 
   // srcdoc inherits the parent document URL as its navigation base. Absolute
   // links back to the marketing site otherwise load a frame-blocked document.
   // Keep same-page section links inside the inert, script-disabled preview.
+  if (typeof DOMParser === "undefined") return markup; // Node-based validation has no DOM.
   const document = new DOMParser().parseFromString(markup, "text/html");
   const canonical = new URL(path, location.origin);
   // Fragment links in srcdoc otherwise resolve against the marketing page URL.
