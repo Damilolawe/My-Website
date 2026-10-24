@@ -11,8 +11,9 @@ test("every one of 42 template identities receives own contrast variables, inclu
     const input=sampleForTemplate(template.id);
     input.design.primary=template.color;
     const html=renderSite(input,{sample:true});
-    assert(html.includes('data-awe-color-system="'+template.id+'"'),template.id+" missing contrast tokens");
-    assert(html.includes('--awe-on-accent:'),template.id+" missing readable text role");
+    if(["runwayml","runwaymulti"].includes(template.id))assert(!html.includes('data-awe-color-system'),"Original Runway source must stay byte-identical");
+    else assert(html.includes('data-awe-color-system="'+template.id+'"'),template.id+" missing contrast tokens");
+    if(!["runwayml","runwaymulti"].includes(template.id))assert(html.includes('--awe-on-accent:'),template.id+" missing readable text role");
     assert(!html.includes('undefined')&&!html.includes('NaN'),template.id+" emitted an invalid style");
     const cap=["folio","liquidmetal","runwayml","runwaymulti","nike","clay","ferrari"].includes(template.id)?200000:256000;
     assert(html.length<=cap,template.id+" exceeded configured HTML length cap");
@@ -24,7 +25,8 @@ test("changing an owner's primary color recalculates contrast text independently
       const input=sampleForTemplate(id);
       input.design.primary=bg;
       const html=renderSite(input,{sample:false});
-      assert(html.includes('--awe-on-accent:'+readableOn(bg)),id+" "+bg+" contrast role did not update");
+      if(["runwayml","runwaymulti"].includes(id))assert(!html.includes("data-awe-color-system"));
+      else assert(html.includes('--awe-on-accent:'+readableOn(bg)),id+" "+bg+" contrast role did not update");
     }
   }
 });
@@ -41,6 +43,7 @@ test("artwork styling and DOM remain unchanged for originals that do not need fo
     const input=sampleForTemplate(id);
     const output=renderSite(input,{sample:true});
     const marker=output.match(/<style data-awe-color-system="[^"]+">([^<]+)<\/style>/);
+    if(["runwayml","runwaymulti"].includes(id)){assert(!marker,"Runway should retain source byte identity");continue;}
     assert(marker,"missing role tokens: "+id);
     assert(!marker[1].includes('!important'),id+" palette has unwanted forced colors");
     assert(output.includes('id="main"'),id+" lost main content");
