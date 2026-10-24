@@ -213,9 +213,9 @@ try {
       if(["afterhours","folio","atelier"].includes(entry.id)){
         if(size.width===360){
           const fold=await page.evaluate(slug=>{
-            const heading=document.querySelector(slug==="folio"?".md-folio-hero h1":slug==="atelier"?".atelier-copy h1":".md-afterhours-hero h1");
-            const art=document.querySelector(slug==="folio"?".md-folio-hero .md-media":slug==="atelier"?".atelier-photo .hero-media":".md-afterhours-hero .md-media");
-            const nav=document.querySelector(".shell-header");
+            const heading=document.querySelector(slug==="folio"?".fe-hero h1":slug==="atelier"?".atelier-copy h1":".md-afterhours-hero h1");
+            const art=document.querySelector(slug==="folio"?".fe-cover":slug==="atelier"?".atelier-photo .hero-media":".md-afterhours-hero .md-media");
+            const nav=document.querySelector(slug==="folio"?".fe-header":".shell-header");
             const rect=el=>{const r=el?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,width:r.width,height:r.height}:null};
             const photoLabel=slug==="atelier"?document.querySelector(".atelier-photo .study-motto"):null;
             const photoCredit=slug==="atelier"?document.querySelector(".atelier-photo .study-credit"):null;
@@ -275,8 +275,8 @@ try {
       await testPage(page,origin+"/templates/"+template+".html",size.name+" template "+template,{waitMs:["afterhours","folio","atelier"].includes(template)?1100:450});
       if(["afterhours","folio","atelier"].includes(template)){
        const firstFold=await page.evaluate(slug=>{
-        const title=document.querySelector(slug==="folio"?".md-folio-hero h1":slug==="afterhours"?".md-afterhours-hero h1":".atelier-copy h1");
-        const media=document.querySelector(slug==="folio"?".md-folio-hero .md-media":slug==="afterhours"?".md-afterhours-hero .md-media":".atelier-photo .hero-media");
+        const title=document.querySelector(slug==="folio"?".fe-hero h1":slug==="afterhours"?".md-afterhours-hero h1":".atelier-copy h1");
+        const media=document.querySelector(slug==="folio"?".fe-cover":slug==="afterhours"?".md-afterhours-hero .md-media":".atelier-photo .hero-media");
         const rect=el=>{const r=el?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,width:r.width,height:r.height}:null};
         return {title:rect(title),media:rect(media),viewport:innerHeight};
       },template);
@@ -303,7 +303,7 @@ try {
     const all=[...document.querySelectorAll(".case-image")].slice(0,4).map(el=>{
       const r=el.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width};
     });
-    const hero=document.querySelector(".hero-variant h1, .fd-hero h1, .rw-hero h1");
+    const hero=document.querySelector(".hero-variant h1, .fd-hero h1, .rw-hero h1, .fe-hero h1");
     const h=hero?.getBoundingClientRect();
     const contact=document.querySelector("#contact .architect-contact-links, #contact .lm-contact-links, #contact .fd-contact, #contact.rw-manifesto");
     const setup=document.querySelector("#contact .contact-setup-note");
@@ -312,10 +312,13 @@ try {
       cards:all,contactText:contact?.textContent?.trim()||setup?.textContent?.trim()||"",
       contactLinks:contact?.querySelectorAll("a").length||0,
       authoredScenes:document.querySelectorAll(".art-scene").length,
-      authoredChapters:document.querySelectorAll(".md-edition-break").length};
+      authoredChapters:document.querySelectorAll(".md-edition-break").length,
+      folioVerified:!!document.querySelector(".fe-cover") && document.querySelectorAll(".fe-project").length>=3 && !!document.querySelector(".fe-process")};
    });
    console.log("NARROW_TEMPLATE",width,id,JSON.stringify(geometry));
-   if(uploadedDesignFor(id)&&(geometry.authoredScenes!==1||geometry.authoredChapters!==1))
+   if(id==="folio"&&!geometry.folioVerified)
+     failures.push("Narrow "+width+" folio: approved editorial cover, projects or process missing");
+   else if(id!=="folio"&&uploadedDesignFor(id)&&(geometry.authoredScenes!==1||geometry.authoredChapters!==1))
      failures.push("Narrow "+width+" "+id+": authored source scene and editorial chapter are missing");
    if(geometry.width>width+2 || geometry.docWidth>width+2){
      const offenders=await page.evaluate(()=>[...document.querySelectorAll("*")]

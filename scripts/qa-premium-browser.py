@@ -20,7 +20,7 @@ IDS = [
 ]
 PROTECTED = ["folio","liquidmetal","runwayml","runwaymulti","nike","clay","ferrari"]
 BASE = "http://127.0.0.1:" + os.environ.get("PORT", "8765")
-SIZES = [("mobile320",320,720),("mobile390",390,844),("desktop",1440,900)]
+SIZES = [("mobile320",320,720),("mobile345",345,760),("mobile360",360,800),("mobile375",375,812),("mobile390",390,844),("desktop",1440,900)]
 JS = r"""() => {
  const h1=document.querySelector('h1');
  const root=document.documentElement, body=document.body;
@@ -39,7 +39,14 @@ JS = r"""() => {
     pageHeight:Math.max(root.scrollHeight,body.scrollHeight),h1:h1?.textContent?.trim()||'',
     renderedSections:document.querySelectorAll('section').length,brokenAnchors,
     textOverflows:over,images:images.length,unloadedImages:blank,
-    upgradeMarker:!!document.querySelector('[data-awe-design-study]')};
+    upgradeMarker:!!document.querySelector('[data-awe-design-study]'),
+    projectRects:[...document.querySelectorAll('.case-image')].slice(0,5).map(n=>{
+      const r=n.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width};}),
+    folio:{headline:!!document.querySelector('.fe-hero h1'),
+      cover:!!document.querySelector('.fe-cover'),
+      projects:document.querySelectorAll('.fe-project').length,
+      process:!!document.querySelector('.fe-process')}};
+
 }"""
 def main():
   findings=[]
@@ -60,6 +67,10 @@ def main():
           if not stats["h1"]:issues.append("missing-h1")
           if stats["scrollWidth"]>w+3:issues.append("horizontal-overflow")
           if stats["brokenAnchors"]:issues.append("broken-nav-anchors")
+          if id in IDS and any(rect["right"]>w+4 or rect["left"]< -5 or rect["width"]>w+5 for rect in stats["projectRects"]):
+            issues.append("clipped-project-image")
+          if id == "folio" and not all((stats["folio"]["headline"],stats["folio"]["cover"],stats["folio"]["projects"]>=3,stats["folio"]["process"])):
+            issues.append("missing-approved-folio-sections")
           if stats["textOverflows"]:issues.append("content-overflows")
           if id in IDS and not stats["upgradeMarker"]:issues.append("missing-upgrade")
           if id in PROTECTED and stats["upgradeMarker"]:issues.append("protected-modified")
