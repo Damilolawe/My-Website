@@ -15,6 +15,7 @@ import {renderArcadeNight} from "./arcade-night.mjs";
 import {directionFor} from "./refero-originals.mjs";
 import {mdHero,mdCSSFor,mdPaletteFor} from "./md-rebuild.mjs";
 import {uploadedDesignFor} from "./uploaded-designs.mjs";
+import {exactGuideCSSFor} from "./exact-design-css.mjs";
 
 /* Static, sandboxable HTML output: no third-party fonts, scripts, cookies or APIs.
  * Keep the whole approved document immutable in awe_versions.html. */
@@ -85,7 +86,7 @@ export function renderPremium(input, options = {}) {
   const page=siteChrome(value,{hero,sections:signature+actualSections,interlude:directionFor(t) ? '' : experienceInterlude(t,c),navIds});
   // Original directions ship a purpose-built, compact stylesheet; legacy templates keep their exact styling.
   const styleBundle=uploadedDesignFor(t)
-    ? theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + (signature ? signatureCSSFor(t) : '') + mdCSSFor(t) + mdPaletteFor(value,{sample})
+    ? theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + (signature ? signatureCSSFor(t) : '') + exactGuideCSSFor(t) + mdCSSFor(t) + mdPaletteFor(value,{sample})
     : theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + exemplarCSS + (signature ? signatureCSSFor(t) : '');
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + styleBundle + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
     (sample ? '<div class="demo-banner">FICTIONAL TEMPLATE DEMO — SAMPLE CONTENT ONLY</div>' : '') +
