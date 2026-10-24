@@ -13,7 +13,7 @@ test("Folio editorial repairs only target the Folio body and preserve native pag
   assert.match(css,/body\.folio #work \.case-spread .case-image/);
   assert.match(css,/body\.folio \.folio-spread figcaption/);
   assert.match(css,/body\.folio \.mdsf-folio \.mdsf-columns/);
-  assert.match(css,/body\.folio \.folio-words h1/);
+  assert.match(css,/body\.folio \.md-folio-hero h1/);
 });
 
 test("Folio public preview uses distinct editorial copy rather than the same layout-spec caption for each plate",()=>{
