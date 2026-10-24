@@ -442,6 +442,19 @@ export function sampleForTemplate(id,purpose){
     preview.experience="";
     preview.skills="";
   }
+  // The public Folio preview is an art-book, not a generic design-spec document.
+  // Keep its editorial identity while avoiding repeated implementation jargon.
+  if(purpose===undefined && t.id==="folio"){
+    preview.name="Folio No. 01";
+    preview.headline="Let your work speak volumes.";
+    preview.heroLabel="ART / IMAGE / OBJECT / VOLUME 001";
+    preview.bio="An independent visual journal exploring the relationship between image, space and the written word.";
+    preview.cards=[
+      {title:"The image",description:"Portraiture, texture and a sense of place.",url:""},
+      {title:"The detail",description:"Letters, materials and the beauty of small choices.",url:""},
+      {title:"The composition",description:"A dialogue between rhythm, whitespace and form.",url:""}
+    ];
+  }
   const content={...sample.content,...preview,projects:"",links:[],photoIds:[],publicEmail:"",testimonials:[]};
   return {type:category,template:t.id,design:{
     primary:uploadedDirection?.accent||freeDirection?.color||t.color,animation:"expressive",
