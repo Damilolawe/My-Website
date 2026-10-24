@@ -5,6 +5,7 @@ on:
     paths:
       - 'scripts/addon-feasibility-qa.mjs'
       - 'scripts/addon-feasibility-browser.mjs'
+      - 'scripts/addon-native-placement-qa.mjs'
       - '.github/workflows/addon-feasibility-qa.yml'
   workflow_dispatch:
 
@@ -33,6 +34,8 @@ jobs:
           npm install --no-save --ignore-scripts playwright-core@1.56.1
       - name: Test safe add-on layout on customer pages (mobile and desktop)
         run: node scripts/addon-feasibility-browser.mjs
+      - name: Probe native placement on all 42 templates and actual CSP restrictions
+        run: node scripts/addon-native-placement-qa.mjs
       - name: Upload detailed feasibility results
         if: always()
         uses: actions/upload-artifact@v4
