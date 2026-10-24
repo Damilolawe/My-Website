@@ -116,7 +116,27 @@
   }
   $('#brief-next').addEventListener('click',()=>{for(const el of $$('input,textarea,select',fields[step])){if(!el.checkValidity()){el.reportValidity();return;}}step=Math.min(2,step+1);showStep();});
   $('#brief-back').addEventListener('click',()=>{step=Math.max(0,step-1);showStep();});
-  $('#brief-form').addEventListener('submit',e=>e.preventDefault());
+  let briefSubmitting=false,briefSent=false;
+  $('#brief-form').addEventListener('submit',async e=>{
+    e.preventDefault();
+    if(step!==2||briefSubmitting||briefSent)return;
+    for(const el of $$('input,textarea,select',fields[0]).concat($$('input,textarea,select',fields[1]))){
+      if(!el.checkValidity()){step=el.closest('[data-step]')===fields[0]?0:1;showStep();el.reportValidity();return;}
+    }
+    const button=$('#send-brief');
+    briefSubmitting=true;button.disabled=true;button.textContent='SENDING YOUR INQUIRY…';
+    feedback.textContent='Sending your brief securely…';
+    try{
+      const {submitInquiry}=await import('./app/submit-inquiry.mjs');
+      const reference=await submitInquiry({name:$('#brief-name').value,email:$('#brief-email').value,project:selectedProject,message:briefText()});
+      briefSent=true;button.textContent='INQUIRY RECEIVED';
+      $('#brief-back').hidden=true;
+      feedback.textContent='Your inquiry was saved and sent to the studio. Reference: '+reference+'. Keep a copy for your records if you wish.';
+    }catch(error){
+      button.disabled=false;button.textContent='TRY SENDING AGAIN ↗︎';
+      feedback.textContent=(error.name==='TimeoutError'?'The request timed out.':error.message||'Unable to submit.')+' Receipt was not confirmed. Check your email or contact the studio before resending if you are unsure.';
+    }finally{briefSubmitting=false;}
+  });
   $('#copy-brief').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(briefText());feedback.textContent='Brief copied. Nothing has been sent.';}catch{const selection=getSelection(),range=document.createRange();range.selectNodeContents($('#brief-summary'));selection.removeAllRanges();selection.addRange(range);feedback.textContent='Select and copy the highlighted brief, or download it below. Nothing has been sent.';}});
   $('#download-brief').addEventListener('click',()=>{const url=URL.createObjectURL(new Blob([briefText()],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='Awe Concepts-Project-Brief.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);feedback.textContent='Brief download prepared. Nothing has been sent.';});
   // Pause background decorative animation while a project file is open.
