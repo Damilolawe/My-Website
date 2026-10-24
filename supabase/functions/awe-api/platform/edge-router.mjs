@@ -4,6 +4,7 @@ import legacySite from '../netlify/functions/site.mjs';
 import webhook from '../netlify/functions/webhook.mjs';
 import {env, json, fail, user, isOwner, rows, insert, patch, owned, id, body, origin, originAllowed, rpc, liveCheckoutConfigured} from './backend.mjs';
 import {normalize, validate, customerOrder} from '../shared/model.mjs';
+import {packageAllowsTemplate} from '../shared/tiers.mjs';
 import {renderSite} from '../shared/render.mjs';
 import {runJobs} from './production.mjs';
 import {approvedSiteManifest} from './public-manifest.mjs';
