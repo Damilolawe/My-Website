@@ -854,3 +854,35 @@ body{background:#f0f1e6;color:#18201a}
  .intro{padding-bottom:23px}
  .intro h1{font-size:clamp(42px,11vw,72px)}
 }
+
+
+/* AWE Express tier-first shopping: uses the existing ink, paper and acid palette. */
+.tier-lead{max-width:820px;margin-bottom:28px}
+.tier-lead h2,.tier-gallery-top h2{font-size:clamp(38px,4.7vw,70px);line-height:1.04;letter-spacing:-.055em;margin:12px 0 18px}
+.tier-lead h2 em{font:italic 400 1em Georgia,serif}
+.tier-lead p{max-width:710px}
+.tier-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:30px 0}
+.tier-choice{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:12px;width:100%;min-width:0;min-height:390px;padding:clamp(17px,2vw,30px);background:#fff;color:var(--ink);border:1px solid #17191736;transition:border-color .18s,transform .18s,box-shadow .18s}
+.tier-choice:hover{transform:translateY(-4px);border-color:var(--ink);box-shadow:0 12px 28px #17191717}
+.tier-choice:focus-visible{outline:3px solid #6262e8}
+.tier-choice[aria-pressed=true]{background:#f0f4d9;border:2px solid var(--ink)}
+.tier-choice-index{font:10px/1.4 ui-monospace,monospace;letter-spacing:.095em;text-transform:uppercase;color:#52564e}
+.tier-choice strong{font-size:clamp(22px,2.3vw,33px);line-height:1;letter-spacing:-.035em}
+.tier-choice-price{font-size:clamp(43px,4vw,66px);font-weight:800;letter-spacing:-.075em;line-height:1}
+.tier-choice-intro{font-size:14px;line-height:1.45;color:#40453d}
+.tier-choice ul{list-style:none;margin:4px 0 16px;padding:0;font-size:13px;line-height:1.5;color:#40453d}
+.tier-choice li{position:relative;padding-left:18px;margin:8px 0}
+.tier-choice li:before{content:"↗︎";position:absolute;left:0;color:var(--ink)}
+.tier-choice-link{display:block;margin-top:auto;width:100%;background:var(--acid);color:var(--ink);padding:13px 10px;font-size:11px;font-weight:800;letter-spacing:.02em;text-align:center}
+.tier-disclaimer{font-size:12px;color:#53574f;max-width:870px;line-height:1.7}
+.tier-gallery-top{display:flex;justify-content:space-between;gap:25px;align-items:end;flex-wrap:wrap}
+.tier-gallery-top>div:first-child{max-width:700px}
+.tier-switches,.purpose-chips{display:flex;flex-wrap:wrap;gap:8px}
+.tier-switch,.purpose-chip{padding:11px 15px;min-height:44px;border:1px solid #1719174d;background:transparent;color:var(--ink);font:700 12px/1.2 Arial,sans-serif}
+.tier-switch[aria-pressed=true],.purpose-chip[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tier-switch:hover,.purpose-chip:hover{border-color:var(--ink)}
+.template-filterbar{border-top:1px solid #17191732;border-bottom:1px solid #17191732;padding:20px 0 14px;margin:24px 0;display:grid;gap:12px}
+.template-filterbar .muted{margin:0}
+#no-template-matches{margin:20px 0}
+@media(max-width:1050px){.tier-choices{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){.tier-choices{grid-template-columns:1fr}.tier-choice{min-height:0}.tier-gallery-top h2{font-size:42px}.tier-switches{width:100%}.tier-switch{flex:1}.purpose-chip{font-size:11px}.tier-lead h2{font-size:clamp(38px,9vw,54px)}}

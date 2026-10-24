@@ -1,4 +1,5 @@
 import { sandboxOrderAllowed } from "../../shared/sandbox-checkout.mjs";
+import { packageAllowsTemplate, packageTier } from "../../shared/tiers.mjs";
 import { checkoutReservationState, checkoutPackageIsValid } from "../../shared/checkout-recovery.mjs";
 import {
   env,
@@ -151,6 +152,7 @@ export default async function (req) {
         !p.termsVersion
       )
         fail("Package details are not ready.", 503);
+      if (!packageAllowsTemplate(p, data.template)) fail("This design requires a higher package tier.", 403);
       if (b.termsVersion !== p.termsVersion || b.consent !== true)
         fail("Review and accept the current package terms.");
       if (
@@ -242,6 +244,7 @@ export default async function (req) {
           );
         }
         const p = o.package_snapshot;
+        if (!packageAllowsTemplate(p, o.input?.template)) fail("This design requires a higher package tier.", 403);
         if (!checkoutPackageIsValid(p))
           fail("Package terms are incomplete; checkout is unavailable.", 503);
         const reservation = checkoutReservationState(o);
@@ -392,6 +395,7 @@ export default async function (req) {
           fail("Supported currencies: usd, eur, gbp, cad, aud.");
         const data = {
           name: text(b.name, 100),
+          tier: ["starter", "signature", "premium"].includes(b.tier) ? b.tier : packageTier(b),
           enabled: b.enabled === true,
           amount: b.amount,
           currency: b.currency,

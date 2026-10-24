@@ -4,6 +4,7 @@ import legacySite from '../netlify/functions/site.mjs';
 import webhook from '../netlify/functions/webhook.mjs';
 import {env, json, fail, user, isOwner, rows, insert, patch, owned, id, body, origin, originAllowed, rpc, liveCheckoutConfigured} from './backend.mjs';
 import {normalize, validate, customerOrder} from '../shared/model.mjs';
+import {packageAllowsTemplate} from '../shared/tiers.mjs';
 import {renderSite} from '../shared/render.mjs';
 import {runJobs} from './production.mjs';
 import {approvedSiteManifest} from './public-manifest.mjs';
@@ -122,6 +123,7 @@ async function dispatch(req) {
       if(!v?.enabled||!Number.isInteger(v.amount)||v.amount<=0||!v.hosting||!v.ownership||!v.revisions||!v.termsVersion)fail('This package is not ready.',503);
       if(b.consent!==true||b.termsVersion!==v.termsVersion)fail('Review the current package terms.');
       if(!(await rows('awe_templates',`id=eq.${data.template}&enabled=eq.true`)).length)fail('This template is unavailable.');
+      if(!packageAllowsTemplate(v,data.template))fail('This design requires a higher package tier.',403);
       changes.package_snapshot={id:pkg.id,...v};
     }
     if(b.version!==o.version)fail('Your draft changed in another tab. Reload it before saving.',409);
