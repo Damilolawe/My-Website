@@ -1,4 +1,5 @@
 import { newTemplates } from "./catalog-20.mjs";
+import { originalDirections, directionFor } from "./refero-originals.mjs";
 export const templates = [
   {
     id: "index",
@@ -43,6 +44,7 @@ export const templates = [
     color: "#7252ce",
   },
   ...newTemplates,
+  ...originalDirections,
 ];
 export const types = [
   "Student résumé",
@@ -347,6 +349,19 @@ export function sampleForTemplate(id,purpose){
       }));
     }
   }
+  const originalDirection=directionFor(t.id);
+  if (originalDirection) {
+    const identity = originalDirection.name + " Studio";
+    preview.name = identity;
+    preview.headline = originalDirection.tag;
+    preview.heroLabel = originalDirection.style + " / " + category;
+    preview.bio = "A fictional sample for " + originalDirection.name + ": a distinct original design concept presenting " + originalDirection.character + " with an authentic visual rhythm.";
+    preview.cards = [
+      {title: "First Impression", description: "An imagined project demonstrating " + originalDirection.style.toLowerCase() + ".", url: ""},
+      {title: "The Working Process", description: "A fictional independent commission with original art direction.", url: ""},
+      {title: "Next Edition", description: "An illustrative case study for this website format.", url: ""}
+    ];
+  }
   const unique = purpose===undefined && !old;
   const motif={atlas:"Think bigger. Build smarter.",terminal:"Hello, future.",orbit:"Ideas without limits.",
     playbill:"This is the beginning.",monologue:"The scene is yours.",portraiture:"More than a face.",
@@ -371,7 +386,7 @@ export function sampleForTemplate(id,purpose){
   const content={...sample.content,...preview,projects:"",links:[],photoIds:[],publicEmail:"",testimonials:[]};
   return {type:category,template:t.id,design:{
     primary:t.color,animation:"expressive",
-    secondary:t.id==="arcade"?"#11120f":"#ece9e0",
+    secondary:t.id==="arcade"?"#11120f":originalDirection ? (["negative","nightgrid","signaldeck","obsidian"].includes(t.id)?"#242431":"#dedbd4") : "#ece9e0",
     appearance:["afterhours","nocturne","terminal","brutalist","arcade"].includes(t.id)?"dark":"light",
     sections:kit.sections
   },content};
