@@ -41,14 +41,14 @@ test("package tier comes from explicit metadata or existing USD price; QA checko
   assert.equal(packageAllowsTemplate({testOnly:true,amount:100,currency:"usd"},"arcade"), true);
 });
 
-test("public experience starts with tiers and purpose becomes a gallery filter", async () => {
+test("public experience starts with tiers and organic designs without audience filters", async () => {
   const code = await readFile(new URL("../app/order.mjs", import.meta.url), "utf8");
   assert(code.includes('"Choose your tier"'));
   assert(code.includes('"Explore templates"'));
   assert(code.includes('data-tier='));
-  assert(code.includes('data-purpose='));
+  assert(!code.includes('data-purpose='));
   assert(code.includes('data-switch-tier='));
-  assert(code.includes('purposeFilter = "All"'));
+  assert(!code.includes('purposeFilter = "All"'));
   assert(code.includes('templateFitsTier(t.id, selectedTier)'));
   assert(code.includes('const p = selectedPackage()'));
   assert(code.includes('What will you use your website for?'));
