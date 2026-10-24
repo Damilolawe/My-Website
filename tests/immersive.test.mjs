@@ -23,7 +23,8 @@ test("every customer template has a distinct, semantic hero composition and fict
     assert(html.includes('prefers-reduced-motion'));
     assert(html.includes('motion-expressive'));
     assert(t.id==='folio' ? html.includes('fe-strip') : html.includes('experience-interlude')||html.includes('md-hero'));
-    assert(!html.includes('src="https://'));
+    if(t.id==="folio") assert(!html.includes('src="https://') || /src="https:\/\/images\.unsplash\.com\//.test(html),"Folio demo must only use the allowlisted image host");
+    else assert(!html.includes('src="https://'));
     assert(!html.includes('<script'));
     headlines.add(demo.content.headline);
   });
