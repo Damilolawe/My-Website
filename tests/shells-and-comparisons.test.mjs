@@ -11,6 +11,7 @@ test("every customer design has a separate outer shell and page ordering",()=>{
   assert.equal(new Set(Object.values(shellIdentities)).size,27);
   for(const t of templates){
     const html=renderSite(sampleForTemplate(t.id),{sample:true});
+    if(t.id==="runwayml") {assert(html.includes('class="rw-header"'));assert(html.includes('class="rw-footer"'));assert(html.includes('id="main"'));continue;}
     if(freeDesignFor(t.id)){
       assert(html.includes('class="fd-header"'),"Missing standalone "+t.id+" header");
       assert(html.includes('class="fd-footer"'),"Missing standalone "+t.id+" footer");
