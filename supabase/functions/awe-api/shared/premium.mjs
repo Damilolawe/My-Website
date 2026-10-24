@@ -82,6 +82,10 @@ export function renderPremium(input, options = {}) {
   const hero=directionHero(value,heroImage,ctaTarget) || experienceHero(t,{c,value,heroImage,ctaTarget});
   const signature = signatureMarkup(value,navIds,{sample,assetBase,assetSuffix});
   const page=siteChrome(value,{hero,sections:signature+actualSections,interlude:directionFor(t) ? '' : experienceInterlude(t,c),navIds});
+  // Original directions ship a purpose-built, compact stylesheet; legacy templates keep their exact styling.
+  const styleBundle=directionFor(t)
+    ? theme + css + fullPageCSS + shellCSS + paletteCSS + directionCSSFor(t)
+    : theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + exemplarCSS + (signature ? signatureCSSFor(t) : '');
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + exemplarCSS + (directionFor(t) ? directionCSSFor(t) : '') + (signature ? signatureCSSFor(t) : '') + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
     (sample ? '<div class="demo-banner">FICTIONAL TEMPLATE DEMO — SAMPLE CONTENT ONLY</div>' : '') +
     '<a href="#main" class="skip">Skip to content</a>' + page + '</body></html>';
