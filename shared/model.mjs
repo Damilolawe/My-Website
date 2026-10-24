@@ -51,6 +51,9 @@ export const templates = [
   ...freeDesignTemplates,
   {id:"runwayml",name:"RunwayML — Single Page",style:"Cinematic editorial / dark",tag:"The original single-page cinematic website.",color:"#FFFFFF",tier:"starter",reference:"VoltAgent design-md",recommended:[]},
   {id:"runwaymulti",name:"RunwayML — Multi Page",style:"Cinematic editorial / five pages",tag:"Five cinematic chapters: Home, Research, Work, Studio and Journal.",color:"#FFFFFF",tier:"signature",reference:"VoltAgent design-md",recommended:[],previewOnly:true},
+  {id:"nike",name:"Nike",style:"Sports commerce / editorial performance",tag:"Photography-led athletic campaign and retail gallery.",color:"#111111",tier:"signature",reference:"VoltAgent design-md",recommended:[]},
+  {id:"clay",name:"Clay",style:"Warm claymation / colorful SaaS",tag:"Sculptural software storytelling and playful data cards.",color:"#FF4D8B",tier:"signature",reference:"VoltAgent design-md",recommended:[]},
+  {id:"ferrari",name:"Ferrari",style:"Automotive cinema / red on graphite",tag:"Immersive motorsport editorial and performance collection.",color:"#DA291C",tier:"signature",reference:"VoltAgent design-md",recommended:[]},
 ];
 export const types = [
   "Student résumé",
@@ -336,6 +339,17 @@ export function sampleForTemplate(id,purpose){
   // RunwayML stays a standalone cinematic editorial demo in every browsing category.
   if(id==="runwayml"||id==="runwaymulti")return {type:"Creative portfolio",template:id,design:{primary:"#ffffff",secondary:"#1a1a1a",appearance:"dark",animation:"expressive",sections:["about","work","contact"]},content:{...sample.content,name:"FRAME STUDIES",headline:"Everything begins with a vision.",bio:"A place where images become ideas, and ideas become new worlds.",heroLabel:"A visual world / Studies in possibility",cards:[{title:"The light beyond the frame",description:"A study in movement, atmosphere and visual possibility.",url:""},{title:"What happens after dark",description:"Portraits of an imagined world, told in fragments.",url:""},{title:"The future is a canvas",description:"A visual experiment in perspective and scale.",url:""}],services:[],testimonials:[],links:[],photoIds:[],publicEmail:""}};
 
+  // Canonical source-authored demos: never turn these three references into
+  // fake resumes, biographies, or unrelated business sample sites.
+  const originalTrio={
+    nike:{name:"STRIDE DIVISION",headline:"THE WORLD IS YOUR TRACK.",heroLabel:"Motion / Collection 001",bio:"Performance is a point of view. An independent sports editorial about the art of movement.",cards:[{title:"Velocity / 01",description:"Engineered for the moments that move us.",url:""},{title:"Everyday Flight",description:"Lightness from the first step forward.",url:""},{title:"Beyond the Finish",description:"Built around a relentless rhythm.",url:""}]},
+    clay:{name:"FIELDWORK",headline:"Make room for the extraordinary.",heroLabel:"Ideas, connected beautifully",bio:"A playful studio of connections. Find the signal, bring the pieces together, and turn information into momentum.",cards:[{title:"Discover",description:"One place for every promising lead.",url:""},{title:"Enrich",description:"Better context, one useful detail at a time.",url:""},{title:"Activate",description:"Give every workflow room to grow.",url:""}]},
+    ferrari:{name:"ROSSO MOTION",headline:"BEYOND THE ORDINARY.",heroLabel:"A study in velocity",bio:"When precision meets imagination, every line has purpose. An independent cinematic exploration of driving and design.",cards:[{title:"The Form",description:"A silhouette shaped by the pursuit of motion.",url:""},{title:"The Drive",description:"The road is a conversation between machine and human.",url:""},{title:"The Legacy",description:"Every detail carries the story forward.",url:""}]}
+  };
+  if(Object.hasOwn(originalTrio,id)){
+    const guide=originalTrio[id];
+    return {type:"Creative portfolio",template:id,design:{primary:{nike:"#111111",clay:"#FF4D8B",ferrari:"#DA291C"}[id],secondary:{nike:"#F5F5F5",clay:"#FFFAF0",ferrari:"#303030"}[id],appearance:id==="ferrari"?"dark":"light",animation:"expressive",sections:["about","work","contact"]},content:{...sample.content,...guide,services:[],links:[],photoIds:[],testimonials:[],publicEmail:"",education:"",experience:"",skills:""}};
+  }
   const t=templates.find(x=>x.id===id)||templates[0];
   const category=types.includes(purpose)?purpose:(originalByTemplate[t.id]||freeDesignFor(t.id)?.recommended?.[0]||"Professional portfolio");
   const kit=purposeDemos[category];
