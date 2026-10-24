@@ -22,3 +22,16 @@ test("Public content uses studio identity instead of owner biography",async()=>{
  assert((await read("index.html")).includes("Awe Concepts creates"));
  assert((await read("config.js")).includes("contact@aweconcepts.com"));
 });
+test("privacy disclosure matches current inquiry and account transport",async()=>{
+ const privacy=await read("privacy.html");
+ const client=await read("app/service-client.mjs");
+ const guide=await read("docs/FIREBASE_SETUP.md");
+ assert(client.includes("window.sessionStorage"));
+ assert(client.includes('credentials: "omit"'));
+ assert(privacy.includes("homepage brief and public contact form"));
+ assert(privacy.includes("access token and refresh token"));
+ assert(privacy.includes("session storage"));
+ assert(!privacy.includes("secure session cookie supports sign-in"));
+ assert(guide.includes("awe-digital"));
+ assert(!guide.includes("Create a project"));
+});
