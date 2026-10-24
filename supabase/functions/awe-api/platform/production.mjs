@@ -1,6 +1,7 @@
 import { rows, rpc, patch, insert, id, env, fail } from "./backend.mjs";
 import { renderSite } from "../shared/render.mjs";
 import { validate } from "../shared/model.mjs";
+import { premiumStudyIds } from "../shared/premium-art-direction-35.mjs";
 import { verifyPublication } from "./verify-publication.mjs";
 export async function saveDraft(order, input, actor = null) {
   const data = validate(input);
@@ -14,8 +15,9 @@ export async function saveDraft(order, input, actor = null) {
     )
       fail("Only explicitly selected portfolio images may appear publicly.");
   const html = renderSite(data);
+  const maxLength = premiumStudyIds.includes(data.template) ? 256000 : 200000;
   if (
-    html.length > 200000 ||
+    html.length > maxLength ||
     !/<h1(?:\s|>)/i.test(html) ||
     !html.includes("viewport")
   )
