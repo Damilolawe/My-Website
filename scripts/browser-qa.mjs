@@ -161,6 +161,15 @@ try {
       await selection.click();
       assert.equal(await selection.getAttribute("aria-pressed"),"true","Selected design must update state: "+world);
     }
+    await page.locator("#worlds-search").fill("after hours");
+    assert.equal(await page.locator("#worlds-choices .worlds-choice:visible").count(),1,
+      "The theater search should narrow the complete catalog");
+    assert.equal(await page.locator("#worlds-results").textContent(),"1 of "+templates.length+" designs");
+    await page.locator("#worlds-choices .worlds-choice:visible").click();
+    await page.locator("#worlds-loading").waitFor({state:"hidden",timeout:18000});
+    assert.equal(await page.locator("#worlds-name").textContent(),"After Hours");
+    await page.locator("#worlds-search").fill("");
+    assert.equal(await page.locator("#worlds-choices .worlds-choice:visible").count(),templates.length);
   }
   if(size.width<=768){
     const heroFit=await page.evaluate(()=>{
@@ -231,7 +240,10 @@ try {
             failures.push("Mobile Folio: compact editorial masthead too tall");
         }
         await page.waitForTimeout(1100);
-        await page.screenshot({path:"qa-browser-artifacts/"+size.name+"-"+entry.id+".png",fullPage:false});
+      }
+      if(size.width===360){
+        await page.waitForTimeout(450);
+        await page.screenshot({path:"qa-browser-artifacts/template-phone-"+entry.id+".jpg",type:"jpeg",quality:76,fullPage:false});
       }
       // Exercise a real section link, not just existence of href/#target.
       // Test each template's ACTUAL navigation. The Runway cinematic edition
@@ -259,9 +271,10 @@ try {
     }
   }
   if(size.width===1440){
-    for(const template of ["afterhours","folio","atelier"]){
-      await testPage(page,origin+"/templates/"+template+".html",size.name+" flagship "+template,{waitMs:1100});
-      const firstFold=await page.evaluate(slug=>{
+    for(const {id:template} of templates){
+      await testPage(page,origin+"/templates/"+template+".html",size.name+" template "+template,{waitMs:["afterhours","folio","atelier"].includes(template)?1100:450});
+      if(["afterhours","folio","atelier"].includes(template)){
+       const firstFold=await page.evaluate(slug=>{
         const title=document.querySelector(slug==="folio"?".md-folio-hero h1":slug==="afterhours"?".md-afterhours-hero h1":".atelier-copy h1");
         const media=document.querySelector(slug==="folio"?".md-folio-hero .md-media":slug==="afterhours"?".md-afterhours-hero .md-media":".atelier-photo .hero-media");
         const rect=el=>{const r=el?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,width:r.width,height:r.height}:null};
@@ -272,7 +285,8 @@ try {
         failures.push("Desktop flagship "+template+": headline is below the first fold");
       if(!firstFold.media||firstFold.media.width<230||firstFold.media.height<270)
         failures.push("Desktop flagship "+template+": image area is undersized");
-      await page.screenshot({path:"qa-browser-artifacts/"+size.name+"-"+template+".png",fullPage:false});
+      }
+      await page.screenshot({path:"qa-browser-artifacts/template-desktop-"+template+".jpg",type:"jpeg",quality:76,fullPage:false});
     }
   }
   await context.close();
