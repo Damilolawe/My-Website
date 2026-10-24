@@ -233,7 +233,7 @@ export const freeDesignTemplates = Object.freeze([
     "fonts_url": "https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap"
   },
   {
-    "id": "gazette",
+    "id": "gazettebroadside",
     "name": "Gazette Broadside",
     "style": "Vintage newspaper editorial",
     "tag": "Stories worth reading.",

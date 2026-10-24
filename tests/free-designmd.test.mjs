@@ -5,7 +5,7 @@ import {freeDesignTemplates} from "../shared/free-designmd.mjs";
 import {templates,sampleForTemplate} from "../shared/model.mjs";
 import {renderSite} from "../shared/render.mjs";
 import {minimumTier,templateFitsTier} from "../shared/tiers.mjs";
-const ids=["acidchrome","voidstage","studiomargaux","neomemphis","monobrutalist","vestigefolio","botanicalpress","limepress","gazette","risograph"];
+const ids=["acidchrome","voidstage","studiomargaux","neomemphis","monobrutalist","vestigefolio","botanicalpress","limepress","gazettebroadside","risograph"];
 test("Ten original DESIGN.md files are preserved and appended without disturbing older entries",async()=>{
  assert.deepEqual(templates.slice(-10).map(t=>t.id),ids);
  assert.deepEqual(freeDesignTemplates.map(t=>t.id),ids);

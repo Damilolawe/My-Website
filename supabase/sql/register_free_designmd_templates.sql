@@ -8,6 +8,6 @@ insert into public.awe_templates (id,enabled,label) values
 ('vestigefolio',true,'Vestige Folio'),
 ('botanicalpress',true,'Botanical Press'),
 ('limepress',true,'Limepress Fintech'),
-('gazette',true,'Gazette Broadside'),
+('gazettebroadside',true,'Gazette Broadside'),
 ('risograph',true,'Risograph Press')
 on conflict (id) do nothing;
