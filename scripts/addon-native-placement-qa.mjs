@@ -87,12 +87,12 @@ try{
  page.on("console",msg=>messages.push(msg.text()));
  await page.route("https://addon.invalid/**",async route=>{externalRequests++;await route.fulfill({status:200,body:"fake"});});
  await page.goto("http://127.0.0.1:"+server.address().port+"/",{waitUntil:"domcontentloaded"});
- await page.locator("#external button").click();
+ await page.locator("#external button").evaluate(button=>button.click());
  await page.waitForTimeout(450);
  webForms.externalFormBlockedByCsp=messages.some(x=>/form-action|Refused to send form|violates.*Content Security Policy/i.test(x))&&externalRequests===0;
  webForms.externalFormRequests=externalRequests;
  webForms.cspConsoleSample=messages.filter(x=>/form-action|Content Security Policy/i.test(x)).slice(0,2);
- await page.locator("#internal button").click();
+ await page.locator("#internal button").evaluate(button=>button.click());
  await page.waitForTimeout(350);
  webForms.internalFormSubmissionWithoutService404=(await page.locator("body").innerText()).includes("No form receiver deployed");
  await page.close();
