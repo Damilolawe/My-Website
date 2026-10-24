@@ -9,7 +9,7 @@ const motionShared = `
 .trio-nike .nike-product,.trio-nike .nike-story-copy,.trio-clay .clay-panel,.trio-clay .clay-closing>div:first-child,.trio-ferrari .ferrari-feature,.trio-ferrari .ferrari-specs article{
 animation:trio-reveal 1s linear both;animation-timeline:view();animation-range:entry 0% cover 35%
 }}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.trio-site *,.trio-site *::before,.trio-site *::after{animation:none!important;animation-timeline:auto!important;transition:none!important;transform:none!important;translate:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.trio-site *,.trio-site *::before,.trio-site *::after{animation:none!important;animation-timeline:auto!important;transition:none!important;transform:none!important;translate:none!important}}
 .trio-site.motion-none *,.trio-site.motion-none *::before,.trio-site.motion-none *::after{animation:none!important;animation-timeline:auto!important;transition:none!important;transform:none!important;translate:none!important}
 `;
 const nikeMotion = `
