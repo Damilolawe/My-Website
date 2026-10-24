@@ -23,7 +23,23 @@ function verifyStaticPage(html, version, assets) {
   }
   return names;
 }
-export async function verifyPublication({siteUrl, publicApiUrl, version, assets=[], fetcher=fetch}) {
+async function verifyApprovedSubpages(fetcher,siteUrl,version,requiredPages) {
+  const base=siteUrl.replace(/\\/$/, "");
+  for (const name of requiredPages) {
+    if (!["research.html","work.html","studio.html","journal.html"].includes(name))
+      fail("Unexpected approved document.");
+    const response=await fetcher(base+"/"+name,{
+      method:"GET",redirect:"error",cache:"no-store",signal:AbortSignal.timeout(15000)
+    });
+    if (!response.ok) fail("Multi-page website is awaiting deployment.");
+    const html=await response.text();
+    if (!/^<!doctype html>/i.test(html.slice(0,60)) ||
+        !html.includes('<meta name="awe-approved-version" content="'+version+'">') ||
+        !/<h1(?:\\s|>)/i.test(html) || /<script\\b|<iframe\\b/i.test(html))
+      fail("Multi-page publication verification failed.");
+  }
+}
+export async function verifyPublication({siteUrl, publicApiUrl, version, assets=[], requiredPages=[], fetcher=fetch}) {
   const published=await fetcher(siteUrl,{
     method:"GET",redirect:"follow",cache:"no-store",signal:AbortSignal.timeout(15000)
   });
@@ -38,6 +54,7 @@ export async function verifyPublication({siteUrl, publicApiUrl, version, assets=
       });
       if(!response.ok)fail("Published website asset verification failed.");
     }
+    await verifyApprovedSubpages(fetcher,siteUrl,version,requiredPages);
     return {url:siteUrl,version,mode:"direct"};
   }
   const html=await published.text();
@@ -58,8 +75,10 @@ export async function verifyPublication({siteUrl, publicApiUrl, version, assets=
     if(!approved.ok)fail("Website approval has been revoked.");
     const data=await approved.json();
     if(data?.version!==version)fail("Published site no longer matches owner approval.");
+    await verifyApprovedSubpages(fetcher,siteUrl,version,requiredPages);
     return {url:siteUrl,version,mode:"static"};
   }
+  if(requiredPages.length) fail("Multi-page website is awaiting static publication.");
   if(!html.includes('data-awe-public-viewer="v1"'))
     fail("The public website host is not running an approved viewer or static page.");
   const approved=await fetcher(publicApiUrl,{
