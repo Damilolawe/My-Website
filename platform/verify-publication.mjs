@@ -1,3 +1,4 @@
+import { hasUnsafeExecutableMarkup } from "./safe-video-frames.mjs";
 // Verify the owner-approved website before sending a customer delivery email.
 // Works with standalone Firebase static HTML, the older sandboxed Firebase
 // viewer, and the original direct HTML serving path.
@@ -7,7 +8,7 @@ function verifyStaticPage(html, version, assets) {
   const marker='<meta name="awe-approved-version" content="'+version+'">';
   if(!UUID.test(version) || !html.includes(marker) ||
       !/^<!doctype html>/i.test(html.slice(0,60)) ||
-      /<iframe\b|<script\b/i.test(html))return null;
+      hasUnsafeExecutableMarkup(html))return null;
   const names=[];
   for(const id of assets) {
     if(!UUID.test(id))fail("Published static asset reference is invalid.");
@@ -35,7 +36,7 @@ async function verifyApprovedSubpages(fetcher,siteUrl,version,requiredPages) {
     const html=await response.text();
     if (!/^<!doctype html>/i.test(html.slice(0,60)) ||
         !html.includes('<meta name="awe-approved-version" content="'+version+'">') ||
-        !/<h1(?:\s|>)/i.test(html) || /<script\b|<iframe\b/i.test(html))
+        !/<h1(?:\s|>)/i.test(html) || hasUnsafeExecutableMarkup(html))
       fail("Multi-page publication verification failed.");
   }
 }

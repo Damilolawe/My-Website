@@ -5,6 +5,7 @@
 import { mkdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { hasUnsafeExecutableMarkup } from "../platform/safe-video-frames.mjs";
 
 export const DEFAULT_API = "https://hxxplkirfsewqsxodngv.supabase.co/functions/v1/awe-api/public";
 const SLUG = /^[a-z0-9-]{3,90}$/;
@@ -35,10 +36,11 @@ async function request(url,fetcher,accept="application/json") {
   return res;
 }
 function versionedHtml(html,version,canonical) {
-  assert(typeof html==="string" && html.length<=MAX_HTML &&
+  const maxHtml = typeof html==="string" && html.includes('data-awe-design-study=') ? 256_000 : MAX_HTML;
+  assert(typeof html==="string" && html.length<=maxHtml &&
     /^<!doctype html>/i.test(html.slice(0,60)) &&
     /<\/head>/i.test(html) && /<h1(?:\s|>)/i.test(html), "malformed generated HTML");
-  assert(!/<(?:script|iframe|object|embed|base)\b|\bon(?:load|error|click)=|javascript:/i.test(html),
+  assert(!hasUnsafeExecutableMarkup(html),
     "unexpected executable HTML");
   assert(!/FICTIONAL TEMPLATE DEMO|SAMPLE CONTENT ONLY/i.test(html),
     "sample pages cannot be published as customer sites");

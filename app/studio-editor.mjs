@@ -1,5 +1,6 @@
 import { esc } from "/shared/model.mjs";
 import { renderSite } from "/shared/render.mjs";
+import { premiumStudyIds } from "/shared/premium-art-direction-35.mjs";
 
 /* Owner-only studio enhancement. All edits remain browser-local until the existing
  * authenticated Save & Regenerate action creates a new PRIVATE version. */
@@ -22,7 +23,7 @@ export function enhanceEditor(form, original) {
     '<label class="field">Hero eyebrow / label<input name="heroLabel" maxlength="110" value="' + esc(original.content.heroLabel || "") + '"></label>' +
     '<label class="field">Primary button text<input name="ctaLabel" maxlength="45" value="' + esc(original.content.ctaLabel || "Explore my work") + '"></label>' +
 
-    (original.template === "folio"
+    (original.template === "folio" || premiumStudyIds.includes(original.template)
       ? '<label class="field">Hero video URL (YouTube, Vimeo or HTTPS MP4/WebM)<input name="heroVideoUrl" maxlength="800" value="' + esc(original.content.heroVideoUrl || "") + '"></label>'
       : "") +
     '<h4>Arrange sections</h4><p class="muted">Select the section checkboxes above, then reorder the sections below.</p><div id="studio-sections" class="studio-arrangement"></div>' +
@@ -108,7 +109,7 @@ export function enhanceEditor(form, original) {
       heroAlignment:f.get("heroAlignment"),density:f.get("density"),corners:f.get("corners"),
       sections:f.getAll("sections")},
       content:{...base.content,heroLabel:f.get("heroLabel"),ctaLabel:f.get("ctaLabel"),
-        heroVideoUrl:base.template==="folio" ? String(f.get("heroVideoUrl")||"") : base.content.heroVideoUrl,
+        heroVideoUrl:(base.template==="folio" || premiumStudyIds.includes(base.template)) ? String(f.get("heroVideoUrl")||"") : base.content.heroVideoUrl,
         cards:state.cards.filter(x=>x.title?.trim()||x.description?.trim()),
         services:state.services.filter(x=>x.title?.trim()||x.description?.trim()),
         testimonials:state.testimonials.filter(x=>x.quote?.trim())}};
