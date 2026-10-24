@@ -33,6 +33,7 @@ import { saveDraft, runJobs } from "../../platform/production.mjs";
 import { inspectUpload } from "../../platform/uploads.mjs";
 import { previewResume } from "../../platform/resume.mjs";
 import { exportApproved } from "../../platform/export.mjs";
+import { renderApprovedRunwayPages, RUNWAY_PAGES } from "../../shared/runway-customer-pages.mjs";
 function owner(u) {
   assertOwner(u, env().OWNER_USER_ID);
 }
@@ -471,7 +472,11 @@ export default async function (req) {
             )
           )[0];
           if (!v) fail("No draft yet.", 404);
-          return new Response(v.html, {
+          const requestedPage = new URL(req.url).searchParams.get("page") || "index.html";
+          if (!RUNWAY_PAGES.includes(requestedPage)) fail("Unknown preview page.", 400);
+          const preview = v.input?.template === "runwaymulti"
+            ? renderApprovedRunwayPages(v.input)[requestedPage] : v.html;
+          return new Response(preview, {
             headers: {
               "Content-Type": "text/html",
               "Cache-Control": "private, no-store",
