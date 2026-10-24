@@ -6,8 +6,8 @@ import {renderSite} from "../shared/render.mjs";
 import {shellIdentities} from "../shared/site-shells.mjs";
 
 test("every customer design has a separate outer shell and page ordering",()=>{
-  assert.equal(Object.keys(shellIdentities).length,26);
-  assert.equal(new Set(Object.values(shellIdentities)).size,26);
+  assert.equal(Object.keys(shellIdentities).length,27);
+  assert.equal(new Set(Object.values(shellIdentities)).size,27);
   for(const t of templates){
     const html=renderSite(sampleForTemplate(t.id),{sample:true});
     assert(html.includes('class="shell-header shell-'+t.id+'"'),"Missing "+t.id+" header");
