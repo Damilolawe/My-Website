@@ -150,7 +150,8 @@ export default async function (req) {
         !p.hosting ||
         !p.ownership ||
         !p.revisions ||
-        !p.termsVersion
+        !p.termsVersion ||
+        (!p.testOnly && !p.refunds)
       )
         fail("Package details are not ready.", 503);
       if (!packageAllowsTemplate(p, data.template)) fail("This design requires a higher package tier.", 403);
@@ -404,13 +405,14 @@ export default async function (req) {
           hosting: text(b.hosting, 2000),
           ownership: text(b.ownership, 2000),
           revisions: text(b.revisions, 2000),
+          refunds: text(b.refunds, 2000),
           delivery: "awe-hosted",
           filesIncluded: b.filesIncluded === true,
           termsVersion: id(),
         };
         if (
           data.enabled &&
-          (!data.hosting || !data.ownership || !data.revisions)
+          (!data.hosting || !data.ownership || !data.revisions || !data.refunds)
         )
           fail("Fill all business terms before enabling.");
         await sb("/rest/v1/awe_packages?on_conflict=id", {
