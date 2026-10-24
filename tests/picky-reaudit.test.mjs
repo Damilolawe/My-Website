@@ -5,7 +5,7 @@ import {renderSite} from "../shared/render.mjs";
 import {sampleForTemplate,templates,types} from "../shared/model.mjs";
 const read=p=>readFile(new URL("../"+p,import.meta.url),"utf8");
 test("No fictional template promises empty contact; a real configured email stays clickable",()=>{
- for(const purpose of types)for(const t of templates.filter(x=>x.id!=="runwayml")){
+ for(const purpose of types)for(const t of templates.filter(x=>x.id!=="runwayml"&&x.id!=="runwaymulti")){
   const cfg=sampleForTemplate(t.id,purpose);
   const html=renderSite(cfg,{sample:true});
   assert(html.includes('id="contact"'),t.id+"/"+purpose+" missing contact");

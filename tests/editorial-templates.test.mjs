@@ -10,7 +10,7 @@ import {freeDesignFor} from "../shared/free-designmd.mjs";
 test("All twenty fictional template demos use a photography-forward composition",()=>{
  for(const t of templates){
   const html=renderSite(sampleForTemplate(t.id),{sample:true});
-  if(t.id==="runwayml"){
+  if(t.id==="runwayml"||t.id==="runwaymulti"){
     assert(html.includes('class="rw-site'),"RunwayML independent cinematic composition missing");
   }else if(t.id==="liquidmetal"){
     assert(html.includes("liquidmetal-hero"),"Liquid Metal independent composition missing");
@@ -35,7 +35,7 @@ test("Customer sites have no third party photo loading or stock imagery",()=>{
   const html=renderSite(sampleForTemplate(t.id));
   assert(!html.includes("images.unsplash.com"),t.id+" leaked sample photography");
   assert(!html.includes('<div class="study-shot '),t.id+" leaked sample elements");
-  if(t.id==="runwayml"){
+  if(t.id==="runwayml"||t.id==="runwaymulti"){
     assert(html.includes('class="rw-site'),"RunwayML independent cinematic composition missing");
   }else if(t.id==="liquidmetal"){
     assert(html.includes("liquidmetal-hero"),"Liquid Metal customer source architecture missing");

@@ -68,11 +68,12 @@ for (const t of templates) {
   for (const type of types) {
     const dir = "dist/templates/" + typeSlugs[type];
     await mkdir(dir, {recursive:true});
-    const purposeful = {...config,type,content:sampleForTemplate(t.id,type).content,
-      design:{...config.design,sections:sampleForTemplate(t.id,type).design.sections}};
-    await writeFile(dir + "/" + t.id + ".html",renderSite(purposeful,{sample:true}));
+    // Legacy purpose-specific URLs remain live as compatibility aliases, but
+    // all of them display the SAME source-authored design. No fake resumes,
+    // businesses, or category-dependent layout rewrites.
+    await writeFile(dir + "/" + t.id + ".html",renderSite(config,{sample:true}));
     await writeFile(dir + "/" + t.id + "--still.html",renderSite({
-      ...purposeful,design:{...purposeful.design,animation:"none"}
+      ...config,design:{...config.design,animation:"none"}
     },{sample:true}));
   }
 }

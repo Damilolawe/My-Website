@@ -49,7 +49,8 @@ export const templates = [
   ...newTemplates,
   ...originalDirections,
   ...freeDesignTemplates,
-  {id:"runwayml",name:"RunwayML",style:"Cinematic editorial / dark",tag:"A film-grade visual experience.",color:"#FFFFFF",tier:"signature",reference:"VoltAgent design-md",recommended:[]},
+  {id:"runwayml",name:"RunwayML — Single Page",style:"Cinematic editorial / dark",tag:"The original single-page cinematic website.",color:"#FFFFFF",tier:"starter",reference:"VoltAgent design-md",recommended:[]},
+  {id:"runwaymulti",name:"RunwayML — Multi Page",style:"Cinematic editorial / five pages",tag:"Five cinematic chapters: Home, Research, Work, Studio and Journal.",color:"#FFFFFF",tier:"signature",reference:"VoltAgent design-md",recommended:[],previewOnly:true},
 ];
 export const types = [
   "Student résumé",
@@ -333,7 +334,7 @@ const galleryIdentities = {
 const galleryStories=Object.freeze({"index":["Making complexity feel effortless.","An imaginary interface designer building tools around clear human decisions.",["Signal Map","Community Table","The Clarity System"]],"folio":["Stories in the margins.","An independent fictional editorial artist assembling magazines, still photographs, and personal essays.",["Issue / 04","Notes from Elsewhere","The Last Page"]],"still":["Observe the ordinary.","A fictional still-life photographer exploring ceramic objects, texture, quiet light, and negative space.",["Morning Objects","Collected Forms","Space Between"]],"afterhours":["Something cinematic is happening.","A fictional film director exploring nocturnal portraiture, slow-burn stories, and dramatic performance.",["Midnight Take","The Long Way Home","Reel / 003"]],"signal":["Culture needs volume.","An imagined poster collective making album campaigns, disruptive typography, and bold music imagery.",["NOISE / 01","Broadcast Club","High Voltage"]],"daylight":["Everyday can feel extraordinary.","A fictional neighborhood creative shop designing friendly packaging and inclusive community experiences.",["Sunday Rituals","Little Joys","Open Door"]],"atlas":["Research has a visual language.","An imaginary field researcher mapping places, discoveries, and public information.",["Field Notes / 08","Open Coordinates","Research Index"]],"terminal":["Ideas worth building.","A fictional software developer exploring accessible tools, command interfaces, and offline-first thinking.",["Console / 01","Protocol Zero","Open Source Lab"]],"orbit":["Move beyond the dashboard.","An imaginary digital product team creating playful tools for complicated human journeys.",["Mission Control","Near / Far","Next Horizon"]],"playbill":["An entrance changes everything.","A fictional performance troupe exploring stagecraft, backstage photography, and theater identities.",["Act One","House Lights","The Ensemble"]],"monologue":["The stage belongs to the voice.","A fictional actor and writer combining close-up portraits, scripts, and intimate performance.",["Scene / 02","Off Book","A Quiet Line"]],"portraiture":["Look again.","A fictional portrait photographer composing human expression through sculptural light and color.",["Faces / 12","Soft Focus","Chromatic Portraits"]],"contactsheet":["Edit with intention.","A fictional image-maker building a visual narrative from raw contact sheets and precise sequencing.",["Frames / 24","Untitled Light","Proof / Selects"]],"atelier":["Designed down to the stitch.","A fictional fashion atelier studying textures, tailoring, and restrained editorial presentation.",["Collection / 01","Thread Studies","Between Seasons"]],"museum":["Give the work room.","A fictional independent gallery collecting unexpected sculptures and inviting new perspectives.",["Room / 06","The Archive","Open Gallery"]],"brutalist":["The rules are optional.","An imaginary graphic design studio challenging conventions with raw collage and graphic systems.",["Rough Draft","CUT / PASTE","NO RULES"]],"nocturne":["Less can mean more.","A fictional art director shaping intimate luxury experiences through materials and shadow.",["Velvet Hours","Private Study","The Signature"]],"foundry":["Craft that stays with you.","A fictional small workshop building thoughtful goods, process stories, and practical brand systems.",["Workshop / 03","Northline Goods","Built to Keep"]],"bloom":["Room to grow.","An imagined floristry studio combining organic arrangements, seasonal color, and hospitality.",["First Bloom","The Greenhouse","Gathered"]],"ledger":["Make it make sense.","A fictional advisory practice translating complex data into clear, calm decisions.",["Annual Outlook","Good Measure","Decision Notes"]]});
 export function sampleForTemplate(id,purpose){
   // RunwayML stays a standalone cinematic editorial demo in every browsing category.
-  if(id==="runwayml")return {type:"Creative portfolio",template:id,design:{primary:"#ffffff",secondary:"#1a1a1a",appearance:"dark",animation:"expressive",sections:["about","work","contact"]},content:{...sample.content,name:"FRAME STUDIES",headline:"Everything begins with a vision.",bio:"A place where images become ideas, and ideas become new worlds.",heroLabel:"A visual world / Studies in possibility",cards:[{title:"The light beyond the frame",description:"A study in movement, atmosphere and visual possibility.",url:""},{title:"What happens after dark",description:"Portraits of an imagined world, told in fragments.",url:""},{title:"The future is a canvas",description:"A visual experiment in perspective and scale.",url:""}],services:[],testimonials:[],links:[],photoIds:[],publicEmail:""}};
+  if(id==="runwayml"||id==="runwaymulti")return {type:"Creative portfolio",template:id,design:{primary:"#ffffff",secondary:"#1a1a1a",appearance:"dark",animation:"expressive",sections:["about","work","contact"]},content:{...sample.content,name:"FRAME STUDIES",headline:"Everything begins with a vision.",bio:"A place where images become ideas, and ideas become new worlds.",heroLabel:"A visual world / Studies in possibility",cards:[{title:"The light beyond the frame",description:"A study in movement, atmosphere and visual possibility.",url:""},{title:"What happens after dark",description:"Portraits of an imagined world, told in fragments.",url:""},{title:"The future is a canvas",description:"A visual experiment in perspective and scale.",url:""}],services:[],testimonials:[],links:[],photoIds:[],publicEmail:""}};
 
   const t=templates.find(x=>x.id===id)||templates[0];
   const category=types.includes(purpose)?purpose:(originalByTemplate[t.id]||freeDesignFor(t.id)?.recommended?.[0]||"Professional portfolio");
@@ -417,12 +418,36 @@ export function sampleForTemplate(id,purpose){
     Object.assign(preview,{name,headline,bio,heroLabel:"Competitive culture / "+category,
       cards:projects.map(title=>({title,description:"A fictional concept for the Arcade Night template preview.",url:""}))});
   }
+  // Canonical gallery previews use each design guide's identity and visual
+  // language. Do not force MD-sourced designs into sample resumes, businesses,
+  // fake biographies, or purpose-dependent story layouts.
+  if(purpose===undefined && (originalDirection||uploadedDirection||freeDirection)){
+    const source=uploadedDirection||freeDirection||originalDirection;
+    preview.name=source.name||t.name;
+    preview.headline=source.tag||t.tag;
+    preview.heroLabel=source.style||source.layout||t.style;
+    preview.bio=source.description||source.character||t.style;
+    const traits=[
+      source.layout||source.style||"Composition",
+      source.character||source.fonts?.display||"Typography",
+      source.description||source.style||"Visual language"
+    ];
+    preview.cards=traits.map((detail,i)=>({
+      title:["Composition","Type and detail","Visual language"][i],
+      description:String(detail).slice(0,320),
+      url:""
+    }));
+    preview.services=[];
+    preview.education="";
+    preview.experience="";
+    preview.skills="";
+  }
   const content={...sample.content,...preview,projects:"",links:[],photoIds:[],publicEmail:"",testimonials:[]};
   return {type:category,template:t.id,design:{
     primary:uploadedDirection?.accent||freeDirection?.color||t.color,animation:"expressive",
     secondary:(t.id==="liquidmetal"?"#15181D":uploadedDirection?.surface||freeDirection?.colors.surface)||(t.id==="arcade"?"#11120f":originalDirection ? (["negative","nightgrid","signaldeck","obsidian"].includes(t.id)?"#242431":"#dedbd4") : "#ece9e0"),
     appearance:t.id==="liquidmetal" ? "dark" : freeDirection ? (["acidchrome","voidstage"].includes(t.id)?"dark":"light") : uploadedDirection ? (["afterhours","signal","orbit","monologue","nocturne","nightgrid","signaldeck","obsidian"].includes(t.id)?"dark":"light") : (["afterhours","nocturne","terminal","brutalist","arcade"].includes(t.id)?"dark":"light"),
-    sections:kit.sections
+    sections:purpose===undefined && (originalDirection||uploadedDirection||freeDirection) ? ["about","work","contact"] : kit.sections
   },content};
 }
 export function customerOrder(o) {

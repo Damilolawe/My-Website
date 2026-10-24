@@ -11,7 +11,7 @@ const levels = Object.freeze(Object.fromEntries(tiers.map((t, index) => [t.id, i
 const minimums = Object.freeze({
   index: "starter", daylight: "starter", atlas: "starter",
   terminal: "starter", ledger: "starter", bloom: "starter",
-  runwayml: "signature",
+  runwayml: "starter", runwaymulti: "signature",
   liquidmetal: "signature",
   folio: "signature", still: "signature", afterhours: "signature",
   signal: "signature", orbit: "signature", playbill: "signature",
@@ -39,5 +39,8 @@ export function templateFitsTier(templateId, selectedTier) {
   return Boolean(minimum && tierLevel(selectedTier) >= tierLevel(minimum));
 }
 export function packageAllowsTemplate(pkg, templateId) {
+  // A multi-document customer publishing pipeline has not yet shipped. Public
+  // previews may advertise the Signature design, but checkout must not sell it.
+  if(templateId==="runwaymulti") return false;
   return pkg?.testOnly === true || templateFitsTier(templateId, packageTier(pkg));
 }

@@ -24,8 +24,8 @@ export function previewMessage(message) {
 export async function fetchPublicTemplate(id, { still = false, signal, type } = {}) {
   // Never use input data as URLs, and never fetch customer content.
   if (!TEMPLATE_IDS.includes(id)) throw new Error("Unknown template.");
-  const prefix = type && typeSlugs[type] ? typeSlugs[type] + "/" : "";
-  const path = "/templates/" + prefix + id + (still ? "--still" : "") + ".html";
+  // A template has one canonical authored demo. Audience filters never rewrite its story.
+  const path = "/templates/" + id + (still ? "--still" : "") + ".html";
   const response = await fetch(path, {
     signal, credentials: "same-origin", mode: "same-origin",
     headers: { Accept: "text/html" },
