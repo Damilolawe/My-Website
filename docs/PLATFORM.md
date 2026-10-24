@@ -1,5 +1,7 @@
 # AWE CONCEPTS — platform and launch guide
 
+> **Historical implementation record (October 22, 2026).** The Netlify setup steps, six-template count, cookie session description, missing-Supabase claim and untested-Stripe claim below are superseded. For the current Firebase Hosting and Supabase architecture, read [README.md](../README.md), [FIREBASE_SETUP.md](FIREBASE_SETUP.md) and the source. Do not use this document to configure production or infer current checkout readiness.
+
 Updated October 22, 2026. This is a working implementation with local verification, not a claim that paid commerce is live.
 
 ## What is finished in code
