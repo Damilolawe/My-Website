@@ -40,8 +40,12 @@ export function templateFitsTier(templateId, selectedTier) {
   return Boolean(minimum && tierLevel(selectedTier) >= tierLevel(minimum));
 }
 export function packageAllowsTemplate(pkg, templateId) {
-  // A multi-document customer publishing pipeline has not yet shipped. Public
-  // previews may advertise the Signature design, but checkout must not sell it.
-  if(templateId==="runwaymulti") return false;
+  // Five-page publishing exists only for the checked, supported Runway layout.
+  // Never sell a single-page template as a five-page site or vice versa.
+  if (pkg?.delivery === "awe-multipage") {
+    return pkg?.tier === "signature" && pkg?.pageCount === 5 &&
+      templateId === "runwaymulti";
+  }
+  if (templateId === "runwaymulti") return false;
   return pkg?.testOnly === true || templateFitsTier(templateId, packageTier(pkg));
 }
