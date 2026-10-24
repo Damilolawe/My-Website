@@ -13,7 +13,8 @@ test("Ten MD guides now produce ten independent source-native page chapters",()=
   const html=renderSite(sampleForTemplate(d.id),{sample:true});
   assert(html.includes('class="fd-native fd-native-'+d.id+'"'),d.id+" missing authored scene");
   assert(html.includes('data-architecture="'),d.id+" missing original architecture");
-  assert(html.includes('href="#contact"'),d.id+" missing accessible destination");
+  assert(html.includes('href="#work"'),d.id+" missing genuine work destination");
+  assert(!html.includes('href="#contact"'),d.id+" links to empty contact");
   assert(html.includes("prefers-reduced-motion:reduce"),d.id+" missing motion control");
   assert(html.includes(d.colors.neutral),d.id+" missing primary source canvas");
   assert(!html.includes("<script"),d.id+" executable code in static preview");
