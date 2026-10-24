@@ -7,11 +7,14 @@ import {uploadedDesignFor} from "../shared/uploaded-designs.mjs";
 
 const origin="https://aweconcepts.com";
 const viewports=[
-  {name:"iPhone-390",width:390,height:844,mobile:true},
+  {name:"Narrow-320",width:320,height:700,mobile:true},
   {name:"Android-360",width:360,height:800,mobile:true},
+  {name:"iPhone-390",width:390,height:844,mobile:true},
+  {name:"Wide-phone-430",width:430,height:932,mobile:true},
   {name:"Tablet-portrait",width:768,height:1024,mobile:true},
   {name:"Tablet-landscape",width:1024,height:768,mobile:false},
   {name:"Desktop-1440",width:1440,height:900,mobile:false},
+  {name:"Wide-desktop-1920",width:1920,height:1080,mobile:false},
 ];
 const browser=await chromium.launch({channel:"chrome",headless:true,args:["--disable-dev-shm-usage","--no-sandbox"]});
 const failures=[];
@@ -174,6 +177,22 @@ try {
     console.log("MOBILE_HERO_CLEARANCE",size.name,JSON.stringify(heroFit));
   }
   await page.screenshot({path:"qa-browser-artifacts/"+size.name+"-homepage.png",fullPage:false});
+  if(size.width===390){
+    // Walk the public brief without writing a production inquiry. The final
+    // action must be explicit, and return contact details must be required.
+    await page.locator("#brief-description").fill("I need a portfolio to show recent creative work.");
+    await page.locator("#brief-next").click();
+    await page.locator("#brief-next").click();
+    assert.match(await page.locator("#brief-step-label").textContent(),/02 \/ 03/,
+      "The brief must not advance without return contact details");
+    await page.locator("#brief-name").fill("Browser QA");
+    await page.locator("#brief-email").fill("browser-qa@example.test");
+    await page.locator("#brief-next").click();
+    assert.equal(await page.locator("#send-brief").isVisible(),true,
+      "The review step needs an explicit send action");
+    assert.match(await page.locator("#brief-summary").textContent(),/Browser QA/);
+    await page.screenshot({path:"qa-browser-artifacts/"+size.name+"-inquiry-review.png",fullPage:false});
+  }
   await testPage(page,origin+"/order.html",size.name+" builder",{waitMs:300});
   await testPage(page,origin+"/account.html",size.name+" account",{waitMs:250});
   await testPage(page,origin+"/admin.html",size.name+" owner login",{waitMs:250});

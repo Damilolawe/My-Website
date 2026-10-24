@@ -23,7 +23,7 @@ jobs:
         run: |
           google-chrome --version
           npm install --no-save --ignore-scripts playwright-core@1.56.1
-      - name: Verify all responsive public layouts and 20 template previews
+      - name: Verify responsive public layouts and the current template catalog
         run: node scripts/browser-qa.mjs
       - name: Upload browser screenshots
         if: always()
