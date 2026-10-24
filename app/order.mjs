@@ -269,6 +269,7 @@ function draw() {
     const update = () => {
       const f = new FormData($("#design"));
       input.design = {
+        ...input.design,
         ...Object.fromEntries(f),
         sections: f.getAll("sections"),
       };
