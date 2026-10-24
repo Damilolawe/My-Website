@@ -12,7 +12,7 @@ const details=(c)=>[0,1,2].map(i=>({
 export function mdSourceFeature(value){
  const d=uploadedDesignFor(value.template);if(!d)return "";
  const id=d.id,c=value.content,records=details(c),brand=E(c.name),head=E(c.headline),desc=E(c.bio||d.description);
- const header='<header><span>EDITION / 001</span><span>'+brand+'</span><span>DESIGN STUDY</span></header>';
+ const header='<header><span>'+brand+'</span></header>';
  const item=(i)=>'<div class="mdsf-item"><strong>'+records[i].title+'</strong><small>'+records[i].description+'</small></div>';
  let content="";
  switch(id){
