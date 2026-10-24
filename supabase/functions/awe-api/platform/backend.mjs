@@ -125,11 +125,19 @@ export function origin(req) {
   if (!originAllowed(req)) fail("Request origin rejected.", 403);
 }
 // Live checkout is opt-in; connected Stripe alone never opens public ordering.
+// Server-only key validation: standard (sk_) and least-privilege restricted (rk_)
+// Stripe keys work equally for Checkout; the key mode must match the payment mode.
+function validStripeKey(key, mode) {
+  if (typeof key !== "string") return false;
+  return mode === "live"
+    ? (key.startsWith("sk_live_") || key.startsWith("rk_live_"))
+    : (key.startsWith("sk_test_") || key.startsWith("rk_test_"));
+}
 export function liveCheckoutConfigured() {
   const settings = env();
   return settings.LIVE_CHECKOUT_ENABLED === "true" &&
     settings.ORDERS_ENABLED === "true" &&
-    settings.STRIPE_LIVE_SECRET_KEY?.startsWith("sk_live_") === true &&
+    validStripeKey(settings.STRIPE_LIVE_SECRET_KEY, "live") &&
     settings.STRIPE_LIVE_WEBHOOK_SECRET?.startsWith("whsec_") === true;
 }
 export function stripe(mode = "test") {
@@ -137,7 +145,7 @@ export function stripe(mode = "test") {
   const settings = env();
   const live = mode === "live";
   const key = live ? settings.STRIPE_LIVE_SECRET_KEY : settings.STRIPE_SECRET_KEY;
-  if (typeof key !== "string" || !key.startsWith(live ? "sk_live_" : "sk_test_"))
+  if (!validStripeKey(key, mode))
     fail(live ? "Live checkout is not configured." : "Test checkout is not configured.", 503);
   return new Stripe(key, { maxNetworkRetries: 2, timeout: 15000 });
 }
