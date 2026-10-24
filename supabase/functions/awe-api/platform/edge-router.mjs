@@ -6,6 +6,7 @@ import {env, json, fail, user, isOwner, rows, insert, patch, owned, id, body, or
 import {normalize, validate, customerOrder} from '../shared/model.mjs';
 import {packageAllowsTemplate} from '../shared/tiers.mjs';
 import {renderSite} from '../shared/render.mjs';
+import {renderApprovedRunwayPages} from '../shared/runway-customer-pages.mjs';
 import {runJobs} from './production.mjs';
 import {approvedSiteManifest} from './public-manifest.mjs';
 
@@ -67,7 +68,24 @@ async function dispatch(req) {
     const response=await legacySite(relocate(req,'/sites/'+path.slice(7)));
     if(response.ok && (response.headers.get('content-type')||'').includes('text/html')) {
       const html=(await response.text()).replaceAll('src="/sites/',`src="${env().SUPABASE_URL}/functions/v1/awe-api/public/`);
-      return json({html,version:response.headers.get('x-awe-version')});
+      const version=response.headers.get('x-awe-version');
+      const slug=path.slice(7);
+      // The legacy site endpoint has already verified the immutable version's
+      // owner approval. Only after its successful approval check may multi-page
+      // output be generated. Never serve saved drafts or editable order.input.
+      if(/^[a-z0-9-]{3,90}$/.test(slug) && /^[a-f0-9-]{36}$/i.test(version||'')){
+        const published=(await rows('awe_orders',
+          'slug=eq.'+slug+'&public_version=eq.'+version+'&select=id&limit=1'))[0];
+        if(published){
+          const v=(await rows('awe_versions',
+            'id=eq.'+version+'&order_id=eq.'+published.id+'&select=input&limit=1'))[0];
+          if(v?.input?.template==='runwaymulti'){
+            const pages=renderApprovedRunwayPages(v.input);
+            return json({html:pages['index.html'],pages,version},200,{'Cache-Control':'no-store'});
+          }
+        }
+      }
+      return json({html,version});
     }
     return response;
   }

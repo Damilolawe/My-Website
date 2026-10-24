@@ -106,7 +106,7 @@ test("studio-approved ZIP export references actual JPEG/PNG/WebP asset extension
  assert(edge.includes('["image/png", "png"]'));
  assert(edge.includes('["image/webp", "webp"]'));
  assert(!edge.includes('assets/" + aid + ".webp"'));
- assert(edge.includes('exportedHtml.includes(\'src="/api/assets/\')'));
+ assert(edge.includes("html.includes('src=\"/api/assets/')"));
  assert(edge.includes("awe_approvals"));
  assert(edge.includes("o.public_version"));
  assert(edge.includes("public_allowed=eq.true"));
