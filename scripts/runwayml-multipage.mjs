@@ -79,8 +79,48 @@ export async function buildRunwayMultipage(outDir="dist") {
   const footer=getMatch(base,/<footer class="rw-footer">[\s\S]*?<\/footer>/);
   const imgs=[...new Set([...base.matchAll(/<img src="([^"]+)"/g)].map(x=>x[1]))];
   if(imgs.length<6)throw Error("RunwayML demo imagery changed; check preview before releasing multipage experiment");
+  // Curated standard Unsplash stock photographs, not Runway assets.
+  // Store verified copies on our own Firebase origin so gallery frames never
+  // depend solely on third-party runtime image requests. No image is imported
+  // from a customer's private uploads or from the proprietary Runway website.
+  const additionalStock=[
+    "photo-1695132681148-eb1c7c38782d",
+    "photo-1634985037947-559e7092284f",
+    "photo-1518837695005-2083093ee35b",
+    "photo-1470770841072-f978cf4d019e",
+    "photo-1497436072909-60f362e1d4b1",
+    "photo-1483347756197-71ef80e95f73",
+    "photo-1451187580459-43490279c0fa",
+    "photo-1500534623283-312aade485b7"
+  ].map(id=>"https://images.unsplash.com/"+id+"?auto=format&fit=crop&w=1450&q=76");
+  const allImages=[...imgs,...additionalStock];
+  const stockDir=path.join(outDir,"assets","runway-stock");
+  await mkdir(stockDir,{recursive:true});
+  const srcs=await Promise.all(allImages.map(async(url,i)=>{
+    const local="/assets/runway-stock/frame-"+String(i+1).padStart(2,"0")+".jpg";
+    try{
+      const u=new URL(url);
+      if(u.hostname!=="images.unsplash.com")throw Error("Untrusted stock host");
+      const req=new URL(u.href);
+      req.searchParams.set("fm","jpg");
+      req.searchParams.set("w","1450");
+      req.searchParams.set("q","76");
+      const response=await fetch(req,{signal:AbortSignal.timeout(15000)});
+      if(!response.ok||!(response.headers.get("content-type")||"").startsWith("image/"))throw Error("Unavailable stock image "+response.status);
+      const bytes=new Uint8Array(await response.arrayBuffer());
+      if(bytes.length<3000||bytes.length>4500000)throw Error("Unexpected stock image size");
+      await writeFile(path.join(stockDir,path.basename(local)),bytes);
+      return local;
+    }catch(e){
+      // A temporary stock CDN failure must not take the entire business offline.
+      // Keep the licensed stock URL as a runtime fallback for the demo only.
+      return url;
+    }
+  }));
+  const localImages=srcs;
+
   function pic(index,loading="lazy"){
-    return '<div class="rw-picture"><img src="'+safe(imgs[index%imgs.length])+'" alt="Original cinematic landscape study, frame '+(index+1)+'" loading="'+loading+'"></div>';
+    return '<div class="rw-picture"><img src="'+safe(localImages[index%localImages.length])+'" alt="Original cinematic landscape study, frame '+(index+1)+'" loading="'+loading+'"></div>';
   }
   const overline=(num,title)=>'<span class="rw-multi-kicker">'+num+' / '+title+'</span>';
   const link=(text,route)=>'<a class="rw-text-link" href="'+linkFor(route)+'">'+safe(text)+' ↗︎</a>';
@@ -128,7 +168,8 @@ export async function buildRunwayMultipage(outDir="dist") {
     workStory.map((story,i)=>'<a class="rw-article" href="#story-'+(i+1)+'">'+pic((i+1)%6)+'<div class="rw-article-meta"><span>Journal / 0'+(i+1)+'</span><span>FRAME STUDIES</span></div><h3>'+safe(story[0])+'</h3><p>'+safe(story[1])+'</p></a>').join('')+
     '</div></section>'+
     workStory.map((story,i)=>'<section class="rw-multi-essay rw-inner" id="story-'+(i+1)+'"><div>'+overline("0"+(i+1),"Journal")+'<h2>'+safe(story[0])+'</h2></div><div><p>'+safe(story[1])+'</p><p>Each new scene begins with an observation. We change the distance, the time of day, and the frame. What remains is an image that invites a second look.</p>'+pic((i+2)%6)+'</div></section>').join('')+close;
-  const sampleHome=base.replace('</head>','<meta name="robots" content="noindex,nofollow"></head>');
+  let sampleHome=base.replace('</head>','<meta name="robots" content="noindex,nofollow"></head>');
+  for(let i=0;i<imgs.length;i++)sampleHome=sampleHome.replaceAll(imgs[i],localImages[i]);
   const home=rewriteLinks(sampleHome).replace('</footer>','<p class="rw-multi-test rw-inner">MULTI-PAGE EXPERIMENT · <a href="/templates/runwayml.html">COMPARE THE ORIGINAL SINGLE-PAGE TEMPLATE</a></p></footer>');
   const pages=[
     ["index.html",home],
