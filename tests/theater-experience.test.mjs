@@ -16,8 +16,8 @@ test("All 20 demos have distinct fictional identities in every purpose",()=>{
       headlines.add(sample.content.headline);
       assert(renderSite(sample,{sample:true}).includes('FICTIONAL TEMPLATE DEMO'));
     }
-    assert.equal(names.size,26);
-    assert.equal(headlines.size,26);
+    assert.equal(names.size,27);
+    assert.equal(headlines.size,27);
   }
 });
 test("Gallery theater maintains accurate device rendering and in-place template switching",async()=>{
