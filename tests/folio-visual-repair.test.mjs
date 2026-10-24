@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
 import {sampleForTemplate} from "../shared/model.mjs";
 
-const css = await readFile(new URL("../shared/collection-edition.mjs",import.meta.url),"utf8");
+const css = await readFile(new URL("../shared/folio-visual-fixes.mjs",import.meta.url),"utf8");
 
 test("Folio editorial repairs only target the Folio body and preserve native page architecture",()=>{
   assert.match(css,/FOLIO — October 2026 visual QA/);
