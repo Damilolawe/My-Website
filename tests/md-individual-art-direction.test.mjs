@@ -16,7 +16,7 @@ test("Every original uploaded Markdown design now has its own authored scene and
   const chapter=authoredBeat(value);
   assert(scene.includes("art-scene-"+dir.id),dir.id+" missing dedicated visual stage");
   assert(chapter.includes("md-edition-"+dir.id),dir.id+" missing dedicated chapter");
-  assert(artDirectionCSS.includes(".art-"+dir.id) || artDirectionCSS.includes(".md-edition-"+dir.id),dir.id+" missing tailored CSS");
+  assert(artDirectionCSS.includes("body."+dir.id+" .md-edition-break") || artDirectionCSS.includes(".md-edition-"+dir.id),dir.id+" missing tailored CSS");
   assert(!scene.includes('class="md-art"'),dir.id+" regressed to generic tilted-ring sculpture");
   assert(!scene.includes("<script"),dir.id+" unauthorized active content");
   scenes.add(scene);
