@@ -127,23 +127,20 @@ function draw() {
   if (step === 1) {
     const offered = (catalog.templates || templates)
       .filter(t => templateFitsTier(t.id, selectedTier));
-    const matchesFilter = t => purposeFilter === "All" || recommendedFor(t, purposeFilter);
+    const matchesFilter = t => true; // All template designs remain organic.
     const visible = offered.filter(matchesFilter);
     const active = visible.find(t => t.id === input.template) || visible[0] || offered[0];
     if (active && !visible.some(t => t.id === input.template)) setTemplate(active.id);
-    const purposeButtons = ["All", ...types].map(type => '<button type="button" class="purpose-chip" data-purpose="' +
-      esc(type) + '" aria-pressed="' + String(type === purposeFilter) + '">' +
-      esc(type === "Student résumé" ? "Student" : type === "Professional portfolio" ? "Professional" : type === "Creative portfolio" ? "Creative" : type === "Small business" ? "Business" : type) + '</button>').join("");
+    const purposeButtons = ""; // Template visuals are no longer rewritten by audience category.
     const tierButtons = tiers.map(t => '<button type="button" class="tier-switch" data-switch-tier="' + t.id +
       '" aria-pressed="' + String(t.id === selectedTier) + '">' + esc(t.name) + '</button>').join("");
     const demoPath = (id) => id==="runwaymulti" ? "/experiments/runwayml-multipage/" : "/templates/" + encodeURIComponent(id) + ".html";
-    const choice = (t,i) => '<article class="template-card template-poster '+(input.template===t.id?'chosen':'')+'" data-poster="'+esc(t.id)+'"><button type="button" class="template-select" data-template="'+esc(t.id)+'" aria-pressed="'+String(input.template===t.id)+'"><span class="poster-art poster-'+esc(t.id)+'" style="--tile:'+esc(t.color)+'"><span class="poster-num">'+String(i+1).padStart(2,'0')+'</span><strong>'+esc(t.name)+'</strong><span class="poster-symbol" aria-hidden="true"></span><span class="poster-style">'+esc(t.style)+(recommendedFor(t,input.type)?' · RECOMMENDED':'')+'</span></span><span class="poster-meta"><strong>'+esc(t.tag)+'</strong><span>'+(input.template===t.id?'SELECTED ✓︎':'EXPLORE DIRECTION ↗︎')+'</span></span></button></article>';
+    const choice = (t,i) => '<article class="template-card template-poster '+(input.template===t.id?'chosen':'')+'" data-poster="'+esc(t.id)+'"><button type="button" class="template-select" data-template="'+esc(t.id)+'" aria-pressed="'+String(input.template===t.id)+'"><span class="poster-art poster-'+esc(t.id)+'" style="--tile:'+esc(t.color)+'"><span class="poster-num">'+String(i+1).padStart(2,'0')+'</span><strong>'+esc(t.name)+'</strong><span class="poster-symbol" aria-hidden="true"></span><span class="poster-style">'+esc(t.style)+''+'</span></span><span class="poster-meta"><strong>'+esc(t.tag)+'</strong><span>'+(input.template===t.id?'SELECTED ✓︎':'EXPLORE DIRECTION ↗︎')+'</span></span></button></article>';
     el.innerHTML = '<div class="tier-gallery-top"><div><p class="eyebrow">02 / FIND YOUR DESIGN</p><h2>' +
       esc(tiers.find(t => t.id === selectedTier)?.name || "Your") +
-      ' templates</h2><p class="muted">Your package includes designs at this level and below. Use filters to find a style that fits your project.</p></div>' +
+      ' templates</h2><p class="muted">Your package includes designs at this level and below. Explore the designs as they were authored, without résumé or business examples.</p></div>' +
       '<div class="tier-switches" aria-label="Change your tier">' + tierButtons + '</div></div>' +
-      '<div class="template-filterbar"><span class="eyebrow">FILTER BY WEBSITE TYPE</span>' +
-      '<div class="purpose-chips" role="group" aria-label="Website type filters">' + purposeButtons + '</div>' +
+      '<div class="template-filterbar"><span class="eyebrow">EXPLORE THE ORIGINAL DESIGNS</span>' +
       '<p class="muted" id="template-count" aria-live="polite">' + visible.length + ' of ' + offered.length + ' available designs</p></div>' +
       '<div class="experience-picker-heading"><div><p class="eyebrow">ORIGINAL DESIGN DIRECTIONS</p><h2>Don’t pick a color.<br><em>Pick a feeling.</em></h2><p class="muted">Explore real, scrollable example websites. The people and projects shown are fictional.</p></div><div class="experience-picker-index" aria-hidden="true"><strong></strong><small>AN ORIGINAL STARTING POINT</small></div></div>' +
       '<div class="experience-theater'+(theaterPreferredMode==='mobile'?' is-mobile':'')+'" data-active="'+esc(active.id)+'">' +
