@@ -12,6 +12,7 @@ test("every customer design has a separate outer shell and page ordering",()=>{
   for(const t of templates){
     const html=renderSite(sampleForTemplate(t.id),{sample:true});
     if((t.id==="runwayml"||t.id==="runwaymulti")) {assert(html.includes('class="rw-header"'));assert(html.includes('class="rw-footer"'));assert(html.includes('id="main"'));continue;}
+    if(["nike","clay","ferrari"].includes(t.id)){assert(html.includes("class=\""+t.id+"-header\""));assert(html.includes("class=\"trio-footer\""));assert(html.includes('id="main"'));assert(html.includes("aria-label=\"Section navigation\""));continue;}
     if(freeDesignFor(t.id)){
       assert(html.includes('class="fd-header"'),"Missing standalone "+t.id+" header");
       assert(html.includes('class="fd-footer"'),"Missing standalone "+t.id+" footer");
@@ -48,6 +49,7 @@ test("purpose-aware pages preserve specialized content with each outer shell",()
     for(const t of templates){
       const html=renderSite(sampleForTemplate(t.id,purpose),{sample:true});
       if((t.id==="runwayml"||t.id==="runwaymulti")) {assert(html.includes('class="rw-site'));assert(html.includes('rw-article-grid'));assert(html.includes('motion-expressive'));continue;}
+      if(["nike","clay","ferrari"].includes(t.id)){assert(html.includes("class=\"trio-site trio-"+t.id));assert(html.includes('id="work"'));assert(html.includes("motion-expressive"));continue;}
       if(freeDesignFor(t.id)){
         assert(html.includes('class="fd-site fd-'+t.id),t.id+" lost standalone page identity");
         assert(html.includes('class="fd-grid"'),t.id+" needs distinct projects");
