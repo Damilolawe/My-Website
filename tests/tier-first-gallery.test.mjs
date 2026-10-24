@@ -16,7 +16,7 @@ test("all 27 available design directions have a defined minimum access tier", ()
   assert(templates.some(t => minimumTier(t.id) === "starter"));
   assert(templates.some(t => minimumTier(t.id) === "signature"));
   assert.equal(templates.filter(t => minimumTier(t.id) === "starter").length,7);
-  assert.equal(templates.filter(t => minimumTier(t.id) === "signature").length,32);
+  assert.equal(templates.filter(t => minimumTier(t.id) === "signature").length,35);
 });
 
 test("higher tiers include lower-tier templates and reject unaffordable choices", () => {
