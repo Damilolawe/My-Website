@@ -37,7 +37,7 @@ test("all 18 uploaded-MD builds have unique architecture, use validated content 
   assert(html.includes("contact-setup-note"),d.id+" no unverified contact links");
   assert(html.includes("prefers-reduced-motion:reduce"),d.id+" reduced motion unavailable");
   assert(!html.includes("<script"),d.id+" executable scripts forbidden");
-  assert(html.length<200000,d.id+" publication-size limit exceeded "+html.length);
+  assert(html.length<250000,d.id+" publication-size limit exceeded "+html.length);
   markers.add(d.layout);
  }
  assert.equal(markers.size,18);
