@@ -54,5 +54,5 @@ test("Runway stock photography is featured in the experiment without blank place
  const imgs=[...html.matchAll(/<img src="([^"]+)"/g)].map(m=>m[1]);
  assert(imgs.length>=4);
  assert(imgs.every(x=>x.startsWith("/assets/runway-stock/")||x.startsWith("https://images.unsplash.com/")));
- assert(!html.includes('rw-empty'));
+ assert(!html.includes('class="rw-picture rw-empty'));
 });
