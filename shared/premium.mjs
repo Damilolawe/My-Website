@@ -13,6 +13,7 @@ import {paletteCSS,paletteInline} from "./theme-palette.mjs";
 import {signatureMarkup,signatureCSSFor} from "./creative-signatures.mjs";
 import {renderArcadeNight} from "./arcade-night.mjs";
 import {renderLiquidMetal} from "./liquid-metal.mjs";
+import {renderRunwayML} from "./runwayml.mjs";
 import {freeDesignFor} from "./free-designmd.mjs";
 import {renderFreeDesign} from "./free-designmd-render.mjs";
 import {directionFor} from "./refero-originals.mjs";
@@ -45,6 +46,7 @@ export function renderPremium(input, options = {}) {
   const value = normalize(input);
   if (value.template === "arcade") return renderArcadeNight(value, options);
   if (value.template === "liquidmetal") return renderLiquidMetal(value, options);
+  if (value.template === "runwayml") return renderRunwayML(value, options);
   if (freeDesignFor(value.template)) return renderFreeDesign(value, options);
   const c = value.content, d = value.design, t = value.template;
   const items = c.cards.length ? c.cards : cardFallback(c.projects);

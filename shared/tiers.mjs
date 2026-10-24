@@ -11,6 +11,7 @@ const levels = Object.freeze(Object.fromEntries(tiers.map((t, index) => [t.id, i
 const minimums = Object.freeze({
   index: "starter", daylight: "starter", atlas: "starter",
   terminal: "starter", ledger: "starter", bloom: "starter",
+  runwayml: "signature",
   liquidmetal: "signature",
   folio: "signature", still: "signature", afterhours: "signature",
   signal: "signature", orbit: "signature", playbill: "signature",
