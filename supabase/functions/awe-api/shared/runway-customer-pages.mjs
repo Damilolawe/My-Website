@@ -48,7 +48,7 @@ export function renderApprovedRunwayPages(input,options={}){
  const intro=(eyebrow,title,description,imageIndex)=>{
    return '<section class="rw-hero"><div class="rw-picture">'+(c.photoIds[imageIndex]?'<img src="'+E(opts.assetBase+c.photoIds[imageIndex]+opts.assetSuffix)+'" alt="'+E(c.name)+' featured image" loading="eager">':'')+'</div><div class="rw-hero-content"><div><p class="rw-eyebrow">'+E(eyebrow)+'</p><h1 id="rw-h1">'+E(title)+'</h1></div><div class="rw-hero-aside"><p>'+E(description)+'</p><a class="rw-text-link" href="#chapter">Explore this chapter ↓︎</a></div></div></section>';
  };
- const opening=navLinks(original).replaceAll('href="./" aria-label','href="./" aria-label');
+ const opening=navLinks(original).replace('href="./" class="rw-skip"','href="#main" class="rw-skip"');
  function wrap(page,hero,chapter){
    return safeDoc(page,hero+'<section class="rw-subchapter rw-inner" id="chapter">'+chapter+'</section>',header,footer,stylesheet,cp);
  }
