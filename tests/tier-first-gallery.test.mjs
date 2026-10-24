@@ -4,8 +4,8 @@ import { readFile } from "node:fs/promises";
 import { templates } from "../shared/model.mjs";
 import { tiers, minimumTier, tierLevel, packageTier, templateFitsTier, packageAllowsTemplate } from "../shared/tiers.mjs";
 
-test("all 21 available design directions have a defined minimum access tier", () => {
-  assert.equal(templates.length, 21);
+test("all 40 available design directions have a defined minimum access tier", () => {
+  assert.equal(templates.length, 40);
   assert.deepEqual(tiers.map(t => t.id), ["starter","signature","premium"]);
   const ids = templates.map(t => t.id);
   assert.equal(new Set(ids).size, ids.length);
@@ -15,7 +15,8 @@ test("all 21 available design directions have a defined minimum access tier", ()
   }
   assert(templates.some(t => minimumTier(t.id) === "starter"));
   assert(templates.some(t => minimumTier(t.id) === "signature"));
-  assert(templates.some(t => minimumTier(t.id) === "premium"));
+  assert.equal(templates.filter(t => minimumTier(t.id) === "starter").length,20);
+  assert.equal(templates.filter(t => minimumTier(t.id) === "signature").length,20);
 });
 
 test("higher tiers include lower-tier templates and reject unaffordable choices", () => {
@@ -24,7 +25,7 @@ test("higher tiers include lower-tier templates and reject unaffordable choices"
     for (const tier of tiers) assert.equal(templateFitsTier(id, tier.id), tierLevel(tier.id) >= base);
   }
   assert.equal(templateFitsTier("arcade", "starter"), false);
-  assert.equal(templateFitsTier("arcade", "signature"), false);
+  assert.equal(templateFitsTier("arcade", "signature"), true);
   assert.equal(templateFitsTier("arcade", "premium"), true);
   assert.equal(templateFitsTier("unknown", "premium"), false);
 });
