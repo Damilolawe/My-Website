@@ -4,6 +4,7 @@ import {mkdir} from "node:fs/promises";
 import {chromium} from "playwright-core";
 import {templates} from "../shared/model.mjs";
 import {uploadedDesignFor} from "../shared/uploaded-designs.mjs";
+import {premiumStudyIds} from "../shared/premium-art-direction-35.mjs";
 
 const origin="https://aweconcepts.com";
 const viewports=[
@@ -313,13 +314,19 @@ try {
       contactLinks:contact?.querySelectorAll("a").length||0,
       authoredScenes:document.querySelectorAll(".art-scene").length,
       authoredChapters:document.querySelectorAll(".md-edition-break").length,
+      contactSection:!!document.getElementById("contact"),
+      repetitiveElements:document.querySelectorAll(".experience-interlude,.md-edition-break,.contact-emblem,.contact-setup-note,.story-art,.story-opening,.chapter-num,.chapter-kicker").length,
       folioVerified:!!document.querySelector(".fe-cover") && document.querySelectorAll(".fe-project").length>=3 && !!document.querySelector(".fe-process")};
    });
    console.log("NARROW_TEMPLATE",width,id,JSON.stringify(geometry));
    if(id==="folio"&&!geometry.folioVerified)
      failures.push("Narrow "+width+" folio: approved editorial cover, projects or process missing");
-   else if(id!=="folio"&&uploadedDesignFor(id)&&(geometry.authoredScenes!==1||geometry.authoredChapters!==1))
-     failures.push("Narrow "+width+" "+id+": authored source scene and editorial chapter are missing");
+   else if(id!=="folio"&&uploadedDesignFor(id)&&premiumStudyIds.includes(id)&&geometry.authoredScenes!==1)
+     failures.push("Narrow "+width+" "+id+": original source art scene is missing");
+   if(premiumStudyIds.includes(id)&&(geometry.authoredChapters!==0||geometry.repetitiveElements>0))
+     failures.push("Narrow "+width+" "+id+": generic filler element reintroduced");
+   if(id!=="folio"&&uploadedDesignFor(id)&&!premiumStudyIds.includes(id)&&(geometry.authoredScenes!==1||geometry.authoredChapters!==1))
+     failures.push("Narrow "+width+" "+id+": protected authored scene or chapter missing");
    if(geometry.width>width+2 || geometry.docWidth>width+2){
      const offenders=await page.evaluate(()=>[...document.querySelectorAll("*")]
        .map(el=>({selector:el.tagName.toLowerCase()+"."+String(el.className||"").replace(/\s+/g,".").slice(0,70),
@@ -335,7 +342,10 @@ try {
    for(const card of geometry.cards)
      if(card.right>width+4||card.left< -5||card.width>width+5)
        failures.push("Narrow "+width+" "+id+": case image exceeds viewport");
-   if(!geometry.contactLinks&&!/add your own email|add a contact email|contact method|contact link/i.test(geometry.contactText))
+   if(premiumStudyIds.includes(id)){
+     if(geometry.contactSection&&!geometry.contactLinks)
+       failures.push("Narrow "+width+" "+id+": empty contact section must not render");
+   }else if(!geometry.contactLinks&&!/add your own email|add a contact email|contact method|contact link/i.test(geometry.contactText))
      failures.push("Narrow "+width+" "+id+": contact section offers no action or setup message");
   }
   // The embedded theater is narrower than the physical phone; verify that
