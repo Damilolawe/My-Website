@@ -14,7 +14,10 @@ test("All twenty fictional template demos use a photography-forward composition"
     assert(html.includes('class="rw-site'),"RunwayML independent cinematic composition missing");
   }else if(["nike","clay","ferrari"].includes(t.id)){
     assert(html.includes("trio-"+t.id),t.id+" missing unique original design");
-  }else if(t.id==="liquidmetal"){
+  }else if(t.id==='folio'){
+     assert(html.includes('class="fe-cover"'),'Folio editorial cover missing');
+     assert(html.includes('images.unsplash.com/photo-'),'Folio fictional photos missing');
+   }else if(t.id==="liquidmetal"){
     assert(html.includes("liquidmetal-hero"),"Liquid Metal independent composition missing");
   }else if(freeDesignFor(t.id)){
     assert(html.includes("data-architecture="),t.id+" missing FreeDesignMD-specific architecture");
