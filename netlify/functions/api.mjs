@@ -244,6 +244,7 @@ export default async function (req) {
           );
         }
         const p = o.package_snapshot;
+        if (!packageAllowsTemplate(p, o.input?.template)) fail("This design requires a higher package tier.", 403);
         if (!checkoutPackageIsValid(p))
           fail("Package terms are incomplete; checkout is unavailable.", 503);
         const reservation = checkoutReservationState(o);
