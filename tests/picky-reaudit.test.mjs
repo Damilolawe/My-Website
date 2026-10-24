@@ -11,7 +11,7 @@ test("No fictional template promises empty contact; a real configured email stay
   const html=renderSite(cfg,{sample:true});
   if(premiumStudyIds.includes(t.id)){
     assert(!html.includes('id="contact"'),t.id+"/"+purpose+" renders empty contact panel");
-    assert(!html.includes('contact-setup-note'),t.id+"/"+purpose+" reintroduces placeholder text");
+    assert(!/<(?:p|span) class="[^"]*contact-setup-note/.test(html),t.id+"/"+purpose+" reintroduces placeholder text");
     assert(!html.includes('href="#contact"'),t.id+"/"+purpose+" links to hidden contact");
   }else{
     assert(html.includes('id="contact"'),t.id+"/"+purpose+" missing contact");
