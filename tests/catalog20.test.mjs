@@ -14,7 +14,7 @@ test("collection contains exactly forty unique art-directed templates",()=>{
   assert.equal(new Set(templates.map(x=>x.style)).size,39);
   const markup=templates.map(t=>renderSite(sampleForTemplate(t.id),{sample:true}));
   const uniqueMarkers=markup.map((html,t)=>{
-    const marker=["runwayml","runwaymulti"].includes(templates[t].id) ? ["rw-hero","runwayml"] : freeDesignFor(templates[t].id)?html.match(/<section class="fd-hero" data-architecture="([\w-]+)"/):html.match(/<section class="hero hero-variant (?:md-hero md-)?([\w-]+)(?:\s|")/);
+    const marker=["runwayml","runwaymulti"].includes(templates[t].id) ? ["rw-hero",templates[t].id] : freeDesignFor(templates[t].id)?html.match(/<section class="fd-hero" data-architecture="([\w-]+)"/):html.match(/<section class="hero hero-variant (?:md-hero md-)?([\w-]+)(?:\s|")/);
     assert(marker,templates[t].id+" missing distinct hero");
     assert(html.includes('<h1 id="hero-title">') || (["runwayml","runwaymulti"].includes(templates[t].id) && html.includes('id="rw-h1"')),"Accessible main headline missing");
     assert(html.includes("FICTIONAL TEMPLATE DEMO"),"No customer information belongs in sample");
