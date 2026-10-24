@@ -45,6 +45,10 @@ export async function fetchPublicTemplate(id, { still = false, signal, type } = 
   // Keep same-page section links inside the inert, script-disabled preview.
   const document = new DOMParser().parseFromString(markup, "text/html");
   const canonical = new URL(path, location.origin);
+  // Fragment links in srcdoc otherwise resolve against the marketing page URL.
+  const base = document.createElement("base");
+  base.setAttribute("href", "about:srcdoc");
+  document.head.prepend(base);
   for (const anchor of document.querySelectorAll("a[href]")) {
     const raw = anchor.getAttribute("href");
     if (!raw || raw.startsWith("#")) continue;
@@ -56,5 +60,5 @@ export async function fetchPublicTemplate(id, { still = false, signal, type } = 
       anchor.setAttribute("href", destination.hash);
     }
   }
-  return "<!doctype html>\\n" + document.documentElement.outerHTML;
+  return "<!doctype html>\n" + document.documentElement.outerHTML;
 }
