@@ -22,9 +22,9 @@ test("No fictional template promises empty contact; a real configured email stay
 });
 test("Twenty architectures use distinct fictional work and biography, regardless of shared purpose",()=>{
  const rows=templates.map(t=>sampleForTemplate(t.id,"Creative portfolio").content);
- assert.equal(new Set(rows.map(x=>x.bio)).size,38);
- assert.equal(new Set(rows.map(x=>x.cards[0].title)).size,38);
- assert.equal(new Set(rows.map(x=>x.cards[1].title)).size,38);
+ assert.equal(new Set(rows.map(x=>x.bio)).size,41);
+ assert.equal(new Set(rows.map(x=>x.cards[0].title)).size,41);
+ assert.equal(new Set(rows.map(x=>x.cards[1].title)).size,41);
 });
 test("Preview geometry and async transitions have explicit regression guards",async()=>{
  const [gallery,builder,galleryCss,builderCss,qa]=await Promise.all([
