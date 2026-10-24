@@ -16,6 +16,11 @@ test("RunwayML single and multi have separate Starter and Signature identities",
   assert(templateFitsTier("runwaymulti","signature"));
   assert.equal(packageAllowsTemplate({tier:"signature"},"runwaymulti"),false,
     "Do not charge customers for unavailable multi-page publishing");
+  const fivePage = {tier:"signature",delivery:"awe-multipage",pageCount:5};
+  assert.equal(packageAllowsTemplate(fivePage,"runwaymulti"),true);
+  assert.equal(packageAllowsTemplate(fivePage,"folio"),false,"A five-page checkout must not produce a one-page site");
+  assert.equal(packageAllowsTemplate({tier:"signature",delivery:"awe-multipage",pageCount:1},"runwaymulti"),false);
+  assert.equal(packageAllowsTemplate({tier:"starter",delivery:"awe-hosted",pageCount:1},"runwaymulti"),false);
   assert.equal(packageAllowsTemplate({tier:"starter"},"runwayml"),true);
 });
 test("Signature multipage gallery points to all five documents; original remains unchanged",async()=>{
