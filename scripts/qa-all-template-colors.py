@@ -78,6 +78,8 @@ def main():
   print('COLOR',row['id'],row['viewport'],'tested',row['measured'],'low',row['lowContrast'],
      'background',row['background'],'foreground',row['color'],'accent',row['primary'])
   for x in issues[:8]:print('  LOW',x['ratio'],x['minimum'],x['tag'],x['cls'],repr(x['text']),x['fg'],x['bg'])
- print('TOTAL',len(allrows),'VIEWS,',sum(x.get('lowContrast',0) for x in allrows),'LOW-CONTRAST ELEMENTS')
- return 0
+ total=sum(x.get('lowContrast',0) for x in allrows)
+ print('TOTAL',len(allrows),'VIEWS,',total,'LOW-CONTRAST ELEMENTS')
+ # This prevents low-contrast labels from reappearing in future releases.
+ return int(total>0 or any(x.get('error') or x.get('http')!=200 for x in allrows))
 if __name__=='__main__':sys.exit(main())
