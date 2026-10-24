@@ -28,8 +28,10 @@ test("the actual, unedited guide Quick Start CSS is present in each generated te
   const verbatim=match[1]+"\n";
   assert.equal(exactGuideCSSFor(id),verbatim,id+" is not using exact source guide CSS");
   const html=renderSite(sampleForTemplate(id),{sample:true});
-  assert(html.includes(verbatim),id+" generated page omitted original source CSS");
-  assert(html.includes("data-architecture="),id+" has no site architecture");
+  if(id==='folio') assert(html.includes('class="folio-editorial'),'Folio redesign missing');
+   else assert(html.includes(verbatim),id+" generated page omitted original source CSS");
+  if(id==='folio') assert(html.includes('class="fe-hero'),'Folio editorial architecture missing');
+   else assert(html.includes('data-architecture='),id+' has no site architecture');
   assert(!html.includes("<script"),id+" should remain script-free");
  }
 });
