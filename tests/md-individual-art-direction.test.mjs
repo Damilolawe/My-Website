@@ -31,8 +31,13 @@ test("Source-based builds render distinct compositions in every published purpos
  for(const d of uploadedDesigns){
   for(const purpose of types){
    const html=renderSite(sampleForTemplate(d.id,purpose),{sample:true});
-   assert(html.includes('art-scene-'+d.id),d.id+" new hero absent");
-   assert(html.includes('md-edition-'+d.id),d.id+" new midpage absent");
+   if(d.id==='folio') {
+       assert(html.includes('class="fe-hero'),'Folio redesigned hero missing');
+       assert(html.includes('class="fe-project fe-feature"'),'Folio selected work missing');
+     } else {
+       assert(html.includes('art-scene-'+d.id),d.id+' new hero absent');
+   assert(html.includes('md-edition-'+d.id),d.id+' new midpage absent');
+     }
    assert(html.includes("FICTIONAL TEMPLATE DEMO"));
    assert(html.includes("prefers-reduced-motion"));
    assert(html.includes('aria-label="Section navigation"'));
