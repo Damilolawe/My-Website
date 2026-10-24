@@ -375,7 +375,7 @@ export function sampleForTemplate(id,purpose){
     preview.headline=freeDirection.tag;
     preview.heroLabel=freeDirection.style+" / "+category;
     preview.bio="A fictional example inspired by "+freeDirection.name+": "+freeDirection.description;
-    preview.cards=[{title:freeDirection.name+" / Edition 01",description:"An imaginary "+freeDirection.style.toLowerCase()+" exploration.",url:""},{title:"Behind the Concept",description:"A fictional study of typography, form and composition.",url:""},{title:"The Next Chapter",description:"An illustrative follow-up project, not a real client engagement.",url:""}];
+    preview.cards=[{title:freeDirection.name+" / Edition 01",description:"An imaginary "+freeDirection.style.toLowerCase()+" exploration.",url:""},{title:freeDirection.name+" / Working Process",description:"A fictional study of typography, form and composition.",url:""},{title:freeDirection.name+" / Next Edition",description:"An illustrative follow-up project, not a real client engagement.",url:""}];
     preview.services=[{title:"Art direction",description:"Fictional creative practice."},{title:"Design systems",description:"Sample identity and web experiences."}];
   }
   if(t.id==="liquidmetal"){
