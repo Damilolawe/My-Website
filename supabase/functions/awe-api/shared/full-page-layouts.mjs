@@ -8,6 +8,7 @@
  */
 import {esc,https} from "./model.mjs";
 import { sampleArtwork, illustrationArtwork } from "./photographic-direction.mjs";
+import {originalDirections,directionFor} from "./refero-originals.mjs";
 
 const E=esc;
 const prose=value=>E(value).replace(/\r?\n/g,"<br>");
@@ -33,6 +34,7 @@ const architectures={
   foundry:{mode:"industrial-projects",word:"The practice",no:"18",detail:"Reliable work, visible results."},
   bloom:{mode:"botanical-journal",word:"The journal",no:"19",detail:"People, products and possibilities."},
   ledger:{mode:"business-briefs",word:"The outcomes",no:"20",detail:"Clarity in everything we deliver."},
+  ...Object.fromEntries(originalDirections.map((d,i)=>[d.id,{mode:"ref-"+d.id,word:d.name,no:String(i+21).padStart(2,"0"),detail:d.tag}])),
 };
 
 function visual(item,i,ctx){
@@ -40,6 +42,8 @@ function visual(item,i,ctx){
   if(id){
     return '<div class="case-image"><img src="'+E(ctx.assetBase+id+ctx.assetSuffix)+'" loading="lazy" alt="'+E(item.title||ctx.c.name)+'"></div>';
   }
+  const direction=directionFor(ctx.t);
+  if(direction) return '<div class="case-image case-art ref-case-art ref-case-'+E(direction.id)+'"><strong>'+String(i+1).padStart(2,"0")+'</strong><span>'+E(direction.name)+'</span></div>';
   // Each mode has its own visual geometry defined by page architecture CSS.
   return '<div class="case-image case-art">'+(ctx.sample?sampleArtwork(ctx.t,'work',i):illustrationArtwork(ctx.t))+'</div>';
 }
@@ -52,6 +56,7 @@ function caseBody(item,i,ctx){
 function workMarkup(mode,items,ctx){
   const figures=items.map((item,i)=>{
     const media=visual(item,i,ctx),body=caseBody(item,i,ctx);
+    if(directionFor(ctx.t)) return '<article class="case-entry case-original case-'+E(ctx.t)+'"><span class="ref-case-counter">EDITION '+String(i+1).padStart(2,"0")+'</span>'+media+'<div class="ref-case-body">'+body+'</div></article>';
     switch(mode){
       case "index-records":return '<article class="case-entry case-record">'+body+media+'<span class="record-arrow" aria-hidden="true">↗︎</span></article>';
       case "editorial-spreads":return '<article class="case-entry case-spread"><div class="spread-figure">'+media+'<span>PLATE / '+String(i+1).padStart(2,"0")+'</span></div>'+body+'</article>';
