@@ -62,6 +62,8 @@ const clayMotion = `
 .trio-clay .clay-ui-bars b:nth-child(2){animation-delay:-.8s;animation-duration:3.5s}
 .trio-clay .clay-ui-bars b:nth-child(3){animation-delay:-1.5s;animation-duration:2.4s}
 .trio-clay .clay-ui-bars b:nth-child(4){animation-delay:-.3s;animation-duration:3.7s}
+/* Decorative rings and drifting clay elements must never enlarge a phone viewport. */
+.trio-clay .clay-world,.trio-clay .clay-closing{overflow:hidden;overflow:clip;max-width:100%}
 .trio-clay .clay-gem{position:relative}
 .trio-clay .clay-gem:after{content:"";position:absolute;inset:-18%;border:2px dashed #b8a4ed70;border-radius:50%;animation:cl-orbit 30s linear infinite}
 @media(hover:none){.trio-clay .clay-panel:hover{transform:none}}
