@@ -25,7 +25,7 @@ test("every customer design has a separate outer shell and page ordering",()=>{
     if(t.id==='folio'){
       assert(html.includes('class="fe-brand"'),'Folio wordmark missing');
       assert(html.includes('class="fe-contact"'),'Folio footer missing');
-      assert(html.includes('aria-label="Site navigation"'),'Folio navigation missing');
+      assert(html.includes('aria-label="Section navigation"'),'Folio navigation missing');
       assert(html.includes('id="main"'),'Folio skip target missing');
       assert(!html.includes('<script'));
       continue;
