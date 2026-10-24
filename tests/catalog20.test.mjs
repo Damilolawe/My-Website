@@ -13,7 +13,7 @@ test("collection contains exactly forty unique art-directed templates",()=>{
   assert.equal(new Set(templates.map(x=>x.style)).size,40);
   const markup=templates.map(t=>renderSite(sampleForTemplate(t.id),{sample:true}));
   const uniqueMarkers=markup.map((html,t)=>{
-    const marker=html.match(/<section class="hero hero-variant ([\w-]+)"/);
+    const marker=html.match(/<section class="hero hero-variant ([\w-]+)(?:\s|")/);
     assert(marker,templates[t].id+" missing distinct hero");
     assert(html.includes('<h1 id="hero-title">'),"Accessible main headline missing");
     assert(html.includes("FICTIONAL TEMPLATE DEMO"),"No customer information belongs in sample");
