@@ -1,0 +1,35 @@
+name: Client add-on integration feasibility (nonproduction)
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/addon-feasibility-qa.mjs'
+      - '.github/workflows/addon-feasibility-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  addon-feasibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci
+      - name: Build existing customer template previews
+        run: npm run build
+      - name: Exercise 42 client renderers and 10 approved-site publishing fixtures
+        run: node scripts/addon-feasibility-qa.mjs
+      - name: Upload detailed feasibility results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-addon-feasibility-results
+          path: qa-output/addon-feasibility/
+          retention-days: 14
