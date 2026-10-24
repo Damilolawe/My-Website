@@ -10,17 +10,19 @@ test("all 35 upgrade targets have their own stylesheet; Folio and six opt-outs s
   assert.equal(premiumStudyIds.length,35);
   assert.equal(new Set(premiumStudyIds).size,35);
   const catalog = new Set(templates.map(t=>t.id));
+  const oversized = [];
   for(const id of premiumStudyIds) {
     assert(catalog.has(id), "unknown target "+id);
     assert(!preserved.includes(id), "protected template was changed: "+id);
     assert(premiumStudyThemes[id].length>120, id+" lacks authored rules");
     const html = renderSite(sampleForTemplate(id),{sample:true});
     assert(html.includes('data-awe-design-study="'+id+'"'),id+" missing distinctive art direction");
-    assert(html.length <= 200000, id+" exceeds the customer page size limit with "+html.length+" characters");
+    if (html.length > 200000) oversized.push({id,length:html.length});
     assert(html.includes('prefers-reduced-motion'),id+" missing reduced motion");
     assert(html.includes('width=device-width'),id+" missing viewport");
     assert(!html.includes("<script"),id+" must remain script-free");
   }
+  assert.deepEqual(oversized,[],"Templates exceed the customer HTML size limit");
   for(const id of preserved) {
     const html=renderSite(sampleForTemplate(id),{sample:true});
     assert(!html.includes("data-awe-design-study"),"Protected template altered: "+id);
