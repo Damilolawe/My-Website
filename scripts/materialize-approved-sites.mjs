@@ -12,6 +12,8 @@ const SLUG = /^[a-z0-9-]{3,90}$/;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const TYPES = new Map([["image/jpeg","jpg"],["image/png","png"],["image/webp","webp"]]);
 const MAX_SITES = 100;
+// Approved QA fixtures are accessible to testers but excluded from search indexing.
+const NON_INDEXABLE_QA_SLUGS = new Set(["project-8ef68bc1-1a3e-491e-be2f-97095a954059"]);
 const MAX_HTML = 220_000;
 const MAX_ASSET = 4_194_304;
 const MAX_TOTAL = 150_000_000;
@@ -35,7 +37,7 @@ async function request(url,fetcher,accept="application/json") {
   assert(res.ok,"approved public endpoint unavailable ("+res.status+")");
   return res;
 }
-function versionedHtml(html,version,canonical) {
+function versionedHtml(html,version,canonical,noindex=false) {
   const maxHtml = typeof html==="string" && html.includes('data-awe-design-study=') ? 256_000 : MAX_HTML;
   assert(typeof html==="string" && html.length<=maxHtml &&
     /^<!doctype html>/i.test(html.slice(0,60)) &&
@@ -45,7 +47,7 @@ function versionedHtml(html,version,canonical) {
   assert(!/FICTIONAL TEMPLATE DEMO|SAMPLE CONTENT ONLY/i.test(html),
     "sample pages cannot be published as customer sites");
   const metadata = '<meta name="awe-approved-version" content="'+version+'">'+
-    '<meta name="robots" content="index,follow">'+
+    '<meta name="robots" content="'+(noindex?"noindex,nofollow":"index,follow")+'">'+
     '<link rel="canonical" href="'+enc(canonical)+'">'+
     '<meta property="og:url" content="'+enc(canonical)+'">';
   return html.replace(/<\/head>/i, metadata+"</head>");
@@ -97,7 +99,7 @@ export async function materializeApprovedSites({
     }
     const pageHtml=Object.fromEntries(pageNames.map(name=>[
       name,versionedHtml(data.pages?data.pages[name]:data.html,site.version,
-        canonical+(name==="index.html"?"":name))
+        canonical+(name==="index.html"?"":name),NON_INDEXABLE_QA_SLUGS.has(site.slug))
     ]));
     const assets=[];
     for(const aid of site.assets) {
@@ -142,7 +144,7 @@ export async function materializeApprovedSites({
     for(const asset of assets) await writeFile(path.join(dest,asset.target),asset.contents);
   }
   const pages=["/","/why-awe.html","/order.html","/contact.html",
-    ...snapshots.flatMap(s=>Object.keys(s.pages).map(name=>"/sites/"+s.slug+"/"+(name==="index.html"?"":name)))];
+    ...snapshots.filter(s=>!NON_INDEXABLE_QA_SLUGS.has(s.slug)).flatMap(s=>Object.keys(s.pages).map(name=>"/sites/"+s.slug+"/"+(name==="index.html"?"":name)))];
   const sitemap='<?xml version="1.0" encoding="UTF-8"?>\n'+
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+
     pages.map(url=>'  <url><loc>'+enc(origin+url)+'</loc></url>').join("\n")+
