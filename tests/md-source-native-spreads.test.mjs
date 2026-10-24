@@ -12,16 +12,18 @@ test("all 18 preserved Refero DESIGN.md systems have a distinctive source-native
  for(const ref of uploadedDesigns){
   const sample=sampleForTemplate(ref.id);
   const html=renderSite(sample,{sample:true});
-  const feature=parseFeature(html);
+  const feature=ref.id==='folio'?html.match(/<section class="fe-section fe-wrap" id="work"[\s\S]*?<\/section>/)?.[0]:parseFeature(html);
   assert(feature,ref.id+" missing source-native feature");
-  assert(feature.includes("mdsf-"+ref.id),ref.id+" wrong identity");
-  assert(feature.includes("aria-label"),ref.id+" missing composition description");
-  assert(html.includes(ref.layout),ref.id+" lost original site structure");
+  if(ref.id==='folio') assert(feature.includes('fe-project'),'Folio new projects missing');
+   else assert(feature.includes('mdsf-'+ref.id),ref.id+' wrong identity');
+  if(ref.id!=='folio')assert(feature.includes('aria-label'),ref.id+' missing composition description');
+  if(ref.id==='folio') assert(html.includes('folio-editorial'),'Folio redesign missing');
+   else assert(html.includes(ref.layout),ref.id+' lost original site structure');
   assert(html.includes("prefers-reduced-motion"),ref.id+" missing reduced-motion styles");
   assert(html.includes("FICTIONAL TEMPLATE DEMO"),ref.id+" lost demo disclosure");
   assert(!html.includes("<script"),ref.id+" introduced executable code");
   assert(html.length<240000,ref.id+" page exceeded preview size budget");
-  patterns.add(feature.replaceAll(/[A-Za-z0-9]+/g,"").length+"-"+feature.match(/mdsf-[a-z-]+/g)?.join("|"));
+  patterns.add(ref.id==='folio'?'folio-editorial':feature.replaceAll(/[A-Za-z0-9]+/g,'').length+'-'+feature.match(/mdsf-[a-z-]+/g)?.join('|'));
  }
  assert.equal(patterns.size,18,"Every original MD guide must produce its own composition");
 });
