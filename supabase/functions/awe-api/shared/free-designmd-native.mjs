@@ -52,7 +52,7 @@ export function sourceNativeScene(id,content){
  }
  return '<section class="fd-native fd-native-'+E(id)+'" aria-label="'+E(id)+' source design chapter">'+inside+'</section>';
 }
-export const sourceNativeCSS=String.raw\`
+export const sourceNativeCSS=String.raw`
 .fd-native{position:relative;max-width:1510px;margin:50px auto 100px;padding:0 clamp(22px,5vw,88px);isolation:isolate}
 .fd-native *{box-sizing:border-box}
 .fd-native h2,.fd-native h3,.fd-native p{margin:0}
@@ -162,4 +162,4 @@ export const sourceNativeCSS=String.raw\`
 .fd-n-botanical-sketch{height:220px}
 }
 @media(prefers-reduced-motion:reduce){.fd-native *{animation:none!important;transition:none!important}}
-\`;
+`;
