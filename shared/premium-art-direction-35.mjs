@@ -94,8 +94,10 @@ export function applyPremiumStudy(html, id, content = null) {
   if (!allowed.has(id)) return html;
   if (!html.includes('</head>')) return html;
   // Append *after* the original template's native stylesheet for deliberate, isolated overrides.
-  const css = premiumStudyThemes[id] + common + motionCSS + mobileTypographySafety;
-  const result = html.replace('</head>', '<style data-awe-design-study="' + id + '">' + css + '</style></head>');
   const motion = renderMotionChapter(content);
+  // The customer HTML document has a strict 200 KB cap; preserve the original
+  // template's existing responsive rules instead of embedding universal CSS twice.
+  const css = premiumStudyThemes[id] + mobileTypographySafety + (motion ? motionCSS : '');
+  const result = html.replace('</head>', '<style data-awe-design-study="' + id + '">' + css + '</style></head>');
   return motion ? result.replace('</main>', motion + '</main>') : result;
 }
