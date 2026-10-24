@@ -30,7 +30,8 @@ test("the entire 20-template catalog maps the chosen colors to its major hero, n
     for (const cssSelector of [".hero", ".shell-header", ".shell-footer", ".service-card"]) {
       assert(activeCSS.includes("body." + id + " " + cssSelector + "{"), id + " lacks palette override for " + cssSelector);
     }
-    assert(pink.indexOf(activeCSS) > pink.indexOf(".shell-header"), id + " should apply user colors after preset CSS");
+    assert(pink.includes("body." + id + " .shell-header{"), id + " should include scoped color overrides");
+    assert(pink.indexOf("body." + id + " .shell-header{") >= pink.indexOf(".shell-header"), id + " should apply user colors after preset CSS");
     assert(!pink.includes("<script"), "A customer site must remain script-free");
   }
 });
