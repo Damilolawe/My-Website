@@ -10,7 +10,8 @@ test("Public inquiry rates do not activate checkout",async()=>{
  }
  assert(home.includes('id="pricing"') && home.includes('href="#pricing"'));
  assert(home.includes('href="/contact.html"'));
- assert(order.includes("Online checkout remains closed"));
+ assert(order.includes("unconfigured tiers are inquiry-only"));
+ assert(!order.includes("Online checkout remains closed"));
  assert((await read("app/order.mjs")).includes('!catalog.ordersEnabled || !p'));
 });
 test("Public content uses studio identity instead of owner biography",async()=>{
