@@ -125,19 +125,36 @@ function draw() {
     $("#next").disabled = !selectedTier;
   }
   if (step === 1) {
-    const active = templates.find((t) => t.id === input.template) || templates[0];
-    const offered = [...templates].sort((a,b) => Number(recommendedFor(b,input.type)) - Number(recommendedFor(a,input.type)));
+    const offered = (catalog.templates || templates)
+      .filter(t => templateFitsTier(t.id, selectedTier));
+    const matchesFilter = t => purposeFilter === "All" || recommendedFor(t, purposeFilter);
+    const visible = offered.filter(matchesFilter);
+    const active = visible.find(t => t.id === input.template) || visible[0] || offered[0];
+    if (active && !visible.some(t => t.id === input.template)) setTemplate(active.id);
+    const purposeButtons = ["All", ...types].map(type => '<button type="button" class="purpose-chip" data-purpose="' +
+      esc(type) + '" aria-pressed="' + String(type === purposeFilter) + '">' +
+      esc(type === "Student résumé" ? "Student" : type === "Professional portfolio" ? "Professional" : type === "Creative portfolio" ? "Creative" : type === "Small business" ? "Business" : type) + '</button>').join("");
+    const tierButtons = tiers.map(t => '<button type="button" class="tier-switch" data-switch-tier="' + t.id +
+      '" aria-pressed="' + String(t.id === selectedTier) + '">' + esc(t.name) + '</button>').join("");
     const demoPath = (id) => "/templates/" + typeSlugs[input.type] + "/" + encodeURIComponent(id) + ".html";
     const choice = (t,i) => '<article class="template-card template-poster '+(input.template===t.id?'chosen':'')+'" data-poster="'+esc(t.id)+'"><button type="button" class="template-select" data-template="'+esc(t.id)+'" aria-pressed="'+String(input.template===t.id)+'"><span class="poster-art poster-'+esc(t.id)+'" style="--tile:'+esc(t.color)+'"><span class="poster-num">'+String(i+1).padStart(2,'0')+'</span><strong>'+esc(t.name)+'</strong><span class="poster-symbol" aria-hidden="true"></span><span class="poster-style">'+esc(t.style)+(recommendedFor(t,input.type)?' · RECOMMENDED':'')+'</span></span><span class="poster-meta"><strong>'+esc(t.tag)+'</strong><span>'+(input.template===t.id?'SELECTED ✓︎':'EXPLORE DIRECTION ↗︎')+'</span></span></button></article>';
-    el.innerHTML = '<div class="experience-picker-heading"><div><p class="eyebrow">TWENTY-ONE DISTINCT DESIGN DIRECTIONS</p><h2>Don’t pick a color.<br><em>Pick a feeling.</em></h2><p class="muted">Explore real, scrollable example websites for '+esc(input.type)+'. The people and projects shown are fictional.</p></div><div class="experience-picker-index" aria-hidden="true"><strong></strong><small>AN ORIGINAL STARTING POINT</small></div></div>' +
+    el.innerHTML = '<div class="tier-gallery-top"><div><p class="eyebrow">02 / FIND YOUR DESIGN</p><h2>' +
+      esc(tiers.find(t => t.id === selectedTier)?.name || "Your") +
+      ' templates</h2><p class="muted">Your package includes designs at this level and below. Use filters to find a style that fits your project.</p></div>' +
+      '<div class="tier-switches" aria-label="Change your tier">' + tierButtons + '</div></div>' +
+      '<div class="template-filterbar"><span class="eyebrow">FILTER BY WEBSITE TYPE</span>' +
+      '<div class="purpose-chips" role="group" aria-label="Website type filters">' + purposeButtons + '</div>' +
+      '<p class="muted" id="template-count" aria-live="polite">' + visible.length + ' of ' + offered.length + ' available designs</p></div>' +
+      '<div class="experience-picker-heading"><div><p class="eyebrow">ORIGINAL DESIGN DIRECTIONS</p><h2>Don’t pick a color.<br><em>Pick a feeling.</em></h2><p class="muted">Explore real, scrollable example websites. The people and projects shown are fictional.</p></div><div class="experience-picker-index" aria-hidden="true"><strong></strong><small>AN ORIGINAL STARTING POINT</small></div></div>' +
       '<div class="experience-theater'+(theaterPreferredMode==='mobile'?' is-mobile':'')+'" data-active="'+esc(active.id)+'">' +
-        '<div class="theater-header"><div class="theater-identity"><span class="eyebrow"><i class="theater-live" aria-hidden="true"></i> THE LIVE TEMPLATE THEATER · 01—21</span><strong>Explore the actual website, not a static mockup.</strong></div>' +
+        '<div class="theater-header"><div class="theater-identity"><span class="eyebrow"><i class="theater-live" aria-hidden="true"></i> THE LIVE TEMPLATE THEATER</span><strong>Explore the actual website, not a static mockup.</strong></div>' +
         '<div class="theater-tools" aria-label="Preview screen size"><button type="button" id="theater-desktop" aria-pressed="'+String(theaterPreferredMode==='desktop')+'">DESKTOP</button><button type="button" id="theater-mobile" aria-pressed="'+String(theaterPreferredMode==='mobile')+'">MOBILE</button><a href="'+demoPath(active.id)+'" target="_blank" rel="noopener" id="theater-open">VIEW FULL WEBSITE ↗︎</a></div></div>' +
         '<div class="theater-viewport"><div class="theater-browser"><div class="theater-browserbar"><span class="browser-lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="browser-url">'+esc(active.name)+' / fictional website preview</span><span class="browser-mode">'+(theaterPreferredMode==='mobile'?'MOBILE':'DESKTOP')+'</span></div><div class="theater-canvas"><iframe id="theater-frame" title="Fictional '+esc(active.name)+' website" sandbox="" loading="eager"></iframe><div class="theater-loading" role="status" aria-live="polite" hidden><span aria-hidden="true" class="theater-loading-mark">✳︎</span><strong>CRAFTING THE PREVIEW</strong><span id="theater-loading-name">'+esc(active.name)+'</span></div></div></div></div>' +
-        '<div class="theater-caption"><div><span class="eyebrow">NOW EXPLORING · '+esc(input.type.toUpperCase())+'</span><h3>'+esc(active.name)+'</h3><p>'+esc(active.tag)+'</p></div><p class="theater-hint">SCROLL INSIDE THE SITE TO EXPLORE EVERY SECTION ↗︎</p></div>' +
+        '<div class="theater-caption"><div><span class="eyebrow">NOW EXPLORING · '+esc(selectedTier.toUpperCase())+'</span><h3>'+esc(active.name)+'</h3><p>'+esc(active.tag)+'</p></div><p class="theater-hint">SCROLL INSIDE THE SITE TO EXPLORE EVERY SECTION ↗︎</p></div>' +
         '<div class="theater-reassurance">This is a fictional demonstration. Your content, images, and colors are customized in the next steps. Select another direction below without losing your place.</div>' +
       '</div>' +
-      '<div class="template-grid premium-template-grid">' + offered.map(choice).join('') + '</div>';
+      '<div class="template-grid premium-template-grid">' + offered.map(choice).join('') + '</div>' +
+      '<p id="no-template-matches" class="panel" ' + (visible.length ? 'hidden' : '') + '>No designs match this filter. Try another website type.</p>';
     const frame=el.querySelector("#theater-frame");
     const theater=el.querySelector(".experience-theater");
     const canvas=el.querySelector(".theater-canvas");
@@ -192,35 +209,61 @@ function draw() {
     const setMode=(mode)=>{theaterPreferredMode=mode;syncFrameSize();};
     el.querySelector("#theater-desktop").onclick=()=>setMode("desktop");
     el.querySelector("#theater-mobile").onclick=()=>setMode("mobile");
-    el.querySelectorAll("[data-template]").forEach((button)=>{
-      button.onclick=()=>{
-        const id=button.dataset.template;
-        const template=templates.find(t=>t.id===id);
-        if(!template)return;
-        input.template=id;
-        input.design.primary=template.color;
-        input.design.appearance=["afterhours","nocturne","terminal","brutalist","arcade"].includes(id)?"dark":"light";
-        input.design.font=id==="folio"?"serif":id==="arcade"?"mono":"sans";
-        input.design.secondary=id==="arcade"?"#11120f":"#ece9e0";
-        input.design.corners=id==="arcade"?"sharp":"soft";
-        theater.dataset.active=id;
-        el.querySelector(".theater-caption h3").textContent=template.name;
-        el.querySelector(".theater-caption p").textContent=template.tag;
-        el.querySelector(".browser-url").textContent=template.name+" / fictional website preview";
-        el.querySelector("#theater-open").href=demoPath(id);
-        frame.title="Fictional "+template.name+" website";
-        el.querySelectorAll("[data-template]").forEach(b=>{
-          const selected=b.dataset.template===id;
-          b.setAttribute("aria-pressed",String(selected));
-          b.closest(".template-poster").classList.toggle("chosen",selected);
-          b.querySelector(".poster-meta>span").textContent=selected?"SELECTED ✓︎":"EXPLORE DIRECTION ↗︎";
-        });
-        // Update only the iframe, never redraw the wizard or reset the scroll position.
-        loadTemplate(id);
+    const chooseTemplate = id => {
+      const template = offered.find(t => t.id === id);
+      if (!template) return;
+      setTemplate(id);
+      theater.dataset.active = id;
+      el.querySelector(".theater-caption h3").textContent = template.name;
+      el.querySelector(".theater-caption p").textContent = template.tag;
+      el.querySelector(".browser-url").textContent = template.name + " / fictional website preview";
+      el.querySelector("#theater-open").href = demoPath(id);
+      frame.title = "Fictional " + template.name + " website";
+      el.querySelectorAll("[data-template]").forEach(b => {
+        const chosen = b.dataset.template === id;
+        b.setAttribute("aria-pressed", String(chosen));
+        b.closest(".template-poster").classList.toggle("chosen", chosen);
+        b.querySelector(".poster-meta>span").textContent = chosen ? "SELECTED ✓︎" : "EXPLORE DIRECTION ↗︎";
+      });
+      // Only update the sandboxed preview; keep scroll position stable.
+      loadTemplate(id);
+    };
+    el.querySelectorAll("[data-template]").forEach(button => {
+      button.onclick = () => chooseTemplate(button.dataset.template);
+    });
+    const applyPurposeFilter = () => {
+      const shown = offered.filter(matchesFilter);
+      el.querySelectorAll("[data-template]").forEach(button => {
+        const template = offered.find(t => t.id === button.dataset.template);
+        button.closest(".template-card").hidden = !template || !matchesFilter(template);
+      });
+      el.querySelectorAll("[data-purpose]").forEach(button =>
+        button.setAttribute("aria-pressed", String(button.dataset.purpose === purposeFilter)));
+      el.querySelector("#template-count").textContent = shown.length + " of " + offered.length + " available designs";
+      el.querySelector("#no-template-matches").hidden = Boolean(shown.length);
+      if (shown.length && !shown.some(t => t.id === input.template)) chooseTemplate(shown[0].id);
+    };
+    el.querySelectorAll("[data-purpose]").forEach(button => {
+      button.onclick = () => {
+        purposeFilter = button.dataset.purpose;
+        if (purposeFilter !== "All") input.type = purposeFilter;
+        applyPurposeFilter();
       };
     });
+    el.querySelectorAll("[data-switch-tier]").forEach(button => {
+      button.onclick = () => {
+        selectedTier = button.dataset.switchTier;
+        packageId = null;
+        syncPackage();
+        const inRange = offered.find(t => t.id === input.template);
+        const next = (catalog.templates || templates).filter(t => templateFitsTier(t.id, selectedTier));
+        if (!next.some(t => t.id === input.template) && next.length) setTemplate(next[0].id);
+        draw();
+      };
+    });
+    applyPurposeFilter();
     syncFrameSize();
-    loadTemplate(active.id);
+    if (active) loadTemplate(input.template);
   }
   if (step === 2) {
     const fixedControls = input.template === "arcade"
