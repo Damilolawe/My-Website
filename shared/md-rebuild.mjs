@@ -39,18 +39,17 @@ highlighter:'.md-highlighter-hero{grid-template-columns:1.2fr .8fr}.md-highlight
 const mobile='@media(max-width:940px){.md-hero,.md-afterhours-hero,.md-signal-hero,.md-playbill-hero,.md-monologue-hero,.md-brutalist-hero,.md-foundry-hero,.md-obsidian-hero,.md-couture-hero{grid-template-columns:1fr;min-height:0}.md-media,.md-nocturne-hero .md-media,.md-couture-hero .md-media,.md-obsidian-hero .md-media{min-height:380px}.md-nocturne-hero .md-hero-copy{position:relative;bottom:auto;left:auto}.folio .art-directed-work,.couture .art-directed-work,.monologue .art-directed-work,.contactsheet .art-directed-work,.foundry .art-directed-work{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.md-hero h1{font-size:clamp(3.3rem,12vw,6rem)}.md-media,.md-couture-hero .md-media,.md-nocturne-hero .md-media,.md-obsidian-hero .md-media{min-height:290px}.md-art span{font-size:clamp(3.5rem,20vw,7rem)}.folio .art-directed-work,.couture .art-directed-work,.monologue .art-directed-work,.contactsheet .art-directed-work,.foundry .art-directed-work,.playbill .art-directed-work{grid-template-columns:1fr}.md-portraiture-hero .md-media{min-height:380px}.portraiture .case-entry:nth-child(even),.contactsheet .case-entry:nth-child(odd){transform:none}.md-playbill-hero{outline-width:5px}.md-brutalist-hero{outline-width:5px}.md-nocturne-hero .md-media{min-height:420px}}';
 export function mdCSSFor(id){
  if(!uploadedDesignFor(id))return '';
- return core+layouts[id]+mobile;
+ return core+layouts[id]+'.motion-none *,.motion-none *::before,.motion-none *::after{animation:none!important;transition:none!important}'+mobile;
 }
 export function mdPaletteFor(value,{sample=false}={}){
  const d=uploadedDesignFor(value.template);
  if(!d)return '';
  // Apply the actual uploaded style's color roles in fictional previews. Real clients control their brand accent.
- const use=sample;
  const contrast=['afterhours','signal','orbit','monologue','nocturne','nightgrid','signaldeck','obsidian'].includes(d.id);
- const bg=use?d.bg:(value.design.appearance==='dark'?'#101115':d.bg);
- const fg=use?d.fg:(contrast?'#f7f4f0':'#151515');
- const accent=use?d.accent:value.design.primary;
- const surface=use?d.surface:value.design.secondary;
- const secondary=use?d.surface:value.design.secondary;
+ const bg=value.design.appearance==='dark'?(sample?d.bg:'#101115'):d.bg;
+ const fg=sample?d.fg:(contrast?'#f7f4f0':'#151515');
+ const accent=value.design.primary;
+ const surface=value.design.secondary;
+ const secondary=value.design.secondary;
  return 'body.'+d.id+'{--bg:'+bg+';--fg:'+fg+';--surface:'+surface+';--secondary:'+secondary+';--accent:'+accent+';--border:'+(contrast?'#ffffff35':'#0000002a')+';--muted:'+(contrast?'#b7b6b6':'#626262')+'}';
 }
