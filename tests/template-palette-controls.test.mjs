@@ -13,11 +13,17 @@ const palette = (id, primary, secondary) => {
 };
 
 test("the entire 20-template catalog maps the chosen colors to its major hero, navigation and footer", () => {
-  assert.equal(templates.length, 26);
+  assert.equal(templates.length, 27);
   for (const { id } of templates) {
     const pink = palette(id, "#ff0077", "#1d53d7");
     const green = palette(id, "#20bb42", "#efad34");
     assert.notEqual(pink, green, id + " ignored the selected colors");
+    if(id==="liquidmetal") {
+      assert(pink.includes("class=\"liquidmetal"),"Liquid Metal must retain its exact monochrome source palette");
+      assert(pink.includes("--lm-primary:#E8EAEE"),"Missing source primary");
+      assert(!pink.includes("--accent:#ff0077"),"Liquid Metal must not introduce forbidden saturated palette overrides");
+      continue;
+    }
     if(id==="arcade") {
       assert(pink.includes("--arcade-volt:#ff0077;--arcade-lift:#1d53d7"));
       assert(green.includes("--arcade-volt:#20bb42;--arcade-lift:#efad34"));
