@@ -27,7 +27,6 @@ let step = 0,
   catalog = { templates, packages: [], ordersEnabled: false },
   packageId = null,
   selectedTier = null,
-  purposeFilter = "All",
   me = null,
   orderId = null,
   draftId = null,
@@ -115,7 +114,6 @@ function draw() {
           syncPackage();
           const available = (catalog.templates || templates).filter(t => minimumTier(t.id) === tier);
           if (available.length) setTemplate(available[0].id);
-          purposeFilter = "All";
         }
         step = 1;
         draw();
@@ -127,11 +125,10 @@ function draw() {
   if (step === 1) {
     const offered = (catalog.templates || templates)
       .filter(t => templateFitsTier(t.id, selectedTier));
-    const matchesFilter = t => true; // All template designs remain organic.
+    const matchesFilter = t => true; // All authored designs appear independently of purpose.
     const visible = offered.filter(matchesFilter);
     const active = visible.find(t => t.id === input.template) || visible[0] || offered[0];
     if (active && !visible.some(t => t.id === input.template)) setTemplate(active.id);
-    const purposeButtons = ""; // Template visuals are no longer rewritten by audience category.
     const tierButtons = tiers.map(t => '<button type="button" class="tier-switch" data-switch-tier="' + t.id +
       '" aria-pressed="' + String(t.id === selectedTier) + '">' + esc(t.name) + '</button>').join("");
     const demoPath = (id) => id==="runwaymulti" ? "/experiments/runwayml-multipage/" : "/templates/" + encodeURIComponent(id) + ".html";
@@ -151,7 +148,7 @@ function draw() {
         '<div class="theater-reassurance">This is a fictional demonstration. Your content, images, and colors are customized in the next steps. Select another direction below without losing your place.</div>' +
       '</div>' +
       '<div class="template-grid premium-template-grid">' + offered.map(choice).join('') + '</div>' +
-      '<p id="no-template-matches" class="panel" ' + (visible.length ? 'hidden' : '') + '>No designs match this filter. Try another website type.</p>';
+      '<p id="no-template-matches" class="panel" ' + (visible.length ? 'hidden' : '') + '>No templates are available at this tier.</p>';
     const frame=el.querySelector("#theater-frame");
     const theater=el.querySelector(".experience-theater");
     const canvas=el.querySelector(".theater-canvas");
@@ -234,19 +231,10 @@ function draw() {
         const template = offered.find(t => t.id === button.dataset.template);
         button.closest(".template-card").hidden = !template || !matchesFilter(template);
       });
-      el.querySelectorAll("[data-purpose]").forEach(button =>
-        button.setAttribute("aria-pressed", String(button.dataset.purpose === purposeFilter)));
       el.querySelector("#template-count").textContent = shown.length + " of " + offered.length + " available designs";
       el.querySelector("#no-template-matches").hidden = Boolean(shown.length);
       if (shown.length && !shown.some(t => t.id === input.template)) chooseTemplate(shown[0].id);
     };
-    el.querySelectorAll("[data-purpose]").forEach(button => {
-      button.onclick = () => {
-        purposeFilter = button.dataset.purpose;
-        if (purposeFilter !== "All") input.type = purposeFilter;
-        applyPurposeFilter();
-      };
-    });
     el.querySelectorAll("[data-switch-tier]").forEach(button => {
       button.onclick = () => {
         selectedTier = button.dataset.switchTier;
