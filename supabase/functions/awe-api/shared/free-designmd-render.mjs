@@ -33,20 +33,20 @@ const h= (s)=>E(s).replace(/\r?\n/g,"<br>");
 function workItems(c){if(c.cards.length)return c.cards;return String(c.projects||"").split(/\n\s*\n/).filter(Boolean).slice(0,12).map(x=>{const a=x.split("\n");return {title:a.shift(),description:a.join("\n"),url:""};});}
 function section(s,i,c,items,opts,type){
  const labels={about:"Our story",work:"Selected work",services:"What we offer",education:"Background",experience:"Experience",skills:"Our expertise",testimonials:"Kind words",contact:"Get in touch"};
- const title=s==="work"?(type==="Actor / model"?"Credits & on-screen work":type==="Student résumé"?"Projects & experiments":"Selected work"):labels[s],head='<div class="fd-section-head"><span>'+String(i+1).padStart(2,"0")+' / '+E(s)+'</span><h2>'+E(title)+'</h2></div>';
+ const title=s==="work"?(type==="Actor / model"?"Credits & on-screen work":type==="Student résumé"?"Projects & experiments":"Selected work"):labels[s],head='<div class="fd-section-head fd-section-head--clean"><h2>'+E(title)+'</h2></div>';
  let inside="";
  if(s==="about"){if(!c.bio)return '';inside='<div class="fd-prose">'+h(c.bio)+'</div>';}
  if(s==="work"){const records=items.length?items:c.photoIds.map((_,j)=>({title:"Selected work "+(j+1),description:""}));if(!records.length)return '';inside='<div class="fd-grid">'+records.map((x,j)=>'<article class="fd-card"><div class="fd-card-art">'+(c.photoIds[j]?'<img src="'+E(opts.assetBase+c.photoIds[j]+opts.assetSuffix)+'" alt="'+E(x.title)+'" loading="lazy">':'<span>'+String(j+1).padStart(2,"0")+'</span>')+'</div><div class="fd-card-info"><h3>'+E(x.title)+'</h3><p>'+h(x.description)+'</p>'+(https(x.url)?'<a href="'+E(x.url)+'" rel="noopener noreferrer">View project ↗︎</a>':'')+'</div></article>').join('')+'</div>';}
  if(s==="services"){if(!c.services.length)return '';inside='<div class="fd-grid">'+c.services.map((x,j)=>'<article class="fd-service"><span>'+String(j+1).padStart(2,"0")+'</span><h3>'+E(x.title)+'</h3><p>'+h(x.description)+'</p></article>').join('')+'</div>';}
  if(["education","experience","skills"].includes(s)){if(!c[s])return '';inside='<div class="fd-detail"><strong>'+E(title)+'</strong><div>'+h(c[s])+'</div></div>';}
  if(s==="testimonials"){if(!c.testimonials.length)return '';inside='<div class="fd-grid">'+c.testimonials.map(x=>'<blockquote class="fd-quote"><p>“'+E(x.quote)+'”</p><cite>'+E(x.attribution)+'</cite></blockquote>').join('')+'</div>';}
- if(s==="contact")inside='<div class="fd-contact"><h2>Make your<br>next move.</h2><div><p>Bring the next idea to life.</p>'+(c.publicEmail?'<a class="fd-action fd-primary" href="mailto:'+E(c.publicEmail)+'">Get in touch ↗︎</a>':'<p class="contact-setup-note">This website has not published a contact method yet. Add a real email or public link to receive inquiries.</p>')+(c.links.length?'<p>'+c.links.map(x=>'<a href="'+E(x)+'" rel="noopener noreferrer">'+E(x)+'</a>').join(' · ')+'</p>':'')+'</div></div>';
+ if(s==="contact")inside='<div class="fd-contact fd-contact--clean"><div>'+(c.publicEmail?'<a class="fd-action fd-primary" href="mailto:'+E(c.publicEmail)+'">Get in touch</a>':'')+(c.links.length?'<p>'+c.links.map(x=>'<a href="'+E(x)+'" rel="noopener noreferrer">'+E(x)+'</a>').join(' · ')+'</p>':'')+'</div></div>';
  return '<section class="fd-section" id="'+E(s)+'">'+head+inside+'</section>';
 }
 export function renderFreeDesign(v,{sample=false,assetBase="/api/assets/",assetSuffix=""}={}){
 const d=freeDesignFor(v.template);if(!d)return null;
 const c=v.content,items=workItems(c),id=d.id;
-const visible=v.design.sections.filter(s=>["about","work","services","education","experience","skills","testimonials","contact"].includes(s));
+const visible=v.design.sections.filter(s=>["about","work","services","education","experience","skills","testimonials","contact"].includes(s)&&(s!=="contact"||Boolean(c.publicEmail||c.links.length)));
 const nav=visible.filter(s=>s==="contact"||s==="work"&&(items.length||c.photoIds.length)||s==="services"&&c.services.length||s==="testimonials"&&c.testimonials.length||s==="about"&&c.bio||["education","experience","skills"].includes(s)&&c[s]);
 const first=nav.includes("work")?"#work":nav.includes("contact")?"#contact":"#main";
 const artwork='<div class="fd-art" aria-label="'+E(d.style)+' artwork">'+art[id]+(c.photoIds[0]?'<img src="'+E(assetBase+c.photoIds[0]+assetSuffix)+'" alt="'+E(c.name)+' featured work" loading="eager">':'')+'</div>';
