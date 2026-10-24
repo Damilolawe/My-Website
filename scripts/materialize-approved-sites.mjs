@@ -83,7 +83,20 @@ export async function materializeApprovedSites({
     const data=await response.json();
     assert(data && data.version===site.version && typeof data.html==="string",
       "published version changed mid-build: "+site.slug);
-    let html=versionedHtml(data.html,site.version,canonical);
+    // Published multi-page files are generated exclusively from the immutable,
+    // owner-approved site version. No upload, arbitrary filenames or drafts.
+    const pageNames=data.pages?["index.html","research.html","work.html","studio.html","journal.html"]:["index.html"];
+    if(data.pages){
+      assert(Object.getPrototypeOf(data.pages)===Object.prototype &&
+        Object.keys(data.pages).length===5 &&
+        pageNames.every(n=>typeof data.pages[n]==="string") &&
+        data.pages["index.html"]===data.html,
+        "invalid approved multi-page document bundle");
+    }
+    const pageHtml=Object.fromEntries(pageNames.map(name=>[
+      name,versionedHtml(data.pages?data.pages[name]:data.html,site.version,
+        canonical+(name==="index.html"?"":name))
+    ]));
     const assets=[];
     for(const aid of site.assets) {
       const endpoint=api+"/"+site.slug+"/assets/"+aid;
@@ -101,29 +114,33 @@ export async function materializeApprovedSites({
         'src="/sites/'+site.slug+'/assets/'+aid+'"',
         'src="/api/assets/'+aid+'"'
       ];
-      for(const original of names) html=html.replaceAll(original,'src="'+target+'"');
+      for(const name of pageNames)
+        for(const original of names)pageHtml[name]=pageHtml[name].replaceAll(original,'src="'+target+'"');
       assets.push({target,contents});
       total+=contents.length;
       assert(total<MAX_TOTAL,"static site media exceeds deployment budget");
     }
-    assert(!html.includes('src="/api/assets/') &&
-      !html.includes(api+"/"+site.slug+"/assets/") &&
-      !html.includes('src="/sites/'+site.slug+'/assets/'),
-      "unresolved private/dynamic asset reference");
-    total+=Buffer.byteLength(html);
-    assert(total<MAX_TOTAL,"static sites exceed deployment budget");
-    snapshots.push({slug:site.slug,version:site.version,html,assets,canonical});
+    for(const name of pageNames) {
+      const html=pageHtml[name];
+      assert(!html.includes('src="/api/assets/') &&
+        !html.includes(api+"/"+site.slug+"/assets/") &&
+        !html.includes('src="/sites/'+site.slug+'/assets/'),
+        "unresolved private/dynamic asset reference");
+      total+=Buffer.byteLength(html);
+      assert(total<MAX_TOTAL,"static sites exceed deployment budget");
+    }
+    snapshots.push({slug:site.slug,version:site.version,pages:pageHtml,assets,canonical});
   }
   await rm(sitesDir,{recursive:true,force:true});
   await mkdir(sitesDir,{recursive:true});
-  for(const {slug,html,assets} of snapshots) {
+  for(const {slug,pages,assets} of snapshots) {
     const dest=path.join(sitesDir,slug);
     await mkdir(path.join(dest,"assets"),{recursive:true});
-    await writeFile(path.join(dest,"index.html"),html);
+    for(const [filename,html] of Object.entries(pages))await writeFile(path.join(dest,filename),html);
     for(const asset of assets) await writeFile(path.join(dest,asset.target),asset.contents);
   }
   const pages=["/","/why-awe.html","/order.html","/contact.html",
-    ...snapshots.map(s=>"/sites/"+s.slug+"/")];
+    ...snapshots.flatMap(s=>Object.keys(s.pages).map(name=>"/sites/"+s.slug+"/"+(name==="index.html"?"":name)))];
   const sitemap='<?xml version="1.0" encoding="UTF-8"?>\n'+
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+
     pages.map(url=>'  <url><loc>'+enc(origin+url)+'</loc></url>').join("\n")+
