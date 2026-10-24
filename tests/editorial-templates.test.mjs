@@ -4,11 +4,14 @@ import {readFile} from "node:fs/promises";
 import {renderSite} from "../shared/render.mjs";
 import {templates,sampleForTemplate} from "../shared/model.mjs";
 import {sampleArtwork,illustrationArtwork} from "../shared/photographic-direction.mjs";
+import {directionFor} from "../shared/refero-originals.mjs";
 
 test("All twenty fictional template demos use a photography-forward composition",()=>{
  for(const t of templates){
   const html=renderSite(sampleForTemplate(t.id),{sample:true});
-  if(["terminal","monologue","arcade"].includes(t.id)){
+  if(directionFor(t.id)){
+    assert(html.includes('class="ref-art"'),t.id+" missing independently generated reference study");
+  }else if(["terminal","monologue","arcade"].includes(t.id)){
     assert(html.includes('hero-variant '+t.id+'-hero'),t.id+" missing intentional text-first hero");
   }else{
     assert(html.includes('study-shot--'+t.id),t.id+" missing photography");
@@ -25,7 +28,9 @@ test("Customer sites have no third party photo loading or stock imagery",()=>{
   const html=renderSite(sampleForTemplate(t.id));
   assert(!html.includes("images.unsplash.com"),t.id+" leaked sample photography");
   assert(!html.includes('<div class="study-shot '),t.id+" leaked sample elements");
-  if(["terminal","monologue","arcade"].includes(t.id)){
+  if(directionFor(t.id)){
+    assert(html.includes('class="ref-art"'),t.id+" missing original geometric artwork");
+  }else if(["terminal","monologue","arcade"].includes(t.id)){
     assert(html.includes('hero-variant '+t.id+'-hero'),t.id+" missing designed text-first architecture");
   }else{
     assert(html.includes('class="editorial-illustration editorial-illustration--'+t.id),t.id+" missing stand-alone branded artwork");

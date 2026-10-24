@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { templates, sampleForTemplate } from "../shared/model.mjs";
 import { renderSite } from "../shared/render.mjs";
-import { paletteCSS, paletteTokens, paletteInline } from "../shared/theme-palette.mjs";
+import { paletteCSS, directionPaletteCSS, paletteTokens, paletteInline } from "../shared/theme-palette.mjs";
 
 const file = p => readFile(new URL("../" + p, import.meta.url), "utf8");
 const palette = (id, primary, secondary) => {
@@ -12,7 +12,7 @@ const palette = (id, primary, secondary) => {
 };
 
 test("the entire 20-template catalog maps the chosen colors to its major hero, navigation and footer", () => {
-  assert.equal(templates.length, 21);
+  assert.equal(templates.length, 40);
   for (const { id } of templates) {
     const pink = palette(id, "#ff0077", "#1d53d7");
     const green = palette(id, "#20bb42", "#efad34");
@@ -26,10 +26,12 @@ test("the entire 20-template catalog maps the chosen colors to its major hero, n
     }
     assert(pink.includes("--accent:#ff0077;--secondary:#1d53d7"), id + " missed the chosen colors");
     assert(green.includes("--accent:#20bb42;--secondary:#efad34"), id + " retained the previous colors");
+    const activeCSS=(directionPaletteCSS.includes("body." + id + " ") ? directionPaletteCSS : paletteCSS);
     for (const cssSelector of [".hero", ".shell-header", ".shell-footer", ".service-card"]) {
-      assert(paletteCSS.includes("body." + id + " " + cssSelector + "{"), id + " lacks palette override for " + cssSelector);
+      assert(activeCSS.includes("body." + id + " " + cssSelector + "{"), id + " lacks palette override for " + cssSelector);
     }
-    assert(pink.indexOf(paletteCSS) > pink.indexOf(".shell-header"), id + " should apply user colors after preset CSS");
+    assert(pink.includes("body." + id + " .shell-header{"), id + " should include scoped color overrides");
+    assert(pink.indexOf("body." + id + " .shell-header{") >= pink.indexOf(".shell-header"), id + " should apply user colors after preset CSS");
     assert(!pink.includes("<script"), "A customer site must remain script-free");
   }
 });
@@ -74,7 +76,8 @@ test("customer preview passes the live picker selections into the exact producti
 
 test("palette overrides never escape their active template", () => {
   for (const { id } of templates.filter(t=>t.id!=="arcade")) {
-    assert(paletteCSS.includes("body." + id + " .hero .hero-copy h1,body." + id + " .hero .hero-label,body." + id + " .hero .hero-intro"));
+    const activeCSS=directionPaletteCSS.includes("body." + id + " ")?directionPaletteCSS:paletteCSS;
+    assert(activeCSS.includes("body." + id + " .hero .hero-copy h1,body." + id + " .hero .hero-label,body." + id + " .hero .hero-intro"));
   }
   assert(!paletteCSS.includes(",.hero .hero-label"));
   assert(!paletteCSS.includes(",.hero .hero-intro"));

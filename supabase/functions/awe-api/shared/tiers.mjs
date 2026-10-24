@@ -1,3 +1,4 @@
+import {originalDirections} from "./refero-originals.mjs";
 // Central package-to-template eligibility rules shared by the browser and server.
 // A tier sets minimum design eligibility; package terms determine deliverables.
 export const tiers = Object.freeze([
@@ -13,8 +14,9 @@ const minimums = Object.freeze({
   signal: "signature", orbit: "signature", playbill: "signature",
   monologue: "signature", portraiture: "signature",
   contactsheet: "signature", foundry: "signature",
-  arcade: "premium", atelier: "premium", museum: "premium",
-  brutalist: "premium", nocturne: "premium",
+  arcade: "signature", atelier: "signature", museum: "signature",
+  brutalist: "signature", nocturne: "signature",
+  ...Object.fromEntries(originalDirections.map(d => [d.id,d.tier])),
 });
 export const minimumTier = templateId => minimums[templateId] || null;
 export const tierLevel = id => Object.hasOwn(levels, id) ? levels[id] : -1;

@@ -22,7 +22,7 @@ test("iframe fix preserves global protections while avoiding direct blocked fram
   assert(!showcase.includes('frame.src="/templates/"'));
 });
 test("preview fetch only allows six public demo paths, not customer drafts",async()=>{
-  assert.equal(TEMPLATE_IDS.length,21);
+  assert.equal(TEMPLATE_IDS.length,40);
   const original=globalThis.fetch;
   const sample=renderSite(sampleForTemplate("folio"),{sample:true});
   try{

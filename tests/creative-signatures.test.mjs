@@ -28,7 +28,7 @@ const chapters = {
 };
 
 test("all twenty chapters have independent structure and working destinations", () => {
-  assert.equal(Object.keys(chapters).length, templates.length - 1);
+  assert.equal(Object.keys(chapters).length, 20);
   for (const [id, signature] of Object.entries(chapters)) {
     const html = renderSite(sampleForTemplate(id), { sample: true });
     assert.match(html, new RegExp('class="signature signature-' + id + '"'), id);
