@@ -10,14 +10,14 @@ Events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`
 ## Secrets (dashboard only — never Git, static assets, ChatGPT, or screenshots)
 
 Supabase Dashboard → project `hxxplkirfsewqsxodngv` → Edge Functions → Secrets:
-- `STRIPE_LIVE_SECRET_KEY`: real account API key beginning `sk_live_`.
+- `STRIPE_LIVE_SECRET_KEY`: ideally a restricted key beginning `rk_live_` with **Checkout Sessions: Write** and unrelated permissions **None**. A standard `sk_live_` key also works but has broader access.
 - `STRIPE_LIVE_WEBHOOK_SECRET`: signing secret beginning `whsec_` for the *new live* Stripe destination.
 - Preserve existing sandbox `STRIPE_SECRET_KEY` and `STRIPE_WEBHOOK_SECRET` unchanged.
 - Leave `LIVE_CHECKOUT_ENABLED=false` and `ORDERS_ENABLED=false` until all checks pass.
 
 ## Required business decisions before enabling any customer payment
 
-The public `express` package is currently **disabled**, has no amount, and has empty hosting, ownership, revisions and termsVersion. The checkout requires all of them. The historical $1 synthetic QA package is also disabled; never enable it for customers.
+The public `express` package is currently **disabled**, has a saved amount of 7500 cents ($75), and has empty hosting, ownership, revisions and termsVersion. The checkout requires all of them. The historical $1 synthetic QA package is also disabled; never enable it for customers.
 
 Confirm package scope, number of pages, exact deliverables, revisions policy, website rights, domain transfer and customer-owned hosting instructions, launch timeframe, cancellations/refunds and any applicable tax policy. Advertised starting prices: $75 one-page, $150 multi-page, more demanding projects $250+. Do not automatically treat the current single-page generator as a multi-page deliverable.
 
