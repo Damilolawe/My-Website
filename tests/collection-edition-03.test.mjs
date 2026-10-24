@@ -20,7 +20,7 @@ test("Twenty designs use editorial transitions rather than one shared ticker",()
    marks.add(bridge.match(/<strong>(.*?)<\/strong>/)?.[1]);
    const html=renderSite(d,{sample:true});
    if(t.id==='folio') assert(html.includes('class="fe-strip"'),'Folio editorial transition missing');
-    else assert(html.includes('studio-index--'+t.id),t.id+" missing transition");
+    else assert(!html.includes('<aside class="experience-interlude'),t.id+" reintroduced generic visual filler");
  }
  assert.equal(marks.size,20,"Each design needs its own authored message");
 });
