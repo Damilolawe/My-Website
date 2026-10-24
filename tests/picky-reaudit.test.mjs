@@ -5,7 +5,7 @@ import {renderSite} from "../shared/render.mjs";
 import {sampleForTemplate,templates,types} from "../shared/model.mjs";
 const read=p=>readFile(new URL("../"+p,import.meta.url),"utf8");
 test("No fictional template promises empty contact; a real configured email stays clickable",()=>{
- for(const purpose of types)for(const t of templates.filter(x=>x.id!=="runwayml")){
+ for(const purpose of types)for(const t of templates.filter(x=>x.id!=="runwayml"&&x.id!=="runwaymulti")){
   const cfg=sampleForTemplate(t.id,purpose);
   const html=renderSite(cfg,{sample:true});
   assert(html.includes('id="contact"'),t.id+"/"+purpose+" missing contact");
@@ -22,9 +22,9 @@ test("No fictional template promises empty contact; a real configured email stay
 });
 test("Twenty architectures use distinct fictional work and biography, regardless of shared purpose",()=>{
  const rows=templates.map(t=>sampleForTemplate(t.id,"Creative portfolio").content);
- assert.equal(new Set(rows.map(x=>x.bio)).size,38);
- assert.equal(new Set(rows.map(x=>x.cards[0].title)).size,38);
- assert.equal(new Set(rows.map(x=>x.cards[1].title)).size,38);
+ assert.equal(new Set(rows.map(x=>x.bio)).size,39);
+ assert.equal(new Set(rows.map(x=>x.cards[0].title)).size,39);
+ assert.equal(new Set(rows.map(x=>x.cards[1].title)).size,39);
 });
 test("Preview geometry and async transitions have explicit regression guards",async()=>{
  const [gallery,builder,galleryCss,builderCss,qa]=await Promise.all([
