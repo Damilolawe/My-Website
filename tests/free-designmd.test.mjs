@@ -28,7 +28,8 @@ test("Ten independent, safe, mobile-adaptive premium designs render in all six p
    assert(html.startsWith("<!doctype html>"),id);
    assert(html.includes("FICTIONAL TEMPLATE DEMO"),id);
    assert(html.includes('id="main"'),id);
-   assert(html.includes('href="#contact"'),id);
+   assert(!html.includes('href="#contact"'),id+" fake contact link");
+   assert(!/<p class="contact-setup-note"/.test(html),id+" empty contact placeholder");
    assert(html.includes("@media(max-width:600px)"),id+" missing responsive styles");
    assert(html.includes("prefers-reduced-motion:reduce"),id+" missing accessible motion fallback");
    assert(!html.includes("<script"),id);
