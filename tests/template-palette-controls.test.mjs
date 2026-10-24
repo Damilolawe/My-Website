@@ -17,7 +17,7 @@ test("the entire 20-template catalog maps the chosen colors to its major hero, n
   for (const { id } of templates) {
     const pink = palette(id, "#ff0077", "#1d53d7");
     const green = palette(id, "#20bb42", "#efad34");
-    assert.notEqual(pink, green, id + " ignored the selected colors");
+    if(id!=="liquidmetal")assert.notEqual(pink, green, id + " ignored the selected colors");
     if(id==="liquidmetal") {
       assert(pink.includes("class=\"liquidmetal"),"Liquid Metal must retain its exact monochrome source palette");
       assert(pink.includes("--lm-primary:#E8EAEE"),"Missing source primary");
@@ -89,7 +89,7 @@ test("customer preview passes the live picker selections into the exact producti
 });
 
 test("palette overrides never escape their active template", () => {
-  for (const { id } of templates.filter(t=>t.id!=="arcade")) {
+  for (const { id } of templates.filter(t=>!["arcade","liquidmetal"].includes(t.id))) {
     if(uploadedDesignFor(id))continue; // Those templates use scoped markdown-derived palettes.
     const activeCSS=directionPaletteCSS.includes("body." + id + " ")?directionPaletteCSS:paletteCSS;
     assert(activeCSS.includes("body." + id + " .hero .hero-copy h1,body." + id + " .hero .hero-label,body." + id + " .hero .hero-intro"));
