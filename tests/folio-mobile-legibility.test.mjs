@@ -9,5 +9,5 @@ test("Folio mobile cover uses content flow with separate image and legible copy"
  assert(css.includes("position:relative!important;inset:auto!important"));
  assert(css.includes("margin:22px 0 0!important"));
  const qa=await read("scripts/browser-qa.mjs");
- assert(qa.includes("fold.photo.bottom>fold.title.top-4"));
+ assert(qa.includes("fold.photo.top<fold.title.bottom+8"));
 });
