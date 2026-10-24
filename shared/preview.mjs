@@ -39,5 +39,27 @@ export async function fetchPublicTemplate(id, { still = false, signal, type } = 
       !/^\s*<!doctype html>/i.test(markup) ||
       !markup.includes("FICTIONAL TEMPLATE DEMO"))
     throw new Error("Preview did not return a valid public sample.");
-  return markup;
+
+  // srcdoc inherits the parent document URL as its navigation base. Absolute
+  // links back to the marketing site otherwise load a frame-blocked document.
+  // Keep same-page section links inside the inert, script-disabled preview.
+  if (typeof DOMParser === "undefined") return markup; // Node-based validation has no DOM.
+  const document = new DOMParser().parseFromString(markup, "text/html");
+  const canonical = new URL(path, location.origin);
+  // Fragment links in srcdoc otherwise resolve against the marketing page URL.
+  const base = document.createElement("base");
+  base.setAttribute("href", "about:srcdoc");
+  document.head.prepend(base);
+  for (const anchor of document.querySelectorAll("a[href]")) {
+    const raw = anchor.getAttribute("href");
+    if (!raw || raw.startsWith("#")) continue;
+    let destination;
+    try { destination = new URL(raw, canonical); } catch { continue; }
+    if (destination.origin !== canonical.origin || !destination.hash) continue;
+    const targetId = decodeURIComponent(destination.hash.slice(1));
+    if (targetId && document.getElementById(targetId)) {
+      anchor.setAttribute("href", destination.hash);
+    }
+  }
+  return "<!doctype html>\n" + document.documentElement.outerHTML;
 }

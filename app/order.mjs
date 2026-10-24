@@ -258,7 +258,10 @@ function draw() {
     if (active) loadTemplate(input.template);
   }
   if (step === 2) {
-    const fixedControls = input.template === "arcade"
+    const authoredFixedDesigns = new Set(["folio","liquidmetal","acidchrome","voidstage","studiomargaux","neomemphis","monobrutalist","vestigefolio","botanicalpress","limepress","gazettebroadside","risograph","runwayml","runwaymulti","nike","clay","ferrari"]);
+    const fixedControls = authoredFixedDesigns.has(input.template)
+      ? '<p class="muted">This art-directed design keeps its original typography, hero alignment, layout and corner treatment. These controls are intentionally unavailable; you can still personalize content, images, available colors and other supported settings.</p>'
+      : input.template === "arcade"
       ? '<p class="muted">Arcade Night keeps the supplied Big Shoulders / JetBrains typography, dark appearance, broadcast layout and sharp corners. Colors, section order, navigation and motion remain editable.</p>' +
         '<input type="hidden" name="font" value="mono"><input type="hidden" name="appearance" value="dark"><input type="hidden" name="layout" value="stacked"><input type="hidden" name="heroAlignment" value="left"><input type="hidden" name="corners" value="sharp">'
       : `${select("Typography", "font", ["sans", "serif", "mono"], input.design.font)}${select("Appearance", "appearance", ["light", "dark"], input.design.appearance)}${select("Layout", "layout", ["stacked", "split"], input.design.layout)}${select("Hero alignment", "heroAlignment", ["left", "center", "right"], input.design.heroAlignment)}${select("Corner style", "corners", ["sharp", "soft", "round"], input.design.corners)}`;
@@ -266,6 +269,7 @@ function draw() {
     const update = () => {
       const f = new FormData($("#design"));
       input.design = {
+        ...input.design,
         ...Object.fromEntries(f),
         sections: f.getAll("sections"),
       };
