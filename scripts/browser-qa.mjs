@@ -184,8 +184,8 @@ try {
       if(["afterhours","folio","atelier"].includes(entry.id)){
         if(size.width===360){
           const fold=await page.evaluate(slug=>{
-            const heading=document.querySelector(slug==="folio"?".folio-words h1":slug==="atelier"?".atelier-copy h1":".afterhours-words h1");
-            const art=document.querySelector(slug==="folio"?".folio-picture .hero-media":slug==="atelier"?".atelier-photo .hero-media":".afterhours-screen > .hero-media");
+            const heading=document.querySelector(slug==="folio"?".md-folio-hero h1":slug==="atelier"?".atelier-copy h1":".md-afterhours-hero h1");
+            const art=document.querySelector(slug==="folio"?".md-folio-hero .md-media":slug==="atelier"?".atelier-photo .hero-media":".md-afterhours-hero .md-media");
             const nav=document.querySelector(".shell-header");
             const rect=el=>{const r=el?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,width:r.width,height:r.height}:null};
             const photoLabel=slug==="atelier"?document.querySelector(".atelier-photo .study-motto"):null;
@@ -197,7 +197,7 @@ try {
             failures.push("Mobile "+entry.id+": headline starts below first screen");
           if(!fold.photo||fold.photo.top>fold.viewport-40)
             failures.push("Mobile "+entry.id+": photography not visible in first screen");
-          if(entry.id==="folio"&&fold.photo&&fold.title&&fold.photo.bottom>fold.title.top-4)
+          if(entry.id==="folio"&&fold.photo&&fold.title&&fold.photo.top<fold.title.bottom+8)
             failures.push("Mobile Folio: cover image intersects headline instead of having its own space");
           if(fold.nav&&fold.photo&&fold.photo.top<fold.nav.bottom-2)
             failures.push("Mobile "+entry.id+": art overlaps navigation");
@@ -233,8 +233,8 @@ try {
     for(const template of ["afterhours","folio","atelier"]){
       await testPage(page,origin+"/templates/"+template+".html",size.name+" flagship "+template,{waitMs:1100});
       const firstFold=await page.evaluate(slug=>{
-        const title=document.querySelector(slug==="folio"?".folio-words h1":slug==="afterhours"?".afterhours-words h1":".atelier-copy h1");
-        const media=document.querySelector(slug==="folio"?".folio-picture .hero-media":slug==="afterhours"?".afterhours-screen > .hero-media":".atelier-photo .hero-media");
+        const title=document.querySelector(slug==="folio"?".md-folio-hero h1":slug==="afterhours"?".md-afterhours-hero h1":".atelier-copy h1");
+        const media=document.querySelector(slug==="folio"?".md-folio-hero .md-media":slug==="afterhours"?".md-afterhours-hero .md-media":".atelier-photo .hero-media");
         const rect=el=>{const r=el?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,width:r.width,height:r.height}:null};
         return {title:rect(title),media:rect(media),viewport:innerHeight};
       },template);
