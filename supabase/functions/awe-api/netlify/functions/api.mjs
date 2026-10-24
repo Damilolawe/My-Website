@@ -406,10 +406,14 @@ export default async function (req) {
           ownership: text(b.ownership, 2000),
           revisions: text(b.revisions, 2000),
           refunds: text(b.refunds, 2000),
-          delivery: "awe-hosted",
+          delivery: b.delivery === "awe-multipage" ? "awe-multipage" : "awe-hosted",
+          pageCount: b.delivery === "awe-multipage" ? 5 : 1,
+          allowedTemplates: b.delivery === "awe-multipage" ? ["runwaymulti"] : [],
           filesIncluded: b.filesIncluded === true,
           termsVersion: id(),
         };
+        if (data.delivery === "awe-multipage" && data.tier !== "signature")
+          fail("Five-page checkout is only available in the Signature tier.");
         if (
           data.enabled &&
           (!data.hosting || !data.ownership || !data.revisions || !data.refunds)
