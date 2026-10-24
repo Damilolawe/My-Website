@@ -19,7 +19,7 @@ export function paletteTokens(primary,secondary,dark=false){
  'on-secondary':on(secondary)};
 }
 export const paletteInline=(primary,secondary,dark=false)=>Object.entries(paletteTokens(primary,secondary,dark)).map(([k,v])=>'--'+k+':'+v).join(';');
-const templates=['index','folio','still','afterhours','signal','daylight','atlas','terminal','orbit','playbill','monologue','portraiture','contactsheet','atelier','museum','brutalist','nocturne','foundry','bloom','ledger'].concat(originalDirections.map(d=>d.id));
+const templates=['index','folio','still','afterhours','signal','daylight','atlas','terminal','orbit','playbill','monologue','portraiture','contactsheet','atelier','museum','brutalist','nocturne','foundry','bloom','ledger'];
 const soft='linear-gradient(130deg,var(--palette-primary-soft),var(--palette-secondary-soft))';
 const deep='radial-gradient(circle at 65% 28%,var(--palette-deep-primary),var(--palette-deep-secondary) 83%)';
 const heroes={index:soft,folio:soft,still:soft,afterhours:deep,signal:soft,daylight:soft,
@@ -63,3 +63,16 @@ export const paletteCSS=templates.map(id=>{
 }).join('')+
  'body .pill-link,body .hero .pill-link{background:var(--accent)!important;border-color:var(--accent)!important;color:var(--on-accent)!important}'+
  'body .case-art,body .work-art{background:linear-gradient(125deg,var(--accent),var(--secondary))}';
+
+// The additional collection is emitted only in its own documents.
+// Legacy websites retain byte-for-byte original palette rules and safe publication sizes.
+export const directionPaletteCSS=originalDirections.map(d=>{
+ const id=d.id;
+ return 'body.'+id+'{--bg:var(--palette-bg);--surface:var(--palette-surface)}'+
+  rule(id,'.hero','background:var(--secondary);color:var(--fg)')+
+  rule(id,'.hero .hero-copy h1,.hero .hero-label,.hero .hero-intro','color:inherit')+
+  rule(id,'.shell-header','background:var(--palette-secondary-soft);color:var(--fg);border-color:var(--accent)')+
+  rule(id,'.shell-footer','background:var(--palette-secondary-strong);color:var(--palette-on-secondary-strong)')+
+  rule(id,'.service-card','background:var(--palette-secondary-soft);color:var(--fg);border-color:var(--palette-secondary-strong)')+
+  rule(id,'.ref-art,.ref-media','background:var(--secondary);color:var(--accent)');
+}).join('');
