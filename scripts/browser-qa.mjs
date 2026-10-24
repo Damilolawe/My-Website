@@ -217,9 +217,9 @@ try {
       // Exercise a real section link, not just existence of href/#target.
       // Test each template's ACTUAL navigation. The Runway cinematic edition
       // has a real mobile details menu and its Signature edition links pages.
-      const menu=page.locator(".rw-menu:visible:not([open]) > summary");
+      const menu=page.locator(".rw-menu:visible:not([open]) > summary, .trio-menu:visible:not([open]) > summary");
       if(await menu.count()) await menu.click();
-      const first=page.locator('nav[aria-label="Section navigation"] a[href^="#"]:visible, nav[aria-label="Primary navigation"] a[href^="#"]:visible, .rw-menu nav a[href^="#"]:visible, .rw-menu nav a[href^="/experiments/runwayml-multipage/"]:visible, .rw-header-nav a[href^="/experiments/runwayml-multipage/"]:visible').first();
+      const first=page.locator('nav[aria-label="Section navigation"] a[href^="#"]:visible, nav[aria-label="Primary navigation"] a[href^="#"]:visible, .rw-menu nav a[href^="#"]:visible, .rw-menu nav a[href^="/experiments/runwayml-multipage/"]:visible, .rw-header-nav a[href^="/experiments/runwayml-multipage/"]:visible, .trio-menu nav a[href^="#"]:visible').first();
       if(await first.count()) {
         const href=await first.getAttribute("href");
         try {
