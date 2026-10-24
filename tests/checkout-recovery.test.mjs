@@ -14,6 +14,7 @@ const validPackage = {
   hosting: "Test hosting terms",
   ownership: "Test ownership terms",
   revisions: "Test revision policy",
+  refunds: "Non-refundable except where law requires otherwise.",
   termsVersion: "test-v1",
 };
 
@@ -59,11 +60,15 @@ test("checkout cannot lock a draft without immutable paid-package terms", () => 
     { hosting: "" },
     { ownership: "" },
     { revisions: "" },
+    { refunds: "" },
     { termsVersion: "" },
   ]) {
     assert.equal(checkoutPackageIsValid({ ...validPackage, ...edit }), false);
   }
   assert.equal(checkoutPackageIsValid(null), false);
+  const {refunds, ...oldQa} = validPackage;
+  assert.equal(checkoutPackageIsValid({ ...oldQa, testOnly: true }), true);
+  assert.equal(checkoutPackageIsValid(oldQa), false);
 });
 
 test("deployed and legacy API both gate and recover checkout with one idempotency key", async () => {

@@ -200,6 +200,7 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
       hosting: "Test terms",
       ownership: "Test terms",
       revisions: "Test terms",
+      refunds: "Non-refundable except where required by law.",
       termsVersion: "test-v1",
     };
     await db.query("update awe_packages set data=$1 where id='express'", [

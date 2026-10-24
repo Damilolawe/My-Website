@@ -27,6 +27,7 @@ export function checkoutPackageIsValid(p) {
     ["usd", "eur", "gbp", "cad", "aud"].includes(p.currency) &&
     ["hosting", "ownership", "revisions", "termsVersion"].every(
       (key) => typeof p[key] === "string" && p[key].trim(),
-    )
+    ) &&
+    (p.testOnly === true || (typeof p.refunds === "string" && p.refunds.trim()))
   );
 }

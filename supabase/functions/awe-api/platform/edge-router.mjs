@@ -138,7 +138,7 @@ async function dispatch(req) {
       const qaAllowed=sandboxOrderAllowed(v,u,o.id,env());
       if(v?.testOnly===true&&!qaAllowed)fail('This test package is not available for this project.',403);
       if(!liveCheckoutConfigured()&&!qaAllowed)fail('Orders are not open yet.',503);
-      if(!v?.enabled||!Number.isInteger(v.amount)||v.amount<=0||!v.hosting||!v.ownership||!v.revisions||!v.termsVersion)fail('This package is not ready.',503);
+      if(!v?.enabled||!Number.isInteger(v.amount)||v.amount<=0||!v.hosting||!v.ownership||!v.revisions||!v.termsVersion||(!v.testOnly&&!v.refunds))fail('This package is not ready.',503);
       if(b.consent!==true||b.termsVersion!==v.termsVersion)fail('Review the current package terms.');
       if(!(await rows('awe_templates',`id=eq.${data.template}&enabled=eq.true`)).length)fail('This template is unavailable.');
       if(!packageAllowsTemplate(v,data.template))fail('This design requires a higher package tier.',403);
@@ -173,7 +173,7 @@ async function dispatch(req) {
     const enabledPackages=packages.filter(p=>
       p.data?.enabled===true && p.data?.testOnly!==true && Number.isInteger(p.data?.amount) &&
       p.data.amount>0 && p.data.hosting && p.data.ownership &&
-      p.data.revisions && p.data.termsVersion);
+      p.data.revisions && p.data.refunds && p.data.termsVersion);
     const priorPayments=await rows('awe_payments','select=event_id&limit=1');
     return json({
       mode:liveCheckoutConfigured()?'live':'test-only',

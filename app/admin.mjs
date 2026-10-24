@@ -217,6 +217,7 @@ function drawOverview() {
         hosting: "",
         ownership: "",
         revisions: "",
+        refunds: "",
       },
     });
     drawOverview();
@@ -224,7 +225,7 @@ function drawOverview() {
   $("#packages").innerHTML = packages
     .map((p) => {
       const d = p.data;
-      return `<details class="panel"><summary>${esc(d.name)} · ${d.enabled ? "Available" : "Disabled"} · ${money(d)}</summary><form data-package="${p.id}">${field("Package name", "name", d.name)}${select("Template access tier", "tier", ["starter","signature","premium"], packageTier(d) || "starter")}<p class="muted">Higher tiers can also use all lower-tier designs.</p><div class="field-row">${field("Price in minor units (e.g. cents)", "amount", d.amount || "")}${field("Currency (e.g. usd)", "currency", d.currency)}</div>${field("Included features (one per line)", "features", (d.features || []).join("\n"), true)}${field("Hosting terms, duration & domain costs", "hosting", d.hosting, true)}${field("Ownership & transfer terms", "ownership", d.ownership, true)}${field("Revision policy", "revisions", d.revisions, true)}<label><input type="checkbox" name="filesIncluded" ${d.filesIncluded ? "checked" : ""}> Include downloadable website files after approval</label><br><label><input type="checkbox" name="enabled" ${d.enabled ? "checked" : ""}> Make package available</label><div class="toolbar"><button class="btn">Save package</button></div></form></details>`;
+      return `<details class="panel"><summary>${esc(d.name)} · ${d.enabled ? "Available" : "Disabled"} · ${money(d)}</summary><form data-package="${p.id}">${field("Package name", "name", d.name)}${select("Template access tier", "tier", ["starter","signature","premium"], packageTier(d) || "starter")}<p class="muted">Higher tiers can also use all lower-tier designs.</p><div class="field-row">${field("Price in minor units (e.g. cents)", "amount", d.amount || "")}${field("Currency (e.g. usd)", "currency", d.currency)}</div>${field("Included features (one per line)", "features", (d.features || []).join("\n"), true)}${field("Hosting terms, duration & domain costs", "hosting", d.hosting, true)}${field("Ownership & transfer terms", "ownership", d.ownership, true)}${field("Revision policy", "revisions", d.revisions, true)}${field("Payment, cancellation & non-refundable policy", "refunds", d.refunds || "", true)}<label><input type="checkbox" name="filesIncluded" ${d.filesIncluded ? "checked" : ""}> Include downloadable website files after approval</label><br><label><input type="checkbox" name="enabled" ${d.enabled ? "checked" : ""}> Make package available</label><div class="toolbar"><button class="btn">Save package</button></div></form></details>`;
     })
     .join("");
   app.querySelectorAll("[data-inquiry]").forEach((control) => {
