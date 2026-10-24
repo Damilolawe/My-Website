@@ -7,6 +7,8 @@ import { templates } from "/shared/model.mjs";
   const rail=root.querySelector("#worlds-choices"),frame=root.querySelector("#worlds-frame"),screen=root.querySelector("#worlds-screen");
   const name=root.querySelector("#worlds-name"),full=root.querySelector("#worlds-open");
   const loading=root.querySelector("#worlds-loading"),loadingName=root.querySelector("#worlds-loading-name");
+  const search=root.querySelector("#worlds-search"),results=root.querySelector("#worlds-results");
+  const description=root.querySelector("#worlds-description");
   const view=root.querySelector(".worlds-view");
   const desktop=root.querySelector("#worlds-desktop"),mobile=root.querySelector("#worlds-mobile");
   let selected="afterhours",version=0,controller=null;
@@ -21,7 +23,7 @@ import { templates } from "/shared/model.mjs";
   }
   if("ResizeObserver" in window)new ResizeObserver(syncFrame).observe(view);
   else addEventListener("resize",syncFrame,{passive:true});
-  const savedNames=new Map(templates.map(x=>[x.id,x.name]));
+  const savedTemplates=new Map(templates.map(x=>[x.id,x]));
   function templatePath(id){return id==="runwaymulti"?"/experiments/runwayml-multipage/":"/templates/"+id+".html";}
   function populate(){
     const options=[...templates];
@@ -32,24 +34,45 @@ import { templates } from "/shared/model.mjs";
       button.setAttribute("aria-pressed",String(selected===item.id));
       const count=document.createElement("span");count.textContent=String(index+1).padStart(2,"0");
       const title=document.createElement("strong");title.textContent=item.name;
+      const meta=document.createElement("small");meta.textContent=item.style;
+      const copy=document.createElement("span");copy.className="worlds-choice-copy";copy.append(title,meta);
+      const swatch=document.createElement("i");swatch.className="worlds-choice-swatch";
+      swatch.style.backgroundColor=/^#[0-9a-f]{6}$/i.test(item.color)?item.color:"#dcfc46";
+      swatch.setAttribute("aria-hidden","true");
       const symbol=document.createElement("span");symbol.setAttribute("aria-hidden","true");symbol.textContent="↗︎";
-      button.append(count,title,symbol);
+      button.append(count,swatch,copy,symbol);
       button.addEventListener("click",()=>choose(item.id));
       fragment.append(button);
     });
-    rail.replaceChildren(fragment);
+    rail.replaceChildren(rail.querySelector(".worlds-rail-note"),fragment);
+    filterChoices();
+  }
+  function filterChoices(){
+    const query=search.value.trim().toLocaleLowerCase();
+    let visible=0;
+    rail.querySelectorAll("[data-world]").forEach(button=>{
+      const item=savedTemplates.get(button.dataset.world);
+      button.hidden=!!query&&!`${item.name} ${item.style} ${item.tag}`.toLocaleLowerCase().includes(query);
+      if(!button.hidden)visible++;
+    });
+    results.textContent=visible+" of "+templates.length+" designs";
+    const note=rail.querySelector(".worlds-rail-note");
+    note.textContent=query?"No designs match this search. Try another name or style.":"CHOOSE A DIRECTION TO PREVIEW.";
+    note.hidden=!!query&&visible>0;
   }
   async function choose(id){
-    if(!savedNames.has(id))return;
+    if(!savedTemplates.has(id))return;
+    const item=savedTemplates.get(id);
     selected=id;version++;const mine=version;
     controller?.abort();controller=new AbortController();
     rail.querySelectorAll("[data-world]").forEach(btn=>btn.setAttribute("aria-pressed",String(btn.dataset.world===id)));
     full.href=templatePath(id);screen.dataset.world=id;
-    loading.hidden=false;loadingName.textContent=savedNames.get(id).toUpperCase();
-    loading.setAttribute("aria-label","Loading "+savedNames.get(id)+" website preview");
+    loading.hidden=false;loadingName.textContent=item.name.toUpperCase();
+    loading.setAttribute("aria-label","Loading "+item.name+" website preview");
+    screen.setAttribute("aria-busy","true");
     const still=false; // Desktop previews retain authored motion.
     screen.classList.toggle("is-changing",!still);
-    frame.title="Original "+savedNames.get(id)+" website design preview";
+    frame.title=item.name+" fictional website design preview";
     if(!previewReady)return;
     // Preserve the previous frame under the branded loading surface.
     try{
@@ -57,13 +80,14 @@ import { templates } from "/shared/model.mjs";
       if(controller.signal.aborted||mine!==version)return;
       frame.onload=()=>{
         if(mine!==version)return;
-        name.textContent=savedNames.get(id);loading.hidden=true;
+        name.textContent=item.name;description.textContent=item.tag;loading.hidden=true;
+        screen.removeAttribute("aria-busy");
         screen.classList.remove("is-changing");syncFrame();
       };
       frame.srcdoc=html;
     }catch(error){
       if(controller.signal.aborted||mine!==version)return;
-      frame.onload=()=>{if(mine!==version)return;name.textContent=savedNames.get(id);loading.hidden=true;screen.classList.remove("is-changing");};
+      frame.onload=()=>{if(mine!==version)return;name.textContent=item.name;description.textContent="Preview unavailable. Open the full demo to explore.";loading.hidden=true;screen.removeAttribute("aria-busy");screen.classList.remove("is-changing");};
       frame.srcdoc=previewMessage("The preview could not load. Try Open Full Demo.");
       console.warn("Template preview unavailable",error);
     }
@@ -78,7 +102,7 @@ import { templates } from "/shared/model.mjs";
   mobile.addEventListener("click",()=>size(true));
   rail.addEventListener("keydown",(event)=>{
     if(!["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(event.key))return;
-    const choices=[...rail.querySelectorAll("[data-world]")];
+    const choices=[...rail.querySelectorAll("[data-world]:not([hidden])")];
     const i=choices.indexOf(document.activeElement);
     if(i<0)return;
     event.preventDefault();
@@ -86,6 +110,7 @@ import { templates } from "/shared/model.mjs";
     next.focus();choose(next.dataset.world);
   });
   document.addEventListener("awe:motion",()=>choose(selected));
+  search.addEventListener("input",filterChoices);
   populate();
   if(!previewReady){
     frame.srcdoc=previewMessage("The collection is coming into view.");

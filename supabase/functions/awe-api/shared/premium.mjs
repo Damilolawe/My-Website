@@ -104,6 +104,7 @@ export function renderPremium(input, options = {}) {
     ? theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + (signature ? signatureCSSFor(t) : '') + exactGuideCSSFor(t) + mdCSSFor(t) + mdPaletteFor(value,{sample}) + artDirectionCSS + mdSourceFeatureCSS
     : theme + css + experienceCSS + alternateCSS + fullPageCSS + shellCSS + paletteCSS + photoCSS + collectionEditionCSS + exemplarCSS + (signature ? signatureCSSFor(t) : '');
   if(t === 'folio') styleBundle += folioVisualCSS;
+  if(sample) styleBundle += 'body.afterhours .md-afterhours-hero .study-motto,body.folio .md-folio-hero .study-motto{display:none!important}body.folio .md-folio-hero .study-credit{top:auto!important;bottom:8px!important;right:8px!important;left:auto!important;max-width:54%!important;background:#111b;padding:4px 6px}';
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="' + (dark ? 'dark' : 'light') + '"><title>' + E(c.name) + ' — ' + E(c.headline) + '</title><meta name="description" content="' + E(c.headline) + '"><style>' + styleBundle + '</style></head><body class="' + E(t) + ' density-' + E(d.density) + ' align-' + E(d.heroAlignment) + ' motion-' + E(d.animation) + '">' +
     (sample ? '<div class="demo-banner">FICTIONAL TEMPLATE DEMO — SAMPLE CONTENT ONLY</div>' : '') +
     '<a href="#main" class="skip">Skip to content</a>' + page + '</body></html>';
