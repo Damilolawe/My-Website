@@ -21,7 +21,11 @@ export function enhanceEditor(form, original) {
     '<label class="field">Corner style<select name="corners"><option value="sharp">Sharp</option><option value="soft">Soft</option><option value="round">Rounded</option></select></label></div>' +
     '<label class="field">Hero eyebrow / label<input name="heroLabel" maxlength="110" value="' + esc(original.content.heroLabel || "") + '"></label>' +
     '<label class="field">Primary button text<input name="ctaLabel" maxlength="45" value="' + esc(original.content.ctaLabel || "Explore my work") + '"></label>' +
-    '${original.template === "folio" ? '<label class="field">Hero video URL (YouTube, Vimeo or HTTPS MP4/WebM)<input name="heroVideoUrl" maxlength="800" value="' + esc(original.content.heroVideoUrl || "") + '"></label>' : ""}<h4>Arrange sections</h4><p class="muted">Select the section checkboxes above, then reorder the sections below.</p><div id="studio-sections" class="studio-arrangement"></div>' +
+
+    (original.template === "folio"
+      ? '<label class="field">Hero video URL (YouTube, Vimeo or HTTPS MP4/WebM)<input name="heroVideoUrl" maxlength="800" value="' + esc(original.content.heroVideoUrl || "") + '"></label>'
+      : "") +
+    '<h4>Arrange sections</h4><p class="muted">Select the section checkboxes above, then reorder the sections below.</p><div id="studio-sections" class="studio-arrangement"></div>' +
     '<h4>Project showcase cards</h4><p class="muted">Each card can have a title, description, and optional HTTPS project link.</p><div data-studio-group="cards"></div><button class="btn secondary small" type="button" data-add="cards">+ Add project</button>' +
     '<h4>Services & offerings</h4><div data-studio-group="services"></div><button class="btn secondary small" type="button" data-add="services">+ Add service</button>' +
     '<h4>Testimonials</h4><p class="muted">Only publish real testimonials with permission. Leave this section empty if you have none.</p><div data-studio-group="testimonials"></div><button class="btn secondary small" type="button" data-add="testimonials">+ Add testimonial</button>' +
@@ -103,7 +107,8 @@ export function enhanceEditor(form, original) {
     return {...base, design:{...base.design,
       heroAlignment:f.get("heroAlignment"),density:f.get("density"),corners:f.get("corners"),
       sections:f.getAll("sections")},
-      content:{...base.content,heroLabel:f.get("heroLabel"),ctaLabel:f.get("ctaLabel"),\n        heroVideoUrl:base.template==="folio" ? String(f.get("heroVideoUrl")||"") : base.content.heroVideoUrl,
+      content:{...base.content,heroLabel:f.get("heroLabel"),ctaLabel:f.get("ctaLabel"),
+        heroVideoUrl:base.template==="folio" ? String(f.get("heroVideoUrl")||"") : base.content.heroVideoUrl,
         cards:state.cards.filter(x=>x.title?.trim()||x.description?.trim()),
         services:state.services.filter(x=>x.title?.trim()||x.description?.trim()),
         testimonials:state.testimonials.filter(x=>x.quote?.trim())}};
