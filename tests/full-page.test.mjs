@@ -49,7 +49,7 @@ test("purpose-specific work sections and honest content persist across all desig
   for(const [type,label] of typeChecks){
     for(const t of templates){
       const site=renderSite(sampleForTemplate(t.id,type),{sample:true});
-      if(t.id!=="arcade"&&t.id!=="runwayml"&&t.id!=="runwaymulti&&!freeDesignFor(t.id)) assert(site.includes(label),t.id+" missed "+type+" copy");
+      if(t.id!=="arcade"&&t.id!=="runwayml"&&t.id!=="runwaymulti"&&!freeDesignFor(t.id)) assert(site.includes(label),t.id+" missed "+type+" copy");
       assert(!site.includes('id="testimonials"'),"No fabricated endorsements in public samples");
     }
   }
