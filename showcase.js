@@ -1,5 +1,5 @@
 import { fetchPublicTemplate, previewMessage } from "/shared/preview.mjs";
-import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
+import { templates } from "/shared/model.mjs";
 (() => {
   "use strict";
   const root=document.querySelector("#express-showcase");
@@ -9,8 +9,7 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
   const loading=root.querySelector("#worlds-loading"),loadingName=root.querySelector("#worlds-loading-name");
   const view=root.querySelector(".worlds-view");
   const desktop=root.querySelector("#worlds-desktop"),mobile=root.querySelector("#worlds-mobile");
-  const select=root.querySelector("#world-purpose");
-  let selected="afterhours",purpose="Creative portfolio",version=0,controller=null;
+  let selected="afterhours",version=0,controller=null;
   // Large sandbox previews are loaded near the gallery instead of on first paint.
   const deferPreview=matchMedia("(max-width: 900px), (pointer: coarse)").matches;
   let previewReady=!deferPreview;
@@ -25,7 +24,7 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
   const savedNames=new Map(templates.map(x=>[x.id,x.name]));
   function templatePath(id){return id==="runwaymulti"?"/experiments/runwayml-multipage/":"/templates/"+id+".html";}
   function populate(){
-    const options=[...templates].sort((a,b)=>Number(recommendedFor(b,purpose))-Number(recommendedFor(a,purpose)));
+    const options=[...templates];
     const fragment=document.createDocumentFragment();
     options.forEach((item,index)=>{
       const button=document.createElement("button");
@@ -33,8 +32,7 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
       button.setAttribute("aria-pressed",String(selected===item.id));
       const count=document.createElement("span");count.textContent=String(index+1).padStart(2,"0");
       const title=document.createElement("strong");title.textContent=item.name;
-      const symbol=document.createElement("span");symbol.setAttribute("aria-hidden","true");symbol.textContent=recommendedFor(item,purpose)?"✳︎":"↗︎";
-      if(recommendedFor(item,purpose))button.classList.add("is-recommended");
+      const symbol=document.createElement("span");symbol.setAttribute("aria-hidden","true");symbol.textContent="↗︎";
       button.append(count,title,symbol);
       button.addEventListener("click",()=>choose(item.id));
       fragment.append(button);
@@ -55,7 +53,7 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
     if(!previewReady)return;
     // Preserve the previous frame under the branded loading surface.
     try{
-      const html=await fetchPublicTemplate(id,{type:purpose,still,signal:controller.signal});
+      const html=await fetchPublicTemplate(id,{still,signal:controller.signal});
       if(controller.signal.aborted||mine!==version)return;
       frame.onload=()=>{
         if(mine!==version)return;
@@ -76,17 +74,6 @@ import { templates, types, typeSlugs, recommendedFor } from "/shared/model.mjs";
     mobile.setAttribute("aria-pressed",String(mobileView));
     syncFrame();
   }
-  for(const type of types){
-    const option=document.createElement("option");option.value=type;option.textContent=type;select.append(option);
-  }
-  select.value=purpose;
-  select.addEventListener("change",()=>{
-    if(!types.includes(select.value))return;
-    purpose=select.value;
-    const featured=templates.find(t=>recommendedFor(t,purpose));
-    if(featured)selected=featured.id;
-    populate();choose(selected);
-  });
   desktop.addEventListener("click",()=>size(false));
   mobile.addEventListener("click",()=>size(true));
   rail.addEventListener("keydown",(event)=>{
