@@ -123,7 +123,7 @@ export async function buildRunwayMultipage(outDir="dist") {
     return '<div class="rw-picture"><img src="'+safe(localImages[index%localImages.length])+'" alt="Original cinematic landscape study, frame '+(index+1)+'" loading="'+loading+'"></div>';
   }
   const overline=(num,title)=>'<span class="rw-multi-kicker">'+num+' / '+title+'</span>';
-  const link=(text,route)=>'<a class="rw-text-link" href="'+linkFor(route)+'">'+safe(text)+' ↗︎</a>';
+  const link=(text,route)=>'<a class="rw-text-link" href="'+(route==="journal#story-1" ? ROUTE+"journal.html#story-1" : linkFor(route))+'">'+safe(text)+' ↗︎</a>';
   const close='<div class="rw-multi-cta rw-inner"><p>Explore another chapter in the FRAME STUDIES cinematic collection.</p>'+link("Explore all work","work")+link("Return home","home")+'</div>';
   function hero(index,marker,heading,body,linkText,linkTarget){
     return '<section class="rw-hero" aria-labelledby="rw-h1">'+pic(index,"eager")+
