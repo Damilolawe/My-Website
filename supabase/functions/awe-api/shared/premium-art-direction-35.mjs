@@ -42,11 +42,55 @@ export const premiumStudyThemes = Object.freeze({
 });
 export const premiumStudyIds = Object.freeze(["index","still","afterhours","signal","daylight","atlas","terminal","orbit","playbill","monologue","portraiture","contactsheet","atelier","museum","brutalist","nocturne","foundry","bloom","ledger","arcade","nightgrid","couture","signaldeck","obsidian","highlighter","acidchrome","voidstage","studiomargaux","neomemphis","monobrutalist","vestigefolio","botanicalpress","limepress","gazettebroadside","risograph"]);
 const allowed = new Set(premiumStudyIds);
+
+function videoEmbed(url, title) {
+  if (typeof url !== "string" || !url) return "";
+  let parsed; try { parsed = new URL(url); } catch { return ""; }
+  if (parsed.protocol !== "https:" || parsed.username || parsed.password) return "";
+  const host = parsed.hostname.toLowerCase();
+  const youtube = ["youtube.com","www.youtube.com","m.youtube.com","youtu.be"].includes(host);
+  const vimeo = ["vimeo.com","www.vimeo.com"].includes(host);
+  const label = escapeHTML(title || "Video");
+  if (youtube) {
+    let id = host === "youtu.be" ? parsed.pathname.slice(1) :
+      parsed.pathname === "/watch" ? parsed.searchParams.get("v") : parsed.pathname.match(/^\/(?:embed|shorts)\/([A-Za-z0-9_-]{11})$/)?.[1];
+    if (!/^[a-zA-Z0-9_-]{11}$/.test(id || "")) return "";
+    return '<iframe loading="lazy" title="'+label+'" src="https://www.youtube-nocookie.com/embed/'+id+'" referrerpolicy="strict-origin-when-cross-origin" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+  }
+  if (vimeo) {
+    const id = parsed.pathname.match(/^\/(\d{1,15})(?:\/)?$/)?.[1];
+    return id ? '<iframe loading="lazy" title="'+label+'" src="https://player.vimeo.com/video/'+id+'" referrerpolicy="strict-origin-when-cross-origin" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>' : "";
+  }
+  if (!/\.(?:mp4|webm)$/i.test(parsed.pathname)) return "";
+  const type = parsed.pathname.toLowerCase().endsWith(".mp4") ? "video/mp4" : "video/webm";
+  return '<video controls playsinline preload="metadata" aria-label="'+label+'"><source src="'+escapeHTML(parsed.href)+'" type="'+type+'"></video>';
+}
+function escapeHTML(v) {
+  return String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function renderMotionChapter(content) {
+  if (!content || typeof content !== "object") return "";
+  const videos = [];
+  if (content.heroVideoUrl) videos.push({title:content.headline || "Feature film",url:content.heroVideoUrl});
+  for (const card of (Array.isArray(content.cards) ? content.cards : [])) {
+    if (card.videoUrl) videos.push({title:card.title || "Selected work",url:card.videoUrl});
+  }
+  const items=videos.slice(0,7).map((item,i)=>{
+    const media=videoEmbed(item.url,item.title);
+    return media ? '<figure class="awe-motion-entry"><div class="awe-motion-frame">'+media+'</div><figcaption><span>FILM / '+String(i+1).padStart(2,"0")+'</span><strong>'+escapeHTML(item.title)+'</strong></figcaption></figure>' : "";
+  }).filter(Boolean);
+  if (!items.length) return "";
+  return '<section class="awe-motion-chapter" aria-labelledby="awe-motion-title" id="motion"><div class="awe-motion-heading"><span>MOTION / SELECTED REELS</span><h2 id="awe-motion-title">Stories in motion.</h2></div><div class="awe-motion-grid">'+items.join("")+'</div></section>';
+}
+const motionCSS = '.awe-motion-chapter{width:min(1300px,90%);margin:clamp(50px,8vw,145px) auto;padding-block:clamp(50px,8vw,125px);border-top:1px solid currentColor;min-width:0}.awe-motion-heading>span,.awe-motion-entry figcaption span{font:700 11px/1.4 system-ui;letter-spacing:.15em;text-transform:uppercase}.awe-motion-heading h2{font:400 clamp(42px,7vw,112px)/.98 Georgia,serif;letter-spacing:-.06em;max-width:14ch;overflow-wrap:anywhere}.awe-motion-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(25px,4vw,75px)}.awe-motion-entry{min-width:0;margin:0}.awe-motion-entry:first-child:nth-last-child(odd){grid-column:1/-1}.awe-motion-frame{aspect-ratio:16/9;overflow:hidden;background:#131313}.awe-motion-frame iframe,.awe-motion-frame video{width:100%;height:100%;border:0;object-fit:contain}.awe-motion-entry figcaption{display:flex;gap:12px;flex-direction:column;padding:18px 0}.awe-motion-entry figcaption strong{font:400 clamp(22px,2.5vw,38px)/1.15 Georgia,serif}@media(max-width:680px){.awe-motion-grid{grid-template-columns:1fr}.awe-motion-entry:first-child:nth-last-child(odd){grid-column:auto}.awe-motion-heading h2{font-size:clamp(42px,11vw,72px)}}';
+
 const common = "\n@media(max-width:900px){\nbody.index .mode-index-records,body.signal .mode-poster-wall,body.atlas .mode-research-index,body.orbit .mode-space-mission,body.portraiture .mode-portrait-gallery,body.contactsheet .mode-photographic-contact,body.museum .mode-museum-exhibition,body.bloom .mode-botanical-journal{display:grid;grid-template-columns:1fr 1fr}\nbody.index .mode-index-records .case-entry,body.signal .mode-poster-wall .case-entry,body.atlas .mode-research-index .case-entry,body.orbit .mode-space-mission .case-entry,body.portraiture .mode-portrait-gallery .case-entry,body.contactsheet .mode-photographic-contact .case-entry,body.museum .mode-museum-exhibition .case-entry,body.bloom .mode-botanical-journal .case-entry{grid-column:auto;transform:none;margin:0}\nbody.monologue .mode-screenplay-scenes,body.playbill .mode-theatre-program,body.nocturne .mode-luxury-chapters,body.terminal .mode-command-console{grid-template-columns:1fr}\n}\n@media(max-width:680px){\nbody.index .mode-index-records,body.signal .mode-poster-wall,body.atlas .mode-research-index,body.orbit .mode-space-mission,body.portraiture .mode-portrait-gallery,body.contactsheet .mode-photographic-contact,body.museum .mode-museum-exhibition,body.bloom .mode-botanical-journal,body.brutalist .mode-experimental-flyers,body.couture .chapter-work .art-directed-work,body.signaldeck .chapter-services .art-directed-services{grid-template-columns:1fr}\nbody.index .mode-index-records .case-entry,body.signal .mode-poster-wall .case-entry,body.atlas .mode-research-index .case-entry,body.orbit .mode-space-mission .case-entry,body.portraiture .mode-portrait-gallery .case-entry,body.contactsheet .mode-photographic-contact .case-entry,body.museum .mode-museum-exhibition .case-entry,body.bloom .mode-botanical-journal .case-entry,body.couture .chapter-work .case-entry{grid-column:1;min-height:0;margin:0;transform:none}\nbody.still .md-still-hero .md-media,body.couture .md-couture-hero .md-media{min-height:350px;height:auto}\nbody.afterhours .md-afterhours-hero,body.nocturne .md-nocturne-hero{min-height:660px}\nbody.afterhours .mode-cinematic-reel .case-scene:nth-child(even),body.nocturne .case-noir:nth-child(even){margin-left:0;margin-top:0}\nbody.foundry .case-job,body.ledger .case-report,body.atelier .case-runway,body.atelier .case-runway:nth-child(even){grid-template-columns:1fr}\nbody.daylight .case-note:nth-child(2n),body.nightgrid .case-entry:nth-child(even){margin-top:0;transform:none}\nbody.fd-studiomargaux .fd-hero h1,body.fd-voidstage .fd-hero h1,body.fd-vestigefolio .fd-hero h1,body.fd-gazettebroadside .fd-hero h1{font-size:clamp(48px,12vw,92px);line-height:.95}\nbody.fd-neomemphis .fd-hero,body.fd-risograph .fd-hero{transform:none;box-shadow:none}\nbody[class] .chapter-intro h2,body[class] .hero h1,body[class] .md-hero h1,body[class] .fd-hero h1{overflow-wrap:anywhere}\n}\n@media(prefers-reduced-motion:reduce){\n.awe-premium-study img,.awe-premium-study .case-entry, .awe-premium-study .fd-card{transition:none!important;animation:none!important}\n}";
-export function applyPremiumStudy(html, id) {
+export function applyPremiumStudy(html, id, content = null) {
   if (!allowed.has(id)) return html;
   if (!html.includes('</head>')) return html;
   // Append *after* the original template's native stylesheet for deliberate, isolated overrides.
-  const css = premiumStudyThemes[id] + common;
-  return html.replace('</head>', '<style data-awe-design-study="' + id + '">' + css + '</style></head>');
+  const css = premiumStudyThemes[id] + common + motionCSS;
+  const result = html.replace('</head>', '<style data-awe-design-study="' + id + '">' + css + '</style></head>');
+  const motion = renderMotionChapter(content);
+  return motion ? result.replace('</main>', motion + '</main>') : result;
 }
