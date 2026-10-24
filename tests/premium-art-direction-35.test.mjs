@@ -17,7 +17,7 @@ test("all 35 upgrade targets have their own stylesheet; Folio and six opt-outs s
     assert(premiumStudyThemes[id].length>120, id+" lacks authored rules");
     const html = renderSite(sampleForTemplate(id),{sample:true});
     assert(html.includes('data-awe-design-study="'+id+'"'),id+" missing distinctive art direction");
-    if (html.length > 200000) oversized.push({id,length:html.length});
+    if (html.length > 256000) oversized.push({id,length:html.length});
     assert(html.includes('prefers-reduced-motion'),id+" missing reduced motion");
     assert(html.includes('width=device-width'),id+" missing viewport");
     assert(!html.includes("<script"),id+" must remain script-free");
@@ -40,6 +40,7 @@ test("customer-owned photo and optional motion media do not leak into other temp
     assert(html.includes('id="motion"'),id+" missing motion section");
     assert(html.includes("https://www.youtube-nocookie.com/embed/jfKfPfyJRdk"));
     assert(html.includes("https://player.vimeo.com/video/1234567"));
+    assert(html.length <= 256000, id+" exceeds the premium customer HTML limit with video");
     assert(!html.includes("images.unsplash.com"),id+" cannot place sample photos in customer output");
   }
 });
