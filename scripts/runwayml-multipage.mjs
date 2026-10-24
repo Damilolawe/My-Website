@@ -163,7 +163,7 @@ export async function buildRunwayMultipage(outDir="dist") {
     '<section class="rw-multi-light" id="contact"><div class="rw-inner">'+overline("03","The studio")+
     '<h2>Ideas deserve<br>room to become.</h2><p>FRAME STUDIES is a fictional independent visual studio created to demonstrate this design system. Its visual identity is deliberately minimal: images hold the spotlight, while the interface steps aside.</p>'+pic(5)+'</div></section>'+
     '<section class="rw-multi-spotlight rw-inner"><div class="rw-multi-overview"><div>'+overline("04","Our approach")+'<h2>Art, image, imagination.</h2></div><p>Everything begins with a vision. We build around focused typography, rich photographic compositions and a restrained visual language that lets stories carry the experience.</p></div></section>'+close;
-  const journal=hero(3,"04 / Journal","Notes from the edge of imagination.","An editorial space for fragments, questions, and the visual ideas behind each imagined scene.","Read the first story","journal")+
+  const journal=hero(3,"04 / Journal","Notes from the edge of imagination.","An editorial space for fragments, questions, and the visual ideas behind each imagined scene.","Read the first story","journal#story-1")+
     '<section class="rw-research rw-inner" id="stories"><div class="rw-section-heading"><h2>Stories in the making.</h2>'+overline("04","Dispatches")+'</div><div class="rw-article-grid">'+
     workStory.map((story,i)=>'<a class="rw-article" href="#story-'+(i+1)+'">'+pic((i+1)%6)+'<div class="rw-article-meta"><span>Journal / 0'+(i+1)+'</span><span>FRAME STUDIES</span></div><h3>'+safe(story[0])+'</h3><p>'+safe(story[1])+'</p></a>').join('')+
     '</div></section>'+
