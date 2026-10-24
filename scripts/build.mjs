@@ -80,3 +80,8 @@ console.log(
   "Built Netlify public assets in dist/. Server functions remain outside public output.",
 );
 
+
+// Keep the existing RunwayML template untouched; build separate linked HTML pages
+// only for the reversible preview experiment.
+const { buildRunwayMultipage } = await import("./runwayml-multipage.mjs");
+await buildRunwayMultipage("dist");
