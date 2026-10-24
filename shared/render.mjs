@@ -10,5 +10,5 @@ export function renderSite(input, options = {}) {
   const page = normalized.template === "folio"
     ? renderFolioEditorial(normalized, options)
     : renderPremium(normalized, options);
-  return applyPremiumStudy(page, normalized.template);
+  return applyPremiumStudy(page, normalized.template, normalized.content);
 }
