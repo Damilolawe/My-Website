@@ -50,7 +50,7 @@ export const templates = [
   ...originalDirections,
   ...freeDesignTemplates,
   {id:"runwayml",name:"RunwayML — Single Page",style:"Cinematic editorial / dark",tag:"The original single-page cinematic website.",color:"#FFFFFF",tier:"starter",reference:"VoltAgent design-md",recommended:[]},
-  {id:"runwaymulti",name:"RunwayML — Multi Page",style:"Cinematic editorial / five pages",tag:"Five cinematic chapters: Home, Research, Work, Studio and Journal.",color:"#FFFFFF",tier:"signature",reference:"VoltAgent design-md",recommended:[],previewOnly:true},
+  {id:"runwaymulti",name:"RunwayML — Multi Page",style:"Cinematic editorial / five pages",tag:"Five cinematic chapters: Home, Research, Work, Studio and Journal.",color:"#FFFFFF",tier:"signature",reference:"VoltAgent design-md",recommended:[]},
   {id:"nike",name:"Nike",style:"Sports commerce / editorial performance",tag:"Photography-led athletic campaign and retail gallery.",color:"#111111",tier:"signature",reference:"VoltAgent design-md",recommended:[]},
   {id:"clay",name:"Clay",style:"Warm claymation / colorful SaaS",tag:"Sculptural software storytelling and playful data cards.",color:"#FF4D8B",tier:"signature",reference:"VoltAgent design-md",recommended:[]},
   {id:"ferrari",name:"Ferrari",style:"Automotive cinema / red on graphite",tag:"Immersive motorsport editorial and performance collection.",color:"#DA291C",tier:"signature",reference:"VoltAgent design-md",recommended:[]},

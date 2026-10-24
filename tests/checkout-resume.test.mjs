@@ -9,7 +9,7 @@ function scenario(prepare) {
   const calls=[], next={disabled:false,textContent:''}, back={hidden:false};
   const context={URL,Number,Error, catalog:{packages:[{id:'test',termsVersion:'qa-v1'}]},packageId:'test',
     orderId:null,draftId:'saved-draft',draftVersion:7,input:{content:{}},files:[],uploaded:[],
-    selectedPackage:()=>({id:'test',termsVersion:'qa-v1'}),templateFitsTier:()=>true,selectedTier:'starter',
+    selectedPackage:()=>({id:'test',termsVersion:'qa-v1'}),templateFitsTier:()=>true,packageAllowsTemplate:()=>true,selectedTier:'starter',
     $:(selector)=>selector==='#next'?next:back,
     api:async(path,body)=>{calls.push({path,body});return path.endsWith('/prepare')?prepare():{url:'https://checkout.stripe.com/test'};},
     location:{assign:(url)=>calls.push({redirect:url})}};

@@ -11,7 +11,7 @@ import {
   sections,
 } from "/shared/model.mjs";
 import { renderSite } from "/shared/render.mjs";
-import { tiers, minimumTier, packageTier, templateFitsTier, tierLevel } from "/shared/tiers.mjs";
+import { tiers, minimumTier, packageTier, packageAllowsTemplate, templateFitsTier, tierLevel } from "/shared/tiers.mjs";
 import { fetchPublicTemplate, previewMessage } from "/shared/preview.mjs";
 import { $, api, money, report, authForm } from "./common.mjs";
 const labels = [
@@ -113,7 +113,9 @@ function draw() {
           packageId = null;
           syncPackage();
           const available = (catalog.templates || templates).filter(t => minimumTier(t.id) === tier);
-          if (available.length) setTemplate(available[0].id);
+          const multi = selectedPackage()?.delivery === "awe-multipage";
+          if (multi && available.some(t => t.id === "runwaymulti")) setTemplate("runwaymulti");
+          else if (available.length) setTemplate(available[0].id);
         }
         step = 1;
         draw();
@@ -137,6 +139,7 @@ function draw() {
       esc(tiers.find(t => t.id === selectedTier)?.name || "Your") +
       ' templates</h2><p class="muted">Your package includes designs at this level and below. Explore the designs as they were authored, without résumé or business examples.</p></div>' +
       '<div class="tier-switches" aria-label="Change your tier">' + tierButtons + '</div></div>' +
+      (selectedPackage()?.delivery === "awe-multipage" ? '<p class="notice">The $150 five-page package currently supports the RunwayML Multi Page design. Other templates can be explored and quoted separately.</p>' : '') +
       '<div class="template-filterbar"><span class="eyebrow">EXPLORE THE ORIGINAL DESIGNS</span>' +
       '<p class="muted" id="template-count" aria-live="polite">' + visible.length + ' of ' + offered.length + ' available designs</p></div>' +
       '<div class="experience-picker-heading"><div><p class="eyebrow">ORIGINAL DESIGN DIRECTIONS</p><h2>Don’t pick a color.<br><em>Pick a feeling.</em></h2><p class="muted">Explore real, scrollable example websites. The people and projects shown are fictional.</p></div><div class="experience-picker-index" aria-hidden="true"><strong></strong><small>AN ORIGINAL STARTING POINT</small></div></div>' +
@@ -242,7 +245,9 @@ function draw() {
         syncPackage();
         const inRange = offered.find(t => t.id === input.template);
         const next = (catalog.templates || templates).filter(t => templateFitsTier(t.id, selectedTier));
-        if (!next.some(t => t.id === input.template) && next.length) setTemplate(next[0].id);
+        if (selectedPackage()?.delivery === "awe-multipage" && next.some(t => t.id === "runwaymulti"))
+          setTemplate("runwaymulti");
+        else if (!next.some(t => t.id === input.template) && next.length) setTemplate(next[0].id);
         draw();
       };
     });
@@ -384,8 +389,9 @@ function draw() {
     if (p) packageId = p.id;
     const tier = tiers.find(t => t.id === selectedTier);
     el.innerHTML = `<h2>One last look. Then your next chapter.</h2><div class="summary"><div class="panel"><dl><dt>Your website</dt><dd>${esc(input.type)}</dd><dt>Design direction</dt><dd>${esc(templates.find((t) => t.id === input.template)?.name)} · ${esc(input.design.font)} · ${esc(input.design.appearance)}<br>${esc(input.design.primary)} / ${esc(input.design.secondary)}</dd><dt>Public name & headline</dt><dd>${esc(input.content.name)}<br>${esc(input.content.headline)}</dd><dt>Sections</dt><dd>${input.design.sections.map(esc).join(", ")}</dd><dt>Materials</dt><dd>${files.length ? files.map((f) => esc(f.name)).join("<br>") : "No files selected"}</dd></dl><p class="muted">Use Back to change any details before checkout.</p></div><div class="panel"><div class="eyebrow">SELECTED PACKAGE · ${esc(tier?.name || "Unselected")}</div><p class="muted">To change your package, go back to Step 1. Your content will be kept.</p><h3>${p ? money(p) : "Prices start at $75"}</h3>${p ? `<p>Website purchase: ${money(p)}<br>Total: ${money(p)}</p><ul>${p.features.map((f) => `<li>${esc(f)}</li>`).join("")}</ul><h4>Hosting</h4><p class="terms">${esc(p.hosting)}</p><h4>Ownership</h4><p class="terms">${esc(p.ownership)}</p><h4>Revisions</h4><p class="terms">${esc(p.revisions)}</p>${p.refunds ? `<h4>Payment, cancellations & refunds</h4><p class="terms"><strong>${esc(p.refunds)}</strong></p>` : ""}` : "<p>This tier has no configured checkout package yet. Its published starting price is " + esc(tier?.inquiry || "$75") + " (inquiry only). <a href='/contact.html'>Request a quote</a>.</p>"}<label><input type="checkbox" id="consent"> I agree to the package terms${p?.refunds ? ", including the all-sales-final, non-refundable payment policy (except where required by law)," : ","} acknowledge the <a href="/privacy.html" target="_blank">privacy information</a>, and confirm I have permission to use these materials.</label></div></div><div class="notice">${catalog.paymentMode === "live" ? "Secure Stripe checkout. You will see the final amount before confirming payment." : catalog.paymentMode === "test" ? "Sandbox verification only. No live payments are enabled." : "Explore freely. Orders and payments are not open yet."} Every website is personally reviewed before publication.</div><div class="panel"><h3>Save this design for later</h3><p class="muted">Save your website concept privately without paying. You can return to edit it, and the studio can review your submitted direction. Saving is not a paid order or a publication request. Selected photo and document files remain on your device until they are uploaded during an order.</p><button type="button" class="btn secondary" id="save-draft">Save my design ↗︎</button><p id="save-status" role="status" aria-live="polite"></p></div><div id="sign-in"></div>`;
-    $("#next").disabled = input.template==="runwaymulti" || !catalog.ordersEnabled || !p || !templateFitsTier(input.template,selectedTier);
-    if(input.template==="runwaymulti") el.insertAdjacentHTML("beforeend",'<p class="notice" role="status">The five-page Signature design is available for exploration, but automatic multi-page customer publishing is not available yet. Checkout is disabled for this preview. <a href="/contact.html">Ask about a custom multi-page build ↗︎</a></p>');
+    $("#next").disabled = !catalog.ordersEnabled || !p || !packageAllowsTemplate(p, input.template);
+    if(p && !packageAllowsTemplate(p, input.template)) el.insertAdjacentHTML("beforeend",'<p class="notice" role="status">The $150 multi-page package currently supports the five-page RunwayML design. Other Signature designs are available by custom quote. <a href="/contact.html">Request a tailored multi-page build ↗︎</a></p>');
+    if(input.template==="runwaymulti" && !p) el.insertAdjacentHTML("beforeend",'<p class="notice" role="status">Five-page checkout is not available yet. <a href="/contact.html">Contact the studio ↗︎</a></p>');
     $("#save-draft").onclick = saveDraft;
   }
   $("#back").onclick = () => {
@@ -429,7 +435,7 @@ async function checkout() {
   btn.disabled = true;
   try {
     const p = selectedPackage();
-    if (!p || !templateFitsTier(input.template, selectedTier)) throw Error("Select an eligible package before checkout.");
+    if (!p || !packageAllowsTemplate(p, input.template)) throw Error("Select a supported package and template before checkout.");
     if (!orderId && draftId) {
       const prepared = await api(`drafts/${draftId}/prepare`, {
         input,

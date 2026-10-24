@@ -34,6 +34,7 @@ import { saveDraft, runJobs } from "../../platform/production.mjs";
 import { inspectUpload } from "../../platform/uploads.mjs";
 import { previewResume } from "../../platform/resume.mjs";
 import { exportApproved } from "../../platform/export.mjs";
+import { renderApprovedRunwayPages, RUNWAY_PAGES } from "../../shared/runway-customer-pages.mjs";
 async function owner(u) {
   if (!(await isOwner(u))) fail("Owner access required.", 403);
 }
@@ -406,10 +407,14 @@ export default async function (req) {
           ownership: text(b.ownership, 2000),
           revisions: text(b.revisions, 2000),
           refunds: text(b.refunds, 2000),
-          delivery: "awe-hosted",
+          delivery: b.delivery === "awe-multipage" ? "awe-multipage" : "awe-hosted",
+          pageCount: b.delivery === "awe-multipage" ? 5 : 1,
+          allowedTemplates: b.delivery === "awe-multipage" ? ["runwaymulti"] : [],
           filesIncluded: b.filesIncluded === true,
           termsVersion: id(),
         };
+        if (data.delivery === "awe-multipage" && data.tier !== "signature")
+          fail("Five-page checkout is only available in the Signature tier.");
         if (
           data.enabled &&
           (!data.hosting || !data.ownership || !data.revisions || !data.refunds)
@@ -468,7 +473,11 @@ export default async function (req) {
             )
           )[0];
           if (!v) fail("No draft yet.", 404);
-          return new Response(v.html, {
+          const requestedPage = new URL(req.url).searchParams.get("page") || "index.html";
+          if (!RUNWAY_PAGES.includes(requestedPage)) fail("Unknown preview page.", 400);
+          const preview = v.input?.template === "runwaymulti"
+            ? renderApprovedRunwayPages(v.input)[requestedPage] : v.html;
+          return new Response(preview, {
             headers: {
               "Content-Type": "text/html",
               "Cache-Control": "private, no-store",

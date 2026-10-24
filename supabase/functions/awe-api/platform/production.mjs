@@ -98,6 +98,8 @@ async function deliver(o, version) {
     publicApiUrl: `${env().SUPABASE_URL.replace(new RegExp("/+$"), "")}/functions/v1/awe-api/public/${o.slug}`,
     version,
     assets: v.asset_ids,
+    requiredPages: o.package_snapshot?.delivery === "awe-multipage"
+      ? ["research.html","work.html","studio.html","journal.html"] : [],
   });
   if (!env().RESEND_API_KEY || !env().EMAIL_FROM)
     fail("Delivery email is not configured.", 503);
