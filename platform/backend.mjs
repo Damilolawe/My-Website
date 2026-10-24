@@ -98,6 +98,11 @@ function validStripeKey(key, mode) {
     ? (key.startsWith("sk_live_") || key.startsWith("rk_live_"))
     : (key.startsWith("sk_test_") || key.startsWith("rk_test_"));
 }
+function validStripeKey(key, mode) {
+  if (typeof key !== "string") return false;
+  const prefix = mode === "live" ? "_live_" : "_test_";
+  return ["sk", "rk"].some(kind => key.startsWith(kind + prefix));
+}
 export function liveCheckoutConfigured() {
   const settings = env();
   return settings.LIVE_CHECKOUT_ENABLED === "true" &&
