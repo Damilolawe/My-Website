@@ -78,10 +78,10 @@ test("homepage controls and order builder expose all twenty without old six-item
   const [home,show,order,build]=await Promise.all(
     ["index.html","showcase.js","app/order.mjs","scripts/build.mjs"].map(x=>readFile(x,"utf8")));
   assert(home.includes("DESIGN WITHOUT"));
-  assert(home.includes('id="world-purpose"'));
+  assert(!home.includes('id="world-purpose"'));
   assert(home.includes('id="transformation-slider"'));
   assert(show.includes("templates.map"));
-  assert(show.includes("recommendedFor"));
+  assert(!show.includes("recommendedFor"));
   assert(order.includes("offered.map"));
   assert(order.includes("fetchPublicTemplate(id,{signal:activeRequest.signal"));
   assert(order.includes("loadTemplate(input.template)"));
