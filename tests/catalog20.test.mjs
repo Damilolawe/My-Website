@@ -82,7 +82,8 @@ test("homepage controls and order builder expose all twenty without old six-item
   assert(show.includes("recommendedFor"));
   assert(order.includes("offered.map"));
   assert(order.includes("fetchPublicTemplate(id,{type:input.type"));
-  assert(order.includes("loadTemplate(active.id)"));
+  assert(order.includes("loadTemplate(input.template)"));
+  assert(order.includes("templateFitsTier(t.id, selectedTier)"));
   assert(order.includes("const syncFrameSize="));
   assert(build.includes("for (const type of types)"));
   assert(!order.includes("catalog.templates.map"));
