@@ -49,8 +49,8 @@ function ferrari(v,opts){
  const c=v.content,r=data(v);
  const panels=r.slice(0,2).map((x,i)=>'<article class="ferrari-feature">'+media(v,i+1,opts)+'<span class="trio-label">STORY / '+String(i+1).padStart(2,"0")+'</span><h3>'+E(x.title)+'</h3><p>'+E(x.description)+'</p>'+(https(x.url)?'<a href="'+E(x.url)+'" target="_blank" rel="noopener noreferrer">Explore chapter ↗︎</a>':'')+'</article>').join("");
  return header(v,"ferrari-header",[["about","Vision"],["work","Collection"],["contact","Contact"]])+
- '<main id="main"><section class="ferrari-hero hero-variant" aria-labelledby="hero-title">'+media(v,0,opts)+'<div class="ferrari-hero-copy"><span class="trio-label">'+E(c.heroLabel)+'</span><h1 id="hero-title">'+E(c.headline)+'</h1><p>'+E(c.bio)+'</p><a class="trio-button" href="#work">Discover more ↗︎</a></div></section>'+
- '<div class="ferrari-scroll-cue" aria-hidden="true"><i></i> SCROLL TO EXPLORE</div><section class="ferrari-vision" id="about"><span class="trio-label">01 / FORM & PERFORMANCE</span><h2>DESIGNED<br>TO BE FELT.</h2><p>'+E(c.bio)+'</p></section>'+
+ '<main id="main"><section class="ferrari-hero hero-variant" aria-labelledby="hero-title">'+media(v,0,opts)+'<div class="ferrari-hero-copy"><span class="trio-label">'+E(c.heroLabel)+'</span><h1 id="hero-title">'+E(c.headline)+'</h1><p>'+E(c.bio)+'</p><a class="trio-button" href="#work">Discover more ↗︎</a></div><div class="ferrari-scroll-cue" aria-hidden="true"><i></i> SCROLL TO EXPLORE</div></section>'+
+ '<section class="ferrari-vision" id="about"><span class="trio-label">01 / FORM & PERFORMANCE</span><h2>DESIGNED<br>TO BE FELT.</h2><p>'+E(c.bio)+'</p></section>'+
  '<section class="ferrari-collection" id="work">'+panels+'</section>'+
  '<section class="ferrari-specs">'+["FORM","FEEL","TIME"].map((x,i)=>'<article><span class="trio-label">0'+(i+1)+' / DESIGN STUDY</span><strong>'+x+'</strong><p>'+["Every line has intention.","A story in motion.","Precision in every detail."][i]+'</p></article>').join("")+'</section>'+
  '<section class="ferrari-end">'+media(v,3,opts)+'<span class="trio-label">THE ART OF VELOCITY / EDITION 001</span></section>'+contact(v)+'</main>'+footer(v);
