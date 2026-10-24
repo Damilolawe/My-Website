@@ -9,7 +9,9 @@ import {uploadedDesignFor} from "../shared/uploaded-designs.mjs";
 test("All twenty fictional template demos use a photography-forward composition",()=>{
  for(const t of templates){
   const html=renderSite(sampleForTemplate(t.id),{sample:true});
-  if(uploadedDesignFor(t.id)){
+  if(t.id==="liquidmetal"){
+    assert(html.includes("liquidmetal-hero"),"Liquid Metal independent composition missing");
+  }else if(uploadedDesignFor(t.id)){
     assert(html.includes("md-"+t.id+"-hero"),t.id+" missing MD-based architecture");
   }else if(["terminal","monologue","arcade"].includes(t.id)){
     assert(html.includes('hero-variant '+t.id+'-hero'),t.id+" missing intentional text-first hero");
