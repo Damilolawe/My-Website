@@ -16,6 +16,7 @@ test("all 35 upgrade targets have their own stylesheet; Folio and six opt-outs s
     assert(premiumStudyThemes[id].length>120, id+" lacks authored rules");
     const html = renderSite(sampleForTemplate(id),{sample:true});
     assert(html.includes('data-awe-design-study="'+id+'"'),id+" missing distinctive art direction");
+    assert(html.length <= 200000, id+" exceeds the customer page size limit with "+html.length+" characters");
     assert(html.includes('prefers-reduced-motion'),id+" missing reduced motion");
     assert(html.includes('width=device-width'),id+" missing viewport");
     assert(!html.includes("<script"),id+" must remain script-free");
