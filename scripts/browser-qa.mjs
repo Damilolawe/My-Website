@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {mkdir} from "node:fs/promises";
 import {chromium} from "playwright-core";
 import {templates} from "../shared/model.mjs";
+import {uploadedDesignFor} from "../shared/uploaded-designs.mjs";
 
 const origin="https://aweconcepts.com";
 const viewports=[
@@ -262,13 +263,18 @@ try {
     });
     const hero=document.querySelector(".hero-variant h1");
     const h=hero?.getBoundingClientRect();
-    const contact=document.querySelector("#contact .architect-contact-links");
+    const contact=document.querySelector("#contact .architect-contact-links, #contact .lm-contact-links");
+    const setup=document.querySelector("#contact .contact-setup-note");
     return {width:innerWidth,docWidth:document.documentElement.scrollWidth,
       heading:h?{left:h.left,right:h.right,width:h.width,fontSize:getComputedStyle(hero).fontSize}:null,
-      cards:all,contactText:contact?.textContent?.trim()||"",
-      contactLinks:contact?.querySelectorAll("a").length||0};
+      cards:all,contactText:contact?.textContent?.trim()||setup?.textContent?.trim()||"",
+      contactLinks:contact?.querySelectorAll("a").length||0,
+      authoredScenes:document.querySelectorAll(".art-scene").length,
+      authoredChapters:document.querySelectorAll(".md-edition-break").length};
    });
    console.log("NARROW_TEMPLATE",width,id,JSON.stringify(geometry));
+   if(uploadedDesignFor(id)&&(geometry.authoredScenes!==1||geometry.authoredChapters!==1))
+     failures.push("Narrow "+width+" "+id+": authored source scene and editorial chapter are missing");
    if(geometry.docWidth>width+2){
      const offenders=await page.evaluate(()=>[...document.querySelectorAll("*")]
        .map(el=>({selector:el.tagName.toLowerCase()+"."+String(el.className||"").replace(/\s+/g,".").slice(0,70),
