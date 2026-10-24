@@ -1,4 +1,5 @@
 import {esc} from "./model.mjs";
+import {originalDirections,directionFor} from "./refero-originals.mjs";
 const E=esc;
 const nav=(ids)=>ids.map(id=>'<a href="#'+E(id)+'">'+E(id==="work"?"Projects":id==="contact"?"Contact":id)+'</a>').join("");
 const title=(c)=>'<a class="shell-brand" href="#main">'+E(c.name)+'</a>';
@@ -8,7 +9,8 @@ export const shellIdentities={
  daylight:"scrapbook-studio",atlas:"research-dashboard",terminal:"developer-command",orbit:"orbital-deck",
  playbill:"theatre-marquee",monologue:"typed-script",portraiture:"casting-lookbook",contactsheet:"photo-negative",
  atelier:"runway-catalogue",museum:"curatorial-exhibit",brutalist:"pasteup-zine",nocturne:"midnight-salon",
- foundry:"industrial-workshop",bloom:"botanical-card",ledger:"consultancy-brief",arcade:"esports-broadcast"
+ foundry:"industrial-workshop",bloom:"botanical-card",ledger:"consultancy-brief",arcade:"esports-broadcast",
+ ...Object.fromEntries(originalDirections.map(d=>[d.id,d.character]))
 };
 function head(v,ids){
  const t=v.template,c=v.content,ln=nav(ids),b=title(c);
@@ -33,7 +35,11 @@ function head(v,ids){
  case "foundry":return '<header class="shell-header shell-foundry"><div class="foundry-stamp" aria-hidden="true">F—01</div><div class="foundry-heading">'+b+small("HONEST WORK / CLEAR RESULTS")+'</div><nav class="shell-nav" aria-label="Section navigation">'+ln+'</nav></header>';
  case "bloom":return '<header class="shell-header shell-bloom"><span class="bloom-flowerlet" aria-hidden="true">✻︎</span>'+b+'<nav class="shell-nav" aria-label="Section navigation">'+ln+'</nav><div class="bloom-wave" aria-hidden="true">﹏﹏﹏</div></header>';
  case "ledger":return '<header class="shell-header shell-ledger"><div class="ledger-rule"><span>BUSINESS / EDITION 01</span><span>01 — 20</span></div><nav class="shell-nav" aria-label="Section navigation">'+b+ln+'</nav><div class="ledger-underheader"><span>THINK BIGGER.</span><span>WORK SMARTER.</span></div></header>';
- default:return '<header class="shell-header"><nav class="shell-nav" aria-label="Section navigation">'+b+ln+'</nav></header>';
+ default: {
+  const dir=directionFor(t);
+  if(dir) return '<header class="shell-header shell-'+E(t)+'"><div class="ref-topline"><span>'+E(dir.style)+'</span><span>ORIGINAL / 001</span></div><nav class="shell-nav" aria-label="Section navigation">'+b+'<span class="shell-nav-links">'+ln+'</span></nav></header>';
+  return '<header class="shell-header"><nav class="shell-nav" aria-label="Section navigation">'+b+ln+'</nav></header>';
+ }
  }
 }
 function foot(v){
