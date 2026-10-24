@@ -434,6 +434,9 @@ export function sampleForTemplate(id,purpose){
     Object.assign(preview,{name,headline,bio,heroLabel:"Competitive culture / "+category,
       cards:projects.map(title=>({title,description:"A fictional concept for the Arcade Night template preview.",url:""}))});
   }
+  // Unique fictional preview stories keep implementation notes and source-file
+  // metadata OUT of customer-facing template pages. Client input is unaffected.
+  const sourceDemoStories={"nightgrid":["A fictional digital artist developing atmospheric installations and playful interfaces.",["Night Geometry","Midnight Signals","The Electric Archive"]],"couture":["An imagined fashion director exploring expressive silhouettes, modern tailoring, and editorial portraiture.",["Studio Fittings","The Campaign","Soft Structure"]],"signaldeck":["A fictional product studio making complex digital tools feel calm, clear, and considered.",["A New Interface","Quiet Signals","A Better Flow"]],"obsidian":["An imagined creative director shaping sculptural images, strong identities, and modern product stories.",["Obsidian Forms","Shadows in Motion","New Material"]],"highlighter":["A fictional visual designer bringing color, typography, and helpful products into focus.",["Bright Ideas","The Brief","A Good Highlight"]],"acidchrome":["A fictional experimental image studio exploring iridescent forms, album artwork, and immersive visuals.",["Chrome Dreams","The Color Shift","Electric Matter"]],"voidstage":["An imagined filmmaker developing powerful monochrome portraits and immersive visual stories.",["The Empty Stage","Movement Study","Last Light"]],"studiomargaux":["A fictional independent creative studio producing memorable art direction and editorial identities.",["Morning Edition","Maison Projects","The Collected Work"]],"neomemphis":["An imagined design collective making playful graphics, striking packaging, and cultural experiments.",["Loud Objects","Shape Language","New Patterns"]],"monobrutalist":["A fictional independent graphic practice exploring expressive type, experimental identities, and print.",["Matter of Type","Open Format","Raw Editions"]],"vestigefolio":["An imagined art director assembling intimate portraits, editorial narratives, and visual identities.",["Near Objects","The Summer Edit","In Between"]],"botanicalpress":["A fictional botanical artist documenting seasonal plants, tactile materials, and thoughtful arrangements.",["The Herbarium","Still Growing","Collected Petals"]],"limepress":["An imagined product studio building approachable digital tools, playful identities, and helpful interfaces.",["The New Signal","Everyday Tools","Open Systems"]],"gazettebroadside":["A fictional independent publication collecting local stories, conversations, and contemporary culture.",["City Edition","The Conversation","The Next Issue"]],"risograph":["An imagined illustration studio experimenting with bold ink, printmaking, and independent publications.",["Two-Color World","Open Studio","The Printed Page"]]};
   // Canonical gallery previews use each design guide's identity and visual
   // language. Do not force MD-sourced designs into sample resumes, businesses,
   // fake biographies, or purpose-dependent story layouts.
@@ -441,17 +444,11 @@ export function sampleForTemplate(id,purpose){
     const source=uploadedDirection||freeDirection||originalDirection;
     preview.name=source.name||t.name;
     preview.headline=source.tag||t.tag;
-    preview.heroLabel=source.style||source.layout||t.style;
-    preview.bio=source.description||source.character||t.style;
-    const traits=[
-      source.layout||source.style||"Composition",
-      source.character||source.fonts?.display||"Typography",
-      source.description||source.style||"Visual language"
-    ];
-    preview.cards=traits.map((detail,i)=>({
-      title:["Composition","Type and detail","Visual language"][i],
-      description:String(detail).slice(0,320),
-      url:""
+    const story=galleryStories[t.id]||sourceDemoStories[t.id];
+    preview.heroLabel=story?.[0]||old?.heroLabel||t.name;
+    preview.bio=story?.[1]||old?.bio||kit.bio;
+    preview.cards=(story?.[2]||old?.projects?.map(p=>p.title)||kit.cards.map(p=>p.title)).map(title=>({
+      title,description:"",url:""
     }));
     preview.services=[];
     preview.education="";
