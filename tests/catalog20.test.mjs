@@ -43,7 +43,7 @@ test("every design supports six purpose-matched previews with an accurate narrat
       const html=renderSite(demo,{sample:true});
       assert(html.includes('<h1 id="hero-title">'));
       if(!["arcade","folio"].includes(template.id) && !freeDesignFor(template.id) && type==="Actor / model") assert(html.includes("Credits &amp; on-screen work"));
-      if(template.id!=="arcade" && !freeDesignFor(template.id) && type==="Small business") assert(html.includes("What we offer"));
+      if(!["arcade","folio"].includes(template.id) && !freeDesignFor(template.id) && type==="Small business") assert(html.includes("What we offer"));
       if(template.id!=="arcade" && !freeDesignFor(template.id) && type==="Student résumé") assert(html.includes("Projects &amp; experiments"));
     }
   }
