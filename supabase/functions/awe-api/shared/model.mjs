@@ -44,6 +44,7 @@ export const templates = [
     tag: "A little personality goes far.",
     color: "#7252ce",
   },
+  {id:"liquidmetal",name:"Liquid Metal",style:"Graphite machined glass",tag:"A refined metallic presence.",color:"#E8EAEE"},
   ...newTemplates,
   ...originalDirections,
 ];
@@ -290,6 +291,7 @@ const purposeDemos = {
     skills:"",ctaLabel:"Explore our services",sections:["about","services","work","contact"]}
 };
 const originalByTemplate = {
+  liquidmetal:"Professional portfolio",
   index:"Student résumé",folio:"Creative portfolio",still:"Personal brand",
   afterhours:"Actor / model",signal:"Creative portfolio",daylight:"Small business",
   atlas:"Student résumé",terminal:"Student résumé",orbit:"Professional portfolio",
@@ -300,6 +302,7 @@ const originalByTemplate = {
 };
 /* Unique fictional gallery identities. Editable customer values are never replaced. */
 const galleryIdentities = {
+ liquidmetal:["Adrian Vale","Forma Atelier","Crafted to a higher standard.","Engineered simplicity."],
  index:["Avery Brooks","North & Number","Designed to make sense.","Clarity, structured."],
  folio:["Isabel Quinn","The Margin Studio","A life in chapters.","An edited collection."],
  still:["Noa Sterling","Common Objects","Give the work some room.","A quieter perspective."],
@@ -364,6 +367,20 @@ export function sampleForTemplate(id,purpose){
       {title: originalDirection.name + " / Next Edition", description: "An illustrative case study for this website format.", url: ""}
     ];
   }
+  if(t.id==="liquidmetal"){
+    Object.assign(preview,{
+      name:category==="Small business"?"Forma Atelier":"Adrian Vale",
+      headline:category==="Small business"?"Precision, made personal.":"Design that leaves a lasting impression.",
+      heroLabel:"Independent creative practice / "+category,
+      bio:"A fictional example of considered craftsmanship, visual precision and independent creative work.",
+      cards:[
+        {title:"The Monolith",description:"A fictional sculptural identity system with clean material details.",url:""},
+        {title:"Second Nature",description:"A fictional gallery experience exploring light and texture.",url:""},
+        {title:"Edition Zero",description:"A fictional editorial portfolio with minimal storytelling.",url:""}
+      ],
+      services:[{title:"Creative direction",description:"Thoughtful ideas distilled into distinctive work.",url:""},{title:"Visual identity",description:"Clarity, material detail and deliberate composition.",url:""},{title:"Digital experiences",description:"Web work made with technical precision.",url:""}]
+    });
+  }
   const unique = purpose===undefined && !old;
   const motif={atlas:"Think bigger. Build smarter.",terminal:"Hello, future.",orbit:"Ideas without limits.",
     playbill:"This is the beginning.",monologue:"The scene is yours.",portraiture:"More than a face.",
@@ -388,8 +405,8 @@ export function sampleForTemplate(id,purpose){
   const content={...sample.content,...preview,projects:"",links:[],photoIds:[],publicEmail:"",testimonials:[]};
   return {type:category,template:t.id,design:{
     primary:uploadedDirection?.accent||t.color,animation:"expressive",
-    secondary:uploadedDirection?.surface||(t.id==="arcade"?"#11120f":originalDirection ? (["negative","nightgrid","signaldeck","obsidian"].includes(t.id)?"#242431":"#dedbd4") : "#ece9e0"),
-    appearance:uploadedDirection ? (["afterhours","signal","orbit","monologue","nocturne","nightgrid","signaldeck","obsidian"].includes(t.id)?"dark":"light") : (["afterhours","nocturne","terminal","brutalist","arcade"].includes(t.id)?"dark":"light"),
+    secondary:(t.id==="liquidmetal"?"#15181D":uploadedDirection?.surface)||(t.id==="arcade"?"#11120f":originalDirection ? (["negative","nightgrid","signaldeck","obsidian"].includes(t.id)?"#242431":"#dedbd4") : "#ece9e0"),
+    appearance:t.id==="liquidmetal" ? "dark" : uploadedDirection ? (["afterhours","signal","orbit","monologue","nocturne","nightgrid","signaldeck","obsidian"].includes(t.id)?"dark":"light") : (["afterhours","nocturne","terminal","brutalist","arcade"].includes(t.id)?"dark":"light"),
     sections:kit.sections
   },content};
 }
