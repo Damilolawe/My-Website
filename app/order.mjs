@@ -139,6 +139,7 @@ function draw() {
       esc(tiers.find(t => t.id === selectedTier)?.name || "Your") +
       ' templates</h2><p class="muted">Your package includes designs at this level and below. Explore the designs as they were authored, without résumé or business examples.</p></div>' +
       '<div class="tier-switches" aria-label="Change your tier">' + tierButtons + '</div></div>' +
+      (selectedPackage()?.delivery === "awe-multipage" ? '<p class="notice">The $150 five-page package currently supports the RunwayML Multi Page design. Other templates can be explored and quoted separately.</p>' : '') +
       '<div class="template-filterbar"><span class="eyebrow">EXPLORE THE ORIGINAL DESIGNS</span>' +
       '<p class="muted" id="template-count" aria-live="polite">' + visible.length + ' of ' + offered.length + ' available designs</p></div>' +
       '<div class="experience-picker-heading"><div><p class="eyebrow">ORIGINAL DESIGN DIRECTIONS</p><h2>Don’t pick a color.<br><em>Pick a feeling.</em></h2><p class="muted">Explore real, scrollable example websites. The people and projects shown are fictional.</p></div><div class="experience-picker-index" aria-hidden="true"><strong></strong><small>AN ORIGINAL STARTING POINT</small></div></div>' +
@@ -244,7 +245,9 @@ function draw() {
         syncPackage();
         const inRange = offered.find(t => t.id === input.template);
         const next = (catalog.templates || templates).filter(t => templateFitsTier(t.id, selectedTier));
-        if (!next.some(t => t.id === input.template) && next.length) setTemplate(next[0].id);
+        if (selectedPackage()?.delivery === "awe-multipage" && next.some(t => t.id === "runwaymulti"))
+          setTemplate("runwaymulti");
+        else if (!next.some(t => t.id === input.template) && next.length) setTemplate(next[0].id);
         draw();
       };
     });
