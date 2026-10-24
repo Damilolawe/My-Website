@@ -3,21 +3,22 @@ import assert from "node:assert/strict";
 import { zipSync, strToU8 } from "fflate";
 import { normalize, sample, templates } from "../shared/model.mjs";
 import { renderSite } from "../shared/render.mjs";
+import {freeDesignFor} from "../shared/free-designmd.mjs";
 import { previewResume, suggestionsFromText } from "../platform/resume.mjs";
 
 test("twenty premium templates produce semantic, responsive site documents", () => {
   const documents=templates.map(t=>renderSite({...sample,template:t.id},{sample:true}));
-  for (const html of documents) {
+  for (const [index,html] of documents.entries()) {
     assert.match(html,/<!doctype html>/i);
     assert.match(html,/<h1 id="hero-title">/);
     assert.match(html,/width=device-width/);
     assert.match(html,/prefers-reduced-motion/);
     assert.match(html,/FICTIONAL TEMPLATE DEMO/);
     assert.match(html,/id="work"/);
-    if(!html.includes("site-architecture-arcade")&&!html.includes("site-architecture-liquidmetal")) assert.match(html,/Verified quotation|fictional quote/i);
+    if(!html.includes("site-architecture-arcade")&&!html.includes("site-architecture-liquidmetal")&&!freeDesignFor(templates[index].id)) assert.match(html,/Verified quotation|fictional quote/i);
     assert.match(html,/Skip to content/);
   }
-  assert.equal(new Set(documents).size,27);
+  assert.equal(new Set(documents).size,37);
 });
 test("explicit section reordering and structured service cards persist, unsafe content stays escaped",()=>{
   const input=normalize({

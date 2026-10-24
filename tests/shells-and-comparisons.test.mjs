@@ -4,12 +4,22 @@ import {readFile} from "node:fs/promises";
 import {templates,sampleForTemplate} from "../shared/model.mjs";
 import {renderSite} from "../shared/render.mjs";
 import {shellIdentities} from "../shared/site-shells.mjs";
+import {freeDesignFor} from "../shared/free-designmd.mjs";
 
 test("every customer design has a separate outer shell and page ordering",()=>{
   assert.equal(Object.keys(shellIdentities).length,27);
   assert.equal(new Set(Object.values(shellIdentities)).size,27);
   for(const t of templates){
     const html=renderSite(sampleForTemplate(t.id),{sample:true});
+    if(freeDesignFor(t.id)){
+      assert(html.includes('class="fd-header"'),"Missing standalone "+t.id+" header");
+      assert(html.includes('class="fd-footer"'),"Missing standalone "+t.id+" footer");
+      assert(html.includes('data-architecture="'),"Missing standalone architecture");
+      assert(html.includes('aria-label="Section navigation"'),"Missing accessible navigation");
+      assert(html.includes('id="main"'),"Skip target missing");
+      assert(!html.includes("<script"),"Static customer pages must remain script-free");
+      continue;
+    }
     if(t.id==="liquidmetal"){
       assert(html.includes('class="shell-header shell-liquidmetal'),"Missing special Liquid Metal header");
       assert(html.includes('class="shell-footer shell-footer-liquidmetal'),"Missing special Liquid Metal footer");
@@ -36,6 +46,13 @@ test("purpose-aware pages preserve specialized content with each outer shell",()
   for(const purpose of purposes){
     for(const t of templates){
       const html=renderSite(sampleForTemplate(t.id,purpose),{sample:true});
+      if(freeDesignFor(t.id)){
+        assert(html.includes('class="fd-site fd-'+t.id),t.id+" lost standalone page identity");
+        assert(html.includes('class="fd-grid"'),t.id+" needs distinct projects");
+        assert(!html.includes('id="testimonials"'),t.id+" must not invent endorsements");
+        assert(html.includes("motion-expressive"),t.id+" needs animation setting");
+        continue;
+      }
       assert(html.includes('class="site-architecture site-architecture-'+t.id+'"'));
       if(t.id==="liquidmetal"){
         assert(html.includes("lm-work-grid"),"Liquid Metal independent portfolio missing");
