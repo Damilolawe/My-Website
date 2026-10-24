@@ -357,9 +357,9 @@ export function sampleForTemplate(id,purpose){
     preview.heroLabel = originalDirection.style + " / " + category;
     preview.bio = "A fictional sample for " + originalDirection.name + ": a distinct original design concept presenting " + originalDirection.character + " with an authentic visual rhythm.";
     preview.cards = [
-      {title: "First Impression", description: "An imagined project demonstrating " + originalDirection.style.toLowerCase() + ".", url: ""},
-      {title: "The Working Process", description: "A fictional independent commission with original art direction.", url: ""},
-      {title: "Next Edition", description: "An illustrative case study for this website format.", url: ""}
+      {title: originalDirection.name + " / First Impression", description: "An imagined project demonstrating " + originalDirection.style.toLowerCase() + ".", url: ""},
+      {title: originalDirection.name + " / Working Process", description: "A fictional independent commission with original art direction.", url: ""},
+      {title: originalDirection.name + " / Next Edition", description: "An illustrative case study for this website format.", url: ""}
     ];
   }
   const unique = purpose===undefined && !old;
