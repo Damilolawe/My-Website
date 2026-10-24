@@ -11,6 +11,7 @@ import {
   sections,
 } from "/shared/model.mjs";
 import { renderSite } from "/shared/render.mjs";
+import { premiumStudyIds } from "/shared/premium-art-direction-35.mjs";
 import { tiers, minimumTier, packageTier, packageAllowsTemplate, templateFitsTier, tierLevel } from "/shared/tiers.mjs";
 import { fetchPublicTemplate, previewMessage } from "/shared/preview.mjs";
 import { $, api, money, report, authForm } from "./common.mjs";
@@ -73,6 +74,7 @@ function setTemplate(id) {
   input.design.corners = id === "arcade" ? "sharp" : "soft";
   input.design.sections = sampleForTemplate(id,input.type).design.sections;
 }
+const hasCustomEditorialMedia = (id) => id === "folio" || premiumStudyIds.includes(id);
 function field(label, name, value = "", kind = "input") {
   return `<label class="field">${label}${kind === "textarea" ? `<textarea name="${name}" maxlength="${name === "projects" ? 5000 : 3000}">${esc(value)}</textarea>` : `<input name="${name}" value="${esc(value)}" maxlength="${name === "name" ? 100 : name === "headline" ? 160 : 1500}">`}</label>`;
 }
@@ -291,9 +293,9 @@ function draw() {
       "Personal brand":{name:"Your public brand name",headline:"Your signature statement",bio:"Origin story & perspective",projects:"Milestones, ventures & thought leadership",cards:"Highlights — title | impact / story | HTTPS URL",services:"Speaking, partnerships & offerings",experience:"Background and achievements",skills:"Core strengths",media:"Portraits, press images & résumé (optional)",hint:"Lead with your real story, experiences and offers."},
       "Small business":{name:"Public business name",headline:"Customer-focused promise",bio:"The story behind the business",projects:"Case studies & customer experiences",cards:"Featured work — title | customer value | HTTPS URL",services:"Services, offerings & products",experience:"Your experience & qualifications (optional)",skills:"Specialties & value (optional)",media:"Products, team photos & business imagery",hint:"Make it easy to understand what you sell and how customers contact you. Use authentic reviews only."}
     })[input.type];
-    const folioProjectFields = input.template === "folio"
+    const folioProjectFields = hasCustomEditorialMedia(input.template)
       ? '<div class="notice"><h3>Customize the selected projects</h3><p>Each project has its own title, description, link and optional video. Upload the hero image first, followed by the project pictures in order.</p></div>' +
-        [0,1,2].map(i => {
+        Array.from({length:input.template === "folio" ? 3 : 6},(_,i) => i).map(i => {
           const card = input.content.cards?.[i] || {};
           return '<fieldset class="panel"><legend>Project ' + (i+1) + '</legend>' +
             field('Project title', 'folioTitle'+i, card.title || '') +
@@ -303,7 +305,7 @@ function draw() {
             '</fieldset>';
         }).join('')
       : field(copy.cards, "cardsText", (input.content.cards || []).map(x=>[x.title,x.description,x.url].join(" | ")).join("\n"), "textarea");
-    el.innerHTML = `<h2>The story only you can tell.</h2><label class="field">What will you use your website for?<select id="site-purpose">${types.map(t => '<option value="' + esc(t) + '" ' + (input.type === t ? 'selected' : '') + '>' + esc(t) + '</option>').join("")}</select></label><p class="muted">${esc(copy.hint)} Use information you want visitors to see. Leave home addresses and private phone numbers out. Your résumé can suggest editable text after sign-in. Nothing from it is published until you explicitly apply changes and the studio owner approves the website.</p><form id="content" class="panel"><div class="field-row">${field(copy.name+" *", "name", input.content.name)}${field(copy.headline+" *", "headline", input.content.headline)}</div>${field(copy.bio, "bio", input.content.bio, "textarea")}${field("Hero label (optional)", "heroLabel", input.content.heroLabel || "")}${field("Main button text", "ctaLabel", input.content.ctaLabel || "Explore my work")}${field(copy.projects+" (freeform)", "projects", input.content.projects, "textarea")}<div class="notice"><h3>Feature your work beautifully</h3><p>Optional structured cards: one per line, in the form <strong>Title | Description | https://link.example</strong>. Leave empty to use your freeform projects instead.</p>${folioProjectFields}${field(copy.services+" (one per line)", "servicesText", (input.content.services || []).map(x=>[x.title,x.description,x.url].join(" | ")).join("\n"), "textarea")}${field("Testimonials (only genuine quotes)", "testimonialsText", (input.content.testimonials || []).map(x=>[x.quote,x.attribution].join(" | ")).join("\n"), "textarea")}</div><div class="field-row">${field("Education", "education", input.content.education, "textarea")}${field(copy.experience, "experience", input.content.experience, "textarea")}</div>${field(copy.skills, "skills", input.content.skills)}${field("Public contact email (optional)", "publicEmail", input.content.publicEmail)}${field("HTTPS profile links (one per line)", "links", input.content.links.join("\n"), "textarea")}${input.template === "folio" ? field("Hero video URL (optional: YouTube, Vimeo or HTTPS MP4/WebM)", "heroVideoUrl", input.content.heroVideoUrl || "") + '<p class="muted">Folio image order: the first selected photo is the hero; the next three are project photos. Videos use links, not file uploads.</p>' : ""}<label class="field">${esc(copy.media)} (up to 12 files, 4 MB each)<input id="files" type="file" multiple accept=".pdf,.docx,.jpg,.jpeg,.png,.webp"></label><p class="muted">Selected photos will be included in your website after review. Only choose images you have permission to publish. PDF and DOCX documents remain private.</p><ul class="file-list" id="file-list"></ul><button type="button" class="btn secondary small" id="clear-files">Clear selected files</button><div class="notice"><h3>Import details from your résumé</h3><p>Choose a PDF or DOCX above, then preview suggestions. We do not automatically publish them, infer qualifications, or save the extraction result.</p><button type="button" class="btn secondary small" id="resume-analyze">Preview résumé suggestions ↗︎</button><p id="resume-feedback" role="status" class="feedback"></p><div id="resume-review"></div><div id="resume-auth"></div></div></form>`;
+    el.innerHTML = `<h2>The story only you can tell.</h2><label class="field">What will you use your website for?<select id="site-purpose">${types.map(t => '<option value="' + esc(t) + '" ' + (input.type === t ? 'selected' : '') + '>' + esc(t) + '</option>').join("")}</select></label><p class="muted">${esc(copy.hint)} Use information you want visitors to see. Leave home addresses and private phone numbers out. Your résumé can suggest editable text after sign-in. Nothing from it is published until you explicitly apply changes and the studio owner approves the website.</p><form id="content" class="panel"><div class="field-row">${field(copy.name+" *", "name", input.content.name)}${field(copy.headline+" *", "headline", input.content.headline)}</div>${field(copy.bio, "bio", input.content.bio, "textarea")}${field("Hero label (optional)", "heroLabel", input.content.heroLabel || "")}${field("Main button text", "ctaLabel", input.content.ctaLabel || "Explore my work")}${field(copy.projects+" (freeform)", "projects", input.content.projects, "textarea")}<div class="notice"><h3>Feature your work beautifully</h3><p>Optional structured cards: one per line, in the form <strong>Title | Description | https://link.example</strong>. Leave empty to use your freeform projects instead.</p>${folioProjectFields}${field(copy.services+" (one per line)", "servicesText", (input.content.services || []).map(x=>[x.title,x.description,x.url].join(" | ")).join("\n"), "textarea")}${field("Testimonials (only genuine quotes)", "testimonialsText", (input.content.testimonials || []).map(x=>[x.quote,x.attribution].join(" | ")).join("\n"), "textarea")}</div><div class="field-row">${field("Education", "education", input.content.education, "textarea")}${field(copy.experience, "experience", input.content.experience, "textarea")}</div>${field(copy.skills, "skills", input.content.skills)}${field("Public contact email (optional)", "publicEmail", input.content.publicEmail)}${field("HTTPS profile links (one per line)", "links", input.content.links.join("\n"), "textarea")}${hasCustomEditorialMedia(input.template) ? field("Hero video URL (optional: YouTube, Vimeo or HTTPS MP4/WebM)", "heroVideoUrl", input.content.heroVideoUrl || "") + '<p class="muted">Upload photos in display order: hero image first, then project images. Videos currently use links, not file uploads.</p>' : ""}<label class="field">${esc(copy.media)} (up to 12 files, 4 MB each)<input id="files" type="file" multiple accept=".pdf,.docx,.jpg,.jpeg,.png,.webp"></label><p class="muted">Selected photos will be included in your website after review. Only choose images you have permission to publish. PDF and DOCX documents remain private.</p><ul class="file-list" id="file-list"></ul><button type="button" class="btn secondary small" id="clear-files">Clear selected files</button><div class="notice"><h3>Import details from your résumé</h3><p>Choose a PDF or DOCX above, then preview suggestions. We do not automatically publish them, infer qualifications, or save the extraction result.</p><button type="button" class="btn secondary small" id="resume-analyze">Preview résumé suggestions ↗︎</button><p id="resume-feedback" role="status" class="feedback"></p><div id="resume-review"></div><div id="resume-auth"></div></div></form>`;
     el.querySelector("#site-purpose").onchange = e => { input.type = e.target.value; };
     const filelist = () => {
       $("#file-list").innerHTML = files
@@ -391,15 +393,15 @@ function draw() {
         const parts = line.split("|").map(x=>x.trim());
         return Object.fromEntries(fields.map((name,i)=>[name,parts[i]||""]));
       });
-      input.content.cards = input.template === "folio"
-        ? [0,1,2].map(i=>({
+      input.content.cards = hasCustomEditorialMedia(input.template)
+        ? Array.from({length:input.template === "folio" ? 3 : 6},(_,i) => i).map(i=>({
             title: String(f["folioTitle"+i] || ""),
             description: String(f["folioDescription"+i] || ""),
             url: String(f["folioUrl"+i] || ""),
             videoUrl: String(f["folioVideo"+i] || ""),
           })).filter(card=>card.title||card.description||card.url||card.videoUrl)
         : structured(f.cardsText, ["title","description","url"],12);
-      if(input.template === "folio") input.content.heroVideoUrl = String(f.heroVideoUrl || "");
+      if(hasCustomEditorialMedia(input.template)) input.content.heroVideoUrl = String(f.heroVideoUrl || "");
       input.content.services = structured(f.servicesText, ["title","description","url"],12);
       input.content.testimonials = structured(f.testimonialsText, ["quote","attribution"],8);
     };
