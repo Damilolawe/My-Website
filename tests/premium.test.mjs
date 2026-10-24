@@ -10,15 +10,15 @@ test("twenty premium templates produce semantic, responsive site documents", () 
   const documents=templates.map(t=>renderSite({...sample,template:t.id},{sample:true}));
   for (const [index,html] of documents.entries()) {
     assert.match(html,/<!doctype html>/i);
-    assert.match(html,/<h1 id="hero-title">/);
+    assert.match(html,templates[index].id==="runwayml" ? /<h1 id="rw-h1">/ : /<h1 id="hero-title">/);
     assert.match(html,/width=device-width/);
     assert.match(html,/prefers-reduced-motion/);
     assert.match(html,/FICTIONAL TEMPLATE DEMO/);
     assert.match(html,/id="work"/);
-    if(!html.includes("site-architecture-arcade")&&!html.includes("site-architecture-liquidmetal")&&!freeDesignFor(templates[index].id)) assert.match(html,/Verified quotation|fictional quote/i);
+    if(templates[index].id!=="runwayml"&&!html.includes("site-architecture-arcade")&&!html.includes("site-architecture-liquidmetal")&&!freeDesignFor(templates[index].id)) assert.match(html,/Verified quotation|fictional quote/i);
     assert.match(html,/Skip to content/);
   }
-  assert.equal(new Set(documents).size,37);
+  assert.equal(new Set(documents).size,38);
 });
 test("explicit section reordering and structured service cards persist, unsafe content stays escaped",()=>{
   const input=normalize({
