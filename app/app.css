@@ -872,7 +872,7 @@ body{background:#f0f1e6;color:#18201a}
 .tier-choice-intro{font-size:14px;line-height:1.45;color:#40453d}
 .tier-choice ul{list-style:none;margin:4px 0 16px;padding:0;font-size:13px;line-height:1.5;color:#40453d}
 .tier-choice li{position:relative;padding-left:18px;margin:8px 0}
-.tier-choice li:before{content:"↗";position:absolute;left:0;color:var(--ink)}
+.tier-choice li:before{content:"↗︎";position:absolute;left:0;color:var(--ink)}
 .tier-choice-link{display:block;margin-top:auto;width:100%;background:var(--acid);color:var(--ink);padding:13px 10px;font-size:11px;font-weight:800;letter-spacing:.02em;text-align:center}
 .tier-disclaimer{font-size:12px;color:#53574f;max-width:870px;line-height:1.7}
 .tier-gallery-top{display:flex;justify-content:space-between;gap:25px;align-items:end;flex-wrap:wrap}
