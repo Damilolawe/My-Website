@@ -153,3 +153,8 @@ test("Six design source guides have distinct per-reference layouts, typography a
  assert(retro.includes("max-width:830px"));
  assert(luxury.includes("letter-spacing:.42em"));
 });
+
+test("Six source-specific designs show original fictional demo narratives rather than repeating Studio XX",()=>{
+ const expected=[["md-bugatti","ATELIER VELOCITY"],["md-airbnb","HOMEBY"],["md-claude","KINSHIP INTELLIGENCE"],["md-framer","FORM STUDIO"],["md-nintendo-2001","PIXELQUEST 2001"],["md-shopify","VERDANT SUPPLY"]];
+ for(const [id,name] of expected){const value=sampleForTemplate(id);const html=renderSite(value,{sample:true});assert.equal(value.content.name,name);assert(html.includes(name));assert(value.content.cards.length>=3);assert(value.content.bio.toLowerCase().includes("fictional"));}
+});
