@@ -176,3 +176,13 @@ test("Eight additional source guides have distinct responsive art and typography
  }
  assert.equal(scenes.size,ids.length);
 });
+
+test("Guide fidelity responsive bounds never permit aspect-ratio to expand the grid",async()=>{
+ const {moreGuideCSS}=await import("../shared/zip-guide-fidelity-more.mjs");
+ for(const id of ["md-mintlify","md-miro","md-oracle","md-playstation","md-uber"]){
+  const css=moreGuideCSS(id);
+  assert(css.includes("aspect-ratio:auto"),id);
+  assert(css.includes("grid-template-columns:minmax(0,1fr)"),id);
+  assert(css.includes("height:clamp(260px,78vw,350px)"),id);
+ }
+});

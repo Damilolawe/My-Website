@@ -10,7 +10,31 @@ const variants = {
 "md-cal": `.source-md-cal{--bg:#fff;--ink:#111;--accent:#111;--surface:#f8f9fa}.source-md-cal header{max-width:1280px;margin:auto;border-color:#e5e7eb}.source-md-cal header .brand{font:700 25px Arial;letter-spacing:-.04em}.source-md-cal .hero{max-width:1280px;margin:auto;grid-template-columns:1fr 1fr;min-height:790px}.source-md-cal .hero h1{font:650 clamp(56px,6vw,85px)/1.07 Arial;letter-spacing:-.045em}.source-md-cal .button{border-radius:10px;background:#111;color:white}.source-md-cal .visual{height:520px;border-radius:13px;box-shadow:0 24px 60px #00000015;border:1px solid #e5e7eb}.source-md-cal .section{max-width:1280px;margin:auto}.source-md-cal .section h2{font:650 clamp(40px,5vw,65px)/1.08 Arial}.source-md-cal .card{border:1px solid #e5e7eb;border-radius:14px;padding:13px;background:#fff}.source-md-cal .artbox{border-radius:10px}.source-md-cal .contact{background:#101827;color:#fff}@media(max-width:960px){.source-md-cal .hero{grid-template-columns:1fr}}`,
 "md-miro": `.source-md-miro{--bg:#fff;--ink:#161616;--accent:#4262ff;--surface:#f7f8fa}.source-md-miro header{max-width:1420px;margin:auto;border-color:#ebebeb}.source-md-miro .hero{max-width:1420px;margin:auto;grid-template-columns:1fr;gap:42px;min-height:730px;text-align:center}.source-md-miro .hero h1{font:700 clamp(54px,7vw,105px)/1.05 Arial;letter-spacing:-.06em;max-width:15ch;margin:20px auto}.source-md-miro .hero p{margin:auto;font-size:20px}.source-md-miro .button{background:#4262ff;color:white;border-radius:100px;padding:18px 30px}.source-md-miro .visual{aspect-ratio:2.1;height:440px;background:#f7f8fa;border-radius:20px;box-shadow:0 22px 60px #0001;border:1px solid #e5e7eb}.source-md-miro .section{max-width:1420px;margin:auto}.source-md-miro .section h2{font-size:clamp(45px,6vw,86px)}.source-md-miro .cards{gap:16px}.source-md-miro .artbox{border-radius:18px}.source-md-miro .contact{background:#f4e069;color:#161616}@media(max-width:650px){.source-md-miro .visual{height:320px}}`
 };
-export const moreGuideCSS=id=>variants[id]||"";
+const layoutSafety=`/* Respect available space at laptop and mobile widths. Aspect ratio must
+   never imply a minimum intrinsic width larger than the grid cell. */
+.source-md-mintlify .visual,.source-md-miro .visual,.source-md-oracle .visual,.source-md-playstation .visual,.source-md-uber .visual{
+  width:100%;max-width:100%;min-width:0;aspect-ratio:auto;
+}
+.site.source-md-stripe .hero,.site.source-md-mintlify .hero,.site.source-md-miro .hero,.site.source-md-oracle .hero,.site.source-md-playstation .hero,.site.source-md-uber .hero{
+  min-width:0;max-width:100%;
+}
+@media(max-width:960px){
+ .site.source-md-stripe .hero,.site.source-md-mintlify .hero,.site.source-md-miro .hero,.site.source-md-oracle .hero,.site.source-md-playstation .hero,.site.source-md-uber .hero,.site.source-md-cal .hero,.site.source-md-posthog .hero{
+  grid-template-columns:minmax(0,1fr);width:100%;gap:24px;
+ }
+ .site.source-md-mintlify .visual,.site.source-md-miro .visual,.site.source-md-oracle .visual,.site.source-md-playstation .visual,.site.source-md-uber .visual{
+   width:100%;height:clamp(270px,65vw,450px);min-height:0;
+ }
+}
+@media(max-width:550px){
+ .site.source-md-mintlify .hero h1,.site.source-md-miro .hero h1,.site.source-md-oracle .hero h1,.site.source-md-playstation .hero h1,.site.source-md-uber .hero h1{
+   font-size:clamp(37px,10.1vw,56px);max-width:100%;overflow-wrap:break-word;
+ }
+ .site.source-md-mintlify .visual,.site.source-md-miro .visual,.site.source-md-oracle .visual,.site.source-md-playstation .visual,.site.source-md-uber .visual{
+   height:clamp(260px,78vw,350px);
+ }
+}`;
+export const moreGuideCSS=id=>variants[id]?variants[id]+layoutSafety:"";
 export function moreGuideScene(t,i){
  const small=(label)=>'<span class="guide-more-label">'+label+' / '+String(i+1).padStart(2,"0")+'</span>';
  const outer=(id,contents)=>'<div class="guide-more guide-more-'+id+'" aria-hidden="true">'+small('DESIGN CONCEPT')+contents+'</div>';
