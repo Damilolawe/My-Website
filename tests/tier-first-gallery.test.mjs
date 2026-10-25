@@ -15,19 +15,21 @@ test("all 27 available design directions have a defined minimum access tier", ()
   }
   assert(templates.some(t => minimumTier(t.id) === "starter"));
   assert(templates.some(t => minimumTier(t.id) === "signature"));
-  assert.equal(templates.filter(t => minimumTier(t.id) === "starter").length,44);
-  assert.equal(templates.filter(t => minimumTier(t.id) === "signature").length,72);
+  assert.equal(templates.filter(t => minimumTier(t.id) === "starter").length,78);
+  assert.equal(templates.filter(t => minimumTier(t.id) === "signature").length,38);
 });
 
-test("higher tiers include lower-tier templates and reject unaffordable choices", () => {
+test("Starter includes only single-page templates; Signature includes only five-page sites; Premium is custom", () => {
   for (const {id} of templates) {
-    const base = tierLevel(minimumTier(id));
-    for (const tier of tiers) assert.equal(templateFitsTier(id, tier.id), tierLevel(tier.id) >= base);
+    const selected=minimumTier(id);
+    assert.equal(templateFitsTier(id,"starter"),selected==="starter",id);
+    assert.equal(templateFitsTier(id,"signature"),selected==="signature",id);
+    assert.equal(templateFitsTier(id,"premium"),false,id);
   }
-  assert.equal(templateFitsTier("arcade", "starter"), false);
-  assert.equal(templateFitsTier("arcade", "signature"), true);
-  assert.equal(templateFitsTier("arcade", "premium"), true);
-  assert.equal(templateFitsTier("unknown", "premium"), false);
+  assert.equal(templateFitsTier("arcade","starter"),true);
+  assert.equal(templateFitsTier("arcade","signature"),false);
+  assert.equal(templateFitsTier("runwaymulti","signature"),true);
+  assert.equal(templateFitsTier("unknown","premium"),false);
 });
 
 test("package tier comes from explicit metadata or existing USD price; QA checkout is scoped", () => {
@@ -36,8 +38,8 @@ test("package tier comes from explicit metadata or existing USD price; QA checko
   assert.equal(packageTier({amount:15000,currency:"usd"}), "signature");
   assert.equal(packageTier({amount:25000,currency:"usd"}), "premium");
   assert.equal(packageTier({amount:15000,currency:"eur"}), null);
-  assert.equal(packageAllowsTemplate({tier:"starter"},"arcade"), false);
-  assert.equal(packageAllowsTemplate({tier:"premium"},"arcade"), true);
+  assert.equal(packageAllowsTemplate({tier:"starter"},"arcade"), true);
+  assert.equal(packageAllowsTemplate({tier:"premium"},"arcade"), false);
   assert.equal(packageAllowsTemplate({testOnly:true,amount:100,currency:"usd"},"arcade"), true);
 });
 
@@ -49,7 +51,7 @@ test("public experience starts with tiers and organic designs without audience f
   assert(!code.includes('data-purpose='));
   assert(code.includes('data-switch-tier='));
   assert(!code.includes('purposeFilter = "All"'));
-  assert(code.includes('templateFitsTier(t.id, selectedTier)'));
+  assert(code.includes('templatesForTier(selectedTier)'));
   assert(code.includes('const p = selectedPackage()'));
   assert(code.includes('What will you use your website for?'));
   assert(!code.includes('data-type='));

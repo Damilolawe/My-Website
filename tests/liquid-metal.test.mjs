@@ -10,9 +10,9 @@ test("Liquid Metal source remains available, original and private",async()=>{
  assert(s.includes("## AI Build Instructions"));
  assert(s.includes("## Pro tokens"));
  assert.equal(templates.filter(x=>x.id==="liquidmetal").length,1);
- assert.equal(minimumTier("liquidmetal"),"signature");
- assert.equal(templateFitsTier("liquidmetal","starter"),false);
- assert.equal(templateFitsTier("liquidmetal","signature"),true);
+ assert.equal(minimumTier("liquidmetal"),"starter");
+ assert.equal(templateFitsTier("liquidmetal","starter"),true);
+ assert.equal(templateFitsTier("liquidmetal","signature"),false);
 });
 test("Liquid Metal has a standalone, source-faithful glass rendering without sampled proprietary media",()=>{
  for(const purpose of ["Student résumé","Professional portfolio","Actor / model","Creative portfolio","Personal brand","Small business"]){

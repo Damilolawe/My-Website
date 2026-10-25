@@ -84,7 +84,7 @@ test("AWE Express gallery exposes all forty-two authored designs at eligible tie
  assert(!show.includes("recommendedFor"));
  assert(order.includes("mountExpressGallery"));
  assert(order.includes("items:offered,initial:active.id"));
- assert(order.includes("templateFitsTier(t.id, selectedTier)"));
+ assert(order.includes("templatesForTier(selectedTier)"));
  assert(order.includes("setTemplate(id)"));
  assert(build.includes("for (const type of types)"));
  assert(!order.includes("catalog.templates.map"));

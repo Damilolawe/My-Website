@@ -45,7 +45,7 @@ test("owner UI reviews private multi-page versions and commercial checkout never
   assert(api.includes("renderApprovedDesignPages(v.input)[requestedPage]"));
   assert(worker.includes('requiredPages: o.package_snapshot?.delivery === "awe-multipage"'));
   assert(client.includes("packageAllowsTemplate(p, input.template)"));
-  assert(tiers.includes('templateId === "runwaymulti"'));
+  assert(tiers.includes('pkg.pageCount === 5 && pages === 5'));
 });
 
 

@@ -15,9 +15,9 @@ test("Ten original DESIGN.md files are preserved and appended without disturbing
   assert(raw.includes("## AI Build Instructions"));
   assert(raw.includes("## Pro tokens"));
   assert(raw.includes("name: "+JSON.stringify(d.name))||raw.includes("name: "+d.name));
-  assert.equal(minimumTier(d.id),"signature");
-  assert.equal(templateFitsTier(d.id,"starter"),false);
-  assert.equal(templateFitsTier(d.id,"signature"),true);
+  assert.equal(minimumTier(d.id),"starter");
+  assert.equal(templateFitsTier(d.id,"starter"),true);
+  assert.equal(templateFitsTier(d.id,"signature"),false);
  }
 });
 test("Ten independent, safe, mobile-adaptive premium designs render in all six purposes",()=>{

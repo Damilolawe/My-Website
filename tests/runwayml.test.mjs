@@ -13,7 +13,7 @@ test("RunwayML source is preserved and template registered once",async()=>{
  assert.equal(templates.slice(0,42).at(-5).id,"runwayml");
  assert.equal(minimumTier("runwayml"),"starter");
  assert(templateFitsTier("runwayml","starter"));
- assert(templateFitsTier("runwayml","signature"));
+ assert(!templateFitsTier("runwayml","signature"));
 });
 test("RunwayML does not change demo identity or layout with category",()=>{
  const samples=purposes.map(p=>sampleForTemplate("runwayml",p));

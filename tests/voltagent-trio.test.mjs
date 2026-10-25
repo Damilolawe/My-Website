@@ -10,9 +10,9 @@ test("Nike, Clay, Ferrari are three distinct appended Signature editions",()=>{
  assert.equal(new Set(templates.map(t=>t.id)).size,templates.length);
  for(const id of ids){
   assert.equal(templates.filter(t=>t.id===id).length,1);
-  assert.equal(minimumTier(id),"signature");
-  assert.equal(templateFitsTier(id,"starter"),false);
-  assert.equal(templateFitsTier(id,"signature"),true);
+  assert.equal(minimumTier(id),"starter");
+  assert.equal(templateFitsTier(id,"starter"),true);
+  assert.equal(templateFitsTier(id,"signature"),false);
  }
  assert(templates.some(t=>t.id==="nocturne"),"Do not overwrite existing Ferrari-inspired Nocturne");
 });
