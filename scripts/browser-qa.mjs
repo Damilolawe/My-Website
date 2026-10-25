@@ -180,7 +180,10 @@ try {
   if(size.width<=768){
     const heroFit=await page.evaluate(()=>{
       const q=s=>document.querySelector(s)?.getBoundingClientRect();
-      const controls=q(".hero-art .showreel-controls"),footer=q(".hero-footer"),art=q(".hero-art"),deck=q(".showreel-deck");
+      const legacyControls=q(".hero-art .showreel-controls");
+      const universeControls=q(".awe-universe .universe-footer");
+      const controls=document.documentElement.classList.contains("universe-ready")?universeControls:legacyControls;
+      const footer=q(".hero-footer"),art=q(".hero-art"),deck=q(".showreel-deck");
       return {controlsBottom:controls?.bottom,footerTop:footer?.top,artBottom:art?.bottom,deckHeight:deck?.height};
     });
     if(heroFit.footerTop===undefined||heroFit.controlsBottom===undefined)
@@ -193,6 +196,18 @@ try {
   }
   await page.screenshot({path:"qa-browser-artifacts/"+size.name+"-homepage.png",fullPage:false});
   if(size.width===390){
+    // Verify the flagship hero actually opens real, allowlisted template pages.
+    const world=page.locator('#awe-universe [data-open-universe="runwayml"]');
+    assert.equal(await world.count(),1,"Cinematic website world is present");
+    await world.click();
+    assert.equal(await page.locator('#universe-dialog').evaluate(el=>el.open),true,
+      "Selecting a world should open the immersive browser preview");
+    assert.equal(await page.locator('#universe-standalone').getAttribute("href"),"/templates/runwayml.html");
+    await page.locator('[data-universe-device="mobile"]').click();
+    assert.equal(await page.locator('#universe-preview-wrap').getAttribute("data-device"),"mobile");
+    await page.keyboard.press("Escape");
+    await page.locator('#universe-dialog').waitFor({state:"hidden",timeout:8000});
+    assert.equal(await page.locator('#universe-dialog').evaluate(el=>el.open),false);
     // Walk the public brief without writing a production inquiry. The final
     // action must be explicit, and return contact details must be required.
     await page.locator("#brief-description").fill("I need a portfolio to show recent creative work.");
