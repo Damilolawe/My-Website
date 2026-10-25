@@ -137,3 +137,19 @@ test("Signature design studies display the page names specified in their source 
  const ibm=renderZipDesign(sampleForTemplate("md-ibm"),{sample:true},"features");
  assert(ibm.includes('href="/templates/md-ibm/features.html" aria-current="page">Documentation</a>'));
 });
+
+test("Six design source guides have distinct per-reference layouts, typography and artwork",async()=>{
+ const {sourceGuideCSS,sourceGuideScene}=await import("../shared/zip-guide-fidelity.mjs");
+ for(const id of ["md-bugatti","md-airbnb","md-claude","md-framer","md-nintendo-2001","md-shopify"]){
+   const meta=zipDesignFor(id),html=renderSite(sampleForTemplate(id),{sample:true});
+   assert(meta&&sourceGuideCSS(id).length>400,id);
+   assert(sourceGuideScene(meta,0)?.includes("guide-scene"),id);
+   assert(html.includes("source-"+id),id);
+   assert(html.includes("guide-scene"),id);
+   assert(html.includes(sourceGuideCSS(id).slice(0,35)),id);
+ }
+ const retro=renderSite(sampleForTemplate("md-nintendo-2001"),{sample:true});
+ const luxury=renderSite(sampleForTemplate("md-bugatti"),{sample:true});
+ assert(retro.includes("max-width:830px"));
+ assert(luxury.includes("letter-spacing:.42em"));
+});
