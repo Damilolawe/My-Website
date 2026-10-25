@@ -125,3 +125,15 @@ test("Starter and Signature ZIP designs appear exclusively in their chosen tier 
  assert(client.includes("zipDesignFor(t.id).tier === selectedTier"));
  assert(client.includes("!zipDesignFor(t.id) ||"));
 });
+
+test("Signature design studies display the page names specified in their source guides",async()=>{
+ const {zipChapterLabels}=await import("../shared/zip-design-catalog.mjs");
+ assert.deepEqual(zipChapterLabels("framer"),["Home","Work","Pricing","Studio","Contact"]);
+ assert.deepEqual(zipChapterLabels("ibm"),["Home","Collection","Documentation","Studio","Contact"]);
+ assert.deepEqual(zipChapterLabels("airbnb"),["Home","Explore","Features","Studio","Contact"]);
+ const framer=renderZipDesign(sampleForTemplate("md-framer"),{sample:true},"features");
+ assert(framer.includes('href="/templates/md-framer/features.html" aria-current="page">Pricing</a>'));
+ assert(framer.includes("<h1 id=\"hero-title\">Pricing by design.</h1>"));
+ const ibm=renderZipDesign(sampleForTemplate("md-ibm"),{sample:true},"features");
+ assert(ibm.includes('href="/templates/md-ibm/features.html" aria-current="page">Documentation</a>'));
+});

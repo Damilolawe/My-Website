@@ -14,6 +14,11 @@ export const zipDesigns=Object.freeze(paletteRows.split("\n").map((row,i)=>{
 }));
 export const zipDesignFor=id=>zipDesigns.find(t=>t.id===id)||null;
 export const zipPages=Object.freeze(["home","work","features","studio","contact"]);
+// Page-specific labels derived from the original DESIGN.md architecture. Stable URLs
+// remain unchanged to preserve build artifacts and deep links.
+const guideChapterLabels={"airbnb":["Explore","Features"],"bmw-m":["Explore","Features"],"binance":["Collection","Pricing"],"airtable":["Explore","Pricing"],"coinbase":["Explore","Pricing"],"cursor":["Explore","Pricing"],"dji":["Collection","Pricing"],"framer":["Work","Pricing"],"ibm":["Collection","Documentation"],"intercom":["Explore","Pricing"],"lovable":["Work","Documentation"],"mastercard":["Explore","Features"],"mercury":["Collection","Pricing"],"meta":["Collection","Features"],"mongodb":["Collection","Documentation"],"mintlify":["Work","Documentation"],"miro":["Collection","Documentation"],"notion":["Work","Documentation"],"nvidia":["Explore","Documentation"],"oracle":["Collection","Pricing"],"posthog":["Collection","Documentation"],"pinterest":["Explore","Documentation"],"sentry":["Explore","Documentation"],"shopify":["Explore","Pricing"],"revolut":["Collection","Features"],"resend":["Explore","Documentation"],"slack":["Explore","Pricing"],"starbucks":["Collection","Features"],"stripe":["Explore","Pricing"],"vercel":["Work","Pricing"],"supabase":["Explore","Pricing"],"webflow":["Collection","Pricing"],"wise":["Work","Pricing"]};
+export const zipChapterLabels=source=>["Home",...(guideChapterLabels[source]||["Work","Features"]),"Studio","Contact"];
+
 export const isDarkHex=hex=>{const h=hex.replace("#","");return [0,2,4].reduce((a,i)=>a+parseInt(h.slice(i,i+2),16),0)<365};
 export function sampleZipDesign(id,base){
  const t=zipDesignFor(id);if(!t)return null;

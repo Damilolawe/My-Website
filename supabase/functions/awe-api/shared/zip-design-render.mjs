@@ -1,4 +1,4 @@
-import {zipDesignFor,zipPages,isDarkHex} from "./zip-design-catalog.mjs";
+import {zipDesignFor,zipPages,zipChapterLabels,isDarkHex} from "./zip-design-catalog.mjs";
 const e=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const types={auto:"bugatti bmw-m bmw dji lamborghini renault spacex tesla",editorial:"aljazeera theverge wired pinterest nintendo-2001",fintech:"binance coinbase kraken mastercard mercury nerdwallet revolut stripe wise",code:"claude clickhouse composio cursor elevenlabs expo hashicorp mistral.ai mintlify mongodb ollama opencode.ai posthog replicate resend sentry supabase together.ai vercel voltagent x.ai",product:"airtable cal cohere framer intercom lovable miro notion sanity superhuman webflow zapier",commerce:"airbnb 1win hp dell-1996 jobright mydealz playstation shopify uber"};
 const kind=ref=>Object.keys(types).find(k=>types[k].split(" ").includes(ref))||"studio";
@@ -21,9 +21,11 @@ export function renderZipDesign(v,options={},page="home"){
  const label=zipPages.includes(page)?page:"home";
  const content=v.content,which=kind(t),contrast=isDarkHex(v.design?.primary||t.accent)?"#fff":"#101010";
  const font=which==="editorial"?"Georgia,serif":which==="code"?"ui-monospace,monospace":"Arial,system-ui,sans-serif";
- const title=label==="home"?e(content.headline):({work:"Selected perspectives.",features:"Care in every detail.",studio:"Behind the ideas.",contact:"The next chapter."}[label]);
+ const chapterLabel=zipChapterLabels(t.source)[zipPages.indexOf(label)] || label;
+ const title=label==="home"?e(content.headline):e(({studio:"Behind the ideas.",contact:"The next chapter."}[label])||chapterLabel+" by design.");
  const text=label==="home"?content.bio:"A unique chapter of a five-page source-guided design study, carrying its palette, typography and layout language forward.";
- const navigation=(t.multipage?zipPages:["home","work","features","contact"]).map(p=>'<a href="'+href(t,p)+'" '+(p===label?'aria-current="page"':'')+'>'+p.toUpperCase()+'</a>').join("");
+ const originalLabels=zipChapterLabels(t.source);
+ const navigation=(t.multipage?zipPages:["home","work","features","contact"]).map(p=>'<a href="'+href(t,p)+'" '+(p===label?'aria-current="page"':'')+'>'+e(t.multipage?originalLabels[zipPages.indexOf(p)]:p.toUpperCase())+'</a>').join("");
  const hero='<section class="hero hero-variant md-hero md-'+t.id+'-hero" aria-labelledby="hero-title"><div><span class="eyebrow">'+e(content.heroLabel)+'</span><h1 id="hero-title">'+title+'</h1><p>'+e(text)+'</p><a class="button" href="'+href(t,"work")+'">DISCOVER THE WORK ↗︎</a></div><div class="visual">'+(content.photoIds?.[0]&&!options.sample?'<img src="'+e((options.assetBase||"/api/assets/")+content.photoIds[0]+(options.assetSuffix||""))+'" alt="" loading="eager">':artistic(t,zipPages.indexOf(label)))+'</div></section>';
  const cards='<div class="cards">'+(content.cards||[]).slice(0,3).map((card,i)=>'<article class="card"><div class="artbox">'+(content.photoIds?.[i]?'<img src="'+e((options.assetBase||"/api/assets/")+content.photoIds[i]+(options.assetSuffix||""))+'" alt="" loading="lazy">':artistic(t,i))+'</div><span class="eyebrow">0'+(i+1)+' / DESIGN STUDY</span><h3>'+e(card.title)+'</h3><p>'+e(card.description)+'</p></article>').join("")+'</div>';
  const work='<section class="section" id="work"><span class="eyebrow">01 / SELECTED WORK</span><h2>Made to be seen.</h2>'+cards+'</section>';
