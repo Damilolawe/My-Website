@@ -147,6 +147,7 @@ function draw() {
       ' templates</h2><p class="muted">Pick a design you love, preview the real layout, then make it yours. Available designs reflect your selected package tier.</p></div>' +
       '<div class="tier-switches" aria-label="Change your tier">' + tierButtons + '</div></div>' +
       (selectedPackage()?.delivery === "awe-multipage" ? '<p class="notice">Only RunwayML Multi Page currently supports verified five-page publishing. Other multipage study previews are not yet purchasable.</p>' : '') +
+      '<p id="express-study-status" class="notice" role="status" aria-live="polite" '+(!zipDesignFor(input.template)?'hidden':'')+'>This is a preview-only design study. Ordering is not yet available for this design. <a href="/contact.html">Ask about a custom build ↗︎</a></p>' +
       '<section class="worlds express-gallery" id="express-showcase" aria-labelledby="express-gallery-title">' +
       '<div class="worlds-kicker"><span>AWE EXPRESS / DESIGN COLLECTION</span><strong>SELECT & CUSTOMIZE</strong></div>' +
       '<h3 id="express-gallery-title" class="express-gallery-title">Your next website.<br><em>Your direction.</em></h3>' +
@@ -155,7 +156,7 @@ function draw() {
       '</section>';
     theaterController=mountExpressGallery(el.querySelector("#express-showcase"),{
       items:offered,initial:active.id,initialMobile:theaterPreferredMode==="mobile",
-      onSelect:id=>{if(offered.some(t=>t.id===id))setTemplate(id);},
+      onSelect:id=>{if(offered.some(t=>t.id===id)){setTemplate(id);const notice=el.querySelector("#express-study-status");if(notice)notice.hidden=!zipDesignFor(id);}},
       onModeChange:mobile=>{theaterPreferredMode=mobile?"mobile":"desktop";}
     });
     el.querySelectorAll("[data-switch-tier]").forEach(button=>{
