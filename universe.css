@@ -25,7 +25,7 @@
 .universe-browser-dots{display:inline-flex;gap:4px}
 .universe-browser-dots i{display:block;width:5px;height:5px;border:1px solid #d6e2d680;border-radius:50%}
 .universe-snapshot{position:relative;flex:1;min-height:0;overflow:hidden;background:#161c19}
-.universe-snapshot iframe{position:absolute;top:0;left:0;width:1200px;height:850px;border:0;transform-origin:top left;transform:scale(var(--u-scale,.22));pointer-events:none;opacity:0;transition:opacity .35s;max-width:none}
+.universe-snapshot iframe{position:absolute;top:0;left:0;width:1200px;height:var(--u-document-height,850px);border:0;transform-origin:top left;transform:scale(var(--u-scale,.22));pointer-events:none;opacity:0;transition:opacity .35s;max-width:none}
 .universe-snapshot[data-loaded="true"] iframe{opacity:1}
 .universe-fallback{position:absolute;inset:0;display:grid;place-items:center;padding:14px;color:#e9ffb8;font:900 clamp(22px,3.5vw,58px)/1 Arial,sans-serif;letter-spacing:-.07em;text-align:center;overflow-wrap:anywhere}
 .universe-card--cinematic .universe-snapshot{background:radial-gradient(circle at 70% 20%,#836b72 0,transparent 50%),#151014}
