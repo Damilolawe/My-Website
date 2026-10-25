@@ -50,13 +50,14 @@ test("AWE Express remains the offer under Awe Concepts branding", async () => {
   assert.match(account, /AWE Express/);
   assert.doesNotMatch(home + order + account, /Awe Concepts Express/i);
   for (const [page, logo, label] of [
-    [order, "awe-express-light.svg", "AWE Express"],
-    [account, "awe-concepts-light.svg", "Awe Concepts"],
-    [await source("admin.html"), "awe-concepts-light.svg", "Awe Concepts"],
+    [order, "awe-express-dark.svg", "AWE Express"],
+    [account, "awe-concepts-dark.svg", "Awe Concepts"],
+    [await source("admin.html"), "awe-concepts-dark.svg", "Awe Concepts"],
   ]) {
     assert.match(page, /class="wordmark"[^>]*><img[^>]*src="\/assets\/brand\//);
     assert(page.includes('src="/assets/brand/' + logo + '"'));
     assert(page.includes('alt="' + label + '"'));
+    assert.match(await source("assets/brand/"+logo), /fill="#F1EFE8"/i, "Dark headers need readable light lettering");
     assert(!page.includes('AWE <i>/</i> DIGITAL'));
   }
   const mark = await source("assets/brand/aw-symbol.svg");
