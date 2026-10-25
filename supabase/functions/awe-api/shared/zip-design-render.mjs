@@ -9,7 +9,7 @@ const artistic=(t,i)=>{
  if(k==="auto")return lead+'<div class="auto-speed"><i></i><i></i><i></i></div><b class="auto-serial">'+n+'</b></div>';
  if(k==="editorial")return lead+'<div class="editorial-cover"><span>VISUAL CULTURE / '+n+'</span><strong>A DIFFERENT<br>PERSPECTIVE.</strong><small>THE CREATIVE REVIEW / 2026</small></div></div>';
  if(k==="fintech")return lead+'<div class="finance-dashboard"><span>PERFORMANCE / OVERVIEW</span><strong>+24.8%</strong><div class="finance-bars">'+Array.from({length:7},(_,j)=>'<i style="height:'+((j*23+t.sourceIndex)%65+29)+'%"></i>').join("")+'</div></div></div>';
- if(k==="code")return lead+'<div class="code-console"><span>● &nbsp; ● &nbsp; ●</span><b>create · build · iterate</b><small>&gt; design system '+e(t.source)+'</small><small>&gt; 01 / explore the ideas</small><small>&gt; 02 / bring them to life</small><em>✓ ready to create</em></div></div>';
+ if(k==="code")return lead+'<div class="code-console"><span>● &nbsp; ● &nbsp; ●</span><b>create · build · iterate</b><small>&gt; design system '+e(t.source)+'</small><small>&gt; 01 / explore the ideas</small><small>&gt; 02 / bring them to life</small><em>READY / START HERE</em></div></div>';
  if(k==="product")return lead+'<div class="product-window"><span>YOUR WORKSPACE</span><div class="product-sidebar"><i></i><i></i><i></i></div><div class="product-main"><b>Better experiences.</b><i></i><i></i><i></i></div></div></div>';
  if(k==="commerce")return lead+'<div class="commerce-tiles"><div><b>'+n+'</b></div><div><i></i></div><div><strong>NEW</strong></div></div></div>';
  return lead+'<div class="art-sculpture"><i></i><i></i><i></i></div><b class="studio-serial">'+n+'</b></div>';
