@@ -196,3 +196,19 @@ test("All 74 design studies have authored, distinctive fictional headlines",asyn
  for(const sample of samples){assert.equal(sample.content.cards.length,3);assert(sample.content.cards.every(x=>x.title&&x.description));}
  assert.equal(sampleForTemplate("md-framer").content.name,"FORM STUDIO");
 });
+
+test("Pricing and Documentation navigations lead to different accessible page systems",async()=>{
+ const {sampleChapterHTML}=await import("../shared/zip-page-components.mjs");
+ const prices=renderZipDesign(sampleForTemplate("md-stripe"),{sample:true},"features");
+ assert(prices.includes('class="study-chapter study-price"'));
+ assert(prices.includes("Sample package information for visual demonstration only"));
+ assert(!prices.includes('class="study-chapter study-docs"'));
+ const docs=renderZipDesign(sampleForTemplate("md-mintlify"),{sample:true},"features");
+ assert(docs.includes('class="study-chapter study-docs"'));
+ assert(docs.includes('id="study-setup"'));
+ assert(docs.includes('aria-label="Fictional code snippet"'));
+ assert(!docs.includes('class="study-chapter study-price"'));
+ const simple=renderZipDesign(sampleForTemplate("md-bugatti"),{sample:true},"features");
+ assert(simple.includes('class="section" id="features"'));
+ assert(!simple.includes('class="study-chapter study-docs"'));
+});
