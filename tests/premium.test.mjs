@@ -7,7 +7,7 @@ import {freeDesignFor} from "../shared/free-designmd.mjs";
 import { previewResume, suggestionsFromText } from "../platform/resume.mjs";
 
 test("twenty premium templates produce semantic, responsive site documents", () => {
-  const documents=templates.map(t=>renderSite({...sample,template:t.id},{sample:true}));
+  const documents=templates.slice(0,42).map(t=>renderSite({...sample,template:t.id},{sample:true}));
   for (const [index,html] of documents.entries()) {
     assert.match(html,/<!doctype html>/i);
     assert.match(html,["runwayml","runwaymulti"].includes(templates[index].id) ? /<h1 id="rw-h1">/ : /<h1 id="hero-title">/);

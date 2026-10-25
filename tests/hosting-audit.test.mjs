@@ -6,7 +6,9 @@ import { templates, types } from "../shared/model.mjs";
 
 test("Public Firebase deploy contains all template previews but no private server code",async()=>{
   const report=await hostingAudit();
-  const minimum=2*templates.length*(1+types.length);
+  const originals=templates.filter(t=>!t.id.startsWith("md-")).length;
+  const studies=templates.length-originals;
+  const minimum=2*originals*(1+types.length)+2*studies+5*37;
   assert(report.pages>=minimum,"Missing generated template preview pages");
   assert(report.files>=report.pages);
   assert.deepEqual(report.unsafePaths,[]);

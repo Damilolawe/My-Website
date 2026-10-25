@@ -89,7 +89,9 @@ export async function materializeApprovedSites({
       "published version changed mid-build: "+site.slug);
     // Published multi-page files are generated exclusively from the immutable,
     // owner-approved site version. No upload, arbitrary filenames or drafts.
-    const pageNames=data.pages?["index.html","research.html","work.html","studio.html","journal.html"]:["index.html"];
+    const allowedBundles=[["index.html","research.html","work.html","studio.html","journal.html"],["index.html","work.html","features.html","studio.html","contact.html"]];
+    const pageNames=data.pages?allowedBundles.find(names=>names.length===Object.keys(data.pages).length&&names.every(n=>typeof data.pages[n]==="string")):["index.html"];
+    assert(Array.isArray(pageNames),"invalid approved multi-page document bundle");
     if(data.pages){
       assert(Object.getPrototypeOf(data.pages)===Object.prototype &&
         Object.keys(data.pages).length===5 &&

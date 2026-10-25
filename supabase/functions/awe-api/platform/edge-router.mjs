@@ -6,7 +6,7 @@ import {env, json, fail, user, isOwner, rows, insert, patch, owned, id, body, or
 import {normalize, validate, customerOrder} from '../shared/model.mjs';
 import {packageAllowsTemplate} from '../shared/tiers.mjs';
 import {renderSite} from '../shared/render.mjs';
-import {renderApprovedRunwayPages} from '../shared/runway-customer-pages.mjs';
+import {renderApprovedDesignPages,allowedApprovedPageNames} from '../shared/approved-pages.mjs';
 import {runJobs} from './production.mjs';
 import {approvedSiteManifest} from './public-manifest.mjs';
 
@@ -79,8 +79,8 @@ async function dispatch(req) {
         if(published){
           const v=(await rows('awe_versions',
             'id=eq.'+version+'&order_id=eq.'+published.id+'&select=input&limit=1'))[0];
-          if(v?.input?.template==='runwaymulti'){
-            const pages=renderApprovedRunwayPages(v.input);
+          if(allowedApprovedPageNames(v?.input?.template).length===5){
+            const pages=renderApprovedDesignPages(v.input);
             return json({html:pages['index.html'],pages,version},200,{'Cache-Control':'no-store'});
           }
         }
@@ -164,7 +164,7 @@ async function dispatch(req) {
     const v=(await rows('awe_versions',`id=eq.${o.draft_version}&order_id=eq.${o.id}`))[0];
     if(!v)fail('Your website draft is not ready yet.',409);
     const page=url.searchParams.get('page')||'index.html';
-    const pages=v.input.template==='runwaymulti'?renderApprovedRunwayPages(v.input):{'index.html':v.html};
+    const pages=allowedApprovedPageNames(v.input?.template).length===5?renderApprovedDesignPages(v.input):{'index.html':v.html};
     if(!Object.hasOwn(pages,page))fail('Preview page not found.',404);
     return json({html:pages[page],version:v.id},200,{'Cache-Control':'private, no-store'});
   }

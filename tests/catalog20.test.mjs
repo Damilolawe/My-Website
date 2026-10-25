@@ -7,11 +7,11 @@ import {freeDesignFor} from "../shared/free-designmd.mjs";
 import {TEMPLATE_IDS,fetchPublicTemplate} from "../shared/preview.mjs";
 
 test("collection contains exactly forty unique art-directed templates",()=>{
-  assert.equal(templates.length,42);
-  assert.equal(TEMPLATE_IDS.length,42);
-  assert.equal(new Set(templates.map(x=>x.id)).size,42);
-  assert.equal(new Set(templates.map(x=>x.name)).size,42);
-  assert.equal(new Set(templates.map(x=>x.style)).size,42);
+  assert.equal(templates.length,116);
+  assert.equal(TEMPLATE_IDS.length,116);
+  assert.equal(new Set(templates.map(x=>x.id)).size,116);
+  assert.equal(new Set(templates.map(x=>x.name)).size,116);
+  assert.equal(new Set(templates.map(x=>x.style)).size,116);
   const markup=templates.map(t=>renderSite(sampleForTemplate(t.id),{sample:true}));
   const uniqueMarkers=markup.map((html,t)=>{
     const marker=templates[t].id==="folio"?["folio","folio-editorial"]:["nike","clay","ferrari"].includes(templates[t].id) ? ["trio-hero",templates[t].id] : ["runwayml","runwaymulti"].includes(templates[t].id) ? ["rw-hero",templates[t].id] : freeDesignFor(templates[t].id)?html.match(/<section class="fd-hero" data-architecture="([\w-]+)"/):html.match(/<section class="hero hero-variant (?:md-hero md-)?([\w-]+)(?:\s|")/);
@@ -22,8 +22,8 @@ test("collection contains exactly forty unique art-directed templates",()=>{
     assert(!html.includes("<script"),"Approved static customer sites must be script-free");
     return marker[1];
   });
-  assert.equal(new Set(uniqueMarkers).size,42,"Every template must have an individual hero signature");
-  assert.equal(new Set(markup).size,42,"The output must not be a set of identical skins");
+  assert.equal(new Set(uniqueMarkers).size,116,"Every template must have an individual hero signature");
+  assert.equal(new Set(markup).size,116,"The output must not be a set of identical skins");
 });
 test("every design supports six purpose-matched previews with an accurate narrative",()=>{
   assert.equal(types.length,6);
@@ -31,6 +31,7 @@ test("every design supports six purpose-matched previews with an accurate narrat
   for(const type of types){
     assert(templates.some(t=>recommendedFor(t,type)),"No recommended design for "+type);
     for(const template of templates){
+      if(template.id.startsWith("md-")){const demo=sampleForTemplate(template.id);assert(demo.content.cards.length>=3);assert(renderSite(demo,{sample:true}).includes("FICTIONAL TEMPLATE DEMO"));continue;}
       const demo=sampleForTemplate(template.id,type);
       if(["runwayml","runwaymulti"].includes(template.id)) { assert.equal(demo.type,"Creative portfolio"); assert(renderSite(demo,{sample:true}).includes('id="rw-h1"')); continue; } // Fixed editorial study across categories.
       if(["nike","clay","ferrari"].includes(template.id)){assert.equal(demo.type,"Creative portfolio");assert(renderSite(demo,{sample:true}).includes('id="hero-title"'));continue;}
@@ -48,8 +49,8 @@ test("every design supports six purpose-matched previews with an accurate narrat
     }
   }
 });
-test("static build includes all twenty demos for each purpose and motion-free variants",async()=>{
-  for(const t of templates){
+test("static build preserves legacy purpose aliases and adds canonical demos for the new studies",async()=>{
+  for(const t of templates.slice(0,42)){
     for(const type of types){
       const root="dist/templates/"+typeSlugs[type]+"/"+t.id;
       for(const suffix of [".html","--still.html"]){

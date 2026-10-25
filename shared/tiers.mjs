@@ -1,5 +1,6 @@
 import {originalDirections} from "./refero-originals.mjs";
 import {freeDesignTemplates} from "./free-designmd.mjs";
+import {zipDesigns,zipDesignFor} from "./zip-design-catalog.mjs";
 // Central package-to-template eligibility rules shared by the browser and server.
 // A tier sets minimum design eligibility; package terms determine deliverables.
 export const tiers = Object.freeze([
@@ -22,6 +23,7 @@ const minimums = Object.freeze({
   brutalist: "signature", nocturne: "signature",
   ...Object.fromEntries(originalDirections.map(d => [d.id,d.tier])),
   ...Object.fromEntries(freeDesignTemplates.map(d => [d.id,d.tier])),
+  ...Object.fromEntries(zipDesigns.map(d => [d.id,d.tier])),
 });
 export const minimumTier = templateId => minimums[templateId] || null;
 export const tierLevel = id => Object.hasOwn(levels, id) ? levels[id] : -1;
@@ -44,8 +46,11 @@ export function packageAllowsTemplate(pkg, templateId) {
   // Never sell a single-page template as a five-page site or vice versa.
   if (pkg?.delivery === "awe-multipage") {
     return pkg?.tier === "signature" && pkg?.pageCount === 5 &&
-      templateId === "runwaymulti";
+      (templateId === "runwaymulti" || zipDesignFor(templateId)?.multipage === true);
   }
-  if (templateId === "runwaymulti") return false;
+  // One-page Starter studies cannot be sold as Signature bundles or vice versa.
+  const study=zipDesignFor(templateId);
+  if(study)return !study.multipage && pkg?.delivery==="awe-hosted" && packageTier(pkg)==="starter";
+  if(templateId==="runwaymulti")return false;
   return pkg?.testOnly === true || templateFitsTier(templateId, packageTier(pkg));
 }

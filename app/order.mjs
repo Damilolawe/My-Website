@@ -16,6 +16,7 @@ import { premiumStudyIds } from "/shared/premium-art-direction-35.mjs";
 import { tiers, minimumTier, packageTier, packageAllowsTemplate, templateFitsTier, tierLevel } from "/shared/tiers.mjs";
 import { fetchPublicTemplate, previewMessage } from "/shared/preview.mjs";
 import { mountExpressGallery } from "/showcase.js";
+import {zipDesignFor} from "/shared/zip-design-catalog.mjs";
 import { $, api, money, report, authForm } from "./common.mjs";
 const labels = [
   "Choose your tier",
@@ -54,6 +55,10 @@ const app = $("#app");
 try {
   catalog = await api("catalog");
 } catch {}
+// Combine local source-authored previews with the remote catalogue, which may still
+// list the prior 42. Remote metadata can override existing ids but cannot erase
+// new draft entries. Prices and offers remain authoritative from the backend.
+const galleryTemplates=templates.map(t=>({ ...t, ...(catalog.templates||[]).find(remote=>remote.id===t.id) }));
 function activePackagesForTier(tier) {
   return (catalog.packages || []).filter(p => p.enabled && packageTier(p) === tier)
     .sort((a,b) => a.amount - b.amount);
@@ -66,13 +71,13 @@ function syncPackage() {
   packageId = selectedPackage()?.id || null;
 }
 function setTemplate(id) {
-  const template = (catalog.templates || templates).find(t => t.id === id);
+  const template = galleryTemplates.find(t => t.id === id);
   if (!template) return;
   input.template = template.id;
   input.design.primary = template.color;
-  input.design.appearance = ["afterhours","nocturne","terminal","brutalist","arcade","runwayml","runwaymulti"].includes(id) ? "dark" : "light";
+  input.design.appearance = zipDesignFor(id) ? (zipDesignFor(id).bg.match(/^#(?:0[0-9a-f]|1[0-9a-f])/i) ? "dark":"light") : ["afterhours","nocturne","terminal","brutalist","arcade","runwayml","runwaymulti"].includes(id) ? "dark" : "light";
   input.design.font = id === "folio" ? "serif" : id === "arcade" ? "mono" : "sans";
-  input.design.secondary = id === "arcade" ? "#11120f" : "#ece9e0";
+  input.design.secondary = zipDesignFor(id)?.surface || (id === "arcade" ? "#11120f" : "#ece9e0");
   input.design.corners = id === "arcade" ? "sharp" : "soft";
   input.design.sections = sampleForTemplate(id,input.type).design.sections;
 }
@@ -116,7 +121,7 @@ function draw() {
           selectedTier = tier;
           packageId = null;
           syncPackage();
-          const available = (catalog.templates || templates).filter(t => minimumTier(t.id) === tier);
+          const available = galleryTemplates.filter(t => minimumTier(t.id) === tier);
           const multi = selectedPackage()?.delivery === "awe-multipage";
           if (multi && available.some(t => t.id === "runwaymulti")) setTemplate("runwaymulti");
           else if (available.length) setTemplate(available[0].id);
@@ -129,8 +134,8 @@ function draw() {
     $("#next").disabled = !selectedTier;
   }
   if (step === 1) {
-    const offered = (catalog.templates || templates)
-      .filter(t => templateFitsTier(t.id, selectedTier));
+    const offered = galleryTemplates
+      .filter(t => templateFitsTier(t.id, selectedTier) && (!zipDesignFor(t.id) || zipDesignFor(t.id).tier === selectedTier));
     const matchesFilter = t => true; // All authored designs appear independently of purpose.
     const visible = offered.filter(matchesFilter);
     const active = visible.find(t => t.id === input.template) || visible[0] || offered[0];
@@ -141,7 +146,8 @@ function draw() {
       esc(tiers.find(t => t.id === selectedTier)?.name || "Your") +
       ' templates</h2><p class="muted">Pick a design you love, preview the real layout, then make it yours. Available designs reflect your selected package tier.</p></div>' +
       '<div class="tier-switches" aria-label="Change your tier">' + tierButtons + '</div></div>' +
-      (selectedPackage()?.delivery === "awe-multipage" ? '<p class="notice">The $150 five-page package currently supports RunwayML Multi Page. Other Signature designs may require a separate quote.</p>' : '') +
+      (selectedPackage()?.delivery === "awe-multipage" ? '<p class="notice">The Signature package includes five linked pages. Check each preview before purchase.</p>' : '') +
+      '<p id="express-study-status" class="notice" role="status" aria-live="polite" '+(!zipDesignFor(input.template)?'hidden':'')+'>Source-inspired design study. Your approved site will use your own brand and content.</p>' +
       '<section class="worlds express-gallery" id="express-showcase" aria-labelledby="express-gallery-title">' +
       '<div class="worlds-kicker"><span>AWE EXPRESS / DESIGN COLLECTION</span><strong>SELECT & CUSTOMIZE</strong></div>' +
       '<h3 id="express-gallery-title" class="express-gallery-title">Your next website.<br><em>Your direction.</em></h3>' +
@@ -150,13 +156,13 @@ function draw() {
       '</section>';
     theaterController=mountExpressGallery(el.querySelector("#express-showcase"),{
       items:offered,initial:active.id,initialMobile:theaterPreferredMode==="mobile",
-      onSelect:id=>{if(offered.some(t=>t.id===id))setTemplate(id);},
+      onSelect:id=>{if(offered.some(t=>t.id===id)){setTemplate(id);const notice=el.querySelector("#express-study-status");if(notice)notice.hidden=!zipDesignFor(id);}},
       onModeChange:mobile=>{theaterPreferredMode=mobile?"mobile":"desktop";}
     });
     el.querySelectorAll("[data-switch-tier]").forEach(button=>{
       button.onclick=()=>{
         selectedTier=button.dataset.switchTier;packageId=null;syncPackage();
-        const next=(catalog.templates||templates).filter(t=>templateFitsTier(t.id,selectedTier));
+        const next=galleryTemplates.filter(t=>templateFitsTier(t.id,selectedTier));
         if(selectedPackage()?.delivery==="awe-multipage"&&next.some(t=>t.id==="runwaymulti"))setTemplate("runwaymulti");
         else if(!next.some(t=>t.id===input.template)&&next.length)setTemplate(next[0].id);
         draw();
@@ -331,7 +337,9 @@ function draw() {
     const tier = tiers.find(t => t.id === selectedTier);
     el.innerHTML = `<h2>One last look. Then your next chapter.</h2><div class="summary"><div class="panel"><dl><dt>Your website</dt><dd>${esc(input.type)}</dd><dt>Design direction</dt><dd>${esc(templates.find((t) => t.id === input.template)?.name)} · ${esc(input.design.font)} · ${esc(input.design.appearance)}<br>${esc(input.design.primary)} / ${esc(input.design.secondary)}</dd><dt>Public name & headline</dt><dd>${esc(input.content.name)}<br>${esc(input.content.headline)}</dd><dt>Sections</dt><dd>${input.design.sections.map(esc).join(", ")}</dd><dt>Materials</dt><dd>${files.length ? files.map((f) => esc(f.name)).join("<br>") : "No files selected"}</dd></dl><p class="muted">Use Back to change any details before checkout.</p></div><div class="panel"><div class="eyebrow">SELECTED PACKAGE · ${esc(tier?.name || "Unselected")}</div><p class="muted">To change your package, go back to Step 1. Your content will be kept.</p><h3>${p ? money(p) : "Prices start at $75"}</h3>${p ? `<p>Website purchase: ${money(p)}<br>Total: ${money(p)}</p><ul>${p.features.map((f) => `<li>${esc(f)}</li>`).join("")}</ul><h4>Hosting</h4><p class="terms">${esc(p.hosting)}</p><h4>Ownership</h4><p class="terms">${esc(p.ownership)}</p><h4>Revisions</h4><p class="terms">${esc(p.revisions)}</p>${p.refunds ? `<h4>Payment, cancellations & refunds</h4><p class="terms"><strong>${esc(p.refunds)}</strong></p>` : ""}` : "<p>This tier has no configured checkout package yet. Its published starting price is " + esc(tier?.inquiry || "$75") + " (inquiry only). <a href='/contact.html'>Request a quote</a>.</p>"}<label><input type="checkbox" id="consent"> I agree to the package terms${p?.refunds ? ", including the all-sales-final, non-refundable payment policy (except where required by law)," : ","} acknowledge the <a href="/privacy.html" target="_blank">privacy information</a>, and confirm I have permission to use these materials.</label></div></div><div class="notice">${catalog.paymentMode === "live" ? "Secure Stripe checkout. You will see the final amount before confirming payment." : catalog.paymentMode === "test" ? "Sandbox verification only. No live payments are enabled." : "Explore freely. Orders and payments are not open yet."} Every website is personally reviewed before publication.</div><div class="panel"><h3>Save this design for later</h3><p class="muted">Save your website concept privately without paying. You can return to edit it, and the studio can review your submitted direction. Saving is not a paid order or a publication request. Selected photo and document files remain on your device until they are uploaded during an order.</p><button type="button" class="btn secondary" id="save-draft">Save my design ↗︎</button><p id="save-status" role="status" aria-live="polite"></p></div><div id="sign-in"></div>`;
     $("#next").disabled = !catalog.ordersEnabled || !p || !packageAllowsTemplate(p, input.template);
-    if(p && !packageAllowsTemplate(p, input.template)) el.insertAdjacentHTML("beforeend",'<p class="notice" role="status">The $150 multi-page package currently supports the five-page RunwayML design. Other Signature designs are available by custom quote. <a href="/contact.html">Request a tailored multi-page build ↗︎</a></p>');
+    if(p && !packageAllowsTemplate(p, input.template)) el.insertAdjacentHTML("beforeend",zipDesignFor(input.template)
+      ? '<p class="notice" role="status">Choose the matching package to proceed with this design.</p>'
+      : '<p class="notice" role="status">The $150 five-page Signature package requires a Signature multipage design.</p>');
     if(input.template==="runwaymulti" && !p) el.insertAdjacentHTML("beforeend",'<p class="notice" role="status">Five-page checkout is not available yet. <a href="/contact.html">Contact the studio ↗︎</a></p>');
     $("#save-draft").onclick = saveDraft;
   }

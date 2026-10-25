@@ -46,6 +46,8 @@ for (const file of files) await cp(file, "dist/" + file, { recursive: true });
 await mkdir("dist/templates", { recursive: true });
 const { templates, types, typeSlugs, sampleForTemplate } = await import("../shared/model.mjs");
 const { renderSite } = await import("../shared/render.mjs");
+const {zipDesignFor,zipPages}=await import("../shared/zip-design-catalog.mjs");
+const {renderZipDesign}=await import("../shared/zip-design-render.mjs");
 const { writeFile } = await import("node:fs/promises");
 for (const t of templates) {
   const demo = sampleForTemplate(t.id);
@@ -62,11 +64,18 @@ for (const t of templates) {
     },
   };
   await writeFile(`dist/templates/${t.id}.html`, renderSite(config, { sample: true }));
+  if(zipDesignFor(t.id)?.multipage){
+    const folder="dist/templates/"+t.id;await mkdir(folder,{recursive:true});
+    for(const page of zipPages)await writeFile(folder+"/"+page+".html",renderZipDesign(config,{sample:true},page));
+  }
   // A separate, accessible still version lets the studio's Pause Motion control
   // disable motion inside sandboxed demos without weakening iframe isolation.
   await writeFile(`dist/templates/${t.id}--still.html`, renderSite({
     ...config, design: { ...config.design, animation: "none" },
   }, { sample: true }));
+  // New studies have one canonical demo and, for Signature, five linked pages.
+  // Only the original 42 require backwards-compatible purpose-specific aliases.
+  if (zipDesignFor(t.id)) continue;
   for (const type of types) {
     const dir = "dist/templates/" + typeSlugs[type];
     await mkdir(dir, {recursive:true});

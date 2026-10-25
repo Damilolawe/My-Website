@@ -27,7 +27,7 @@ function verifyStaticPage(html, version, assets) {
 async function verifyApprovedSubpages(fetcher,siteUrl,version,requiredPages) {
   const base=siteUrl.replace(/\/$/, "");
   for (const name of requiredPages) {
-    if (!["research.html","work.html","studio.html","journal.html"].includes(name))
+    if (!["research.html","work.html","features.html","studio.html","journal.html","contact.html"].includes(name))
       fail("Unexpected approved document.");
     const response=await fetcher(base+"/"+name,{
       method:"GET",redirect:"error",cache:"no-store",signal:AbortSignal.timeout(15000)

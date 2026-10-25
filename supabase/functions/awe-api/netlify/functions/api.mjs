@@ -34,7 +34,8 @@ import { saveDraft, runJobs } from "../../platform/production.mjs";
 import { inspectUpload } from "../../platform/uploads.mjs";
 import { previewResume } from "../../platform/resume.mjs";
 import { exportApproved } from "../../platform/export.mjs";
-import { renderApprovedRunwayPages, RUNWAY_PAGES } from "../../shared/runway-customer-pages.mjs";
+import {renderApprovedDesignPages,allowedApprovedPageNames} from "../../shared/approved-pages.mjs";
+import {zipDesigns} from "../../shared/zip-design-catalog.mjs";
 async function owner(u) {
   if (!(await isOwner(u))) fail("Owner access required.", 403);
 }
@@ -409,7 +410,7 @@ export default async function (req) {
           refunds: text(b.refunds, 2000),
           delivery: b.delivery === "awe-multipage" ? "awe-multipage" : "awe-hosted",
           pageCount: b.delivery === "awe-multipage" ? 5 : 1,
-          allowedTemplates: b.delivery === "awe-multipage" ? ["runwaymulti"] : [],
+          allowedTemplates: b.delivery === "awe-multipage" ? ["runwaymulti",...zipDesigns.filter(x=>x.multipage).map(x=>x.id)] : [],
           filesIncluded: b.filesIncluded === true,
           termsVersion: id(),
         };
@@ -474,9 +475,9 @@ export default async function (req) {
           )[0];
           if (!v) fail("No draft yet.", 404);
           const requestedPage = new URL(req.url).searchParams.get("page") || "index.html";
-          if (!RUNWAY_PAGES.includes(requestedPage)) fail("Unknown preview page.", 400);
-          const preview = v.input?.template === "runwaymulti"
-            ? renderApprovedRunwayPages(v.input)[requestedPage] : v.html;
+          if (!allowedApprovedPageNames(v.input?.template).includes(requestedPage)) fail("Unknown preview page.", 400);
+          const preview = allowedApprovedPageNames(v.input?.template).length===5
+            ? renderApprovedDesignPages(v.input)[requestedPage] : v.html;
           return new Response(preview, {
             headers: {
               "Content-Type": "text/html",

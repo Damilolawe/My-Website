@@ -1,4 +1,5 @@
 import {templates, typeSlugs} from "./model.mjs";
+import {zipDesignFor,zipPages} from "./zip-design-catalog.mjs";
 /**
  * Only public, fictional template documents can enter a preview.
  *
@@ -68,4 +69,15 @@ export async function fetchPublicTemplate(id, { still = false, signal, type } = 
     }
   }
   return "<!doctype html>\n" + document.documentElement.outerHTML;
+}
+
+// Public, strictly allowlisted five-page demonstrations; never load customer drafts.
+export async function fetchPublicStudyPage(id,page,{signal}={}){
+ if(!zipDesignFor(id)?.multipage||!zipPages.includes(page))throw new Error("Unsupported study preview page.");
+ const path="/templates/"+id+"/"+page+".html";
+ const res=await fetch(path,{signal,mode:"same-origin",credentials:"same-origin",headers:{Accept:"text/html"}});
+ if(!res.ok || !(res.headers.get("content-type")||"").toLowerCase().includes("text/html"))throw new Error("Study preview unavailable.");
+ const html=await res.text();
+ if(html.length>300000||!/^\s*<!doctype html>/i.test(html)||!html.includes("FICTIONAL TEMPLATE DEMO")||/<script\b/i.test(html))throw new Error("Invalid public study preview.");
+ return html;
 }

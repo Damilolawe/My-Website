@@ -5,7 +5,7 @@ import { templates } from "../shared/model.mjs";
 import { tiers, minimumTier, tierLevel, packageTier, templateFitsTier, packageAllowsTemplate } from "../shared/tiers.mjs";
 
 test("all 27 available design directions have a defined minimum access tier", () => {
-  assert.equal(templates.length, 42);
+  assert.equal(templates.length, 116);
   assert.deepEqual(tiers.map(t => t.id), ["starter","signature","premium"]);
   const ids = templates.map(t => t.id);
   assert.equal(new Set(ids).size, ids.length);
@@ -15,8 +15,8 @@ test("all 27 available design directions have a defined minimum access tier", ()
   }
   assert(templates.some(t => minimumTier(t.id) === "starter"));
   assert(templates.some(t => minimumTier(t.id) === "signature"));
-  assert.equal(templates.filter(t => minimumTier(t.id) === "starter").length,7);
-  assert.equal(templates.filter(t => minimumTier(t.id) === "signature").length,35);
+  assert.equal(templates.filter(t => minimumTier(t.id) === "starter").length,44);
+  assert.equal(templates.filter(t => minimumTier(t.id) === "signature").length,72);
 });
 
 test("higher tiers include lower-tier templates and reject unaffordable choices", () => {

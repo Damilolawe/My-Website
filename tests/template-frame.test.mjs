@@ -20,7 +20,7 @@ test("relocated Express gallery previews remain sandboxed srcdoc with strict ant
  assert(!showcase.includes('frame.src="/templates/"'));
 });
 test("preview fetch only allows six public demo paths, not customer drafts",async()=>{
-  assert.equal(TEMPLATE_IDS.length,42);
+  assert.equal(TEMPLATE_IDS.length,116);
   const original=globalThis.fetch;
   const sample=renderSite(sampleForTemplate("folio"),{sample:true});
   try{

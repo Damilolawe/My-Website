@@ -1,0 +1,46 @@
+name: QA — expanded source-guided designs
+on:
+  pull_request:
+    paths:
+      - 'shared/zip-design-*'
+      - 'shared/model.mjs'
+      - 'shared/render.mjs'
+      - 'scripts/build.mjs'
+      - 'scripts/qa-zip-template-browser.py'
+      - '.github/workflows/zip-design-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  new-template-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Build preview collection
+        run: |
+          npm ci
+          npm run build
+          npm run check
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare headless Chromium
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install chromium
+      - name: Test 74 templates at desktop and mobile plus 185 linked Signature pages
+        run: |
+          python -m http.server 8765 --directory dist --bind 127.0.0.1 >/tmp/zip-browser-http.log 2>&1 &
+          sleep 2
+          python scripts/qa-zip-template-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: zip-template-qa
+          path: zip-qa-output/
+          retention-days: 7

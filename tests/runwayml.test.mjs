@@ -10,7 +10,7 @@ test("RunwayML source is preserved and template registered once",async()=>{
  assert(src.includes("Design System Inspired by Runway"));
  assert(src.includes("Cinematic Hero"));
  assert.equal(templates.filter(t=>t.id==="runwayml").length,1);
- assert.equal(templates.at(-5).id,"runwayml");
+ assert.equal(templates.slice(0,42).at(-5).id,"runwayml");
  assert.equal(minimumTier("runwayml"),"starter");
  assert(templateFitsTier("runwayml","starter"));
  assert(templateFitsTier("runwayml","signature"));
