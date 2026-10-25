@@ -161,3 +161,21 @@ html.motion-paused .hero:before,html.motion-paused .worlds-kicker strong:after,h
  .after-cta{padding:12px 15px;font-size:9px}
  .transformation-stage[data-comparison="actor"] .transformation-after::after{background:linear-gradient(90deg,#080c0ef0,#080c0e55)}
 }
+
+
+/* Website-specific preview composition, not generic template cards. */
+.transformation-after .after-grid,.transformation-after .after-orbit{display:none}
+.transformation-after .after-top{font-family:Arial,sans-serif;font-weight:800;font-size:clamp(10px,1.25vw,18px);letter-spacing:.035em;align-items:center;gap:15px;border-bottom:1px solid currentColor;padding-bottom:16px}
+.transformation-after .after-top span{font:600 clamp(8px,.85vw,12px)/1.5 monospace;letter-spacing:.08em;text-align:right}
+.transformation-after .after-copy{bottom:13%;left:6%;max-width:85%}
+.transformation-after .after-copy h3{font-size:clamp(52px,8vw,125px);line-height:.96;letter-spacing:-.065em}
+.transformation-after .after-copy h3 em{letter-spacing:-.055em}
+.transformation-stage[data-comparison="business"] .after-copy h3{font-size:clamp(55px,8vw,125px)}
+.transformation-stage[data-comparison="creative"] .after-copy h3{font-size:clamp(55px,8vw,125px)}
+.transformation-stage[data-comparison="developer"] .after-copy h3{font-size:clamp(55px,8vw,120px)}
+@media(max-width:580px){
+.transformation-after .after-top{font-size:10px;padding-bottom:10px}
+.transformation-after .after-top span{font-size:7px}
+.transformation-after .after-copy{left:6%;bottom:14%;max-width:90%}
+.transformation-after .after-copy h3,.transformation-stage[data-comparison="business"] .after-copy h3,.transformation-stage[data-comparison="developer"] .after-copy h3,.transformation-stage[data-comparison="creative"] .after-copy h3{font-size:clamp(42px,11vw,62px);line-height:1}
+}
