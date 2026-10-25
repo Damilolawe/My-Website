@@ -20,7 +20,7 @@ test("74 appended source-guided directions preserve original collection and spli
  for(const t of zipDesigns){assert(!known.has(t.source),t.source+" should be omitted");
   assert.equal(minimumTier(t.id),t.multipage?"signature":"starter");
   assert.equal(packageAllowsTemplate({tier:"signature",delivery:"awe-multipage",pageCount:5},t.id),false,"Do not take payment before complete multipage fulfillment is verified");
-  assert.equal(packageAllowsTemplate({tier:"signature",delivery:"awe-hosted",pageCount:1},t.id),!t.multipage);
+  assert.equal(packageAllowsTemplate({tier:"signature",delivery:"awe-hosted",pageCount:1},t.id),false,"Backend does not yet fulfill any newly authored study");
  }
 });
 test("Every appended sample renders a safe responsive customer-editable preview",()=>{

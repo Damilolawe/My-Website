@@ -48,6 +48,8 @@ export function packageAllowsTemplate(pkg, templateId) {
     return pkg?.tier === "signature" && pkg?.pageCount === 5 &&
       templateId === "runwaymulti";
   }
-  if (templateId === "runwaymulti" || zipDesignFor(templateId)?.multipage) return false;
+  // Source-guided designs are preview-only until customer fulfillment supports these ids.
+  // Never create a payment for an unverified design.
+  if (templateId === "runwaymulti" || zipDesignFor(templateId)) return false;
   return pkg?.testOnly === true || templateFitsTier(templateId, packageTier(pkg));
 }
