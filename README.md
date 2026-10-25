@@ -1,9 +1,9 @@
 <!-- Public brand: Awe Concepts; previous Firebase hosting kept during domain transition. -->
 # AWE CONCEPTS
 
-Damilola Awe’s creative web studio: an animated agency homepage, interactive concept demos, AWE Express ordering, and Awe Concepts Custom inquiries. Firebase Hosting Classic serves the public site; Supabase Edge Functions handle the API and store private customer data. Stripe checkout remains gated.
+Damilola Awe’s creative web studio: an animated agency homepage, interactive concept demos, AWE Express ordering, and Awe Concepts Custom inquiries. Firebase Hosting Classic serves the public site; Supabase Edge Functions handle the API and store private customer data. Live checkout is configured for the published Starter and Signature packages. Test-mode payment and fulfillment need fresh end-to-end verification after the catalog expansion.
 
-**Status:** The public site deploys through the Firebase Hosting workflow. Checkout packages are currently disabled. Do not infer payment or customer publication readiness from a successful static build. See [FIREBASE_SETUP.md](docs/FIREBASE_SETUP.md) and [PLATFORM.md](docs/PLATFORM.md) for setup and limitations.
+**Status:** The public site deploys through the Firebase Hosting workflow. Starter and Signature packages are currently enabled, and the API reports live checkout configured. Do not infer payment or customer publication readiness from a successful static build; verify each payment-to-delivery path independently. See [FIREBASE_SETUP.md](docs/FIREBASE_SETUP.md) and [PLATFORM.md](docs/PLATFORM.md) for setup and limitations.
 
 ## Development
 
@@ -20,7 +20,7 @@ npm test
 
 ## Firebase deployment
 
-The existing [Firebase Hosting workflow](.github/workflows/firebase-hosting.yml) builds and checks `dist/`, then deploys it on `main` through Firebase Hosting Classic. See [Firebase setup](docs/FIREBASE_SETUP.md) for required repository configuration. Keep server secrets in GitHub Actions and Supabase, never in `config.js`, HTML, or build output. Checkout stays closed until sandbox payment, webhook, and fulfillment checks are complete and the owner approves activation.
+The existing [Firebase Hosting workflow](.github/workflows/firebase-hosting.yml) builds and checks `dist/`, then deploys it on `main` through Firebase Hosting Classic. See [Firebase setup](docs/FIREBASE_SETUP.md) for required repository configuration. Keep server secrets in GitHub Actions and Supabase, never in `config.js`, HTML, or build output. Changes to checkout activation require a separate launch decision. The current live configuration must be checked alongside webhook and fulfillment results.
 
 ## Project map
 
