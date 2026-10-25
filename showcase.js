@@ -1,9 +1,9 @@
 import { fetchPublicTemplate, previewMessage } from "/shared/preview.mjs";
 import { templates } from "/shared/model.mjs";
-(() => {
+export function mountExpressGallery(root,{items=templates,initial="afterhours",initialMobile=false,onSelect=()=>{},onModeChange=()=>{}}={}) {
   "use strict";
-  const root=document.querySelector("#express-showcase");
-  if(!root)return;
+  if(!root)return new AbortController();
+  const lifetime=new AbortController();
   const rail=root.querySelector("#worlds-choices"),frame=root.querySelector("#worlds-frame"),screen=root.querySelector("#worlds-screen");
   const name=root.querySelector("#worlds-name"),full=root.querySelector("#worlds-open");
   const loading=root.querySelector("#worlds-loading"),loadingName=root.querySelector("#worlds-loading-name");
@@ -11,7 +11,7 @@ import { templates } from "/shared/model.mjs";
   const description=root.querySelector("#worlds-description");
   const view=root.querySelector(".worlds-view");
   const desktop=root.querySelector("#worlds-desktop"),mobile=root.querySelector("#worlds-mobile");
-  let selected="afterhours",version=0,controller=null;
+  let selected=items.some(t=>t.id===initial)?initial:items[0]?.id,version=0,controller=null;
   // Large sandbox previews are loaded near the gallery instead of on first paint.
   const deferPreview=matchMedia("(max-width: 900px), (pointer: coarse)").matches;
   let previewReady=!deferPreview;
@@ -21,12 +21,13 @@ import { templates } from "/shared/model.mjs";
     frame.style.width="1280px";frame.style.height="1280px";frame.style.transform="scale("+scale+")";
     view.style.height=Math.round(1280*scale)+"px";
   }
-  if("ResizeObserver" in window)new ResizeObserver(syncFrame).observe(view);
-  else addEventListener("resize",syncFrame,{passive:true});
-  const savedTemplates=new Map(templates.map(x=>[x.id,x]));
+  if("ResizeObserver" in window){const observer=new ResizeObserver(syncFrame);observer.observe(view);lifetime.signal.addEventListener("abort",()=>observer.disconnect(),{once:true});}
+  else addEventListener("resize",syncFrame,{passive:true,signal:lifetime.signal});
+  lifetime.signal.addEventListener("abort",()=>controller?.abort(),{once:true});
+  const savedTemplates=new Map(items.map(x=>[x.id,x]));
   function templatePath(id){return id==="runwaymulti"?"/experiments/runwayml-multipage/":"/templates/"+id+".html";}
   function populate(){
-    const options=[...templates];
+    const options=[...items];
     const fragment=document.createDocumentFragment();
     options.forEach((item,index)=>{
       const button=document.createElement("button");
@@ -41,7 +42,7 @@ import { templates } from "/shared/model.mjs";
       swatch.setAttribute("aria-hidden","true");
       const symbol=document.createElement("span");symbol.setAttribute("aria-hidden","true");symbol.textContent="↗︎";
       button.append(count,swatch,copy,symbol);
-      button.addEventListener("click",()=>choose(item.id));
+      button.addEventListener("click",()=>choose(item.id,true));
       fragment.append(button);
     });
     rail.replaceChildren(rail.querySelector(".worlds-rail-note"),fragment);
@@ -55,15 +56,16 @@ import { templates } from "/shared/model.mjs";
       button.hidden=!!query&&!`${item.name} ${item.style} ${item.tag}`.toLocaleLowerCase().includes(query);
       if(!button.hidden)visible++;
     });
-    results.textContent=visible+" of "+templates.length+" designs";
+    results.textContent=visible+" of "+items.length+" designs";
     const note=rail.querySelector(".worlds-rail-note");
     note.textContent=query?"No designs match this search. Try another name or style.":"CHOOSE A DIRECTION TO PREVIEW.";
     note.hidden=!!query&&visible>0;
   }
-  async function choose(id){
+  async function choose(id,notify=false){
     if(!savedTemplates.has(id))return;
     const item=savedTemplates.get(id);
     selected=id;version++;const mine=version;
+    if(notify)onSelect(id);
     controller?.abort();controller=new AbortController();
     rail.querySelectorAll("[data-world]").forEach(btn=>btn.setAttribute("aria-pressed",String(btn.dataset.world===id)));
     full.href=templatePath(id);screen.dataset.world=id;
@@ -93,6 +95,7 @@ import { templates } from "/shared/model.mjs";
     }
   }
   function size(mobileView){
+    onModeChange(mobileView);
     screen.classList.toggle("is-mobile",mobileView);
     desktop.setAttribute("aria-pressed",String(!mobileView));
     mobile.setAttribute("aria-pressed",String(mobileView));
@@ -109,20 +112,22 @@ import { templates } from "/shared/model.mjs";
     const next=choices[(i+(/Up|Left/.test(event.key)?-1:1)+choices.length)%choices.length];
     next.focus();choose(next.dataset.world);
   });
-  document.addEventListener("awe:motion",()=>choose(selected));
+  document.addEventListener("awe:motion",()=>choose(selected),{signal:lifetime.signal});
   search.addEventListener("input",filterChoices);
   populate();
+  if(initialMobile)size(true);
   if(!previewReady){
     frame.srcdoc=previewMessage("The collection is coming into view.");
     name.textContent="Selecting a design";
-    choose(selected);
+    if(selected)choose(selected);
     if("IntersectionObserver" in window){
       const observer=new IntersectionObserver(entries=>{
         if(!entries.some(entry=>entry.isIntersecting))return;
-        observer.disconnect();previewReady=true;choose(selected);
+        observer.disconnect();previewReady=true;if(selected)choose(selected);
       },{rootMargin:"450px 0px"});
       observer.observe(root);
-    }else{previewReady=true;choose(selected);}
-  }else choose(selected);
+    }else{previewReady=true;if(selected)choose(selected);}
+  }else if(selected)choose(selected);
   syncFrame();
-})();
+  return lifetime;
+}

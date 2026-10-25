@@ -15,6 +15,7 @@ const loadRenderer = () => import("/shared/render.mjs");
 import { premiumStudyIds } from "/shared/premium-art-direction-35.mjs";
 import { tiers, minimumTier, packageTier, packageAllowsTemplate, templateFitsTier, tierLevel } from "/shared/tiers.mjs";
 import { fetchPublicTemplate, previewMessage } from "/shared/preview.mjs";
+import { mountExpressGallery } from "/showcase.js";
 import { $, api, money, report, authForm } from "./common.mjs";
 const labels = [
   "Choose your tier",
@@ -136,127 +137,31 @@ function draw() {
     if (active && !visible.some(t => t.id === input.template)) setTemplate(active.id);
     const tierButtons = tiers.map(t => '<button type="button" class="tier-switch" data-switch-tier="' + t.id +
       '" aria-pressed="' + String(t.id === selectedTier) + '">' + esc(t.name) + '</button>').join("");
-    const demoPath = (id) => id==="runwaymulti" ? "/experiments/runwayml-multipage/" : "/templates/" + encodeURIComponent(id) + ".html";
-    const choice = (t,i) => '<article class="template-card template-poster '+(input.template===t.id?'chosen':'')+'" data-poster="'+esc(t.id)+'"><button type="button" class="template-select" data-template="'+esc(t.id)+'" aria-pressed="'+String(input.template===t.id)+'"><span class="poster-art poster-'+esc(t.id)+'" style="--tile:'+esc(t.color)+'"><span class="poster-num">'+String(i+1).padStart(2,'0')+'</span><strong>'+esc(t.name)+'</strong><span class="poster-symbol" aria-hidden="true"></span><span class="poster-style">'+esc(t.style)+''+'</span></span><span class="poster-meta"><strong>'+esc(t.tag)+'</strong><span>'+(input.template===t.id?'SELECTED ✓︎':'EXPLORE DIRECTION ↗︎')+'</span></span></button></article>';
     el.innerHTML = '<div class="tier-gallery-top"><div><p class="eyebrow">02 / FIND YOUR DESIGN</p><h2>' +
       esc(tiers.find(t => t.id === selectedTier)?.name || "Your") +
-      ' templates</h2><p class="muted">Explore designs at this level and below. The $150 five-page checkout supports RunwayML Multi Page; other Signature designs require a custom quote.</p></div>' +
+      ' templates</h2><p class="muted">Pick a design you love, preview the real layout, then make it yours. Available designs reflect your selected package tier.</p></div>' +
       '<div class="tier-switches" aria-label="Change your tier">' + tierButtons + '</div></div>' +
-      (selectedPackage()?.delivery === "awe-multipage" ? '<p class="notice">The $150 five-page package currently supports the RunwayML Multi Page design. Other templates can be explored and quoted separately.</p>' : '') +
-      '<div class="template-filterbar"><span class="eyebrow">EXPLORE THE ORIGINAL DESIGNS</span>' +
-      '<p class="muted" id="template-count" aria-live="polite">' + visible.length + ' of ' + offered.length + ' available designs</p></div>' +
-      '<div class="experience-picker-heading"><div><p class="eyebrow">ORIGINAL DESIGN DIRECTIONS</p><h2>Don’t pick a color.<br><em>Pick a feeling.</em></h2><p class="muted">Explore real, scrollable example websites. The people and projects shown are fictional.</p></div><div class="experience-picker-index" aria-hidden="true"><strong></strong><small>AN ORIGINAL STARTING POINT</small></div></div>' +
-      '<div class="experience-theater'+(theaterPreferredMode==='mobile'?' is-mobile':'')+'" data-active="'+esc(active.id)+'">' +
-        '<div class="theater-header"><div class="theater-identity"><span class="eyebrow"><i class="theater-live" aria-hidden="true"></i> THE LIVE TEMPLATE THEATER</span><strong>Explore the actual website, not a static mockup.</strong></div>' +
-        '<div class="theater-tools" aria-label="Preview screen size"><button type="button" id="theater-desktop" aria-pressed="'+String(theaterPreferredMode==='desktop')+'">DESKTOP</button><button type="button" id="theater-mobile" aria-pressed="'+String(theaterPreferredMode==='mobile')+'">MOBILE</button><a href="'+demoPath(active.id)+'" target="_blank" rel="noopener" id="theater-open">VIEW FULL WEBSITE ↗︎</a></div></div>' +
-        '<div class="theater-viewport"><div class="theater-browser"><div class="theater-browserbar"><span class="browser-lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="browser-url">'+esc(active.name)+' / fictional website preview</span><span class="browser-mode">'+(theaterPreferredMode==='mobile'?'MOBILE':'DESKTOP')+'</span></div><div class="theater-canvas"><iframe id="theater-frame" title="Fictional '+esc(active.name)+' website" sandbox="" loading="eager"></iframe><div class="theater-loading" role="status" aria-live="polite" hidden><span aria-hidden="true" class="theater-loading-mark">✳︎</span><strong>CRAFTING THE PREVIEW</strong><span id="theater-loading-name">'+esc(active.name)+'</span></div></div></div></div>' +
-        '<div class="theater-caption"><div><span class="eyebrow">NOW EXPLORING · '+esc(selectedTier.toUpperCase())+'</span><h3>'+esc(active.name)+'</h3><p>'+esc(active.tag)+'</p></div><p class="theater-hint">SCROLL INSIDE THE SITE TO EXPLORE EVERY SECTION ↗︎</p></div>' +
-        '<div class="theater-reassurance">This is a fictional demonstration. Your content, images, and colors are customized in the next steps. Select another direction below without losing your place.</div>' +
-      '</div>' +
-      '<div class="template-grid premium-template-grid">' + offered.map(choice).join('') + '</div>' +
-      '<p id="no-template-matches" class="panel" ' + (visible.length ? 'hidden' : '') + '>No templates are available at this tier.</p>';
-    const frame=el.querySelector("#theater-frame");
-    const theater=el.querySelector(".experience-theater");
-    const canvas=el.querySelector(".theater-canvas");
-    const loading=el.querySelector(".theater-loading"),loadingName=el.querySelector("#theater-loading-name");
-    const modeText=el.querySelector(".browser-mode");
-    const lifetime=new AbortController();
-    theaterController=lifetime;
-    let activeRequest=null;
-    const syncFrameSize=()=>{
-      const mobile=theaterPreferredMode==="mobile";
-      theater.classList.toggle("is-mobile",mobile);
-      el.querySelector("#theater-mobile").setAttribute("aria-pressed",String(mobile));
-      el.querySelector("#theater-desktop").setAttribute("aria-pressed",String(!mobile));
-      modeText.textContent=mobile?"MOBILE":"DESKTOP";
-      if(mobile){
-        frame.style.width="";
-        frame.style.height="";
-        frame.style.transform="";
-        canvas.style.height="auto";
-      } else {
-        // Keep the real desktop breakpoint even when the theater itself is narrower.
-        const scale=Math.min(1,Math.max(.15,canvas.clientWidth/1280));
-        frame.style.width="1280px";
-        frame.style.height="1280px";
-        frame.style.transform="scale("+scale+")";
-        canvas.style.height=Math.round(1280*scale)+"px";
-      }
-    };
-    const loadTemplate=(id)=>{
-      activeRequest?.abort();
-      activeRequest=new AbortController();
-      const thisRequest=activeRequest;
-      loadingName.textContent=templates.find(t=>t.id===id)?.name||"Website concept";
-      loading.hidden=false;
-      if(!frame.srcdoc)frame.srcdoc=previewMessage("Preparing your website preview…");
-      fetchPublicTemplate(id,{signal:activeRequest.signal})
-        .then((html)=>{
-          if(!lifetime.signal.aborted&&!thisRequest.signal.aborted&&frame.isConnected&&input.template===id){
-            frame.onload=()=>{if(!thisRequest.signal.aborted&&input.template===id)loading.hidden=true;};
-            frame.srcdoc=html;
-          }
-        })
-        .catch((error)=>{
-          if(lifetime.signal.aborted||thisRequest.signal.aborted||!frame.isConnected)return;
-          frame.onload=()=>{if(!thisRequest.signal.aborted)loading.hidden=true;};
-          frame.srcdoc=previewMessage("This preview could not load. Use View Full Website above to explore the template.");
-          console.warn("Template preview unavailable",error);
-        });
-    };
-    lifetime.signal.addEventListener("abort",()=>activeRequest?.abort(),{once:true});
-    window.addEventListener("resize",syncFrameSize,{signal:lifetime.signal});
-    const setMode=(mode)=>{theaterPreferredMode=mode;syncFrameSize();};
-    el.querySelector("#theater-desktop").onclick=()=>setMode("desktop");
-    el.querySelector("#theater-mobile").onclick=()=>setMode("mobile");
-    const chooseTemplate = id => {
-      const template = offered.find(t => t.id === id);
-      if (!template) return;
-      setTemplate(id);
-      theater.dataset.active=id;
-      el.querySelector(".theater-caption h3").textContent = template.name;
-      el.querySelector(".theater-caption p").textContent = template.tag;
-      el.querySelector(".browser-url").textContent = template.name + " / fictional website preview";
-      el.querySelector("#theater-open").href = demoPath(id);
-      frame.title = "Fictional " + template.name + " website";
-      el.querySelectorAll("[data-template]").forEach(b => {
-        const chosen = b.dataset.template === id;
-        b.setAttribute("aria-pressed", String(chosen));
-        b.closest(".template-poster").classList.toggle("chosen", chosen);
-        b.querySelector(".poster-meta>span").textContent = chosen ? "SELECTED ✓︎" : "EXPLORE DIRECTION ↗︎";
-      });
-      // Only update the sandboxed preview; keep scroll position stable.
-      loadTemplate(id);
-    };
-    el.querySelectorAll("[data-template]").forEach(button => {
-      button.onclick = () => chooseTemplate(button.dataset.template);
+      (selectedPackage()?.delivery === "awe-multipage" ? '<p class="notice">The $150 five-page package currently supports RunwayML Multi Page. Other Signature designs may require a separate quote.</p>' : '') +
+      '<section class="worlds express-gallery" id="express-showcase" aria-labelledby="express-gallery-title">' +
+      '<div class="worlds-kicker"><span>AWE EXPRESS / DESIGN COLLECTION</span><strong>SELECT & CUSTOMIZE</strong></div>' +
+      '<h3 id="express-gallery-title" class="express-gallery-title">Your next website.<br><em>Your direction.</em></h3>' +
+      '<p class="worlds-description">Explore the actual site. Select a direction to use in your order, then personalize it in the next step.</p>' +
+      '<div class="worlds-filter"><label for="worlds-search">FIND A DIRECTION</label><input id="worlds-search" type="search" placeholder="Search designs and styles" autocomplete="off" aria-controls="worlds-choices"><span id="worlds-results" role="status" aria-live="polite"></span></div><div class="worlds-layout"><div class="worlds-rail" id="worlds-choices" aria-label="Choose a website design"><p class="worlds-rail-note">CHOOSE A DIRECTION TO PREVIEW.</p></div><div class="worlds-screen" id="worlds-screen" data-world="afterhours"><div class="worlds-toolbar"><div class="worlds-chrome" aria-hidden="true"><i></i><i></i><i></i></div><span class="worlds-domain">AWE EXPRESS / DESIGN PREVIEW</span><div class="worlds-device-actions"><button type="button" id="worlds-desktop" aria-pressed="true">DESKTOP</button><button type="button" id="worlds-mobile" aria-pressed="false">MOBILE</button></div></div><div class="worlds-view"><iframe id="worlds-frame" title="Fictional website design demonstration" sandbox="" loading="eager"></iframe><div id="worlds-loading" class="worlds-loading" role="status" aria-live="polite" hidden><span class="worlds-loading-mark" aria-hidden="true"></span><strong>PREPARING THE EXPERIENCE</strong><span id="worlds-loading-name">WEBSITE PREVIEW</span></div></div><div class="worlds-screen-footer"><div class="worlds-current"><span>YOUR SELECTED DESIGN</span><strong id="worlds-name" aria-live="polite">Select a design</strong><span id="worlds-description"></span></div><a class="worlds-open" id="worlds-open" href="/templates/afterhours.html" target="_blank" rel="noopener noreferrer">EXPLORE FULL SCREEN ↗︎</a></div></div></div><p class="express-gallery-notice">The templates use fictional example content. The selected design is carried into your AWE Express customization. Scroll inside the preview to explore the full site.</p>' +
+      '</section>';
+    theaterController=mountExpressGallery(el.querySelector("#express-showcase"),{
+      items:offered,initial:active.id,initialMobile:theaterPreferredMode==="mobile",
+      onSelect:id=>{if(offered.some(t=>t.id===id))setTemplate(id);},
+      onModeChange:mobile=>{theaterPreferredMode=mobile?"mobile":"desktop";}
     });
-    const applyPurposeFilter = () => {
-      const shown = offered.filter(matchesFilter);
-      el.querySelectorAll("[data-template]").forEach(button => {
-        const template = offered.find(t => t.id === button.dataset.template);
-        button.closest(".template-card").hidden = !template || !matchesFilter(template);
-      });
-      el.querySelector("#template-count").textContent = shown.length + " of " + offered.length + " available designs";
-      el.querySelector("#no-template-matches").hidden = Boolean(shown.length);
-      if (shown.length && !shown.some(t => t.id === input.template)) chooseTemplate(shown[0].id);
-    };
-    el.querySelectorAll("[data-switch-tier]").forEach(button => {
-      button.onclick = () => {
-        selectedTier = button.dataset.switchTier;
-        packageId = null;
-        syncPackage();
-        const inRange = offered.find(t => t.id === input.template);
-        const next = (catalog.templates || templates).filter(t => templateFitsTier(t.id, selectedTier));
-        if (selectedPackage()?.delivery === "awe-multipage" && next.some(t => t.id === "runwaymulti"))
-          setTemplate("runwaymulti");
-        else if (!next.some(t => t.id === input.template) && next.length) setTemplate(next[0].id);
+    el.querySelectorAll("[data-switch-tier]").forEach(button=>{
+      button.onclick=()=>{
+        selectedTier=button.dataset.switchTier;packageId=null;syncPackage();
+        const next=(catalog.templates||templates).filter(t=>templateFitsTier(t.id,selectedTier));
+        if(selectedPackage()?.delivery==="awe-multipage"&&next.some(t=>t.id==="runwaymulti"))setTemplate("runwaymulti");
+        else if(!next.some(t=>t.id===input.template)&&next.length)setTemplate(next[0].id);
         draw();
       };
     });
-    applyPurposeFilter();
-    syncFrameSize();
-    if (active) loadTemplate(input.template);
   }
   if (step === 2) {
     const authoredFixedDesigns = new Set(["folio","liquidmetal","acidchrome","voidstage","studiomargaux","neomemphis","monobrutalist","vestigefolio","botanicalpress","limepress","gazettebroadside","risograph","runwayml","runwaymulti","nike","clay","ferrari"]);
