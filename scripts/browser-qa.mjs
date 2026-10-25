@@ -1,6 +1,6 @@
 // Public browser QA. Runs in GitHub Actions, never signs in or creates records.
 import assert from "node:assert/strict";
-import {mkdir} from "node:fs/promises";
+import {mkdir, writeFile} from "node:fs/promises";
 import {chromium} from "playwright-core";
 import {templates} from "../shared/model.mjs";
 import {uploadedDesignFor} from "../shared/uploaded-designs.mjs";
@@ -10,6 +10,7 @@ const origin="https://aweconcepts.com";
 const viewports=[
   {name:"Narrow-320",width:320,height:700,mobile:true},
   {name:"Android-360",width:360,height:800,mobile:true},
+  {name:"iPhone-375",width:375,height:812,mobile:true},
   {name:"iPhone-390",width:390,height:844,mobile:true},
   {name:"Wide-phone-430",width:430,height:932,mobile:true},
   {name:"Tablet-portrait",width:768,height:1024,mobile:true},
@@ -20,6 +21,8 @@ const viewports=[
 const browser=await chromium.launch({channel:"chrome",headless:true,args:["--disable-dev-shm-usage","--no-sandbox"]});
 const failures=[];
 const softWarnings=[];
+const measurements=[];
+let fatalError=null;
 await mkdir("qa-browser-artifacts",{recursive:true});
 async function testPage(page,url,label,{waitMs=250}={}){
   const response=await page.goto(url,{waitUntil:"domcontentloaded",timeout:25000});
@@ -35,6 +38,7 @@ async function testPage(page,url,label,{waitMs=250}={}){
       .slice(0,4)
   }));
   const delta=layout.scroll-layout.client;
+  measurements.push({label,url,status:response?.status()||0,width:layout.client,overflow:delta,missingAnchors:layout.missingAnchors});
   if(delta>1)failures.push(label+": horizontal overflow "+delta+"px ("+layout.scroll+"/"+layout.client+")");
   if(layout.missingAnchors.length)failures.push(label+": missing fragment anchors "+layout.missingAnchors.join(","));
   console.log("QA",label,"HTTP",response?.status(),"horizontalOverflow",delta,"anchors",layout.missingAnchors.length);
@@ -219,7 +223,7 @@ try {
   await testPage(page,origin+"/account.html",size.name+" account",{waitMs:250});
   await testPage(page,origin+"/admin.html",size.name+" owner login",{waitMs:250});
   await testPage(page,origin+"/contact.html",size.name+" contact",{waitMs:250});
-  if(size.width===360||size.width===768){
+  { // Every template at every required viewport, including desktop navigation.
     for(const entry of templates){
       const label=size.name+" template "+entry.id;
       await testPage(page,origin+"/templates/"+entry.id+".html",label,{waitMs:180});
@@ -419,7 +423,11 @@ try {
     failures.push("Theater mobile viewport is cropped or not a true mobile width");
   await context.close();
  }
+} catch(error) {
+ fatalError=String(error.stack||error);
+ failures.push(fatalError);
 } finally {
+ await writeFile("qa-browser-artifacts/results.json",JSON.stringify({testedAt:new Date().toISOString(),commit:process.env.GITHUB_SHA||null,measurements,failures,softWarnings,fatalError},null,2));
  await browser.close();
 }
 console.log("Public browser QA warnings (nonfatal):",JSON.stringify(softWarnings.slice(0,10)));

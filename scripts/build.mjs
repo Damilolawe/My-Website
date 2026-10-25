@@ -86,3 +86,10 @@ console.log(
 // only for the reversible preview experiment.
 const { buildRunwayMultipage } = await import("./runwayml-multipage.mjs");
 await buildRunwayMultipage("dist");
+
+// Public release identity contains no credentials or customer information.
+await writeFile("dist/release.json", JSON.stringify({
+  commit: process.env.GITHUB_SHA || null,
+  buildRun: process.env.GITHUB_RUN_ID || null,
+  builtAt: new Date().toISOString(),
+}, null, 2) + "\n");
