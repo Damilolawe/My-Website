@@ -83,7 +83,7 @@ test("New studies expose purchase restrictions visibly in the gallery",async()=>
 });
 
 test("Source-guide visual groups render distinct artwork, not one repeated generic abstract image",()=>{
- const reps=[["md-bugatti","art-auto"],["md-aljazeera","art-editorial"],["md-coinbase","art-fintech"],["md-claude","art-code"],["md-framer","art-product"],["md-airbnb","art-commerce"],["md-oura","art-studio"]];
+ const reps=[["md-bugatti","guide-bugatti"],["md-aljazeera","art-editorial"],["md-coinbase","art-fintech"],["md-claude","guide-claude"],["md-framer","guide-framer"],["md-airbnb","guide-airbnb"],["md-oura","art-studio"]];
  const seen=new Set();
  for(const [id,signature] of reps){const html=renderSite(sampleForTemplate(id),{sample:true});assert(html.includes(signature),id+" artwork differs");seen.add(signature);}
  assert.equal(seen.size,7);
