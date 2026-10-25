@@ -83,25 +83,6 @@
     });
     $$('.project-visual').forEach(el=>el.addEventListener('pointermove',e=>{if(paused)return;const r=el.getBoundingClientRect();el.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');el.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');},{passive:true}));
   }
-  const themes={
-    electric:{headline:'NORMAL IS OVERRATED.',brand:'future / form',label:'THE NEXT GENERATION OF CREATIVE',color:'#dcfc46'},
-    editorial:{headline:'Make an entrance.',brand:'Maison.',label:'A MORE CONSIDERED POINT OF VIEW',color:'#d9c4ac'},
-    minimal:{headline:'LESS. BUT BETTER.',brand:'form.',label:'REDUCE TO THE ESSENTIAL',color:'#f1f3f4'}
-  };
-  let labStyle='electric';const stage=$('#lab-stage'),demo=$('.lab-demo');
-  function updateAccent(){const hex=$('#lab-accent').value;stage.style.setProperty('--lab-accent',hex);const [r,g,b]=hex.slice(1).match(/../g).map(v=>parseInt(v,16));demo.style.color=(r*.299+g*.587+b*.114)>145?'#10170b':'#fffdf2';}
-  function setStyle(value){const t=themes[value];if(!t)return;labStyle=value;stage.dataset.style=value;$('#demo-headline').textContent=$('#lab-message').value.trim()||t.headline;$('.demo-brand').textContent=t.brand;$('.demo-label').textContent=t.label;$('#style-name').textContent=value.toUpperCase();$('#lab-accent').value=t.color;updateAccent();$$('.lab-option').forEach(b=>{b.classList.toggle('selected',b.dataset.style===value);b.setAttribute('aria-pressed',String(b.dataset.style===value));});}
-  $$('.lab-option').forEach(b=>b.addEventListener('click',()=>setStyle(b.dataset.style)));
-  $('#lab-accent').addEventListener('input',updateAccent);
-  $('#lab-message').addEventListener('input',()=>$('#demo-headline').textContent=$('#lab-message').value.trim()||themes[labStyle].headline);
-  $('#lab-motion').addEventListener('input',()=>demo.dataset.motion=$('#lab-motion').value);
-  $('#lab-reset').addEventListener('click',()=>{$('#lab-message').value='';$('#lab-motion').value='1';demo.dataset.motion='1';demo.classList.remove('activated');setStyle('electric');});
-  // The preview's two apparent controls really do something.
-  const labMenu=$('.demo-menu'), labAction=$('.demo-action');
-  if(labMenu){const button=document.createElement('button');button.type='button';button.className=labMenu.className;button.textContent='REMIX ↗︎';button.setAttribute('aria-label','Remix: cycle the playground design style');labMenu.replaceWith(button);button.addEventListener('click',()=>setStyle(['electric','editorial','minimal'][(['electric','editorial','minimal'].indexOf(labStyle)+1)%3]));}
-  if(labAction){const button=document.createElement('button');button.type='button';button.className=labAction.className;button.textContent='MOVE THE UNEXPECTED ↗︎';button.setAttribute('aria-pressed','false');labAction.replaceWith(button);button.addEventListener('click',()=>{const on=demo.classList.toggle('activated');button.setAttribute('aria-pressed',String(on));});}
-  $('#lab-use').addEventListener('click',()=>{const values={electric:'Bold and expressive',editorial:'Elegant and editorial',minimal:'Clean and minimal'};$('#brief-vibe').value=values[labStyle];$('#brief-feedback').textContent='Your playground direction has been added to your brief.';});
-  setStyle('electric');
   $$('.service-row').forEach((el,i)=>{const link=document.createElement('a');link.href='#contact';link.setAttribute('aria-label','Discuss '+$('h3',el).textContent);link.addEventListener('click',()=>selectProject(['Portfolio website','Business website','Something else','Web application'][i]));el.append(link);});
   let selectedProject='Portfolio website',step=0;
   function selectProject(value){selectedProject=value;$$('[data-group=project] .choice').forEach(b=>{const on=b.dataset.value===value;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});}
@@ -110,7 +91,7 @@
   if(hasEmail){const direct=$('#direct-contact');direct.href='mailto:'+email;direct.hidden=false;$('#contact-status').textContent='Have a quick question? Email '+email+', or use the brief builder to start with a little more detail.';$('#email-brief').hidden=false;}
   else{const direct=$('#direct-contact');direct.href='/contact.html';direct.textContent='SEND A PROJECT INQUIRY ↗︎';direct.hidden=false;$('#contact-status').textContent='Want to talk about a project? Send an inquiry without signing in. You can also use the creative brief builder below.';}
   const fields=$$('[data-step]'),feedback=$('#brief-feedback');
-  function briefText(){return ['PROJECT BRIEF / AWE CONCEPTS','', 'Project: '+selectedProject,'Idea: '+$('#brief-description').value.trim(),'References: '+($('#brief-references').value.trim()||'To discuss'),'','Direction: '+$('#brief-vibe').value,'Ideal timing: '+$('#brief-timeline').value,'Budget: '+($('#brief-budget').value.trim()||'To discuss'),'Name: '+($('#brief-name').value.trim()||'Not provided'),'Email: '+($('#brief-email').value.trim()||'Not provided'),'','Playground style: '+labStyle,'Playground accent: '+$('#lab-accent').value,'Playground headline: '+($('#lab-message').value.trim()||themes[labStyle].headline),'','This brief is a conversation starter, not an order or agreement.'].join('\n');}
+  function briefText(){return ['PROJECT BRIEF / AWE CONCEPTS','', 'Project: '+selectedProject,'Idea: '+$('#brief-description').value.trim(),'References: '+($('#brief-references').value.trim()||'To discuss'),'','Direction: '+$('#brief-vibe').value,'Ideal timing: '+$('#brief-timeline').value,'Budget: '+($('#brief-budget').value.trim()||'To discuss'),'Name: '+($('#brief-name').value.trim()||'Not provided'),'Email: '+($('#brief-email').value.trim()||'Not provided'),'','This brief is a conversation starter, not an order or agreement.'].join('\n');}
   function showStep(){fields.forEach((f,i)=>f.hidden=i!==step);$('#brief-progress').style.width=((step+1)/3*100)+'%';$('#brief-step-label').textContent=['01 / 03 — THE IDEA','02 / 03 — THE DIRECTION','03 / 03 — READY TO SHARE'][step];$('#brief-back').hidden=step===0;$('#brief-next').hidden=step===2;
     if(step===2){const text=briefText();$('#brief-summary').textContent=text;if(hasEmail)$('#email-brief').href='mailto:'+email+'?subject='+encodeURIComponent('Project inquiry — '+selectedProject)+'&body='+encodeURIComponent(text);}
     $('legend',fields[step]).tabIndex=-1;$('legend',fields[step]).focus({preventScroll:true});
