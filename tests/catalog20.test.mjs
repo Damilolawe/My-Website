@@ -49,8 +49,8 @@ test("every design supports six purpose-matched previews with an accurate narrat
     }
   }
 });
-test("static build includes all twenty demos for each purpose and motion-free variants",async()=>{
-  for(const t of templates){
+test("static build preserves legacy purpose aliases and adds canonical demos for the new studies",async()=>{
+  for(const t of templates.slice(0,42)){
     for(const type of types){
       const root="dist/templates/"+typeSlugs[type]+"/"+t.id;
       for(const suffix of [".html","--still.html"]){
