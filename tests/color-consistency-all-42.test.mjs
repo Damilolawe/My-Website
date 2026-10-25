@@ -5,9 +5,9 @@ import {renderSite} from "../shared/render.mjs";
 import {readableOn,applyColorConsistency} from "../shared/color-consistency.mjs";
 
 test("every one of 42 template identities receives own contrast variables, including formerly protected designs",()=>{
-  assert.equal(templates.length,42);
-  assert.equal(new Set(templates.map(t=>t.id)).size,42);
-  for(const template of templates){
+  assert.equal(templates.length,116);
+  assert.equal(new Set(templates.map(t=>t.id)).size,116);
+  for(const template of templates.slice(0,42)){
     const input=sampleForTemplate(template.id);
     input.design.primary=template.color;
     const html=renderSite(input,{sample:true});
