@@ -135,7 +135,7 @@ function draw() {
   }
   if (step === 1) {
     const offered = galleryTemplates
-      .filter(t => templateFitsTier(t.id, selectedTier));
+      .filter(t => templateFitsTier(t.id, selectedTier) && (!zipDesignFor(t.id) || zipDesignFor(t.id).tier === selectedTier));
     const matchesFilter = t => true; // All authored designs appear independently of purpose.
     const visible = offered.filter(matchesFilter);
     const active = visible.find(t => t.id === input.template) || visible[0] || offered[0];

@@ -119,3 +119,9 @@ test("Five-page Signature demos can switch pages safely in the AWE Express sandb
  assert(p.includes('const path="/templates/"+id+"/"+page+".html"'));
  assert(style.includes(".worlds-page-list button[aria-pressed=\"true\"]"));
 });
+
+test("Starter and Signature ZIP designs appear exclusively in their chosen tier while legacy eligibility remains unchanged",async()=>{
+ const client=await read("app/order.mjs");
+ assert(client.includes("zipDesignFor(t.id).tier === selectedTier"));
+ assert(client.includes("!zipDesignFor(t.id) ||"));
+});
