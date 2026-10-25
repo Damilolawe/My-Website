@@ -231,3 +231,10 @@ test("Eight more source-guide directions have distinct, responsive artwork with 
  }
  assert.equal(all.size,8);
 });
+
+test("Every custom reference scene takes precedence over generic fallback artwork",()=>{
+ for(const [id,fragment] of [["md-stripe",'class="guide-more guide-more-stripe"'],["md-mintlify",'class="guide-more guide-more-mintlify"'],["md-oracle",'class="guide-more guide-more-oracle"'],["md-notion",'class="wave-scene wave-notion"'],["md-coinbase",'class="wave-scene wave-coinbase"'],["md-sentry",'class="wave-scene wave-sentry"'],["md-wise",'class="wave-scene wave-wise"']]){
+  const rendered=renderSite(sampleForTemplate(id),{sample:true});
+  assert(rendered.includes(fragment),id+" should render its bespoke scene, not just CSS");
+ }
+});
