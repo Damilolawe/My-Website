@@ -1,5 +1,4 @@
 import { rows, sb, uuid } from "../../platform/backend.mjs";
-import {renderApprovedDesignPages,allowedApprovedPageNames} from "../../shared/approved-pages.mjs";
 export default async function (req) {
   try {
     if (!["GET", "HEAD"].includes(req.method))
@@ -51,10 +50,8 @@ export default async function (req) {
       });
       data = await r.arrayBuffer();
       mime = a.mime;
-    } else if (p.length === 2 || (p.length === 3 && allowedApprovedPageNames(v.input?.template).includes(p[2]))) {
-      const page=p.length===2?"index.html":p[2];
-      const original=allowedApprovedPageNames(v.input?.template).length===5?renderApprovedDesignPages(v.input)[page]:v.html;
-      data = original.replaceAll('src="/api/assets/', `src="/sites/${slug}/assets/`);
+    } else if (p.length === 2) {
+      data = v.html.replaceAll('src="/api/assets/', `src="/sites/${slug}/assets/`);
       mime = "text/html; charset=utf-8";
     } else return new Response("Not found", { status: 404 });
     return new Response(req.method === "HEAD" ? null : data, {
@@ -75,4 +72,3 @@ export default async function (req) {
     });
   }
 }
-

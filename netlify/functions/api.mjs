@@ -3,7 +3,6 @@ import { packageAllowsTemplate, packageTier } from "../../shared/tiers.mjs";
 import { checkoutReservationState, checkoutPackageIsValid } from "../../shared/checkout-recovery.mjs";
 import {
   env,
-  isOwner,
   fail,
   ready,
   sb,
@@ -34,10 +33,9 @@ import { saveDraft, runJobs } from "../../platform/production.mjs";
 import { inspectUpload } from "../../platform/uploads.mjs";
 import { previewResume } from "../../platform/resume.mjs";
 import { exportApproved } from "../../platform/export.mjs";
-import {renderApprovedDesignPages,allowedApprovedPageNames} from "../../shared/approved-pages.mjs";
-import {zipDesigns} from "../../shared/zip-design-catalog.mjs";
-async function owner(u) {
-  if (!(await isOwner(u))) fail("Owner access required.", 403);
+import { renderApprovedRunwayPages, RUNWAY_PAGES } from "../../shared/runway-customer-pages.mjs";
+function owner(u) {
+  assertOwner(u, env().OWNER_USER_ID);
 }
 export default async function (req) {
   try {
@@ -124,7 +122,7 @@ export default async function (req) {
       const { bytes, mime } = await inspectUpload(file);
       return json(previewResume(bytes, mime));
     }
-    const admin = await isOwner(u);
+    const admin = u.id === env().OWNER_USER_ID;
     if (route === "me") return json({ email: u.email, admin });
     if (route === "orders" && method === "GET" && !key)
       return json(
@@ -338,7 +336,7 @@ export default async function (req) {
       return json({ ok: true });
     }
     if (route === "assets" && method === "GET") {
-      await owner(u);
+      owner(u);
       const a = (await rows("awe_assets", `id=eq.${uuid(key)}`))[0];
       if (!a) fail("Not found.", 404);
       const r = await sb(`/storage/v1/object/awe-private/${a.path}`, {
@@ -357,7 +355,7 @@ export default async function (req) {
       });
     }
     if (route === "admin") {
-      await owner(u);
+      owner(u);
       if (key === "overview") {
         const [orders, packages, briefs, jobs, templateSettings] =
           await Promise.all([
@@ -410,7 +408,7 @@ export default async function (req) {
           refunds: text(b.refunds, 2000),
           delivery: b.delivery === "awe-multipage" ? "awe-multipage" : "awe-hosted",
           pageCount: b.delivery === "awe-multipage" ? 5 : 1,
-          allowedTemplates: b.delivery === "awe-multipage" ? ["runwaymulti",...zipDesigns.filter(x=>x.multipage).map(x=>x.id)] : [],
+          allowedTemplates: b.delivery === "awe-multipage" ? ["runwaymulti"] : [],
           filesIncluded: b.filesIncluded === true,
           termsVersion: id(),
         };
@@ -475,9 +473,9 @@ export default async function (req) {
           )[0];
           if (!v) fail("No draft yet.", 404);
           const requestedPage = new URL(req.url).searchParams.get("page") || "index.html";
-          if (!allowedApprovedPageNames(v.input?.template).includes(requestedPage)) fail("Unknown preview page.", 400);
-          const preview = allowedApprovedPageNames(v.input?.template).length===5
-            ? renderApprovedDesignPages(v.input)[requestedPage] : v.html;
+          if (!RUNWAY_PAGES.includes(requestedPage)) fail("Unknown preview page.", 400);
+          const preview = v.input?.template === "runwaymulti"
+            ? renderApprovedRunwayPages(v.input)[requestedPage] : v.html;
           return new Response(preview, {
             headers: {
               "Content-Type": "text/html",
@@ -583,5 +581,4 @@ export const config = {
     windowLimit: 90,
   },
 };
-
 

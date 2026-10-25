@@ -76,10 +76,10 @@ test("New draft designs remain visible even while server catalog has legacy entr
  assert(gallery.includes('"/templates/"+id+"/home.html"'));
 });
 
-test("New studies expose purchase restrictions visibly in the gallery",async()=>{
+test("New studies display their source-inspired identity in the gallery",async()=>{
  const client=await read("app/order.mjs");
  assert(client.includes("express-study-status"));
- assert(client.includes("This is a preview-only design study."));
+ assert(client.includes("Source-inspired design study."));
  assert(client.includes("notice.hidden=!zipDesignFor(id)"));
 });
 

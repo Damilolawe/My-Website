@@ -42,7 +42,7 @@ test("owner UI reviews private multi-page versions and commercial checkout never
     readFile(new URL("../supabase/functions/awe-api/shared/tiers.mjs",import.meta.url),"utf8")
   ]);
   assert(owner.includes("data-preview-page"),"Owner can inspect each page before approval");
-  assert(api.includes("renderApprovedRunwayPages(v.input)[requestedPage]"));
+  assert(api.includes("renderApprovedDesignPages(v.input)[requestedPage]"));
   assert(worker.includes('requiredPages: o.package_snapshot?.delivery === "awe-multipage"'));
   assert(client.includes("packageAllowsTemplate(p, input.template)"));
   assert(tiers.includes('templateId === "runwaymulti"'));
