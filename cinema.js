@@ -7,35 +7,12 @@
   const heading=document.querySelector("#comparison-insight-title");
   const copy=document.querySelector("#comparison-insight-copy");
   const link=document.querySelector("#comparison-learn-more");
+  // Four authored fictional brands, each with its own complete homepage hero.
   const comparisons={
-    actor:{
-      label:"ACTOR PORTFOLIO",beforeTitle:"Actor and performer portfolio",beforeCopy:"A short biography, a list of credits, and a basic contact section.",
-      nav:"Home  About  Work  Contact",beforeName:"YOUR WEBSITE",
-      kicker:"THE NEXT ROLE BEGINS HERE",title:"EVERY<br>ROLE<br><em>HAS A STORY.</em>",cta:"ENTER THE STORY ↗︎",edition:"CASTING PORTFOLIO / CONCEPT",
-      insight:"From basic biography to cinematic introduction.",
-      explanation:"A performance-led story, distinctive casting presentation, and intentional navigation—rather than another résumé-shaped landing page."
-    },
-    business:{
-      label:"SMALL BUSINESS",beforeTitle:"Welcome to our local business",beforeCopy:"We provide quality products and excellent customer service.",
-      nav:"Home  Services  About  Contact",beforeName:"LOCAL BUSINESS",
-      kicker:"THOUGHTFUL BY NATURE",title:"GOOD<br>THINGS<br><em>GROW HERE.</em>",cta:"EXPLORE OUR STUDIO ↗︎",edition:"BOUTIQUE BUSINESS / CONCEPT",
-      insight:"From generic brochure to recognizable brand.",
-      explanation:"A stronger business identity, inviting storytelling, a clear service path, and memorable presentation can help people understand why to choose you."
-    },
-    developer:{
-      label:"DEVELOPER PORTFOLIO",beforeTitle:"Hi, I am a developer",beforeCopy:"These are my skills. Here is a list of the projects I have completed.",
-      nav:"Home  Skills  Projects  Contact",beforeName:"MY PORTFOLIO",
-      kicker:"> USER@PORTFOLIO:~$ OPEN",title:"BUILD<br>WHAT'S<br><em>NEXT_</em>",cta:"RUN PROJECTS ↗︎",edition:"DEVELOPER PORTFOLIO / CONCEPT",
-      insight:"From a list of skills to a working digital identity.",
-      explanation:"A technical portfolio can reflect how you think and build. The console-style narrative helps projects feel tangible, organized, and intentional."
-    },
-    creative:{
-      label:"CREATIVE STUDIO",beforeTitle:"My creative work and gallery",beforeCopy:"Here are images and projects I have created over time.",
-      nav:"Home  Gallery  About  Contact",beforeName:"CREATIVE PORTFOLIO",
-      kicker:"ISSUE 001 / SELECTED WORK",title:"THE<br>ART OF<br><em>SEEING.</em>",cta:"TURN THE PAGE ↗︎",edition:"CREATIVE EDITORIAL / CONCEPT",
-      insight:"From image collection to editorial storytelling.",
-      explanation:"A thoughtful creative portfolio uses composition, pacing, and distinctive presentation to give individual pieces the attention they deserve."
-    }
+    actor:{brand:"MARA ELLIS",nav:"WORK  /  ABOUT  /  REPRESENTATION",beforeName:"Mara Ellis",beforeTitle:"Mara Ellis — Actor",beforeCopy:"Welcome to my website. View my résumé, headshots, and acting credits.",kicker:"ACTOR / NEW YORK · LOS ANGELES",title:"A LIFE<br>IN <em>CHARACTER.</em>",cta:"EXPLORE SELECTED WORK ↗",edition:"FILM  /  STAGE  /  VOICE",insight:"Mara Ellis — a cinematic actor portfolio.",explanation:"An original fictional performer identity with editorial headshot photography, credits-led navigation, and a casting-focused introduction."},
+    business:{brand:"SUNDAY BLOOM",nav:"THE SHOP  /  OUR STORY  /  VISIT",beforeName:"Sunday Bloom Flowers",beforeTitle:"Welcome to Sunday Bloom",beforeCopy:"We sell flowers and bouquets for all occasions. Contact us for pricing and delivery.",kicker:"INDEPENDENT FLORAL STUDIO · BROOKLYN",title:"FLOWERS<br>FOR <em>FEELING.</em>",cta:"EXPLORE THE COLLECTION ↗",edition:"FLOWERS  /  GIFTING  /  EVENTS",insight:"Sunday Bloom — a boutique florist storefront.",explanation:"An original fictional floral shop with a distinctive retail identity, evocative product imagery, and a clear shopping journey."},
+    developer:{brand:"JORDAN PARK",nav:"PROJECTS  /  LAB  /  ABOUT  /  CONTACT",beforeName:"Jordan Park Portfolio",beforeTitle:"Hello, I am Jordan",beforeCopy:"I am a web developer. My skills include JavaScript, React, and Python. See my projects.",kicker:"FULL-STACK ENGINEER · OPEN TO COLLABORATION",title:"IDEAS<br>INTO <em>CODE.</em>",cta:"VIEW THE PROJECT INDEX ↗",edition:"ENGINEERING  /  EXPERIMENTS  /  SYSTEMS",insight:"Jordan Park — a developer's interactive identity.",explanation:"An original fictional engineering portfolio with an authentic code-inspired interface, featured builds, and technical navigation."},
+    creative:{brand:"ATELIER NO. 9",nav:"WORK  /  JOURNAL  /  STUDIO  /  CONTACT",beforeName:"Atelier No. 9",beforeTitle:"Our Creative Projects",beforeCopy:"We are a design studio. Here is our portfolio of photography and branding work.",kicker:"INDEPENDENT IMAGE-MAKING PRACTICE",title:"FORM<br>MEETS <em>FEELING.</em>",cta:"VIEW SELECTED PROJECTS ↗",edition:"ART DIRECTION  /  IMAGE  /  CULTURE",insight:"Atelier No. 9 — an editorial creative studio.",explanation:"An original fictional creative practice with gallery-led art direction, a photographic portfolio, and editorial storytelling."}
   };
   let current="actor";
   const presets=[...document.querySelectorAll("[data-reveal]")];
@@ -52,13 +29,15 @@
     current=key;
     const data=comparisons[key];
     stage.dataset.comparison=key;
+    stage.setAttribute("aria-label",data.brand+" website redesign comparison");
     before.querySelector(".before-nav").replaceChildren();
     const name=document.createElement("strong");name.textContent=data.beforeName;
     const menu=document.createElement("span");menu.textContent=data.nav;
     before.querySelector(".before-nav").append(name,menu);
-    before.querySelector(".before-card>span").textContent="Welcome to my website";
+    before.querySelector(".before-card>span").textContent=data.beforeName+" / OFFICIAL WEBSITE";
     before.querySelector(".before-card h3").textContent=data.beforeTitle;
     before.querySelector(".before-card p").textContent=data.beforeCopy;
+    after.querySelector(".after-top").firstChild.textContent=data.brand+" ";
     after.querySelector(".after-top span").textContent=data.edition;
     after.querySelector(".after-copy>span").textContent=data.kicker;
     // The title is fixed author-owned markup, never based on user input.
