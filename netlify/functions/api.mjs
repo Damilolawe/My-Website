@@ -255,6 +255,12 @@ export default async function (req) {
         if (reservation === "new") {
           const b = await body(req);
           const input = validate(b.input);
+          // Never let the checkout payload switch the reserved design to a different
+          // tier after package eligibility and customer consent were checked.
+          if (input.template !== o.input?.template || !packageAllowsTemplate(p, input.template))
+            fail("The selected design changed. Review your package before checkout.", 409);
+          if (!(await rows("awe_templates", `id=eq.${input.template}&enabled=eq.true`)).length)
+            fail("This template is no longer available.", 409);
           const assets = await rows("awe_assets", `order_id=eq.${o.id}`);
           if (
             input.content.photoIds.some(
