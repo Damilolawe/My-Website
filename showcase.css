@@ -104,3 +104,16 @@ text-align:center;color:#f7fbe8;font:800 11px/1.6 ui-monospace,monospace;letter-
 .worlds-current #worlds-description{max-width:500px;font:500 13px/1.4 Arial,sans-serif;letter-spacing:0;color:#b9c6b4}
 @media(max-width:1050px){.worlds-choice{grid-template-columns:18px 10px minmax(0,1fr) 17px;gap:7px}}
 @media(max-width:650px){.worlds-filter{display:grid;grid-template-columns:1fr auto;gap:8px}.worlds-filter input{grid-column:1/-1;width:100%}.worlds-filter>span{grid-column:2;grid-row:1}.worlds-choice{min-height:78px;padding:11px 0}.worlds-choice-copy strong{font-size:15px}.worlds-choice-copy small{font-size:10px}.worlds-choice>span:last-child{font-size:16px}.worlds-current #worlds-description{font-size:12px}}
+
+
+/* Each gallery choice shows its own actual static template, with a design-led nameplate. */
+.worlds-choice{grid-template-columns:26px minmax(100px,148px) 12px minmax(0,1fr) 20px;gap:10px;padding:13px 0}
+.worlds-choice-thumb{position:relative;display:block;aspect-ratio:1.55;overflow:hidden;background:#25282a;border:1px solid #ffffff30;border-radius:5px;isolation:isolate}
+.worlds-choice-thumb iframe{position:absolute;top:0;left:0;width:1100px;height:710px;border:0;pointer-events:none;transform:scale(.135);transform-origin:top left;background:#eee}
+.worlds-choice-thumb:after{content:"";position:absolute;inset:30% 0 0;background:linear-gradient(transparent,#050608bd);pointer-events:none}
+.worlds-choice-thumb-title{position:absolute;bottom:9px;left:10px;right:6px;z-index:1;color:#fff;font-size:clamp(13px,1.3vw,19px);font-weight:700;line-height:1.05;letter-spacing:-.035em;text-shadow:0 2px 8px #000b;overflow-wrap:anywhere}
+.worlds-choice-copy{display:grid;gap:5px;min-width:0}
+.worlds-choice-copy strong{font:700 17px/1.1 Arial,sans-serif;letter-spacing:-.035em}
+.worlds-choice-copy small{font:11px/1.4 Arial,sans-serif;color:#aab0ad}
+.worlds-choice-swatch{display:block;width:10px;height:10px;border-radius:50%}
+@media(max-width:720px){.worlds-choice{grid-template-columns:20px minmax(100px,120px) 8px minmax(0,1fr) 16px;gap:7px}.worlds-choice-thumb iframe{transform:scale(.11)}.worlds-choice-copy strong{font-size:14px}.worlds-choice-copy small{font-size:10px}}
