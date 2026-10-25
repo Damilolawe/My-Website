@@ -7,8 +7,8 @@ import {renderSite} from "../shared/render.mjs";
 import {fetchPublicTemplate} from "../shared/preview.mjs";
 
 test("RunwayML single and multi have separate Starter and Signature identities",()=>{
-  assert.equal(templates.find(t=>t.id==="runwayml")?.name,"RunwayML — Single Page");
-  assert.equal(templates.find(t=>t.id==="runwaymulti")?.name,"RunwayML — Multi Page");
+  assert.equal(templates.find(t=>t.id==="runwayml")?.name,"Cinematic");
+  assert.equal(templates.find(t=>t.id==="runwaymulti")?.name,"Cinematic Pages");
   assert.equal(minimumTier("runwayml"),"starter");
   assert.equal(minimumTier("runwaymulti"),"signature");
   assert(templateFitsTier("runwayml","starter"));
