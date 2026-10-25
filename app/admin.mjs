@@ -1,10 +1,12 @@
 import { $, api, money, report } from "./common.mjs";
+import { privatePreview } from "./private-preview.mjs";
 import { downloadAuthorizedFile } from "./downloads.mjs";
 import { aweClient } from "./service-client.mjs";
 import { esc, templates, sections } from "/shared/model.mjs";
 import { enhanceEditor } from "./studio-editor.mjs";
 import { packageTier } from "/shared/tiers.mjs";
 const app = $("#app");
+let draftPreview = null;
 let selected = null,
   overview = null,
   inquiries = [],
@@ -270,6 +272,7 @@ async function openOrder(orderId) {
   }
 }
 function drawOrder() {
+  draftPreview?.dispose(); draftPreview = null;
   const {
     order: o,
     assets,
@@ -311,12 +314,8 @@ function drawOrder() {
   // srcdoc is intentionally sandboxed WITHOUT allow-same-origin or allow-scripts.
   if (o.draft_version) {
     const frame = $("#draft");
-    const loadPage = (page) => api(`admin/orders/${o.id}/preview?page=${encodeURIComponent(page)}`).then(({ html }) => {
-      if (typeof html !== "string" || html.length > 250000 || !/^<!doctype html>/i.test(html.trimStart()))
-        throw Error("The private preview could not be validated.");
-      if (frame?.isConnected && selected?.order?.id === o.id)
-        frame.srcdoc = html;
-    }).catch((error) => {
+    draftPreview = privatePreview(frame);
+    const loadPage = (page) => draftPreview.load(`admin/orders/${o.id}/preview?page=${encodeURIComponent(page)}`).catch((error) => {
       if (frame?.isConnected) {
         const notice = document.createElement("p");
         notice.setAttribute("role", "status");

@@ -313,7 +313,7 @@ export default async function (req) {
         return json({ url: session.url });
       }
       if (action === "revision") {
-        if (!o.public_version) fail("Revisions open after publication.");
+        if (o.payment !== "paid" || !o.draft_version) fail("Revisions open when your paid website draft is ready.");
         const b = await body(req, 8000);
         const message = text(b.message, 4000);
         if (message.length < 5) fail("Describe the changes you would like.");

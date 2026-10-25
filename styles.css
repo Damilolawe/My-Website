@@ -45,3 +45,9 @@ html.has-js .reveal{opacity:0;transform:translateY(46px);transition:opacity .85s
 @media(max-width:950px){.pricing-grid{grid-template-columns:1fr;gap:14px;margin-top:30px}.pricing-card{min-height:300px;padding:28px}.pricing-price{margin:18px 0}.pricing-detail{max-width:66ch}.pricing-action{margin-top:auto}}
 @media(max-width:480px){.pricing-card{padding:23px;min-height:320px}.pricing-price{font-size:75px}.pricing-action{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.pricing-card{transition:none}.pricing-card:hover{transform:none}}
+
+/* Measured Lighthouse contrast repairs, retaining each existing surface. */
+body .kicker-index{color:#92958e}
+body .resos-topline span b,body .resos-metrics>div small,body .chart-copy small{color:#596378}
+body .resos-metrics .metric-mini{color:#486b5c}
+body .lab .kicker-index,body .lab-controls p,body .lab-controls>.mono{color:#555d50}

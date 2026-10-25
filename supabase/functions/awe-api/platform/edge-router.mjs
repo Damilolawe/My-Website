@@ -160,8 +160,13 @@ async function dispatch(req) {
   }
   if(p[0]==='orders'&&p[2]==='preview'&&req.method==='GET') {
     const o=await owned(p[1],u);
-    const v=o.draft_version?(await rows('awe_versions',`id=eq.${o.draft_version}&order_id=eq.${o.id}`))[0]:null;
-    return json({html:v?.html||renderSite(normalize(o.input)),version:v?.id||null});
+    if(o.payment!=='paid'||!o.draft_version)fail('Your website draft is not ready yet.',409);
+    const v=(await rows('awe_versions',`id=eq.${o.draft_version}&order_id=eq.${o.id}`))[0];
+    if(!v)fail('Your website draft is not ready yet.',409);
+    const page=url.searchParams.get('page')||'index.html';
+    const pages=v.input.template==='runwaymulti'?renderApprovedRunwayPages(v.input):{'index.html':v.html};
+    if(!Object.hasOwn(pages,page))fail('Preview page not found.',404);
+    return json({html:pages[page],version:v.id},200,{'Cache-Control':'private, no-store'});
   }
   // Configuration visibility is owner-only. Never expose Stripe keys,
   // webhook signing secrets or their lengths to browser clients.
