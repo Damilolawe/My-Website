@@ -158,3 +158,21 @@ test("Six source-specific designs show original fictional demo narratives rather
  const expected=[["md-bugatti","ATELIER VELOCITY"],["md-airbnb","HOMEBY"],["md-claude","KINSHIP INTELLIGENCE"],["md-framer","FORM STUDIO"],["md-nintendo-2001","PIXELQUEST 2001"],["md-shopify","VERDANT SUPPLY"]];
  for(const [id,name] of expected){const value=sampleForTemplate(id);const html=renderSite(value,{sample:true});assert.equal(value.content.name,name);assert(html.includes(name));assert(value.content.cards.length>=3);assert(value.content.bio.toLowerCase().includes("fictional"));}
 });
+
+test("Eight additional source guides have distinct responsive art and typography without copied logos",async()=>{
+ const {moreGuideCSS,moreGuideScene}=await import("../shared/zip-guide-fidelity-more.mjs");
+ const ids=["md-stripe","md-mintlify","md-posthog","md-oracle","md-playstation","md-uber","md-cal","md-miro"];
+ const scenes=new Set();
+ for(const id of ids){
+   const guide=zipDesignFor(id),html=renderSite(sampleForTemplate(id),{sample:true});
+   assert(guide&&moreGuideCSS(id).length>450,id);
+   const scene=moreGuideScene(guide,0);
+   assert(scene&&scene.includes('guide-more-'+guide.source),id);
+   assert(html.includes('source-'+id),id);
+   assert(html.includes(moreGuideCSS(id).slice(0,30)),id);
+   assert(html.includes(scene.slice(0,35)),id);
+   assert(!scene.includes('<main>')&&!scene.includes('<nav>'),"Artwork must not add nested landmarks");
+   scenes.add(scene);
+ }
+ assert.equal(scenes.size,ids.length);
+});
