@@ -1,5 +1,6 @@
 import {originalDirections} from "./refero-originals.mjs";
 import {freeDesignTemplates} from "./free-designmd.mjs";
+import {zipDesigns,zipDesignFor} from "./zip-design-catalog.mjs";
 // Central package-to-template eligibility rules shared by the browser and server.
 // A tier sets minimum design eligibility; package terms determine deliverables.
 export const tiers = Object.freeze([
@@ -22,6 +23,7 @@ const minimums = Object.freeze({
   brutalist: "signature", nocturne: "signature",
   ...Object.fromEntries(originalDirections.map(d => [d.id,d.tier])),
   ...Object.fromEntries(freeDesignTemplates.map(d => [d.id,d.tier])),
+  ...Object.fromEntries(zipDesigns.map(d => [d.id,d.tier])),
 });
 export const minimumTier = templateId => minimums[templateId] || null;
 export const tierLevel = id => Object.hasOwn(levels, id) ? levels[id] : -1;
@@ -46,6 +48,6 @@ export function packageAllowsTemplate(pkg, templateId) {
     return pkg?.tier === "signature" && pkg?.pageCount === 5 &&
       templateId === "runwaymulti";
   }
-  if (templateId === "runwaymulti") return false;
+  if (templateId === "runwaymulti" || zipDesignFor(templateId)?.multipage) return false;
   return pkg?.testOnly === true || templateFitsTier(templateId, packageTier(pkg));
 }

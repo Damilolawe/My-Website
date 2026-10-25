@@ -1,0 +1,27 @@
+// Extracted color systems from the uploaded VoltAgent DESIGN.md archive.
+// 10 already represented references excluded, 74 new directions appended in source ZIP order.
+// The source guides contain specifications, not full executable websites.
+// Third-party branding and proprietary assets are NOT copied.
+export const paletteRows="bugatti|000000|ffffff|ffffff|141414|M\nairbnb|ffffff|222222|ff385c|f5f5f5|M\nbmw-m|000000|ffffff|f3f3f3|1a1a1a|M\nbmw|ffffff|262626|1c69d4|fafafa|M\naljazeera|ffffff|000000|fa9000|f4f4f4|S\ncal|ffffff|111111|111111|f5f5f5|S\nbinance|ffffff|181a20|fcd535|1e2329|M\nairtable|ffffff|181d26|1866fa|f8fafc|M\n1win|141415|f0f2f5|00b24b|2e3035|S\nclaude|faf9f5|141413|cc785c|efe9de|S\nclickhouse|0a0a0a|ffffff|faff69|1a1a1a|S\ncoinbase|ffffff|0a0b0d|0052ff|f1f5ff|M\nelevenlabs|f5f5f5|0c0a09|292524|fafafa|S\ncursor|f7f7f4|26251e|f54e00|fafaf7|M\ncohere|ffffff|212121|1b5251|f0f6f1|S\ndell-1996|ffffff|000000|e91d2a|ffffff|S\ndji|ffffff|262626|0070d5|f7f9fa|M\ncomposio|0f0f0f|ffffff|5d48fa|181818|S\nexpo|ffffff|171717|000000|fafafa|S\nhashicorp|000000|ffffff|7b42bc|15181e|S\nframer|090909|ffffff|0099ff|141414|M\nibm|ffffff|161616|0f62fe|f4f4f4|M\nintercom|f5f1ec|111111|f4ae28|ffffff|M\njobright|ffffff|000000|00a680|f2f4f5|S\nhp|ffffff|1a1a1a|024ad8|f3f7fd|S\nkraken|161129|faf8f3|6c4df5|232136|S\nlamborghini|090909|faf8f3|d4b46b|202020|S\nlovable|f6f6fb|14141b|795ff9|e9e6ff|M\nmastercard|f7f8fa|202020|eb001b|fafafa|M\nmercury|fbfcfd|28253b|5266eb|f3f5ff|M\nmeta|ffffff|1c1e21|0064e0|f1f4f7|M\nmongodb|ffffff|001e2b|00ad56|f9fbfa|M\nmistral.ai|ffffff|1f1f1f|fa520f|fafafa|S\nminimax|ffffff|0a0a0a|3745ed|f7f8fa|S\nmintlify|ffffff|0a0a0a|238a66|f7f7f7|M\nmiro|ffffff|1c1c1e|4262ff|f7f8fa|M\nmydealz|f3f5f7|000000|30a83c|ffffff|S\nnerdwallet|ffffff|000000|008254|f7f7f7|S\nnotion|ffffff|1a1a1a|5645d4|f6f5f4|M\nnintendo-2001|7a8aba|21242e|e60012|ffffff|S\nnvidia|ffffff|000000|76b900|f3f5f0|M\noracle|ffffff|161513|b72f24|fbf9f8|M\nplaystation|ffffff|000000|0070d1|f5f7fa|M\nollama|ffffff|000000|000000|ffffff|S\nopencode.ai|fdfcfc|201d1d|007aff|f1eeee|S\nrenault|ffffff|000000|ffed00|f4f4f4|S\noura|f7f1e8|1c1b1a|2a72de|ffffff|S\nposthog|eeefe9|23251d|f7a501|ffffff|M\npinterest|ffffff|000000|e60023|f6f6f3|M\nsentry|1f1633|ffffff|a28afe|271d45|M\nshopify|fffefa|202d23|87a947|f0f4e9|M\nrevolut|ffffff|191c1f|494fdf|f3f4ff|M\nreplicate|f9f7f3|202020|ea2804|ffffff|S\nsanity|101215|faf8f3|e75b38|23262c|S\nsap|ffffff|000000|0057d2|eef3fb|S\nresend|000000|fcfdff|a68bfa|0a0a0c|M\nspacex|000000|ffffff|ffffff|161616|S\nslack|ffffff|1d1d1d|4a154b|faf5fa|M\nstarbucks|f5f1e7|253b2e|00754a|ffffff|M\ntesla|101010|faf8f3|e82127|1b1b1b|M\nstripe|ffffff|0d253d|533afd|f6f9fc|M\ntheverge|101215|faf8f3|ffcc00|23262c|S\nvercel|ffffff|171717|171717|fafafa|M\nuber|ffffff|000000|000000|efefef|S\nsuperhuman|ffffff|292827|1b1938|fafaf8|S\nsupabase|ffffff|171717|3ecf8e|fafafa|M\ntogether.ai|ffffff|000000|6e55db|f6f4fe|S\nvodafone|ffffff|25282b|e60000|f2f2f2|S\nwired|ffffff|000000|000000|f5f5f5|S\nwebflow|ffffff|080808|146ef5|f4f7ff|M\nwise|ffffff|0e0f0c|9fe870|e8ebe6|M\nvoltagent|101010|f2f2f2|00d992|1a1a1a|S\nzapier|fffefb|201515|ff4f00|f8f4f0|S\nx.ai|0a0a0a|ffffff|ffffff|1a1c20|S";
+const label=x=>x.split(/[.-]/).map(w=>({ai:"AI",ibm:"IBM",bmw:"BMW",hp:"HP",dji:"DJI",nvidia:"NVIDIA",sap:"SAP",x:"X"}[w]||w.charAt(0).toUpperCase()+w.slice(1))).join(" ");
+export const zipDesigns=Object.freeze(paletteRows.split("\n").map((row,i)=>{
+ const [source,bg,ink,accent,surface,mode]=row.split("|");
+ return Object.freeze({id:"md-"+source.replace(/[^a-z0-9]+/g,"-"),name:label(source)+" Study",
+ style:label(source)+" / source-guided visual system",tag:"Distinctive source-guided digital design.",color:"#"+accent,
+ bg:"#"+bg,ink:"#"+ink,accent:"#"+accent,surface:"#"+surface,source,
+ tier:mode==="M"?"signature":"starter",multipage:mode==="M",reference:"VoltAgent DESIGN.md",
+ recommended:["Creative portfolio","Professional portfolio","Small business"],sourceIndex:i});
+}));
+export const zipDesignFor=id=>zipDesigns.find(t=>t.id===id)||null;
+export const zipPages=Object.freeze(["home","work","features","studio","contact"]);
+export const isDarkHex=hex=>{const h=hex.replace("#","");return [0,2,4].reduce((a,i)=>a+parseInt(h.slice(i,i+2),16),0)<365};
+export function sampleZipDesign(id,base){
+ const t=zipDesignFor(id);if(!t)return null;
+ return {...base,type:"Creative portfolio",template:id,
+ design:{...base.design,primary:t.color,secondary:t.surface,appearance:isDarkHex(t.bg)?"dark":"light",font:"sans",layout:"split",animation:"expressive",sections:["about","work","services","contact"]},
+ content:{...base.content,name:"THE OPEN STUDIO",headline:["A new kind of perspective.","Make the future visible.","Ideas for what comes next.","Built with intention."][t.sourceIndex%4],
+ bio:"A fictional studio exploring digital experiences, creative ideas and considered design.",
+ heroLabel:"CREATIVE PRACTICE / EDITION "+String(t.sourceIndex+1).padStart(2,"0"),
+ ctaLabel:"Explore the work",cards:[{title:"First Impressions",description:"An imagined creative project.",url:""},{title:"The Collection",description:"A fictional design experience.",url:""},{title:"New Perspectives",description:"A study in form and motion.",url:""}],
+ services:[{title:"Creative direction",description:"Thoughtful ideas made tangible."},{title:"Digital experiences",description:"Distinctive spaces for modern brands."}],links:[],publicEmail:"",photoIds:[],testimonials:[]}};
+}

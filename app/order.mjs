@@ -16,6 +16,7 @@ import { premiumStudyIds } from "/shared/premium-art-direction-35.mjs";
 import { tiers, minimumTier, packageTier, packageAllowsTemplate, templateFitsTier, tierLevel } from "/shared/tiers.mjs";
 import { fetchPublicTemplate, previewMessage } from "/shared/preview.mjs";
 import { mountExpressGallery } from "/showcase.js";
+import {zipDesignFor} from "/shared/zip-design-catalog.mjs";
 import { $, api, money, report, authForm } from "./common.mjs";
 const labels = [
   "Choose your tier",
@@ -70,7 +71,7 @@ function setTemplate(id) {
   if (!template) return;
   input.template = template.id;
   input.design.primary = template.color;
-  input.design.appearance = ["afterhours","nocturne","terminal","brutalist","arcade","runwayml","runwaymulti"].includes(id) ? "dark" : "light";
+  input.design.appearance = zipDesignFor(id) ? (zipDesignFor(id).bg.match(/^#(?:0[0-9a-f]|1[0-9a-f])/i) ? "dark":"light") : ["afterhours","nocturne","terminal","brutalist","arcade","runwayml","runwaymulti"].includes(id) ? "dark" : "light";
   input.design.font = id === "folio" ? "serif" : id === "arcade" ? "mono" : "sans";
   input.design.secondary = id === "arcade" ? "#11120f" : "#ece9e0";
   input.design.corners = id === "arcade" ? "sharp" : "soft";
@@ -141,7 +142,7 @@ function draw() {
       esc(tiers.find(t => t.id === selectedTier)?.name || "Your") +
       ' templates</h2><p class="muted">Pick a design you love, preview the real layout, then make it yours. Available designs reflect your selected package tier.</p></div>' +
       '<div class="tier-switches" aria-label="Change your tier">' + tierButtons + '</div></div>' +
-      (selectedPackage()?.delivery === "awe-multipage" ? '<p class="notice">The $150 five-page package currently supports RunwayML Multi Page. Other Signature designs may require a separate quote.</p>' : '') +
+      (selectedPackage()?.delivery === "awe-multipage" ? '<p class="notice">Only RunwayML Multi Page currently supports verified five-page publishing. The new Signature design studies are preview-only until their publishing pipeline passes production QA.</p>' : '') +
       '<section class="worlds express-gallery" id="express-showcase" aria-labelledby="express-gallery-title">' +
       '<div class="worlds-kicker"><span>AWE EXPRESS / DESIGN COLLECTION</span><strong>SELECT & CUSTOMIZE</strong></div>' +
       '<h3 id="express-gallery-title" class="express-gallery-title">Your next website.<br><em>Your direction.</em></h3>' +
