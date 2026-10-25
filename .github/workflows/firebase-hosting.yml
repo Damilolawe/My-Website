@@ -4,9 +4,6 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  schedule:
-    # Keeps approved static sites fresh without a paid server/hosting plan.
-    - cron: '23 * * * *'
 
 permissions:
   contents: read
