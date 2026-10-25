@@ -16,9 +16,6 @@ export function privatePreview(frame, client = aweClient) {
         if (typeof html !== 'string' || html.length > 300000 || !/^<!doctype html>/i.test(html.trimStart()))
           throw Error('The private preview could not be validated.');
         const doc = new DOMParser().parseFromString(html, 'text/html');
-        const base = doc.createElement('base');
-        base.href = 'about:srcdoc';
-        doc.head.prepend(base);
         const images = [...doc.querySelectorAll('img[src]')];
         const refs = new Map();
         for (const image of images) {
@@ -40,6 +37,7 @@ export function privatePreview(frame, client = aweClient) {
         // Multi-page documents are selected using the account's page buttons.
         // Keep same-page links functional without navigating out of isolation.
         for (const a of doc.querySelectorAll('a[href]')) {
+          if (a.getAttribute('href').startsWith('#')) a.setAttribute('href', 'about:srcdoc' + a.getAttribute('href'));
           if (/^\.\//.test(a.getAttribute('href'))) {
             const label = doc.createElement('span');
             label.className = a.className;

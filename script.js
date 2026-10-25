@@ -46,6 +46,7 @@
     });
     document.dispatchEvent(new CustomEvent('awe:motion',{detail:{paused:false}}));
   }
+  document.addEventListener("awe:vendors-ready", initDesktopMotion);
   initDesktopMotion();
   let wasCompact=compactTouch.matches;
   addEventListener('resize',()=>{

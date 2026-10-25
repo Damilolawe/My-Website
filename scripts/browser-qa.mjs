@@ -22,6 +22,7 @@ const browser=await chromium.launch({channel:"chrome",headless:true,args:["--dis
 const failures=[];
 const softWarnings=[];
 const measurements=[];
+const embeddedMeasurements=[];
 let fatalError=null;
 await mkdir("qa-browser-artifacts",{recursive:true});
 async function testPage(page,url,label,{waitMs=250}={}){
@@ -421,13 +422,38 @@ try {
   console.log("AUDIT_THEATER_MOBILE",JSON.stringify(mobile));
   if(mobile.height<760||mobile.width<320||mobile.width>380)
     failures.push("Theater mobile viewport is cropped or not a true mobile width");
+  for(const mode of ["desktop","mobile"]){
+    await page.locator("#worlds-"+mode).click();
+    for(const entry of templates){
+      const label="Embedded "+mode+" "+entry.id;
+      try{
+        await page.locator('#worlds-choices [data-world="'+entry.id+'"]').click();
+        await page.locator("#worlds-loading").waitFor({state:"hidden",timeout:18000});
+        const inside=page.frameLocator("#worlds-frame");
+        await inside.locator("body").waitFor({state:"visible",timeout:12000});
+        const menu=inside.locator('.rw-menu:not([open]) > summary:visible,.trio-menu:not([open]) > summary:visible');
+        if(await menu.count())await menu.first().click();
+        const link=inside.locator('nav a[href^="about:srcdoc#"]:not([href="about:srcdoc#main"]):visible').first();
+        if(!await link.count())throw Error("No usable in-frame section navigation");
+        const href=await link.getAttribute("href");
+        await link.click({timeout:5000});
+        const hash=await inside.locator("body").evaluate(()=>location.hash);
+        if(hash!==new URL(href).hash)throw Error("Frame navigated to "+hash+" instead of "+href);
+        embeddedMeasurements.push({id:entry.id,mode,status:"pass",hash});
+        console.log("EMBEDDED_NAV",mode,entry.id,"PASS",hash);
+      }catch(error){
+        embeddedMeasurements.push({id:entry.id,mode,status:"fail",error:String(error.message)});
+        failures.push(label+": "+String(error.message).slice(0,2500));
+      }
+    }
+  }
   await context.close();
  }
 } catch(error) {
  fatalError=String(error.stack||error);
  failures.push(fatalError);
 } finally {
- await writeFile("qa-browser-artifacts/results.json",JSON.stringify({testedAt:new Date().toISOString(),commit:process.env.GITHUB_SHA||null,measurements,failures,softWarnings,fatalError},null,2));
+ await writeFile("qa-browser-artifacts/results.json",JSON.stringify({testedAt:new Date().toISOString(),commit:process.env.GITHUB_SHA||null,measurements,embeddedMeasurements,failures,softWarnings,fatalError},null,2));
  await browser.close();
 }
 console.log("Public browser QA warnings (nonfatal):",JSON.stringify(softWarnings.slice(0,10)));
