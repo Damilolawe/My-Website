@@ -19,7 +19,7 @@ export function sampleZipDesign(id,base){
  const t=zipDesignFor(id);if(!t)return null;
  return {...base,type:"Creative portfolio",template:id,
  design:{...base.design,primary:t.color,secondary:t.surface,appearance:isDarkHex(t.bg)?"dark":"light",font:"sans",layout:"split",animation:"expressive",sections:["about","work","services","contact"]},
- content:{...base.content,name:"THE OPEN STUDIO",headline:["A new kind of perspective.","Make the future visible.","Ideas for what comes next.","Built with intention."][t.sourceIndex%4],
+ content:{...base.content,name:"STUDIO "+String(t.sourceIndex+1).padStart(2,"0"),headline:["A new kind of perspective.","Make the future visible.","Ideas for what comes next.","Built with intention."][t.sourceIndex%4],
  bio:"A fictional studio exploring digital experiences, creative ideas and considered design.",
  heroLabel:"CREATIVE PRACTICE / EDITION "+String(t.sourceIndex+1).padStart(2,"0"),
  ctaLabel:"Explore the work",cards:[{title:"First Impressions",description:"An imagined creative project.",url:""},{title:"The Collection",description:"A fictional design experience.",url:""},{title:"New Perspectives",description:"A study in form and motion.",url:""}],
