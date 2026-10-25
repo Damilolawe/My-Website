@@ -47,18 +47,24 @@ export async function fetchPublicTemplate(id, { still = false, signal, type } = 
   const document = new DOMParser().parseFromString(markup, "text/html");
   const canonical = new URL(path, location.origin);
   // Fragment links in srcdoc otherwise resolve against the marketing page URL.
-  const base = document.createElement("base");
-  base.setAttribute("href", "about:srcdoc");
-  document.head.prepend(base);
   for (const anchor of document.querySelectorAll("a[href]")) {
     const raw = anchor.getAttribute("href");
-    if (!raw || raw.startsWith("#")) continue;
+    if (!raw) continue;
+    if (raw.startsWith("#")) { anchor.setAttribute("href", "about:srcdoc" + raw); continue; }
     let destination;
     try { destination = new URL(raw, canonical); } catch { continue; }
-    if (destination.origin !== canonical.origin || !destination.hash) continue;
+    if (destination.origin !== canonical.origin) continue;
+    // Inline Runway preview keeps the original Home chapter sections; its
+    // full-screen link opens the actual five-page website.
+    if (id === "runwaymulti" && destination.pathname.startsWith("/experiments/runwayml-multipage/")) {
+      const section = destination.hash.slice(1) || destination.pathname.split("/").pop().replace(".html", "") || "main";
+      if (document.getElementById(section)) anchor.setAttribute("href", "about:srcdoc#" + section);
+      continue;
+    }
+    if (!destination.hash) continue;
     const targetId = decodeURIComponent(destination.hash.slice(1));
     if (targetId && document.getElementById(targetId)) {
-      anchor.setAttribute("href", destination.hash);
+      anchor.setAttribute("href", "about:srcdoc" + destination.hash);
     }
   }
   return "<!doctype html>\n" + document.documentElement.outerHTML;
