@@ -88,3 +88,11 @@ test("Source-guide visual groups render distinct artwork, not one repeated gener
  for(const [id,signature] of reps){const html=renderSite(sampleForTemplate(id),{sample:true});assert(html.includes(signature),id+" artwork differs");seen.add(signature);}
  assert.equal(seen.size,7);
 });
+
+test("New design variants do not inflate hosting with unused legacy purpose URLs",async()=>{
+ const build=await read("scripts/build.mjs");
+ assert(build.includes("if (zipDesignFor(t.id)) continue;"));
+ for(const t of zipDesigns){
+  assert((await read("dist/templates/"+t.id+".html")).includes("FICTIONAL TEMPLATE DEMO"));
+ }
+});

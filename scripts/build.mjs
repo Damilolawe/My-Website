@@ -73,6 +73,9 @@ for (const t of templates) {
   await writeFile(`dist/templates/${t.id}--still.html`, renderSite({
     ...config, design: { ...config.design, animation: "none" },
   }, { sample: true }));
+  // New studies have one canonical demo and, for Signature, five linked pages.
+  // Only the original 42 require backwards-compatible purpose-specific aliases.
+  if (zipDesignFor(t.id)) continue;
   for (const type of types) {
     const dir = "dist/templates/" + typeSlugs[type];
     await mkdir(dir, {recursive:true});
