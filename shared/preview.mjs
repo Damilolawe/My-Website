@@ -78,6 +78,6 @@ export async function fetchPublicStudyPage(id,page,{signal}={}){
  const res=await fetch(path,{signal,mode:"same-origin",credentials:"same-origin",headers:{Accept:"text/html"}});
  if(!res.ok || !(res.headers.get("content-type")||"").toLowerCase().includes("text/html"))throw new Error("Study preview unavailable.");
  const html=await res.text();
- if(html.length>300000||!/^\\s*<!doctype html>/i.test(html)||!html.includes("FICTIONAL TEMPLATE DEMO")||/<script\\b/i.test(html))throw new Error("Invalid public study preview.");
+ if(html.length>300000||!/^\s*<!doctype html>/i.test(html)||!html.includes("FICTIONAL TEMPLATE DEMO")||/<script\b/i.test(html))throw new Error("Invalid public study preview.");
  return html;
 }
