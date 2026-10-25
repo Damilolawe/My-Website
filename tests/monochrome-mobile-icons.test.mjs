@@ -10,12 +10,21 @@ const glyphWithoutTextPresentation = /[↗↘↖↙←→↑↓⇄✳✺✻✽�
 
 test("navigation uses real scalable SVG arrows, not emoji-capable character glyphs", async () => {
   const html = await read("index.html");
-  assert.equal((html.match(/class="ui-vector-icon"/g) || []).length, 3);
-  assert.match(html, /class="nav-spark"[^>]*><svg class="ui-vector-icon"/);
+  assert.equal((html.match(/class="ui-vector-icon"/g) || []).length, 2);
   assert.match(html, /class="circle-arrow"[^>]*><svg class="ui-vector-icon"/);
   assert.match(html, /class="down-arrow"[^>]*><svg class="ui-vector-icon"/);
   assert.match(html, /<svg[^>]+aria-hidden="true"[^>]+focusable="false"/);
   assert.match(await read("studio.css"), /\.ui-vector-icon\{display:block;/);
+});
+
+test("Playground is removed without affecting Express or project inquiries", async () => {
+  const home = await read("index.html");
+  const script = await read("script.js");
+  assert.doesNotMatch(home, /playground|id="lab"|href="#lab"/i);
+  assert.doesNotMatch(script, /labStyle|lab-accent|lab-message|Playground style/);
+  assert.match(home, /href="\/order\.html"/);
+  assert.match(home, /id="brief-form"/);
+  assert.match(script, /brief-form/);
 });
 
 test("large decorative icons are SVG masks on mobile and tablet, not font glyphs", async () => {

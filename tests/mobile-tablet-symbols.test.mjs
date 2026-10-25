@@ -9,7 +9,7 @@ const bareColorEmojiSymbols = /[↗↘↖↙←→↑↓⇄✳✺✻✽✿✦✧
 
 test("homepage navigation uses CSS-sized SVG arrow icons, never font emoji", async () => {
   const markup = await read("index.html");
-  const iconSpans = ["nav-spark", "circle-arrow", "down-arrow"];
+  const iconSpans = ["circle-arrow", "down-arrow"];
   for (const name of iconSpans) {
     const match = markup.match(new RegExp('<span class="' + name + '"[^>]*>([\\s\\S]*?)<\\/span>'));
     assert(match, "Missing responsive icon slot: " + name);
