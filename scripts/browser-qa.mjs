@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {mkdir, writeFile} from "node:fs/promises";
 import {chromium} from "playwright-core";
 import {templates} from "../shared/model.mjs";
+import {templatePageCount} from "../shared/tiers.mjs";
 import {uploadedDesignFor} from "../shared/uploaded-designs.mjs";
 import {premiumStudyIds} from "../shared/premium-art-direction-35.mjs";
 
@@ -361,7 +362,7 @@ try {
   // its *real inner frame width* also keeps essential content inside view.
   if(width===320||width===360){
     await page.goto(origin+"/order.html",{waitUntil:"domcontentloaded",timeout:25000});
-    await page.locator("[data-tier=signature]").click();
+    await page.locator("[data-tier=starter]").click();
     await page.locator('#worlds-choices [data-world="afterhours"]').click();
     await page.locator("#express-showcase").scrollIntoViewIfNeeded();
     await page.locator("#worlds-mobile").click();
@@ -391,9 +392,9 @@ try {
   const context=await browser.newContext({viewport:{width:1440,height:900}});
   const page=await context.newPage();
   await page.goto(origin+"/order.html",{waitUntil:"domcontentloaded"});
-  await page.locator("[data-tier=signature]").click();
+  await page.locator("[data-tier=starter]").click();
   await page.locator("#express-showcase").scrollIntoViewIfNeeded();
-  assert.equal(await page.locator("#worlds-choices .worlds-choice").count(),templates.length,"AWE Express signature tier should list all template designs");
+  assert.equal(await page.locator("#worlds-choices .worlds-choice").count(),78,"Starter should show exactly 78 one-page designs");
   await page.locator("#worlds-search").fill("after hours");
   assert.equal(await page.locator("#worlds-choices .worlds-choice:visible").count(),1,"Express design search must filter designs");
   await page.locator("#worlds-choices .worlds-choice:visible").click();
@@ -424,15 +425,34 @@ try {
   console.log("AUDIT_THEATER_MOBILE",JSON.stringify(mobile));
   if(mobile.height<760||mobile.width<320||mobile.width>380)
     failures.push("Theater mobile viewport is cropped or not a true mobile width");
+  let currentTier="starter";
   for(const mode of ["desktop","mobile"]){
     await page.locator("#worlds-"+mode).click();
-    for(const entry of templates){
+    const single=templates.filter(t=>templatePageCount(t.id)===1);
+    const multi=templates.filter(t=>templatePageCount(t.id)===5);
+    for(const entry of [...single,...multi]){
+      const desired=templatePageCount(entry.id)===5?"signature":"starter";
+      if(currentTier!==desired){
+        await page.locator('[data-switch-tier="'+desired+'"]').click();
+        currentTier=desired;
+        const count=await page.locator("#worlds-choices .worlds-choice").count();
+        assert.equal(count,desired==="signature"?38:78,"Tier gallery contains only the expected page count");
+      }
       const label="Embedded "+mode+" "+entry.id;
       try{
         await page.locator('#worlds-choices [data-world="'+entry.id+'"]').click();
         await page.locator("#worlds-loading").waitFor({state:"hidden",timeout:18000});
         const inside=page.frameLocator("#worlds-frame");
         await inside.locator("body").waitFor({state:"visible",timeout:12000});
+        if(desired==="signature"&&entry.id.startsWith("md-")){
+          const tabs=page.locator(".worlds-page-list button");
+          if(await tabs.count()!==5)throw Error("Five-page preview controls missing");
+          await tabs.nth(1).click();
+          await page.locator("#worlds-loading").waitFor({state:"hidden",timeout:18000});
+          if(await tabs.nth(1).getAttribute("aria-pressed")!=="true")throw Error("Work page preview was not selected");
+          embeddedMeasurements.push({id:entry.id,mode,status:"pass",page:"work"});
+          continue;
+        }
         const menu=inside.locator('.rw-menu:not([open]) > summary:visible,.trio-menu:not([open]) > summary:visible');
         if(await menu.count())await menu.first().click();
         const link=inside.locator('nav a[href^="about:srcdoc#"]:not([href="about:srcdoc#main"]):visible').first();
