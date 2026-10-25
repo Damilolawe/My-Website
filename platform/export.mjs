@@ -1,6 +1,6 @@
 import { zipSync, strToU8 } from "fflate";
 import { rows, sb, fail } from "./backend.mjs";
-import {renderApprovedRunwayPages} from "../shared/runway-customer-pages.mjs";
+import {renderApprovedDesignPages,allowedApprovedPageNames} from "../shared/approved-pages.mjs";
 
 const EXT = new Map([["image/jpeg", "jpg"], ["image/png", "png"], ["image/webp", "webp"]]);
 
@@ -14,8 +14,8 @@ export async function exportApproved(o) {
   if (!v || typeof v.html !== "string" || !Array.isArray(v.asset_ids))
     fail("The approved website version could not be found.", 404);
 
-  const pages=v.input?.template==="runwaymulti"
-    ? renderApprovedRunwayPages(v.input)
+  const pages=allowedApprovedPageNames(v.input?.template).length===5
+    ? renderApprovedDesignPages(v.input)
     : {"index.html":v.html};
   const files = {};
   let total = 0;

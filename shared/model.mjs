@@ -1,5 +1,5 @@
 import { newTemplates } from "./catalog-20.mjs";
-import {zipDesigns,sampleZipDesign} from "./zip-design-catalog.mjs";
+import {zipDesigns,zipDesignFor,sampleZipDesign} from "./zip-design-catalog.mjs";
 import { originalDirections, directionFor } from "./refero-originals.mjs";
 import {uploadedDesignFor} from "./uploaded-designs.mjs";
 import {freeDesignTemplates, freeDesignFor} from "./free-designmd.mjs";

@@ -19,8 +19,9 @@ test("74 appended source-guided directions preserve original collection and spli
  const known=new Set(["apple","ferrari","figma","linear.app","spotify","warp","raycast","nike","clay","runwayml"]);
  for(const t of zipDesigns){assert(!known.has(t.source),t.source+" should be omitted");
   assert.equal(minimumTier(t.id),t.multipage?"signature":"starter");
-  assert.equal(packageAllowsTemplate({tier:"signature",delivery:"awe-multipage",pageCount:5},t.id),false,"Do not take payment before complete multipage fulfillment is verified");
-  assert.equal(packageAllowsTemplate({tier:"signature",delivery:"awe-hosted",pageCount:1},t.id),false,"Backend does not yet fulfill any newly authored study");
+  assert.equal(packageAllowsTemplate({tier:"signature",delivery:"awe-multipage",pageCount:5},t.id),t.multipage,"Signature is five pages only");
+  assert.equal(packageAllowsTemplate({tier:"signature",delivery:"awe-hosted",pageCount:1},t.id),false,"Starter studies cannot be sold as Signature single-page designs");
+  assert.equal(packageAllowsTemplate({tier:"starter",delivery:"awe-hosted",pageCount:1},t.id),!t.multipage,"Starter is single-page only");
  }
 });
 test("Every appended sample renders a safe responsive customer-editable preview",()=>{
