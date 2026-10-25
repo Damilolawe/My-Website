@@ -1,4 +1,5 @@
-import { fetchPublicTemplate, previewMessage } from "/shared/preview.mjs";
+import { fetchPublicTemplate, fetchPublicStudyPage, previewMessage } from "/shared/preview.mjs";
+import {zipDesignFor,zipPages} from "/shared/zip-design-catalog.mjs";
 import { templates } from "/shared/model.mjs";
 export function mountExpressGallery(root,{items=templates,initial="afterhours",initialMobile=false,onSelect=()=>{},onModeChange=()=>{}}={}) {
   if(!root)return new AbortController();
@@ -11,6 +12,26 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
   const view=root.querySelector(".worlds-view");
   const desktop=root.querySelector("#worlds-desktop"),mobile=root.querySelector("#worlds-mobile");
   let selected=items.some(t=>t.id===initial)?initial:items[0]?.id,version=0,controller=null;
+  let currentPage="home";
+  const pageBar=document.createElement("div");
+  pageBar.className="worlds-page-list";
+  pageBar.setAttribute("role","group");
+  pageBar.setAttribute("aria-label","Preview website pages");
+  screen.querySelector(".worlds-toolbar")?.after(pageBar);
+  function updatePageBar(id){
+    pageBar.replaceChildren();
+    const multi=zipDesignFor(id)?.multipage;
+    pageBar.hidden=!multi;
+    if(!multi)return;
+    for(const part of zipPages){
+      const b=document.createElement("button");
+      b.type="button";b.textContent=part.toUpperCase();
+      b.setAttribute("aria-pressed",String(part===currentPage));
+      b.addEventListener("click",()=>{currentPage=part;choose(selected);});
+      pageBar.appendChild(b);
+    }
+  }
+
   // Large sandbox previews are loaded near the gallery instead of on first paint.
   const deferPreview=matchMedia("(max-width: 900px), (pointer: coarse)").matches;
   let previewReady=!deferPreview;
@@ -63,7 +84,9 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
   async function choose(id,notify=false){
     if(!savedTemplates.has(id))return;
     const item=savedTemplates.get(id);
+    if(id!==selected)currentPage="home";
     selected=id;version++;const mine=version;
+    updatePageBar(id);
     if(notify)onSelect(id);
     controller?.abort();controller=new AbortController();
     rail.querySelectorAll("[data-world]").forEach(btn=>btn.setAttribute("aria-pressed",String(btn.dataset.world===id)));
@@ -77,7 +100,9 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
     if(!previewReady)return;
     // Preserve the previous frame under the branded loading surface.
     try{
-      const html=await fetchPublicTemplate(id,{still,signal:controller.signal});
+      const html=zipDesignFor(id)?.multipage
+        ?await fetchPublicStudyPage(id,currentPage,{signal:controller.signal})
+        :await fetchPublicTemplate(id,{still,signal:controller.signal});
       if(controller.signal.aborted||mine!==version)return;
       frame.onload=()=>{
         if(mine!==version)return;

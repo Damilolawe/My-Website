@@ -108,3 +108,14 @@ test("New study editor preserves the authored palette and supports uploaded hero
  assert(rendered.includes("/client-assets/"+photoId));
  assert(!renderSite(updated,{sample:true}).includes("/client-assets/"+photoId));
 });
+
+test("Five-page Signature demos can switch pages safely in the AWE Express sandbox",async()=>{
+ const [g,p,style]=await Promise.all([read("showcase.js"),read("shared/preview.mjs"),read("app/express-gallery.css")]);
+ assert(g.includes('pageBar.className="worlds-page-list"'));
+ assert(g.includes('pageBar.setAttribute("aria-label","Preview website pages")'));
+ assert(g.includes('currentPage=part;choose(selected)'));
+ assert(g.includes('fetchPublicStudyPage(id,currentPage'));
+ assert(p.includes("zipDesignFor(id)?.multipage||!zipPages.includes(page)"));
+ assert(p.includes('const path="/templates/"+id+"/"+page+".html"'));
+ assert(style.includes(".worlds-page-list button[aria-pressed=\"true\"]"));
+});
