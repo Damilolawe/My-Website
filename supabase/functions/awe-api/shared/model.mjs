@@ -3,7 +3,7 @@ import {zipDesigns,zipDesignFor,sampleZipDesign} from "./zip-design-catalog.mjs"
 import { originalDirections, directionFor } from "./refero-originals.mjs";
 import {uploadedDesignFor} from "./uploaded-designs.mjs";
 import {freeDesignTemplates, freeDesignFor} from "./free-designmd.mjs";
-export const templates = [
+const templateDefinitions = [
   {
     id: "index",
     name: "The Index",
@@ -56,7 +56,8 @@ export const templates = [
   {id:"clay",name:"Clay",style:"Warm claymation / colorful SaaS",tag:"Sculptural software storytelling and playful data cards.",color:"#FF4D8B",tier:"signature",reference:"VoltAgent design-md",recommended:[]},
   {id:"ferrari",name:"Ferrari",style:"Automotive cinema / red on graphite",tag:"Immersive motorsport editorial and performance collection.",color:"#DA291C",tier:"signature",reference:"VoltAgent design-md",recommended:[]},
   ...zipDesigns,
-];
+].map((template, index) => ({ ...template, name: `Template ${String(index + 1).padStart(3, '0')}` }));
+export const templates = templateDefinitions;
 export const types = [
   "Student résumé",
   "Professional portfolio",
