@@ -46,10 +46,11 @@ export function packageAllowsTemplate(pkg, templateId) {
   // Never sell a single-page template as a five-page site or vice versa.
   if (pkg?.delivery === "awe-multipage") {
     return pkg?.tier === "signature" && pkg?.pageCount === 5 &&
-      templateId === "runwaymulti";
+      (templateId === "runwaymulti" || zipDesignFor(templateId)?.multipage === true);
   }
-  // Source-guided designs are preview-only until customer fulfillment supports these ids.
-  // Never create a payment for an unverified design.
-  if (templateId === "runwaymulti" || zipDesignFor(templateId)) return false;
+  // One-page Starter studies cannot be sold as Signature bundles or vice versa.
+  const study=zipDesignFor(templateId);
+  if(study)return !study.multipage && pkg?.delivery==="awe-hosted" && packageTier(pkg)==="starter";
+  if(templateId==="runwaymulti")return false;
   return pkg?.testOnly === true || templateFitsTier(templateId, packageTier(pkg));
 }
