@@ -33,3 +33,33 @@ jobs:
           path: qa-browser-artifacts/
           if-no-files-found: ignore
           retention-days: 7
+  lighthouse:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Measure production Lighthouse scores
+        if: always()
+        run: |
+          mkdir -p qa-browser-artifacts/lighthouse
+          for route in home order contact folio; do
+            case "$route" in
+              home) url=https://aweconcepts.com/ ;;
+              order) url=https://aweconcepts.com/order.html ;;
+              contact) url=https://aweconcepts.com/contact.html ;;
+              folio) url=https://aweconcepts.com/templates/folio.html ;;
+            esac
+            npx --yes lighthouse@13.5.0 "$url" --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path="qa-browser-artifacts/lighthouse/$route.json"
+          done
+          node -e 'const fs=require("fs");for(const n of ["home","order","contact","folio"]){const r=JSON.parse(fs.readFileSync("qa-browser-artifacts/lighthouse/"+n+".json"));console.log("LIGHTHOUSE",n,JSON.stringify(Object.fromEntries(Object.entries(r.categories).map(([k,v])=>[k,Math.round(v.score*100)]))));}'
+      - name: Upload measured Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: awe-production-lighthouse
+          path: qa-browser-artifacts/lighthouse/
+          if-no-files-found: ignore
+          retention-days: 7
