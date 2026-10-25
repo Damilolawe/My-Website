@@ -251,7 +251,7 @@ try {
       // has a real mobile details menu and its Signature edition links pages.
       const menu=page.locator(".rw-menu:visible:not([open]) > summary, .trio-menu:visible:not([open]) > summary");
       if(await menu.count()) await menu.click();
-      const first=page.locator('nav[aria-label="Section navigation"] a[href^="#"]:visible, nav[aria-label="Primary navigation"] a[href^="#"]:visible, .rw-menu nav a[href^="#"]:visible, .rw-menu nav a[href^="/experiments/runwayml-multipage/"]:visible, .rw-header-nav a[href^="/experiments/runwayml-multipage/"]:visible, .trio-menu nav a[href^="#"]:visible').first();
+      const first=page.locator('nav[aria-label="Section navigation"] a[href^="#"]:visible, nav[aria-label="Primary navigation"] a[href^="#"]:visible, nav[aria-label="Main navigation"] a[href^="#"]:not([href="#main"]):visible, .rw-menu nav a[href^="#"]:visible, .rw-menu nav a[href^="/experiments/runwayml-multipage/"]:visible, .rw-header-nav a[href^="/experiments/runwayml-multipage/"]:visible, .trio-menu nav a[href^="#"]:visible').first();
       if(await first.count()) {
         const href=await first.getAttribute("href");
         try {
@@ -458,7 +458,9 @@ try {
         const link=inside.locator('nav a[href^="about:srcdoc#"]:not([href="about:srcdoc#main"]):visible').first();
         if(!await link.count())throw Error("No usable in-frame section navigation");
         const href=await link.getAttribute("href");
-        await link.click({timeout:5000});
+        // The desktop theater scales a 1280px iframe; keyboard activation verifies
+        // the link without Playwright miscalculating its transformed click point.
+        await link.press("Enter",{timeout:5000});
         const hash=await inside.locator("body").evaluate(()=>location.hash);
         if(hash!==new URL(href).hash)throw Error("Frame navigated to "+hash+" instead of "+href);
         embeddedMeasurements.push({id:entry.id,mode,status:"pass",hash});
