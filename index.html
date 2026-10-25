@@ -22,8 +22,10 @@
   <link rel="stylesheet" href="/awe-relaunch.css">
   <link rel="stylesheet" href="/hero-layout-fix.css">
   <link rel="stylesheet" href="/studio-reimagined.css">
+  <link rel="stylesheet" href="/universe.css">
   <script type="module" src="sculpture.js"></script>
   <script src="case-studies.js" defer></script>
+  <script type="module" src="/universe.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -76,7 +78,58 @@
           <a href="#work" class="hero-scroll magnetic" aria-label="Explore selected work"><span class="hero-scroll-text">EXPLORE<br>THE WORK</span><span class="down-arrow" aria-hidden="true"><svg class="ui-vector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M6 6 18 18M7 18h11V7"/></svg></span></a>
         </div>
       </div>
-      <div class="hero-art" id="hero-art" aria-label="Interactive sculptural artwork">
+      <div class="hero-art" id="hero-art" aria-label="Explore four floating, interactive AWE Express website previews">
+        <div class="awe-universe" id="awe-universe" aria-label="Floating world of real AWE Express website previews">
+          <div class="universe-topline"><span class="universe-status"><i aria-hidden="true"></i> THE LIVING STUDIO</span><span>04 / ORIGINAL DESIGN WORLDS</span></div>
+          <div class="universe-field" id="universe-field">
+          <article class="universe-card universe-card--cinematic" data-template="runwayml" data-name="CINEMATIC" style="--u-order:0">
+            <div class="universe-card-frame">
+              <div class="universe-browser"><span class="universe-browser-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>CINEMATIC / AWE EXPRESS</span></div>
+              <div class="universe-snapshot" data-preview="runwayml">
+                <span class="universe-fallback" aria-hidden="true">CINEMATIC</span>
+                <iframe title="CINEMATIC website miniature" loading="lazy" sandbox="" tabindex="-1" aria-hidden="true"></iframe>
+              </div>
+              <div class="universe-card-footer"><strong>CINEMATIC</strong><span>EXPLORE SITE <span aria-hidden="true">+</span></span></div>
+            </div>
+            <button type="button" class="universe-open" data-open-universe="runwayml" aria-label="Open interactive preview of CINEMATIC: A film-inspired editorial world"></button>
+          </article>
+          <article class="universe-card universe-card--metal" data-template="liquidmetal" data-name="LIQUID METAL" style="--u-order:1">
+            <div class="universe-card-frame">
+              <div class="universe-browser"><span class="universe-browser-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>LIQUID METAL / AWE EXPRESS</span></div>
+              <div class="universe-snapshot" data-preview="liquidmetal">
+                <span class="universe-fallback" aria-hidden="true">LIQUID METAL</span>
+                <iframe title="LIQUID METAL website miniature" loading="lazy" sandbox="" tabindex="-1" aria-hidden="true"></iframe>
+              </div>
+              <div class="universe-card-footer"><strong>LIQUID METAL</strong><span>EXPLORE SITE <span aria-hidden="true">+</span></span></div>
+            </div>
+            <button type="button" class="universe-open" data-open-universe="liquidmetal" aria-label="Open interactive preview of LIQUID METAL: Fluid graphite and sculpted detail"></button>
+          </article>
+          <article class="universe-card universe-card--sculpt" data-template="clay" data-name="SCULPT" style="--u-order:2">
+            <div class="universe-card-frame">
+              <div class="universe-browser"><span class="universe-browser-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>SCULPT / AWE EXPRESS</span></div>
+              <div class="universe-snapshot" data-preview="clay">
+                <span class="universe-fallback" aria-hidden="true">SCULPT</span>
+                <iframe title="SCULPT website miniature" loading="lazy" sandbox="" tabindex="-1" aria-hidden="true"></iframe>
+              </div>
+              <div class="universe-card-footer"><strong>SCULPT</strong><span>EXPLORE SITE <span aria-hidden="true">+</span></span></div>
+            </div>
+            <button type="button" class="universe-open" data-open-universe="clay" aria-label="Open interactive preview of SCULPT: Playful color with real personality"></button>
+          </article>
+          <article class="universe-card universe-card--athletic" data-template="nike" data-name="ATHLETIC" style="--u-order:3">
+            <div class="universe-card-frame">
+              <div class="universe-browser"><span class="universe-browser-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>ATHLETIC / AWE EXPRESS</span></div>
+              <div class="universe-snapshot" data-preview="nike">
+                <span class="universe-fallback" aria-hidden="true">ATHLETIC</span>
+                <iframe title="ATHLETIC website miniature" loading="lazy" sandbox="" tabindex="-1" aria-hidden="true"></iframe>
+              </div>
+              <div class="universe-card-footer"><strong>ATHLETIC</strong><span>EXPLORE SITE <span aria-hidden="true">+</span></span></div>
+            </div>
+            <button type="button" class="universe-open" data-open-universe="nike" aria-label="Open interactive preview of ATHLETIC: Movement, impact and momentum"></button>
+          </article>
+          </div>
+          <div class="universe-footer"><span>SELECT A WORLD TO STEP INSIDE</span><a href="/order.html">EXPLORE AWE EXPRESS <span aria-hidden="true">+</span></a></div>
+        </div>
+
         <div class="art-cross cross-a" aria-hidden="true"></div><div class="art-cross cross-b" aria-hidden="true"></div>
         <div class="art-fallback" aria-hidden="true"><span></span><span></span><span></span></div>
         <canvas id="sculpture" aria-hidden="true"></canvas>
@@ -377,6 +430,24 @@
       <div class="footer-bottom"><span>© <span id="year">2026</span> AWE CONCEPTS. BUILT WITH INTENTION.</span><div><a href="#top">BACK TO TOP ↑︎</a></div><span>ONLINE / EVERYWHERE</span></div>
     </div>
   </footer>
+  <dialog id="universe-dialog" class="universe-dialog" aria-labelledby="universe-dialog-title" aria-describedby="universe-dialog-description">
+    <div class="universe-dialog-shell">
+      <div class="universe-dialog-bar">
+        <button type="button" class="universe-back" id="universe-close"><span aria-hidden="true">×</span> BACK TO THE UNIVERSE</button>
+        <div class="universe-dialog-identity"><span class="universe-dialog-eyebrow">AWE EXPRESS / ORIGINAL DESIGN</span><strong id="universe-dialog-title">CINEMATIC</strong></div>
+        <a id="universe-standalone" href="/templates/runwayml.html" target="_blank" rel="noopener">OPEN FULL SITE <span aria-hidden="true">+</span></a>
+      </div>
+      <div class="universe-preview-wrap" id="universe-preview-wrap" data-device="desktop">
+        <div class="universe-preview-loading" id="universe-preview-loading" role="status">ASSEMBLING YOUR WORLD...</div>
+        <iframe id="universe-live-frame" title="Selected original website preview" sandbox="" loading="lazy"></iframe>
+      </div>
+      <div class="universe-dialog-bottom">
+        <p id="universe-dialog-description">Explore the original fictional AWE Express demo. For complete website interactions, use Open Full Site.</p>
+        <div class="universe-device-switch" role="group" aria-label="Website preview size"><button type="button" data-universe-device="desktop" aria-pressed="true">DESKTOP</button><button type="button" data-universe-device="mobile" aria-pressed="false">MOBILE</button></div>
+        <a id="universe-choose" class="universe-choose" href="/order.html">MAKE THIS YOURS <span aria-hidden="true">+</span></a>
+      </div>
+    </div>
+  </dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
