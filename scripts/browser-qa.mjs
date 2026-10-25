@@ -352,6 +352,7 @@ try {
   if(width===320||width===360){
     await page.goto(origin+"/order.html",{waitUntil:"domcontentloaded",timeout:25000});
     await page.locator("[data-tier=signature]").click();
+    await page.locator('#worlds-choices [data-world="afterhours"]').click();
     await page.locator("#express-showcase").scrollIntoViewIfNeeded();
     await page.locator("#worlds-mobile").click();
     await page.locator("#worlds-loading").waitFor({state:"hidden",timeout:18000});
