@@ -42,7 +42,7 @@ async function testPage(page,url,label,{waitMs=250}={}){
   const delta=layout.scroll-layout.client;
   measurements.push({label,url,status:response?.status()||0,width:layout.client,overflow:delta,missingAnchors:layout.missingAnchors});
   if(delta>1){
-    const offenders=await page.evaluate(()=>[...document.querySelectorAll("*")].map(el=>({el,rect:el.getBoundingClientRect()})).filter(({rect})=>rect.right>innerWidth+2 && rect.width>0).slice(0,8).map(({el,rect})=>({element:el.tagName.toLowerCase()+"."+String(el.className||"").replace(/\\s+/g,".").slice(0,60),right:Math.round(rect.right),width:Math.round(rect.width)})));
+    const offenders=await page.evaluate(()=>[...document.querySelectorAll("*")].map(el=>({el,rect:el.getBoundingClientRect()})).filter(({rect})=>rect.right>innerWidth+2 && rect.width>0).slice(0,8).map(({el,rect})=>({element:el.tagName.toLowerCase()+"."+String(el.className||"").replace(/\s+/g,".").slice(0,60),right:Math.round(rect.right),width:Math.round(rect.width)})));
     console.log("QA_OVERFLOW_ELEMENTS",label,JSON.stringify(offenders));
     failures.push(label+": horizontal overflow "+delta+"px ("+layout.scroll+"/"+layout.client+")");
   }
