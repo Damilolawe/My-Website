@@ -55,10 +55,10 @@ const app = $("#app");
 try {
   catalog = await api("catalog");
 } catch {}
-// Combine local source-authored previews with the remote catalogue, which may still
-// list the prior 42. Remote metadata can override existing ids but cannot erase
-// new draft entries. Prices and offers remain authoritative from the backend.
-const galleryTemplates=templates.map(t=>({ ...t, ...(catalog.templates||[]).find(remote=>remote.id===t.id) }));
+// Keep the public catalog authoritative for eligibility and package pricing,
+// but use the current authored design names and visual metadata for the gallery.
+// The deployed API can temporarily lag behind the latest static site release.
+const galleryTemplates=templates.map(t=>({ ...(catalog.templates||[]).find(remote=>remote.id===t.id), ...t }));
 const templatesForTier=tier=>galleryTemplates.filter(t=>templateFitsTier(t.id,tier));
 const AWE_CUSTOM_URL="/account.html?custom=1";
 function activePackagesForTier(tier) {
