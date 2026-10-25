@@ -1,7 +1,6 @@
 import { fetchPublicTemplate, previewMessage } from "/shared/preview.mjs";
 import { templates } from "/shared/model.mjs";
 export function mountExpressGallery(root,{items=templates,initial="afterhours",initialMobile=false,onSelect=()=>{},onModeChange=()=>{}}={}) {
-  "use strict";
   if(!root)return new AbortController();
   const lifetime=new AbortController();
   const rail=root.querySelector("#worlds-choices"),frame=root.querySelector("#worlds-frame"),screen=root.querySelector("#worlds-screen");

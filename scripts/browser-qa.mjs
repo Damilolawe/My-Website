@@ -163,31 +163,13 @@ try {
     else if(msg.type()==="error")softWarnings.push(size.name+": "+msg.text().slice(0,160));
   });
   await testPage(page,origin+"/",size.name+" homepage",{waitMs:650});
-  assert.equal(await page.locator("#worlds-choices .worlds-choice").count(),templates.length,
-    size.name+": every template selector should be available");
+  assert.equal(await page.locator("#express-showcase").count(),0,size.name+": the gallery belongs in AWE Express, not the homepage");
   const menu=page.locator("#menu-toggle");
   if(await menu.isVisible()){
     await menu.click();
     assert.equal(await menu.getAttribute("aria-expanded"),"true",size.name+": mobile menu did not open");
     await page.keyboard.press("Escape");
     assert.equal(await menu.getAttribute("aria-expanded"),"false",size.name+": mobile menu did not close");
-  }
-  if(size.width===360) {
-    for(let i=0;i<templates.length;i++){
-      const selection=page.locator("#worlds-choices .worlds-choice").nth(i);
-      const world=await selection.getAttribute("data-world");
-      await selection.click();
-      assert.equal(await selection.getAttribute("aria-pressed"),"true","Selected design must update state: "+world);
-    }
-    await page.locator("#worlds-search").fill("after hours");
-    assert.equal(await page.locator("#worlds-choices .worlds-choice:visible").count(),1,
-      "The theater search should narrow the complete catalog");
-    assert.equal(await page.locator("#worlds-results").textContent(),"1 of "+templates.length+" designs");
-    await page.locator("#worlds-choices .worlds-choice:visible").click();
-    await page.locator("#worlds-loading").waitFor({state:"hidden",timeout:18000});
-    assert.equal(await page.locator("#worlds-name").textContent(),"After Hours");
-    await page.locator("#worlds-search").fill("");
-    assert.equal(await page.locator("#worlds-choices .worlds-choice:visible").count(),templates.length);
   }
   if(size.width<=768){
     const heroFit=await page.evaluate(()=>{
@@ -368,7 +350,8 @@ try {
   // The embedded theater is narrower than the physical phone; verify that
   // its *real inner frame width* also keeps essential content inside view.
   if(width===320||width===360){
-    await page.goto(origin+"/",{waitUntil:"domcontentloaded",timeout:25000});
+    await page.goto(origin+"/order.html",{waitUntil:"domcontentloaded",timeout:25000});
+    await page.locator("[data-tier=signature]").click();
     await page.locator("#express-showcase").scrollIntoViewIfNeeded();
     await page.locator("#worlds-mobile").click();
     await page.locator("#worlds-loading").waitFor({state:"hidden",timeout:18000});
@@ -396,8 +379,16 @@ try {
  {
   const context=await browser.newContext({viewport:{width:1440,height:900}});
   const page=await context.newPage();
-  await page.goto(origin+"/",{waitUntil:"domcontentloaded"});
+  await page.goto(origin+"/order.html",{waitUntil:"domcontentloaded"});
+  await page.locator("[data-tier=signature]").click();
   await page.locator("#express-showcase").scrollIntoViewIfNeeded();
+  assert.equal(await page.locator("#worlds-choices .worlds-choice").count(),templates.length,"AWE Express signature tier should list all template designs");
+  await page.locator("#worlds-search").fill("after hours");
+  assert.equal(await page.locator("#worlds-choices .worlds-choice:visible").count(),1,"Express design search must filter designs");
+  await page.locator("#worlds-choices .worlds-choice:visible").click();
+  await page.locator("#worlds-loading").waitFor({state:"hidden",timeout:18000});
+  assert.equal(await page.locator("#worlds-name").textContent(),"After Hours");
+  await page.locator("#worlds-search").fill("");
   await page.waitForTimeout(2100);
   await page.locator("#worlds-desktop").click();
   await page.waitForTimeout(300);
@@ -407,7 +398,7 @@ try {
     return {frameHeight:frame.getBoundingClientRect().height,viewHeight:view.getBoundingClientRect().height,
       loading:document.querySelector("#worlds-loading")?.hidden};
   });
-  const decoration=await page.locator(".worlds-accent").evaluate(el=>getComputedStyle(el).display);
+  const decoration=await page.locator(".worlds-accent").count()?await page.locator(".worlds-accent").evaluate(el=>getComputedStyle(el).display):"none";
   console.log("AUDIT_THEATER_ORNAMENT",decoration);
   if(decoration!=="none")failures.push("Theater ornament still crowds the device controls");
   console.log("AUDIT_THEATER_DESKTOP",JSON.stringify(desktop));

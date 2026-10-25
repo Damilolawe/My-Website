@@ -24,7 +24,7 @@ test("Client-facing UX includes an honest inquiry journey and preserves public l
  const [html,style,build]=await Promise.all(["index.html","studio-reimagined.css","scripts/build.mjs"].map(read));
  assert(html.includes('id="approach"'));
  assert(html.includes("Nothing goes live without approval"));
- assert(html.includes('class="worlds-contact-link" href="/contact.html"'));
+ assert(html.includes('href="/order.html">STEP INSIDE THE COLLECTION'));
  assert(style.includes(".journey-grid"));
  assert(style.includes("@media(max-width:680px)"));
  assert(build.includes('"studio-reimagined.css"'));

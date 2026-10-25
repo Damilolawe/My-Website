@@ -39,8 +39,8 @@ test("Preview geometry and async transitions have explicit regression guards",as
  assert(gallery.includes("loading.hidden=true"));
  assert(gallery.includes("1280px"));
  assert(galleryCss.includes("height:880px!important"));
- assert(builder.includes("frame.style.height=\"1280px\""));
- assert(builderCss.includes("theater-loading"));
+ assert(builder.includes("mountExpressGallery"));
+ assert(galleryCss.includes("worlds-loading"));
  assert(qa.includes("AUDIT_THEATER_DESKTOP"));
  assert(qa.includes("NARROW_TEMPLATE"));
  assert(qa.includes("geometry.heading.right>width+1"),"Narrow-title assertion must catch even small 320px clipping");
