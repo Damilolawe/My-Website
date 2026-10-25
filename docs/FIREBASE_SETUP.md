@@ -14,8 +14,8 @@ A green local build does not establish a successful release. After each merge, v
 
 - The homepage and contact page send public inquiries through the `awe-inquiry` Supabase Edge Function. Successful submissions require a database acknowledgment.
 - Signed-in accounts, private drafts, owner operations and publishing use the `awe-api` Supabase Edge Function. Keep private records and service credentials out of Firebase assets.
-- Public checkout packages are disabled. A past scoped Stripe sandbox test succeeded, but that QA package has expired. Live payments must stay closed until a separately verified launch decision.
-- AWE Express samples are fictional demonstrations. Customer publication uses the saved, approved version and authorized assets. RunwayML's five-page edition has a distinct approved-page generation path; its checkout remains closed.
+- Public Starter and Signature packages are enabled, and the deployed API currently reports live checkout configured. A past scoped Stripe test payment reached delivery, but that QA package expired. Fresh end-to-end test-mode verification for both tiers remains outstanding.
+- AWE Express samples are fictional demonstrations. Customer publication uses the saved, approved version and authorized assets. The Signature catalog contains RunwayML and source-guided five-page designs; verify the selected bundle's five pages, approved export, and publication before claiming delivery readiness.
 
 ## Recovery
 
