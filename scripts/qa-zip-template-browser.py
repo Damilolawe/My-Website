@@ -77,6 +77,24 @@ def main():
       out.append({"template":template,"page":target,"view":"mobile390","issues":issues,"info":info})
      except Exception as exc:out.append({"template":template,"page":target,"issues":["exception"],"detail":str(exc)[:350]})
      finally:page.close()
+  # Exercise a real five-page AWE Express gallery preview, not just static documents.
+  page=browser.new_page(viewport={"width":1200,"height":850})
+  try:
+   page.goto(BASE+"/order.html",wait_until="domcontentloaded",timeout=20000)
+   page.locator('[data-tier="signature"]').click(timeout=12000)
+   page.locator('#worlds-choices [data-world="md-framer"]').click(timeout=15000)
+   bar=page.locator(".worlds-page-list")
+   assert bar.is_visible(timeout=12000) and bar.locator("button").count()==5
+   bar.get_by_role("button",name="WORK").click(timeout=10000)
+   page.wait_for_function('() => document.querySelector("#worlds-frame")?.srcdoc?.includes("Selected perspectives.")',timeout=20000)
+   assert bar.get_by_role("button",name="WORK").get_attribute("aria-pressed")=="true"
+   assert page.locator("#express-study-status").is_visible()
+   bar.get_by_role("button",name="CONTACT").click()
+   page.wait_for_function('() => document.querySelector("#worlds-frame")?.srcdoc?.includes("Make it yours.")',timeout=20000)
+   out.append({"template":"md-framer","page":"Express five-page controls","view":"laptop","issues":[]})
+  except Exception as exc:
+   out.append({"template":"md-framer","page":"Express five-page controls","view":"laptop","issues":["gallery-interaction"],"detail":str(exc)[:400]})
+  finally:page.close()
   browser.close()
  (ROOT/"report.json").write_text(json.dumps(out,indent=2))
  failures=[x for x in out if x["issues"]]
