@@ -6,7 +6,7 @@ import {renderSite} from "../shared/render.mjs";
 import {minimumTier,templateFitsTier} from "../shared/tiers.mjs";
 const ids=["nike","clay","ferrari"];
 test("Nike, Clay, Ferrari are three distinct appended Signature editions",()=>{
- assert.deepEqual(templates.slice(-3).map(t=>t.id),ids);
+ assert.deepEqual(templates.slice(0,42).slice(-3).map(t=>t.id),ids);
  assert.equal(new Set(templates.map(t=>t.id)).size,templates.length);
  for(const id of ids){
   assert.equal(templates.filter(t=>t.id===id).length,1);
