@@ -2,11 +2,12 @@ export const shellCSS = `/* Twenty independent site shells — differentiated ma
 .site-architecture{position:relative;isolation:isolate}
 .shell-header,.shell-footer{width:min(1480px,90%);margin:0 auto;position:relative}
 .shell-nav{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:clamp(10px,2vw,28px);font:700 12px/1.45 var(--label-font);text-transform:uppercase;letter-spacing:.09em}
+.shell-nav-links{display:flex;align-items:center;flex-wrap:wrap;gap:clamp(12px,2vw,28px)}
 .shell-nav a{color:inherit;text-decoration:none;transition:opacity .25s,transform .25s}
 .shell-nav a:hover{opacity:.65;transform:translateY(-2px)}
-.shell-brand{font:850 clamp(21px,3vw,39px)/1 var(--body-font)!important;letter-spacing:-.07em;text-transform:none;flex:1}
+.shell-brand{font:850 clamp(21px,3vw,39px)/1 var(--body-font)!important;letter-spacing:-.07em;text-transform:none;flex:0 1 auto}
 .shell-note,.shell-footer-index{font:700 10px/1.6 var(--label-font);letter-spacing:.12em}
-.shell-header{padding:22px 0;z-index:5}
+.shell-header{padding:22px 0;z-index:40;isolation:isolate}
 .shell-header .shell-nav a:focus-visible,.shell-footer a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .shell-mid{position:relative}.shell-opening{position:relative}
 .shell-footer{margin-top:70px;padding:40px 0 24px;border-top:1px solid var(--border)}
@@ -176,4 +177,3 @@ export const shellCSS = `/* Twenty independent site shells — differentiated ma
 }
 @media(prefers-reduced-motion:reduce){.shell-nav a{transition:none}}
 `;
-

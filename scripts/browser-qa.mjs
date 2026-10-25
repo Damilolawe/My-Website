@@ -282,7 +282,7 @@ try {
             if(path!==href.split("#")[0])failures.push(label+": multipage link navigated to "+path+" instead of "+href);
           }
         } catch(error){
-          failures.push(label+": section navigation click failed: "+String(error.message).slice(0,160));
+          failures.push(label+": section navigation click failed: "+String(error.message).slice(0,2500));
         }
       } else failures.push(label+": missing template section navigation");
     }
