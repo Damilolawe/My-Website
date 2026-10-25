@@ -186,3 +186,13 @@ test("Guide fidelity responsive bounds never permit aspect-ratio to expand the g
   assert(css.includes("height:clamp(260px,78vw,350px)"),id);
  }
 });
+
+test("All 74 design studies have authored, distinctive fictional headlines",async()=>{
+ const {studyCopy}=await import("../shared/zip-guide-copy.mjs");
+ assert.equal(Object.keys(studyCopy).length,74);
+ const samples=zipDesigns.map(t=>sampleForTemplate(t.id));
+ assert.equal(new Set(samples.map(x=>x.content.headline)).size,74);
+ assert(samples.every(x=>x.content.bio.toLowerCase().includes("fictional")));
+ for(const sample of samples){assert.equal(sample.content.cards.length,3);assert(sample.content.cards.every(x=>x.title&&x.description));}
+ assert.equal(sampleForTemplate("md-framer").content.name,"FORM STUDIO");
+});

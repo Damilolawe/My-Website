@@ -1,3 +1,4 @@
+import {studyCopy,studyCardTitles} from "./zip-guide-copy.mjs";
 // Extracted color systems from the uploaded VoltAgent DESIGN.md archive.
 // 10 already represented references excluded, 74 new directions appended in source ZIP order.
 // The source guides contain specifications, not full executable websites.
@@ -31,11 +32,13 @@ const guideStories={
 export function sampleZipDesign(id,base){
  const t=zipDesignFor(id);if(!t)return null;
  const authored=guideStories[id]||{};
+ const study=studyCopy[t.source];
+ const names=studyCardTitles(t.source);
  return {...base,type:"Creative portfolio",template:id,
  design:{...base.design,primary:t.color,secondary:t.surface,appearance:isDarkHex(t.bg)?"dark":"light",font:"sans",layout:"split",animation:"expressive",sections:["about","work","services","contact"]},
- content:{...base.content,name:authored.name||"STUDIO "+String(t.sourceIndex+1).padStart(2,"0"),headline:["A new kind of perspective.","Make the future visible.","Ideas for what comes next.","Built with intention."][t.sourceIndex%4],
- bio:"A fictional studio exploring digital experiences, creative ideas and considered design.",
+ content:{...base.content,name:authored.name||"STUDIO "+String(t.sourceIndex+1).padStart(2,"0"),headline:study.headline,
+ bio:study.bio,
  heroLabel:"CREATIVE PRACTICE / EDITION "+String(t.sourceIndex+1).padStart(2,"0"),
- ctaLabel:"Explore the work",cards:[{title:"First Impressions",description:"An imagined creative project.",url:""},{title:"The Collection",description:"A fictional design experience.",url:""},{title:"New Perspectives",description:"A study in form and motion.",url:""}],
+ ctaLabel:"Explore the work",cards:names.map((title,i)=>({title,description:"A fictional project exploring "+study.focus+".",url:""})),
  services:[{title:"Creative direction",description:"Thoughtful ideas made tangible."},{title:"Digital experiences",description:"Distinctive spaces for modern brands."}],links:[],publicEmail:"",photoIds:[],testimonials:[],...authored}};
 }
