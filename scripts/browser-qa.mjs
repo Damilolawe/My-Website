@@ -308,7 +308,8 @@ try {
     const contact=document.querySelector("#contact .architect-contact-links, #contact .lm-contact-links, #contact .fd-contact, #contact.rw-manifesto");
     const setup=document.querySelector("#contact .contact-setup-note");
     return {width:innerWidth,docWidth:document.documentElement.scrollWidth,
-      heading:h?{left:h.left,right:h.right,width:h.width,fontSize:getComputedStyle(hero).fontSize}:null,
+      heading:h?{left:h.left,right:h.right,width:h.width,fontSize:getComputedStyle(hero).fontSize,tracking:getComputedStyle(hero).letterSpacing,lineHeight:getComputedStyle(hero).lineHeight}:null,
+      typographyGuard:!!document.querySelector('style[data-awe-typography="readability"]'),
       cards:all,contactText:contact?.textContent?.trim()||setup?.textContent?.trim()||"",
       contactLinks:contact?.querySelectorAll("a").length||0,
       authoredScenes:document.querySelectorAll(".art-scene").length,
@@ -338,6 +339,15 @@ try {
    if(!geometry.heading||geometry.heading.left< -1||geometry.heading.right>width+1)
      failures.push("Narrow "+width+" "+id+": headline clipped beyond visible viewport ("+
        (geometry.heading?.left??"missing")+".."+(geometry.heading?.right??"missing")+")");
+   // Visual-typography regression: check computed pixels, not merely CSS source.
+   if(!["liquidmetal","runwayml","runwaymulti","nike","clay","ferrari"].includes(id)){
+     if(!geometry.typographyGuard)failures.push("TYPOGRAPHY_GUARD "+width+" "+id+": readable CSS missing");
+     const fs=Number.parseFloat(geometry.heading?.fontSize),tr=Number.parseFloat(geometry.heading?.tracking),lh=Number.parseFloat(geometry.heading?.lineHeight);
+     if(Number.isFinite(fs)&&Number.isFinite(tr)&&tr < -fs*.065)
+       failures.push("TYPOGRAPHY_TRACKING "+width+" "+id+": compressed letters "+tr+"px for "+fs+"px font");
+     if(Number.isFinite(fs)&&Number.isFinite(lh)&&lh < fs*.96)
+       failures.push("TYPOGRAPHY_LINE_HEIGHT "+width+" "+id+": colliding line boxes "+lh+"px for "+fs+"px font");
+   }
    for(const card of geometry.cards)
      if(card.right>width+4||card.left< -5||card.width>width+5)
        failures.push("Narrow "+width+" "+id+": case image exceeds viewport");
