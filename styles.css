@@ -51,3 +51,9 @@ body .kicker-index{color:#92958e}
 body .resos-topline span b,body .resos-metrics>div small,body .chart-copy small{color:#596378}
 body .resos-metrics .metric-mini{color:#486b5c}
 body .lab .kicker-index,body .lab-controls p,body .lab-controls>.mono{color:#555d50}
+
+/* Keep branded SVG wordmarks legible on contrasting page sections. */
+img[src*="/assets/brand/awe-concepts-dark.svg"],
+img[src*="/assets/brand/awe-express-dark.svg"]{background-color:#0c0d10;border-radius:4px;padding:3px;box-sizing:border-box}
+img[src*="/assets/brand/awe-concepts-light.svg"],
+img[src*="/assets/brand/awe-express-light.svg"]{background-color:#f1efe8;border-radius:4px;padding:3px;box-sizing:border-box}
