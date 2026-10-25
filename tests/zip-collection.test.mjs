@@ -212,3 +212,21 @@ test("Pricing and Documentation navigations lead to different accessible page sy
  assert(simple.includes('class="section" id="features"'));
  assert(!simple.includes('class="study-chapter study-docs"'));
 });
+
+test("Eight more source-guide directions have distinct, responsive artwork with correct sample palette",async()=>{
+ const {waveCSS,waveScene}=await import("../shared/zip-guide-fidelity-wave3.mjs");
+ const keys=["notion","coinbase","sentry","oura","tesla","vercel","wise","slack"];
+ const all=new Set();
+ for(const ref of keys){
+  const id="md-"+ref,meta=zipDesignFor(id),demo=renderSite(sampleForTemplate(id),{sample:true});
+  assert(meta,id);
+  assert(waveCSS(id).length>600,id+" missing guide CSS");
+  const image=waveScene(meta,0);
+  assert(image?.includes('wave-'+ref),id+" missing custom study scene");
+  assert(demo.includes('wave-'+ref),id+" scene not mounted");
+  assert(demo.includes('source-'+id),id+" template class missing");
+  assert(demo.includes(waveCSS(id).slice(0,35)),id+" CSS missing");
+  all.add(image);
+ }
+ assert.equal(all.size,8);
+});
