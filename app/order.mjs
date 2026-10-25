@@ -509,6 +509,12 @@ else if(requestedTier==="starter"||requestedTier==="signature"){
   if(eligible.length)setTemplate(eligible[0].id);
   step=1;
 }
+// Allow a public, allowlisted AWE Express preview to carry its actual design
+// into the existing tier and checkout wizard. The server remains authoritative.
+const requestedTemplate=new URLSearchParams(location.search).get("template");
+if(requestedTemplate&&selectedTier&&templatesForTier(selectedTier).some(t=>t.id===requestedTemplate)){
+  setTemplate(requestedTemplate);
+}
 draw();
 await restoreDraft();
 
