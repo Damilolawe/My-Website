@@ -1,0 +1,68 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {readFile} from "node:fs/promises";
+import {zipDesigns,zipPages,zipDesignFor} from "../shared/zip-design-catalog.mjs";
+import {renderZipDesign} from "../shared/zip-design-render.mjs";
+import {templates,sampleForTemplate} from "../shared/model.mjs";
+import {renderSite} from "../shared/render.mjs";
+import {minimumTier,packageAllowsTemplate} from "../shared/tiers.mjs";
+const read=p=>readFile(new URL("../"+p,import.meta.url),"utf8");
+
+test("74 appended source-guided directions preserve original collection and split exactly 37/37",()=>{
+ assert.equal(templates.length,116);
+ assert.equal(zipDesigns.length,74);
+ assert.deepEqual(templates.slice(-74).map(t=>t.id),zipDesigns.map(t=>t.id));
+ assert.equal(new Set(templates.map(t=>t.id)).size,116);
+ assert.equal(new Set(templates.map(t=>t.name)).size,116);
+ assert.equal(zipDesigns.filter(t=>t.multipage).length,37);
+ assert.equal(zipDesigns.filter(t=>!t.multipage).length,37);
+ const known=new Set(["apple","ferrari","figma","linear.app","spotify","warp","raycast","nike","clay","runwayml"]);
+ for(const t of zipDesigns){assert(!known.has(t.source),t.source+" should be omitted");
+  assert.equal(minimumTier(t.id),t.multipage?"signature":"starter");
+  assert.equal(packageAllowsTemplate({tier:"signature",delivery:"awe-multipage",pageCount:5},t.id),false,"Do not take payment before complete multipage fulfillment is verified");
+  assert.equal(packageAllowsTemplate({tier:"signature",delivery:"awe-hosted",pageCount:1},t.id),!t.multipage);
+ }
+});
+test("Every appended sample renders a safe responsive customer-editable preview",()=>{
+ for(const t of zipDesigns){
+  const v=sampleForTemplate(t.id),html=renderSite(v,{sample:true});
+  assert.equal(v.template,t.id);
+  assert.match(html,/FICTIONAL TEMPLATE DEMO/);
+  assert.match(html,/<h1 id="hero-title">/);
+  assert.match(html,/<meta name="viewport"/);
+  assert.match(html,/@media\(max-width:550px\)/);
+  assert.match(html,/@media\(prefers-reduced-motion:reduce\)/);
+  assert(!html.includes("<script"));
+  assert(html.includes(t.bg),t.id);
+  assert(html.includes(t.color),t.id);
+  assert(html.includes(v.content.name),t.id);
+ }
+});
+test("New five-page previews contain five distinct linked and semantic pages",async()=>{
+ for(const t of zipDesigns.filter(t=>t.multipage)){
+  const v=sampleForTemplate(t.id),pages=[];
+  for(const page of zipPages){
+   const output=await read("dist/templates/"+t.id+"/"+page+".html");
+   assert(output.includes("/templates/"+t.id+"/home.html"),t.id+"/"+page+": missing main nav");
+   assert(output.includes("/templates/"+t.id+"/contact.html"),t.id+"/"+page+": missing contact nav");
+   assert(output.includes('aria-current="page"'),t.id+"/"+page);
+   assert(output.includes('<main id="main">'),t.id+"/"+page);
+   assert(output.includes('id="hero-title"'),t.id+"/"+page);
+   assert(!output.includes("<script"),t.id+"/"+page);
+   assert.equal(output,renderZipDesign(v,{sample:true},page),t.id+"/"+page);
+   pages.push(output);
+  }
+  assert.equal(new Set(pages).size,5,t.id+": page content must differ");
+ }
+});
+test("Changing customer text and colors affects the rendered website without altering other designs",()=>{
+ const t=zipDesignFor("md-framer");
+ assert(t);
+ const sample=sampleForTemplate(t.id);
+ const edited={...sample,design:{...sample.design,primary:"#18aacc",secondary:"#282c2f"},
+   content:{...sample.content,name:"Original Brand",headline:"Original Headline",bio:"A real customer brand statement"}};
+ const html=renderSite(edited,{sample:false});
+ for(const needle of ["Original Brand","Original Headline","A real customer brand statement","#18aacc","#282c2f"])assert(html.includes(needle),needle);
+ assert(!html.includes('FICTIONAL TEMPLATE DEMO'));
+ assert(!renderSite(sampleForTemplate("index"),{sample:true}).includes("Original Brand"));
+});
