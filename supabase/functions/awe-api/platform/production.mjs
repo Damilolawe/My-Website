@@ -3,6 +3,7 @@ import { renderSite } from "../shared/render.mjs";
 import { validate } from "../shared/model.mjs";
 import { premiumStudyIds } from "../shared/premium-art-direction-35.mjs";
 import { verifyPublication } from "./verify-publication.mjs";
+import {allowedApprovedPageNames} from "../shared/approved-pages.mjs";
 export async function saveDraft(order, input, actor = null) {
   const data = validate(input);
   const assets = await rows("awe_assets", `order_id=eq.${order.id}`);
@@ -101,7 +102,7 @@ async function deliver(o, version) {
     version,
     assets: v.asset_ids,
     requiredPages: o.package_snapshot?.delivery === "awe-multipage"
-      ? ["research.html","work.html","studio.html","journal.html"] : [],
+      ? allowedApprovedPageNames(v.input?.template).slice(1) : [],
   });
   if (!env().RESEND_API_KEY || !env().EMAIL_FROM)
     fail("Delivery email is not configured.", 503);
