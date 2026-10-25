@@ -4,9 +4,9 @@ import {zipDesigns,zipDesignFor} from "./zip-design-catalog.mjs";
 // Central package-to-template eligibility rules shared by the browser and server.
 // A tier sets minimum design eligibility; package terms determine deliverables.
 export const tiers = Object.freeze([
-  { id: "starter", name: "Starter", inquiry: "$75", note: "A focused, professional starting point." },
-  { id: "signature", name: "Signature", inquiry: "$150", note: "More room to express your brand." },
-  { id: "premium", name: "Premium", inquiry: "$250+", note: "For more ambitious creative directions." },
+  { id: "starter", name: "Starter", inquiry: "$75", note: "One beautiful single-page website." },
+  { id: "signature", name: "Signature", inquiry: "$150", note: "A complete five-page website with linked navigation." },
+  { id: "premium", name: "Premium / AWE Custom", inquiry: "$250+", note: "Bespoke design and development. Tell us your idea for a custom quote." },
 ]);
 const levels = Object.freeze(Object.fromEntries(tiers.map((t, index) => [t.id, index])));
 const minimums = Object.freeze({
@@ -25,7 +25,11 @@ const minimums = Object.freeze({
   ...Object.fromEntries(freeDesignTemplates.map(d => [d.id,d.tier])),
   ...Object.fromEntries(zipDesigns.map(d => [d.id,d.tier])),
 });
-export const minimumTier = templateId => minimums[templateId] || null;
+// Every original design except RunwayML Multi Page is currently a single-page build.
+// Keep package groupings exclusive; Premium is a bespoke brief, not a template tier.
+export const templatePageCount = id => !Object.hasOwn(minimums,id) ? 0 :
+  (id === "runwaymulti" || zipDesignFor(id)?.multipage ? 5 : 1);
+export const minimumTier = templateId => templatePageCount(templateId) === 5 ? "signature" : templatePageCount(templateId) === 1 ? "starter" : null;
 export const tierLevel = id => Object.hasOwn(levels, id) ? levels[id] : -1;
 export function packageTier(pkg) {
   if (!pkg) return null;
@@ -38,19 +42,19 @@ export function packageTier(pkg) {
   return null; // Other currencies need the owner to assign an explicit tier.
 }
 export function templateFitsTier(templateId, selectedTier) {
-  const minimum = minimumTier(templateId);
-  return Boolean(minimum && tierLevel(selectedTier) >= tierLevel(minimum));
+  return (selectedTier === "starter" && templatePageCount(templateId) === 1) ||
+    (selectedTier === "signature" && templatePageCount(templateId) === 5);
 }
 export function packageAllowsTemplate(pkg, templateId) {
-  // Five-page publishing exists only for the checked, supported Runway layout.
-  // Never sell a single-page template as a five-page site or vice versa.
-  if (pkg?.delivery === "awe-multipage") {
-    return pkg?.tier === "signature" && pkg?.pageCount === 5 &&
-      (templateId === "runwaymulti" || zipDesignFor(templateId)?.multipage === true);
+  const pages = templatePageCount(templateId);
+  if (!pages || !pkg) return false;
+  // Live packages must never sell a one-page template as a five-page site.
+  if (pkg.delivery === "awe-multipage") {
+    return packageTier(pkg) === "signature" && pkg.pageCount === 5 && pages === 5 &&
+      (!Array.isArray(pkg.allowedTemplates) || pkg.allowedTemplates.includes(templateId));
   }
-  // One-page Starter studies cannot be sold as Signature bundles or vice versa.
-  const study=zipDesignFor(templateId);
-  if(study)return !study.multipage && pkg?.delivery==="awe-hosted" && packageTier(pkg)==="starter";
-  if(templateId==="runwaymulti")return false;
-  return pkg?.testOnly === true || templateFitsTier(templateId, packageTier(pkg));
+  // Preserve the restricted, non-public QA offer independently of live tiering.
+  if (pkg.testOnly === true) return true;
+  return packageTier(pkg) === "starter" && pages === 1 &&
+    (pkg.delivery === "awe-hosted" || pkg.delivery == null);
 }

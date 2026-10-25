@@ -59,6 +59,8 @@ try {
 // list the prior 42. Remote metadata can override existing ids but cannot erase
 // new draft entries. Prices and offers remain authoritative from the backend.
 const galleryTemplates=templates.map(t=>({ ...t, ...(catalog.templates||[]).find(remote=>remote.id===t.id) }));
+const templatesForTier=tier=>galleryTemplates.filter(t=>templateFitsTier(t.id,tier));
+const AWE_CUSTOM_URL="/account.html?custom=1";
 function activePackagesForTier(tier) {
   return (catalog.packages || []).filter(p => p.enabled && packageTier(p) === tier)
     .sort((a,b) => a.amount - b.amount);
@@ -100,7 +102,7 @@ function draw() {
       const packageForTier = activePackagesForTier(t.id)[0];
       const details = packageForTier?.features?.length
         ? packageForTier.features.slice(0, 4).map(f => '<li>' + esc(f) + '</li>').join("")
-        : '<li>' + esc(t.note) + '</li><li>Choose your design before customizing</li>';
+        : '<li>' + esc(t.note) + '</li><li>' + (t.id === "premium" ? "Share your brief for a personal quote" : "Choose your design before customizing") + '</li>';
       const price = packageForTier ? money(packageForTier) : t.inquiry;
       const note = packageForTier ? "Available package" : "Starting inquiry price";
       return '<button type="button" class="tier-choice" data-tier="' + t.id + '" aria-pressed="' +
@@ -108,23 +110,22 @@ function draw() {
         ' / ' + esc(note) + '</span><strong>' + esc(t.name) + '</strong><span class="tier-choice-price">' +
         esc(price) + '</span><span class="tier-choice-intro">' + esc(t.note) +
         '</span><ul>' + details + '</ul><span class="tier-choice-link">EXPLORE ' +
-        esc(t.name.toUpperCase()) + ' TEMPLATES ↗︎</span></button>';
+        esc(t.id === "premium" ? "START AN AWE CUSTOM BRIEF" : t.id === "starter" ? "BROWSE SINGLE-PAGE DESIGNS" : "BROWSE MULTIPAGE DESIGNS") + ' ↗︎</span></button>';
     }).join("");
     el.innerHTML = '<div class="tier-lead"><p class="eyebrow">01 / THE RIGHT STARTING POINT</p>' +
       '<h2>Start with your budget.<br><em>Find your direction.</em></h2>' +
-      '<p class="muted">Choose the level that works for you. Higher tiers include access to designs from lower tiers. Every design is built to look professional.</p></div>' +
+      '<p class="muted">Starter is single-page. Signature is multipage. Premium is AWE Custom, designed around your idea rather than a template.</p></div>' +
       '<div class="tier-choices">' + cards + '</div><p class="tier-disclaimer">Package prices, included services and ownership terms are confirmed before checkout. Starting prices shown without an active package are for inquiries only. <a href="/contact.html">Have a custom project? ↗︎</a></p>';
     el.querySelectorAll("[data-tier]").forEach(button => {
       button.onclick = () => {
         const tier = button.dataset.tier;
+        if (tier === "premium") { window.location.assign(AWE_CUSTOM_URL); return; }
         if (tier !== selectedTier) {
           selectedTier = tier;
           packageId = null;
           syncPackage();
-          const available = galleryTemplates.filter(t => minimumTier(t.id) === tier);
-          const multi = selectedPackage()?.delivery === "awe-multipage";
-          if (multi && available.some(t => t.id === "runwaymulti")) setTemplate("runwaymulti");
-          else if (available.length) setTemplate(available[0].id);
+          const available = templatesForTier(tier);
+          if (available.length) setTemplate(available[0].id);
         }
         step = 1;
         draw();
@@ -134,8 +135,7 @@ function draw() {
     $("#next").disabled = !selectedTier;
   }
   if (step === 1) {
-    const offered = galleryTemplates
-      .filter(t => templateFitsTier(t.id, selectedTier) && (!zipDesignFor(t.id) || zipDesignFor(t.id).tier === selectedTier));
+    const offered = templatesForTier(selectedTier);
     const matchesFilter = t => true; // All authored designs appear independently of purpose.
     const visible = offered.filter(matchesFilter);
     const active = visible.find(t => t.id === input.template) || visible[0] || offered[0];
@@ -144,7 +144,8 @@ function draw() {
       '" aria-pressed="' + String(t.id === selectedTier) + '">' + esc(t.name) + '</button>').join("");
     el.innerHTML = '<div class="tier-gallery-top"><div><p class="eyebrow">02 / FIND YOUR DESIGN</p><h2>' +
       esc(tiers.find(t => t.id === selectedTier)?.name || "Your") +
-      ' templates</h2><p class="muted">Pick a design you love, preview the real layout, then make it yours. Available designs reflect your selected package tier.</p></div>' +
+      ' ' + (selectedTier === "starter" ? "single-page templates" : "multipage templates") + '</h2><p class="muted">' +
+      (selectedTier === "starter" ? "Explore single-page websites. Every design in this collection is one page." : "Explore websites with five fully linked pages. Every design in this collection is multipage.") + '</p></div>' +
       '<div class="tier-switches" aria-label="Change your tier">' + tierButtons + '</div></div>' +
       (selectedPackage()?.delivery === "awe-multipage" ? '<p class="notice">The Signature package includes five linked pages. Check each preview before purchase.</p>' : '') +
       '<p id="express-study-status" class="notice" role="status" aria-live="polite" '+(!zipDesignFor(input.template)?'hidden':'')+'>Source-inspired design study. Your approved site will use your own brand and content.</p>' +
@@ -161,10 +162,11 @@ function draw() {
     });
     el.querySelectorAll("[data-switch-tier]").forEach(button=>{
       button.onclick=()=>{
-        selectedTier=button.dataset.switchTier;packageId=null;syncPackage();
-        const next=galleryTemplates.filter(t=>templateFitsTier(t.id,selectedTier));
-        if(selectedPackage()?.delivery==="awe-multipage"&&next.some(t=>t.id==="runwaymulti"))setTemplate("runwaymulti");
-        else if(!next.some(t=>t.id===input.template)&&next.length)setTemplate(next[0].id);
+        const tier=button.dataset.switchTier;
+        if(tier==="premium"){window.location.assign(AWE_CUSTOM_URL);return;}
+        selectedTier=tier;packageId=null;syncPackage();
+        const next=templatesForTier(tier);
+        if(next.length&&!next.some(t=>t.id===input.template))setTemplate(next[0].id);
         draw();
       };
     });
@@ -351,7 +353,8 @@ function draw() {
   $("#next").onclick = async () => {
     try {
       if (step === 0 && !selectedTier) throw Error("Choose a tier first.");
-      if (step === 1 && !templateFitsTier(input.template,selectedTier)) throw Error("Choose a template available in your tier.");
+      if (selectedTier === "premium") {window.location.assign(AWE_CUSTOM_URL);return;}
+      if (step === 1 && !templateFitsTier(input.template,selectedTier)) throw Error("Choose a single-page Starter or multipage Signature template.");
       if (step === 2 && !input.design.sections.length)
         throw Error("Choose at least one section.");
       if (step === 3) validate(input);
@@ -480,9 +483,8 @@ async function restoreDraft() {
     input=normalize(saved.input);
     selectedTier = minimumTier(input.template) || "starter";
     packageId = null;
-    const choices = tiers.filter(t => tierLevel(t.id) >= tierLevel(selectedTier));
-    const withPackage = choices.find(t => activePackagesForTier(t.id).length);
-    if (withPackage) selectedTier = withPackage.id;
+    // Never up-sell a saved Starter draft into Signature or Premium.
+    if (!activePackagesForTier(selectedTier).length) throw Error("This saved design has no supported package.");
     syncPackage();
     files=[];
     uploaded=[];
@@ -498,6 +500,14 @@ async function restoreDraft() {
       report(error);
     }
   }
+}
+const requestedTier=new URLSearchParams(location.search).get("tier");
+if(requestedTier==="premium")window.location.replace(AWE_CUSTOM_URL);
+else if(requestedTier==="starter"||requestedTier==="signature"){
+  selectedTier=requestedTier;syncPackage();
+  const eligible=templatesForTier(requestedTier);
+  if(eligible.length)setTemplate(eligible[0].id);
+  step=1;
 }
 draw();
 await restoreDraft();

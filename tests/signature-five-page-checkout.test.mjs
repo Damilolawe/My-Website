@@ -47,3 +47,31 @@ test("owner UI reviews private multi-page versions and commercial checkout never
   assert(client.includes("packageAllowsTemplate(p, input.template)"));
   assert(tiers.includes('templateId === "runwaymulti"'));
 });
+
+
+test("Starter shows only single-page templates, Signature only five-page designs, Premium routes to AWE Custom",async()=>{
+ const {templateFitsTier,packageAllowsTemplate,templatePageCount}=await import("../shared/tiers.mjs");
+ const {templates}=await import("../shared/model.mjs");
+ const pages=templates.map(t=>({id:t.id,count:templatePageCount(t.id)}));
+ assert.equal(pages.length,116);
+ assert.equal(pages.filter(x=>x.count===1).length,78);
+ assert.equal(pages.filter(x=>x.count===5).length,38);
+ for(const t of pages){
+  assert.equal(templateFitsTier(t.id,"starter"),t.count===1,t.id);
+  assert.equal(templateFitsTier(t.id,"signature"),t.count===5,t.id);
+  assert.equal(templateFitsTier(t.id,"premium"),false,t.id);
+ }
+ const starter={tier:"starter",delivery:"awe-hosted",pageCount:1};
+ const signature={tier:"signature",delivery:"awe-multipage",pageCount:5};
+ for(const t of pages){
+  assert.equal(packageAllowsTemplate(starter,t.id),t.count===1,t.id);
+  assert.equal(packageAllowsTemplate(signature,t.id),t.count===5,t.id);
+ }
+ const [client,account,home]=await Promise.all(["app/order.mjs","app/account.mjs","index.html"].map(p=>readFile(new URL("../"+p,import.meta.url),"utf8")));
+ assert(client.includes('const templatesForTier=tier=>galleryTemplates.filter(t=>templateFitsTier(t.id,tier))'));
+ assert(client.includes('window.location.assign(AWE_CUSTOM_URL)'));
+ assert(client.includes('AWE_CUSTOM_URL="/account.html?custom=1"'));
+ assert(account.includes('get("custom")==="1"'));
+ assert(home.includes('/order.html?tier=starter'));
+ assert(home.includes('/order.html?tier=signature'));
+});

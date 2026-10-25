@@ -53,6 +53,11 @@ async function load() {
           }
         }),
     );
+    if (new URLSearchParams(location.search).get("custom")==="1") {
+      const form=$("#custom");
+      form.scrollIntoView({block:"start",behavior:"instant"});
+      form.querySelector('textarea[name="idea"]')?.focus({preventScroll:true});
+    }
     $("#custom").onsubmit = async (e) => {
       e.preventDefault();
       const btn = $("button", e.currentTarget);
