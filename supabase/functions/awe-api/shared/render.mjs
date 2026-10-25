@@ -11,7 +11,7 @@ import { applyTypographySafety } from "./typography-guard.mjs";
 // customer media IDs, asset delivery, and approval workflows with all templates.
 export function renderSite(input, options = {}) {
   const normalized = normalize(input);
-  if(zipDesignFor(normalized.template))return renderZipDesign(normalized,options);
+  if(zipDesignFor(normalized.template))return applyTypographySafety(renderZipDesign(normalized,options), normalized.template);
   const page = normalized.template === "folio"
     ? renderFolioEditorial(normalized, options)
     : renderPremium(normalized, options);

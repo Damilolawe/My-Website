@@ -2,6 +2,7 @@
 // The caller enforces ownership, review and publication authorization.
 import {normalize} from "./model.mjs";
 import {renderZipDesign} from "./zip-design-render.mjs";
+import {applyTypographySafety} from "./typography-guard.mjs";
 import {zipDesignFor,zipPages} from "./zip-design-catalog.mjs";
 import {renderApprovedRunwayPages,RUNWAY_PAGES} from "./runway-customer-pages.mjs";
 export const STUDY_PAGES=Object.freeze(["index.html","work.html","features.html","studio.html","contact.html"]);
@@ -15,5 +16,5 @@ export function renderApprovedDesignPages(input,options={}){
  if(v.template==="runwaymulti")return renderApprovedRunwayPages(v,options);
  if(!t?.multipage)throw Error("Five-page documents require an approved multipage template.");
  const opts={assetBase:"/api/assets/",assetSuffix:"",...options,sample:false,customerPages:true};
- return Object.fromEntries(zipPages.map((page,i)=>[STUDY_PAGES[i],renderZipDesign(v,opts,page)]));
+ return Object.fromEntries(zipPages.map((page,i)=>[STUDY_PAGES[i],applyTypographySafety(renderZipDesign(v,opts,page),v.template)]));
 }

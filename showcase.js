@@ -38,8 +38,9 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
   function syncFrame(){
     if(screen.classList.contains("is-mobile")){frame.style.width="";frame.style.height="";frame.style.transform="";view.style.height="";return;}
     const scale=Math.min(1,Math.max(1,view.clientWidth)/1280);
-    frame.style.width="1280px";frame.style.height="1280px";frame.style.transform="scale("+scale+")";
-    view.style.height=Math.round(1280*scale)+"px";
+    const height=Math.max(1280,Math.ceil(660/scale));
+    frame.style.width="1280px";frame.style.height=height+"px";frame.style.transform="scale("+scale+")";
+    view.style.height=Math.round(height*scale)+"px";
   }
   if("ResizeObserver" in window){const observer=new ResizeObserver(syncFrame);observer.observe(view);lifetime.signal.addEventListener("abort",()=>observer.disconnect(),{once:true});}
   else addEventListener("resize",syncFrame,{passive:true,signal:lifetime.signal});
