@@ -49,7 +49,8 @@
     let context=null;
     const startMotion=()=>{
       context?.revert();context=null;
-      if(compactTouch.matches||!window.gsap||!window.ScrollTrigger)return;
+      if(compactTouch.matches)return;
+      if(!window.gsap||!window.ScrollTrigger)return;
       window.gsap.registerPlugin(window.ScrollTrigger);
       context=window.gsap.context(()=>{
       if(document.querySelector(".awe-impact-statement h2 span") && document.querySelector(".awe-impact-statement"))window.gsap.from(".awe-impact-statement h2 span",{
