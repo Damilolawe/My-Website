@@ -458,7 +458,9 @@ try {
         const link=inside.locator('nav a[href^="about:srcdoc#"]:not([href="about:srcdoc#main"]):visible').first();
         if(!await link.count())throw Error("No usable in-frame section navigation");
         const href=await link.getAttribute("href");
-        // The desktop theater scales a 1280px iframe; keyboard activation verifies\n        // the link without Playwright miscalculating its transformed click point.\n        await link.press("Enter",{timeout:5000});
+        // The desktop theater scales a 1280px iframe; keyboard activation verifies
+        // the link without Playwright miscalculating its transformed click point.
+        await link.press("Enter",{timeout:5000});
         const hash=await inside.locator("body").evaluate(()=>location.hash);
         if(hash!==new URL(href).hash)throw Error("Frame navigated to "+hash+" instead of "+href);
         embeddedMeasurements.push({id:entry.id,mode,status:"pass",hash});
