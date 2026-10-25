@@ -344,6 +344,14 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
           ).status,
           404,
         );
+        const revision = await request(`orders/${oid}/revision`, {
+          data: { message: "Please revise this private draft before publishing." },
+        });
+        assert.equal(revision.status, 200);
+        assert.equal((await db.query("select public_version from awe_orders")).rows[0].public_version, null);
+        assert.equal((await request(`orders/${oid}/revision`, {
+          actor: "stranger", data: { message: "Unauthorized private draft revision." },
+        })).status, 404);
         const preview = await request(`admin/orders/${oid}/preview`, {
           actor: "owner",
         });
@@ -470,7 +478,7 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
         );
         assert.equal(
           (await db.query("select * from awe_revisions")).rows.length,
-          1,
+          2,
         );
       },
     );

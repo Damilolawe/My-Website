@@ -30,7 +30,10 @@ test("owner dashboard uses authenticated API and escapes all user text",async()=
   assert(src.includes("esc(q.name)"));
   assert(src.includes("esc(q.project)"));
   assert(src.includes('api(`admin/inquiries/${control.dataset.inquiry}`'));
-  assert(src.includes("frame.srcdoc = html"));
+  assert(src.includes("privatePreview(frame)"));
+  const preview=await readFile(repoPath("app/private-preview.mjs"),"utf8");
+  assert(preview.includes("frame.srcdoc ="));
+  assert(preview.includes("client.download('assets/' + id)"));
   assert(src.includes('sandbox=""'));
   assert(!src.includes('src="/api/admin/orders/'));
 });

@@ -886,3 +886,6 @@ body{background:#f0f1e6;color:#18201a}
 #no-template-matches{margin:20px 0}
 @media(max-width:1050px){.tier-choices{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){.tier-choices{grid-template-columns:1fr}.tier-choice{min-height:0}.tier-gallery-top h2{font-size:42px}.tier-switches{width:100%}.tier-switch{flex:1}.purpose-chip{font-size:11px}.tier-lead h2{font-size:clamp(38px,9vw,54px)}}
+
+/* Reserve the account/builder region and prevent child margin collapse while loading. */
+#app{display:flow-root;min-height:100svh}

@@ -21,6 +21,7 @@ const files = [
   "case-studies.js",
   "config.js",
   "favicon.svg",
+  "favicon.ico",
   "_headers",
   "robots.txt",
   "assets",

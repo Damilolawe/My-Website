@@ -502,6 +502,8 @@ export function customerOrder(o) {
       }[o.status] || "Order received",
     payment: o.payment,
     package: o.package_snapshot,
+    preview_ready: o.payment === "paid" && Boolean(o.draft_version),
+    preview_pages: o.input?.template === "runwaymulti" ? ["index.html","research.html","work.html","studio.html","journal.html"] : ["index.html"],
     public_url: o.public_version ? `/sites/${o.slug}` : null,
   };
 }
