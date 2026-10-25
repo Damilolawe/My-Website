@@ -147,6 +147,7 @@ import {fetchPublicTemplate,previewMessage} from "./shared/preview.mjs";
     frame.style.opacity="0";
     loading.textContent="ASSEMBLING "+data.name+"...";
     loading.hidden=false;
+    frameWrap.classList.remove("is-revealed");
     frame.removeAttribute("srcdoc");
     setDevice("desktop");
     legacy?.setAttribute("aria-hidden","true");
@@ -158,6 +159,8 @@ import {fetchPublicTemplate,previewMessage} from "./shared/preview.mjs";
     showInFrame(id,frame,()=>{
       if(serial!==sequence)return;
       frame.style.opacity="1";
+      // Reveal the actual rendered website only after its sandboxed document loads.
+      requestAnimationFrame(()=>{if(serial===sequence)frameWrap.classList.add("is-revealed");});
       loading.hidden=true;
     });
     await animation;
@@ -171,6 +174,7 @@ import {fetchPublicTemplate,previewMessage} from "./shared/preview.mjs";
     dialog.close();
     document.body.classList.remove("universe-dialog-open");
     frame.removeAttribute("srcdoc");
+    frameWrap.classList.remove("is-revealed");
     frame.style.opacity="0";
     loading.hidden=false;
     closing=false;
