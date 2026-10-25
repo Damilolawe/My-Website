@@ -48,6 +48,7 @@ const { templates, types, typeSlugs, sampleForTemplate } = await import("../shar
 const { renderSite } = await import("../shared/render.mjs");
 const {zipDesignFor,zipPages}=await import("../shared/zip-design-catalog.mjs");
 const {renderZipDesign}=await import("../shared/zip-design-render.mjs");
+const {applyTypographySafety}=await import("../shared/typography-guard.mjs");
 const { writeFile } = await import("node:fs/promises");
 for (const t of templates) {
   const demo = sampleForTemplate(t.id);
@@ -66,7 +67,7 @@ for (const t of templates) {
   await writeFile(`dist/templates/${t.id}.html`, renderSite(config, { sample: true }));
   if(zipDesignFor(t.id)?.multipage){
     const folder="dist/templates/"+t.id;await mkdir(folder,{recursive:true});
-    for(const page of zipPages)await writeFile(folder+"/"+page+".html",renderZipDesign(config,{sample:true},page));
+    for(const page of zipPages)await writeFile(folder+"/"+page+".html",applyTypographySafety(renderZipDesign(config,{sample:true},page),t.id));
   }
   // A separate, accessible still version lets the studio's Pause Motion control
   // disable motion inside sandboxed demos without weakening iframe isolation.
