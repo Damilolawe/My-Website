@@ -19,8 +19,11 @@
 .universe-card--metal{right:0%;top:8%;z-index:3;--u-rotate:10deg}
 .universe-card--sculpt{left:1%;bottom:10%;z-index:4;--u-rotate:7deg}
 .universe-card--athletic{right:0%;bottom:4%;z-index:5;--u-rotate:-8deg}
-.universe-card{animation:universe-drift calc(5.7s + var(--u-order) * .6s) ease-in-out infinite alternate;animation-delay:calc(var(--u-order) * -1.1s)}
+.universe-card{animation:universe-drift 5.7s ease-in-out infinite alternate}
 @keyframes universe-drift{0%{translate:0 5px}100%{translate:0 -9px}}
+.universe-card--metal{animation-duration:6.3s;animation-delay:-1.1s}
+.universe-card--sculpt{animation-duration:7.1s;animation-delay:-2.3s}
+.universe-card--athletic{animation-duration:6.6s;animation-delay:-3.1s}
 .universe-card:hover,.universe-card:focus-within{animation-play-state:paused;z-index:10;--u-rotate:0deg;filter:drop-shadow(0 30px 24px #000c);transform:translate3d(var(--u-shift-x),calc(var(--u-shift-y) - 8px),0) rotate(var(--u-rotate)) rotateX(var(--u-tilt-x)) rotateY(var(--u-tilt-y)) scale(1.055)}
 .universe-card-frame{width:100%;height:100%;display:flex;flex-direction:column;background:#111719;border:1px solid #f6ffdbb3;overflow:hidden;box-shadow:0 0 0 2px #0006}
 .universe-browser{height:23px;min-height:23px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 10px;color:#e8efe6;background:#171c1a;font:700 clamp(6px,.6vw,9px)/1 "DM Mono",monospace;letter-spacing:.065em}
