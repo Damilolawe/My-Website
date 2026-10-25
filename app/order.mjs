@@ -55,6 +55,10 @@ const app = $("#app");
 try {
   catalog = await api("catalog");
 } catch {}
+// Combine local source-authored previews with the remote catalogue, which may still
+// list the prior 42. Remote metadata can override existing ids but cannot erase
+// new draft entries. Prices and offers remain authoritative from the backend.
+const galleryTemplates=templates.map(t=>({ ...t, ...(catalog.templates||[]).find(remote=>remote.id===t.id) }));
 function activePackagesForTier(tier) {
   return (catalog.packages || []).filter(p => p.enabled && packageTier(p) === tier)
     .sort((a,b) => a.amount - b.amount);
@@ -67,7 +71,7 @@ function syncPackage() {
   packageId = selectedPackage()?.id || null;
 }
 function setTemplate(id) {
-  const template = (catalog.templates || templates).find(t => t.id === id);
+  const template = galleryTemplates.find(t => t.id === id);
   if (!template) return;
   input.template = template.id;
   input.design.primary = template.color;
@@ -117,7 +121,7 @@ function draw() {
           selectedTier = tier;
           packageId = null;
           syncPackage();
-          const available = (catalog.templates || templates).filter(t => minimumTier(t.id) === tier);
+          const available = galleryTemplates.filter(t => minimumTier(t.id) === tier);
           const multi = selectedPackage()?.delivery === "awe-multipage";
           if (multi && available.some(t => t.id === "runwaymulti")) setTemplate("runwaymulti");
           else if (available.length) setTemplate(available[0].id);
@@ -130,7 +134,7 @@ function draw() {
     $("#next").disabled = !selectedTier;
   }
   if (step === 1) {
-    const offered = (catalog.templates || templates)
+    const offered = galleryTemplates
       .filter(t => templateFitsTier(t.id, selectedTier));
     const matchesFilter = t => true; // All authored designs appear independently of purpose.
     const visible = offered.filter(matchesFilter);
@@ -142,7 +146,7 @@ function draw() {
       esc(tiers.find(t => t.id === selectedTier)?.name || "Your") +
       ' templates</h2><p class="muted">Pick a design you love, preview the real layout, then make it yours. Available designs reflect your selected package tier.</p></div>' +
       '<div class="tier-switches" aria-label="Change your tier">' + tierButtons + '</div></div>' +
-      (selectedPackage()?.delivery === "awe-multipage" ? '<p class="notice">Only RunwayML Multi Page currently supports verified five-page publishing. The new Signature design studies are preview-only until their publishing pipeline passes production QA.</p>' : '') +
+      (selectedPackage()?.delivery === "awe-multipage" ? '<p class="notice">Only RunwayML Multi Page currently supports verified five-page publishing. Other multipage study previews are not yet purchasable.</p>' : '') +
       '<section class="worlds express-gallery" id="express-showcase" aria-labelledby="express-gallery-title">' +
       '<div class="worlds-kicker"><span>AWE EXPRESS / DESIGN COLLECTION</span><strong>SELECT & CUSTOMIZE</strong></div>' +
       '<h3 id="express-gallery-title" class="express-gallery-title">Your next website.<br><em>Your direction.</em></h3>' +
@@ -157,7 +161,7 @@ function draw() {
     el.querySelectorAll("[data-switch-tier]").forEach(button=>{
       button.onclick=()=>{
         selectedTier=button.dataset.switchTier;packageId=null;syncPackage();
-        const next=(catalog.templates||templates).filter(t=>templateFitsTier(t.id,selectedTier));
+        const next=galleryTemplates.filter(t=>templateFitsTier(t.id,selectedTier));
         if(selectedPackage()?.delivery==="awe-multipage"&&next.some(t=>t.id==="runwaymulti"))setTemplate("runwaymulti");
         else if(!next.some(t=>t.id===input.template)&&next.length)setTemplate(next[0].id);
         draw();

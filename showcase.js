@@ -24,7 +24,7 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
   else addEventListener("resize",syncFrame,{passive:true,signal:lifetime.signal});
   lifetime.signal.addEventListener("abort",()=>controller?.abort(),{once:true});
   const savedTemplates=new Map(items.map(x=>[x.id,x]));
-  function templatePath(id){return id==="runwaymulti"?"/experiments/runwayml-multipage/":"/templates/"+id+".html";}
+  function templatePath(id){return id==="runwaymulti"?"/experiments/runwayml-multipage/":items.some(t=>t.id===id&&t.multipage)?"/templates/"+id+"/home.html":"/templates/"+id+".html";}
   function populate(){
     const options=[...items];
     const fragment=document.createDocumentFragment();

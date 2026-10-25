@@ -66,3 +66,11 @@ test("Changing customer text and colors affects the rendered website without alt
  assert(!html.includes('FICTIONAL TEMPLATE DEMO'));
  assert(!renderSite(sampleForTemplate("index"),{sample:true}).includes("Original Brand"));
 });
+
+test("New draft designs remain visible even while server catalog has legacy entries",async()=>{
+ const [client,gallery]=await Promise.all([read("app/order.mjs"),read("showcase.js")]);
+ assert(client.includes("const galleryTemplates=templates.map("));
+ assert(client.includes("const offered = galleryTemplates"));
+ assert(client.includes("galleryTemplates.find(t => t.id === id)"));
+ assert(gallery.includes('"/templates/"+id+"/home.html"'));
+});
