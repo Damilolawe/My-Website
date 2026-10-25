@@ -13,8 +13,8 @@ import {fetchPublicTemplate,previewMessage} from "./shared/preview.mjs";
   const allowed=new Map([
     ["runwayml",{name:"CINEMATIC",tier:"starter"}],
     ["liquidmetal",{name:"LIQUID METAL",tier:"starter"}],
-    ["clay",{name:"SCULPT",tier:"signature"}],
-    ["nike",{name:"ATHLETIC",tier:"signature"}],
+    ["clay",{name:"SCULPT",tier:"starter"}],
+    ["nike",{name:"ATHLETIC",tier:"starter"}],
   ]);
   const reduce=matchMedia("(prefers-reduced-motion: reduce)");
   const compact=matchMedia("(max-width: 960px), (pointer: coarse)");
