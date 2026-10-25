@@ -81,3 +81,10 @@ test("New studies expose purchase restrictions visibly in the gallery",async()=>
  assert(client.includes("This is a preview-only design study."));
  assert(client.includes("notice.hidden=!zipDesignFor(id)"));
 });
+
+test("Source-guide visual groups render distinct artwork, not one repeated generic abstract image",()=>{
+ const reps=[["md-bugatti","art-auto"],["md-aljazeera","art-editorial"],["md-coinbase","art-fintech"],["md-claude","art-code"],["md-framer","art-product"],["md-airbnb","art-commerce"],["md-oura","art-studio"]];
+ const seen=new Set();
+ for(const [id,signature] of reps){const html=renderSite(sampleForTemplate(id),{sample:true});assert(html.includes(signature),id+" artwork differs");seen.add(signature);}
+ assert.equal(seen.size,7);
+});

@@ -24,7 +24,7 @@ test("AWE Express uses the relocated homepage gallery, keeps real responsive pre
   const [js,css,html,gallery,home]=await Promise.all([read("app/order.mjs"),read("showcase.css"),read("order.html"),read("showcase.js"),read("index.html")]);
   assert(js.includes('mountExpressGallery(el.querySelector("#express-showcase")'));
   assert(js.includes('items:offered,initial:active.id'));
-  assert(js.includes('onSelect:id=>{if(offered.some(t=>t.id===id))setTemplate(id);'));
+  assert(js.includes('onSelect:id=>{if(offered.some(t=>t.id===id)){setTemplate(id);'));
   assert(gallery.includes('export function mountExpressGallery'));
   assert(gallery.includes('frame.style.width="1280px"'));
   assert(gallery.includes('frame.srcdoc=html'));
