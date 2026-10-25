@@ -122,3 +122,42 @@ html.motion-paused .hero:before,html.motion-paused .worlds-kicker strong:after,h
 
 /* Device-independent eight-spoked mark for the sticky showcase. */
 .worlds-screen::after{content:"";display:block;width:100px;height:100px;background:#dcfc46;-webkit-mask:url("/assets/icons/asterisk.svg") center/contain no-repeat;mask:url("/assets/icons/asterisk.svg") center/contain no-repeat}
+
+
+/* Category-specific art direction: each comparison is a different fictional website,
+   not the same text-only panel recolored four times. */
+.transformation-after::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-position:center;background-size:cover;opacity:.8}
+.transformation-after::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none}
+.after-grid,.after-orbit{z-index:1}.after-top,.after-copy{z-index:2}
+.transformation-stage[data-comparison="actor"] .transformation-after::before{background-image:url("https://images.unsplash.com/photo-1503095396549-807759245b35?w=1400&q=82");background-position:67% 36%;filter:grayscale(1) contrast(1.22);opacity:.62}
+.transformation-stage[data-comparison="actor"] .transformation-after::after{background:linear-gradient(90deg,#080c0ef2 0%,#080c0ec7 38%,#080c0e19 100%)}
+.transformation-stage[data-comparison="business"] .transformation-after{background:#f1d3c1;color:#392c24}
+.transformation-stage[data-comparison="business"] .transformation-after::before{background-image:url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1400&q=82");background-position:70% center;opacity:.85}
+.transformation-stage[data-comparison="business"] .transformation-after::after{background:linear-gradient(90deg,#f5e7d9 0%,#f5e7d9ee 40%,#f5e7d900 85%)}
+.transformation-stage[data-comparison="business"] .after-copy h3{font-family:Georgia,serif;color:#463426}
+.transformation-stage[data-comparison="business"] .after-copy h3 em{color:#976344}
+.transformation-stage[data-comparison="business"] .after-top,.transformation-stage[data-comparison="business"] .after-top span,.transformation-stage[data-comparison="business"] .after-copy>span{color:#483b32}
+.transformation-stage[data-comparison="developer"] .transformation-after{background:#07120e}
+.transformation-stage[data-comparison="developer"] .transformation-after::before{background:radial-gradient(circle at 78% 42%,#00ee9155,transparent 35%),repeating-linear-gradient(0deg,transparent 0 28px,#62ff9e14 29px 30px),repeating-linear-gradient(90deg,transparent 0 48px,#62ff9e0e 49px 50px);opacity:1}
+.transformation-stage[data-comparison="developer"] .transformation-after::after{content:"{ 01 }  /  build()  /  deploy();";font:700 clamp(13px,2.5vw,30px)/1.6 monospace;letter-spacing:.04em;color:#a0ffc355;left:auto;right:4%;top:23%;width:43%;white-space:normal;overflow-wrap:anywhere}
+.transformation-stage[data-comparison="creative"] .transformation-after{background:#ddc4a8;color:#35231b}
+.transformation-stage[data-comparison="creative"] .transformation-after::before{background-image:url("https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=1400&q=82");background-position:75% center;opacity:.86}
+.transformation-stage[data-comparison="creative"] .transformation-after::after{background:linear-gradient(90deg,#eee1ce 0%,#eee1cedd 42%,#eee1ce00 85%)}
+.transformation-stage[data-comparison="creative"] .after-copy h3{color:#35231b}
+.transformation-stage[data-comparison="creative"] .after-copy h3 em{color:#98543d}
+.transformation-stage[data-comparison="creative"] .after-top,.transformation-stage[data-comparison="creative"] .after-top span,.transformation-stage[data-comparison="creative"] .after-copy>span{color:#3d3026}
+@media(max-width:580px){
+ .transformation-stage{height:490px;border-width:6px;box-shadow:8px 10px 0 #1215121f}
+ .before-nav{padding:12px 10px;font-size:9px;gap:12px}
+ .before-nav span{font-size:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .before-card{width:83%;padding:18px;margin:80px auto 0}
+ .before-card h3{font-size:24px}
+ .before-card p{font-size:12px}
+ .after-top{left:12px;right:12px;top:14px;font-size:8px}
+ .after-top span{max-width:48%;text-align:right}
+ .after-copy{left:7%;bottom:12%;white-space:normal;max-width:86%}
+ .after-copy h3,.transformation-stage[data-comparison="business"] .after-copy h3,.transformation-stage[data-comparison="developer"] .after-copy h3,.transformation-stage[data-comparison="creative"] .after-copy h3{font-size:clamp(43px,12vw,69px);line-height:.94;letter-spacing:-.07em}
+ .after-copy>span{font-size:9px}
+ .after-cta{padding:12px 15px;font-size:9px}
+ .transformation-stage[data-comparison="actor"] .transformation-after::after{background:linear-gradient(90deg,#080c0ef0,#080c0e55)}
+}
