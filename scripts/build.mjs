@@ -1,4 +1,4 @@
-import { cp, mkdir, rm } from "node:fs/promises";
+import { cp, mkdir, rm, readFile } from "node:fs/promises";
 const files = [
   "index.html",
   "404.html",
@@ -95,3 +95,17 @@ await writeFile("dist/release.json", JSON.stringify({
   buildRun: process.env.GITHUB_RUN_ID || null,
   builtAt: new Date().toISOString(),
 }, null, 2) + "\n");
+
+// Keep the authored CSS cascade, but avoid eight separate render-blocking
+// stylesheet requests on the public homepage. All CSS asset URLs are absolute.
+const homePath = "dist/index.html";
+let homeHTML = await readFile(homePath, "utf8");
+const localStyles = [...homeHTML.matchAll(/<link rel="stylesheet" href="(\/?[^"\s]+\.css)">/g)];
+const homeCSS = [];
+for (const [tag, href] of localStyles) {
+  homeCSS.push(await readFile(href.replace(/^\//, ""), "utf8"));
+  homeHTML = homeHTML.replace(tag, homeCSS.length === 1
+    ? '<link rel="stylesheet" href="/assets/home-bundle.css">' : '');
+}
+await writeFile("dist/assets/home-bundle.css", homeCSS.join("\n"));
+await writeFile(homePath, homeHTML);
