@@ -86,7 +86,7 @@ def main():
    bar=page.locator(".worlds-page-list")
    assert bar.is_visible(timeout=12000) and bar.locator("button").count()==5
    bar.get_by_role("button",name="WORK").click(timeout=10000)
-   page.wait_for_function('() => document.querySelector("#worlds-frame")?.srcdoc?.includes("Selected perspectives.")',timeout=20000)
+   page.wait_for_function('() => document.querySelector("#worlds-frame")?.srcdoc?.includes("Work by design.")',timeout=20000)
    assert bar.get_by_role("button",name="WORK").get_attribute("aria-pressed")=="true"
    assert page.locator("#express-study-status").is_visible()
    bar.get_by_role("button",name="CONTACT").click()
