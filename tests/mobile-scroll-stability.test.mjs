@@ -22,7 +22,7 @@ test("Mobile gallery preview is deferred until gallery approaches",async()=>{
  assert(source.includes("const deferPreview=matchMedia"));
  assert(source.includes("if(!previewReady)return;"));
  assert(source.includes('rootMargin:"450px 0px"'));
- assert(source.includes("previewReady=true;choose(selected)"));
+ assert(source.includes("previewReady=true;if(selected)choose(selected)"));
 });
 test("Live browser QA checks motion-enabled touch scrolling beyond one carousel cycle",async()=>{
  const qa=await read("scripts/browser-qa.mjs");

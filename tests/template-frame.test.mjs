@@ -5,21 +5,19 @@ import {fetchPublicTemplate,previewMessage,TEMPLATE_IDS} from "../shared/preview
 import {sampleForTemplate} from "../shared/model.mjs";
 import {renderSite} from "../shared/render.mjs";
 
-test("iframe fix preserves global protections while avoiding direct blocked frame URLs",async()=>{
-  const [headers,homepage,showcase,order]=await Promise.all(
-    ["_headers","index.html","showcase.js","app/order.mjs"].map(x=>readFile(x,"utf8"))
-  );
-  assert(headers.includes("X-Frame-Options: DENY"));
-  assert(headers.includes("frame-ancestors 'none'"));
-  assert(homepage.includes('type="module" src="showcase.js"'));
-  assert(!/<iframe[^>]+id="worlds-frame"[^>]+src=/.test(homepage));
-  assert(!/<iframe[^>]+id="theater-frame"[^>]+src=/.test(order));
-  assert(homepage.includes('id="worlds-frame"'));
-  assert(order.includes('id="theater-frame"'));
-  assert(homepage.includes('sandbox=""')&&order.includes('sandbox=""'));
-  assert(showcase.includes("frame.srcdoc=html"));
-  assert(order.includes("frame.srcdoc=html"));
-  assert(!showcase.includes('frame.src="/templates/"'));
+test("relocated Express gallery previews remain sandboxed srcdoc with strict anti-framing protections",async()=>{
+ const [headers,homepage,showcase,order,orderPage]=await Promise.all(["_headers","index.html","showcase.js","app/order.mjs","order.html"].map(x=>readFile(x,"utf8")));
+ assert(headers.includes("X-Frame-Options: DENY"));
+ assert(headers.includes("frame-ancestors 'none'"));
+ assert(!homepage.includes('type="module" src="showcase.js"'));
+ assert(!homepage.includes('id="worlds-frame"'));
+ assert(orderPage.includes('src="/app/order.mjs"'));
+ assert(order.includes('id="worlds-frame"'));
+ assert(order.includes('sandbox=""'));
+ assert(!/<iframe[^>]+id="worlds-frame"[^>]+src=/.test(order));
+ assert(showcase.includes("frame.srcdoc=html"));
+ assert(showcase.includes("export function mountExpressGallery"));
+ assert(!showcase.includes('frame.src="/templates/"'));
 });
 test("preview fetch only allows six public demo paths, not customer drafts",async()=>{
   assert.equal(TEMPLATE_IDS.length,42);

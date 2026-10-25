@@ -49,21 +49,19 @@ test("rich content remains properly escaped inside cinematic hero variations",()
   assert(!html.includes("<script>alert"));
   assert(!html.includes('onload=x>'));
 });
-test("homepage and ordering preview theater stay sample-only and keyboard accessible",async()=>{
-  const home=await readFile("index.html","utf8"),builder=await readFile("app/order.mjs","utf8"),stage=await readFile("showcase.js","utf8");
-  const build=await readFile("scripts/build.mjs","utf8");
-  assert(home.includes('id="express-showcase"'));
-  assert(home.includes('id="worlds-frame"'));
-  assert(home.includes('aria-pressed="true"'));
-  assert(home.includes('sandbox=""'));
-  assert(builder.includes('sampleForTemplate'));
-  assert(builder.includes('id="theater-frame"'));
-  assert(builder.includes('sandbox=""'));
-  assert(stage.includes("ArrowRight"));
-  assert(stage.includes('data-world'));
-  assert(build.includes('"showcase.css"')&&build.includes('"showcase.js"'));
+test("AWE Express gallery remains sample-only and keyboard accessible after relocation",async()=>{
+ const home=await readFile("index.html","utf8"),builder=await readFile("app/order.mjs","utf8"),stage=await readFile("showcase.js","utf8");
+ const build=await readFile("scripts/build.mjs","utf8");
+ assert(!home.includes('id="express-showcase"'));
+ assert(builder.includes('id="express-showcase"'));
+ assert(builder.includes('id="worlds-frame"'));
+ assert(builder.includes('sandbox=""'));
+ assert(builder.includes("sampleForTemplate"));
+ assert(stage.includes("ArrowRight"));
+ assert(stage.includes('data-world'));
+ assert(stage.includes("onSelect(id)"));
+ assert(build.includes('"showcase.css"')&&build.includes('"showcase.js"'));
 });
-
 test("motion-free demo variants and contrast tokens are generated safely",async()=>{
   const builder=await readFile("scripts/build.mjs","utf8");
   const stage=await readFile("showcase.js","utf8");
