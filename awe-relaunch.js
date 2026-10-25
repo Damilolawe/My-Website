@@ -54,7 +54,7 @@
       window.gsap.registerPlugin(window.ScrollTrigger);
       context=window.gsap.context(()=>{
       if(document.querySelector(".awe-impact-statement h2 span") && document.querySelector(".awe-impact-statement"))window.gsap.from(".awe-impact-statement h2 span",{
-        y:110,rotation:-2,opacity:.1,stagger:.17,ease:"power3.out",duration:1.2,
+        opacity:0,stagger:.1,ease:"power2.out",duration:.55,clearProps:"opacity",
         scrollTrigger:{trigger:".awe-impact-statement",start:"top 76%",once:true}
       });
       if(document.querySelector(".impact-bottom>*") && document.querySelector(".impact-bottom"))window.gsap.from(".impact-bottom>*",{
