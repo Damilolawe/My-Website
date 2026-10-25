@@ -71,7 +71,7 @@ test("Changing customer text and colors affects the rendered website without alt
 test("New draft designs remain visible even while server catalog has legacy entries",async()=>{
  const [client,gallery]=await Promise.all([read("app/order.mjs"),read("showcase.js")]);
  assert(client.includes("const galleryTemplates=templates.map("));
- assert(client.includes("const offered = galleryTemplates"));
+ assert(client.includes("const offered = templatesForTier(selectedTier)"));
  assert(client.includes("galleryTemplates.find(t => t.id === id)"));
  assert(gallery.includes('"/templates/"+id+"/home.html"'));
 });
@@ -121,10 +121,11 @@ test("Five-page Signature demos can switch pages safely in the AWE Express sandb
  assert(style.includes(".worlds-page-list button[aria-pressed=\"true\"]"));
 });
 
-test("Starter and Signature ZIP designs appear exclusively in their chosen tier while legacy eligibility remains unchanged",async()=>{
+test("Starter and Signature selection always filters exact single-page and five-page groups",async()=>{
  const client=await read("app/order.mjs");
- assert(client.includes("zipDesignFor(t.id).tier === selectedTier"));
- assert(client.includes("!zipDesignFor(t.id) ||"));
+ assert(client.includes("templatesForTier(selectedTier)"));
+ assert(client.includes("const templatesForTier=tier=>galleryTemplates.filter(t=>templateFitsTier(t.id,tier))"));
+ assert(client.includes('if(tier==="premium"){window.location.assign(AWE_CUSTOM_URL);return;}'));
 });
 
 test("Signature design studies display the page names specified in their source guides",async()=>{
