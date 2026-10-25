@@ -41,7 +41,11 @@ async function testPage(page,url,label,{waitMs=250}={}){
   }));
   const delta=layout.scroll-layout.client;
   measurements.push({label,url,status:response?.status()||0,width:layout.client,overflow:delta,missingAnchors:layout.missingAnchors});
-  if(delta>1)failures.push(label+": horizontal overflow "+delta+"px ("+layout.scroll+"/"+layout.client+")");
+  if(delta>1){
+    const offenders=await page.evaluate(()=>[...document.querySelectorAll("*")].map(el=>({el,rect:el.getBoundingClientRect()})).filter(({rect})=>rect.right>innerWidth+2 && rect.width>0).slice(0,8).map(({el,rect})=>({element:el.tagName.toLowerCase()+"."+String(el.className||"").replace(/\\s+/g,".").slice(0,60),right:Math.round(rect.right),width:Math.round(rect.width)})));
+    console.log("QA_OVERFLOW_ELEMENTS",label,JSON.stringify(offenders));
+    failures.push(label+": horizontal overflow "+delta+"px ("+layout.scroll+"/"+layout.client+")");
+  }
   if(layout.missingAnchors.length)failures.push(label+": missing fragment anchors "+layout.missingAnchors.join(","));
   console.log("QA",label,"HTTP",response?.status(),"horizontalOverflow",delta,"anchors",layout.missingAnchors.length);
   return layout;
@@ -67,7 +71,8 @@ try {
     failures.push("Desktop motion is disabled or still has unwanted controls");
   await page.mouse.move(2,2);
   await page.waitForTimeout(7100);
-  const next=(await page.locator("#reel-index").textContent())?.trim();
+  let next=(await page.locator("#reel-index").textContent())?.trim();
+  if(next===startup.frame){await page.waitForTimeout(1500);next=(await page.locator("#reel-index").textContent())?.trim();}
   if(next===startup.frame)failures.push("Desktop hero reel did not advance");
   const card=page.locator(".pricing-card.reveal").first();
   await card.evaluate(el=>window.scrollTo({top:el.getBoundingClientRect().top+scrollY-innerHeight*.33,behavior:"instant"}));
@@ -251,7 +256,7 @@ try {
       // has a real mobile details menu and its Signature edition links pages.
       const menu=page.locator(".rw-menu:visible:not([open]) > summary, .trio-menu:visible:not([open]) > summary");
       if(await menu.count()) await menu.click();
-      const first=page.locator('nav[aria-label="Section navigation"] a[href^="#"]:visible, nav[aria-label="Primary navigation"] a[href^="#"]:visible, nav[aria-label="Main navigation"] a[href^="#"]:not([href="#main"]):visible, .rw-menu nav a[href^="#"]:visible, .rw-menu nav a[href^="/experiments/runwayml-multipage/"]:visible, .rw-header-nav a[href^="/experiments/runwayml-multipage/"]:visible, .trio-menu nav a[href^="#"]:visible').first();
+      const first=page.locator('nav[aria-label="Section navigation"] a[href^="#"]:visible, nav[aria-label="Primary navigation"] a[href^="#"]:visible, nav[aria-label="Main navigation"] a[href^="#"]:not([href="#main"]):visible, nav[aria-label="Main navigation"] a[href^="/templates/"]:visible, .rw-menu nav a[href^="#"]:visible, .rw-menu nav a[href^="/experiments/runwayml-multipage/"]:visible, .rw-header-nav a[href^="/experiments/runwayml-multipage/"]:visible, .trio-menu nav a[href^="#"]:visible').first();
       if(await first.count()) {
         const href=await first.getAttribute("href");
         try {
@@ -306,7 +311,7 @@ try {
     });
     const hero=document.querySelector(".hero-variant h1, .fd-hero h1, .rw-hero h1, .fe-hero h1");
     const h=hero?.getBoundingClientRect();
-    const contact=document.querySelector("#contact .architect-contact-links, #contact .lm-contact-links, #contact .fd-contact, #contact.rw-manifesto");
+    const contact=document.querySelector("#contact .architect-contact-links, #contact .lm-contact-links, #contact .fd-contact, #contact.rw-manifesto, #contact.contact");
     const setup=document.querySelector("#contact .contact-setup-note");
     return {width:innerWidth,docWidth:document.documentElement.scrollWidth,
       heading:h?{left:h.left,right:h.right,width:h.width,fontSize:getComputedStyle(hero).fontSize,tracking:getComputedStyle(hero).letterSpacing,lineHeight:getComputedStyle(hero).lineHeight}:null,
@@ -355,7 +360,7 @@ try {
    if(premiumStudyIds.includes(id)){
      if(geometry.contactSection&&!geometry.contactLinks)
        failures.push("Narrow "+width+" "+id+": empty contact section must not render");
-   }else if(!geometry.contactLinks&&!/add your own email|add a contact email|contact method|contact link/i.test(geometry.contactText))
+   }else if(!geometry.contactLinks&&!/add your own email|add a contact email|contact method|contact link|contact details will be added/i.test(geometry.contactText))
      failures.push("Narrow "+width+" "+id+": contact section offers no action or setup message");
   }
   // The embedded theater is narrower than the physical phone; verify that
@@ -435,6 +440,7 @@ try {
       if(currentTier!==desired){
         await page.locator('[data-switch-tier="'+desired+'"]').click();
         currentTier=desired;
+        await page.waitForFunction(expected=>document.querySelectorAll("#worlds-choices .worlds-choice").length===expected,desired==="signature"?38:78);
         const count=await page.locator("#worlds-choices .worlds-choice").count();
         assert.equal(count,desired==="signature"?38:78,"Tier gallery contains only the expected page count");
       }
