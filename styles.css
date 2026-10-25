@@ -57,3 +57,9 @@ img[src*="/assets/brand/awe-concepts-dark.svg"],
 img[src*="/assets/brand/awe-express-dark.svg"]{background-color:#0c0d10;border-radius:4px;padding:3px;box-sizing:border-box}
 img[src*="/assets/brand/awe-concepts-light.svg"],
 img[src*="/assets/brand/awe-express-light.svg"]{background-color:#f1efe8;border-radius:4px;padding:3px;box-sizing:border-box}
+
+/* 2026 approved AWE geometric identity: high contrast without forced dark/light logo backplates. */
+.site-header .brand-logo{display:block;object-fit:contain;width:min(220px,100%);height:auto;max-height:60px}
+.footer-top .footer-wordmark{display:inline-flex;max-width:min(100%,540px);align-items:center;line-height:1}
+.footer-top .footer-wordmark img{display:block;width:clamp(220px,37vw,500px);height:auto;max-width:100%}
+@media(max-width:600px){.site-header .brand-logo{max-height:45px;width:min(168px,100%)}.footer-top .footer-wordmark img{width:min(78vw,340px)}}

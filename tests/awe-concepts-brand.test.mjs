@@ -57,12 +57,25 @@ test("AWE Express remains the offer under Awe Concepts branding", async () => {
     assert.match(page, /class="wordmark"[^>]*><img[^>]*src="\/assets\/brand\//);
     assert(page.includes('src="/assets/brand/' + logo + '"'));
     assert(page.includes('alt="' + label + '"'));
-    assert.match(await source("assets/brand/"+logo), /fill="#F1EFE8"/i, "Dark headers need readable light lettering");
+    assert.match(await source("assets/brand/"+logo), /fill="#F8F7F2"/i, "Dark headers need readable light lettering");
     assert(!page.includes('AWE <i>/</i> DIGITAL'));
   }
   const mark = await source("assets/brand/aw-symbol.svg");
   const favicon = await source("favicon.svg");
-  assert.match(mark, /<path[^>]*fill="#D1FA57"/);
+  assert.match(mark, /<path[^>]*fill="#C6FF00"/);
   assert.match(favicon, /Awe Concepts/);
-  assert.match(favicon, /#D1FA57/);
+  assert.match(favicon, /#C6FF00/);
+});
+
+test("approved vector AWE identity is present in homepage header and footer",async()=>{
+ const homepage=await source("index.html");
+ assert(homepage.includes('awe-concepts-dark.svg'));
+ assert(homepage.includes('awe-wordmark-dark.svg'));
+ for(const [path,color] of [["assets/brand/awe-concepts-dark.svg","#F8F7F2"],["assets/brand/awe-concepts-light.svg","#0B0B0B"]]){
+  const logo=await source(path);
+  assert(logo.includes(color));
+  assert(logo.includes("#C6FF00"));
+  assert(logo.includes('CONCEPTS'));
+  assert(logo.includes('M894 13h173'),"AWE must include geometric E, not the former AW-only mark");
+ }
 });
