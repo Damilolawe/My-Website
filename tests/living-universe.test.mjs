@@ -5,8 +5,8 @@ const read = path => readFile(new URL("../"+path, import.meta.url),"utf8");
 const choices=[
   ["runwayml","CINEMATIC","starter"],
   ["liquidmetal","LIQUID METAL","starter"],
-  ["clay","SCULPT","signature"],
-  ["nike","ATHLETIC","signature"],
+  ["clay","SCULPT","starter"],
+  ["nike","ATHLETIC","starter"],
 ];
 
 test("the hero includes four different authentic AWE Express sites",async()=>{
@@ -16,7 +16,9 @@ test("the hero includes four different authentic AWE Express sites",async()=>{
   assert(home.includes('id="universe-live-frame"'));
   assert(home.includes('id="universe-field"'));
   assert(home.includes('href="/order.html">AWE EXPRESS'));
+  const {templateFitsTier}=await import("../shared/tiers.mjs");
   for(const [id,label,tier] of choices){
+    assert.equal(templateFitsTier(id,tier),true,`${id} hero CTA tier must match order gallery eligibility`);
     assert(home.includes('data-template="'+id+'"'),id+" is present");
     assert(home.includes('data-open-universe="'+id+'"'));
     assert(home.includes(label));
