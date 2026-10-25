@@ -11,6 +11,8 @@ const files = [
   "showcase.css",
   "cinema.css",
   "cinema.js",
+  "universe.css",
+  "universe.js",
   "awe-relaunch.css",
   "hero-layout-fix.css",
   "studio-reimagined.css",
