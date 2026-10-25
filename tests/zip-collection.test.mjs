@@ -96,3 +96,15 @@ test("New design variants do not inflate hosting with unused legacy purpose URLs
   assert((await read("dist/templates/"+t.id+".html")).includes("FICTIONAL TEMPLATE DEMO"));
  }
 });
+
+test("New study editor preserves the authored palette and supports uploaded hero media",async()=>{
+ const [client,source]=await Promise.all([read("app/order.mjs"),read("shared/zip-design-render.mjs")]);
+ assert(client.includes("zipDesignFor(id)?.surface"));
+ assert(source.includes("content.photoIds?.[0]&&!options.sample"));
+ const sample=sampleForTemplate("md-framer");
+ const photoId="a1234567-b123-4123-8123-123456789abc";
+ const updated={...sample,content:{...sample.content,photoIds:[photoId]}};
+ const rendered=renderSite(updated,{sample:false,assetBase:"/client-assets/"});
+ assert(rendered.includes("/client-assets/"+photoId));
+ assert(!renderSite(updated,{sample:true}).includes("/client-assets/"+photoId));
+});

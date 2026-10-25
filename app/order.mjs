@@ -77,7 +77,7 @@ function setTemplate(id) {
   input.design.primary = template.color;
   input.design.appearance = zipDesignFor(id) ? (zipDesignFor(id).bg.match(/^#(?:0[0-9a-f]|1[0-9a-f])/i) ? "dark":"light") : ["afterhours","nocturne","terminal","brutalist","arcade","runwayml","runwaymulti"].includes(id) ? "dark" : "light";
   input.design.font = id === "folio" ? "serif" : id === "arcade" ? "mono" : "sans";
-  input.design.secondary = id === "arcade" ? "#11120f" : "#ece9e0";
+  input.design.secondary = zipDesignFor(id)?.surface || (id === "arcade" ? "#11120f" : "#ece9e0");
   input.design.corners = id === "arcade" ? "sharp" : "soft";
   input.design.sections = sampleForTemplate(id,input.type).design.sections;
 }
