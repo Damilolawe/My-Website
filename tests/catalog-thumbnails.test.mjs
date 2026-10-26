@@ -28,5 +28,6 @@ test("thumbnail generation screenshots the current still-render inventory and ca
   assert.match(source, /page\.screenshot/);
   assert.match(source, /createHash\("sha256"\)/);
   assert.match(build, /generateTemplateThumbnails\(\)/);
-  assert.match(velocity, /\.fv-hero-fallback\{position:absolute;inset:0;z-index:0\}/);
+  if (velocity.includes(".fv-hero-fallback")) assert.match(velocity, /\.fv-hero-fallback\{position:absolute;inset:0;z-index:0\}/);
+  else assert.match(velocity, /\.fv-hero-photo:after\{content:"";position:absolute;inset:0;/);
 });

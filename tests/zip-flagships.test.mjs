@@ -60,6 +60,17 @@ test("Automotive Signature website has five meaningful, independently composed p
  assert(html.get("contact").includes("fv-contact"));
 });
 
+test("Velocity routes retain distinct editorial, technical, atelier, and concierge structures",()=>{
+ const value=sampleForTemplate("md-bugatti");
+ const pages=Object.fromEntries(["home","work","features","studio","contact"].map(page=>[page,renderZipDesign(value,{sample:true},page)]));
+ assert(pages.home.includes("fv-hero")&&pages.home.includes("fv-reveal"));
+ assert(pages.work.includes("fv-work-intro")&&pages.work.includes("fv-cases"));
+ assert(pages.features.includes("fv-technical")&&pages.features.includes("<details class=\"fv-spec\""));
+ assert(pages.studio.includes("fv-studio-opening")&&pages.studio.includes("fv-process-list"));
+ assert(pages.contact.includes("fv-contact-details")&&pages.contact.includes("fv-concierge"));
+ for(const [page,markup] of Object.entries(pages))assert(!markup.includes("fv-chapter-title"),page+" reused the generic chapter template");
+});
+
 test("Documentation Signature website has its own navigable reference experience",()=>{
  const v=sampleForTemplate("md-mintlify");
  const docs=renderZipDesign(v,{sample:true},"features");
