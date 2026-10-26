@@ -7,7 +7,8 @@ test("Review screen provides free saved design action even with checkout disable
   const src=await read("app/order.mjs");
   assert(src.includes('id="save-draft"'));
   assert(src.includes('$("#save-draft").onclick = saveDraft'));
-  assert(src.includes("!catalog.ordersEnabled || !p"),"Paid checkout must stay gated independently");
+  assert(src.includes("const checkoutAvailable = Boolean(catalog.ordersEnabled && p && packageAllowsTemplate(p, input.template))"),"Paid checkout must require orders enabled, a real package, and matching template");
+  assert(src.includes('$("#next").disabled = !checkoutAvailable || !consentBox.checked'),"Paid checkout must stay disabled until both package eligibility and express consent are satisfied");
   assert(src.includes("Selected photo and document files remain on your device"),"Must disclose files are not uploaded for saved designs");
 });
 test("Saving designs requires sign-in and calls the protected draft API, never Stripe",async()=>{
