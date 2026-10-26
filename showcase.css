@@ -109,12 +109,134 @@ text-align:center;color:#f7fbe8;font:800 11px/1.6 ui-monospace,monospace;letter-
 /* Each gallery choice shows its own actual static template; the adjacent row label names it. */
 .worlds-choice{grid-template-columns:26px minmax(100px,148px) 12px minmax(0,1fr) 20px;gap:10px;padding:13px 0}
 .worlds-choice-thumb{position:relative;display:block;aspect-ratio:1.55;overflow:hidden;background:#e9e8e1;border:1px solid #ffffff30;border-radius:3px;isolation:isolate;box-shadow:0 4px 14px #0003}
-.worlds-choice-thumb iframe{position:absolute;top:0;left:0;width:1100px;height:1300px;border:0;pointer-events:none;transform:scale(.135);transform-origin:top left;background:#eee;transition:transform .65s cubic-bezier(.2,.7,.2,1)}
-.worlds-choice:hover .worlds-choice-thumb iframe,.worlds-choice:focus-visible .worlds-choice-thumb iframe{transform:translateY(-42px) scale(.135)}
+
 .worlds-choice-thumb:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px #fff2;pointer-events:none}
 .worlds-choice-copy{display:grid;gap:5px;min-width:0}
 .worlds-choice-copy strong{font:700 17px/1.1 Arial,sans-serif;letter-spacing:-.035em}
 .worlds-choice-copy small{font:11px/1.4 Arial,sans-serif;color:#aab0ad}
 .worlds-choice-swatch{display:block;width:10px;height:10px;border-radius:50%}
-@media(max-width:720px){.worlds-choice{grid-template-columns:20px minmax(100px,120px) 8px minmax(0,1fr) 16px;gap:7px}.worlds-choice-thumb iframe{transform:scale(.11)}.worlds-choice:hover .worlds-choice-thumb iframe,.worlds-choice:focus-visible .worlds-choice-thumb iframe{transform:scale(.11)}.worlds-choice-copy strong{font-size:14px}.worlds-choice-copy small{font-size:10px}}
-@media(prefers-reduced-motion:reduce){.worlds-choice-thumb iframe{transition:none!important}.worlds-choice:hover .worlds-choice-thumb iframe,.worlds-choice:focus-visible .worlds-choice-thumb iframe{transform:scale(.135)}}
+@media(max-width:720px){.worlds-choice{grid-template-columns:20px minmax(100px,120px) 8px minmax(0,1fr) 16px;gap:7px}.worlds-choice-copy strong{font-size:14px}.worlds-choice-copy small{font-size:10px}}
+
+
+
+/* Real, nonblank miniature art direction for catalog rows.
+   The public pages set X-Frame-Options:DENY and frame-ancestors 'none'.
+   Never embed those pages in catalog iframes; use lightweight colored DOM art. */
+.worlds-choice-thumb .worlds-mini{--mini-paper:#f0e9df;--mini-ink:#24252b;position:absolute;inset:0;display:block;overflow:hidden;background:var(--mini-paper)!important;color:var(--mini-ink);isolation:isolate}
+.worlds-mini *{box-sizing:border-box}
+.worlds-mini-page{position:absolute;top:0;left:0;right:0;height:178%;display:flex;flex-direction:column;gap:0;background:var(--mini-paper);transition:transform .8s cubic-bezier(.22,1,.36,1);will-change:auto}
+.worlds-mini-mast{flex:0 0 9%;padding:0 7%;display:flex;align-items:center;gap:5%;border-bottom:1px solid color-mix(in srgb,var(--mini-ink) 24%,transparent)}
+.worlds-mini-mark{width:19%;height:27%;background:var(--mini-ink)}
+.worlds-mini-menu{margin-left:auto;width:10%;height:7%;background:var(--mini-ink);opacity:.55}
+.worlds-mini-menu-short{width:7%;margin-left:0}
+.worlds-mini-hero{position:relative;display:grid;grid-template-columns:53% 47%;min-height:0;flex:0 0 53%;padding:7% 5%;gap:2%;overflow:hidden}
+.worlds-mini-copy{min-width:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:6%;z-index:1}
+.worlds-mini-kicker{width:34%;height:2%;min-height:1px;background:var(--mini-accent)}
+.worlds-mini-headline{width:90%;height:13%;border-radius:1px;background:var(--mini-ink)}
+.worlds-mini-headline-second{width:62%}
+.worlds-mini-subline{width:70%;height:4%;background:var(--mini-ink);opacity:.35}
+.worlds-mini-action{width:36%;height:10%;background:var(--mini-accent);border-radius:1px}
+.worlds-mini-art{position:relative;background:color-mix(in srgb,var(--mini-accent) 25%,var(--mini-paper));overflow:hidden}
+.worlds-mini-shape{position:absolute;display:block}
+.worlds-mini-shape-primary{inset:13% 17% 12% 15%;background:var(--mini-accent);border-radius:45% 45% 6% 6%}
+.worlds-mini-shape-secondary{width:52%;height:45%;bottom:-7%;right:-12%;border-radius:50%;background:var(--mini-ink);opacity:.33}
+.worlds-mini-shape-detail{width:25%;height:19%;top:15%;right:13%;background:var(--mini-paper);opacity:.75}
+.worlds-mini-bottom{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4%;padding:7% 6%;flex:0 0 29%;background:color-mix(in srgb,var(--mini-paper) 88%,var(--mini-ink))}
+.worlds-mini-tile{display:flex;min-width:0;flex-direction:column;gap:6%}
+.worlds-mini-tile-art{display:block;flex:1;background:color-mix(in srgb,var(--mini-accent) 45%,var(--mini-ink))}
+.worlds-mini-tile:nth-child(2) .worlds-mini-tile-art{background:color-mix(in srgb,var(--mini-accent) 28%,var(--mini-paper))}
+.worlds-mini-tile:nth-child(3) .worlds-mini-tile-art{background:color-mix(in srgb,var(--mini-accent) 70%,var(--mini-ink))}
+.worlds-mini-tile-line{height:6%;width:74%;background:var(--mini-ink);opacity:.5}
+.worlds-mini-foot{flex:1;padding:7%;display:flex;align-items:flex-start;gap:10%;background:var(--mini-paper)}
+.worlds-mini-foot-line{height:3%;width:34%;background:var(--mini-ink);opacity:.4}
+.worlds-mini-foot-line:last-child{width:18%}
+/* Every art direction has a different miniature skeleton and visual center. */
+.worlds-mini--automotive{--mini-paper:#0d1013;--mini-ink:#f0eee6}
+.worlds-mini--automotive .worlds-mini-hero{display:block;padding:0;flex-basis:61%;background:linear-gradient(145deg,#313642,#0d1013 60%)}
+.worlds-mini--automotive .worlds-mini-art{position:absolute;inset:0;background:linear-gradient(155deg,color-mix(in srgb,var(--mini-accent) 27%,#2a3442),#0b0d10 72%)}
+.worlds-mini--automotive .worlds-mini-copy{position:absolute;inset:9% 44% 8% 9%;justify-content:flex-end}
+.worlds-mini--automotive .worlds-mini-headline{height:12%;background:#fff}
+.worlds-mini--automotive .worlds-mini-action{height:4%;background:var(--mini-accent)}
+.worlds-mini--automotive .worlds-mini-shape-primary{top:40%;left:18%;right:10%;bottom:26%;border-radius:48% 32% 6% 7%;clip-path:polygon(0 78%,12% 44%,36% 29%,50% 0,77% 13%,100% 72%,100% 98%,0 98%);background:linear-gradient(#f2f0e8,#626c75)}
+.worlds-mini--automotive .worlds-mini-shape-secondary{left:25%;right:auto;bottom:18%;width:15%;height:24%;border:4px solid #dce0de;opacity:1;background:#18191c}
+.worlds-mini--automotive .worlds-mini-shape-detail{right:17%;top:auto;bottom:18%;width:15%;height:24%;border:4px solid #dce0de;opacity:1;border-radius:50%;background:#18191c}
+.worlds-mini--editorial{--mini-paper:#f0e9df;--mini-ink:#251e21}
+.worlds-mini--editorial .worlds-mini-mast{justify-content:center}
+.worlds-mini--editorial .worlds-mini-mark{width:30%;height:17%}
+.worlds-mini--editorial .worlds-mini-hero{display:flex;flex-direction:column;gap:5%;padding:8% 10%}
+.worlds-mini--editorial .worlds-mini-copy{flex:0 0 27%;align-items:center;gap:11%}
+.worlds-mini--editorial .worlds-mini-headline{height:28%;width:83%;border-radius:0;transform:skewX(-10deg)}
+.worlds-mini--editorial .worlds-mini-headline-second{width:56%;height:18%;background:var(--mini-accent)}
+.worlds-mini--editorial .worlds-mini-art{flex:1;min-height:0;background:linear-gradient(135deg,#40302e,#c4b0a0)}
+.worlds-mini--editorial .worlds-mini-shape-primary{border-radius:0;inset:0 36% 0 0;background:linear-gradient(110deg,var(--mini-accent),#251d20)}
+.worlds-mini--editorial .worlds-mini-shape-secondary{border-radius:0;left:68%;top:14%;width:18%;height:72%;background:var(--mini-paper);opacity:.85}
+.worlds-mini--editorial .worlds-mini-bottom{grid-template-columns:2fr 1fr;gap:8%}
+.worlds-mini--editorial .worlds-mini-tile:nth-child(3){display:none}
+.worlds-mini--cinema{--mini-paper:#131116;--mini-ink:#f9f4ed}
+.worlds-mini--cinema .worlds-mini-hero{display:block;padding:0;flex-basis:62%;background:#1d1b24}
+.worlds-mini--cinema .worlds-mini-art{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,color-mix(in srgb,var(--mini-accent) 80%,#1b1728),#0c0b11 75%)}
+.worlds-mini--cinema .worlds-mini-shape-primary{inset:0 28% 0 42%;border-radius:0;background:linear-gradient(100deg,transparent,color-mix(in srgb,var(--mini-accent) 35%,#09090c));transform:skew(-15deg)}
+.worlds-mini--cinema .worlds-mini-copy{position:absolute;inset:35% 38% 10% 7%;justify-content:end}
+.worlds-mini--cinema .worlds-mini-headline{background:#faf8f2}
+.worlds-mini--cinema .worlds-mini-kicker{background:var(--mini-accent)}
+.worlds-mini--terminal{--mini-paper:#121c1b;--mini-ink:#b7edc4}
+.worlds-mini--terminal .worlds-mini-hero{grid-template-columns:26% 74%;gap:0;padding:4%;background:#101816}
+.worlds-mini--terminal .worlds-mini-copy{justify-content:flex-start;padding:10% 4%;border-right:1px solid #529b6760}
+.worlds-mini--terminal .worlds-mini-kicker{width:70%;height:2%}
+.worlds-mini--terminal .worlds-mini-headline{height:3%;min-height:1px;width:85%;background:#8daea2}
+.worlds-mini--terminal .worlds-mini-headline-second{width:65%}
+.worlds-mini--terminal .worlds-mini-art{background:#1a2622;margin:2%;border:1px solid #79bb8c50;border-radius:2px}
+.worlds-mini--terminal .worlds-mini-shape-primary{inset:8% 7% 62% 7%;background:#304f47;border-radius:1px}
+.worlds-mini--terminal .worlds-mini-shape-secondary{inset:41% 10% 10% 10%;width:auto;height:auto;background:repeating-linear-gradient(0deg,#89d89b 0 2px,transparent 2px 11px);opacity:.7;border-radius:0}
+.worlds-mini--terminal .worlds-mini-shape-detail{top:15%;right:13%;width:30%;height:8%;background:var(--mini-accent)}
+.worlds-mini--play{--mini-paper:#d5c7fa;--mini-ink:#2d2858}
+.worlds-mini--play .worlds-mini-mast{background:#fff0ba}
+.worlds-mini--play .worlds-mini-hero{background:radial-gradient(circle at 70% 20%,#f89ad4,transparent 54%),#a38fdc}
+.worlds-mini--play .worlds-mini-headline{box-shadow:2px 2px #fff4c4;transform:rotate(-3deg)}
+.worlds-mini--play .worlds-mini-art{border:4px solid #332e64;box-shadow:4px 4px #332e64;border-radius:15% 15% 27% 15%;background:#f8edd2;padding:10%}
+.worlds-mini--play .worlds-mini-shape-primary{inset:14% 15% 30%;border:3px solid #352f66;border-radius:3px;background:linear-gradient(#7bc9ec 0 63%,#94d995 63% 100%)}
+.worlds-mini--play .worlds-mini-shape-secondary{left:28%;bottom:7%;width:19%;height:12%;opacity:1;background:#312e67;border-radius:0}
+.worlds-mini--play .worlds-mini-shape-detail{right:17%;top:auto;bottom:8%;width:17%;height:12%;background:#e65286;border-radius:50%;opacity:1}
+.worlds-mini--organic{--mini-paper:#f2f3e9;--mini-ink:#243a32}
+.worlds-mini--organic .worlds-mini-hero{grid-template-columns:45% 55%;background:#e8eee0}
+.worlds-mini--organic .worlds-mini-art{background:#c4dec4;border-radius:50% 50% 0 50%}
+.worlds-mini--organic .worlds-mini-shape-primary{inset:11% 15% 12% 16%;border-radius:62% 38% 45% 55%;transform:rotate(-25deg);background:linear-gradient(145deg,var(--mini-accent),#32694e)}
+.worlds-mini--organic .worlds-mini-shape-secondary{width:32%;height:65%;right:4%;bottom:-11%;border-radius:90% 10% 90% 0;background:#d2b6ad;transform:rotate(-38deg);opacity:1}
+.worlds-mini--organic .worlds-mini-bottom{grid-template-columns:1.5fr 1fr 1fr;border-radius:20px 20px 0 0}
+.worlds-mini--dashboard{--mini-paper:#eef1f5;--mini-ink:#1d2735}
+.worlds-mini--dashboard .worlds-mini-hero{grid-template-columns:30% 70%;padding:4% 5%;gap:1%;background:#e5ebef}
+.worlds-mini--dashboard .worlds-mini-copy{justify-content:flex-start;gap:6%;padding:12% 6%;background:#dae3e7}
+.worlds-mini--dashboard .worlds-mini-headline{height:3%;min-height:1px}
+.worlds-mini--dashboard .worlds-mini-art{margin:2% 4%;background:#fff;border:1px solid #d4dbe2}
+.worlds-mini--dashboard .worlds-mini-shape-primary{inset:14% 9% 52%;border-radius:1px;background:linear-gradient(90deg,var(--mini-accent),#bdd2da)}
+.worlds-mini--dashboard .worlds-mini-shape-secondary{inset:57% 11% 12%;width:auto;height:auto;background:linear-gradient(90deg,#d6dfee 31%,transparent 31% 36%,#c2d4e0 36% 66%,transparent 66% 71%,#b1c7dc 71%);opacity:1;border-radius:0}
+.worlds-mini--dashboard .worlds-mini-shape-detail{top:20%;right:16%;background:var(--mini-paper);width:15%;height:14%}
+.worlds-mini--commerce{--mini-paper:#f9f7f0;--mini-ink:#15191c}
+.worlds-mini--commerce .worlds-mini-hero{display:flex;flex-direction:column;padding:6%}
+.worlds-mini--commerce .worlds-mini-copy{flex:0 0 27%;width:100%;justify-content:center;gap:8%}
+.worlds-mini--commerce .worlds-mini-headline{height:22%;width:45%}
+.worlds-mini--commerce .worlds-mini-headline-second{width:29%}
+.worlds-mini--commerce .worlds-mini-art{flex:1;width:100%;background:linear-gradient(115deg,#ddd9d1 33%,#eeeddf 33% 66%,#d6d9d4 66%)}
+.worlds-mini--commerce .worlds-mini-shape-primary{left:13%;right:auto;top:16%;bottom:14%;width:23%;border-radius:10% 10% 4% 4%;background:var(--mini-accent)}
+.worlds-mini--commerce .worlds-mini-shape-secondary{left:45%;top:14%;height:70%;width:21%;border-radius:10%;background:#bfb5ac;opacity:1}
+.worlds-mini--commerce .worlds-mini-shape-detail{right:12%;top:15%;width:22%;height:69%;background:#555d5c;opacity:1}
+.worlds-mini--architecture{--mini-paper:#e3dfd2;--mini-ink:#1e2428}
+.worlds-mini--architecture .worlds-mini-hero{grid-template-columns:45% 55%;padding:4%}
+.worlds-mini--architecture .worlds-mini-copy{justify-content:flex-end;padding:4%}
+.worlds-mini--architecture .worlds-mini-headline{height:16%}
+.worlds-mini--architecture .worlds-mini-art{background:linear-gradient(135deg,#b2b3ab,#666e6c)}
+.worlds-mini--architecture .worlds-mini-shape-primary{inset:8% 5% 0 29%;background:linear-gradient(100deg,#d5d5cc,#555f60);clip-path:polygon(0 12%,75% 0,100% 100%,0 100%);border-radius:0}
+.worlds-mini--architecture .worlds-mini-shape-secondary{inset:31% 47% 0 6%;width:auto;height:auto;opacity:1;background:#313c3c;clip-path:polygon(0 0,100% 8%,100% 100%,0 100%);border-radius:0}
+.worlds-mini--architecture .worlds-mini-shape-detail{inset:14% 24% auto auto;height:50%;width:1px;background:var(--mini-ink)}
+.worlds-mini--minimal{--mini-paper:#f9f8f4;--mini-ink:#252323}
+.worlds-mini--minimal .worlds-mini-hero{grid-template-columns:68% 32%;padding:13% 8% 4%;gap:10%}
+.worlds-mini--minimal .worlds-mini-kicker{background:var(--mini-ink);width:18%}
+.worlds-mini--minimal .worlds-mini-headline{height:7%;width:77%}
+.worlds-mini--minimal .worlds-mini-headline-second{width:42%}
+.worlds-mini--minimal .worlds-mini-art{background:color-mix(in srgb,var(--mini-accent) 25%,var(--mini-paper));border-radius:0}
+.worlds-mini--minimal .worlds-mini-shape-primary{inset:14% 11%;border-radius:0;background:color-mix(in srgb,var(--mini-accent) 46%,#bfbfbf)}
+.worlds-mini--minimal .worlds-mini-bottom{grid-template-columns:repeat(2,1fr);background:var(--mini-paper)}
+.worlds-mini--minimal .worlds-mini-tile:nth-child(3){display:none}
+@media(hover:hover) and (pointer:fine){.worlds-choice:hover .worlds-mini-page,.worlds-choice:focus-visible .worlds-mini-page{transform:translateY(-28%)}}
+@media(max-width:720px){.worlds-mini-page{transition:none}}
+@media(prefers-reduced-motion:reduce){.worlds-mini-page{transition:none!important}.worlds-choice:hover .worlds-mini-page,.worlds-choice:focus-visible .worlds-mini-page{transform:none!important}}
