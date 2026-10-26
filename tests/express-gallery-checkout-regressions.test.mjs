@@ -16,10 +16,12 @@ test("Express gallery uses lazy, faithful template previews without repeating ea
   assert.match(css, /\.worlds-choice-thumb\s*\{/);
   assert.match(css, /@media\(max-width: 700px\)/);
   assert.match(showcase, /button\.append\(count,thumb,swatch,copy,symbol\)/);
-  assert.match(showcase, /mini\.dataset\.src="\/templates\/"/);
   assert.match(showcase, /mini\.loading="lazy"/);
-  assert.doesNotMatch(showcase, /worlds-choice-thumb-title|const caption/);
-  assert.match(showcaseCss, /worlds-choice:hover \.worlds-choice-thumb iframe/);
+  assert.match(showcase, /mini\.src="\/assets\/catalog-thumbnails\/"/);
+  assert.doesNotMatch(showcase, /worlds-choice-thumb-title|worlds-choice-thumb iframe|createElement\("iframe"\)/);
+  assert.doesNotMatch(showcaseCss, /worlds-choice-thumb iframe/);
+  assert.doesNotMatch(css, /worlds-choice-thumb iframe/);
+  assert.match(showcaseCss, /worlds-choice:hover \.worlds-choice-thumb img/);
   assert.match(showcaseCss, /prefers-reduced-motion:reduce/);
   assert.doesNotMatch(showcaseCss, /worlds-choice-thumb-title/);
 });

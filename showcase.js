@@ -63,17 +63,15 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
       swatch.setAttribute("aria-hidden","true");
       const symbol=document.createElement("span");symbol.setAttribute("aria-hidden","true");symbol.textContent="↗︎";
       const thumb=document.createElement("span");thumb.className="worlds-choice-thumb";thumb.setAttribute("aria-hidden","true");
-      const mini=document.createElement("iframe");mini.tabIndex=-1;mini.setAttribute("aria-hidden","true");mini.loading="lazy";mini.title="";mini.setAttribute("sandbox","");
-      mini.dataset.src="/templates/"+encodeURIComponent(item.id)+"--still.html";
+      const mini=document.createElement("img");mini.alt="";mini.loading="lazy";mini.decoding="async";
+      mini.src="/assets/catalog-thumbnails/"+encodeURIComponent(item.id)+".webp";
+      mini.width=640;mini.height=900;
       thumb.append(mini);
       button.append(count,thumb,swatch,copy,symbol);
       button.addEventListener("click",()=>choose(item.id,true));
       fragment.append(button);
     });
     rail.replaceChildren(rail.querySelector(".worlds-rail-note"),fragment);
-    const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)continue;const iframe=entry.target;iframe.src=iframe.dataset.src;observer.unobserve(iframe);}},{rootMargin:"150px"});
-    rail.querySelectorAll(".worlds-choice-thumb iframe").forEach(f=>observer.observe(f));
-    lifetime.signal.addEventListener("abort",()=>observer.disconnect(),{once:true});
     filterChoices();
   }
   function filterChoices(){

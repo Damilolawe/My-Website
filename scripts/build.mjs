@@ -100,6 +100,10 @@ console.log(
 const { buildRunwayMultipage } = await import("./runwayml-multipage.mjs");
 await buildRunwayMultipage("dist");
 
+// Build and cache authentic image previews from the rendered, motion-free pages.
+const { generateTemplateThumbnails } = await import("./generate-template-thumbnails.mjs");
+await generateTemplateThumbnails();
+
 // Public release identity contains no credentials or customer information.
 await writeFile("dist/release.json", JSON.stringify({
   commit: process.env.GITHUB_SHA || null,

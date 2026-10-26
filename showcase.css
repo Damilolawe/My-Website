@@ -109,12 +109,12 @@ text-align:center;color:#f7fbe8;font:800 11px/1.6 ui-monospace,monospace;letter-
 /* Each gallery choice shows its own actual static template; the adjacent row label names it. */
 .worlds-choice{grid-template-columns:26px minmax(100px,148px) 12px minmax(0,1fr) 20px;gap:10px;padding:13px 0}
 .worlds-choice-thumb{position:relative;display:block;aspect-ratio:1.55;overflow:hidden;background:#e9e8e1;border:1px solid #ffffff30;border-radius:3px;isolation:isolate;box-shadow:0 4px 14px #0003}
-.worlds-choice-thumb iframe{position:absolute;top:0;left:0;width:1100px;height:1300px;border:0;pointer-events:none;transform:scale(.135);transform-origin:top left;background:#eee;transition:transform .65s cubic-bezier(.2,.7,.2,1)}
-.worlds-choice:hover .worlds-choice-thumb iframe,.worlds-choice:focus-visible .worlds-choice-thumb iframe{transform:translateY(-42px) scale(.135)}
+.worlds-choice-thumb img{position:absolute;top:0;left:0;width:100%;height:auto;display:block;transition:transform .65s cubic-bezier(.2,.7,.2,1);transform-origin:top center}
+.worlds-choice:hover .worlds-choice-thumb img,.worlds-choice:focus-visible .worlds-choice-thumb img{transform:translateY(-25px)}
 .worlds-choice-thumb:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px #fff2;pointer-events:none}
 .worlds-choice-copy{display:grid;gap:5px;min-width:0}
 .worlds-choice-copy strong{font:700 17px/1.1 Arial,sans-serif;letter-spacing:-.035em}
 .worlds-choice-copy small{font:11px/1.4 Arial,sans-serif;color:#aab0ad}
 .worlds-choice-swatch{display:block;width:10px;height:10px;border-radius:50%}
-@media(max-width:720px){.worlds-choice{grid-template-columns:20px minmax(100px,120px) 8px minmax(0,1fr) 16px;gap:7px}.worlds-choice-thumb iframe{transform:scale(.11)}.worlds-choice:hover .worlds-choice-thumb iframe,.worlds-choice:focus-visible .worlds-choice-thumb iframe{transform:scale(.11)}.worlds-choice-copy strong{font-size:14px}.worlds-choice-copy small{font-size:10px}}
-@media(prefers-reduced-motion:reduce){.worlds-choice-thumb iframe{transition:none!important}.worlds-choice:hover .worlds-choice-thumb iframe,.worlds-choice:focus-visible .worlds-choice-thumb iframe{transform:scale(.135)}}
+@media(max-width:720px){.worlds-choice{grid-template-columns:20px minmax(100px,120px) 8px minmax(0,1fr) 16px;gap:7px}.worlds-choice:hover .worlds-choice-thumb img,.worlds-choice:focus-visible .worlds-choice-thumb img{transform:none}.worlds-choice-copy strong{font-size:14px}.worlds-choice-copy small{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.worlds-choice-thumb img{transition:none!important}.worlds-choice:hover .worlds-choice-thumb img,.worlds-choice:focus-visible .worlds-choice-thumb img{transform:none}}
