@@ -111,3 +111,16 @@ test("Catalog browser scanner detects rendered text clipping, not only scroll ov
  assert(audit.includes("document.createRange()"),"Need text ink rectangle measurement");
  assert(audit.includes('issues.push("H1 visible glyphs clipped'),"Clipped headlines must fail acceptance");
 });
+
+test("Fieldnotes mobile header uses accessible disclosure instead of two rows of links",()=>{
+ for(const page of ["home","work","features","studio","contact"]){
+  const html=renderZipDesign(sampleForTemplate("md-mintlify"),{sample:true},page);
+  assert(html.includes('class="fn-mobile-menu"'),page+" mobile toggle missing");
+  assert(html.includes('aria-label="Mobile navigation"'),page+" mobile nav label missing");
+  assert(html.includes('body.site.fg-fieldnotes .fn-header>.fn-nav{display:none}'),page+" old menu still visible");
+  assert(html.includes('width:min(310px,calc(100vw - 40px))'),page+" menu can overflow");
+  for(const target of ["home","work","features","studio","contact"])
+   assert(html.includes('href="/templates/md-mintlify/'+target+'.html"'),page+" missing link "+target);
+  assert(html.includes('href="/templates/md-mintlify/'+page+'.html" aria-current="page"'),page+" active page missing");
+ }
+});

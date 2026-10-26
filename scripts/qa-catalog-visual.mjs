@@ -57,7 +57,7 @@ async function audit(t,route,mode,width,height,{capture=false}={}){
      textRight:Math.round(textRight),clipRight:clipAt===null?null:Math.round(clipAt)};
    });
    const width=Math.max(document.body.scrollWidth,document.documentElement.scrollWidth);
-   const menus=[...document.querySelectorAll(".design-mobile,.fd-mobile-menu,.shell-mobile-menu")];
+   const menus=[...document.querySelectorAll(".design-mobile,.fd-mobile-menu,.shell-mobile-menu,.fn-mobile-menu")];
    const heading=visible.filter(el=>el.tagName==="H1");
    const broken=[...document.querySelectorAll('a[href^="#"]')]
     .filter(el=>el.getAttribute("href")!=="#"&&!document.getElementById(el.getAttribute("href").slice(1)))
@@ -94,7 +94,7 @@ async function audit(t,route,mode,width,height,{capture=false}={}){
     warnings.push(label+": heading text may be clipped at "+Math.round(allowedRight)+"px ("+h.text+")");
   }
   if(mode==="phone"&&result.hasMenu){
-   const menu=page.locator(".design-mobile,.fd-mobile-menu,.shell-mobile-menu").first();
+   const menu=page.locator(".design-mobile,.fd-mobile-menu,.shell-mobile-menu,.fn-mobile-menu").first();
    const summary=menu.locator("summary").first();
    if(!await summary.isVisible())issues.push("small-screen menu unavailable");
    else{
