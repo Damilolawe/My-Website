@@ -34,7 +34,8 @@ test("35 non-flagship Signature source studies have different Home and Work comp
 test("37 Starter studies keep a single page with working anchor navigation",()=>{
  for(const t of zipDesigns.filter(t=>!t.multipage)){
   const html=renderSite(sampleForTemplate(t.id),{sample:true});
-  assert(html.includes('class="design-mobile"'),t.id+" menu missing");
+  if(t.id==="md-nintendo-2001")assert(html.includes('aria-label="')&&html.includes("pq-"),"PixelQuest must keep its flagship navigation");
+  else assert(html.includes('class="design-mobile"'),t.id+" menu missing");
   for(const id of ["main","work","features","studio","contact"])
    assert(html.includes('id="'+id+'"'),t.id+" missing section "+id);
   assert(!html.includes('href="/templates/'+t.id+'/work.html"'),t.id+" accidentally multipage");

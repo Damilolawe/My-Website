@@ -68,7 +68,7 @@ async function audit(t,route,mode,width,height,{capture=false}={}){
    }
   }
   if(capture||issues.length){
-   await page.screenshot({path:screenshots+"/"+safe(t.id)+"-"+mode+(route.includes("/home.html")||!route.endsWith(".html")?"":"-chapter")+".jpg",
+   await page.screenshot({path:screenshots+"/"+safe(t.id)+"-"+mode+"-"+safe(route.split("/").filter(Boolean).pop()||"home")+".jpg",
     type:"jpeg",quality:62,fullPage:true,animations:"disabled",timeout:15000});
    snapCount++;
   }
@@ -88,7 +88,7 @@ try{
    await audit(t,route,mode,width,height,{capture:mode==="phone"||mode==="desktop"});
   if(zipDesignFor(t.id)?.multipage){
    for(const page of ["work","features","studio","contact"])
-    await audit(t,"/templates/"+t.id+"/"+page+".html","phone-chapter",390,844);
+    await audit(t,"/templates/"+t.id+"/"+page+".html","phone-chapter",390,844,{capture:true});
   }
  }
 }finally{
