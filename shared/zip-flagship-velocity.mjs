@@ -6,10 +6,28 @@ body.site.fg-velocity *{box-sizing:border-box}
 .fv-header{position:absolute;inset:0 0 auto;z-index:40;min-height:86px;padding:25px clamp(22px,4vw,68px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:linear-gradient(#070807c9,transparent);color:#f8f6ef}
 body.site.fg-velocity:has(.fg-banner) .fv-header{top:32px}
 .fv-brand{font-size:12px;letter-spacing:.32em;text-decoration:none;text-transform:uppercase;white-space:nowrap}
-.fv-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:clamp(12px,2.1vw,32px)}
-.fv-nav a{font:600 9px/1.6 ui-monospace,monospace;letter-spacing:.14em;text-decoration:none;text-transform:uppercase;opacity:.72}
+.fv-nav{display:flex;justify-content:center;flex-wrap:nowrap;white-space:nowrap;gap:clamp(10px,1.65vw,26px)}
+.fv-nav a{font:600 10px/1.6 ui-monospace,monospace;letter-spacing:.12em;text-decoration:none;text-transform:uppercase;opacity:.85}
 .fv-nav a:hover,.fv-nav a[aria-current]{opacity:1;color:#d2b982}
 .fv-header-label{text-align:right;font:500 9px/1.5 ui-monospace,monospace;letter-spacing:.17em;color:#d2d0c8}
+.fv-mobile-menu{display:none}
+.fv-mobile-menu summary{display:flex;align-items:center;justify-content:center;gap:12px;min-width:98px;min-height:44px;padding:10px 12px;border:1px solid #b79b6680;background:#121611;color:#f3eee4;cursor:pointer;list-style:none;font:600 11px/1.4 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}
+.fv-mobile-menu summary::-webkit-details-marker{display:none}
+.fv-mobile-menu summary::marker{content:""}
+.fv-menu-word--open{display:none}
+.fv-mobile-menu[open] .fv-menu-word--open{display:inline}
+.fv-mobile-menu[open] .fv-menu-word--closed{display:none}
+.fv-menu-icon{display:block;position:relative;width:18px;height:15px;flex:0 0 18px}
+.fv-menu-icon:before,.fv-menu-icon:after{content:"";position:absolute;left:0;width:18px;height:1px;background:currentColor;transition:transform .2s}
+.fv-menu-icon:before{top:4px}
+.fv-menu-icon:after{top:11px}
+.fv-mobile-menu[open] .fv-menu-icon:before{transform:translateY(3.5px) rotate(45deg)}
+.fv-mobile-menu[open] .fv-menu-icon:after{transform:translateY(-3.5px) rotate(-45deg)}
+.fv-menu-panel{position:absolute;top:100%;left:clamp(18px,4vw,30px);right:clamp(18px,4vw,30px);display:grid;gap:0;padding:12px 14px;background:#121712;color:#f6f1e5;border:1px solid #b79b6680;box-shadow:0 25px 50px #000a;max-height:calc(100svh - 100px);overflow-y:auto;z-index:45}
+.fv-menu-panel a{display:flex;align-items:center;min-height:48px;padding:12px 14px;border-bottom:1px solid #ffffff21;text-decoration:none;text-transform:uppercase;font:600 12px/1.5 ui-monospace,monospace;letter-spacing:.13em}
+.fv-menu-panel a:last-child{border:0}
+.fv-menu-panel a:hover,.fv-menu-panel a[aria-current="page"]{background:#ffffff0b;color:#e1c68e}
+.fv-mobile-menu summary:focus-visible,.fv-menu-panel a:focus-visible{outline:2px solid #e1c68e;outline-offset:3px}
 .fv-eyebrow{display:block;font:600 10px/1.6 ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--fv-brass)}
 .fv-hero{position:relative;isolation:isolate;min-height:760px;height:100svh;max-height:1120px;overflow:hidden;background:#151715}
 .fv-hero-photo,.fv-hero-photo>.fv-art-tile{position:absolute;inset:0;overflow:hidden;background:linear-gradient(125deg,#313532,#11120f 68%)}
@@ -162,14 +180,15 @@ body.site.fg-velocity:has(.fg-banner) .fv-header{top:32px}
 .fv-demo-interior select{width:100%;padding:14px 12px;background:#f1e9d8;color:#18201c;border:0;font:500 15px Arial,sans-serif}
 .fv-demo-note{display:block;font:600 9px/1.7 ui-monospace,monospace;letter-spacing:.08em;color:#c5ad7f;margin-top:18px}
 
-@media(max-width:900px){.fv-header{grid-template-columns:1fr auto}.fv-header-label{display:none}.fv-feature-heading{grid-template-columns:1fr}.fv-feature-heading h1,.fv-feature-heading h2,.fv-feature-heading p{grid-column:1}.fv-technical{grid-template-columns:1fr}.fv-spec-panel{border-left:0;border-top:1px solid #17181350}.fv-contact-page{grid-template-columns:1fr}.fv-contact-details{grid-column:1}.fv-studio-opening{grid-template-columns:.35fr 1.65fr}}
+@media(max-width:900px){.fv-header{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px;min-height:78px;padding:16px clamp(18px,4vw,30px)}.fv-header-label,.fv-nav{display:none}.fv-brand{min-width:0;white-space:normal;overflow-wrap:anywhere}.fv-mobile-menu{display:block;grid-column:2;justify-self:end}.fv-feature-heading{grid-template-columns:1fr}.fv-feature-heading h1,.fv-feature-heading h2,.fv-feature-heading p{grid-column:1}.fv-technical{grid-template-columns:1fr}.fv-spec-panel{border-left:0;border-top:1px solid #17181350}.fv-contact-page{grid-template-columns:1fr}.fv-contact-details{grid-column:1}.fv-studio-opening{grid-template-columns:.35fr 1.65fr}}
 @media(max-width:650px){.fv-header{position:absolute;display:flex;align-items:flex-start;flex-direction:column;gap:15px;padding:17px 20px}.fv-brand{font-size:10px}.fv-nav{justify-content:flex-start;gap:10px 16px}.fv-nav a{font-size:8px}.fv-hero{height:92svh;min-height:650px}.fv-hero-copy{left:24px;right:24px;bottom:105px}.fv-hero h1{font-size:clamp(58px,14vw,90px);line-height:.88}.fv-hero-copy>p{font-size:15px;margin-top:19px}.fv-hero-aside{display:none}.fv-hero-index{bottom:30px;right:24px}.fv-reveal{grid-template-columns:1fr;gap:22px;padding:82px 24px 90px}.fv-reveal h2{font-size:clamp(43px,12vw,67px)}.fv-reveal p{font-size:16px}.fv-reveal-rule{margin-top:35px}.fv-home-specs{gap:12px}.fv-home-spec{font-size:8px}.fv-home-spec strong{font-size:14px}.fv-work-intro{min-height:520px;padding:175px 24px 60px;grid-template-columns:1fr;gap:24px}.fv-work-intro h1{font-size:clamp(59px,14vw,89px)}.fv-work-intro p{max-width:330px}.fv-collection{padding:0 24px 90px}.fv-cases{display:block}.fv-case,.fv-case:nth-child(2),.fv-case:nth-child(3){display:block;margin:0 0 55px}.fv-case-stage,.fv-case:nth-child(2) .fv-case-stage{height:clamp(280px,82vw,430px)}.fv-features{padding:150px 24px 90px}.fv-feature-heading{margin-bottom:43px}.fv-feature-heading h1,.fv-feature-heading h2{font-size:clamp(55px,13vw,83px)}.fv-cutaway{min-height:330px}.fv-spec-panel{padding:22px 0}.fv-spec summary{font-size:22px}.fv-metric-strip{gap:10px}.fv-metric{font-size:8px}.fv-metric strong{font-size:22px}.fv-studio-opening{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;min-height:650px;padding:170px 24px 62px;gap:18px}.fv-studio-opening h1{font-size:clamp(59px,14vw,92px);margin:0}.fv-studio-opening p{font-size:16px;margin:0}.fv-studio-photo{margin:0 24px;height:100vw;min-height:300px}.fv-studio-note{padding:75px 24px 88px;grid-template-columns:1fr;gap:22px}.fv-studio-note h2{font-size:43px}.fv-process{padding:55px 24px 85px}.fv-process-list{grid-template-columns:1fr}.fv-process-step,.fv-process-step+.fv-process-step{padding:22px 0;border-right:0;border-bottom:1px solid #17181344}.fv-process-step h3{margin:15px 0 8px}.fv-contact-page{padding:160px 24px 70px;gap:48px}.fv-contact-copy h1{font-size:clamp(60px,14vw,92px)}.fv-contact-copy p{font-size:16px}.fv-contact-details{display:grid;grid-template-columns:1fr;gap:9px}.fv-footer{padding:20px 24px}}
 
 @media(max-width:900px){.fv-home-preview{grid-template-columns:1fr}.fv-home-feature-visual{height:clamp(350px,70vw,600px)}.fv-home-engineer{grid-template-columns:1fr}.fv-engineer-signature{grid-column:1}.fv-model-story,.fv-model-story:nth-child(2){grid-template-columns:1fr}.fv-model-story:nth-child(2) .fv-model-visual{order:0}.fv-model-story:nth-child(3){margin:30px 0}.fv-model-story:nth-child(3) .fv-model-content{grid-template-columns:1fr}.fv-model-story:nth-child(3) .fv-model-content h2,.fv-model-story:nth-child(3) .fv-model-content p{grid-column:1}}
 @media(max-width:650px){
-.fv-header,.fv-header--solid{background:#121712!important;color:#f4eee4;min-height:112px;gap:12px;padding:18px 22px}
-.fv-nav{width:100%;display:flex;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;white-space:nowrap;gap:13px;padding-bottom:7px;scrollbar-width:thin;scrollbar-color:#b79b66 transparent}
-.fv-nav a{font-size:10px!important;letter-spacing:.035em;flex:0 0 auto}
+.fv-header,.fv-header--solid{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;background:#121712!important;color:#f4eee4;min-height:78px;gap:12px;padding:16px 20px}
+.fv-brand{font-size:clamp(10px,3vw,12px);letter-spacing:.22em}
+.fv-nav{display:none}
+.fv-mobile-menu{display:block}
 .fv-home-preview{padding:75px 24px;gap:28px}
 .fv-preview-heading h2{font-size:clamp(48px,12vw,67px)}
 .fv-home-feature-visual{height:370px}
@@ -216,7 +235,8 @@ export function renderVelocity({t,v,options,page,profile,sourceCSS,sourceScene,s
  const link=target=>paths(t,target);
  const routes=[["home","Atelier"],["work","Models"],["features","Engineering"],["studio","Design"],["contact","Concierge"]];
  const nav=routes.map(([route,label])=>'<a href="'+link(route)+'" '+(page===route?'aria-current="page"':'')+'>'+label+'</a>').join("");
- const header='<header class="fv-header '+(page==="home"?"fv-header--hero":"fv-header--solid")+'"><a class="fv-brand" href="'+link("home")+'">'+name+'</a><nav class="fv-nav" aria-label="Primary navigation">'+nav+'</nav><span class="fv-header-label">MOTOR CAR / ATELIER 001</span></header>';
+ const mobileMenu='<details class="fv-mobile-menu"><summary><span class="fv-menu-word fv-menu-word--closed">Menu</span><span class="fv-menu-word fv-menu-word--open">Close</span><span class="fv-menu-icon" aria-hidden="true"></span></summary><nav class="fv-menu-panel" aria-label="Mobile navigation">'+nav+'</nav></details>';
+ const header='<header class="fv-header '+(page==="home"?"fv-header--hero":"fv-header--solid")+'"><a class="fv-brand" href="'+link("home")+'">'+name+'</a><nav class="fv-nav" aria-label="Desktop navigation">'+nav+'</nav>'+mobileMenu+'<span class="fv-header-label">MOTOR CAR / ATELIER 001</span></header>';
  const collection=v.content.cards||[];
  const featured=collection[0]||{title:"The Model Register",description:"A study of form and motion."};
  const stories=collection.slice(0,3).map((card,i)=>'<article class="fv-model-story fv-model-story-'+(i+1)+'"><div class="fv-model-visual">'+visual(v,options,i,card.title,sourceScene)+'<span class="fv-model-visual-id">STUDY / '+digits(i+1)+'</span></div><div class="fv-model-content"><span class="fv-eyebrow">PROJECT '+digits(i+1)+' / DESIGN EXPLORATION</span><h2>'+esc(card.title)+'</h2><p>'+esc(card.description)+'</p><div class="fv-model-aside"><span>ATELIER / '+digits(i+1)+'</span><span>'+["PROPORTION / PRESENCE","MATERIAL / MOTION","CHARACTER / DETAIL"][i]+'</span></div></div></article>').join("");

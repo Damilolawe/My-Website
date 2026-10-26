@@ -68,3 +68,34 @@ test("Five Velocity pages retain navigation, mobile legibility rules and client-
  const backend=await readFile(new URL("../supabase/functions/awe-api/shared/zip-flagship-velocity.mjs",import.meta.url),"utf8");
  assert.equal(frontend,backend,"Velocity frontend/backend renderer drift");
 });
+
+test("Velocity has usable desktop and mobile menus on every route",()=>{
+ const site=sample();
+ const routes=["home","work","features","studio","contact"];
+ const labels=["Atelier","Models","Engineering","Design","Concierge"];
+ for(const page of parts){
+  const html=renderZipDesign(site,{sample:true},page);
+  const desktop=html.match(/<nav class="fv-nav" aria-label="Desktop navigation">([\s\S]*?)<\/nav>/)?.[1];
+  const mobile=html.match(/<nav class="fv-menu-panel" aria-label="Mobile navigation">([\s\S]*?)<\/nav>/)?.[1];
+  assert(desktop&&mobile,page+" needs both navigations");
+  for(const [i,route] of routes.entries()){
+   const href="/templates/md-bugatti/"+route+".html";
+   for(const [menu,markup] of [["desktop",desktop],["mobile",mobile]]){
+    assert(markup.includes('href="'+href+'"'),page+" "+menu+" missing "+route);
+    assert(markup.includes(">"+labels[i]+"</a>"),page+" "+menu+" missing "+labels[i]);
+    assert.equal(markup.includes('href="'+href+'" aria-current="page"'),page===route,page+" "+menu+" wrong active link "+route);
+   }
+  }
+  assert(html.includes('<details class="fv-mobile-menu"><summary>'),page+" missing native menu toggle");
+  assert(html.includes('class="fv-menu-word fv-menu-word--open">Close'),page+" missing Close label");
+  assert(html.includes('.fv-nav{display:flex;justify-content:center;flex-wrap:nowrap;white-space:nowrap'),page+" desktop links still wrap");
+  assert(html.includes('.fv-menu-panel a{display:flex;align-items:center;min-height:48px'),page+" mobile tap target is too small");
+  assert(html.includes('.fv-header-label,.fv-nav{display:none}.fv-brand'),page+" mobile desktop navigation still showing");
+  assert(!html.includes('overflow-x:auto;overscroll-behavior-x:contain;white-space:nowrap'),page+" old scrolling navigation remains");
+  assert(!html.includes("<script"),page+" introduced executable script");
+  const approved=renderZipDesign(site,{sample:false,customerPages:true},page);
+  assert(approved.includes('href="./index.html"'),page+" approved home route is missing");
+  assert(approved.includes('href="./contact.html"'),page+" approved contact route is missing");
+  assert(!approved.includes('/templates/md-bugatti/'),page+" approved routes need relative links");
+ }
+});
