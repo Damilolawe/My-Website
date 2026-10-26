@@ -99,3 +99,16 @@ test("Velocity has usable desktop and mobile menus on every route",()=>{
   assert(!approved.includes('/templates/md-bugatti/'),page+" approved routes need relative links");
  }
 });
+
+test("Velocity gradient spans the entire viewport without moving its centered desktop navigation",()=>{
+ const html=renderZipDesign(sample(),{sample:true},"home");
+ assert(html.includes(".source-md-bugatti header{max-width:1400px"),"Source-guide cap must remain for non-Velocity designs");
+ assert(html.includes("body.site.fg-velocity header.fv-header{max-width:none;margin:0;width:100%}"),"Velocity must defeat inherited 1400px width cap");
+ assert(html.includes("padding-inline:max(clamp(22px,4vw,68px),calc(50vw - 700px + clamp(22px,4vw,68px)))"),"Keep existing 1400px-centered menu alignment while stretching the background");
+ assert(html.includes("background:linear-gradient(#070807c9,transparent)"),"Header gradient style is preserved");
+ assert(html.includes("@media(min-width:901px){body.site.fg-velocity header.fv-header"),"Narrow-screen menu must keep its own padding");
+ for(const page of ["home","work","features","studio","contact"]){
+  const markup=renderZipDesign(sample(),{sample:true},page);
+  assert(markup.includes("body.site.fg-velocity header.fv-header{max-width:none;margin:0;width:100%}"),page+" has a clipped header gradient");
+ }
+});

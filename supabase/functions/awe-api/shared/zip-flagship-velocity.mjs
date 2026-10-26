@@ -4,6 +4,10 @@ const VELOCITY_CSS=`
 body.site.fg-velocity{margin:0;background:#11120f;color:#f5f2eb;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden;--fv-ink:#151612;--fv-paper:#e9e6de;--fv-muted:#a8a69d;--fv-brass:#b79b66;--fv-line:#ffffff30}
 body.site.fg-velocity *{box-sizing:border-box}
 .fv-header{position:absolute;inset:0 0 auto;z-index:40;min-height:86px;padding:25px clamp(22px,4vw,68px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:linear-gradient(#070807c9,transparent);color:#f8f6ef}
+/* The source-guide selector restricts every Bugatti header to 1400px.
+   Velocity alone needs a full-bleed gradient, without moving its centered nav. */
+body.site.fg-velocity header.fv-header{max-width:none;margin:0;width:100%}
+@media(min-width:901px){body.site.fg-velocity header.fv-header{padding-inline:max(clamp(22px,4vw,68px),calc(50vw - 700px + clamp(22px,4vw,68px)))}}
 body.site.fg-velocity:has(.fg-banner) .fv-header{top:32px}
 .fv-brand{font-size:12px;letter-spacing:.32em;text-decoration:none;text-transform:uppercase;white-space:nowrap}
 .fv-nav{display:flex;justify-content:center;flex-wrap:nowrap;white-space:nowrap;gap:clamp(10px,1.65vw,26px)}
