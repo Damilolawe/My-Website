@@ -51,6 +51,10 @@ if (key.type!=="service_account" || key.project_id!=="awe-digital" ||
   echo "ERROR: Invalid credentials configuration (contents were not printed)." >&2; exit 1
 fi
 
+# Do not expose the deploy key to npm lifecycle scripts, tests, or build dependencies.
+# Bash retains its value for the final, isolated Firebase deploy step only.
+export -n AWE_FIREBASE_SERVICE_ACCOUNT_JSON
+
 echo "Verifying and building commit $CF_PAGES_COMMIT_SHA"
 npm ci
 GITHUB_SHA="$CF_PAGES_COMMIT_SHA" npm run build
