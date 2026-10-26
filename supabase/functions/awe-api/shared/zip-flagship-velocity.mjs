@@ -9,7 +9,7 @@ export function renderVelocity({t,v,options,page,profile,sourceCSS,sourceScene,s
  const nav=links.map(([p,label])=>'<a href="'+link(p)+'" '+(page===p?'aria-current="page"':'')+'>'+label+'</a>').join("");
  const header='<header class="fv-header"><a class="fv-brand" href="'+link("home")+'">'+name+'</a><nav class="fv-nav" aria-label="Primary navigation">'+nav+'</nav><span class="fv-header-label">DESIGN AT THE LIMIT / 001</span></header>';
  const cards='<div class="cards fv-cases">'+(v.content.cards||[]).slice(0,3).map((card,i)=>
-  '<article class="card fv-case"><div class="fv-case-stage">'+(i===0?visual(v,options,0,card.title):i===1?visual(v,options,1,card.title):'<div class="fv-art-tile">'+sourceScene+'</div>')+'</div>'+
+  '<article class="card fv-case"><div class="fv-case-stage">'+(i===0?visual(v,options,0,card.title):i===1?visual(v,options,1,card.title):artMedia(v,options,2,card.title,'<div class="fv-art-tile">'+sourceScene+'</div>'))+'</div>'+
   '<span class="fv-case-index">PROJECT '+digits(i+1)+' / SELECTED STORY</span><h3>'+esc(card.title)+'</h3><p>'+esc(card.description)+'</p></article>').join("")+'</div>';
  const hero='<section class="hero hero-variant fv-hero" data-architecture="'+esc(t.source)+'" aria-labelledby="hero-title">'+
   '<div class="fv-hero-photo"><div class="fv-hero-fallback">'+sourceScene+'</div>'+visual(v,options,0,name+' automotive editorial')+'</div>'+

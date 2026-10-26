@@ -96,6 +96,14 @@ test("Three flagships preserve safe customizable content and authorized media",(
  }
 });
 
+test("Automotive editorial accepts three independent client portfolio images",()=>{
+ const sample=sampleForTemplate("md-bugatti");
+ const ids=["11111111-1111-4111-8111-111111111111","22222222-2222-4222-8222-222222222222","33333333-3333-4333-8333-333333333333"];
+ const value={...sample,content:{...sample.content,photoIds:ids}};
+ const output=renderSite(value,{sample:false,assetBase:"/client-assets/"});
+ for(const id of ids)assert(output.includes("/client-assets/"+id),"Missing customer project art: "+id);
+});
+
 test("New flagship source remains identical in browser and Supabase publication renderer",async()=>{
  const paths=["zip-design-render.mjs","zip-flagship-utils.mjs","zip-flagship-velocity.mjs",
   "zip-flagship-fieldnotes.mjs","zip-flagship-pixelquest.mjs"];
