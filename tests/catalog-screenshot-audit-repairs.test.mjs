@@ -77,3 +77,17 @@ test("Binance and VoltAgent headlines no longer use oversized two-column display
   assert(html.includes(size),id+" lacked the screenshot-verified sizing adjustment");
  }
 });
+
+test("Retest regression: Fieldnotes uses shrinkable content grid tracks at 390px",()=>{
+ for(const chapter of ["home","work","studio"]){
+  const html=renderZipDesign(sampleForTemplate("md-mintlify"),{sample:true},chapter);
+  assert(html.includes("body.site.fg-fieldnotes .fn-playbook{grid-template-columns:minmax(0,1fr)"),chapter+" still has intrinsic column overflow");
+  assert(html.includes("body.site.fg-fieldnotes .fn-steps>.fn-step{grid-template-columns:35px minmax(0,1fr)"),chapter+" step grid still overhangs");
+  assert(html.includes("body.site.fg-fieldnotes .fn-chapter h2{max-width:100%;overflow-wrap:break-word"),chapter+" heading is still unsafely wide");
+ }
+});
+test("Retest regression: Minimax decorative hero is contained at wide screen widths",()=>{
+ const html=renderZipDesign(sampleForTemplate("md-minimax"),{sample:true},"home");
+ assert(html.includes("body.site.source-md-minimax main{min-width:0;max-width:100%;overflow-x:clip}"));
+ assert(html.includes("body.site.source-md-minimax .arch-hero{min-width:0;max-width:100%;overflow:clip}"));
+});
