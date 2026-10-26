@@ -72,8 +72,8 @@ def main():
       if not info["hasMain"] or not info["headline"]:issues.append("page-structure")
       if info["pageWidth"]>393 or info["clipped"]:issues.append("page-overflow")
       # Test a visitor-operable menu; do not count hidden desktop duplicates.
-      if page.locator(".design-mobile").count():
-       menu=page.locator(".design-mobile")
+      if page.locator(".design-mobile, .fn-mobile-menu").count():
+       menu=page.locator(".design-mobile, .fn-mobile-menu").first
        menu.locator("summary").click()
        page_links=menu.locator("nav a:visible").count()
        active_links=menu.locator('nav a[aria-current="page"]:visible').count()
