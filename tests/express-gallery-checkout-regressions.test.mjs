@@ -4,10 +4,11 @@ import { readFile } from "node:fs/promises";
 
 const read = relative => readFile(new URL("../" + relative, import.meta.url), "utf8");
 
-test("Express gallery gets an uncramped layout with all five row elements", async () => {
+test("Express gallery uses lazy, faithful template previews without repeating each name in its thumbnail", async () => {
   const [html, css, showcase] = await Promise.all([
     read("app/order.mjs"), read("app/express-gallery.css"), read("showcase.js"),
   ]);
+  const showcaseCss = await read("showcase.css");
   assert.match(html, /step === 1 \? "is-gallery" : ""/);
   assert.match(css, /\.wizard\.is-gallery\s*\{/);
   assert.match(css, /\.wizard\.is-gallery\s*>\s*\.steps\s*\{/);
@@ -16,6 +17,11 @@ test("Express gallery gets an uncramped layout with all five row elements", asyn
   assert.match(css, /@media\(max-width: 700px\)/);
   assert.match(showcase, /button\.append\(count,thumb,swatch,copy,symbol\)/);
   assert.match(showcase, /mini\.dataset\.src="\/templates\/"/);
+  assert.match(showcase, /mini\.loading="lazy"/);
+  assert.doesNotMatch(showcase, /worlds-choice-thumb-title|const caption/);
+  assert.match(showcaseCss, /worlds-choice:hover \.worlds-choice-thumb iframe/);
+  assert.match(showcaseCss, /prefers-reduced-motion:reduce/);
+  assert.doesNotMatch(showcaseCss, /worlds-choice-thumb-title/);
 });
 
 test("Checkout requires visible consent and keeps reasons next to Continue", async () => {
