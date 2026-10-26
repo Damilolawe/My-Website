@@ -1,0 +1,63 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {readFile} from "node:fs/promises";
+import {renderSite} from "../shared/render.mjs";
+import {renderZipDesign} from "../shared/zip-design-render.mjs";
+import {sampleForTemplate} from "../shared/model.mjs";
+import {freeDesignTemplates} from "../shared/free-designmd.mjs";
+
+const bentoIds=["md-bmw-m","md-coinbase","md-framer","md-mercury","md-notion","md-posthog","md-supabase"];
+const overhangIds=["md-cohere","md-minimax","md-pinterest","md-zapier"];
+
+test("seven Bento Signature landing pages constrain their existing artwork within the teaser",()=>{
+ assert.equal(bentoIds.length,7);
+ for(const id of bentoIds){
+  const html=renderZipDesign(sampleForTemplate(id),{sample:true},"home");
+  assert(html.includes('class="study-home-teaser"'),id+" needs the edited Home teaser");
+  assert(html.includes('arch-work-bento'),id+" must preserve the bento identity");
+  assert(html.includes('arch-work-bento .study-home-teaser .study-teaser-grid>.card:first-child .artbox'),id+" missing bounded visual");
+  assert(html.includes('height:auto;aspect-ratio:1.4;overflow:hidden'),id+" inherited bento height still stretches art");
+  assert(!html.includes("<script"),id+" client rendering must stay script-free");
+ }
+});
+test("long-heading study sources keep their own typography but apply scoped safety",()=>{
+ for(const id of overhangIds){
+  const html=renderSite(sampleForTemplate(id),{sample:true});
+  assert(html.includes("body.site.source-md-"+id.slice(3)),id+" source identity lost");
+  assert(html.includes("overflow-x:clip"),id+" needs to prevent decorative sideways scrolling");
+ }
+ for(const id of ["md-cohere","md-zapier"]){
+  const html=renderSite(sampleForTemplate(id),{sample:true});
+  assert(html.includes("body.site.source-"+id+" .arch-hero .arch-copy h1"),id+" still needs measured headline width");
+ }
+});
+test("all ten FreeDesignMD templates contain bounded, usable native mobile menus",()=>{
+ assert.equal(freeDesignTemplates.length,10);
+ for(const t of freeDesignTemplates){
+  const html=renderSite(sampleForTemplate(t.id),{sample:true});
+  assert(html.includes('class="fd-mobile-menu"'),t.id+" mobile menu missing");
+  assert(html.includes('aria-label="Mobile section navigation"'),t.id+" menu links missing");
+  assert(html.includes('width:min(315px,calc(100vw - 36px))'),t.id+" floating menu can cross screen edge");
+  assert(html.includes('body.fd-site .fd-header .fd-mobile-menu nav'),t.id+" missing anchored menu bounds");
+ }
+});
+test("editorial display leading is fixed only on affected templates",()=>{
+ for(const [id,selector] of [
+  ["still","body.still h2"],["afterhours","body.afterhours h2"],["signal","body.signal h2"],
+  ["brutalist","body.brutalist h2"],["portraiture","body.portraiture h2"],
+  ["gazettebroadside","body.fd-gazettebroadside h2"],
+  ["monobrutalist","body.fd-monobrutalist h2"]
+ ]){
+  const html=renderSite(sampleForTemplate(id),{sample:true});
+  assert(html.includes(selector+"{line-height:1."),id+" still risks touching editorial lines");
+ }
+});
+test("preview and publishing renderers have identical repaired CSS",async()=>{
+ for(const name of ["zip-design-render.mjs","free-designmd-render.mjs","typography-guard.mjs"]){
+  const [frontend,backend]=await Promise.all([
+   readFile(new URL("../shared/"+name,import.meta.url),"utf8"),
+   readFile(new URL("../supabase/functions/awe-api/shared/"+name,import.meta.url),"utf8")
+  ]);
+  assert.equal(frontend,backend,name+" server/preview visual mismatch");
+ }
+});
