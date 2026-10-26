@@ -67,8 +67,10 @@ export function siteChrome(value,{hero,sections,interlude,navIds}){
  const t=value.template,mode=shellIdentities[t]||"base";
  const compact=value.design.navigation==="compact";
  const ids=compact?navIds.filter(x=>["work","contact"].includes(x)):navIds;
+ const mobileMenu='<details class="shell-mobile-menu"><summary>Menu</summary><nav aria-label="Mobile section navigation">'+nav(ids)+'</nav></details>';
+ const renderedHead=head(value,ids).replace('</header>',mobileMenu+'</header>');
  return '<div class="site-architecture site-architecture-'+E(t)+'" data-architecture="'+E(mode)+'">'+
-  head(value,ids)+
+  renderedHead+
   '<main id="main" class="page shell-main">'+middle(value,hero,sections,interlude)+'</main>'+
   foot(value)+'</div>';
 }

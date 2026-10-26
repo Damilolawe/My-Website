@@ -40,5 +40,8 @@ export function sampleZipDesign(id,base){
  bio:study.bio,
  heroLabel:"CREATIVE PRACTICE / EDITION "+String(t.sourceIndex+1).padStart(2,"0"),
  ctaLabel:"Explore the work",cards:names.map((title,i)=>({title,description:"A fictional project exploring "+study.focus+".",url:""})),
- services:[{title:"Creative direction",description:"Thoughtful ideas made tangible."},{title:"Digital experiences",description:"Distinctive spaces for modern brands."}],links:[],publicEmail:"",photoIds:[],testimonials:[],...authored}};
+ services:study.focus.split(/\s+and\s+/i).slice(0,2).map((phrase,i)=>({
+  title:phrase.replace(/^./,c=>c.toUpperCase()).replace(/[. ]+$/,""),
+  description:i===0?"A fictional creative exploration of "+phrase+".":"A source-guided study of "+phrase+" in a distinctive visual system."
+ })),links:[],publicEmail:"",photoIds:[],testimonials:[],...authored}};
 }
