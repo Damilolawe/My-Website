@@ -61,3 +61,11 @@ test("preview and publishing renderers have identical repaired CSS",async()=>{
   assert.equal(frontend,backend,name+" server/preview visual mismatch");
  }
 });
+
+test("Fieldnotes mobile navigation contains wrapped links inside the viewport",()=>{
+ for(const chapter of ["home","work","studio"]){
+  const html=renderZipDesign(sampleForTemplate("md-mintlify"),{sample:true},chapter);
+  assert(html.includes("body.site.fg-fieldnotes .fn-nav{width:100%;min-width:0;max-width:100%"),chapter+" needs bounded mobile navigation");
+  assert(html.includes("body.site.fg-fieldnotes .fn-header{width:100%;min-width:0;max-width:100%"),chapter+" needs bounded mobile header");
+ }
+});
