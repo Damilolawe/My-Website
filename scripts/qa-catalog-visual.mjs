@@ -10,7 +10,13 @@ const origin=(process.env.AWE_VISUAL_BASE||"http://127.0.0.1:8765").replace(/\/$
 const screenshots="catalog-visual-artifacts";
 // Include the three flagship designs in screenshot capture as well.
 // They retain their own bespoke renderers; this audit does not change their code.
-const catalog=templates;
+// Supply AWE_QA_IDS=id1,id2 to retest only affected designs after repairs.
+const selectedIds=new Set((process.env.AWE_QA_IDS||"").split(",").map(x=>x.trim()).filter(Boolean));
+const catalog=selectedIds.size?templates.filter(t=>selectedIds.has(t.id)):templates;
+if(selectedIds.size&&catalog.length!==selectedIds.size){
+ const missing=[...selectedIds].filter(id=>!catalog.some(t=>t.id===id));
+ throw new Error("Unknown template IDs: "+missing.join(","));
+}
 const sizes=[["phone",390,844],["tablet",768,1024],["desktop",1440,900],["wide",1920,1080]];
 const faults=[],warnings=[],measurements=[];
 await mkdir(screenshots,{recursive:true});
@@ -41,11 +47,24 @@ async function audit(t,route,mode,width,height,{capture=false}={}){
     .filter(el=>el.getAttribute("href")!=="#"&&!document.getElementById(el.getAttribute("href").slice(1)))
     .map(el=>el.textContent.trim()).slice(0,5);
    const badMedia=[...document.querySelectorAll("img")].filter(el=>el.complete&&el.naturalWidth===0).map(el=>el.getAttribute("src")).slice(0,5);
+   const overflowElements=[...document.querySelectorAll("body *")].map(el=>({
+    el,rect:el.getBoundingClientRect()
+   })).filter(({rect})=>rect.width>0&&(rect.right>innerWidth+3||rect.left< -3))
+     .slice(0,8).map(({el,rect})=>({
+      element:el.tagName.toLowerCase(),
+      className:typeof el.className==="string"?el.className.slice(0,95):"",
+      left:Math.round(rect.left),right:Math.round(rect.right),
+      width:Math.round(rect.width),
+     }));
+   const teaser=document.querySelector(".study-home-teaser .study-teaser-grid .artbox");
+   const teaserRect=teaser?.getBoundingClientRect();
    return {viewport:innerWidth,documentWidth:width,headlines,headCount:heading.length,
     hasMain:!!document.querySelector("main"),hasMenu:menus.length>0,
-    missingAnchors:broken,brokenImages:badMedia};
+    missingAnchors:broken,brokenImages:badMedia,overflowElements,
+    teaserRight:teaserRect?Math.round(teaserRect.right):null};
   });
-  if(result.documentWidth>width+3)issues.push("horizontal overflow "+(result.documentWidth-width)+"px");
+  if(result.documentWidth>width+3)issues.push("horizontal overflow "+(result.documentWidth-width)+"px: "+JSON.stringify(result.overflowElements.slice(0,3)));
+  if(result.teaserRight!==null&&result.teaserRight>width+3)issues.push("Signature teaser art reaches "+result.teaserRight+"px beyond "+width+"px viewport");
   if(!result.hasMain||result.headCount!==1)issues.push("main region/H1 invalid");
   if(result.missingAnchors.length)issues.push("broken section anchors: "+result.missingAnchors.join(","));
   if(result.brokenImages.length)warnings.push(label+": incomplete images "+result.brokenImages.length);
@@ -60,6 +79,13 @@ async function audit(t,route,mode,width,height,{capture=false}={}){
    else{
     await summary.click();
     if(!await menu.evaluate(el=>el.open))issues.push("menu failed to open");
+    {
+      await page.screenshot({
+       path:screenshots+"/"+safe(t.id)+"-menu-open.jpg",
+       type:"jpeg",quality:70,fullPage:false,animations:"disabled"
+      });
+      snapCount++;
+    }
     const links=menu.locator("nav a:visible");
     if(await links.count()<2)issues.push("menu has fewer than two usable links");
     const bounds=await menu.locator("nav").boundingBox();
