@@ -9,7 +9,7 @@ Cloudflare Pages free plan currently allows 500 builds/month, subject to its app
 ## One-time account setup
 
 1. In Cloudflare Dashboard > Workers & Pages > Create > Pages > Connect to Git, sign in/authorize GitHub and select **only** `Damilolawe/My-Website`. Create a *new* Pages project named `awe-firebase-temporary-builder` (or similar). Do **not** change DNS, domains, registrar, or Firebase.
-2. Set production branch: `main`. Choose no framework preset. Root directory: repository root. **Build command:** `bash scripts/deploy-via-cloudflare-pages.sh`. **Build output directory:** `.cloudflare-build-stub`.
+2. Set production branch: `main`. Choose no framework preset. Root directory: repository root. **Build command:** `bash scripts/deploy-via-cloudflare-pages.sh`. **Build output directory:** `cloudflare-deploy-stub`.
 3. Set Node build environment variable `NODE_VERSION=22`. Under Pages project Settings > Builds & deployments, turn **preview branch builds OFF** to conserve the free quota.
 4. Create a narrowly scoped Firebase Hosting deploy service account in Google Cloud project `awe-digital` (see below). Store its JSON key securely in the **Cloudflare Pages project build environment** as encrypted variable `AWE_FIREBASE_SERVICE_ACCOUNT_JSON`. Never put it in GitHub commits, chat, Pages public files, screenshots, or logs.
 5. Add the non-secret Pages project build variable `AWE_CF_FIREBASE_ENABLED=true` to **production** only. Verify that encrypted secrets are available to your Pages build command before allowing a production build.
