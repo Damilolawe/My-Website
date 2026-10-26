@@ -41,11 +41,24 @@ async function audit(t,route,mode,width,height,{capture=false}={}){
     .filter(el=>el.getAttribute("href")!=="#"&&!document.getElementById(el.getAttribute("href").slice(1)))
     .map(el=>el.textContent.trim()).slice(0,5);
    const badMedia=[...document.querySelectorAll("img")].filter(el=>el.complete&&el.naturalWidth===0).map(el=>el.getAttribute("src")).slice(0,5);
+   const overflowElements=[...document.querySelectorAll("body *")].map(el=>({
+    el,rect:el.getBoundingClientRect()
+   })).filter(({rect})=>rect.width>0&&(rect.right>innerWidth+3||rect.left< -3))
+     .slice(0,8).map(({el,rect})=>({
+      element:el.tagName.toLowerCase(),
+      className:typeof el.className==="string"?el.className.slice(0,95):"",
+      left:Math.round(rect.left),right:Math.round(rect.right),
+      width:Math.round(rect.width),
+     }));
+   const teaser=document.querySelector(".study-home-teaser .study-teaser-grid .artbox");
+   const teaserRect=teaser?.getBoundingClientRect();
    return {viewport:innerWidth,documentWidth:width,headlines,headCount:heading.length,
     hasMain:!!document.querySelector("main"),hasMenu:menus.length>0,
-    missingAnchors:broken,brokenImages:badMedia};
+    missingAnchors:broken,brokenImages:badMedia,overflowElements,
+    teaserRight:teaserRect?Math.round(teaserRect.right):null};
   });
-  if(result.documentWidth>width+3)issues.push("horizontal overflow "+(result.documentWidth-width)+"px");
+  if(result.documentWidth>width+3)issues.push("horizontal overflow "+(result.documentWidth-width)+"px: "+JSON.stringify(result.overflowElements.slice(0,3)));
+  if(result.teaserRight!==null&&result.teaserRight>width+3)issues.push("Signature teaser art reaches "+result.teaserRight+"px beyond "+width+"px viewport");
   if(!result.hasMain||result.headCount!==1)issues.push("main region/H1 invalid");
   if(result.missingAnchors.length)issues.push("broken section anchors: "+result.missingAnchors.join(","));
   if(result.brokenImages.length)warnings.push(label+": incomplete images "+result.brokenImages.length);
@@ -60,6 +73,13 @@ async function audit(t,route,mode,width,height,{capture=false}={}){
    else{
     await summary.click();
     if(!await menu.evaluate(el=>el.open))issues.push("menu failed to open");
+    if(true) {
+      await page.screenshot({
+       path:screenshots+"/"+safe(t.id)+"-menu-open.jpg",
+       type:"jpeg",quality:70,fullPage:false,animations:"disabled"
+      });
+      snapCount++;
+    }
     const links=menu.locator("nav a:visible");
     if(await links.count()<2)issues.push("menu has fewer than two usable links");
     const bounds=await menu.locator("nav").boundingBox();
