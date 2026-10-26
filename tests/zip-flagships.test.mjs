@@ -6,7 +6,7 @@ import {renderSite} from "../shared/render.mjs";
 import {renderZipDesign} from "../shared/zip-design-render.mjs";
 
 const flagships=[
- ["md-bugatti","fg-velocity","fv-hero","fv-engineering","fv-cases"],
+ ["md-bugatti","fg-velocity","fv-hero","fv-home-engineer","fv-home-preview"],
  ["md-mintlify","fg-fieldnotes","fn-product-stage","study-chapter study-docs","fn-playbook"],
  ["md-nintendo-2001","fg-pixelquest","pq-console","pq-quest","pq-games"]
 ];
@@ -54,7 +54,7 @@ test("Automotive Signature website has five meaningful, independently composed p
   assert(markup.includes('aria-current="page"'),page+" current-page indicator lost");
  }
  assert(html.get("home").includes("fv-hero-photo"));
- assert(html.get("work").includes("fv-collection"));
+ assert(html.get("work").includes("fv-model-register")&&html.get("work").includes("fv-model-stories"));
  assert(html.get("features").includes("fv-specs"));
  assert(html.get("studio").includes("fv-manifesto"));
  assert(html.get("contact").includes("fv-contact"));
@@ -64,7 +64,7 @@ test("Velocity routes retain distinct editorial, technical, atelier, and concier
  const value=sampleForTemplate("md-bugatti");
  const pages=Object.fromEntries(["home","work","features","studio","contact"].map(page=>[page,renderZipDesign(value,{sample:true},page)]));
  assert(pages.home.includes("fv-hero")&&pages.home.includes("fv-reveal"));
- assert(pages.work.includes("fv-work-intro")&&pages.work.includes("fv-cases"));
+ assert(pages.work.includes("fv-work-intro")&&pages.work.includes("fv-model-stories"));
  assert(pages.features.includes("fv-technical")&&pages.features.includes("<details class=\"fv-spec\""));
  assert(pages.studio.includes("fv-studio-opening")&&pages.studio.includes("fv-process-list"));
  assert(pages.contact.includes("fv-contact-details")&&pages.contact.includes("fv-concierge"));
@@ -122,8 +122,13 @@ test("Automotive editorial accepts three independent client portfolio images",()
  const sample=sampleForTemplate("md-bugatti");
  const ids=["11111111-1111-4111-8111-111111111111","22222222-2222-4222-8222-222222222222","33333333-3333-4333-8333-333333333333"];
  const value={...sample,content:{...sample.content,photoIds:ids}};
- const output=renderSite(value,{sample:false,assetBase:"/client-assets/"});
- for(const id of ids)assert(output.includes("/client-assets/"+id),"Missing customer project art: "+id);
+ // The redesign intentionally keeps only a small teaser on Home.
+ // All three independently customizable portfolio images must remain on Work.
+ const output=renderZipDesign(value,{sample:false,assetBase:"/client-assets/"},"work");
+ for(const id of ids)assert(output.includes("/client-assets/"+id),"Missing customer project art on Work: "+id);
+ const home=renderSite(value,{sample:false,assetBase:"/client-assets/"});
+ assert(home.includes("fv-home-preview"),"Home lost the curated collection teaser");
+ assert(!home.includes("fv-model-story-3"),"Home duplicated the complete Work gallery");
 });
 
 test("Velocity's stock photography appears only in fictional demos, never customer-published HTML",()=>{
