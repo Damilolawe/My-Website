@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Catalog-wide, browser-rendered design acceptance for non-flagship public demos.
+// Catalog-wide, browser-rendered acceptance for every public template.
 // Captures real pixels and measured geometry. Never loads private customer content.
 import {chromium} from "playwright";
 import {mkdir,writeFile} from "node:fs/promises";
@@ -8,8 +8,9 @@ import {zipDesignFor} from "../shared/zip-design-catalog.mjs";
 
 const origin=(process.env.AWE_VISUAL_BASE||"http://127.0.0.1:8765").replace(/\/$/,"");
 const screenshots="catalog-visual-artifacts";
-const flagship=new Set(["md-bugatti","md-mintlify","md-nintendo-2001"]);
-const catalog=templates.filter(t=>!flagship.has(t.id));
+// Include the three flagship designs in screenshot capture as well.
+// They retain their own bespoke renderers; this audit does not change their code.
+const catalog=templates;
 const sizes=[["phone",390,844],["tablet",768,1024],["desktop",1440,900],["wide",1920,1080]];
 const faults=[],warnings=[],measurements=[];
 await mkdir(screenshots,{recursive:true});
