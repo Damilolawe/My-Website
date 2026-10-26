@@ -115,6 +115,17 @@ test("Automotive editorial accepts three independent client portfolio images",()
  for(const id of ids)assert(output.includes("/client-assets/"+id),"Missing customer project art: "+id);
 });
 
+test("Velocity's stock photography appears only in fictional demos, never customer-published HTML",()=>{
+ const value=sampleForTemplate("md-bugatti");
+ const edited={...value,content:{...value.content,photoIds:[]}};
+ const customer=renderSite(edited,{sample:false});
+ assert(!customer.includes("images.unsplash.com/photo-"),"Customer HTML leaked fictional remote imagery");
+ assert(customer.includes("guide-bugatti"),"Authored source artwork missing from customer fallback");
+ assert(!customer.includes("<script"),"Customer HTML gained an executable script");
+ const demo=renderSite(edited,{sample:true});
+ assert(demo.includes("images.unsplash.com/photo-"),"Preview should retain its cinematic fictional demo photography");
+});
+
 test("New flagship source remains identical in browser and Supabase publication renderer",async()=>{
  const paths=["zip-design-render.mjs","zip-flagship-utils.mjs","zip-flagship-velocity.mjs",
   "zip-flagship-fieldnotes.mjs","zip-flagship-pixelquest.mjs"];
