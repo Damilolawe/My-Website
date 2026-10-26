@@ -67,13 +67,22 @@ def main():
      try:
       resp=page.goto(BASE+"/templates/"+template+"/"+target+".html",wait_until="domcontentloaded",timeout=15000)
       info=page.evaluate(SCRIPT)
-      page_links=page.locator("nav a").count()
       issues=[]
       if not resp or resp.status!=200:issues.append("page-http")
       if not info["hasMain"] or not info["headline"]:issues.append("page-structure")
       if info["pageWidth"]>393 or info["clipped"]:issues.append("page-overflow")
+      # Test a visitor-operable menu; do not count hidden desktop duplicates.
+      if page.locator(".design-mobile").count():
+       menu=page.locator(".design-mobile")
+       menu.locator("summary").click()
+       page_links=menu.locator("nav a:visible").count()
+       active_links=menu.locator('nav a[aria-current="page"]:visible').count()
+       menu.locator("summary").click()
+      else:
+       page_links=page.locator("nav a:visible").count()
+       active_links=page.locator('nav a[aria-current="page"]:visible').count()
       if page_links!=5:issues.append("nav-incomplete")
-      if page.locator('nav a[aria-current="page"]').count()!=1:issues.append("active-navigation")
+      if active_links!=1:issues.append("active-navigation")
       out.append({"template":template,"page":target,"view":"mobile390","issues":issues,"info":info})
      except Exception as exc:out.append({"template":template,"page":target,"issues":["exception"],"detail":str(exc)[:350]})
      finally:page.close()
