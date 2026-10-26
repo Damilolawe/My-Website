@@ -91,3 +91,23 @@ test("Retest regression: Minimax decorative hero is contained at wide screen wid
  assert(html.includes("body.site.source-md-minimax main{min-width:0;max-width:100%;overflow-x:clip}"));
  assert(html.includes("body.site.source-md-minimax .arch-hero{min-width:0;max-width:100%;overflow:clip}"));
 });
+
+test("Fieldnotes Studio display text fits the mobile grid without breaking words",()=>{
+ for(const chapter of ["home","work","studio"]){
+  const html=renderZipDesign(sampleForTemplate("md-mintlify"),{sample:true},chapter);
+  assert(html.includes("body.site.fg-fieldnotes .fn-paper-feature{"),chapter+" missing constrained 1fr paper-feature layout");
+  assert(html.includes("grid-template-columns:minmax(0,1fr);min-width:0;width:100%;max-width:100%"),chapter+" paper-feature track still has intrinsic 379px min");
+  assert(html.includes("font-size:clamp(32px,9.5vw,42px)"),chapter+" Studio display type remains too wide for a 390px phone");
+  assert(html.includes("overflow-wrap:normal;text-wrap:balance"),chapter+" must preserve the long word unbroken");
+ }
+});
+test("Minimax must fit the entire headline, not mask it using page overflow clipping",()=>{
+ const html=renderZipDesign(sampleForTemplate("md-minimax"),{sample:true},"home");
+ assert(html.includes("body.site.source-md-minimax .arch-hero .arch-copy h1{"));
+ assert(html.includes("font-size:clamp(42px,4.9vw,82px)!important"));
+});
+test("Catalog browser scanner detects rendered text clipping, not only scroll overflow",async()=>{
+ const audit=await readFile(new URL("../scripts/qa-catalog-visual.mjs",import.meta.url),"utf8");
+ assert(audit.includes("document.createRange()"),"Need text ink rectangle measurement");
+ assert(audit.includes('issues.push("H1 visible glyphs clipped'),"Clipped headlines must fail acceptance");
+});
