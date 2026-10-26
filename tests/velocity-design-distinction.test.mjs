@@ -112,3 +112,14 @@ test("Velocity gradient spans the entire viewport without moving its centered de
   assert(markup.includes("body.site.fg-velocity header.fv-header{max-width:none;margin:0;width:100%}"),page+" has a clipped header gradient");
  }
 });
+
+test("Velocity editorial reveal headings have comfortable line spacing on desktop and mobile",()=>{
+ for(const page of ["home","work","features","studio","contact"]){
+  const html=renderZipDesign(sample(),{sample:true},page);
+  assert(html.includes('.fv-reveal h2{margin:0;font:400 clamp(44px,7.2vw,108px)/1.14 Georgia,serif;letter-spacing:-.065em;max-width:900px}'),page+" must retain legible editorial line spacing");
+  assert(!html.includes('clamp(44px,7.2vw,108px)/.94 Georgia'),page+" still uses overlapping tight line spacing");
+ }
+ const home=renderZipDesign(sample(),{sample:true},"home");
+ assert(home.includes('Speed, given a sense of place.'),"Preserve the original headline text");
+ assert(home.includes('@media(max-width:650px)'),"Responsive type rules must remain available");
+});
