@@ -34,7 +34,8 @@ const layoutSafety=`/* Respect available space at laptop and mobile widths. Aspe
    height:clamp(260px,78vw,350px);
  }
 }`;
-export const moreGuideCSS=id=>variants[id]?variants[id]+layoutSafety:"";
+const mintlifyVisualQA="\n/* Fieldnotes mobile: preserve headline words and unstack the miniature docs. */\n@media(max-width:640px){.source-md-mintlify .hero h1{font-size:clamp(28px,8vw,42px)!important;max-width:100%!important;word-break:normal!important;overflow-wrap:normal!important;hyphens:none!important}.source-md-mintlify .hero>div{min-width:0}.source-md-mintlify .mintlify-window{inset:10% 5% 8%;grid-template-columns:minmax(0,1fr)}.source-md-mintlify .mintlify-window aside,.source-md-mintlify .mintlify-window .docs-toc{display:none}.source-md-mintlify .mintlify-window .docs-body{min-width:0;padding:9%;gap:11px}.source-md-mintlify .mintlify-window .docs-body strong{font-size:clamp(17px,5vw,23px);overflow-wrap:normal}.source-md-mintlify .mintlify-code{font-size:11px;padding:12px;overflow-wrap:anywhere}}";
+export const moreGuideCSS=id=>variants[id]?variants[id]+layoutSafety+(id==="md-mintlify"?mintlifyVisualQA:""):"";
 export function moreGuideScene(t,i){
  const small=(label)=>'<span class="guide-more-label">'+label+' / '+String(i+1).padStart(2,"0")+'</span>';
  const outer=(id,contents)=>'<div class="guide-more guide-more-'+id+'" aria-hidden="true">'+small('DESIGN CONCEPT')+contents+'</div>';
