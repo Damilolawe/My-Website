@@ -65,11 +65,7 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
       const thumb=document.createElement("span");thumb.className="worlds-choice-thumb";thumb.setAttribute("aria-hidden","true");
       const mini=document.createElement("iframe");mini.tabIndex=-1;mini.setAttribute("aria-hidden","true");mini.loading="lazy";mini.title="";mini.setAttribute("sandbox","");
       mini.dataset.src="/templates/"+encodeURIComponent(item.id)+"--still.html";
-      const caption=document.createElement("span");caption.className="worlds-choice-thumb-title";caption.textContent=item.name;
-      const mood=(item.style||"").toLowerCase();
-      caption.style.fontFamily=/editorial|couture|luxury|cinematic|gallery|fashion|heritage|serif/.test(mood)?"Georgia,serif":/terminal|console|code|technical|data/.test(mood)?"monospace":"Arial,sans-serif";
-      caption.style.fontStyle=/editorial|couture|fashion/.test(mood)?"italic":"normal";
-      thumb.append(mini,caption);
+      thumb.append(mini);
       button.append(count,thumb,swatch,copy,symbol);
       button.addEventListener("click",()=>choose(item.id,true));
       fragment.append(button);
