@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { templates } from "../shared/model.mjs";
-import { tiers, minimumTier, tierLevel, packageTier, templateFitsTier, packageAllowsTemplate } from "../shared/tiers.mjs";
+import { tiers, minimumTier, tierLevel, packageTier, templateFitsTier, packageAllowsTemplate, templatePageCount } from "../shared/tiers.mjs";
 
 test("all 27 available design directions have a defined minimum access tier", () => {
   assert.equal(templates.length, 116);
@@ -17,6 +17,11 @@ test("all 27 available design directions have a defined minimum access tier", ()
   assert(templates.some(t => minimumTier(t.id) === "signature"));
   assert.equal(templates.filter(t => minimumTier(t.id) === "starter").length,78);
   assert.equal(templates.filter(t => minimumTier(t.id) === "signature").length,38);
+  for (const template of templates) {
+    const actualPageCount=templatePageCount(template.id);
+    assert.equal(template.tier,actualPageCount===1?"starter":"signature",template.id+" metadata must match existing pages");
+    assert.equal(templateFitsTier(template.id,template.tier),true,template.id+" must appear in its correct gallery");
+  }
 });
 
 test("Starter includes only single-page templates; Signature includes only five-page sites; Premium is custom", () => {
@@ -74,4 +79,10 @@ test("both production API entry points enforce tier policy for orders and draft 
   const a = await readFile(new URL("../shared/tiers.mjs", import.meta.url),"utf8");
   const b = await readFile(new URL("../supabase/functions/awe-api/shared/tiers.mjs", import.meta.url),"utf8");
   assert.equal(a,b);
+});
+
+
+test("catalog metadata matches the mirrored Supabase catalog",async()=>{
+  const [web,edge]=await Promise.all(["../shared/model.mjs","../supabase/functions/awe-api/shared/model.mjs"].map(p=>readFile(new URL(p,import.meta.url),"utf8")));
+  assert.equal(web,edge,"The deployed server must share the new tier assignments");
 });

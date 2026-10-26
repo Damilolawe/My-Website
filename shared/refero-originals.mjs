@@ -12,7 +12,7 @@ export const originalDirections=[
       "Student résumé",
       "Creative portfolio"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "Warp",
     "character": "terminal cockpit",
     "referenceUrl": "https://styles.refero.design/style/d4c51049-58eb-404a-9fcb-f195928b1c99"
@@ -28,7 +28,7 @@ export const originalDirections=[
       "Creative portfolio",
       "Small business"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "Adam Lippes",
     "character": "couture lookbook",
     "referenceUrl": "https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24"
@@ -44,7 +44,7 @@ export const originalDirections=[
       "Creative portfolio",
       "Small business"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "Raycast",
     "character": "command keys",
     "referenceUrl": "https://styles.refero.design/style/3b6a17f0-3bdf-418c-a95e-0b89e5a8b2f8"
@@ -60,7 +60,7 @@ export const originalDirections=[
       "Actor / model",
       "Small business"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "ORYZO AI",
     "character": "darkroom object",
     "referenceUrl": "https://styles.refero.design/style/1f204e95-454a-437e-845b-c1b169d35607"
@@ -76,7 +76,7 @@ export const originalDirections=[
       "Small business",
       "Personal brand"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "Ramp",
     "character": "finance editorial",
     "referenceUrl": "https://styles.refero.design/style/b38702a0-75ab-474c-9106-00b624535825"
