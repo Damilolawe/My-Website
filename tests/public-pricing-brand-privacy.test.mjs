@@ -12,7 +12,9 @@ test("Public inquiry rates do not activate checkout",async()=>{
  assert(home.includes('href="/contact.html"'));
  assert(order.includes("unconfigured tiers are inquiry-only"));
  assert(!order.includes("Online checkout remains closed"));
- assert((await read("app/order.mjs")).includes('!catalog.ordersEnabled || !p'));
+ const checkout=await read("app/order.mjs");
+ assert(checkout.includes("const checkoutAvailable = Boolean(catalog.ordersEnabled && p && packageAllowsTemplate(p, input.template))"),"Checkout requires enabled orders, a configured package and an eligible template");
+ assert(checkout.includes('$("#next").disabled = !checkoutAvailable || !consentBox.checked'),"Agreement must be accepted before checkout can continue");
 });
 test("Public content uses studio identity instead of owner biography",async()=>{
  for(const path of ["index.html","order.html","account.html","admin.html","contact.html","app/account.mjs","platform/production.mjs","supabase/functions/awe-api/platform/production.mjs"]) {
