@@ -888,3 +888,13 @@ body{background:#f0f1e6;color:#18201a}
 
 /* Reserve the account/builder region and prevent child margin collapse while loading. */
 #app{display:flow-root;min-height:100svh}
+
+
+/* Keep failures adjacent to the checkout control instead of beneath the full wizard. */
+.actions .checkout-feedback{flex:1;align-self:center;text-align:right;color:#9e3222;font:650 13px/1.45 Arial,sans-serif;max-width:440px}
+.actions .checkout-feedback:empty{display:none}
+.checkout-consent-label{display:block;padding:14px 0;line-height:1.65}
+.checkout-consent-label input{width:19px;height:19px;vertical-align:-4px;accent-color:#345b24;margin-right:8px;cursor:pointer}
+.checkout-consent-label a{font-weight:700}
+#consent-help{line-height:1.5}
+@media(max-width:650px){.actions{flex-wrap:wrap}.actions .checkout-feedback{order:3;flex-basis:100%;max-width:none;text-align:left}}
