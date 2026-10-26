@@ -52,14 +52,14 @@ const templateDefinitions = [
   ...freeDesignTemplates,
   {id:"runwayml",name:"RunwayML — Single Page",style:"Cinematic editorial / dark",tag:"The original single-page cinematic website.",color:"#FFFFFF",tier:"starter",reference:"VoltAgent design-md",recommended:[]},
   {id:"runwaymulti",name:"RunwayML — Multi Page",style:"Cinematic editorial / five pages",tag:"Five cinematic chapters: Home, Research, Work, Studio and Journal.",color:"#FFFFFF",tier:"signature",reference:"VoltAgent design-md",recommended:[]},
-  {id:"nike",name:"Nike",style:"Sports commerce / editorial performance",tag:"Photography-led athletic campaign and retail gallery.",color:"#111111",tier:"signature",reference:"VoltAgent design-md",recommended:[]},
-  {id:"clay",name:"Clay",style:"Warm claymation / colorful SaaS",tag:"Sculptural software storytelling and playful data cards.",color:"#FF4D8B",tier:"signature",reference:"VoltAgent design-md",recommended:[]},
-  {id:"ferrari",name:"Ferrari",style:"Automotive cinema / red on graphite",tag:"Immersive motorsport editorial and performance collection.",color:"#DA291C",tier:"signature",reference:"VoltAgent design-md",recommended:[]},
+  {id:"nike",name:"Nike",style:"Sports commerce / editorial performance",tag:"Photography-led athletic campaign and retail gallery.",color:"#111111",tier:"starter",reference:"VoltAgent design-md",recommended:[]},
+  {id:"clay",name:"Clay",style:"Warm claymation / colorful SaaS",tag:"Sculptural software storytelling and playful data cards.",color:"#FF4D8B",tier:"starter",reference:"VoltAgent design-md",recommended:[]},
+  {id:"ferrari",name:"Ferrari",style:"Automotive cinema / red on graphite",tag:"Immersive motorsport editorial and performance collection.",color:"#DA291C",tier:"starter",reference:"VoltAgent design-md",recommended:[]},
   ...zipDesigns,
 ];
 const names = ["Velocity","Hearth","Apex","Bluepoint","Broadcast","Calendar","Goldline","Modular","Evergreen","Thoughtful","Luminance","Bluewave","Voiceprint","Canvas","Harmony","Heritage","Skyline","Composition","Exhibit","Framework","Frame","Gridline","Dialogue","Pathfinder","Clearview","Deepwater","Grand Touring","Daydream","Balance","Current","Connect","Verdant","Ember","Microcosm","Fieldnotes","Whiteboard","Marketplace","Compass","Notebook","Playroom","Vertex","Structure","Arcadia","Openfield","Momentum","Pinboard","Insight","Storefront","Flowstate","Replica","Foundation","Enterprise","Postmark","Orbitals","Collaboration","Coffeehouse","Roadster","Prism","Perspective","Monochrome","Transit","Supernova","Greenhouse","Togetherness","Signal Red","Editorial","Blueprint","Brightside","Automate","Frontier","Clarity","Catalyst","Launchpad","Zenith"];
 const overrides = {runwayml:'Cinematic',runwaymulti:'Cinematic Pages',nike:'Athletic',clay:'Sculpt',ferrari:'Motorsport'};
-export const templates = templateDefinitions.map(t => ({...t,name: t.id.startsWith('md-') ? names[t.sourceIndex] : (overrides[t.id] || t.name)}));
+export const templates = templateDefinitions.map(t => ({...t,tier: t.tier || "starter",name: t.id.startsWith('md-') ? names[t.sourceIndex] : (overrides[t.id] || t.name)}));
 export const types = [
   "Student résumé",
   "Professional portfolio",

@@ -13,19 +13,19 @@ const minimums = Object.freeze({
   index: "starter", daylight: "starter", atlas: "starter",
   terminal: "starter", ledger: "starter", bloom: "starter",
   runwayml: "starter", runwaymulti: "signature",
-  nike: "signature", clay: "signature", ferrari: "signature",
-  liquidmetal: "signature",
-  folio: "signature", still: "signature", afterhours: "signature",
-  signal: "signature", orbit: "signature", playbill: "signature",
-  monologue: "signature", portraiture: "signature",
-  contactsheet: "signature", foundry: "signature",
-  arcade: "signature", atelier: "signature", museum: "signature",
-  brutalist: "signature", nocturne: "signature",
+  nike: "starter", clay: "starter", ferrari: "starter",
+  liquidmetal: "starter",
+  folio: "starter", still: "starter", afterhours: "starter",
+  signal: "starter", orbit: "starter", playbill: "starter",
+  monologue: "starter", portraiture: "starter",
+  contactsheet: "starter", foundry: "starter",
+  arcade: "starter", atelier: "starter", museum: "starter",
+  brutalist: "starter", nocturne: "starter",
   ...Object.fromEntries(originalDirections.map(d => [d.id,d.tier])),
   ...Object.fromEntries(freeDesignTemplates.map(d => [d.id,d.tier])),
   ...Object.fromEntries(zipDesigns.map(d => [d.id,d.tier])),
 });
-// Every original design except RunwayML Multi Page is currently a single-page build.
+// Existing design page counts determine their tier; no templates are expanded or flattened.
 // Keep package groupings exclusive; Premium is a bespoke brief, not a template tier.
 export const templatePageCount = id => !Object.hasOwn(minimums,id) ? 0 :
   (id === "runwaymulti" || zipDesignFor(id)?.multipage ? 5 : 1);

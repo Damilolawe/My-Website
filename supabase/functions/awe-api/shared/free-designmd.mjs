@@ -11,7 +11,7 @@ export const freeDesignTemplates = Object.freeze([
       "Creative portfolio",
       "Small business"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "FreeDesignMD",
     "source": "DESIGN (21).md",
     "sourcePath": "design-sources/freedesignmd/acid-chrome/DESIGN.md",
@@ -40,7 +40,7 @@ export const freeDesignTemplates = Object.freeze([
       "Creative portfolio",
       "Personal brand"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "FreeDesignMD",
     "source": "DESIGN (22).md",
     "sourcePath": "design-sources/freedesignmd/voidstage/DESIGN.md",
@@ -69,7 +69,7 @@ export const freeDesignTemplates = Object.freeze([
       "Small business",
       "Personal brand"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "FreeDesignMD",
     "source": "DESIGN (23).md",
     "sourcePath": "design-sources/freedesignmd/studio-margaux/DESIGN.md",
@@ -98,7 +98,7 @@ export const freeDesignTemplates = Object.freeze([
       "Personal brand",
       "Small business"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "FreeDesignMD",
     "source": "DESIGN (24).md",
     "sourcePath": "design-sources/freedesignmd/neo-memphis/DESIGN.md",
@@ -127,7 +127,7 @@ export const freeDesignTemplates = Object.freeze([
       "Creative portfolio",
       "Student résumé"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "FreeDesignMD",
     "source": "DESIGN (25).md",
     "sourcePath": "design-sources/freedesignmd/mono-brutalist/DESIGN.md",
@@ -156,7 +156,7 @@ export const freeDesignTemplates = Object.freeze([
       "Creative portfolio",
       "Small business"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "FreeDesignMD",
     "source": "DESIGN (26).md",
     "sourcePath": "design-sources/freedesignmd/vestige-folio/DESIGN.md",
@@ -185,7 +185,7 @@ export const freeDesignTemplates = Object.freeze([
       "Personal brand",
       "Creative portfolio"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "FreeDesignMD",
     "source": "DESIGN (27).md",
     "sourcePath": "design-sources/freedesignmd/botanical-press/DESIGN.md",
@@ -214,7 +214,7 @@ export const freeDesignTemplates = Object.freeze([
       "Professional portfolio",
       "Personal brand"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "FreeDesignMD",
     "source": "DESIGN (28).md",
     "sourcePath": "design-sources/freedesignmd/limepress-fintech/DESIGN.md",
@@ -243,7 +243,7 @@ export const freeDesignTemplates = Object.freeze([
       "Creative portfolio",
       "Small business"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "FreeDesignMD",
     "source": "DESIGN (29).md",
     "sourcePath": "design-sources/freedesignmd/gazette-broadside/DESIGN.md",
@@ -272,7 +272,7 @@ export const freeDesignTemplates = Object.freeze([
       "Personal brand",
       "Small business"
     ],
-    "tier": "signature",
+    "tier": "starter",
     "reference": "FreeDesignMD",
     "source": "DESIGN (30).md",
     "sourcePath": "design-sources/freedesignmd/risograph-press/DESIGN.md",
