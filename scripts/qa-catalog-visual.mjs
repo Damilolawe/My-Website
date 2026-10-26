@@ -73,7 +73,7 @@ async function audit(t,route,mode,width,height,{capture=false}={}){
    else{
     await summary.click();
     if(!await menu.evaluate(el=>el.open))issues.push("menu failed to open");
-    if(true) {
+    {
       await page.screenshot({
        path:screenshots+"/"+safe(t.id)+"-menu-open.jpg",
        type:"jpeg",quality:70,fullPage:false,animations:"disabled"

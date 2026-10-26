@@ -69,3 +69,11 @@ test("Fieldnotes mobile navigation contains wrapped links inside the viewport",(
   assert(html.includes("body.site.fg-fieldnotes .fn-header{width:100%;min-width:0;max-width:100%"),chapter+" needs bounded mobile header");
  }
 });
+
+test("Binance and VoltAgent headlines no longer use oversized two-column display widths",()=>{
+ for(const [id,size] of [["md-binance","3.6vw"],["md-voltagent","4.65vw"]]){
+  const html=renderSite(sampleForTemplate(id),{sample:true});
+  assert(html.includes("body.site.source-"+id+" .arch-hero .arch-copy h1"),id+" requires explicit responsive art/text constraints");
+  assert(html.includes(size),id+" lacked the screenshot-verified sizing adjustment");
+ }
+});
