@@ -94,7 +94,7 @@ function checkoutLabel() { return catalog.paymentMode === 'test' ? 'Continue to 
 function draw() {
   theaterController?.abort();
   theaterController = null;
-  app.innerHTML = `<div class="wizard"><ol class="steps">${labels.map((l, i) => `<li class="${i === step ? "active" : ""}" ${i === step ? 'aria-current="step"' : ""}>0${i + 1} / ${l}</li>`).join("")}</ol><div class="work-area"><span class="step-count">0${step + 1} / 05 — ${labels[step].toUpperCase()}</span><div id="step"></div><div class="actions"><button class="btn secondary" id="back" ${step === 0 || orderId ? "hidden" : ""}>←︎ Back</button><button class="btn acid" id="next">${step === 4 ? checkoutLabel() : step === 0 ? "Browse templates" : "Next step"} ↗︎</button></div></div></div>`;
+  app.innerHTML = `<div class="wizard ${step === 1 ? "is-gallery" : ""}"><ol class="steps">${labels.map((l, i) => `<li class="${i === step ? "active" : ""}" ${i === step ? 'aria-current="step"' : ""}>0${i + 1} / ${l}</li>`).join("")}</ol><div class="work-area"><span class="step-count">0${step + 1} / 05 — ${labels[step].toUpperCase()}</span><div id="step"></div><div class="actions"><button class="btn secondary" id="back" ${step === 0 || orderId ? "hidden" : ""}>←︎ Back</button><button class="btn acid" id="next">${step === 4 ? checkoutLabel() : step === 0 ? "Browse templates" : "Next step"} ↗︎</button></div></div></div>`;
   const el = $("#step");
   $("#feedback").textContent = "";
   if (step === 0) {
@@ -337,8 +337,27 @@ function draw() {
     const p = selectedPackage();
     if (p) packageId = p.id;
     const tier = tiers.find(t => t.id === selectedTier);
-    el.innerHTML = `<h2>One last look. Then your next chapter.</h2><div class="summary"><div class="panel"><dl><dt>Your website</dt><dd>${esc(input.type)}</dd><dt>Design direction</dt><dd>${esc(templates.find((t) => t.id === input.template)?.name)} · ${esc(input.design.font)} · ${esc(input.design.appearance)}<br>${esc(input.design.primary)} / ${esc(input.design.secondary)}</dd><dt>Public name & headline</dt><dd>${esc(input.content.name)}<br>${esc(input.content.headline)}</dd><dt>Sections</dt><dd>${input.design.sections.map(esc).join(", ")}</dd><dt>Materials</dt><dd>${files.length ? files.map((f) => esc(f.name)).join("<br>") : "No files selected"}</dd></dl><p class="muted">Use Back to change any details before checkout.</p></div><div class="panel"><div class="eyebrow">SELECTED PACKAGE · ${esc(tier?.name || "Unselected")}</div><p class="muted">To change your package, go back to Step 1. Your content will be kept.</p><h3>${p ? money(p) : "Prices start at $75"}</h3>${p ? `<p>Website purchase: ${money(p)}<br>Total: ${money(p)}</p><ul>${p.features.map((f) => `<li>${esc(f)}</li>`).join("")}</ul><h4>Hosting</h4><p class="terms">${esc(p.hosting)}</p><h4>Ownership</h4><p class="terms">${esc(p.ownership)}</p><h4>Revisions</h4><p class="terms">${esc(p.revisions)}</p>${p.refunds ? `<h4>Payment, cancellations & refunds</h4><p class="terms"><strong>${esc(p.refunds)}</strong></p>` : ""}` : "<p>This tier has no configured checkout package yet. Its published starting price is " + esc(tier?.inquiry || "$75") + " (inquiry only). <a href='/contact.html'>Request a quote</a>.</p>"}<label><input type="checkbox" id="consent"> I agree to the package terms${p?.refunds ? ", including the all-sales-final, non-refundable payment policy (except where required by law)," : ","} acknowledge the <a href="/privacy.html" target="_blank">privacy information</a>, and confirm I have permission to use these materials.</label></div></div><div class="notice">${catalog.paymentMode === "live" ? "Secure Stripe checkout. You will see the final amount before confirming payment." : catalog.paymentMode === "test" ? "Sandbox verification only. No live payments are enabled." : "Explore freely. Orders and payments are not open yet."} Every website is personally reviewed before publication.</div><div class="panel"><h3>Save this design for later</h3><p class="muted">Save your website concept privately without paying. You can return to edit it, and the studio can review your submitted direction. Saving is not a paid order or a publication request. Selected photo and document files remain on your device until they are uploaded during an order.</p><button type="button" class="btn secondary" id="save-draft">Save my design ↗︎</button><p id="save-status" role="status" aria-live="polite"></p></div><div id="sign-in"></div>`;
-    $("#next").disabled = !catalog.ordersEnabled || !p || !packageAllowsTemplate(p, input.template);
+    el.innerHTML = `<h2>One last look. Then your next chapter.</h2><div class="summary"><div class="panel"><dl><dt>Your website</dt><dd>${esc(input.type)}</dd><dt>Design direction</dt><dd>${esc(templates.find((t) => t.id === input.template)?.name)} · ${esc(input.design.font)} · ${esc(input.design.appearance)}<br>${esc(input.design.primary)} / ${esc(input.design.secondary)}</dd><dt>Public name & headline</dt><dd>${esc(input.content.name)}<br>${esc(input.content.headline)}</dd><dt>Sections</dt><dd>${input.design.sections.map(esc).join(", ")}</dd><dt>Materials</dt><dd>${files.length ? files.map((f) => esc(f.name)).join("<br>") : "No files selected"}</dd></dl><p class="muted">Use Back to change any details before checkout.</p></div><div class="panel"><div class="eyebrow">SELECTED PACKAGE · ${esc(tier?.name || "Unselected")}</div><p class="muted">To change your package, go back to Step 1. Your content will be kept.</p><h3>${p ? money(p) : "Prices start at $75"}</h3>${p ? `<p>Website purchase: ${money(p)}<br>Total: ${money(p)}</p><ul>${p.features.map((f) => `<li>${esc(f)}</li>`).join("")}</ul><h4>Hosting</h4><p class="terms">${esc(p.hosting)}</p><h4>Ownership</h4><p class="terms">${esc(p.ownership)}</p><h4>Revisions</h4><p class="terms">${esc(p.revisions)}</p>${p.refunds ? `<h4>Payment, cancellations & refunds</h4><p class="terms"><strong>${esc(p.refunds)}</strong></p>` : ""}` : "<p>This tier has no configured checkout package yet. Its published starting price is " + esc(tier?.inquiry || "$75") + " (inquiry only). <a href='/contact.html'>Request a quote</a>.</p>"}<label class="checkout-consent-label"><input type="checkbox" id="consent" required aria-describedby="consent-help"> I agree to the package terms${p?.refunds ? ", including the all-sales-final, non-refundable payment policy (except where required by law)," : ","} acknowledge the <a href="/privacy.html" target="_blank">privacy information</a>, and confirm I have permission to use these materials.</label><p class="muted" id="consent-help" role="status" aria-live="polite">Check the agreement above to enable checkout. Account sign-in comes next.</p></div></div><div class="notice">${catalog.paymentMode === "live" ? "Secure Stripe checkout. You will see the final amount before confirming payment." : catalog.paymentMode === "test" ? "Sandbox verification only. No live payments are enabled." : "Explore freely. Orders and payments are not open yet."} Every website is personally reviewed before publication.</div><div class="panel"><h3>Save this design for later</h3><p class="muted">Save your website concept privately without paying. You can return to edit it, and the studio can review your submitted direction. Saving is not a paid order or a publication request. Selected photo and document files remain on your device until they are uploaded during an order.</p><button type="button" class="btn secondary" id="save-draft">Save my design ↗︎</button><p id="save-status" role="status" aria-live="polite"></p></div><div id="sign-in"></div>`;
+    const checkoutAvailable = Boolean(catalog.ordersEnabled && p && packageAllowsTemplate(p, input.template));
+    const consentBox = $("#consent");
+    const consentHelp = $("#consent-help");
+    const updateAgreement = () => {
+      $("#next").disabled = !checkoutAvailable || !consentBox.checked;
+      if (!catalog.ordersEnabled) {
+        consentHelp.textContent = "Checkout is temporarily unavailable. You may save your design or contact the studio.";
+      } else if (!p) {
+        consentHelp.textContent = "This package cannot be purchased online yet. Please request a quote.";
+      } else if (!packageAllowsTemplate(p, input.template)) {
+        consentHelp.textContent = "This design requires its matching package. Go back to select the correct tier.";
+      } else {
+        consentHelp.textContent = consentBox.checked
+          ? "Agreement accepted. Continue to secure checkout; you may be asked to verify your email first."
+          : "Check the agreement above to enable checkout. Account sign-in comes next.";
+      }
+    };
+    consentBox.addEventListener("change", updateAgreement);
+    consentBox.addEventListener("input", updateAgreement);
+    updateAgreement();
     if(p && !packageAllowsTemplate(p, input.template)) el.insertAdjacentHTML("beforeend",zipDesignFor(input.template)
       ? '<p class="notice" role="status">Choose the matching package to proceed with this design.</p>'
       : '<p class="notice" role="status">The $150 five-page Signature package requires a Signature multipage design.</p>');
@@ -368,12 +387,19 @@ function draw() {
         throw Error("Review and accept the package terms first.");
       try {
         me = await api("me");
-      } catch {
-        authForm($("#sign-in"), async () => {
+      } catch (error) {
+        if (error?.status !== 401) throw error;
+        const signIn = $("#sign-in");
+        authForm(signIn, async () => {
           me = await api("me");
-          $("#sign-in").innerHTML =
-            "<p>You’re signed in. Continue to checkout when ready.</p>";
+          if (!$("#consent")?.checked) throw Error("Review and accept the package terms before checkout.");
+          signIn.innerHTML = "<p class=\"notice\" role=\"status\">Email verified. Opening secure checkout…</p>";
+          await checkout();
         });
+        const message = $("#consent-help");
+        if (message) message.textContent = "Please sign in with the email code below. Your agreement is still selected.";
+        signIn.scrollIntoView({ block: "center", behavior: "smooth" });
+        signIn.querySelector("input[name=email]")?.focus({ preventScroll: true });
         return;
       }
       await checkout();
