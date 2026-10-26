@@ -8,17 +8,17 @@ function shellWindow(v){
   '<div class="fn-inline-tabs"><span>Overview</span><span>Examples</span><span>API</span></div>'+
   '<div class="fn-code-window"><span class="fn-comment">// Fictional guide · starter workspace</span>\n'+
   '<span class="fn-accent">const</span> workspace = {\n  name: "'+esc(v.content.name)+'",\n  ready: <span class="fn-accent">true</span>\n};\n\n'+
-  '<span class="fn-comment">// explore what comes next →</span></div></div></div>'+
+  '<span class="fn-comment">// explore what comes next →︎</span></div></div></div>'+
   '<div class="fn-floating-note"><strong>All systems, beautifully simple.</strong><p>Thoughtful details, helpful examples, and a calm place to begin.</p></div></div>';
 }
 export function renderFieldnotes({t,v,options,page,profile,sourceCSS,sourceScene,sourceArtCSS}){
  const name=esc(v.content.name),bio=esc(v.content.bio),headline=esc(v.content.headline);
  const link=p=>paths(t,p);
  const nav=[["home","Overview"],["work","Platform"],["features","Documentation"],["studio","Our thinking"],["contact","Contact"]].map(([p,text])=>'<a href="'+link(p)+'" '+(p===page?'aria-current="page"':'')+'>'+text+'</a>').join("");
- const header='<header class="fn-header"><a class="fn-logo" href="'+link("home")+'"><span class="fn-logo-mark" aria-hidden="true">f</span>'+name+'</a><nav class="fn-nav" aria-label="Main navigation">'+nav+'<a class="fn-header-cta" href="'+link("contact")+'">Get in touch ↗</a></nav></header>';
+ const header='<header class="fn-header"><a class="fn-logo" href="'+link("home")+'"><span class="fn-logo-mark" aria-hidden="true">f</span>'+name+'</a><nav class="fn-nav" aria-label="Main navigation">'+nav+'<a class="fn-header-cta" href="'+link("contact")+'">Get in touch ↗︎</a></nav></header>';
  const hero='<section class="hero hero-variant fn-hero" data-architecture="'+esc(t.source)+'" aria-labelledby="hero-title">'+
   '<div class="fn-hero-intro"><span class="fn-tag">'+esc(v.content.heroLabel)+'</span><h1 id="hero-title">'+headline+'</h1><p class="fn-hero-description">'+bio+'</p>'+
-  '<div class="fn-hero-actions"><a class="fn-primary" href="'+link("features")+'">Read the guide <span aria-hidden="true">↗</span></a><a class="fn-secondary" href="'+link("work")+'">Explore the platform →</a></div></div>'+
+  '<div class="fn-hero-actions"><a class="fn-primary" href="'+link("features")+'">Read the guide <span aria-hidden="true">↗︎</span></a><a class="fn-secondary" href="'+link("work")+'">Explore the platform →︎</a></div></div>'+
   shellWindow(v)+'</section>';
  const metrics='<div class="fn-metrics" aria-label="Example platform attributes"><div><strong>01 / CLEAR</strong><span>Built for discovery</span></div><div><strong>02 / HUMAN</strong><span>Helpful at every step</span></div><div><strong>03 / FLEXIBLE</strong><span>A modular experience</span></div><div><strong>04 / OPEN</strong><span>Ideas without friction</span></div></div>';
  const playbook='<section class="fn-chapter" id="work"><span class="fn-chapter-eyebrow">01 / PRODUCT PHILOSOPHY</span><h2>Less searching.<br>More making.</h2>'+
@@ -47,6 +47,6 @@ export function renderFieldnotes({t,v,options,page,profile,sourceCSS,sourceScene
   page==="features"?intro+documentation+feature+contact:
   page==="studio"?intro+quote+paper+contact:
   intro+contact+quote;
- const body=header+'<main id="main">'+main+'</main><footer class="fn-footer"><span>'+name+' / FICTIONAL STUDY</span><span>THOUGHTFUL SOFTWARE / AWE CONCEPTS</span><a href="'+link("home")+'">Return to overview ↑</a></footer>';
+ const body=header+'<main id="main">'+main+'</main><footer class="fn-footer"><span>'+name+' / FICTIONAL STUDY</span><span>THOUGHTFUL SOFTWARE / AWE CONCEPTS</span><a href="'+link("home")+'">Return to overview ↑︎</a></footer>';
  return documentForFlagship(t,v,options,page,profile,{title:name,css:FIELDNOTES_CSS,body,sourceCSS,sourceArtCSS,metaDescription:v.content.bio});
 }

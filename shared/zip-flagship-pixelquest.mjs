@@ -6,16 +6,16 @@ export function renderPixelQuest({t,v,options,page,profile,sourceCSS,sourceScene
  const link=p=>paths(t,p);
  const nav=[["home","Home"],["work","Games"],["features","Play"],["studio","Club"],["contact","Connect"]].map(([p,x])=>'<a href="'+link(p)+'" '+(p==="home"?'aria-current="page"':'')+'>'+x+'</a>').join("");
  const header='<div class="pq-top"><span>PIXELQUEST NETWORK / PLAYER ONE</span><span>POWER ON · 2001 / FICTIONAL GAME WORLD</span></div>'+
-  '<header class="pq-header"><a class="pq-brand" href="'+link("home")+'"><span aria-hidden="true">★</span>'+name+'</a><nav class="pq-nav" aria-label="Game navigation">'+nav+'</nav></header>';
+  '<header class="pq-header"><a class="pq-brand" href="'+link("home")+'"><span aria-hidden="true">★︎</span>'+name+'</a><nav class="pq-nav" aria-label="Game navigation">'+nav+'</nav></header>';
  const consoleArt='<div class="pq-console-box"><div class="pq-console"><div class="pq-bezel"><div class="pq-screen">'+scenery()+
   '<strong class="pq-screen-label">NEW ADVENTURE!</strong></div></div><div class="pq-console-name">PIXELQUEST / PLAYER ONE</div>'+
   '<div class="pq-controls"><div class="pq-pad" aria-hidden="true"></div><div class="pq-buttons" aria-hidden="true"><i></i><i></i></div></div>'+
-  '<div class="pq-machine-foot">SELECT / START</div></div><span class="pq-sticker">NEW ★ THREE WORLDS</span></div>';
+  '<div class="pq-machine-foot">SELECT / START</div></div><span class="pq-sticker">NEW ★︎ THREE WORLDS</span></div>';
  const hero='<section class="hero hero-variant pq-hero" data-architecture="'+esc(t.source)+'" aria-labelledby="hero-title">'+
   '<div class="pq-copy"><span class="pq-tag">'+esc(v.content.heroLabel)+'</span><h1 id="hero-title">'+esc(v.content.headline)+'</h1>'+
-  '<p>'+bio+'</p><a class="pq-button" href="#features">PRESS START →</a></div>'+consoleArt+'</section>';
+  '<p>'+bio+'</p><a class="pq-button" href="#features">PRESS START →︎</a></div>'+consoleArt+'</section>';
  const ticker='<div class="pq-ticker" aria-hidden="true"><div class="pq-ticker-inner">'+
-  Array(4).fill('<span>✦ THE NEXT LEVEL AWAITS</span><span>★ PLAYER ONE READY</span><span>✧ NEW WORLDS</span>').join('')+'</div></div>';
+  Array(4).fill('<span>✦︎ THE NEXT LEVEL AWAITS</span><span>★︎ PLAYER ONE READY</span><span>✧︎ NEW WORLDS</span>').join('')+'</div></div>';
  const games='<section class="pq-section pq-worlds" id="work"><span class="pq-chip">01 / GAME SHELF</span><h2>Pick your next adventure.</h2>'+
   '<div class="cards pq-games">'+(v.content.cards||[]).slice(0,3).map((c,i)=>'<article class="card pq-game"><div class="pq-poster">'+
     artMedia(v,options,i,c.title,i===0?sourceScene:'<div class="pq-poster-ring"></div>')+'</div>'+
@@ -27,9 +27,9 @@ export function renderPixelQuest({t,v,options,page,profile,sourceCSS,sourceScene
   '<input class="pq-input" type="radio" id="pq-city" name="pq-world">'+
   '<input class="pq-input" type="radio" id="pq-cave" name="pq-world">'+
   '<div class="pq-picker" role="group" aria-label="Choose a fictional world"><label for="pq-meadow">01 MEADOW</label><label for="pq-city">02 NEON CITY</label><label for="pq-cave">03 CRYSTAL CAVE</label></div>'+
-  '<div class="pq-level">'+scenery()+'</div><div class="pq-readout"><span>STAGE <span class="pq-world-name meadow">SUNNY MEADOW</span><span class="pq-world-name city">NEON CITY</span><span class="pq-world-name cave">CRYSTAL CAVE</span></span><span>READY ★</span></div></div></div></section>';
+  '<div class="pq-level">'+scenery()+'</div><div class="pq-readout"><span>STAGE <span class="pq-world-name meadow">SUNNY MEADOW</span><span class="pq-world-name city">NEON CITY</span><span class="pq-world-name cave">CRYSTAL CAVE</span></span><span>READY ★︎</span></div></div></div></section>';
  const studio='<section class="pq-manifesto" id="studio"><span class="pq-chip">03 / PLAYERS CLUB</span><blockquote>Made for the <em>curious.</em> Built for the <em>players.</em></blockquote><p>'+bio+'</p></section>';
  const contact='<section class="pq-contact" id="contact"><div><span class="pq-chip">04 / CONNECT</span><h2>Make the next level.</h2></div>'+contactAction(v)+'</section>';
- const html=header+'<main id="main">'+hero+ticker+games+game+studio+contact+'</main><footer class="pq-footer"><span>'+name+' / FICTIONAL GAME PORTAL</span><span>AWE CONCEPTS</span><a href="#main">BACK TO TOP ↑</a></footer>';
+ const html=header+'<main id="main">'+hero+ticker+games+game+studio+contact+'</main><footer class="pq-footer"><span>'+name+' / FICTIONAL GAME PORTAL</span><span>AWE CONCEPTS</span><a href="#main">BACK TO TOP ↑︎</a></footer>';
  return documentForFlagship(t,v,options,"home",profile,{css:PIXEL_CSS,body:html,sourceCSS,sourceArtCSS,metaDescription:v.content.bio});
 }

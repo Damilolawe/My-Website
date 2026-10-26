@@ -15,12 +15,12 @@ export function renderVelocity({t,v,options,page,profile,sourceCSS,sourceScene,s
   '<div class="fv-hero-photo"><div class="fv-hero-fallback">'+sourceScene+'</div>'+visual(v,options,0,name+' automotive editorial')+'</div>'+
   '<span class="fv-vertical">THE ART OF THE IMPOSSIBLE — EST. 2026</span>'+
   '<div class="fv-hero-copy"><span class="fv-eyebrow">'+esc(v.content.heroLabel)+'</span>'+
-  '<h1 id="hero-title">'+headline+'</h1><p>'+bio+'</p><div class="fv-hero-actions"><a class="fv-button" href="'+link("work")+'">Explore the collection <span aria-hidden="true">↗</span></a><span class="fv-eyebrow">01 — 03 / THE STUDIES</span></div></div>'+
+  '<h1 id="hero-title">'+headline+'</h1><p>'+bio+'</p><div class="fv-hero-actions"><a class="fv-button" href="'+link("work")+'">Explore the collection <span aria-hidden="true">↗︎</span></a><span class="fv-eyebrow">01 — 03 / THE STUDIES</span></div></div>'+
   '<div class="fv-index"><span>SCROLL TO DISCOVER</span><i aria-hidden="true"></i><strong>01 / 04</strong></div></section>';
  const intro='<section class="fv-intro" id="studio"><div><span class="fv-eyebrow">THE ATELIER / 01</span><div class="fv-rule"></div><span class="fv-eyebrow">CRAFT / FORM / EMOTION</span></div>'+
   '<div><h2>Precision is a feeling.</h2><p>'+bio+'</p></div></section>';
  const collection='<section class="fv-collection" id="work"><div class="fv-section-top"><div><span class="fv-eyebrow">02 / COLLECTION</span><h2>Objects of obsession.</h2></div><small>THREE STUDIES / IN MOTION</small></div>'+cards+'</section>';
- const studio='<section class="fv-atelier"><div class="fv-atelier-visual">'+visual(v,options,1,"Automotive atelier")+'</div><div class="fv-atelier-copy"><span class="fv-eyebrow">THE STUDIO / 03</span><h2>Built around wonder.</h2><p>'+bio+'</p><a class="fv-button" href="'+link("studio")+'">Discover the atelier ↗</a></div></section>';
+ const studio='<section class="fv-atelier"><div class="fv-atelier-visual">'+visual(v,options,1,"Automotive atelier")+'</div><div class="fv-atelier-copy"><span class="fv-eyebrow">THE STUDIO / 03</span><h2>Built around wonder.</h2><p>'+bio+'</p><a class="fv-button" href="'+link("studio")+'">Discover the atelier ↗︎</a></div></section>';
  const specs='<section class="fv-engineering section study-approach" id="features"><span class="fv-eyebrow">ENGINEERING / EXPLAINED</span><h2>The beauty of what lies beneath.</h2>'+
   '<div class="fv-engineering-grid"><div class="fv-engineering-visual">'+sourceScene+'</div><div class="study-approach-list fv-specs">'+
   (v.content.cards||[]).slice(0,3).map((card,i)=>'<details class="fv-spec"><summary><span>'+digits(i+1)+' / '+esc(card.title)+'</span></summary><p>'+esc(card.description)+'</p></details>').join("")+
@@ -34,6 +34,6 @@ export function renderVelocity({t,v,options,page,profile,sourceCSS,sourceScene,s
   page==="features"?chapterHero+specs+philosophy:
   page==="studio"?chapterHero+intro+studio+philosophy:
   chapterHero+contact+philosophy)+'</main>'+
-  '<footer class="fv-footer"><span>'+name+' / DESIGN STUDY</span><span>FICTIONAL CONCEPT — AWE CONCEPTS</span><a href="'+link("home")+'">BACK TO ORIGIN ↑</a></footer>';
+  '<footer class="fv-footer"><span>'+name+' / DESIGN STUDY</span><span>FICTIONAL CONCEPT — AWE CONCEPTS</span><a href="'+link("home")+'">BACK TO ORIGIN ↑︎</a></footer>';
  return documentForFlagship(t,v,options,page,profile,{title:name,css:VELOCITY_CSS,body,sourceCSS,sourceArtCSS,metaDescription:v.content.bio});
 }

@@ -19,7 +19,7 @@ export function projectLink(t,page){
 }
 export function contactAction(v){
  const address=v.content.publicEmail;
- return address?'<a href="mailto:'+esc(address)+'">Start a conversation <span aria-hidden="true">↗</span></a>':
+ return address?'<a href="mailto:'+esc(address)+'">Start a conversation <span aria-hidden="true">↗︎</span></a>':
   '<p class="fg-contact-note">Contact details will be added by the site owner.</p>';
 }
 export function documentForFlagship(t,v,options,page,profile,{title,css,body,sourceCSS="",sourceArtCSS="",metaDescription=""}){
