@@ -72,3 +72,19 @@ img[src*="/assets/brand/awe-express-light.svg"]{background-color:#f1efe8;border-
   body.menu-open .site-header .brand-logo{filter:none}
 }
 @media(max-width:600px){.site-header .brand{max-width:min(46vw,170px)}.site-header .brand-logo{max-height:43px}}
+
+
+/* Center the desktop navigation independently of the brand and CTA widths. */
+@media (min-width: 901px) {
+  .site-header .brand { flex: 0 0 auto; margin-right: 0; }
+  .site-header .desktop-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    gap: clamp(18px, 2.8vw, 46px);
+    white-space: nowrap;
+    justify-content: center;
+  }
+  .site-header .header-cta { margin-left: auto; }
+}
