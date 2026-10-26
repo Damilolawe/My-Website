@@ -48,7 +48,7 @@ body.site.fg-velocity:has(.fg-banner) .fv-header{top:32px}
 .fv-hero-index:before{content:"";width:55px;height:1px;background:currentColor}
 .fv-reveal{padding:clamp(78px,9vw,140px) clamp(24px,9vw,145px) clamp(95px,11vw,170px);display:grid;grid-template-columns:.65fr 1.35fr;gap:clamp(38px,8vw,130px);align-items:start;background:#11120f}
 .fv-reveal-index{padding-top:8px;font:500 10px/1.7 ui-monospace,monospace;letter-spacing:.14em;color:var(--fv-muted)}
-.fv-reveal h2{margin:0;font:400 clamp(44px,7.2vw,108px)/.94 Georgia,serif;letter-spacing:-.065em;max-width:900px}
+.fv-reveal h2{margin:0;font:400 clamp(44px,7.2vw,108px)/1.14 Georgia,serif;letter-spacing:-.065em;max-width:900px}
 .fv-reveal p{max-width:600px;margin:28px 0 0;font:400 18px/1.7 Georgia,serif;color:#bebcb5}
 .fv-reveal-rule{height:1px;background:#ffffff35;margin-top:54px}
 .fv-home-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px}
