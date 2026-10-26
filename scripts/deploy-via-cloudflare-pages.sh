@@ -8,10 +8,16 @@ cd "$(dirname "$0")/.."
 
 # Cloudflare Pages requires a build output directory. Serve only a redirect notice
 # there, NOT the customer website (which stays hosted on Firebase).
-mkdir -p .cloudflare-build-stub
-cat > .cloudflare-build-stub/index.html <<'HTML'
+mkdir -p cloudflare-deploy-stub
+cat > cloudflare-deploy-stub/index.html <<'HTML'
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="0; url=https://aweconcepts.com/"><title>AWE Concepts</title></head><body><a href="https://aweconcepts.com/">AWE Concepts</a></body></html>
 HTML
+
+CF_PAGES="${CF_PAGES:-}"
+CF_PAGES_BRANCH="${CF_PAGES_BRANCH:-}"
+CF_PAGES_COMMIT_SHA="${CF_PAGES_COMMIT_SHA:-}"
+AWE_CF_FIREBASE_ENABLED="${AWE_CF_FIREBASE_ENABLED:-}"
+AWE_FIREBASE_SERVICE_ACCOUNT_JSON="${AWE_FIREBASE_SERVICE_ACCOUNT_JSON:-}"
 
 if [[ "$CF_PAGES" != "1" ]]; then
   echo "ERROR: This temporary script may only run in Cloudflare Pages builds." >&2; exit 1
