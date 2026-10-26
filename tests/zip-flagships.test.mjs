@@ -8,7 +8,7 @@ import {renderZipDesign} from "../shared/zip-design-render.mjs";
 const flagships=[
  ["md-bugatti","fg-velocity","fv-hero","fv-engineering","fv-cases"],
  ["md-mintlify","fg-fieldnotes","fn-product-stage","study-chapter study-docs","fn-playbook"],
- ["md-nintendo-2001","fg-pixelquest","pq-console","pq-interactive","pq-catalog"]
+ ["md-nintendo-2001","fg-pixelquest","pq-console","pq-quest","pq-games"]
 ];
 
 test("Flagship sites use three genuinely independent architectures with complete bespoke sections",()=>{
@@ -31,6 +31,17 @@ test("Flagship sites use three genuinely independent architectures with complete
   layouts.add([hero,interaction,work].join("/"));
  }
  assert.equal(layouts.size,3);
+});
+
+test("Flagship output and previews request monochrome text glyph rendering",async()=>{
+ const unqualified=/[↗↘↖↙←→↑↓⇄✳✺✻✽✿✦✧❦▶✓★](?!\uFE0E)/u;
+ for(const [id] of flagships){
+  assert(!unqualified.test(renderSite(sampleForTemplate(id),{sample:true})),id+" has emoji-capable glyphs");
+ }
+ for(const file of ["velocity.html","fieldnotes.html","pixelquest.html"]){
+  const html=await readFile(new URL("../previews/flagships/"+file,import.meta.url),"utf8");
+  assert(!unqualified.test(html),file+" has emoji-capable glyphs");
+ }
 });
 
 test("Automotive Signature website has five meaningful, independently composed pages",()=>{
