@@ -57,6 +57,8 @@ export -n AWE_FIREBASE_SERVICE_ACCOUNT_JSON
 
 echo "Verifying and building commit $CF_PAGES_COMMIT_SHA"
 npm ci
+# Template thumbnail generation launches Playwright Chromium when screenshots changed.
+npx playwright install chromium
 GITHUB_SHA="$CF_PAGES_COMMIT_SHA" npm run build
 npm run check
 npm test
