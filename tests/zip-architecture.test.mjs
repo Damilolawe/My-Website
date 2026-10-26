@@ -39,7 +39,11 @@ test("new studies render source-specific hero and gallery architecture without c
   assert(html.includes('arch-work-'+a.work),t.id+" missing project gallery variant");
   assert(html.includes('arch-nav-'+a.nav),t.id+" missing nav variant");
   assert(html.includes('class="design-nav"')||(["md-bugatti","md-mintlify","md-nintendo-2001"].includes(t.id)&&html.includes('<nav ')),t.id+" missing navigation structure");
-  assert(/class="[^"]*\bcards\b[^"]*"/.test(html)||(t.id==="md-bugatti"&&html.includes('class="fv-cases"')),t.id+" missing customizable project collection");
+  // Velocity intentionally uses an editorial Home teaser rather than repeating its
+  // three customer-customizable model chapters (which live on the Work page).
+  const hasProjectCollection=/class="[^"]*\bcards\b[^"]*"/.test(html);
+  const hasVelocityTeaser=t.id==="md-bugatti"&&html.includes('class="fv-home-preview"')&&html.includes('fv-home-feature')&&html.includes('href="/templates/md-bugatti/work.html"');
+  assert(hasProjectCollection||hasVelocityTeaser,t.id+" missing customizable project collection");
   assert(html.includes('id="hero-title"'),t.id+" missing accessible page title");
   assert(html.includes('PROJECT 01 /'),t.id+" lost project-specific artwork");
   assert(html.includes("FICTIONAL TEMPLATE DEMO"),t.id+" lost sample disclosure");
