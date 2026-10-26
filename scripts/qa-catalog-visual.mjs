@@ -10,7 +10,13 @@ const origin=(process.env.AWE_VISUAL_BASE||"http://127.0.0.1:8765").replace(/\/$
 const screenshots="catalog-visual-artifacts";
 // Include the three flagship designs in screenshot capture as well.
 // They retain their own bespoke renderers; this audit does not change their code.
-const catalog=templates;
+// Supply AWE_QA_IDS=id1,id2 to retest only affected designs after repairs.
+const selectedIds=new Set((process.env.AWE_QA_IDS||"").split(",").map(x=>x.trim()).filter(Boolean));
+const catalog=selectedIds.size?templates.filter(t=>selectedIds.has(t.id)):templates;
+if(selectedIds.size&&catalog.length!==selectedIds.size){
+ const missing=[...selectedIds].filter(id=>!catalog.some(t=>t.id===id));
+ throw new Error("Unknown template IDs: "+missing.join(","));
+}
 const sizes=[["phone",390,844],["tablet",768,1024],["desktop",1440,900],["wide",1920,1080]];
 const faults=[],warnings=[],measurements=[];
 await mkdir(screenshots,{recursive:true});
