@@ -94,7 +94,7 @@ function checkoutLabel() { return catalog.paymentMode === 'test' ? 'Continue to 
 function draw() {
   theaterController?.abort();
   theaterController = null;
-  app.innerHTML = `<div class="wizard ${step === 1 ? "is-gallery" : ""}"><ol class="steps">${labels.map((l, i) => `<li class="${i === step ? "active" : ""}" ${i === step ? 'aria-current="step"' : ""}>0${i + 1} / ${l}</li>`).join("")}</ol><div class="work-area"><span class="step-count">0${step + 1} / 05 — ${labels[step].toUpperCase()}</span><div id="step"></div><div class="actions"><button class="btn secondary" id="back" ${step === 0 || orderId ? "hidden" : ""}>←︎ Back</button><button class="btn acid" id="next">${step === 4 ? checkoutLabel() : step === 0 ? "Browse templates" : "Next step"} ↗︎</button></div></div></div>`;
+  app.innerHTML = `<div class="wizard ${step === 1 ? "is-gallery" : ""}"><ol class="steps">${labels.map((l, i) => `<li class="${i === step ? "active" : ""}" ${i === step ? 'aria-current="step"' : ""}>0${i + 1} / ${l}</li>`).join("")}</ol><div class="work-area"><span class="step-count">0${step + 1} / 05 — ${labels[step].toUpperCase()}</span><div id="step"></div><div class="actions"><button class="btn secondary" id="back" ${step === 0 || orderId ? "hidden" : ""}>←︎ Back</button><span id="checkout-feedback" class="checkout-feedback" role="status" aria-live="polite"></span><button class="btn acid" id="next">${step === 4 ? checkoutLabel() : step === 0 ? "Browse templates" : "Next step"} ↗︎</button></div></div></div>`;
   const el = $("#step");
   $("#feedback").textContent = "";
   if (step === 0) {
@@ -406,6 +406,8 @@ function draw() {
       await checkout();
     } catch (e) {
       report(e);
+      const localFeedback = $("#checkout-feedback");
+      if (localFeedback) localFeedback.textContent = e?.message || "Could not continue. Please retry.";
     }
   };
 }
