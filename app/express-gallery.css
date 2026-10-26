@@ -148,7 +148,6 @@
     min-height: 84px;
   }
   .app-main .express-gallery .worlds-choice-copy strong { font-size: 15px; }
-  .app-main .express-gallery .worlds-choice-thumb iframe { transform: scale(.11); }
 }
 @media(max-width: 400px) {
   .app-main .express-gallery .worlds-choice {

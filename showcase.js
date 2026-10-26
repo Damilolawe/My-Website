@@ -1,67 +1,6 @@
 import { fetchPublicTemplate, fetchPublicStudyPage, previewMessage } from "/shared/preview.mjs";
 import {zipDesignFor,zipPages} from "/shared/zip-design-catalog.mjs";
 import { templates } from "/shared/model.mjs";
-
-// Render miniature catalog identities directly in the DOM. Firebase's global
-// X-Frame-Options:DENY and CSP frame-ancestors 'none' prevent embedding the
-// public --still.html pages, so an iframe is NOT a reliable thumbnail.
-function miniTheme(item){
-  const key=(item.id+" "+item.style+" "+item.name).toLowerCase();
-  if(/bugatti|ferrari|automotive|motor|roadster|velocity|grand touring|racing/.test(key))return "automotive";
-  if(/nintendo|arcade|game|esport|pixel|playful|playroom|playstation/.test(key))return "play";
-  if(/mintlify|document|fieldnote|developer|technical|code|docs|terminal|obsidian|command/.test(key))return "terminal";
-  if(/couture|fashion|luxury|editorial|folio|heritage|gallery|magazine|art director/.test(key))return "editorial";
-  if(/cinematic|film|darkroom|after hours|nocturne|runway/.test(key))return "cinema";
-  if(/organic|botanical|garden|bloom|nature|greenhouse/.test(key))return "organic";
-  if(/commerce|store|shop|retail|product|marketplace|nike/.test(key))return "commerce";
-  if(/finance|fintech|ledger|data|dashboard|signal|analytics/.test(key))return "dashboard";
-  if(/architect|interior|structure|sculpt|clay|brutalist/.test(key))return "architecture";
-  if(/minimal|monochrome|still|whiteboard|clearview/.test(key))return "minimal";
-  const variants=["editorial","organic","dashboard","architecture","commerce","minimal","cinema","terminal"];
-  return variants[([...(item.id||"")].reduce((n,ch)=>(n*31+ch.charCodeAt(0))|0,0)>>>0)%variants.length];
-}
-function miniatureSite(item){
-  const root=document.createElement("span");
-  const theme=miniTheme(item);
-  root.className="worlds-mini worlds-mini--"+theme;
-  root.setAttribute("aria-hidden","true");
-  const accent=/^#[0-9a-f]{6}$/i.test(item.color)?item.color:"#c7ef79";
-  root.style.setProperty("--mini-accent",accent);
-  root.style.backgroundColor=accent; // Nonblank even before the stylesheet loads.
-  const add=(parent,className)=>{
-    const el=document.createElement("span");
-    el.className=className;
-    parent.appendChild(el);
-    return el;
-  };
-  const page=add(root,"worlds-mini-page");
-  const mast=add(page,"worlds-mini-mast");
-  add(mast,"worlds-mini-mark");
-  add(mast,"worlds-mini-menu");
-  add(mast,"worlds-mini-menu worlds-mini-menu-short");
-  const hero=add(page,"worlds-mini-hero");
-  const copy=add(hero,"worlds-mini-copy");
-  add(copy,"worlds-mini-kicker");
-  add(copy,"worlds-mini-headline worlds-mini-headline-first");
-  add(copy,"worlds-mini-headline worlds-mini-headline-second");
-  add(copy,"worlds-mini-subline");
-  add(copy,"worlds-mini-action");
-  const art=add(hero,"worlds-mini-art");
-  add(art,"worlds-mini-shape worlds-mini-shape-primary");
-  add(art,"worlds-mini-shape worlds-mini-shape-secondary");
-  add(art,"worlds-mini-shape worlds-mini-shape-detail");
-  const bottom=add(page,"worlds-mini-bottom");
-  for(let i=0;i<3;i++){
-    const tile=add(bottom,"worlds-mini-tile worlds-mini-tile-"+(i+1));
-    add(tile,"worlds-mini-tile-art");
-    add(tile,"worlds-mini-tile-line");
-  }
-  const foot=add(page,"worlds-mini-foot");
-  add(foot,"worlds-mini-foot-line");
-  add(foot,"worlds-mini-foot-line");
-  return root;
-}
-
 export function mountExpressGallery(root,{items=templates,initial="afterhours",initialMobile=false,onSelect=()=>{},onModeChange=()=>{}}={}) {
   if(!root)return new AbortController();
   const lifetime=new AbortController();
@@ -124,13 +63,15 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
       swatch.setAttribute("aria-hidden","true");
       const symbol=document.createElement("span");symbol.setAttribute("aria-hidden","true");symbol.textContent="↗︎";
       const thumb=document.createElement("span");thumb.className="worlds-choice-thumb";thumb.setAttribute("aria-hidden","true");
-      thumb.append(miniatureSite(item));
+      const mini=document.createElement("img");mini.alt="";mini.loading="lazy";mini.decoding="async";
+      mini.src="/assets/catalog-thumbnails/"+encodeURIComponent(item.id)+".webp";
+      mini.width=640;mini.height=900;
+      thumb.append(mini);
       button.append(count,thumb,swatch,copy,symbol);
       button.addEventListener("click",()=>choose(item.id,true));
       fragment.append(button);
     });
     rail.replaceChildren(rail.querySelector(".worlds-rail-note"),fragment);
-    // Thumbnails are local DOM artwork, requiring no network frames or observers.
     filterChoices();
   }
   function filterChoices(){

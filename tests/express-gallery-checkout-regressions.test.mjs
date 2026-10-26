@@ -16,13 +16,14 @@ test("Express gallery uses lazy, faithful template previews without repeating ea
   assert.match(css, /\.worlds-choice-thumb\s*\{/);
   assert.match(css, /@media\(max-width: 700px\)/);
   assert.match(showcase, /button\.append\(count,thumb,swatch,copy,symbol\)/);
-  assert.match(showcase, /thumb\.append\(miniatureSite\(item\)\)/);
-  assert.doesNotMatch(showcase, /mini\.dataset\.src|worlds-choice-thumb iframe/);
-  assert.doesNotMatch(showcase, /worlds-choice-thumb-title|const caption/);
-  assert.match(showcaseCss, /\.worlds-mini-page/);
-  assert.match(showcaseCss, /worlds-choice:hover \.worlds-mini-page/);
+  assert.match(showcase, /mini\.loading="lazy"/);
+  assert.match(showcase, /mini\.src="\/assets\/catalog-thumbnails\/"/);
+  assert.doesNotMatch(showcase, /worlds-choice-thumb-title|worlds-choice-thumb iframe|createElement\("iframe"\)/);
+  assert.doesNotMatch(showcaseCss, /worlds-choice-thumb iframe/);
+  assert.doesNotMatch(css, /worlds-choice-thumb iframe/);
+  assert.match(showcaseCss, /worlds-choice:hover \.worlds-choice-thumb img/);
   assert.match(showcaseCss, /prefers-reduced-motion:reduce/);
-  assert.doesNotMatch(showcaseCss, /worlds-choice-thumb-title|worlds-choice-thumb iframe/);
+  assert.doesNotMatch(showcaseCss, /worlds-choice-thumb-title/);
 });
 
 test("Checkout requires visible consent and keeps reasons next to Continue", async () => {
