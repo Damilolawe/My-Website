@@ -8,7 +8,8 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node --test tests/*.test.mjs",
-    "check": "python3 scripts/check.py"
+    "check": "python3 scripts/check.py",
+    "qa:visual": "node scripts/qa-visual-acceptance.mjs"
   },
   "dependencies": {
     "fflate": "0.8.3",

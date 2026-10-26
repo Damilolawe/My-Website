@@ -1,0 +1,42 @@
+name: Visual acceptance — rendered geometry and screenshots
+on:
+  pull_request:
+    paths:
+      - 'shared/zip-flagship-velocity.mjs'
+      - 'shared/zip-guide-fidelity.mjs'
+      - 'shared/zip-design-render.mjs'
+      - 'scripts/qa-visual-acceptance.mjs'
+      - 'tests/velocity-design-distinction.test.mjs'
+      - '.github/workflows/visual-acceptance.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  velocity-rendered-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Build templates
+        run: |
+          npm ci
+          npm run build
+      - name: Prepare Chromium
+        run: npx playwright install chromium
+      - name: Test every Velocity page at phone, tablet, desktop and wide widths
+        run: |
+          python3 -m http.server 8765 --directory dist --bind 127.0.0.1 >/tmp/awe-visual-server.log 2>&1 &
+          sleep 2
+          npm run qa:visual
+      - name: Upload desktop/mobile screenshots and exact failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: velocity-visual-acceptance
+          path: visual-acceptance-artifacts/
+          if-no-files-found: warn
+          retention-days: 14
