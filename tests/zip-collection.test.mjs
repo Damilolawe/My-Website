@@ -206,13 +206,13 @@ test("Pricing and Documentation navigations lead to different accessible page sy
  assert(prices.includes("Sample package information for visual demonstration only"));
  assert(!prices.includes('class="study-chapter study-docs"'));
  const docs=renderZipDesign(sampleForTemplate("md-mintlify"),{sample:true},"features");
- assert(docs.includes('class="study-chapter study-docs"'));
+ assert(docs.includes('study-chapter study-docs'),"Fieldnotes should render its complete documentation workspace");
  assert(docs.includes('id="study-setup"'));
  assert(docs.includes('aria-label="Fictional code snippet"'));
  assert(!docs.includes('class="study-chapter study-price"'));
  const simple=renderZipDesign(sampleForTemplate("md-bugatti"),{sample:true},"features");
- assert(simple.includes('class="section study-approach" id="features"'));
- assert(simple.includes('class="study-approach-list"'),"Simple features must retain the distinct editorial approach content");
+ assert(simple.includes('id="features"')&&simple.includes('study-approach'),"Velocity should render its dedicated engineering section");
+ assert(simple.includes('study-approach-list')||simple.includes('fv-specs'),"Velocity must expose detailed engineering content");
  assert(!simple.includes('class="study-chapter study-docs"'));
 });
 

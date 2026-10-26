@@ -4,6 +4,9 @@ import {moreGuideCSS,moreGuideScene,moreSceneStyles} from "./zip-guide-fidelity-
 import {waveCSS,waveScene} from "./zip-guide-fidelity-wave3.mjs";
 import {sampleChapterHTML,sampleChapterCSS} from "./zip-page-components.mjs";
 import {architectureFor,architecturalHero,architecturalCSS} from "./zip-architecture.mjs";
+import {renderVelocity} from "./zip-flagship-velocity.mjs";
+import {renderFieldnotes} from "./zip-flagship-fieldnotes.mjs";
+import {renderPixelQuest} from "./zip-flagship-pixelquest.mjs";
 const e=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const types={auto:"bugatti bmw-m bmw dji lamborghini renault spacex tesla",editorial:"aljazeera theverge wired pinterest nintendo-2001",fintech:"binance coinbase kraken mastercard mercury nerdwallet revolut stripe wise",code:"claude clickhouse composio cursor elevenlabs expo hashicorp mistral.ai mintlify mongodb ollama opencode.ai posthog replicate resend sentry supabase together.ai vercel voltagent x.ai",product:"airtable cal cohere framer intercom lovable miro notion sanity superhuman webflow zapier",commerce:"airbnb 1win hp dell-1996 jobright mydealz playstation shopify uber"};
 const kind=ref=>Object.keys(types).find(k=>types[k].split(" ").includes(ref))||"studio";
@@ -28,6 +31,16 @@ export function renderZipDesign(v,options={},page="home"){
  const t=zipDesignFor(v.template);if(!t)return null;
  const profile=architectureFor(t);if(!profile)throw Error('Missing source architecture '+t.source);
  const label=zipPages.includes(page)?page:"home";
+ // These flagships are independent complete websites, not skins of the study renderer.
+ const flagshipRenderer=t.source==="bugatti"?renderVelocity:t.source==="mintlify"?renderFieldnotes:t.source==="nintendo-2001"?renderPixelQuest:null;
+ if(flagshipRenderer){
+  return flagshipRenderer({
+   t,v,options,page:label,profile,
+   sourceCSS:sourceGuideCSS(t.id)+moreGuideCSS(t.id)+waveCSS(t.id),
+   sourceArtCSS:sceneStyles+moreSceneStyles,
+   sourceScene:moreGuideScene(t,0)||waveScene(t,0)||sourceGuideScene(t,0)||artistic(t,0)
+  });
+ }
  const content=v.content,which=kind(t),contrast=isDarkHex(v.design?.primary||t.accent)?"#fff":"#101010";
  const font=which==="editorial"?"Georgia,serif":which==="code"?"ui-monospace,monospace":"Arial,system-ui,sans-serif";
  const chapterLabel=zipChapterLabels(t.source)[zipPages.indexOf(label)] || label;
