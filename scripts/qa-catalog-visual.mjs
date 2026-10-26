@@ -36,9 +36,25 @@ async function audit(t,route,mode,width,height,{capture=false}={}){
    const visible=all.filter(el=>getComputedStyle(el).display!=="none");
    const headlines=visible.map(el=>{
     const s=getComputedStyle(el),r=el.getBoundingClientRect(),fs=parseFloat(s.fontSize);
+    // An element can fit its viewport yet clip actual letters when a long
+    // unbroken word overflows its line box. Measure the rendered text ranges.
+    const ink=document.createRange();
+    ink.selectNodeContents(el);
+    const textRects=[...ink.getClientRects()];
+    const textRight=textRects.length?Math.max(...textRects.map(x=>x.right)):r.right;
+    let ancestor=el.parentElement,clipAt=null;
+    while(ancestor){
+     const style=getComputedStyle(ancestor);
+     if(["hidden","clip","scroll","auto"].includes(style.overflowX)){
+      const edge=ancestor.getBoundingClientRect().right;
+      clipAt=clipAt===null?edge:Math.min(clipAt,edge);
+     }
+     ancestor=ancestor.parentElement;
+    }
     return {text:el.textContent.trim().slice(0,65),tag:el.tagName,
      lineHeight:fs>0?Math.round(parseFloat(s.lineHeight)/fs*100)/100:null,
-     left:Math.round(r.left),right:Math.round(r.right)};
+     left:Math.round(r.left),right:Math.round(r.right),
+     textRight:Math.round(textRight),clipRight:clipAt===null?null:Math.round(clipAt)};
    });
    const width=Math.max(document.body.scrollWidth,document.documentElement.scrollWidth);
    const menus=[...document.querySelectorAll(".design-mobile,.fd-mobile-menu,.shell-mobile-menu")];
@@ -71,6 +87,11 @@ async function audit(t,route,mode,width,height,{capture=false}={}){
   for(const h of result.headlines){
    if(h.lineHeight!==null&&h.lineHeight<1.01)warnings.push(label+": visually inspect tight "+h.tag+" line-height "+h.lineHeight+" ("+h.text+")");
    if(h.left< -width*.3||h.right>width*1.3)warnings.push(label+": inspect positioned heading "+h.text);
+   const allowedRight=Math.min(width,h.clipRight??width);
+   if(h.tag==="H1"&&h.textRight>allowedRight+4)
+    issues.push("H1 visible glyphs clipped at "+Math.round(allowedRight)+"px, text extends to "+h.textRight+"px ("+h.text+")");
+   else if(h.textRight>allowedRight+4)
+    warnings.push(label+": heading text may be clipped at "+Math.round(allowedRight)+"px ("+h.text+")");
   }
   if(mode==="phone"&&result.hasMenu){
    const menu=page.locator(".design-mobile,.fd-mobile-menu,.shell-mobile-menu").first();
