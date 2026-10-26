@@ -127,7 +127,10 @@ test("Firebase priority keeps existing static pages ahead of the fallback viewer
  assert.deepEqual(cfg.hosting.rewrites,[{source:"/sites/**",destination:"/site-viewer.html"}]);
  const workflow=await readFile(new URL("../.github/workflows/firebase-hosting.yml",import.meta.url),"utf8");
  assert(workflow.includes("node scripts/materialize-approved-sites.mjs"));
- assert(workflow.includes("schedule:"));
+ // Automatic deploys are triggered by code pushes, and an owner can dispatch manually.
+ // A recurring timer is not required for static Hosting publication.
+ assert(workflow.includes("branches: [main]"));
+ assert(workflow.includes("workflow_dispatch:"));
  assert(workflow.indexOf("node scripts/materialize-approved-sites.mjs") <
    workflow.indexOf("Deploy only static assets"));
  assert(workflow.includes("AWE_SITE_ORIGIN"));
