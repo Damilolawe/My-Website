@@ -27,7 +27,8 @@ test("Signature study chapters have distinct page identity, stable links and res
   for(const page of zipPages){
    const html=renderZipDesign(v,{sample:true},page);
    assert(html.includes('class="site page-'+page+' '),t.id+" "+page+" page missing distinct layout");
-   assert(html.includes('hero-variant'),t.id+" "+page+" missing hero");
+   const flagshipArchitecture=t.id==="md-bugatti"?({home:"fv-hero",work:"fv-work-intro",features:"fv-technical",studio:"fv-studio-opening",contact:"fv-concierge"}[page]):null;
+   assert(flagshipArchitecture?html.includes(flagshipArchitecture):html.includes('hero-variant'),t.id+" "+page+" missing hero");
    assert(html.includes('href="/templates/'+t.id+'/contact.html"'),t.id+" "+page+" contact link changed");
    assert(html.includes('.site.page-work .hero')||(["md-bugatti","md-mintlify"].includes(t.id)&&html.includes("@media(max-width")),t.id+" "+page+" missing scoped secondary-page styles");
    assert(html.includes('prefers-reduced-motion:reduce'),t.id+" "+page+" lost motion accessibility");
