@@ -211,7 +211,8 @@ test("Pricing and Documentation navigations lead to different accessible page sy
  assert(docs.includes('aria-label="Fictional code snippet"'));
  assert(!docs.includes('class="study-chapter study-price"'));
  const simple=renderZipDesign(sampleForTemplate("md-bugatti"),{sample:true},"features");
- assert(simple.includes('class="section" id="features"'));
+ assert(simple.includes('class="section study-approach" id="features"'));
+ assert(simple.includes('class="study-approach-list"'),"Simple features must retain the distinct editorial approach content");
  assert(!simple.includes('class="study-chapter study-docs"'));
 });
 
