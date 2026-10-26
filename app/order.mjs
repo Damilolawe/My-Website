@@ -393,7 +393,8 @@ function draw() {
         authForm(signIn, async () => {
           me = await api("me");
           if (!$("#consent")?.checked) throw Error("Review and accept the package terms before checkout.");
-          signIn.innerHTML = "<p class=\"notice\" role=\"status\">Email verified. Opening secure checkout…</p>";
+          const authFeedback = $("#auth-feedback", signIn);
+          if (authFeedback) authFeedback.textContent = "Email verified. Opening secure checkout…";
           await checkout();
         });
         const message = $("#consent-help");
