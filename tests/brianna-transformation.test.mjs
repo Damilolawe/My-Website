@@ -47,3 +47,19 @@ test("Mobile, accessible and keyboard-operable slider assets ship with static bu
  assert(js.includes("setAttribute(\"aria-pressed\""),"Buttons must reflect selected state");
  assert(js.includes('setAttribute("aria-valuetext"'),"Accessible value must track slider");
 });
+
+test("homepage navigation uses Templates and sends client login to the existing account page",async()=>{
+ const html=await read("index.html");
+ assert(html.includes('<a href="/order.html" class="nav-link">Templates ↗︎</a>'),
+  "Desktop nav should be labeled Templates");
+ assert(html.includes('<a href="/order.html">TEMPLATES <span>03 ↗︎</span></a>'),
+  "Mobile nav should be labeled Templates");
+ assert(html.includes('class="header-cta magnetic" href="/account.html" aria-label="Log in to your Awe Concepts client account"'),
+  "The top-right action should open the real customer account login");
+ assert(html.includes('<span>CLIENT LOGIN</span>'));
+ assert(html.includes('<a href="/account.html">CLIENT LOGIN <span>05 ↗︎</span></a>'),
+  "Mobile users need a visible client login option because the header CTA is hidden");
+ assert(!html.includes('class="header-cta magnetic" href="#contact"'),
+  "Old Start A Project header button must not return");
+ assert(html.includes('AWE Express.'),"The service offering should retain its recognizable product name");
+});
