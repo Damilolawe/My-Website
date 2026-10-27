@@ -538,7 +538,7 @@ th {
   border: 1px solid currentColor;
 }
 .service-option:first-child {
-  background: #dcfc46;
+  background: #d1fa57;
 }
 .service-option h3 {
   font-size: 42px;
@@ -710,8 +710,8 @@ th {
 .theater-header{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:10px 12px 22px}
 .theater-tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .theater-tools button,.theater-tools a{color:inherit;text-decoration:none;background:none;border:1px solid #7779;padding:8px 13px;font:700 10px monospace;letter-spacing:.04em;cursor:pointer}
-.theater-tools button[aria-pressed=true]{background:#dcfc46;color:#111;border-color:#dcfc46}
-.theater-live{display:inline-block;width:8px;height:8px;background:#dcfc46;border-radius:50%;box-shadow:0 0 14px #dcfc46;margin-right:8px}
+.theater-tools button[aria-pressed=true]{background:#d1fa57;color:#111;border-color:#d1fa57}
+.theater-live{display:inline-block;width:8px;height:8px;background:#d1fa57;border-radius:50%;box-shadow:0 0 14px #d1fa57;margin-right:8px}
 .theater-viewport{min-height:570px;background:linear-gradient(130deg,#2d3139,#17191f);display:flex;justify-content:center;align-items:stretch;overflow:hidden;padding:0;transition:padding .4s}
 .theater-viewport iframe{display:block;width:100%;height:620px;border:0;background:#faf9f3;transition:width .55s cubic-bezier(.22,1,.36,1),border-radius .4s,box-shadow .4s}
 .experience-theater.is-mobile .theater-viewport{padding:20px}
@@ -813,7 +813,7 @@ th {
 
 /* AWE-QA-004 — accessible keyboard-only skip link */
 .skip-link{position:fixed;z-index:9999;left:12px;top:12px;transform:translateY(-165%);padding:12px 18px;
-background:#dcfc46;color:#141914;font:800 13px/1.2 Arial,sans-serif;border:2px solid #141914;
+background:#d1fa57;color:#141914;font:800 13px/1.2 Arial,sans-serif;border:2px solid #141914;
 text-decoration:none;opacity:0;pointer-events:none}
 .skip-link:focus-visible,.skip-link:focus{transform:translateY(0);opacity:1;pointer-events:auto;outline:3px solid #141914;outline-offset:2px}
 
@@ -825,23 +825,23 @@ text-decoration:none;opacity:0;pointer-events:none}
 .experience-theater.is-mobile .theater-viewport{padding:20px 8px!important}
 .experience-theater.is-mobile .theater-viewport iframe{height:880px!important;min-height:880px;width:min(375px,100%);transform:none!important}
 .theater-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-gap:17px;background:radial-gradient(ellipse at 75% 30%,#dcfc4621,transparent 64%),#101714;
+gap:17px;background:radial-gradient(ellipse at 75% 30%,#d1fa5721,transparent 64%),#101714;
 text-align:center;padding:30px;color:#f5f7ef;z-index:3;font:700 11px/1.5 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.11em}
 .theater-loading[hidden]{display:none!important}
 .theater-loading strong{font:850 clamp(20px,3vw,35px)/1 Arial,system-ui,sans-serif;letter-spacing:-.05em}
-.theater-loading-mark{font:70px/1 Georgia,serif;color:#dcfc46;animation:theater-loader 5s linear infinite}
+.theater-loading-mark{font:70px/1 Georgia,serif;color:#d1fa57;animation:theater-loader 5s linear infinite}
 @keyframes theater-loader{to{transform:rotate(360deg)}}
 @media(max-width:560px){.experience-theater.is-mobile .theater-viewport{padding:9px 0!important}
 .experience-theater.is-mobile .theater-viewport iframe{width:min(375px,100%)!important;min-height:880px}}
 
 /* Cohesive editorial visual identity on contact, customer, order and admin pages. */
-.app-header{background:#0c1210;color:#f4f5e6;border-bottom:4px solid #dcfc46;
+.app-header{background:#0c1210;color:#f4f5e6;border-bottom:4px solid #d1fa57;
  padding:18px 4vw;box-shadow:0 13px 35px #1023191b}
 .app-header .wordmark img{max-width:190px;max-height:58px;object-fit:contain}
 .app-header nav{align-items:center;flex-wrap:wrap;gap:12px 25px}
 .app-header nav a{font-weight:750;letter-spacing:.03em;text-decoration:none;transition:color .2s}
-.app-header nav a:hover{color:#dcfc46}
-.app-header nav a:focus-visible{outline-color:#dcfc46}
+.app-header nav a:hover{color:#d1fa57}
+.app-header nav a:focus-visible{outline-color:#d1fa57}
 body{background:var(--paper);color:var(--ink)}
 .app-main{position:relative}
 .app-main:before{content:"A / C";position:absolute;right:4vw;top:20px;pointer-events:none;
