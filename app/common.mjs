@@ -6,6 +6,8 @@ export function money(p) {
     ? new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: p.currency || "usd",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
       }).format(p.amount / 100)
     : "Pricing to be announced";
 }
