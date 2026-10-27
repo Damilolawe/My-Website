@@ -1,4 +1,4 @@
-/* Real Wix case-study images. Cinematic foreground controls, not another slider. */
+/* Real portfolio case-study images. Cinematic foreground controls, not another slider. */
 (() => {
   "use strict";
   const stage = document.querySelector("[data-bld-showcase]");
@@ -20,7 +20,7 @@
   const images = Object.fromEntries(previews.map(img => [img.dataset.bldShot, img]));
   const labels = {
     before: { title: "ORIGINAL WEBSITE / 01", alt: "Brianna's original website screenshot" },
-    after: { title: "REDESIGNED WEBSITE / 02", alt: "Brianna's redesigned Wix Studio website screenshot" },
+    after: { title: "REDESIGNED WEBSITE / 02", alt: "Brianna's redesigned website screenshot" },
   };
 
   const focus = side => {
