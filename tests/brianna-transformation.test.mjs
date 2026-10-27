@@ -106,3 +106,31 @@ test("homepage navigation stays Templates and Client Login, not the previous Exp
  assert(html.includes('<a href="/account.html">CLIENT LOGIN <span>05 ↗︎</span></a>'));
  assert(html.includes('AWE Express.'),"The product name should remain in the offering");
 });
+
+test("Brianna case-study buttons, captions, accessibility text and shipped assets are platform-neutral",async()=>{
+ const [source,built,client,style]=await Promise.all([
+   read("index.html"),read("dist/index.html"),read("brianna-case.js"),read("brianna-case.css")
+ ]);
+ for(const [page,html] of [["source",source],["published build",built]]){
+   const from=html.indexOf('<section class="bld-case"');
+   const end=html.indexOf("</section>",from);
+   assert(from>=0&&end>from,page+" missing Brianna section");
+   const section=html.slice(from,end);
+   // A customer may see text, image descriptions, tooltips and button labels,
+   // but the actual external link's domain remains a functional destination.
+   const visible=section.replace(/\\s(?:href|src)=("[^"]*"|'[^']*')/gi,"");
+   assert(!/\\bwix(?:studio)?\\b/i.test(visible),
+      page+" must not expose the website builder in copy, controls or assets");
+   assert(section.includes("BRIANNA / REDESIGNED WEBSITE"));
+   assert(section.includes("02 / REDESIGNED WEBSITE"));
+   assert(section.includes(">REDESIGNED WEBSITE <span"));
+   assert(section.includes(">OPEN REDESIGN SITE"));
+   assert(section.includes('href="https://damilolawe03.wixstudio.com/website?rc=test-site"'),
+      "Keep the real redesign destination working while removing visible vendor names");
+ }
+ assert(!/\\bwix(?:studio)?\\b/i.test(client),"Screen-reader captions must not mention the platform");
+ assert(!/\\bwix(?:studio)?\\b/i.test(style),"Showcase CSS must not include platform branding");
+ for(const {path} of assets){
+   assert(!/wix/i.test(path),"Static case-study filenames must be provider-neutral");
+ }
+});
