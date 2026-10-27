@@ -36,7 +36,7 @@ test("Every appended sample renders a safe responsive customer-editable preview"
   assert(!html.includes("<script"));
   assert(html.includes(t.bg),t.id);
   assert(html.includes(t.color),t.id);
-  assert(html.includes(v.content.name),t.id);
+  assert(html.includes(v.content.name.replaceAll("&","&amp;")),t.id+" escaped brand name missing");
  }
 });
 test("New five-page previews contain five distinct linked and semantic pages",async()=>{
@@ -158,7 +158,14 @@ test("Six design source guides have distinct per-reference layouts, typography a
 
 test("Six source-specific designs show original fictional demo narratives rather than repeating Studio XX",()=>{
  const expected=[["md-bugatti","ATELIER VELOCITY"],["md-airbnb","HOMEBY"],["md-claude","KINSHIP INTELLIGENCE"],["md-framer","FORM STUDIO"],["md-nintendo-2001","PIXELQUEST 2001"],["md-shopify","VERDANT SUPPLY"]];
- for(const [id,name] of expected){const value=sampleForTemplate(id);const html=renderSite(value,{sample:true});assert.equal(value.content.name,name);assert(html.includes(name));assert(value.content.cards.length>=3);assert(value.content.bio.toLowerCase().includes("fictional"));}
+ for(const [id,name] of expected){
+  const value=sampleForTemplate(id),html=renderSite(value,{sample:true});
+  assert.equal(value.content.name,name);
+  assert(html.includes(name.replaceAll("&","&amp;")),id+" brand text missing");
+  assert(value.content.cards.length>=3);
+  assert(html.includes("FICTIONAL TEMPLATE DEMO"),id+" sample disclosure missing");
+  assert(!renderSite(value,{sample:false}).includes("FICTIONAL TEMPLATE DEMO"),id+" real customer output wrongly carries a demo label");
+ }
 });
 
 test("Eight additional source guides have distinct responsive art and typography without copied logos",async()=>{
@@ -194,7 +201,9 @@ test("All 74 design studies have authored, distinctive fictional headlines",asyn
  assert.equal(Object.keys(studyCopy).length,74);
  const samples=zipDesigns.map(t=>sampleForTemplate(t.id));
  assert.equal(new Set(samples.map(x=>x.content.headline)).size,74);
- assert(samples.every(x=>x.content.bio.toLowerCase().includes("fictional")));
+ assert(samples.every(x=>x.content.bio.length>=45),"Demo brands need substantive narratives");
+ assert(samples.every(x=>!x.content.bio.startsWith("A fictional creative studio exploring")),"Generic placeholder biographies returned");
+ assert(samples.every(x=>renderSite(x,{sample:true}).includes("FICTIONAL TEMPLATE DEMO")),"Visible demo disclosure required across all 74");
  for(const sample of samples){assert.equal(sample.content.cards.length,3);assert(sample.content.cards.every(x=>x.title&&x.description));}
  assert.equal(sampleForTemplate("md-framer").content.name,"FORM STUDIO");
 });
@@ -238,5 +247,15 @@ test("Every custom reference scene takes precedence over generic fallback artwor
  for(const [id,fragment] of [["md-stripe",'class="guide-more guide-more-stripe"'],["md-mintlify",'class="guide-more guide-more-mintlify"'],["md-oracle",'class="guide-more guide-more-oracle"'],["md-notion",'class="wave-scene wave-notion"'],["md-coinbase",'class="wave-scene wave-coinbase"'],["md-sentry",'class="wave-scene wave-sentry"'],["md-wise",'class="wave-scene wave-wise"']]){
   const rendered=renderSite(sampleForTemplate(id),{sample:true});
   assert(rendered.includes(fragment),id+" should render its bespoke scene, not just CSS");
+ }
+});
+
+test("Real customer pages never inherit a fictional sample banner",()=>{
+ for(const id of ["md-coinbase","md-mercury","md-framer","md-voltagent"]){
+  const sample=sampleForTemplate(id);
+  const demo=renderSite(sample,{sample:true}),customer=renderSite(sample,{sample:false});
+  assert(demo.includes("FICTIONAL TEMPLATE DEMO"),id+" demo banner missing");
+  assert(!customer.includes("FICTIONAL TEMPLATE DEMO"),id+" customer page falsely labeled a demo");
+  assert(demo.includes(sample.content.name.replaceAll("&","&amp;")),id+" brand must be safely escaped");
  }
 });
