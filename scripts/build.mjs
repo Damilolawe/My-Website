@@ -1,4 +1,4 @@
-import { cp, mkdir, rm, readFile } from "node:fs/promises";
+import { cp, mkdir, rm, readFile, stat } from "node:fs/promises";
 const files = [
   "index.html",
   "404.html",
@@ -117,6 +117,27 @@ await writeFile("dist/release.json", JSON.stringify({
 // stylesheet requests on the public homepage. All CSS asset URLs are absolute.
 const homePath = "dist/index.html";
 let homeHTML = await readFile(homePath, "utf8");
+
+// Wix can block unauthenticated screenshots. The image links in source HTML
+// must never become broken /assets URLs in the deployed HTML. Publish the
+// already-visible links to the real websites until BOTH photos are available.
+// When both captures exist, keep both real src attributes so the slider works.
+const briannaShots = ["brianna-before.webp", "brianna-after.webp"];
+const briannaCapturesReady = (await Promise.all(briannaShots.map(async file => {
+  try {
+    return (await stat("dist/assets/case-studies/" + file)).size >= 10_000;
+  } catch { return false; }
+}))).every(Boolean);
+if (!briannaCapturesReady) {
+  for (const file of briannaShots) {
+    const src = ' src="/assets/case-studies/' + file + '"';
+    if (!homeHTML.includes(src)) throw Error("Brianna image reference changed: " + file);
+    homeHTML = homeHTML.replace(src, ' data-capture-pending="/assets/case-studies/' + file + '"');
+  }
+  console.warn("Brianna: one or both real screenshots unavailable. Deploying functional original/redesign links without broken local images.");
+} else {
+  console.log("Brianna: both original and redesign images captured; enabling live screenshot comparison.");
+}
 const localStyles = [...homeHTML.matchAll(/<link rel="stylesheet" href="(\/?[^"\s]+\.css)">/g)];
 const homeCSS = [];
 for (const [tag, href] of localStyles) {
