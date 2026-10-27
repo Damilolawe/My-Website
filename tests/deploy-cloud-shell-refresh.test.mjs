@@ -19,3 +19,51 @@ test("Cloud Shell deploy script refreshes itself after main updates its own safe
  assert(script.includes('SUCCESS: Both aweconcepts.com and awe-digital.web.app serve commit'),"Public version verification must be preserved");
  execFileSync("bash",["-n",file.pathname],{stdio:"pipe"});
 });
+
+test("untracked Brianna image files are preserved before pulling versioned copies",async()=>{
+ const script=await readFile(new URL("../scripts/deploy-verified-cloud-shell.sh",import.meta.url),"utf8");
+ const paths=[
+  "assets/case-studies/brianna-before.webp",
+  "assets/case-studies/brianna-after.webp",
+ ];
+ assert(script.includes("brianna_captures=("),"The guard must scope the two specific captured images");
+ for(const path of paths)assert(script.includes(path),"Missing capture path "+path);
+ assert(script.includes('git ls-files --others --exclude-standard -- "${brianna_captures[@]}"'),
+   "Do not disturb already-tracked or unrelated user files");
+ assert(script.includes("git stash push --include-untracked"),"Untracked assets must be recoverably backed up");
+ assert(script.includes('-- "${brianna_captures[@]}"'),"Stash must be path-scoped");
+ assert(script.indexOf("git stash push --include-untracked")<script.indexOf("git pull --ff-only origin main"),
+   "Preserve locally generated image assets before fetching the committed versions");
+ assert(!script.includes('rm -f assets/case-studies/brianna'),
+   "Generated original images must not be destroyed");
+
+ // Exercise the same safe, scoped stash against a disposable Git fixture so
+ // deployment cannot regress into a pre-pull merge blocker or delete data.
+ const {mkdtemp,mkdir,writeFile,access,readFile:read}=await import("node:fs/promises");
+ const {tmpdir}=await import("node:os");
+ const {join}=await import("node:path");
+ const {rm}=await import("node:fs/promises");
+ const dir=await mkdtemp(join(tmpdir(),"awe-brianna-stash-"));
+ const git=(...args)=>execFileSync("git",["-C",dir,...args],{encoding:"utf8"});
+ try{
+  git("init","-b","main");
+  git("config","user.name","AWE Test");
+  git("config","user.email","test@example.com");
+  await writeFile(join(dir,"tracked.txt"),"base");
+  git("add","tracked.txt");
+  git("commit","-m","Baseline");
+  await mkdir(join(dir,"assets","case-studies"),{recursive:true});
+  for(const [index,path] of paths.entries()){
+   await writeFile(join(dir,path),index===0?"precious old original":"precious Wix redesign");
+  }
+  await writeFile(join(dir,"keep-untracked.txt"),"do not touch");
+  git("stash","push","--include-untracked","-m","Brianna test backup","--",...paths);
+  const remaining=git("ls-files","--others","--exclude-standard","--",...paths).trim();
+  assert.equal(remaining,"","Old untracked files should no longer block a fast-forward");
+  assert.equal(await read(join(dir,"keep-untracked.txt"),"utf8"),"do not touch");
+  const stash=git("stash","show","-u","--name-only","stash@{0}");
+  for(const path of paths)assert(stash.includes(path),"Stash must preserve "+path);
+  assert.equal(git("show","stash@{0}^3:"+paths[0]).trim(),"precious old original");
+  assert.equal(git("show","stash@{0}^3:"+paths[1]).trim(),"precious Wix redesign");
+ }finally{await rm(dir,{recursive:true,force:true});}
+});
