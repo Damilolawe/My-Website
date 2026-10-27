@@ -130,9 +130,17 @@ export function sampleZipDesign(id,base){
  content:{...base.content,name:authored.name||demoBrandNames[t.source],headline:study.headline,
  bio:study.bio,
  heroLabel:chapterEyebrows[studyArtCategory(t.source)],
- ctaLabel:"Explore the work",cards:names.map((title,i)=>({title,description:"A fictional project exploring "+study.focus+".",url:""})),
+ ctaLabel:"Explore the work",cards:names.map((title,i)=>({
+  title,
+  description:[
+   "A visual direction grounded in "+study.focus.split(/\s+and\s+/i)[0]+", balancing clarity with character.",
+   "A closer exploration of "+(study.focus.split(/\s+and\s+/i)[1]||study.focus)+", expressed through form and interaction.",
+   "A complete concept bringing "+study.focus+" into a cohesive digital experience."
+  ][i],
+  url:""
+ })),
  services:study.focus.split(/\s+and\s+/i).slice(0,2).map((phrase,i)=>({
   title:phrase.replace(/^./,c=>c.toUpperCase()).replace(/[. ]+$/,""),
-  description:i===0?"A fictional creative exploration of "+phrase+".":"A source-guided study of "+phrase+" in a distinctive visual system."
+  description:i===0?"Defining the visual language of "+phrase+", from first impression to the finest detail.":"Turning "+phrase+" into a more memorable, intuitive experience."
  })),links:[],publicEmail:"",photoIds:[],testimonials:[],...authored}};
 }
