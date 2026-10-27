@@ -65,7 +65,7 @@ test("real before-and-after cinema has focus switching, image enlargement and ac
  assert(!js.includes('range.addEventListener'),"Do not reintroduce a second slider");
 });
 
-test("external original and Wix redesign links work without exposing editor sessions",async()=>{
+test("external original and redesigned site links work without exposing editor sessions",async()=>{
  const html=await read("index.html");
  const original="https://www.briannalucilledemmings.com/";
  const redesign="https://damilolawe03.wixstudio.com/website?rc=test-site";
@@ -75,6 +75,11 @@ test("external original and Wix redesign links work without exposing editor sess
  assert(html.includes('data-bld-capture-fallback'),"Missing-asset fallback must retain real-site links");
  assert(html.includes("These are actual screenshots"),"Screenshots should not be mislabeled as mockups");
  assert(!html.includes("These visuals are illustrative"));
+ const section=html.slice(html.indexOf('<section class="bld-case"'),html.indexOf("</section>",html.indexOf('<section class="bld-case"')));
+ const visibleContent=section.replace(/https?:\\/\\/[^"\\s<>]+/g,"");
+ assert(!/wix(?:studio)?/i.test(visibleContent),"Do not show platform branding in Brianna's case-study UI");
+ assert(section.includes("BRIANNA / REDESIGNED WEBSITE"));
+ assert(section.includes("02 / REDESIGNED WEBSITE"));
  const client=await read("brianna-case.js");
  assert(client.includes('results.every(Boolean)'),"Only show the gallery when both image assets load");
 });
