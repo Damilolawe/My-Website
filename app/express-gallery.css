@@ -32,11 +32,10 @@
 }
 .app-main .express-gallery .worlds-layout{grid-template-columns:minmax(210px,.46fr) minmax(0,1fr);align-items:start;gap:clamp(14px,2.2vw,32px)}
 .app-main .express-gallery .worlds-rail{max-height:740px;overflow-y:auto;overscroll-behavior:contain;scrollbar-color:#7a866c #1d2420;min-width:0}
-.app-main .express-gallery .worlds-choice{grid-template-columns:26px 16px minmax(0,1fr) 19px;gap:12px;padding:14px 10px;min-width:0;min-height:64px}
+.app-main .express-gallery .worlds-choice{grid-template-columns:26px minmax(0,1fr) 19px;gap:12px;padding:14px 10px;min-width:0;min-height:64px}
 .app-main .express-gallery .worlds-choice-copy{min-width:0;display:grid;gap:6px}
 .app-main .express-gallery .worlds-choice-copy strong{display:block;font:750 clamp(16px,1.6vw,22px)/1.16 Arial,system-ui,sans-serif;letter-spacing:-.025em;overflow-wrap:break-word}
 .app-main .express-gallery .worlds-choice-copy small{font:550 10px/1.4 ui-monospace,monospace;letter-spacing:.045em;color:#bdc5b9;overflow-wrap:anywhere}
-.app-main .express-gallery .worlds-choice-swatch{display:block;width:13px;height:13px;border:1px solid #fff6}
 .app-main .express-gallery .worlds-choice[aria-pressed=true]{background:#d1fa5714;padding-left:12px}
 .app-main .express-gallery .worlds-screen{min-width:0}
 .app-main .express-gallery .worlds-view{min-width:0}
@@ -44,11 +43,11 @@
 .app-main .express-gallery .worlds-current strong{line-height:1.15;letter-spacing:-.03em}
 .app-main .express-gallery .worlds-open{letter-spacing:.03em;white-space:normal;text-align:right;line-height:1.5}
 .express-gallery-notice{color:#b5c3ad;border-top:1px solid #ffffff35;padding-top:22px;margin:26px 0 0;font:500 13px/1.65 Arial,system-ui,sans-serif}
-@media(max-width:1020px){.app-main .express-gallery .worlds-layout{display:flex;flex-direction:column}.app-main .express-gallery .worlds-screen{order:0;width:100%}.app-main .express-gallery .worlds-rail{order:1;width:100%;max-height:400px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}.app-main .express-gallery .worlds-choice{grid-template-columns:19px 10px minmax(0,1fr) 14px}}
-@media(max-width:620px){.app-main .express-gallery{padding:22px 13px}.app-main .express-gallery-title{font-size:clamp(33px,8.4vw,56px);letter-spacing:-.035em}.app-main .express-gallery .worlds-kicker{flex-wrap:wrap;font-size:10px}.app-main .express-gallery .worlds-filter{align-items:stretch;gap:8px}.app-main .express-gallery .worlds-filter input{width:100%}.app-main .express-gallery .worlds-rail{grid-template-columns:1fr;max-height:360px}.app-main .express-gallery .worlds-choice{grid-template-columns:22px 13px minmax(0,1fr) 18px}.app-main .express-gallery .worlds-screen-footer{flex-wrap:wrap;gap:18px}.app-main .express-gallery .worlds-open{text-align:left}.app-main .express-gallery .worlds-view{width:100%}}
+@media(max-width:1020px){.app-main .express-gallery .worlds-layout{display:flex;flex-direction:column}.app-main .express-gallery .worlds-screen{order:0;width:100%}.app-main .express-gallery .worlds-rail{order:1;width:100%;max-height:400px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}.app-main .express-gallery .worlds-choice{grid-template-columns:19px minmax(0,1fr) 14px}}
+@media(max-width:620px){.app-main .express-gallery{padding:22px 13px}.app-main .express-gallery-title{font-size:clamp(33px,8.4vw,56px);letter-spacing:-.035em}.app-main .express-gallery .worlds-kicker{flex-wrap:wrap;font-size:10px}.app-main .express-gallery .worlds-filter{align-items:stretch;gap:8px}.app-main .express-gallery .worlds-filter input{width:100%}.app-main .express-gallery .worlds-rail{grid-template-columns:1fr;max-height:360px}.app-main .express-gallery .worlds-choice{grid-template-columns:22px minmax(0,1fr) 18px}.app-main .express-gallery .worlds-screen-footer{flex-wrap:wrap;gap:18px}.app-main .express-gallery .worlds-open{text-align:left}.app-main .express-gallery .worlds-view{width:100%}}
 
 /* 2026-10-25: Give template browsing the same full-width visual space as the homepage.
-   Gallery cards have FIVE children: index, live thumbnail, swatch, name, arrow. */
+   Gallery cards have four children: index, live thumbnail, name, arrow. */
 .app-main .wizard.is-gallery {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -87,7 +86,7 @@
 }
 .app-main .express-gallery .worlds-choice {
   display: grid;
-  grid-template-columns: 23px minmax(100px, 128px) 10px minmax(0, 1fr) 17px;
+  grid-template-columns: 23px minmax(100px, 128px) minmax(0, 1fr) 17px;
   gap: 9px;
   align-items: center;
   width: 100%;
@@ -148,7 +147,7 @@
     align-content: start;
   }
   .app-main .express-gallery .worlds-choice {
-    grid-template-columns: 20px minmax(92px, 120px) 9px minmax(0, 1fr) 15px;
+    grid-template-columns: 20px minmax(92px, 120px) minmax(0, 1fr) 15px;
     gap: 7px;
   }
 }
@@ -161,14 +160,14 @@
     max-height: 460px;
   }
   .app-main .express-gallery .worlds-choice {
-    grid-template-columns: 20px minmax(102px, 36%) 9px minmax(0, 1fr) 15px;
+    grid-template-columns: 20px minmax(102px, 36%) minmax(0, 1fr) 15px;
     min-height: 84px;
   }
   .app-main .express-gallery .worlds-choice-copy strong { font-size: 15px; }
 }
 @media(max-width: 400px) {
   .app-main .express-gallery .worlds-choice {
-    grid-template-columns: 17px minmax(88px, 32%) 8px minmax(0, 1fr) 12px;
+    grid-template-columns: 17px minmax(88px, 32%) minmax(0, 1fr) 12px;
     gap: 5px;
   }
   .app-main .express-gallery .worlds-choice-copy strong { font-size: 13px; }

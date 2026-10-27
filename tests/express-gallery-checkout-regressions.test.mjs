@@ -12,10 +12,14 @@ test("Express gallery uses lazy, faithful template previews without repeating ea
   assert.match(html, /step === 1 \? "is-gallery" : ""/);
   assert.match(css, /\.wizard\.is-gallery\s*\{/);
   assert.match(css, /\.wizard\.is-gallery\s*>\s*\.steps\s*\{/);
-  assert.match(css, /\.express-gallery \.worlds-choice\s*\{[\s\S]*?grid-template-columns:\s*23px minmax\(100px, 128px\) 10px minmax\(0, 1fr\) 17px;/);
+  assert.match(css, /\.express-gallery \.worlds-choice\s*\{[\s\S]*?grid-template-columns:\s*23px minmax\(100px, 128px\) minmax\(0, 1fr\) 17px;/);
   assert.match(css, /\.worlds-choice-thumb\s*\{/);
   assert.match(css, /@media\(max-width: 700px\)/);
-  assert.match(showcase, /button\.append\(count,thumb,swatch,copy,symbol\)/);
+  assert.match(showcase, /button\.append\(count,thumb,copy,symbol\)/);
+  assert.doesNotMatch(showcase, /worlds-choice-swatch|document\.createElement\("i"\).*swatch/,"Palette circle must not appear beside template names");
+  assert.doesNotMatch(css, /worlds-choice-swatch/,"No obsolete swatch layout styles");
+  assert.doesNotMatch(showcaseCss, /worlds-choice-swatch/,"Shared gallery CSS must not reintroduce swatches");
+  assert.match(css, /grid-template-columns:\s*20px minmax\(102px, 36%\) minmax\(0, 1fr\) 15px;/,"Mobile gallery rows must use four columns");
   assert.match(showcase, /mini\.loading="lazy"/);
   assert.match(showcase, /mini\.src="\/assets\/catalog-thumbnails\/"/);
   assert.doesNotMatch(showcase, /worlds-choice-thumb-title|worlds-choice-thumb iframe|createElement\("iframe"\)/);
