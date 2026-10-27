@@ -94,20 +94,19 @@ text-align:center;color:#f7fbe8;font:800 11px/1.6 ui-monospace,monospace;letter-
 .worlds-filter input::placeholder{color:#afb9ad}
 .worlds-filter input:focus-visible{outline:3px solid #dcfc46;outline-offset:3px}
 .worlds-filter>span{margin-left:auto;font:700 11px/1.4 ui-monospace,monospace;color:#c8d4c0}
-.worlds-choice{grid-template-columns:24px 13px minmax(0,1fr) 22px;gap:10px;min-height:72px}
+.worlds-choice{grid-template-columns:24px minmax(0,1fr) 22px;gap:10px;min-height:72px}
 .worlds-choice[hidden],.worlds-rail-note[hidden]{display:none!important}
-.worlds-choice-swatch{width:11px;height:11px;border-radius:50%;box-shadow:0 0 0 1px #ffffff63}
 .worlds-choice-copy{display:grid;gap:5px;min-width:0}
 .worlds-choice-copy strong{font:650 clamp(17px,1.8vw,26px)/1.05 Arial,sans-serif;letter-spacing:-.045em}
 .worlds-choice-copy small{font:500 11px/1.25 Arial,sans-serif;color:#b8c2b5;letter-spacing:.015em}
 .worlds-choice[aria-pressed=true] .worlds-choice-copy small{color:#d9e4c0}
 .worlds-current #worlds-description{max-width:500px;font:500 13px/1.4 Arial,sans-serif;letter-spacing:0;color:#b9c6b4}
-@media(max-width:1050px){.worlds-choice{grid-template-columns:18px 10px minmax(0,1fr) 17px;gap:7px}}
+@media(max-width:1050px){.worlds-choice{grid-template-columns:18px minmax(0,1fr) 17px;gap:7px}}
 @media(max-width:650px){.worlds-filter{display:grid;grid-template-columns:1fr auto;gap:8px}.worlds-filter input{grid-column:1/-1;width:100%}.worlds-filter>span{grid-column:2;grid-row:1}.worlds-choice{min-height:78px;padding:11px 0}.worlds-choice-copy strong{font-size:15px}.worlds-choice-copy small{font-size:10px}.worlds-choice>span:last-child{font-size:16px}.worlds-current #worlds-description{font-size:12px}}
 
 
 /* Each gallery choice shows its own actual static template; the adjacent row label names it. */
-.worlds-choice{grid-template-columns:26px minmax(100px,148px) 12px minmax(0,1fr) 20px;gap:10px;padding:13px 0}
+.worlds-choice{grid-template-columns:26px minmax(100px,148px) minmax(0,1fr) 20px;gap:10px;padding:13px 0}
 .worlds-choice-thumb{position:relative;display:block;aspect-ratio:1.55;overflow:hidden;background:#e9e8e1;border:1px solid #ffffff30;border-radius:3px;isolation:isolate;box-shadow:0 4px 14px #0003}
 .worlds-choice-thumb img{position:absolute;top:0;left:0;width:100%;height:auto;display:block;transition:transform .65s cubic-bezier(.2,.7,.2,1);transform-origin:top center}
 .worlds-choice:hover .worlds-choice-thumb img,.worlds-choice:focus-visible .worlds-choice-thumb img{transform:translateY(-25px)}
@@ -115,6 +114,5 @@ text-align:center;color:#f7fbe8;font:800 11px/1.6 ui-monospace,monospace;letter-
 .worlds-choice-copy{display:grid;gap:5px;min-width:0}
 .worlds-choice-copy strong{font:700 17px/1.1 Arial,sans-serif;letter-spacing:-.035em}
 .worlds-choice-copy small{font:11px/1.4 Arial,sans-serif;color:#aab0ad}
-.worlds-choice-swatch{display:block;width:10px;height:10px;border-radius:50%}
-@media(max-width:720px){.worlds-choice{grid-template-columns:20px minmax(100px,120px) 8px minmax(0,1fr) 16px;gap:7px}.worlds-choice:hover .worlds-choice-thumb img,.worlds-choice:focus-visible .worlds-choice-thumb img{transform:none}.worlds-choice-copy strong{font-size:14px}.worlds-choice-copy small{font-size:10px}}
+@media(max-width:720px){.worlds-choice{grid-template-columns:20px minmax(100px,120px) minmax(0,1fr) 16px;gap:7px}.worlds-choice:hover .worlds-choice-thumb img,.worlds-choice:focus-visible .worlds-choice-thumb img{transform:none}.worlds-choice-copy strong{font-size:14px}.worlds-choice-copy small{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.worlds-choice-thumb img{transition:none!important}.worlds-choice:hover .worlds-choice-thumb img,.worlds-choice:focus-visible .worlds-choice-thumb img{transform:none}}
