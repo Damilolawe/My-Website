@@ -15,7 +15,10 @@ test("the hero includes four different authentic AWE Express sites",async()=>{
   assert(home.includes('id="universe-dialog"'));
   assert(home.includes('id="universe-live-frame"'));
   assert(home.includes('id="universe-field"'));
-  assert(home.includes('href="/order.html">AWE EXPRESS'));
+  // Navigation copy was intentionally renamed to Templates; AWE Express
+  // remains the product name in the offer and preview cards.
+  assert(home.includes('<a href="/order.html" class="nav-link">Templates ↗︎</a>'));
+  assert(home.includes('<a href="/order.html">TEMPLATES <span>03 ↗︎</span></a>'));
   const {templateFitsTier}=await import("../shared/tiers.mjs");
   for(const [id,label,tier] of choices){
     assert.equal(templateFitsTier(id,tier),true,`${id} hero CTA tier must match order gallery eligibility`);
