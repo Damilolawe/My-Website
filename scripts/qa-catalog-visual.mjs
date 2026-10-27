@@ -34,6 +34,18 @@ async function audit(t,route,mode,width,height,{capture=false}={}){
   const result=await page.evaluate(()=>{
    const all=[...document.querySelectorAll("main h1,main h2,main h3")];
    const visible=all.filter(el=>getComputedStyle(el).display!=="none");
+   const heroTitle=document.querySelector(".arch-hero .arch-copy h1");
+   let heroInkOverhang=0;
+   if(heroTitle){
+    const copy=heroTitle.closest(".arch-copy"),bounds=copy?.getBoundingClientRect();
+    if(bounds){
+     const range=document.createRange();
+     range.selectNodeContents(heroTitle);
+     const rectangles=[...range.getClientRects()];
+     const right=rectangles.length?Math.max(...rectangles.map(x=>x.right)):heroTitle.getBoundingClientRect().right;
+     heroInkOverhang=Math.max(0,Math.round(right-(bounds.right-(parseFloat(getComputedStyle(copy).paddingRight)||0))));
+    }
+   }
    const headlines=visible.map(el=>{
     const s=getComputedStyle(el),r=el.getBoundingClientRect(),fs=parseFloat(s.fontSize);
     // An element can fit its viewport yet clip actual letters when a long
@@ -81,11 +93,14 @@ async function audit(t,route,mode,width,height,{capture=false}={}){
     return rect.width<120||rect.height<90||computed.display==="none"||computed.visibility==="hidden";
    }).map(el=>el.getAttribute("data-scene"));
    return {viewport:innerWidth,documentWidth:width,headlines,headCount:heading.length,
-    hasMain:!!document.querySelector("main"),hasMenu:menus.length>0,
+    hasMain:!!document.querySelector("main"),hasMenu:menus.length>0,heroInkOverhang,
     missingAnchors:broken,brokenImages:badMedia,overflowElements,
     teaserRight:teaserRect?Math.round(teaserRect.right):null,sceneIds,invisibleScenes};
   });
   if(result.documentWidth>width+3)issues.push("horizontal overflow "+(result.documentWidth-width)+"px: "+JSON.stringify(result.overflowElements.slice(0,3)));
+  if(result.heroInkOverhang>12)warnings.push(label+": headline extends "+result.heroInkOverhang+"px beyond its text column");
+  if(t.id==="md-supabase"&&result.heroInkOverhang>12)
+   issues.push("Supabase headline collides with artwork by "+result.heroInkOverhang+"px");
   if(result.teaserRight!==null&&result.teaserRight>width+3)issues.push("Signature teaser art reaches "+result.teaserRight+"px beyond "+width+"px viewport");
   const guide=zipDesignFor(t.id),bespoke=guide&&!["md-bugatti","md-mintlify","md-nintendo-2001"].includes(t.id);
   if(bespoke){
