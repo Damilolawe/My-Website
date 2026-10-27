@@ -18,6 +18,10 @@ test("all 74 source-guided designs have an individual fictional demo brand",()=>
   assert(!allNames.has(name),t.id+" duplicates another brand");
   allNames.add(name);
   assert(!name.includes("<"),t.id+" demo brand must be safe text");
+  const html=renderZipDesign(sample,{sample:true},"home");
+  const escapedName=name.replaceAll("&","&amp;");
+  assert(html.includes(escapedName),t.id+" rendered demo brand missing or incorrectly escaped");
+  assert(!html.includes("STUDIO "+String(t.sourceIndex+1).padStart(2,"0")),t.id+" old numbered brand remains");
  }
  assert.equal(allNames.size,74);
 });
