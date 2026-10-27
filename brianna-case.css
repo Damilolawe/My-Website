@@ -40,7 +40,7 @@
 .bld-window-footer>span:first-child{display:grid;gap:5px}
 .bld-window-footer small{font:10px "DM Mono",monospace;letter-spacing:.04em;color:#d1fa57}
 .bld-window-footer strong{font:600 clamp(17px,1.7vw,25px) "Space Grotesk",Arial,sans-serif;letter-spacing:-.03em}
-.bld-expand-label{font:9px "DM Mono",monospace;letter-spacing:.035em;white-space:nowrap;color:#bdc2bc}
+.bld-expand-label{font:9px "DM Mono",monospace;letter-spacing:.035em;white-space:nowrap;color:#bdc2bc;background:transparent;border:0;padding:5px;cursor:pointer}.bld-expand-label:hover{color:#d1fa57}
 .bld-bridge{position:absolute;z-index:5;left:49%;top:6%;display:grid;justify-items:center;align-content:center;width:clamp(66px,8vw,120px);aspect-ratio:1;background:#d1fa57;color:#10120d;border-radius:50%;font:700 clamp(10px,1vw,15px)/1.15 "DM Mono",monospace;letter-spacing:-.03em;text-align:center;transform:rotate(12deg);box-shadow:0 12px 30px #0008;pointer-events:none}
 .bld-bridge b{font:600 24px "Space Grotesk",Arial,sans-serif;margin-top:5px}
 .bld-scene-controls{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:clamp(20px,2.7vw,35px);border-top:1px solid #ffffff24;flex-wrap:wrap;position:relative;z-index:6}
