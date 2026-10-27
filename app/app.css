@@ -1,7 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Italiana&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 :root {
-  --paper: #f4f2eb;
-  --ink: #171917;
-  --acid: #dcfc46;
+  color-scheme: dark;
+  --paper: #0c0d10;
+  --ink: #f1efe8;
+  --acid: #d1fa57;
+  --awe-surface: #17191d;
+  --awe-surface-raised: #202327;
+  --awe-muted: #b6bab4;
+  --awe-border: rgba(241, 239, 232, .2);
+  --awe-body: "DM Sans", Arial, sans-serif;
+  --awe-display: "Space Grotesk", Arial, sans-serif;
+  --awe-mono: "DM Mono", ui-monospace, monospace;
 }
 * {
   box-sizing: border-box;
@@ -833,7 +842,7 @@ text-align:center;padding:30px;color:#f5f7ef;z-index:3;font:700 11px/1.5 ui-mono
 .app-header nav a{font-weight:750;letter-spacing:.03em;text-decoration:none;transition:color .2s}
 .app-header nav a:hover{color:#dcfc46}
 .app-header nav a:focus-visible{outline-color:#dcfc46}
-body{background:#f0f1e6;color:#18201a}
+body{background:var(--paper);color:var(--ink)}
 .app-main{position:relative}
 .app-main:before{content:"A / C";position:absolute;right:4vw;top:20px;pointer-events:none;
  font:900 clamp(65px,14vw,230px)/1 Arial,sans-serif;letter-spacing:-.11em;color:#b7cba918;z-index:-1}
@@ -899,3 +908,85 @@ body{background:#f0f1e6;color:#18201a}
 .checkout-consent-label a{font-weight:700}
 #consent-help{line-height:1.5}
 @media(max-width:650px){.actions{flex-wrap:wrap}.actions .checkout-feedback{order:3;flex-basis:100%;max-width:none;text-align:left}}
+
+/* AWE CONCEPTS / ONE STUDIO IDENTITY
+   Homepage charcoal, soft white and lime are the UI shell on every
+   public, client and owner page. Template demo artwork remains independent. */
+html{background:var(--paper)}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--awe-body);-webkit-font-smoothing:antialiased;
+}
+button,input,select,textarea{font-family:inherit}
+:is(button,a,input,select,textarea):focus-visible{outline:3px solid var(--acid);outline-offset:4px}
+::selection{background:var(--acid);color:#0c0d10}
+.skip-link{position:fixed;top:-100px;left:12px;z-index:1000;background:var(--acid);color:#0c0d10;padding:12px}
+.skip-link:focus{top:12px}
+.app-header{
+  background:rgba(12,13,16,.94);color:var(--ink);
+  border-bottom:1px solid var(--awe-border);box-shadow:none;
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+}
+.app-header nav a,.app-header>a:not(.wordmark),.app-footer a{color:inherit;text-decoration:none}
+.app-header nav a:hover,.app-header>a:not(.wordmark):hover,.app-footer a:hover,
+.app-main a:not(.btn):hover{color:var(--acid)}
+.app-header .wordmark img{display:block;max-width:190px;height:auto}
+.app-main:before{color:rgba(209,250,87,.045);z-index:0}
+.app-main>*,.app-main #app{position:relative}
+.app-main h1,.app-main h2,.app-main h3,.tier-choice strong,
+.choice-card strong,.stat strong{font-family:var(--awe-display)}
+.intro{border-bottom:1px solid var(--awe-border)}
+.intro h1 em,.tier-lead h2 em,.tier-gallery-top h2 em{color:var(--acid)}
+.eyebrow,.intro .eyebrow,.step-count,.availability{color:var(--acid)}
+.availability{border:1px solid rgba(209,250,87,.5)}
+.muted,.steps li,.template-meta small,.tier-choice-index,.tier-choice-intro,
+.tier-choice ul,.tier-disclaimer,.tier-lead p,.template-filterbar .muted{color:var(--awe-muted)}
+.steps li{border-bottom-color:var(--awe-border)}
+.steps li.active{color:var(--acid);border-color:var(--acid)}
+.wizard,.actions,.template-filterbar,.app-footer,.section-divider{border-color:var(--awe-border)}
+.panel,.choice-card,.template-card,.tier-choice,.stat,.studio-tools,
+.studio-row,.studio-section,.preview-shell,.modal{
+  background:var(--awe-surface);color:var(--ink);
+  border-color:var(--awe-border);box-shadow:none;
+}
+.panel,.choice-card,.tier-choice,.stat{border-radius:2px}
+.choice-card:hover,.tier-choice:hover,.template-card:hover{border-color:var(--acid);box-shadow:none}
+.choice-card[aria-pressed="true"],.tier-choice[aria-pressed=true],
+.template-card[aria-pressed="true"]{
+  background:#26311e;color:var(--ink);border-color:var(--acid);
+  outline-color:var(--acid);box-shadow:inset 0 0 0 1px var(--acid);
+}
+.tier-choice[aria-pressed=true]{border-width:2px}
+.tier-choice strong,.tier-choice-price,.tier-choice li:before,.stat strong{color:var(--ink)}
+.tier-choice-link,.service-option:first-child,.btn,.btn.acid{
+  background:var(--acid);color:#0c0d10;border-color:var(--acid);
+}
+.btn:not(.secondary):hover,.tier-choice-link:hover{background:#e0ff86;border-color:#e0ff86;color:#0c0d10}
+.btn.secondary{background:transparent;color:var(--ink);border-color:var(--awe-border)}
+.btn.secondary:hover{border-color:var(--acid);color:var(--acid)}
+.notice{background:#1f291e;color:var(--ink);border-left-color:var(--acid)}
+.feedback,.actions .checkout-feedback{color:#ffa48c}
+.stat{border:1px solid var(--awe-border)}
+th,td{border-bottom-color:var(--awe-border)}
+.checks label,.service-option,.studio-row-head,.studio-section,
+.studio-row-head button,.studio-section button{border-color:var(--awe-border)}
+.studio-row-head button,.studio-section button,
+.preview-top button{color:var(--ink)}
+.preview-shell{background:var(--awe-surface-raised)}
+/* Only the iframe itself represents the customer-selected site. */
+.preview-shell iframe,.theater-viewport iframe{background:#fff}
+.field input:not([type="checkbox"]),.field select,.field textarea{
+  color:var(--ink);border-bottom-color:var(--awe-border);
+}
+.field input::placeholder,.field textarea::placeholder{color:var(--awe-muted)}
+.field select option{background:var(--awe-surface);color:var(--ink)}
+input[type="checkbox"],input[type="radio"],.checkout-consent-label input{accent-color:var(--acid)}
+.tier-switch,.purpose-chip{background:transparent;color:var(--ink);border-color:var(--awe-border)}
+.tier-switch:hover,.purpose-chip:hover{border-color:var(--acid)}
+.tier-switch[aria-pressed=true],.purpose-chip[aria-pressed=true]{
+  background:var(--acid);border-color:var(--acid);color:#0c0d10;
+}
+.tier-choice[aria-pressed=true] .tier-choice-intro,
+.tier-choice[aria-pressed=true] ul{color:#e5eadf}
+.app-footer{color:var(--awe-muted)}
+/* Respect individual template preview thumbnails/posters and approved sites. */
