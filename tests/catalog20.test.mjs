@@ -6,12 +6,26 @@ import {renderSite} from "../shared/render.mjs";
 import {freeDesignFor} from "../shared/free-designmd.mjs";
 import {TEMPLATE_IDS,fetchPublicTemplate} from "../shared/preview.mjs";
 
-test("collection contains exactly forty unique art-directed templates",()=>{
+test("116 templates have unique identities and appropriately grouped design descriptions",()=>{
   assert.equal(templates.length,116);
-  assert.equal(TEMPLATE_IDS.length,116);
-  assert.equal(new Set(templates.map(x=>x.id)).size,116);
-  assert.equal(new Set(templates.map(x=>x.name)).size,116);
-  assert.equal(new Set(templates.map(x=>x.style)).size,116);
+  assert.equal(TEMPLATE_IDS.length,templates.length);
+  assert.equal(new Set(templates.map(x=>x.id)).size,templates.length);
+  assert.equal(new Set(templates.map(x=>x.name)).size,templates.length);
+  const authored=templates.filter(x=>!x.id.startsWith("md-"));
+  const sourceStudies=templates.filter(x=>x.id.startsWith("md-"));
+  assert.equal(authored.length,42,"Preserve all independently art-directed original templates");
+  assert.equal(sourceStudies.length,74,"Preserve all source-guided design studies");
+  assert.equal(new Set(authored.map(x=>x.style)).size,authored.length,
+    "Original templates must retain distinct authored design descriptions");
+  const neutralCategories=new Set([
+    "Automotive editorial","Editorial publishing","Financial interface",
+    "Developer experience","Product design","Digital commerce","Creative portfolio"
+  ]);
+  for(const study of sourceStudies){
+    assert(neutralCategories.has(study.style),study.id+" must use a neutral public category");
+  }
+  assert.equal(new Set(sourceStudies.map(x=>x.style)).size,neutralCategories.size,
+    "Every neutral design category should be represented");
   const markup=templates.map(t=>renderSite(sampleForTemplate(t.id),{sample:true}));
   const uniqueMarkers=markup.map((html,t)=>{
     const marker=templates[t].id==="folio"?["folio","folio-editorial"]:templates[t].id==="md-bugatti"?html.match(/<section class="fv-hero" data-architecture="([\w-]+)"/):["nike","clay","ferrari"].includes(templates[t].id) ? ["trio-hero",templates[t].id] : ["runwayml","runwaymulti"].includes(templates[t].id) ? ["rw-hero",templates[t].id] : freeDesignFor(templates[t].id)?html.match(/<section class="fd-hero" data-architecture="([\w-]+)"/):html.match(/<section class="hero hero-variant (?:md-hero md-)?([\w-]+)(?:\s|")/);
