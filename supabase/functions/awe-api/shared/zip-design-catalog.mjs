@@ -1,4 +1,5 @@
 import {studyCopy,studyCardTitles} from "./zip-guide-copy.mjs";
+import {studyArtCategory} from "./zip-project-art.mjs";
 // Extracted color systems from the uploaded VoltAgent DESIGN.md archive.
 // 10 already represented references excluded, 74 new directions appended in source ZIP order.
 // The source guides contain specifications, not full executable websites.
@@ -29,6 +30,96 @@ const guideStories={
  "md-nintendo-2001":{name:"PIXELQUEST 2001",headline:"Your next adventure is loading.",heroLabel:"THE GAME ZONE / PLAYER ONE",bio:"A fictional retro games portal inspired by colorful Y2K consoles, friendly system panels and bright arcade culture.",cards:[{title:"New Releases",description:"Explore imaginary games for the next big adventure.",url:""},{title:"The Players Club",description:"A fun community for sharing games and challenges.",url:""},{title:"Game Finder",description:"A colorful collection of fictional game worlds.",url:""}]},
  "md-shopify":{name:"VERDANT SUPPLY",headline:"Your next big thing starts here.",heroLabel:"COMMERCE / MADE FOR MAKERS",bio:"A fictional independent commerce brand bringing inspiring products and thoughtful shops into one place.",cards:[{title:"The Spring Edit",description:"Everyday essentials with a considered touch.",url:""},{title:"Small Batch",description:"Products crafted with careful attention to materials.",url:""},{title:"Meet the Makers",description:"An imagined collection of independent creative shops.",url:""}]}
 };
+
+/* Fictional concept brands for source-guided previews. These are not copies
+   of third-party company names, and never override a customer's chosen brand.
+   Every example should read like a finished site instead of "STUDIO 66". */
+export const demoBrandNames=Object.freeze({
+  "bugatti": "ATELIER VELOCITY",
+  "airbnb": "HOMEBY",
+  "bmw-m": "APEX MOTORWORKS",
+  "bmw": "NORTHLINE AUTOMOTIVE",
+  "aljazeera": "THE OPEN LETTER",
+  "cal": "DAILY RHYTHM",
+  "binance": "VANTA LEDGER",
+  "airtable": "FIELDWORK STUDIO",
+  "1win": "THE CLUBHOUSE",
+  "claude": "KINSHIP INTELLIGENCE",
+  "clickhouse": "QUERY HOUSE",
+  "coinbase": "THE FUTURE FUND",
+  "elevenlabs": "SOUND FORM",
+  "cursor": "NORTHSTACK",
+  "cohere": "CLARITY HOUSE",
+  "dell-1996": "BYTE & CO.",
+  "dji": "SKYLINE AERIAL",
+  "composio": "MOTION GRID",
+  "expo": "LAUNCHPAD STUDIO",
+  "hashicorp": "SYSTEMATIC",
+  "framer": "FORM STUDIO",
+  "ibm": "BLUEPRINT BUREAU",
+  "intercom": "COMMON GROUND",
+  "jobright": "NEXT CHAPTER",
+  "hp": "HORIZON DEVICES",
+  "kraken": "MIDNIGHT EXCHANGE",
+  "lamborghini": "FORM & VELOCITY",
+  "lovable": "SUNROOM DIGITAL",
+  "mastercard": "MOMENT CARD",
+  "mercury": "NORTH BANKING",
+  "meta": "COMMONSPACE",
+  "mongodb": "GREENHOUSE DATA",
+  "mistral.ai": "OPEN INTELLIGENCE",
+  "minimax": "KINETIC LAB",
+  "mintlify": "FIELDNOTES WORKSHOP",
+  "miro": "GOOD IDEAS CLUB",
+  "mydealz": "DAILY FINDS",
+  "nerdwallet": "CLEVER CAPITAL",
+  "notion": "THE MAKING ROOM",
+  "nintendo-2001": "PIXELQUEST 2001",
+  "nvidia": "VECTOR COMPUTE",
+  "oracle": "COLUMN ONE",
+  "playstation": "NEON ARCADE",
+  "ollama": "OPEN MODELS",
+  "opencode.ai": "SOURCE FORGE",
+  "renault": "CITYLINE MOTORS",
+  "oura": "RITUAL WELLNESS",
+  "posthog": "EVENT HORIZON",
+  "pinterest": "PINBOARD EDITIONS",
+  "sentry": "NIGHT WATCH",
+  "shopify": "VERDANT SUPPLY",
+  "revolut": "EVERYDAY ACCOUNT",
+  "replicate": "TWIN LAB",
+  "sanity": "CONTENT THEORY",
+  "sap": "ENTERPRISE FIELD",
+  "resend": "LETTERHEAD",
+  "spacex": "SKYWARD MISSION",
+  "slack": "THE WORKROOM",
+  "starbucks": "FAR & FABLE",
+  "tesla": "ELECTRIC FORM",
+  "stripe": "MODERN PAY",
+  "theverge": "THE OTHER SIDE",
+  "vercel": "FRONTIER DEPLOY",
+  "uber": "MOVE CITY",
+  "superhuman": "FAST LETTER",
+  "supabase": "GROVE DATABASE",
+  "together.ai": "HUMAN & MACHINE",
+  "vodafone": "SIGNAL HOUSE",
+  "wired": "CULTURE CURRENT",
+  "webflow": "FLOW STATE",
+  "wise": "WORLD LEDGER",
+  "voltagent": "WORKFLOW LAB",
+  "zapier": "TASK CRAFT",
+  "x.ai": "THE AI NOTEBOOK"
+});
+const chapterEyebrows=Object.freeze({
+ auto:"MOTION / FORM / ENGINEERING",
+ fintech:"FINANCIAL PRODUCTS / NEW DIRECTIONS",
+ editorial:"INDEPENDENT CULTURE / IDEAS",
+ code:"DEVELOPER EXPERIENCE / SYSTEMS",
+ product:"PRODUCT DESIGN / EVERYDAY IDEAS",
+ commerce:"OBJECTS / EXPERIENCES / COMMERCE",
+ studio:"AN INDEPENDENT CREATIVE PRACTICE"
+});
+
 export function sampleZipDesign(id,base){
  const t=zipDesignFor(id);if(!t)return null;
  const authored=guideStories[id]||{};
@@ -36,9 +127,9 @@ export function sampleZipDesign(id,base){
  const names=studyCardTitles(t.source);
  return {...base,type:"Creative portfolio",template:id,
  design:{...base.design,primary:t.color,secondary:t.surface,appearance:isDarkHex(t.bg)?"dark":"light",font:"sans",layout:"split",animation:"expressive",sections:["about","work","services","contact"]},
- content:{...base.content,name:authored.name||"STUDIO "+String(t.sourceIndex+1).padStart(2,"0"),headline:study.headline,
+ content:{...base.content,name:authored.name||demoBrandNames[t.source],headline:study.headline,
  bio:study.bio,
- heroLabel:"CREATIVE PRACTICE / EDITION "+String(t.sourceIndex+1).padStart(2,"0"),
+ heroLabel:chapterEyebrows[studyArtCategory(t.source)],
  ctaLabel:"Explore the work",cards:names.map((title,i)=>({title,description:"A fictional project exploring "+study.focus+".",url:""})),
  services:study.focus.split(/\s+and\s+/i).slice(0,2).map((phrase,i)=>({
   title:phrase.replace(/^./,c=>c.toUpperCase()).replace(/[. ]+$/,""),
