@@ -101,7 +101,7 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
     if(notify)onSelect(id);
     controller?.abort();controller=new AbortController();
     rail.querySelectorAll("[data-world]").forEach(btn=>btn.setAttribute("aria-pressed",String(btn.dataset.world===id)));
-    full.href=templatePath(id);screen.dataset.world=id;
+    full.href=zipDesignFor(id)?.multipage?"/templates/"+id+"/"+currentPage+".html":templatePath(id);screen.dataset.world=id;
     loading.hidden=false;loadingName.textContent=item.name.toUpperCase();
     loading.setAttribute("aria-label","Loading "+item.name+" website preview");
     screen.setAttribute("aria-busy","true");
