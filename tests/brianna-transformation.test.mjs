@@ -78,3 +78,30 @@ test("homepage navigation uses Templates and sends client login to the existing 
   "Old Start A Project header button must not return");
  assert(html.includes('AWE Express.'),"The service offering should retain its recognizable product name");
 });
+
+test("Firebase build never publishes broken Brianna image URLs when Wix capture is blocked",async()=>{
+ const {stat}=await import("node:fs/promises");
+ const built=await read("dist/index.html");
+ const source=await read("index.html");
+ const build=await read("scripts/build.mjs");
+ const client=await read("brianna-case.js");
+ const names=["brianna-before.webp","brianna-after.webp"];
+ const ready=await Promise.all(names.map(async name=>{
+   try{return (await stat(new URL("../dist/assets/case-studies/"+name,import.meta.url))).size>=10_000;}
+   catch{return false;}
+ }));
+ assert(build.includes("const briannaCapturesReady"),"Build must independently verify both captures exist");
+ assert(build.includes("data-capture-pending="),"Build must remove broken src URLs if capture is incomplete");
+ assert(client.includes('!img.hasAttribute("src")'),"Client should avoid requesting absent screenshot URLs");
+ for(const name of names){
+   const url="/assets/case-studies/"+name;
+   assert(source.includes('src="'+url+'"'),"Source HTML should keep stable capture slots");
+   if(ready.every(Boolean)){
+     assert(built.includes('src="'+url+'"'),"Both successfully captured images must ship");
+   }else{
+     assert(!built.includes('src="'+url+'"'),"A missing Wix screenshot must not break link validation");
+     assert(built.includes('data-capture-pending="'+url+'"'),"Fallback must preserve asset identity");
+   }
+ }
+ assert(built.includes('data-bld-capture-fallback'),"Keep clickable links to both actual websites");
+});
