@@ -89,3 +89,24 @@ img[src*="/assets/brand/awe-express-light.svg"]{background-color:#f1efe8;border-
   }
   .site-header .header-cta { margin-left: auto; }
 }
+
+/* Contact CTAs: deliberate spacing instead of two touching inline pills.
+   Wrap naturally in the left column; keep usable touch targets on phones. */
+.contact-main .contact-actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:stretch;
+  gap:20px 24px;
+  margin-top:42px;
+  max-width:100%;
+}
+.contact-main .contact-actions .contact-github{
+  margin:0;
+  min-width:0;
+  max-width:100%;
+  gap:clamp(22px,3vw,62px);
+}
+@media(max-width:700px){
+  .contact-main .contact-actions{gap:14px;margin-top:25px}
+  .contact-main .contact-actions .contact-github{width:100%;min-height:54px}
+}
