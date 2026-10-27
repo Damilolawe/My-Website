@@ -10,6 +10,23 @@ for command in git npm node python3 firebase curl; do
   command -v "$command" >/dev/null || { echo "Missing required command: $command" >&2; exit 1; }
 done
 
+# Local builds regenerate tracked thumbnail cache files. Preserve those in a
+# recoverable Git stash so normal Cloud Shell deployments do not repeatedly
+# fail with an uncommitted-worktree error. Other tracked changes still block.
+if [[ -n "$(git status --porcelain --untracked-files=no -- . ':(exclude)assets/catalog-thumbnails/**')" ]]; then
+  echo "Refusing to deploy: uncommitted source changes outside generated catalog thumbnails." >&2
+  git status --short --untracked-files=no -- . ':(exclude)assets/catalog-thumbnails/**' >&2
+  exit 1
+fi
+if [[ -n "$(git status --porcelain --untracked-files=no -- assets/catalog-thumbnails)" ]]; then
+  echo "Preserving locally regenerated catalog thumbnails in a recoverable Git stash..."
+  git stash push -m "Cloud Shell generated thumbnail cache $(date -u +%Y%m%dT%H%M%SZ)" -- assets/catalog-thumbnails
+  if [[ -n "$(git status --porcelain --untracked-files=no)" ]]; then
+    echo "Refusing to deploy: tracked changes remain after saving thumbnails." >&2
+    exit 1
+  fi
+fi
+
 echo "Preparing latest main from Damilolawe/My-Website..."
 git fetch --prune origin main
 git switch main
