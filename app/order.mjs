@@ -103,14 +103,14 @@ function draw() {
       const details = packageForTier?.features?.length
         ? packageForTier.features.slice(0, 4).map(f => '<li>' + esc(f) + '</li>').join("")
         : '<li>' + esc(t.note) + '</li><li>' + (t.id === "premium" ? "Share your brief for a personal quote" : "Choose your design before customizing") + '</li>';
-      const price = packageForTier ? money(packageForTier) : t.inquiry;
-      const note = packageForTier ? "Available package" : "Starting inquiry price";
+      const price = t.id === "premium" ? "Custom Quote" : packageForTier ? money(packageForTier) : t.inquiry;
+      const note = t.id === "premium" ? "Custom project quote" : packageForTier ? "Available package" : "Starting inquiry price";
       return '<button type="button" class="tier-choice" data-tier="' + t.id + '" aria-pressed="' +
         String(selectedTier === t.id) + '"><span class="tier-choice-index">0' + (i + 1) +
         ' / ' + esc(note) + '</span><strong>' + esc(t.name) + '</strong><span class="tier-choice-price">' +
         esc(price) + '</span><span class="tier-choice-intro">' + esc(t.note) +
-        '</span><ul>' + details + '</ul><span class="tier-choice-link">EXPLORE ' +
-        esc(t.id === "premium" ? "START AN AWE CUSTOM BRIEF" : t.id === "starter" ? "BROWSE SINGLE-PAGE DESIGNS" : "BROWSE MULTIPAGE DESIGNS") + ' ↗︎</span></button>';
+        '</span><ul>' + details + '</ul><span class="tier-choice-link">' +
+        esc(t.id === "premium" ? "START AN AWE CUSTOM BRIEF" : t.id === "starter" ? "EXPLORE SINGLE-PAGE DESIGNS" : "EXPLORE MULTIPAGE DESIGNS") + ' ↗︎</span></button>';
     }).join("");
     el.innerHTML = '<div class="tier-lead"><p class="eyebrow">01 / THE RIGHT STARTING POINT</p>' +
       '<h2>Start with your budget.<br><em>Find your direction.</em></h2>' +

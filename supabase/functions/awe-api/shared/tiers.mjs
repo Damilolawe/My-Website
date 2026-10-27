@@ -6,7 +6,7 @@ import {zipDesigns,zipDesignFor} from "./zip-design-catalog.mjs";
 export const tiers = Object.freeze([
   { id: "starter", name: "Starter", inquiry: "$75", note: "One beautiful single-page website." },
   { id: "signature", name: "Signature", inquiry: "$150", note: "A complete five-page website with linked navigation." },
-  { id: "premium", name: "Premium / AWE Custom", inquiry: "$250+", note: "Bespoke design and development. Tell us your idea for a custom quote." },
+  { id: "premium", name: "Premium / AWE Custom", inquiry: "Custom Quote", note: "Bespoke design and development. Tell us your idea for a custom quote." },
 ]);
 const levels = Object.freeze(Object.fromEntries(tiers.map((t, index) => [t.id, index])));
 const minimums = Object.freeze({
