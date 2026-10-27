@@ -154,6 +154,9 @@ try{
   if(zipDesignFor(t.id)?.multipage){
    for(const page of ["work","features","studio","contact"])
     await audit(t,"/templates/"+t.id+"/"+page+".html","phone-chapter",390,844,{capture:true});
+   // Project-gallery art needs a desktop capture as well as the mobile view.
+   if(t.id.startsWith("md-")&&!["md-bugatti","md-mintlify","md-nintendo-2001"].includes(t.id))
+    await audit(t,"/templates/"+t.id+"/work.html","desktop-chapter",1440,900,{capture:true});
   }
  }
 }finally{
