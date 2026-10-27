@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
 import {uploadedDesigns} from "../shared/uploaded-designs.mjs";
 import {sampleForTemplate} from "../shared/model.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderSite,compactInlineStyles} from "../shared/render.mjs";
 import {mdSourceFeature,mdSourceFeatureCSS} from "../shared/md-source-feature.mjs";
 const parseFeature=html=>html.match(/<section class="md-source-feature mdsf-[^"]+"[\s\S]*?<\/section>/)?.[0];
 test("all 18 preserved Refero DESIGN.md systems have a distinctive source-native editorial feature",()=>{
@@ -22,7 +22,7 @@ test("all 18 preserved Refero DESIGN.md systems have a distinctive source-native
   assert(html.includes("prefers-reduced-motion"),ref.id+" missing reduced-motion styles");
   assert(html.includes("FICTIONAL TEMPLATE DEMO"),ref.id+" lost demo disclosure");
   assert(!html.includes("<script"),ref.id+" introduced executable code");
-  assert(html.length<240000,ref.id+" page exceeded preview size budget");
+  assert(html.length<240000,ref.id+" page exceeded preview size budget ("+html.length+" characters; limit 240000)");
   patterns.add(ref.id==='folio'?'folio-editorial':feature.replaceAll(/[A-Za-z0-9]+/g,'').length+'-'+feature.match(/mdsf-[a-z-]+/g)?.join('|'));
  }
  assert.equal(patterns.size,18,"Every original MD guide must produce its own composition");
@@ -56,4 +56,18 @@ test("new original-guide feature does not affect unrelated template architecture
   const html=renderSite(sampleForTemplate(id),{sample:true});
   assert(!html.includes('class="md-source-feature'),id);
  }
+});
+
+test("CSS compaction preserves design selectors, custom properties and quoted content",()=>{
+ const original='<style media="all">/* editorial note */ body .hero > h1 { content: "WORDS / NEXT ACT"; padding: calc(100% - 12px); color: var(--ink); } @media (max-width:600px) { .hero h1 { line-height: 1.12; } } </style>';
+ const compact=compactInlineStyles(original);
+ assert(compact.startsWith('<style media="all">'));
+ assert(compact.includes('body .hero > h1'),"descendant selector changed");
+ assert(compact.includes('"WORDS / NEXT ACT"'),"quoted CSS strings changed");
+ assert(compact.includes('calc(100% - 12px)'),"calc() spacing changed");
+ assert(compact.includes('var(--ink)'),"variables changed");
+ assert(compact.includes('@media (max-width:600px)'),"responsive rules changed");
+ assert(!compact.includes('editorial note'),"CSS comments not removed");
+ assert(compact.length<original.length,"CSS did not get smaller");
+ assert.equal(compactInlineStyles('<div>No inline CSS</div>'),'<div>No inline CSS</div>');
 });
