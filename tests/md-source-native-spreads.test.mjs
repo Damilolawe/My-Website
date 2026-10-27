@@ -22,7 +22,7 @@ test("all 18 preserved Refero DESIGN.md systems have a distinctive source-native
   assert(html.includes("prefers-reduced-motion"),ref.id+" missing reduced-motion styles");
   assert(html.includes("FICTIONAL TEMPLATE DEMO"),ref.id+" lost demo disclosure");
   assert(!html.includes("<script"),ref.id+" introduced executable code");
-  assert(html.length<240000,ref.id+" page exceeded preview size budget");
+  assert(html.length<240000,ref.id+" page exceeded preview size budget ("+html.length+" characters; limit 240000)");
   patterns.add(ref.id==='folio'?'folio-editorial':feature.replaceAll(/[A-Za-z0-9]+/g,'').length+'-'+feature.match(/mdsf-[a-z-]+/g)?.join('|'));
  }
  assert.equal(patterns.size,18,"Every original MD guide must produce its own composition");
