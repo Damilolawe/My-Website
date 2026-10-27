@@ -74,13 +74,30 @@ async function audit(t,route,mode,width,height,{capture=false}={}){
      }));
    const teaser=document.querySelector(".study-home-teaser .study-teaser-grid .artbox");
    const teaserRect=teaser?.getBoundingClientRect();
+   const sceneElements=[...document.querySelectorAll("main [data-scene]")];
+   const sceneIds=sceneElements.map(el=>el.getAttribute("data-scene"));
+   const invisibleScenes=sceneElements.filter(el=>{
+    const rect=el.getBoundingClientRect(),computed=getComputedStyle(el);
+    return rect.width<120||rect.height<90||computed.display==="none"||computed.visibility==="hidden";
+   }).map(el=>el.getAttribute("data-scene"));
    return {viewport:innerWidth,documentWidth:width,headlines,headCount:heading.length,
     hasMain:!!document.querySelector("main"),hasMenu:menus.length>0,
     missingAnchors:broken,brokenImages:badMedia,overflowElements,
-    teaserRight:teaserRect?Math.round(teaserRect.right):null};
+    teaserRight:teaserRect?Math.round(teaserRect.right):null,sceneIds,invisibleScenes};
   });
   if(result.documentWidth>width+3)issues.push("horizontal overflow "+(result.documentWidth-width)+"px: "+JSON.stringify(result.overflowElements.slice(0,3)));
   if(result.teaserRight!==null&&result.teaserRight>width+3)issues.push("Signature teaser art reaches "+result.teaserRight+"px beyond "+width+"px viewport");
+  const guide=zipDesignFor(t.id),bespoke=guide&&!["md-bugatti","md-mintlify","md-nintendo-2001"].includes(t.id);
+  if(bespoke){
+   const work=guide.multipage?route.endsWith("/work.html"):route.endsWith(".html");
+   const home=guide.multipage&&route.endsWith("/home.html");
+   if(work&&(result.sceneIds.length!==3||new Set(result.sceneIds).size!==3))
+    issues.push("Work projects have missing/repeated artwork: "+JSON.stringify(result.sceneIds));
+   if(home&&result.sceneIds.length!==1)
+    issues.push("Signature Home needs exactly one independent featured artwork scene");
+   if((work||home)&&result.invisibleScenes.length)
+    issues.push("Artwork collapsed or hidden: "+result.invisibleScenes.join(","));
+  }
   if(!result.hasMain||result.headCount!==1)issues.push("main region/H1 invalid");
   if(result.missingAnchors.length)issues.push("broken section anchors: "+result.missingAnchors.join(","));
   if(result.brokenImages.length)warnings.push(label+": incomplete images "+result.brokenImages.length);
