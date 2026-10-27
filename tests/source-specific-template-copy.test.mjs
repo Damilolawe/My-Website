@@ -35,12 +35,40 @@ test("copy generator and publishing renderer stay in sync",async()=>{
   assert.equal(a,b);
  }
 });
-test("all five Signature routes retain their source-specific copy and safe branding",()=>{
+test("all five Signature routes retain the correct source-specific content and safe branding",()=>{
  const sample=sampleForTemplate("md-supabase");
- for(const chapter of ["home","work","features","studio","contact"]){
+ const escapeHTML=value=>String(value??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+ const pages=new Set();
+ const expected=[
+  ["home", "study-home-teaser"],
+  ["work", 'class="section" id="work"'],
+  ["features", "Explore the methods behind the work."],
+  ["studio", 'class="section study-studio"'],
+  ["contact", 'class="contact study-contact"']
+ ];
+ for(const [chapter,sectionMarker] of expected){
   const html=renderZipDesign(sample,{sample:true},chapter);
-  assert(html.includes(sample.content.name));
-  assert(html.includes(sample.content.bio));
-  assert(html.includes("FICTIONAL TEMPLATE DEMO"));
+  const start=html.indexOf('<main id="main">');
+  const end=html.indexOf("</main>",start);
+  assert(start>=0&&end>start,chapter+" main content missing");
+  const markup=html.slice(start,end);
+  assert(html.includes('class="site page-'+chapter+' '),chapter+" route identity missing");
+  assert(html.includes(escapeHTML(sample.content.name)),chapter+" brand missing or unescaped");
+  assert(markup.includes(sectionMarker),chapter+" unique chapter content missing");
+  assert(html.includes("FICTIONAL TEMPLATE DEMO"),chapter+" sample disclosure missing");
+  if(chapter==="home"||chapter==="studio")
+   assert(markup.includes(escapeHTML(sample.content.bio)),chapter+" source narrative missing");
+  if(chapter==="work"){
+   for(const card of sample.content.cards){
+    assert(markup.includes(escapeHTML(card.title)),chapter+" project title missing");
+    assert(markup.includes(escapeHTML(card.description)),chapter+" project copy missing");
+   }
+  }
+  if(chapter==="contact")
+   assert(markup.includes("Start a conversation."),chapter+" inquiry copy missing");
+  pages.add(markup);
  }
+ assert.equal(pages.size,5,"Signature chapters must have distinct page compositions");
 });
