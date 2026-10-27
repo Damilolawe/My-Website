@@ -29,9 +29,9 @@
 .chapter-art-label{position:absolute;top:28px;left:32px;right:32px;font:700 10px monospace;letter-spacing:.14em}
 .chapter-art strong{position:relative;z-index:2;font:950 clamp(60px,7vw,120px)/.85 system-ui;letter-spacing:-.105em;max-width:90%;overflow-wrap:break-word}
 .chapter-art strong em{font:italic 400 1em Georgia,serif}
-.chapter-details>span{font:800 11px monospace;color:#d9ff55;letter-spacing:.1em}
+.chapter-details>span{font:800 11px monospace;color:var(--acid);letter-spacing:.1em}
 .chapter-details h2{font:900 clamp(46px,5vw,88px)/.94 system-ui;letter-spacing:-.09em;margin:35px 0}
-.chapter-details h2 em{font:italic 400 1em Georgia,serif;color:#d9ff55}
+.chapter-details h2 em{font:italic 400 1em Georgia,serif;color:var(--acid)}
 .chapter-details p{font:clamp(16px,1.6vw,23px)/1.55 system-ui;color:#d7dacf}
 .chapter-points{display:grid;gap:12px;border-top:1px solid #ffffff4a;padding-top:30px;margin-top:40px;font:750 10px monospace;letter-spacing:.1em;color:#bec7b7}
 .chapter-details>a{display:inline-flex;padding:19px 25px;background:var(--acid);color:#111;margin-top:45px;font:850 11px monospace;transition:transform .3s}
@@ -58,7 +58,7 @@
 .story-outro{padding:clamp(90px,13vw,190px) 5vw;background:radial-gradient(circle at 80% 45%,#28301c,#0c0d10 65%);position:relative}
 .story-outro>span{font:800 11px monospace;color:var(--acid)}
 .story-outro h2{font:1000 clamp(65px,12vw,195px)/.83 system-ui;letter-spacing:-.11em}
-.story-outro h2 em{font:italic 400 .88em Georgia,serif;color:#d9fd47}
+.story-outro h2 em{font:italic 400 .88em Georgia,serif;color:var(--acid)}
 .story-outro>div{display:flex;flex-wrap:wrap;gap:25px;align-items:center}
 .story-outro p{max-width:600px;font-size:21px}.story-outro a{font:850 11px monospace;padding:20px 26px;background:var(--acid);color:var(--ink)}
 .story-outro .outro-secondary{background:transparent;color:#f7f7e9;border:1px solid #ffffff55}
