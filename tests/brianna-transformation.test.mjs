@@ -23,16 +23,31 @@ test("Correct public Wix test-site link is used instead of private editor sessio
  assert(html.includes('href="https://damilolawe03.wixstudio.com/website?rc=test-site"'),"Exact Wix Studio test-site preview missing");
  assert(!html.includes("editorSessionId="),"Never publish Wix editor session identifiers");
  assert(!html.includes("metaSiteId="),"Never publish private Wix editor metadata");
- for(const label of ["EXPLORE ORIGINAL SITE","EXPLORE REDESIGN PREVIEW"]){
+ for(const label of ["ORIGINAL WEBSITE","WIX REDESIGN","OPEN ORIGINAL SITE","OPEN REDESIGN SITE"]){
   assert(html.includes(label),label);
  }
 });
-test("Visuals are accurately disclosed as illustrative, not falsely archived screenshots",async()=>{
+test("only authentic Brianna screenshots may appear in the interactive slider",async()=>{
  const html=await read("index.html");
- assert(html.includes("These visuals are illustrative, not captured screenshots"));
- assert(html.includes("not an exact screenshot archive"));
- assert(html.includes("The original design should be captured before the domain is replaced"));
+ const js=await read("brianna-case.js");
+ const capture=await read("scripts/capture-brianna-sites.mjs");
+ const deploy=await read("scripts/deploy-verified-cloud-shell.sh");
+ assert(!html.includes('bld-website bld-website-before'),"Original site must not be a simulated CSS mockup");
+ assert(!html.includes('bld-website bld-website-after'),"Redesign must not be a simulated CSS mockup");
+ assert(html.includes('data-bld-shot="before" src="/assets/case-studies/brianna-before.webp"'));
+ assert(html.includes('data-bld-shot="after" src="/assets/case-studies/brianna-after.webp"'));
+ assert(html.includes('data-bld-capture-fallback'),"Links must remain accessible if one capture fails");
+ assert(html.includes('class="bld-viewport" style="--bld-split:52%" hidden'),"No uncaptured images may display by default");
+ assert(js.includes("results.every(Boolean)"),"Comparison only opens when both captures are valid");
+ assert(js.includes("fallback.hidden = false"),"Missing image must restore actual website links");
+ assert(capture.includes("https://www.briannalucilledemmings.com/"));
+ assert(capture.includes("https://damilolawe03.wixstudio.com/website?rc=test-site"));
+ assert(capture.includes("writeOnce:true"),"Original image should never be overwritten by a later site update");
+ assert(capture.includes("newPage(")&&capture.includes("page.screenshot("),"Capture must use real browser rendering");
+ assert(deploy.includes("node scripts/capture-brianna-sites.mjs"),"Existing Cloud Shell deployment must capture first");
+ assert(deploy.indexOf("node scripts/capture-brianna-sites.mjs")<deploy.indexOf("npm run build"),"Capture before building distributable images");
 });
+
 test("Mobile, accessible and keyboard-operable slider assets ship with static build",async()=>{
  const [html,css,js,build]=await Promise.all(["index.html","brianna-case.css","brianna-case.js","scripts/build.mjs"].map(read));
  for(const asset of ["brianna-case.css","brianna-case.js"]){
