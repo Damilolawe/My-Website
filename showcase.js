@@ -1,5 +1,5 @@
-import { fetchPublicTemplate, fetchPublicStudyPage, previewMessage } from "/shared/preview.mjs";
-import {zipDesignFor,zipPages} from "/shared/zip-design-catalog.mjs";
+import { fetchPublicTemplate, fetchPublicStudyPage, previewMessage, studyPageFromLink } from "/shared/preview.mjs";
+import {zipDesignFor} from "/shared/zip-design-catalog.mjs";
 import { templates } from "/shared/model.mjs";
 export function mountExpressGallery(root,{items=templates,initial="afterhours",initialMobile=false,onSelect=()=>{},onModeChange=()=>{}}={}) {
   if(!root)return new AbortController();
@@ -13,23 +13,29 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
   const desktop=root.querySelector("#worlds-desktop"),mobile=root.querySelector("#worlds-mobile");
   let selected=items.some(t=>t.id===initial)?initial:items[0]?.id,version=0,controller=null;
   let currentPage="home";
-  const pageBar=document.createElement("div");
-  pageBar.className="worlds-page-list";
-  pageBar.setAttribute("role","group");
-  pageBar.setAttribute("aria-label","Preview website pages");
-  screen.querySelector(".worlds-toolbar")?.after(pageBar);
-  function updatePageBar(id){
-    pageBar.replaceChildren();
-    const multi=zipDesignFor(id)?.multipage;
-    pageBar.hidden=!multi;
-    if(!multi)return;
-    for(const part of zipPages){
-      const b=document.createElement("button");
-      b.type="button";b.textContent=part.toUpperCase();
-      b.setAttribute("aria-pressed",String(part===currentPage));
-      b.addEventListener("click",()=>{currentPage=part;choose(selected);});
-      pageBar.appendChild(b);
-    }
+  // Template links are handled by this trusted parent. The srcdoc frame
+  // is still script-free and cannot submit forms or execute template code.
+  function wireStudyLinks(id,loadedVersion){
+    if(!zipDesignFor(id)?.multipage || loadedVersion!==version)return;
+    const doc=frame.contentDocument;
+    if(!doc)return;
+    doc.addEventListener("click",event=>{
+      if(loadedVersion!==version||id!==selected||event.defaultPrevented)return;
+      if(event.button!==0||event.ctrlKey||event.metaKey||event.altKey||event.shiftKey)return;
+      const link=event.target?.closest?.("a[href]")||event.target?.parentElement?.closest?.("a[href]");
+      if(!link)return;
+      const raw=link.getAttribute("href");
+      if(raw?.startsWith("#")){
+        const target=doc.getElementById(raw.slice(1));
+        if(target){event.preventDefault();target.scrollIntoView({block:"start"});}
+        return;
+      }
+      const page=studyPageFromLink(id,raw,window.location.origin);
+      if(!page)return;
+      event.preventDefault();
+      currentPage=page;
+      choose(id);
+    });
   }
 
   // Large sandbox previews are loaded near the gallery instead of on first paint.
@@ -92,11 +98,10 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
     const item=savedTemplates.get(id);
     if(id!==selected)currentPage="home";
     selected=id;version++;const mine=version;
-    updatePageBar(id);
     if(notify)onSelect(id);
     controller?.abort();controller=new AbortController();
     rail.querySelectorAll("[data-world]").forEach(btn=>btn.setAttribute("aria-pressed",String(btn.dataset.world===id)));
-    full.href=templatePath(id);screen.dataset.world=id;
+    full.href=zipDesignFor(id)?.multipage?"/templates/"+id+"/"+currentPage+".html":templatePath(id);screen.dataset.world=id;
     loading.hidden=false;loadingName.textContent=item.name.toUpperCase();
     loading.setAttribute("aria-label","Loading "+item.name+" website preview");
     screen.setAttribute("aria-busy","true");
@@ -112,6 +117,7 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
       if(controller.signal.aborted||mine!==version)return;
       frame.onload=()=>{
         if(mine!==version)return;
+        wireStudyLinks(id,mine);
         name.textContent=item.name;description.textContent=item.tag;loading.hidden=true;
         screen.removeAttribute("aria-busy");
         screen.classList.remove("is-changing");syncFrame();

@@ -21,15 +21,6 @@
 @media(max-width:1020px){.app-main .express-gallery .worlds-layout{display:flex;flex-direction:column}.app-main .express-gallery .worlds-screen{order:0;width:100%}.app-main .express-gallery .worlds-rail{order:1;width:100%;max-height:400px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}.app-main .express-gallery .worlds-choice{grid-template-columns:19px 10px minmax(0,1fr) 14px}}
 @media(max-width:620px){.app-main .express-gallery{padding:22px 13px}.app-main .express-gallery-title{font-size:clamp(33px,8.4vw,56px);letter-spacing:-.035em}.app-main .express-gallery .worlds-kicker{flex-wrap:wrap;font-size:10px}.app-main .express-gallery .worlds-filter{align-items:stretch;gap:8px}.app-main .express-gallery .worlds-filter input{width:100%}.app-main .express-gallery .worlds-rail{grid-template-columns:1fr;max-height:360px}.app-main .express-gallery .worlds-choice{grid-template-columns:22px 13px minmax(0,1fr) 18px}.app-main .express-gallery .worlds-screen-footer{flex-wrap:wrap;gap:18px}.app-main .express-gallery .worlds-open{text-align:left}.app-main .express-gallery .worlds-view{width:100%}}
 
-/* Five-page Signature preview navigation remains outside the isolated iframe. */
-.worlds-page-list{display:flex;align-items:center;gap:8px;padding:13px 16px;background:#151c18;overflow-x:auto;border-bottom:1px solid #ffffff2d;scrollbar-width:thin}
-.worlds-page-list[hidden]{display:none}
-.worlds-page-list button{flex:0 0 auto;border:1px solid #ffffff35;color:#e8ece5;background:transparent;border-radius:2px;padding:9px 13px;font:650 11px/1.25 Arial,system-ui,sans-serif;letter-spacing:.08em;cursor:pointer}
-.worlds-page-list button[aria-pressed="true"]{background:#c6ff00;color:#101611;border-color:#c6ff00}
-.worlds-page-list button:focus-visible{outline:2px solid #c6ff00;outline-offset:3px}
-@media(max-width:600px){.worlds-page-list{padding:10px;gap:6px}.worlds-page-list button{padding:8px 10px}}
-
-
 /* 2026-10-25: Give template browsing the same full-width visual space as the homepage.
    Gallery cards have FIVE children: index, live thumbnail, swatch, name, arrow. */
 .app-main .wizard.is-gallery {
