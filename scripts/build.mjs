@@ -118,10 +118,10 @@ await writeFile("dist/release.json", JSON.stringify({
 const homePath = "dist/index.html";
 let homeHTML = await readFile(homePath, "utf8");
 
-// Wix can block unauthenticated screenshots. The image links in source HTML
-// must never become broken /assets URLs in the deployed HTML. Publish the
-// already-visible links to the real websites until BOTH photos are available.
-// When both captures exist, keep both real src attributes so the slider works.
+// The Brianna screenshots are approved, versioned case-study assets. Never
+// publish broken image URLs if either file is absent from a future release.
+// Retain both real-site links as the fallback; the cinema gallery activates
+// only when both committed screenshots exist and pass client image checks.
 const briannaShots = ["brianna-before.webp", "brianna-after.webp"];
 const briannaCapturesReady = (await Promise.all(briannaShots.map(async file => {
   try {
