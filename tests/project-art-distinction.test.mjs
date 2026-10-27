@@ -94,3 +94,21 @@ test("preview and Supabase source-art renderers are exactly mirrored",async()=>{
   assert.equal(front,edge,path+" server drift");
  }
 });
+
+test("all source-guided artwork symbols request monochrome rendering",()=>{
+ const forbidden=/[↗↘↖↙←→↑↓⇄✳✺✻✽✿✦✧❦▶✓](?!\uFE0E)/u;
+ let checked=0,command=0;
+ for(const design of zipDesigns){
+  for(let i=0;i<4;i++){
+   const art=studyProjectArt(design,i,{teaser:i===3});
+   assert(!forbidden.test(art),design.id+" artwork has unqualified emoji-capable icon");
+   if(art.includes("pa-command")){
+    command++;
+    assert(art.includes("↗︎"),design.id+" command palette must use text arrow");
+   }
+   checked++;
+  }
+ }
+ assert.equal(checked,296);
+ assert(command>0);
+});
