@@ -4,6 +4,7 @@ import { validate } from "../shared/model.mjs";
 import { premiumStudyIds } from "../shared/premium-art-direction-35.mjs";
 import { verifyPublication } from "./verify-publication.mjs";
 import {allowedApprovedPageNames} from "../shared/approved-pages.mjs";
+import { sendWorkHandoff } from "./work-handoff.mjs";
 export async function saveDraft(order, input, actor = null) {
   const data = validate(input);
   const assets = await rows("awe_assets", `order_id=eq.${order.id}`);
@@ -44,12 +45,17 @@ export async function runJobs(limit = 3) {
       const o = (await rows("awe_orders", `id=eq.${job.order_id}`))[0];
       if (job.kind === "generate") {
         if (o.draft_version) {
-          /* Replay after committed generation is harmless. */
+          // Replayed generation must not regenerate or republish the draft.
+          // If its separate owner notification failed, retry just that step.
+          await sendWorkHandoff(o, o.draft_version);
         } else {
           await patch("awe_orders", `id=eq.${o.id}&version=eq.${o.version}`, {
             status: "generating",
           });
-          await saveDraft(o, o.input);
+          const draftVersion = await saveDraft(o, o.input);
+          // Paid draft exists before any external notification. No AI work
+          // happens here, and no publication is performed automatically.
+          await sendWorkHandoff(o, draftVersion);
         }
       } else if (job.kind === "deliver") {
         await deliver(o, job.version_id);
