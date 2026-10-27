@@ -76,7 +76,7 @@ test("external original and redesigned site links work without exposing editor s
  assert(html.includes("These are actual screenshots"),"Screenshots should not be mislabeled as mockups");
  assert(!html.includes("These visuals are illustrative"));
  const section=html.slice(html.indexOf('<section class="bld-case"'),html.indexOf("</section>",html.indexOf('<section class="bld-case"')));
- const visibleContent=section.replace(/https?:\\/\\/[^"\\s<>]+/g,"");
+ const visibleContent=section.replaceAll("https://damilolawe03.wixstudio.com/website?rc=test-site","").replaceAll("https://www.briannalucilledemmings.com/","");
  assert(!/wix(?:studio)?/i.test(visibleContent),"Do not show platform branding in Brianna's case-study UI");
  assert(section.includes("BRIANNA / REDESIGNED WEBSITE"));
  assert(section.includes("02 / REDESIGNED WEBSITE"));
