@@ -32,7 +32,7 @@ import {
 import { saveDraft, runJobs } from "../../platform/production.mjs";
 import { inspectUpload } from "../../platform/uploads.mjs";
 import { previewResume } from "../../platform/resume.mjs";
-import { exportApproved } from "../../platform/export.mjs";
+import { exportApproved, exportPrivateDraft } from "../../platform/export.mjs";
 import { renderApprovedRunwayPages, RUNWAY_PAGES } from "../../shared/runway-customer-pages.mjs";
 function owner(u) {
   assertOwner(u, env().OWNER_USER_ID);
@@ -443,6 +443,7 @@ export default async function (req) {
         const o = await owned(action, u, true);
         const op = path[3];
         if (method === "GET" && op === "export") return exportApproved(o);
+        if (method === "GET" && op === "handoff-export") return exportPrivateDraft(o);
         if (method === "GET" && !op) {
           const [assets, versions, events, revisions, deliveries] =
             await Promise.all([
