@@ -60,10 +60,8 @@ fi
 echo "Building commit: $RELEASE_SHA"
 
 npm ci
-# Capture actual live Brianna originals using the same Playwright Chromium used
-# for gallery screenshots. Never block the entire release if Wix disallows a
-# screenshot: the homepage then displays working links to both real websites.
-node scripts/capture-brianna-sites.mjs || echo "Brianna screenshot capture unavailable; publishing direct website links instead."
+# Brianna case-study screenshots are permanent, versioned repository assets.
+# Never recapture or overwrite user-approved case-study images during deployment.
 GITHUB_SHA="$RELEASE_SHA" npm run build
 npm run check
 npm test
