@@ -52,6 +52,7 @@ test("real before-and-after cinema has focus switching, image enlargement and ac
  }
  assert(html.includes('data-bld-lightbox')&&html.includes('data-bld-lightbox-image'));
  assert(html.includes('data-bld-close'));
+ assert.equal((html.match(/data-bld-open="/g)||[]).length,4,"Both screenshots and both footer actions must open the full-size viewer");
  assert(js.includes('viewer.showModal()'),"Enlarge must open a native modal");
  assert(js.includes('viewer.close()'),"Modal must be closable");
  assert(js.includes('focusButtons.find('),"Arrow navigation should move focus");
