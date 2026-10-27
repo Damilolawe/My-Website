@@ -6,24 +6,36 @@ import { applyColorConsistency } from "./color-consistency.mjs";
 import {zipDesignFor} from "./zip-design-catalog.mjs";
 import {renderZipDesign} from "./zip-design-render.mjs";
 import { applyTypographySafety } from "./typography-guard.mjs";
+import {exactGuideCSSFor} from "./exact-design-css.mjs";
 
 // Preserve authored CSS tokens (including quoted content, descendant selectors and
 // calc() spacing) while removing only comments/redundant whitespace. Afterhours'
 // unusually rich layered art direction can exceed the strict HTML preview limit
 // without changing any visible content, so compact that theme at the final
 // rendering step instead of raising the release size budget.
-export function compactInlineStyles(html) {
+export function compactInlineStyles(html, {preserve = []} = {}) {
   if (typeof html !== "string") return html;
   return html.replace(/<style([^>]*)>([\s\S]*?)<\/style>/g, (_whole, attrs, stylesheet) => {
+    // Preserve the literal CSS from uploaded DESIGN.md Quick Start sources.
+    // Certain QA checks and customer approvals require the original bytes,
+    // and an HTML/CSS size budget must not silently rewrite user-owned guides.
+    const protectedTokens = [];
+    let safeStyles = stylesheet;
+    for (const item of preserve.filter(Boolean)) {
+      if (!safeStyles.includes(item)) continue;
+      const marker = "__AWE_EXACT_CSS_BLOCK_" + protectedTokens.length + "__";
+      safeStyles = safeStyles.replaceAll(item, marker);
+      protectedTokens.push({marker, item});
+    }
     const out = [];
     let quote = null;
     let whitespace = false;
-    for (let i = 0; i < stylesheet.length; i++) {
-      const ch = stylesheet[i];
+    for (let i = 0; i < safeStyles.length; i++) {
+      const ch = safeStyles[i];
       if (quote) {
         out.push(ch);
         if (ch === "\\") {
-          if (i + 1 < stylesheet.length) out.push(stylesheet[++i]);
+          if (i + 1 < safeStyles.length) out.push(safeStyles[++i]);
         } else if (ch === quote) quote = null;
         continue;
       }
@@ -34,8 +46,8 @@ export function compactInlineStyles(html) {
         quote = ch;
         continue;
       }
-      if (ch === "/" && stylesheet[i + 1] === "*") {
-        const end = stylesheet.indexOf("*/", i + 2);
+      if (ch === "/" && safeStyles[i + 1] === "*") {
+        const end = safeStyles.indexOf("*/", i + 2);
         if (end === -1) throw new Error("Unterminated CSS comment in template styles");
         i = end + 1;
         continue;
@@ -48,7 +60,9 @@ export function compactInlineStyles(html) {
       if (ch === "}" && out[out.length - 1] === ";") out.pop();
       out.push(ch);
     }
-    return "<style" + attrs + ">" + out.join("").trim() + "</style>";
+    let compacted = out.join("").trim();
+    for (const {marker, item} of protectedTokens) compacted = compacted.replaceAll(marker, item);
+    return "<style" + attrs + ">" + compacted + "</style>";
   });
 }
 
@@ -62,5 +76,13 @@ export function renderSite(input, options = {}) {
     : renderPremium(normalized, options);
   const upgraded = applyPremiumStudy(page, normalized.template, normalized.content);
   const finished = applyTypographySafety(applyColorConsistency(upgraded, normalized.template, normalized.design), normalized.template);
-  return normalized.template === "afterhours" ? compactInlineStyles(finished) : finished;
+  if (["afterhours", "orbit"].includes(normalized.template)) {
+    return compactInlineStyles(finished, {
+      preserve: [
+        exactGuideCSSFor(normalized.template),
+        "/* Secondary visual QA: scoped legibility adjustments, preserving branding and motion. */"
+      ]
+    });
+  }
+  return finished;
 }
