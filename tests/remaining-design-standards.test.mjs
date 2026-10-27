@@ -18,11 +18,21 @@ test("35 non-flagship Signature source studies have different Home and Work comp
   const v=sampleForTemplate(t.id);
   const home=renderZipDesign(v,{sample:true},"home");
   const work=renderZipDesign(v,{sample:true},"work");
-  assert(home.includes('class="study-home-teaser"'),t.id+" missing separate Home");
-  assert(home.includes('class="cards study-teaser-grid"'),t.id+" featured sample missing");
-  assert(!home.includes('class="section" id="work"'),t.id+" Home repeats Work");
-  assert(work.includes('class="section" id="work"'),t.id+" Work is incomplete");
-  assert(!work.includes('study-home-teaser'),t.id+" repeats Home");
+  // CSS for both page families is embedded in every preview. Only compare
+  // actual rendered document sections, not selector names inside <style>.
+  const mainBody=(html,chapter)=>{
+   const start=html.indexOf('<main id="main">');
+   const end=html.indexOf('</main>',start);
+   assert(start!==-1&&end>start,t.id+"/"+chapter+" main region missing");
+   return html.slice(start,end);
+  };
+  const homeMarkup=mainBody(home,"home");
+  const workMarkup=mainBody(work,"work");
+  assert(homeMarkup.includes('class="study-home-teaser"'),t.id+" missing separate Home");
+  assert(homeMarkup.includes('class="cards study-teaser-grid"'),t.id+" featured sample missing");
+  assert(!homeMarkup.includes('class="section" id="work"'),t.id+" Home repeats Work");
+  assert(workMarkup.includes('class="section" id="work"'),t.id+" Work is incomplete");
+  assert(!workMarkup.includes('class="study-home-teaser"'),t.id+" repeats Home");
   for(const chapter of zipPages){
    const html=renderZipDesign(v,{sample:true},chapter);
    assert(html.includes('class="design-mobile"'),t.id+"/"+chapter+" menu missing");
@@ -62,4 +72,15 @@ test("client-safe renderer changes remain synchronized between preview and serve
   const [a,b]=await Promise.all(["../shared/","../supabase/functions/awe-api/shared/"].map(root=>readFile(new URL(root+name,import.meta.url),"utf8")));
   assert.equal(a,b,name+" drift");
  }
+});
+
+test("Signature content inspection ignores shared stylesheet class names",()=>{
+ const v=sampleForTemplate("md-airbnb");
+ const home=renderZipDesign(v,{sample:true},"home");
+ const work=renderZipDesign(v,{sample:true},"work");
+ assert(work.includes(".study-home-teaser"),"Shared CSS intentionally defines the Home teaser on every chapter");
+ const getMain=html=>html.split('<main id="main">')[1]?.split("</main>")[0];
+ assert(getMain(home)?.includes('class="study-home-teaser"'));
+ assert(!getMain(work)?.includes('class="study-home-teaser"'));
+ assert(getMain(work)?.includes('class="section" id="work"'));
 });
