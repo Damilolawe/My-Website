@@ -5,6 +5,7 @@ import {uploadedDesigns} from "../shared/uploaded-designs.mjs";
 import {sampleForTemplate} from "../shared/model.mjs";
 import {renderSite,compactInlineStyles} from "../shared/render.mjs";
 import {mdSourceFeature,mdSourceFeatureCSS} from "../shared/md-source-feature.mjs";
+import {exactGuideCSSFor} from "../shared/exact-design-css.mjs";
 const parseFeature=html=>html.match(/<section class="md-source-feature mdsf-[^"]+"[\s\S]*?<\/section>/)?.[0];
 test("all 18 preserved Refero DESIGN.md systems have a distinctive source-native editorial feature",()=>{
  const patterns=new Set();
@@ -70,4 +71,24 @@ test("CSS compaction preserves design selectors, custom properties and quoted co
  assert(!compact.includes('editorial note'),"CSS comments not removed");
  assert(compact.length<original.length,"CSS did not get smaller");
  assert.equal(compactInlineStyles('<div>No inline CSS</div>'),'<div>No inline CSS</div>');
+});
+
+test("compact previews preserve original Quick Start guides and visual-QA evidence without raising budgets",()=>{
+ for(const id of ["afterhours","orbit"]){
+  const html=renderSite(sampleForTemplate(id),{sample:true});
+  assert(html.includes(exactGuideCSSFor(id)),id+" lost byte-for-byte DESIGN.md guide CSS during compaction");
+  assert(html.length<240000,id+" still exceeds 240000-character preview budget: "+html.length);
+  assert(html.includes("FICTIONAL TEMPLATE DEMO"),id+" lost template sample disclaimer");
+  assert(html.includes("Secondary visual QA"),id+" removed original visual correction block marker");
+  assert(html.includes("prefers-reduced-motion"),id+" lost motion-accessibility CSS");
+  assert(html.includes('class="md-source-feature'),id+" lost source artwork");
+ }
+});
+test("CSS compaction protects designated verbatim guides without changing other styles",()=>{
+ const guide=[":root {","  --source-tone: #fff;","}",""].join("\n");
+ const input='<style>/* remove */ .hello { color: red; }\\n'+guide+'</style>';
+ const output=compactInlineStyles(input,{preserve:[guide]});
+ assert(output.includes(guide),"Original source-guide block was edited");
+ assert(output.length<input.length,"Non-source CSS did not compact");
+ assert(!output.includes("remove"),"Unprotected comments were not compressed");
 });
