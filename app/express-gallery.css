@@ -2,14 +2,14 @@
 .app-main .express-gallery{padding:clamp(26px,4vw,58px);background:#0d1013;color:#f7f7ee;border:1px solid #252e26;margin:34px 0 50px;isolation:isolate;overflow:hidden}
 .app-main .express-gallery:before{display:none}
 .app-main .express-gallery-title{font:850 clamp(36px,5.5vw,78px)/1.06 Arial,system-ui,sans-serif;letter-spacing:-.048em;margin:22px 0 24px;max-width:100%;overflow-wrap:normal}
-.app-main .express-gallery-title em{font:italic 400 .95em/1.12 Georgia,serif;color:#c6ff00;letter-spacing:-.035em}
+.app-main .express-gallery-title em{font:italic 400 .95em/1.12 Georgia,serif;color:#d1fa57;letter-spacing:-.035em}
 .app-main .express-gallery .worlds-description{margin-bottom:18px;max-width:740px;line-height:1.6}
 .app-main .express-personalization-note{
   display:grid;grid-template-columns:minmax(160px,.35fr) minmax(0,1fr);
   gap:clamp(15px,2.5vw,36px);align-items:center;
   margin:0 0 clamp(24px,3vw,34px);
   padding:clamp(19px,2.5vw,30px);
-  border:1px solid #3c4c37;border-left:4px solid #c6ff00;
+  border:1px solid #3c4c37;border-left:4px solid #d1fa57;
   background:linear-gradient(110deg,#1c261d,#151a17);
   color:#f4f6ed;box-sizing:border-box;min-width:0;
 }
