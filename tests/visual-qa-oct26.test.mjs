@@ -16,7 +16,11 @@ test("all 74 study demos use different artwork for projects and avoid the duplic
   assert(!html.includes('<h2>Artfully considered.</h2>'),template.id+" duplicated approach");
   if(!template.multipage){
    assert(html.includes('study-approach')||template.id==="md-nintendo-2001",template.id+" missing editorial approach or independent arcade system");
-   assert.equal((html.match(/class="[^"]*\bcards\b[^"]*"/g)||[]).length,1,template.id+" repeats the same gallery");
+   // Match complete class tokens. `\b` also matches "pa-cards", which is
+   // the decorative fintech artwork class, not a second gallery.
+   const galleryCount=[...html.matchAll(/class="([^"]*)"/g)]
+    .filter(([,classList])=>classList.split(/\s+/).includes("cards")).length;
+   assert.equal(galleryCount,1,template.id+" repeats the same gallery");
   }
  }
 });
@@ -56,5 +60,18 @@ test("QA repairs preserve native renderers and match Supabase server mirrors",as
  for(const id of ["liquidmetal","runwayml","runwaymulti","nike","ferrari"]){
   const html=renderSite(sampleForTemplate(id),{sample:true});
   assert(!html.includes("Secondary visual QA"),id+" protected identity was changed");
+ }
+});
+
+test("financial card artwork is not mistaken for a second gallery",()=>{
+ for(const id of ["md-kraken","md-nerdwallet"]){
+  const html=renderSite(sampleForTemplate(id),{sample:true});
+  const classLists=[...html.matchAll(/class="([^"]*)"/g)].map(x=>x[1].split(/\s+/));
+  const galleries=classLists.filter(names=>names.includes("cards"));
+  const artScenes=[...html.matchAll(/data-scene="([^"]+)"/g)].map(x=>x[1]);
+  assert.equal(galleries.length,1,id+" has an unexpected extra gallery");
+  assert.equal(artScenes.length,3,id+" should render three separate pieces of artwork");
+  assert.equal(new Set(artScenes).size,3,id+" repeats project artwork");
+  assert(classLists.some(names=>names.includes("pa-cards")),id+" should preserve the original fintech card composition");
  }
 });
