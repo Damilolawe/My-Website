@@ -27,10 +27,25 @@ if [[ -n "$(git status --porcelain --untracked-files=no -- assets/catalog-thumbn
   fi
 fi
 
+# A running Bash process keeps its original script instructions even when
+# git pull replaces this file. Restart once if the pull updated the deployment
+# script so the current release uses the *new* checks, not stale code.
+readonly STARTED_SCRIPT_HASH="$(git hash-object scripts/deploy-verified-cloud-shell.sh)"
 echo "Preparing latest main from Damilolawe/My-Website..."
 git fetch --prune origin main
 git switch main
 git pull --ff-only origin main
+
+CURRENT_SCRIPT_HASH="$(git hash-object scripts/deploy-verified-cloud-shell.sh)"
+if [[ "$CURRENT_SCRIPT_HASH" != "$STARTED_SCRIPT_HASH" ]]; then
+  if [[ "${AWE_DEPLOY_RESTARTS:-0}" -ge 2 ]]; then
+    echo "Refusing to deploy: release script changed too many times while updating. Retry from a stable main." >&2
+    exit 1
+  fi
+  echo "The deploy script itself changed. Restarting with its latest checks..."
+  exec env AWE_DEPLOY_RESTARTS="$((${AWE_DEPLOY_RESTARTS:-0} + 1))" \
+    bash scripts/deploy-verified-cloud-shell.sh
+fi
 
 readonly RELEASE_SHA="$(git rev-parse HEAD)"
 readonly UPSTREAM_SHA="$(git rev-parse origin/main)"
