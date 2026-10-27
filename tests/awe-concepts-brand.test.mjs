@@ -41,7 +41,7 @@ test("Node package metadata and server delivery messages are branded",async()=>{
   assert(production.includes("Your AWE CONCEPTS website is ready"));
 });
 
-test("AWE Express remains the offer under Awe Concepts branding", async () => {
+test("AWE Express remains the offer under consistent Awe Concepts branding", async () => {
   const home = await source("index.html");
   const order = await source("order.html");
   const account = await source("account.html");
@@ -50,7 +50,7 @@ test("AWE Express remains the offer under Awe Concepts branding", async () => {
   assert.match(account, /AWE Express/);
   assert.doesNotMatch(home + order + account, /Awe Concepts Express/i);
   for (const [page, logo, label] of [
-    [order, "awe-express-dark.svg", "AWE Express"],
+    [order, "awe-concepts-dark.svg", "Awe Concepts"],
     [account, "awe-concepts-dark.svg", "Awe Concepts"],
     [await source("admin.html"), "awe-concepts-dark.svg", "Awe Concepts"],
   ]) {
