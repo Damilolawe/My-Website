@@ -15,7 +15,7 @@
   const viewerCaption = viewer?.querySelector("[data-bld-lightbox-caption]");
   const viewerButtons = [...(viewer?.querySelectorAll("[data-bld-modal]") || [])];
   const closeButton = viewer?.querySelector("[data-bld-close]");
-  if (!fallback || !status || !viewer || !viewerImage || !viewerCaption || focusButtons.length !== 2 || previews.length !== 2 || openButtons.length !== 2) return;
+  if (!fallback || !status || !viewer || !viewerImage || !viewerCaption || focusButtons.length !== 2 || previews.length !== 2 || openButtons.length < 2) return;
 
   const images = Object.fromEntries(previews.map(img => [img.dataset.bldShot, img]));
   const labels = {
