@@ -30,7 +30,7 @@ function illustration(category,mode,seed){
  if(category==="code")return [
  '<div class="pa-editor"><div class="pa-header">● &nbsp; ● &nbsp; ● <span>workspace / 01</span></div><div class="pa-editor-body"><aside>'+rules(6)+'</aside><div><small>// an original idea</small><strong>const work = {</strong><em>&nbsp;clarity: true,</em><em>&nbsp;form: "alive"</em><strong>};</strong><small>// make it real</small></div></div></div>',
  '<div class="pa-network"><div class="pa-connect pa-connect-one"></div><div class="pa-connect pa-connect-two"></div><div class="pa-node pa-node-a">01<small>IDEA</small></div><div class="pa-node pa-node-b">02<small>BUILD</small></div><div class="pa-node pa-node-c">03<small>SHIP</small></div></div>',
- '<div class="pa-command"><div class="pa-search">⌕ &nbsp; Find your next idea… <span>↵</span></div><div class="pa-command-options"><span>WORKSPACE / ACTIONS</span><b>◈ &nbsp; New project</b><b>⊞ &nbsp; Creative assets</b><b>↗ &nbsp; Publish work</b></div></div>',
+ '<div class="pa-command"><div class="pa-search">⌕ &nbsp; Find your next idea… <span>↵</span></div><div class="pa-command-options"><span>WORKSPACE / ACTIONS</span><b>◈ &nbsp; New project</b><b>⊞ &nbsp; Creative assets</b><b>↗︎ &nbsp; Publish work</b></div></div>',
  '<div class="pa-terminal"><div class="pa-header">TERMINAL / '+n+'<span>READY</span></div><p>&gt; prepare workspace</p><p>&gt; compose new idea</p><p>&gt; publish the study</p><strong>SUCCESS<span>▌</span></strong></div>'
  ][mode];
  if(category==="product")return [
