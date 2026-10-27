@@ -13,7 +13,9 @@ test("relocated Express gallery previews remain sandboxed srcdoc with strict ant
  assert(!homepage.includes('id="worlds-frame"'));
  assert(orderPage.includes('src="/app/order.mjs"'));
  assert(order.includes('id="worlds-frame"'));
- assert(order.includes('sandbox=""'));
+ assert(order.includes('id="worlds-frame" title="Fictional website design demonstration" sandbox="allow-same-origin"'));
+ assert(!order.includes('sandbox="allow-same-origin allow-scripts"'));
+ assert(order.includes('title="Fictional template configuration preview" sandbox=""'));
  assert(!/<iframe[^>]+id="worlds-frame"[^>]+src=/.test(order));
  assert(showcase.includes("frame.srcdoc=html"));
  assert(showcase.includes("export function mountExpressGallery"));
