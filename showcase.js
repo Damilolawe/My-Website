@@ -64,16 +64,13 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
       const title=document.createElement("strong");title.textContent=item.name;
       const meta=document.createElement("small");meta.textContent=item.style;
       const copy=document.createElement("span");copy.className="worlds-choice-copy";copy.append(title,meta);
-      const swatch=document.createElement("i");swatch.className="worlds-choice-swatch";
-      swatch.style.backgroundColor=/^#[0-9a-f]{6}$/i.test(item.color)?item.color:"#dcfc46";
-      swatch.setAttribute("aria-hidden","true");
       const symbol=document.createElement("span");symbol.setAttribute("aria-hidden","true");symbol.textContent="↗︎";
       const thumb=document.createElement("span");thumb.className="worlds-choice-thumb";thumb.setAttribute("aria-hidden","true");
       const mini=document.createElement("img");mini.alt="";mini.loading="lazy";mini.decoding="async";
       mini.src="/assets/catalog-thumbnails/"+encodeURIComponent(item.id)+".webp";
       mini.width=640;mini.height=900;
       thumb.append(mini);
-      button.append(count,thumb,swatch,copy,symbol);
+      button.append(count,thumb,copy,symbol);
       button.addEventListener("click",()=>choose(item.id,true));
       fragment.append(button);
     });
