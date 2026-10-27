@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { workHandoffMessage, WORK_HANDOFF_SUBJECT } from "../platform/work-handoff.mjs";
+import { workHandoffMessage, sendWorkHandoff, WORK_HANDOFF_SUBJECT } from "../platform/work-handoff.mjs";
 
 test("Work handoff email includes only an owner-only draft reference, not customer materials", () => {
   const id = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
@@ -26,4 +26,65 @@ test("Work handoff is opt-in, owner-gated, and never bypasses draft review", asy
   assert.match(api,/exportPrivateDraft\(o\)/);
   assert.match(admin,/data-work-export/);
   assert.match(production,/await saveDraft\(/);
+});
+
+test("Work notification is gated by verified payment and idempotent in simulated providers", async () => {
+  const keys = ["AWE_WORK_HANDOFF_ENABLED", "AWE_WORK_HANDOFF_EMAIL",
+    "RESEND_API_KEY", "EMAIL_FROM", "SITE_ORIGIN", "SUPABASE_URL",
+    "SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_PUBLISHABLE_KEY"];
+  const old = Object.fromEntries(keys.map(k => [k, process.env[k]]));
+  const previousFetch = globalThis.fetch;
+  let mailCount = 0;
+  const events = [];
+  const order = {id:"aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa", payment:"paid"};
+  const version = "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb";
+  const json = data => new Response(JSON.stringify(data), {
+    status:200, headers:{"content-type":"application/json"}
+  });
+  try {
+    Object.assign(process.env, {
+      AWE_WORK_HANDOFF_ENABLED:"true",
+      AWE_WORK_HANDOFF_EMAIL:"work-owner@example.test",
+      RESEND_API_KEY:"example",
+      EMAIL_FROM:"studio@example.test",
+      SITE_ORIGIN:"https://aweconcepts.com",
+      SUPABASE_URL:"https://db.example.test",
+      SUPABASE_SERVICE_ROLE_KEY:"example",
+      SUPABASE_PUBLISHABLE_KEY:"example",
+    });
+    globalThis.fetch = async (input, options={}) => {
+      const u = new URL(input.toString());
+      if (u.hostname === "api.resend.com") {
+        mailCount++;
+        const message = JSON.parse(options.body);
+        assert.deepEqual(message.to,["work-owner@example.test"]);
+        assert.equal(message.subject, WORK_HANDOFF_SUBJECT);
+        assert.match(options.headers["Idempotency-Key"],/work-handoff/);
+        return json({id:"resend-accepted"});
+      }
+      assert.equal(u.hostname,"db.example.test");
+      assert.equal(u.pathname,"/rest/v1/awe_events");
+      if (options.method === "POST") {
+        const row = JSON.parse(options.body);
+        events.push(row);
+        return json([row]);
+      }
+      return json(events);
+    };
+    assert.equal(await sendWorkHandoff({...order,payment:"unpaid"},version), false);
+    assert.equal(mailCount,0);
+    assert.equal(await sendWorkHandoff(order,version), true);
+    assert.equal(events[0].details.version, version);
+    assert.equal(await sendWorkHandoff(order,version), false);
+    assert.equal(mailCount,1);
+    process.env.AWE_WORK_HANDOFF_ENABLED="false";
+    assert.equal(await sendWorkHandoff(order,version), false);
+    assert.equal(mailCount,1);
+  } finally {
+    globalThis.fetch = previousFetch;
+    for (const key of keys) {
+      if (old[key] === undefined) delete process.env[key];
+      else process.env[key] = old[key];
+    }
+  }
 });
