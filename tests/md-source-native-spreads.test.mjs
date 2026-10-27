@@ -78,13 +78,14 @@ test("compact previews preserve original Quick Start guides and visual-QA eviden
   const html=renderSite(sampleForTemplate(id),{sample:true});
   assert(html.includes(exactGuideCSSFor(id)),id+" lost byte-for-byte DESIGN.md guide CSS during compaction");
   assert(html.length<240000,id+" still exceeds 240000-character preview budget: "+html.length);
+  assert(html.includes("FICTIONAL TEMPLATE DEMO"),id+" lost template sample disclaimer");
   assert(html.includes("Secondary visual QA"),id+" removed original visual correction block marker");
   assert(html.includes("prefers-reduced-motion"),id+" lost motion-accessibility CSS");
   assert(html.includes('class="md-source-feature'),id+" lost source artwork");
  }
 });
 test("CSS compaction protects designated verbatim guides without changing other styles",()=>{
- const guide=":root {\\n  --source-tone: #fff;\\n}\\n".replaceAll("\\\\n","\\n");
+ const guide=[":root {","  --source-tone: #fff;","}",""].join("\n");
  const input='<style>/* remove */ .hello { color: red; }\\n'+guide+'</style>';
  const output=compactInlineStyles(input,{preserve:[guide]});
  assert(output.includes(guide),"Original source-guide block was edited");

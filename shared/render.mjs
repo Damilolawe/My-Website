@@ -76,7 +76,10 @@ export function renderSite(input, options = {}) {
     : renderPremium(normalized, options);
   const upgraded = applyPremiumStudy(page, normalized.template, normalized.content);
   const finished = applyTypographySafety(applyColorConsistency(upgraded, normalized.template, normalized.design), normalized.template);
-  if (["afterhours", "orbit"].includes(normalized.template)) {
+  // Only optimize a design-guide page when its original rendered document
+  // is approaching the strict 240,000-character preview limit. This protects
+  // the next Refero guide from unexpectedly tripping the size gate as well.
+  if (finished.length >= 230000 && exactGuideCSSFor(normalized.template)) {
     return compactInlineStyles(finished, {
       preserve: [
         exactGuideCSSFor(normalized.template),
