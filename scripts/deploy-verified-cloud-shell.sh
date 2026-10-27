@@ -27,6 +27,27 @@ if [[ -n "$(git status --porcelain --untracked-files=no -- assets/catalog-thumbn
   fi
 fi
 
+# Earlier Wix screenshot attempts can leave these two untracked images in
+# Cloud Shell. The same filenames are now committed to GitHub. A normal pull
+# would refuse to overwrite the untracked copies, so first preserve ONLY these
+# known generated files in a recoverable Git stash. Never delete the originals
+# or stash unrelated user files. Committed images then arrive from main.
+brianna_captures=(
+  assets/case-studies/brianna-before.webp
+  assets/case-studies/brianna-after.webp
+)
+if [[ -n "$(git ls-files --others --exclude-standard -- "${brianna_captures[@]}")" ]]; then
+  echo "Preserving the two old, untracked Brianna screenshot files before syncing GitHub..."
+  git stash push --include-untracked \
+    -m "Cloud Shell original Brianna captures $(date -u +%Y%m%dT%H%M%SZ)" \
+    -- "${brianna_captures[@]}"
+  if [[ -n "$(git ls-files --others --exclude-standard -- "${brianna_captures[@]}")" ]]; then
+    echo "Brianna capture backup was incomplete. Refusing to overwrite local images." >&2
+    exit 1
+  fi
+  echo "Original local captures safely preserved in 'git stash list' (do not pop over committed images)."
+fi
+
 # A running Bash process keeps its original script instructions even when
 # git pull replaces this file. Restart once if the pull updated the deployment
 # script so the current release uses the *new* checks, not stale code.
