@@ -7,7 +7,7 @@ import {architectureFor,architecturalHero,architecturalCSS} from "./zip-architec
 import {renderVelocity} from "./zip-flagship-velocity.mjs";
 import {renderFieldnotes} from "./zip-flagship-fieldnotes.mjs";
 import {renderPixelQuest} from "./zip-flagship-pixelquest.mjs";
-import {studyProjectArt,studyProjectArtCSS} from "./zip-project-art.mjs";
+import {studyProjectArt,studyHeroArt,studyProjectArtCSS} from "./zip-project-art.mjs";
 const e=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const types={auto:"bugatti bmw-m bmw dji lamborghini renault spacex tesla",editorial:"aljazeera theverge wired pinterest nintendo-2001",fintech:"binance coinbase kraken mastercard mercury nerdwallet revolut stripe wise",code:"claude clickhouse composio cursor elevenlabs expo hashicorp mistral.ai mintlify mongodb ollama opencode.ai posthog replicate resend sentry supabase together.ai vercel voltagent x.ai",product:"airtable cal cohere framer intercom lovable miro notion sanity superhuman webflow zapier",commerce:"airbnb 1win hp dell-1996 jobright mydealz playstation shopify uber"};
 const kind=ref=>Object.keys(types).find(k=>types[k].split(" ").includes(ref))||"studio";
@@ -50,7 +50,7 @@ export function renderZipDesign(v,options={},page="home"){
  const text=label==="home"?content.bio:({work:"Selected projects and ideas from "+content.name+".",features:"Explore the methods behind the work.",studio:content.bio,contact:"Start a conversation about your next idea."}[label]||content.bio);
  const originalLabels=zipChapterLabels(t.source);
  const navigation=(t.multipage?zipPages:["home","work","features","contact"]).map(p=>'<a href="'+href(t,p)+'" '+(p===label?'aria-current="page"':'')+'>'+e(t.multipage?originalLabels[zipPages.indexOf(p)]:p.toUpperCase())+'</a>').join("");
- const heroMedia=(content.photoIds?.[0]&&!options.sample?'<img src="'+e((options.assetBase||"/api/assets/")+content.photoIds[0]+(options.assetSuffix||""))+'" alt="" loading="eager">':(moreGuideScene(t,zipPages.indexOf(label))||waveScene(t,zipPages.indexOf(label))||sourceGuideScene(t,zipPages.indexOf(label))||artistic(t,zipPages.indexOf(label))));
+ const heroMedia=(content.photoIds?.[0]&&!options.sample?'<img src="'+e((options.assetBase||"/api/assets/")+content.photoIds[0]+(options.assetSuffix||""))+'" alt="" loading="eager">':(moreGuideScene(t,zipPages.indexOf(label))||waveScene(t,zipPages.indexOf(label))||sourceGuideScene(t,zipPages.indexOf(label))||studyHeroArt(t)));
  const hero=architecturalHero(t,profile,{title,summary:e(text),heroLabel:content.heroLabel,media:heroMedia,cta:'<a class="button" href="'+href(t,"work")+'">DISCOVER THE WORK ↗︎</a>',label});
  const cards='<div class="cards">'+(content.cards||[]).slice(0,3).map((card,i)=>'<article class="card"><div class="artbox">'+(content.photoIds?.[i]?'<img src="'+e((options.assetBase||"/api/assets/")+content.photoIds[i]+(options.assetSuffix||""))+'" alt="" loading="lazy">':projectArtwork(t,i))+'</div><span class="eyebrow">0'+(i+1)+' / DESIGN STUDY</span><h3>'+e(card.title)+'</h3><p>'+e(card.description)+'</p></article>').join("")+'</div>';
  const headings={auto:"Engineering, reconsidered.",editorial:"Stories in focus.",fintech:"A clearer perspective.",code:"The ideas in motion.",product:"Designed for the work.",commerce:"Curated for the moment.",studio:"The creative collection."};const work='<section class="section" id="work"><span class="eyebrow">01 / SELECTED WORK</span><h2>'+e(headings[which]||headings.studio)+'</h2>'+cards+'</section>';
