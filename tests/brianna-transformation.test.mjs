@@ -55,7 +55,7 @@ test("real before-and-after cinema has focus switching, image enlargement and ac
  assert(js.includes('viewer.showModal()'),"Enlarge must open a native modal");
  assert(js.includes('viewer.close()'),"Modal must be closable");
  assert(js.includes('focusButtons.find('),"Arrow navigation should move focus");
- assert(js.includes('event.key === "ArrowLeft"')&&js.includes('event.key === "ArrowRight"'));
+ assert(js.includes('event.key !== "ArrowLeft"')&&js.includes('event.key !== "ArrowRight"'),"Both arrow keys should be handled");
  assert(js.includes('setAttribute("aria-pressed"'),"Selected states should be accessible");
  assert(css.includes('@media(max-width:700px)'),"Phone layout missing");
  assert(css.includes('@media(prefers-reduced-motion:reduce)'),"Reduced motion guard missing");
