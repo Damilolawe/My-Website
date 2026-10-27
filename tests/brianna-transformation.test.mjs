@@ -118,8 +118,8 @@ test("Brianna case-study buttons, captions, accessibility text and shipped asset
    const section=html.slice(from,end);
    // A customer may see text, image descriptions, tooltips and button labels,
    // but the actual external link's domain remains a functional destination.
-   const visible=section.replace(/\\s(?:href|src)=("[^"]*"|'[^']*')/gi,"");
-   assert(!/\\bwix(?:studio)?\\b/i.test(visible),
+   const visible=section.replace(/\s(?:href|src)=("[^"]*"|'[^']*')/gi,"");
+   assert(!/\bwix(?:studio)?\b/i.test(visible),
       page+" must not expose the website builder in copy, controls or assets");
    assert(section.includes("BRIANNA / REDESIGNED WEBSITE"));
    assert(section.includes("02 / REDESIGNED WEBSITE"));
@@ -128,8 +128,8 @@ test("Brianna case-study buttons, captions, accessibility text and shipped asset
    assert(section.includes('href="https://damilolawe03.wixstudio.com/website?rc=test-site"'),
       "Keep the real redesign destination working while removing visible vendor names");
  }
- assert(!/\\bwix(?:studio)?\\b/i.test(client),"Screen-reader captions must not mention the platform");
- assert(!/\\bwix(?:studio)?\\b/i.test(style),"Showcase CSS must not include platform branding");
+ assert(!/\bwix(?:studio)?\b/i.test(client),"Screen-reader captions must not mention the platform");
+ assert(!/\bwix(?:studio)?\b/i.test(style),"Showcase CSS must not include platform branding");
  for(const {path} of assets){
    assert(!/wix/i.test(path),"Static case-study filenames must be provider-neutral");
  }
