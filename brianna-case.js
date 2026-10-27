@@ -48,6 +48,17 @@
     probe.src = img.currentSrc || img.src;
     if (probe.complete && probe.naturalWidth) finish(probe.naturalWidth >= 600 && probe.naturalHeight >= 350);
   });
+  // Build strips absent src attributes, not merely the files, so Firebase
+  // link validation succeeds even if Wix blocks automated screenshot capture.
+  // Preserve the real-site cards without trying to load the current document
+  // as an image from an empty src.
+  if (captures.some(img => !img.hasAttribute("src"))) {
+    viewport.hidden = true;
+    controls.hidden = true;
+    fallback.hidden = false;
+    if (note) note.textContent = "Website captures are not yet available. Open either actual website below instead of a simulated preview.";
+    return;
+  }
   Promise.all(captures.map(checkImage)).then(results => {
     if (results.every(Boolean)) {
       viewport.hidden = false;
