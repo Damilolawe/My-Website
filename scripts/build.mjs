@@ -5,6 +5,8 @@ const files = [
   "styles.css",
   "studio.css",
   "case-studies.css",
+  "brianna-case.css",
+  "brianna-case.js",
   "script.js",
   "motion-bootstrap.js",
   "showcase.js",
