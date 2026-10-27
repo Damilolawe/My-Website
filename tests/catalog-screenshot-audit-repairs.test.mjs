@@ -124,3 +124,16 @@ test("Fieldnotes mobile header uses accessible disclosure instead of two rows of
   assert(html.includes('href="/templates/md-mintlify/'+page+'.html" aria-current="page"'),page+" active page missing");
  }
 });
+
+test("Supabase hero copy stays inside its intentional overlapping panel",()=>{
+ const html=renderZipDesign(sampleForTemplate("md-supabase"),{sample:true},"home");
+ assert(html.includes("body.site.source-md-supabase.arch-hero-overlap .hero>.arch-copy{"));
+ assert(html.includes("width:min(57vw,640px)"));
+ assert(html.includes("grid-column:1/-1;grid-row:1"));
+ assert(html.includes("font-size:clamp(50px,5.25vw,78px)"));
+});
+test("Browser QA measures hero text that escapes its copy column",async()=>{
+ const audit=await readFile(new URL("../scripts/qa-catalog-visual.mjs",import.meta.url),"utf8");
+ assert(audit.includes("heroInkOverhang"));
+ assert(audit.includes('t.id==="md-supabase"&&result.heroInkOverhang>12'));
+});
