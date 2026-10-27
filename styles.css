@@ -37,6 +37,7 @@ html.has-js .reveal{opacity:0;transform:translateY(46px);transition:opacity .85s
 .pricing-price{font:700 clamp(68px,6.3vw,104px)/1 var(--display);letter-spacing:-.09em;margin:25px 0 20px;color:var(--ink)}
 .pricing-price>span:first-child{font-size:.42em;vertical-align:top;display:inline-block;letter-spacing:-.04em;margin-top:.16em;margin-right:5px;color:var(--acid)}
 .pricing-price .pricing-plus{font-size:.56em;color:var(--acid);letter-spacing:0}
+.pricing-price.pricing-custom{font-size:clamp(30px,3.25vw,55px);line-height:1.15;letter-spacing:-.055em;overflow-wrap:normal}
 .pricing-detail{color:var(--muted);font-size:clamp(14px,1.1vw,16px);line-height:1.65;margin:0 0 32px;max-width:35ch}
 .pricing-action{margin-top:auto;border-top:1px solid rgba(241,239,232,.22);padding-top:22px;display:flex;gap:12px;align-items:center;justify-content:space-between;font:500 11px var(--mono);letter-spacing:.025em;color:var(--acid)}
 .pricing-action:hover,.pricing-action:focus-visible{text-decoration:underline;text-underline-offset:4px}
