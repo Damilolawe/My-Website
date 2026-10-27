@@ -1,76 +1,88 @@
-/* Before/after uses captured site screenshots, never fabricated artwork.
-   If a release could not archive both sites, show real external links instead. */
+/* Real Wix case-study images. Cinematic foreground controls, not another slider. */
 (() => {
   "use strict";
-  const root = document.querySelector("[data-bld-compare]");
-  if (!root) return;
-  const viewport = root.querySelector(".bld-viewport");
-  const range = root.querySelector("#bld-range");
-  const percent = root.querySelector("[data-bld-percent]");
-  const buttons = [...root.querySelectorAll("[data-bld-view]")];
-  const controls = root.querySelector(".bld-controls");
-  const fallback = root.querySelector("[data-bld-capture-fallback]");
-  const note = document.querySelector("[data-bld-capture-status]");
-  const captures = [...root.querySelectorAll("img[data-bld-shot]")];
-  if (!viewport || !range || !percent || !controls || !fallback || buttons.length !== 3 || captures.length !== 2) return;
+  const stage = document.querySelector("[data-bld-showcase]");
+  if (!stage) return;
 
-  const clamp = value => Math.max(0, Math.min(100, Number(value) || 0));
-  const setSplit = value => {
-    const amount = clamp(value);
-    viewport.style.setProperty("--bld-split", amount + "%");
-    range.value = String(amount);
-    range.setAttribute("aria-valuetext", amount + " percent original and " + (100 - amount) + " percent redesign");
-    percent.textContent = String(amount);
-    const view = amount === 0 ? "after" : amount === 100 ? "before" : "split";
-    for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.bldView === view));
+  const section = stage.closest(".bld-case");
+  const focusButtons = [...stage.querySelectorAll("[data-bld-focus]")];
+  const previews = [...stage.querySelectorAll("img[data-bld-shot]")];
+  const openButtons = [...stage.querySelectorAll("[data-bld-open]")];
+  const status = stage.querySelector("[data-bld-status]");
+  const fallback = section?.querySelector("[data-bld-capture-fallback]");
+  const viewer = section?.querySelector("[data-bld-lightbox]");
+  const viewerImage = viewer?.querySelector("[data-bld-lightbox-image]");
+  const viewerCaption = viewer?.querySelector("[data-bld-lightbox-caption]");
+  const viewerButtons = [...(viewer?.querySelectorAll("[data-bld-modal]") || [])];
+  const closeButton = viewer?.querySelector("[data-bld-close]");
+  if (!fallback || !status || !viewer || !viewerImage || !viewerCaption || focusButtons.length !== 2 || previews.length !== 2 || openButtons.length !== 2) return;
+
+  const images = Object.fromEntries(previews.map(img => [img.dataset.bldShot, img]));
+  const labels = {
+    before: { title: "ORIGINAL WEBSITE / 01", alt: "Brianna's original website screenshot" },
+    after: { title: "REDESIGNED WEBSITE / 02", alt: "Brianna's redesigned Wix Studio website screenshot" },
   };
-  range.addEventListener("input", () => setSplit(range.value));
-  range.addEventListener("change", () => setSplit(range.value));
-  for (const button of buttons) {
-    button.addEventListener("click", () => {
-      setSplit(button.dataset.bldView === "before" ? 100 : button.dataset.bldView === "after" ? 0 : 52);
+
+  const focus = side => {
+    if (!labels[side]) return;
+    stage.dataset.active = side;
+    for (const button of focusButtons) button.setAttribute("aria-pressed", String(button.dataset.bldFocus === side));
+    status.textContent = side === "after" ? "REDESIGN IN FOCUS" : "ORIGINAL IN FOCUS";
+  };
+
+  const modalSide = side => {
+    if (!labels[side]) return;
+    focus(side);
+    viewerImage.src = images[side].getAttribute("src");
+    viewerImage.alt = labels[side].alt;
+    viewerCaption.textContent = labels[side].title;
+    for (const button of viewerButtons) button.setAttribute("aria-pressed", String(button.dataset.bldModal === side));
+  };
+
+  for (const button of focusButtons) {
+    button.addEventListener("click", () => focus(button.dataset.bldFocus));
+    button.addEventListener("keydown", event => {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      event.preventDefault();
+      const next = event.key === "ArrowLeft" ? "before" : "after";
+      focus(next);
+      focusButtons.find(btn => btn.dataset.bldFocus === next)?.focus();
     });
   }
-  setSplit(range.value);
+  for (const button of openButtons) {
+    button.addEventListener("click", () => {
+      modalSide(button.dataset.bldOpen);
+      if (!viewer.open && typeof viewer.showModal === "function") viewer.showModal();
+    });
+  }
+  for (const button of viewerButtons) button.addEventListener("click", () => modalSide(button.dataset.bldModal));
+  closeButton?.addEventListener("click", () => viewer.close());
+  viewer.addEventListener("click", event => { if (event.target === viewer) viewer.close(); });
 
-  const checkImage = img => new Promise(resolve => {
+  // The repository contains both approved, permanent screenshots.
+  // If either image is lost in a future release, reveal true website links.
+  const verifyImage = image => new Promise(resolve => {
+    const source = image.getAttribute("src");
+    if (!source) return resolve(false);
     const probe = new Image();
     let finished = false;
-    const finish = good => {
+    const finish = valid => {
       if (finished) return;
       finished = true;
       clearTimeout(timeout);
-      resolve(good);
+      resolve(valid);
     };
-    probe.onload = () => finish(probe.naturalWidth >= 600 && probe.naturalHeight >= 350);
-    probe.onerror = () => finish(false);
     const timeout = setTimeout(() => finish(false), 12000);
-    probe.src = img.currentSrc || img.src;
-    if (probe.complete && probe.naturalWidth) finish(probe.naturalWidth >= 600 && probe.naturalHeight >= 350);
+    probe.onload = () => finish(probe.naturalWidth >= 1100 && probe.naturalHeight >= 650);
+    probe.onerror = () => finish(false);
+    probe.src = source;
+    if (probe.complete && probe.naturalWidth) finish(probe.naturalWidth >= 1100 && probe.naturalHeight >= 650);
   });
-  // Build strips absent src attributes, not merely the files, so Firebase
-  // link validation succeeds even if Wix blocks automated screenshot capture.
-  // Preserve the real-site cards without trying to load the current document
-  // as an image from an empty src.
-  if (captures.some(img => !img.hasAttribute("src"))) {
-    viewport.hidden = true;
-    controls.hidden = true;
-    fallback.hidden = false;
-    if (note) note.textContent = "Website captures are not yet available. Open either actual website below instead of a simulated preview.";
-    return;
-  }
-  Promise.all(captures.map(checkImage)).then(results => {
-    if (results.every(Boolean)) {
-      viewport.hidden = false;
-      controls.hidden = false;
-      fallback.hidden = true;
-      if (note) note.textContent = "Actual archived captures of Brianna's original website and Wix Studio redesign. Use the slider to compare.";
-      setSplit(range.value);
-    } else {
-      viewport.hidden = true;
-      controls.hidden = true;
-      fallback.hidden = false;
-      if (note) note.textContent = "Website captures are not yet available. Open either actual website below instead of a simulated preview.";
-    }
+
+  Promise.all(previews.map(verifyImage)).then(results => {
+    const ready = results.every(Boolean);
+    stage.hidden = !ready;
+    fallback.hidden = ready;
+    if (ready) focus("after");
   });
 })();
