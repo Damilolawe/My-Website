@@ -15,6 +15,9 @@ begin
  end if;
  if o.payment<>'paid' or o.status<>'awaiting_review' then raise exception 'Draft is not ready for studio release'; end if;
  if not exists(select 1 from public.awe_versions where id=p_version and order_id=p_order) then raise exception 'Version not found'; end if;
+ if not exists(select 1 from public.awe_events where order_id=p_order
+    and kind='draft_saved' and actor=p_actor and details->>'version'=p_version::text)
+    then raise exception 'Save a personally reviewed studio version before releasing it'; end if;
  insert into public.awe_events(order_id,actor,kind,details) values
   (p_order,p_actor,'owner_preapproved',jsonb_build_object('version',p_version));
  update public.awe_orders set status='customer_review',version=version+1,updated_at=now() where id=p_order;
