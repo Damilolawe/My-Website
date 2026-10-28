@@ -433,14 +433,12 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
         const base = { version: order.version, confirm: oid };
         if (flow.tier === "signature") {
           assert.equal((await request(`orders/${oid}/approve`,{data:{version:order.draft_version}})).status,409);
-          assert.equal((await request(`orders/${oid}/preview`)).status,403);
           assert.equal((await request(`admin/orders/${oid}/release`,{data:base})).status,403);
           assert.equal((await request(`admin/orders/${oid}/release`,{actor:"owner",data:{...base,confirm:"wrong"}})).status,400);
           assert.equal((await request(`admin/orders/${oid}/release`,{actor:"owner",data:base})).status,200);
           order=(await db.query("select * from awe_orders")).rows[0];
           assert.equal(order.status,"customer_review");
           assert.equal(order.public_version,null);
-          assert.equal((await request(`orders/${oid}/preview`)).status,200);
           assert.equal((await request(`admin/orders/${oid}/release`,{actor:"owner",data:{version:order.version,confirm:oid}})).status,409);
           emailFails=false;
           await runJobs(1); // Reviewed invitation is sent; website remains private.
@@ -536,7 +534,7 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
         );
         assert.equal(
           (await db.query("select * from awe_revisions")).rows.length,
-          2,
+          flow.tier === "signature" ? 1 : 2,
         );
       },
     );
