@@ -37,7 +37,7 @@ export async function sendWorkHandoff(order, version) {
   if (env().AWE_WORK_HANDOFF_EMAIL &&
       env().AWE_WORK_HANDOFF_EMAIL.trim().toLowerCase() !== recipient)
     fail("Work handoff recipient must be the Awe Concepts business mailbox.", 503);
-  const from = env().EMAIL_FROM;
+  const from = env().AWE_WORK_HANDOFF_FROM || env().EMAIL_FROM;
   if (!recipient || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient) ||
       !env().RESEND_API_KEY || !from || !env().SITE_ORIGIN)
     fail("Owner Work handoff email is not configured.", 503);
