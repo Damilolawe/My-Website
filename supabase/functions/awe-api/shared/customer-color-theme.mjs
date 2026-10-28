@@ -1,4 +1,5 @@
 import {sampleForTemplate} from "./model.mjs";
+import {zipDesignFor} from "./zip-design-catalog.mjs";
 
 // Applied to customized customer sites AFTER all source-authored styles. The
 // original template is left untouched until a color actually changes.
@@ -18,8 +19,11 @@ export function applyCustomerColors(html,value){
  const primary=value.design?.primary,secondary=value.design?.secondary;
  if(!HEX.test(primary||"")||!HEX.test(secondary||""))return html;
  const starting=sampleForTemplate(value.template);
+ const initialSurface=zipDesignFor(value.template)?.surface ||
+   (value.template==="arcade"?"#11120f":"#ece9e0");
  if(starting?.design?.primary?.toLowerCase()===primary.toLowerCase() &&
-    starting?.design?.secondary?.toLowerCase()===secondary.toLowerCase())return html;
+    (starting?.design?.secondary?.toLowerCase()===secondary.toLowerCase() ||
+     initialSurface.toLowerCase()===secondary.toLowerCase()))return html;
  const dark=darkBody(value),base=dark?"#101217":"#ffffff";
  const canvas=mix(secondary,base,dark?.30:.16);
  const surface=mix(secondary,base,dark?.75:.79);
