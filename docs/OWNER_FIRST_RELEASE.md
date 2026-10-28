@@ -4,6 +4,7 @@ This is a coordinated release. **Do not deploy the new SQL or frontend independe
 
 ## Implemented
 - A paid/generated website remains owner-only until the owner personally improves and releases its exact saved version.
+- The owner must save an edited, personally reviewed version before releasing it. A raw automated draft cannot be sent directly.
 - Owner releases via **Approve & send to customer** in `/admin`.
 - Customer receives an email invitation to the private preview in `/account`, with a shared project progress timeline.
 - The customer can request a revision (Starter 1 / Signature 3 / Premium unlimited) or approve that exact unchanged version.
