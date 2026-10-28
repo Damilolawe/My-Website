@@ -94,12 +94,13 @@ export function applyCustomerColors(html,value){
    background-color:var(--awe-canvas)!important;
    color:var(--awe-on-canvas)!important
  }
- body.site :is(a.button,button.button,.fn-primary,.fn-header-cta,.fv-primary,.pq-primary),
+ body.site :is(a.button,button.button,.fn-primary,.fn-header-cta,.fv-primary,.fv-button,.fv-contact-action,.pq-primary,.pq-button),
  body.trio-site .trio-button,
  body.fd-site :is(.fd-primary,a.fd-primary),
  body.folio-editorial :is(.fe-button,.fe-cta),
- body.arcade-night :is(.arcade-button,.arcade-cta),
- body.liquidmetal .lm-btn-primary{
+ body.arcade-night :is(.arcade-button-primary,.arcade-cta,.arcade-nav-action),
+ body.liquidmetal .lm-btn-primary,
+ body .pill-link{
    background:var(--awe-primary)!important;border-color:var(--awe-primary)!important;
    color:var(--awe-on-primary)!important
  }
@@ -109,6 +110,11 @@ export function applyCustomerColors(html,value){
  body.folio-editorial :is(.fe-hero h1 em,.fe-heading em),
  body.liquidmetal .lm-eyebrow{
    text-decoration-color:var(--awe-primary);
+ }
+ body.site :is(.fn-secondary,.pq-secondary),
+ body.arcade-night .arcade-button-secondary,
+ body.liquidmetal .lm-btn-secondary{
+   border-color:var(--awe-primary)!important;color:var(--awe-primary)!important
  }
  body :is(a,button,summary):focus-visible{outline-color:var(--awe-primary)!important}
  `;
