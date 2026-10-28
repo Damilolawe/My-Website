@@ -34,17 +34,17 @@ test("admin and client builder previews move with the page, not sticky-scroll", 
   assert.match(account, /sandbox=""/);
 });
 
-test("customer and owner email OTP entry and shared verification require exactly six digits", async () => {
+test("customer and owner email OTP entry and shared verification accept six- or eight-digit codes", async () => {
   const [customer, owner, client] = await Promise.all([
     read("app/common.mjs"), read("app/admin.mjs"), read("app/service-client.mjs")
   ]);
   for (const [name, source] of [["customer", customer], ["owner", owner]]) {
-    assert.ok(source.includes('pattern="[0-9]{6}" minlength="6" maxlength="6"'),
-      name + " code field should accept exactly six digits");
+    assert.ok(source.includes('pattern="([0-9]{6}|[0-9]{8})" minlength="6" maxlength="8"'),
+      name + " code field should accept six or eight digits");
     assert.ok(!source.includes('maxlength="10"'), name + " must not allow ten-digit OTP");
   }
-  assert.ok(client.includes('/^\\d{6}$/.test(token.trim())'),
-    "Shared authentication service should reject shorter and longer codes");
+  assert.ok(client.includes('/^(?:\\d{6}|\\d{8})$/.test(token.trim())'),
+    "Shared authentication should reject codes other than six or eight digits");
   assert.ok(client.includes('type: "email"'), "Preserve Supabase email OTP type");
-  assert.ok(client.includes('fail("Enter the six-digit code from your email.")'));
+  assert.ok(client.includes('fail("Enter the six- or eight-digit code from your email.")'));
 });
