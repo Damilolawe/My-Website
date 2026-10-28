@@ -49,3 +49,25 @@ Suggested task prompt:
 7. Work must still authenticate as the owner or request the authorized ZIP. Automatic AI-edited ZIP **reimport is not implemented**. Treat any Work result as a separate private revision and review it manually; do not publish without approval.
 
 **Rollback:** Set `AWE_WORK_HANDOFF_ENABLED=false` in the Edge Function secrets and redeploy/restart as required by the provider. The Work task can be paused separately. Disabling the handoff does not affect existing Stripe verification or customer-approved publishing.
+
+### Manual CLI deployment (after local tests pass)
+
+Run in a terminal with the repository checked out and authenticated access to the **existing** Firebase and Supabase projects. If the feature branch has not been merged, check out `feature/chatgpt-work-handoff-2026-10-26` explicitly. The commands below do not create new projects.
+
+```bash
+npm ci
+npm run build
+npm run check
+npm test
+
+# Deploy the server first. Stripe webhooks require the existing JWT bypass
+# configuration; do not silently change that setting during deployment.
+npx supabase functions deploy awe-api --project-ref hxxplkirfsewqsxodngv --no-verify-jwt
+
+# Deploy only the public static build, never the repository root.
+npx firebase-tools deploy --only hosting --project awe-digital
+```
+
+**Stop if any command fails.** In particular, do not deploy after a failed test. The existing GitHub Actions runs are currently failing before any useful job steps/logs are available; run the above tests in a local terminal or Cloud Shell and inspect the real error output before deploying. The Work email trigger is enabled, but the backend handoff remains disabled until `AWE_WORK_HANDOFF_ENABLED=true` is explicitly set.
+
+The two deployment commands update production services; review their effects and confirm the project identifiers before running them. To keep the business inbox isolated, use a verified Resend sender different from `contact@aweconcepts.com` when possible.
