@@ -1,10 +1,10 @@
 # ChatGPT Work handoff
 
-The existing event-driven task `6ae154d18b9881918260bef0e438ea0e` is enabled. Preserve it; do not create a recurring replacement. The connected Gmail identity was verified as `contact@aweconcepts.com`. The exact subject is `AWE WORK HANDOFF | DRAFT READY`.
+The currently enabled daily task `6ae2397e471881919d799e4632f52725` checks the authorized `contact@aweconcepts.com` inbox at 10 AM Eastern for the exact subject `AWE WORK HANDOFF | DRAFT READY`. It is a scheduled inbox check, not a verified event-driven trigger. The earlier event-driven task `6ae154d18b9881918260bef0e438ea0e` has no verified autonomous execution; do not assume it handles orders.
 
 ## Implemented boundary
 
-Verified Stripe payment queues a private draft. The worker sends its metadata-only notification only when `AWE_WORK_HANDOFF_ENABLED=true` and the immutable package snapshot records explicit `chatgpt-work-v1` customer consent. Checkout offers this choice separately, unchecked by default. Customers can purchase without opting in. Existing orders without recorded consent are excluded.
+Verified Stripe payment queues a private draft. The worker sends its metadata-only notification only when `AWE_WORK_HANDOFF_ENABLED=true` and the immutable package snapshot records explicit `chatgpt-work-v1` customer authorization. The required checkout agreement now clearly identifies private AI-assisted processing by OpenAI ChatGPT Work, with no second optional checkbox. Both fresh and resumed checkout requests set `aiConsent` from the checked required agreement; the API records it as `aiProcessingConsent`. Orders without recorded authorization are still excluded and are not retroactively opted in.
 
 The notification contains only order/version references and the authenticated owner dashboard URL. Customer content, images, credentials and public preview tokens are excluded. The destination is fixed to the business mailbox; another configured recipient is rejected.
 
@@ -14,7 +14,7 @@ The owner's `admin/orders/:order/handoff-export` route exports the paid, consent
 
 ## External verification still required
 
-The existing automation was updated in place with an exact-subject Gmail trigger bound to the verified business Gmail connector. It remains unscheduled and event-driven. There is no recorded production run. Email receipt alone cannot establish successful Work execution.
+The current daily task is enabled and scoped to the verified business Gmail inbox with the exact-subject filter; its recorded last run is still null as of October 28, 2026. No completed production run is verified. Email receipt alone cannot establish successful Work execution.
 
 Work needs a separately authenticated owner session or a private ZIP explicitly supplied by the owner. The connected Gmail account does not grant owner-dashboard access. A complete authorized private-data → manual Work refinement → private result round trip has now passed on the synthetic sandbox fixture; autonomous event-trigger execution remains unverified. There is no arbitrary AI HTML importer. A durable owner-only claim/completion protocol is now implemented and live; see RELEASE_2026-10-28.md. The saved task correctly stops if those prerequisites are unavailable; do not enable autonomous processing on the strength of the notification dedupe alone.
 
