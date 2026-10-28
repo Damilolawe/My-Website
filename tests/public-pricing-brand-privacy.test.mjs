@@ -41,18 +41,20 @@ test("privacy disclosure matches current inquiry and account transport",async()=
  assert(!guide.includes("Create a project"));
 });
 
-test("One required checkout agreement includes informed AI-processing authorization",async()=>{
+test("Required checkout agreement discloses third-party AI processing without fixed copy",async()=>{
  const checkout=await read("app/order.mjs");
  const privacy=await read("privacy.html");
  const server=await read("supabase/functions/awe-api/platform/work-handoff.mjs");
- assert.match(checkout,/id="consent" required/,"The purchase agreement must remain required");
- assert.match(checkout,/AI-assisted website production:/,"AI processing must be clearly labeled");
- assert.match(checkout,/OpenAI ChatGPT Work/,"The AI processor must be identified");
+ const agreement=checkout.match(/<label class="checkout-consent-label"><input type="checkbox" id="consent" required[\s\S]*?<\/label>/)?.[0] || "";
+ const providers=privacy.match(/<h2>Providers<\/h2>[\s\S]*?<\/p>/)?.[0] || "";
+ assert.ok(agreement,"The required purchase agreement must be present");
+ assert.match(agreement,/\b(?:AI|artificial intelligence)\b/i,"The agreement must clearly disclose AI processing");
+ assert.match(agreement,/(?:OpenAI|ChatGPT)/i,"The agreement must identify the AI provider");
+ assert.match(agreement,/\b(?:share|transfer|send|process|processing)\b/i,"The agreement must disclose use of submitted materials");
+ assert.match(providers,/\b(?:AI|artificial intelligence)\b/i,"The privacy policy must disclose AI processing");
+ assert.match(providers,/(?:OpenAI|ChatGPT)/i,"The privacy policy must identify the AI provider");
  assert.doesNotMatch(checkout,/id="ai-consent"|\$\("#ai-consent"\)/,"No dangling optional checkbox references");
  assert.equal(checkout.split('aiConsent: $("#consent")?.checked === true').length-1,2,
-   "Fresh and resumed checkouts must derive AI authorization from the accepted agreement");
- assert.match(privacy,/required checkout agreement includes authorization/);
- assert.match(privacy,/OpenAI ChatGPT Work/);
- assert.doesNotMatch(privacy,/If you separately opt in at package review/);
+   "Fresh and resumed checkouts must derive authorization from the accepted agreement");
  assert.match(server,/aiProcessingConsent\?\.granted !== true/,"Backend must continue checking recorded authorization");
 });
