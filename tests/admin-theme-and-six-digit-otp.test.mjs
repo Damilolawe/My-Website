@@ -24,14 +24,14 @@ test("owner dashboard loads a dedicated homepage-inspired dark studio skin", asy
 
 test("admin and client builder previews move with the page, not sticky-scroll", async () => {
   const [styles, admin, account, order] = await Promise.all([
-    read("app/app.css"), read("app/admin.html").catch(() => read("admin.html")),
+    read("app/app.css"), read("admin.html"),
     read("app/account.mjs"), read("order.html")
   ]);
   assert.match(styles, /\.preview-shell\s*\{[^}]*position:\s*static;[^}]*top:\s*auto;/s);
   assert.match(admin, /admin-theme\.css/);
   assert.match(order, /href="\/app\/app\.css"/);
   assert.match(account, /data-preview-frame/);
-  assert.match(account, /sandbox=\\"\\"/);
+  assert.match(account, /sandbox=""/);
 });
 
 test("customer and owner email OTP entry and shared verification require exactly six digits", async () => {
