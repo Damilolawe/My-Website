@@ -28,7 +28,7 @@ test("Premium offers custom quoting instead of advertising a fixed or starting p
  assert(order.includes('t.id === "premium" ? "Custom Quote" : packageForTier ? money(packageForTier) : t.inquiry'),
   "A backend package must not turn Premium into a publicly priced product");
  assert(order.includes('if (tier === "premium") { window.location.assign(AWE_CUSTOM_URL); return; }'));
- assert(order.includes('AWE_CUSTOM_URL="/account.html?custom=1"'));
+ assert(order.includes('AWE_CUSTOM_URL="/account?custom=1"'));
  assert(account.includes('name="budget" maxlength="300"'),"Optional custom-project budget missing");
  assert(account.includes('name="idea" maxlength="5000" required'),"Custom-project requirements missing");
  assert(css.includes(".pricing-price.pricing-custom"));
