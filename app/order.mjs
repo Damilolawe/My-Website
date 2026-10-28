@@ -38,7 +38,7 @@ let step = 0,
   uploaded = [],
   theaterController = null;
 let theaterPreferredMode = typeof window !== "undefined" && window.matchMedia("(max-width: 720px)").matches ? "mobile" : "desktop";
-// Only fictional data enters the public configurator preview. Customer content stays in memory until submission.
+// Only fictional data enters public previews. In-progress details are saved in this tab for refresh recovery.
 input.content = {
   name: "",
   headline: "",
@@ -60,7 +60,7 @@ try {
 // The deployed API can temporarily lag behind the latest static site release.
 const galleryTemplates=templates.map(t=>({ ...(catalog.templates||[]).find(remote=>remote.id===t.id), ...t }));
 const templatesForTier=tier=>galleryTemplates.filter(t=>templateFitsTier(t.id,tier));
-const AWE_CUSTOM_URL="/account.html?custom=1";
+const AWE_CUSTOM_URL="/account?custom=1";
 function activePackagesForTier(tier) {
   return (catalog.packages || []).filter(p => p.enabled && packageTier(p) === tier)
     .sort((a,b) => a.amount - b.amount);
@@ -82,6 +82,32 @@ function setTemplate(id) {
   input.design.secondary = zipDesignFor(id)?.surface || (id === "arcade" ? "#11120f" : "#ece9e0");
   input.design.corners = id === "arcade" ? "sharp" : "soft";
   input.design.sections = sampleForTemplate(id,input.type).design.sections;
+}
+const WIZARD_STORAGE_KEY = "awe:express-progress:v1";
+function rememberWizard() {
+  if (!selectedTier || step === 0 || orderId || draftId) return;
+  try {
+    sessionStorage.setItem(WIZARD_STORAGE_KEY, JSON.stringify({
+      step, tier: selectedTier, input, savedAt: Date.now()
+    }));
+  } catch {} // Storage may be unavailable in restricted browser sessions.
+}
+function restoreWizard() {
+  try {
+    const saved = JSON.parse(sessionStorage.getItem(WIZARD_STORAGE_KEY) || "null");
+    if (!saved || !Number.isFinite(saved.savedAt) ||
+        saved.savedAt > Date.now() || Date.now() - saved.savedAt > 86400000 ||
+        !["starter", "signature"].includes(saved.tier) ||
+        !Number.isInteger(saved.step) || saved.step < 1 || saved.step > 4) return false;
+    const restored = normalize(saved.input);
+    if (!templatesForTier(saved.tier).some(t => t.id === restored.template)) return false;
+    selectedTier = saved.tier;
+    input = restored;
+    input.content.photoIds = []; // File attachments cannot survive a page reload.
+    step = saved.step;
+    syncPackage();
+    return true;
+  } catch { return false; }
 }
 const hasCustomEditorialMedia = (id) => id === "folio" || premiumStudyIds.includes(id);
 function field(label, name, value = "", kind = "input") {
@@ -161,7 +187,7 @@ function draw() {
       '</section>';
     theaterController=mountExpressGallery(el.querySelector("#express-showcase"),{
       items:offered,initial:active.id,initialMobile:theaterPreferredMode==="mobile",
-      onSelect:id=>{if(offered.some(t=>t.id===id)){setTemplate(id);const notice=el.querySelector("#express-study-status");if(notice)notice.hidden=!zipDesignFor(id);}},
+      onSelect:id=>{if(offered.some(t=>t.id===id)){setTemplate(id);rememberWizard();const notice=el.querySelector("#express-study-status");if(notice)notice.hidden=!zipDesignFor(id);}},
       onModeChange:mobile=>{theaterPreferredMode=mobile?"mobile":"desktop";}
     });
     el.querySelectorAll("[data-switch-tier]").forEach(button=>{
@@ -196,6 +222,7 @@ function draw() {
         sections: fixedSections ? input.design.sections : f.getAll("sections"),
       };
       input.preferences = f.get("preferences");
+      rememberWizard();
       try {
         const {renderSite} = await loadRenderer();
         if (!frame.isConnected || generation !== previewGeneration) return;
@@ -237,7 +264,7 @@ function draw() {
         }).join('')
       : field(copy.cards, "cardsText", (input.content.cards || []).map(x=>[x.title,x.description,x.url].join(" | ")).join("\n"), "textarea");
     el.innerHTML = `<h2>The story only you can tell.</h2><label class="field">What will you use your website for?<select id="site-purpose">${types.map(t => '<option value="' + esc(t) + '" ' + (input.type === t ? 'selected' : '') + '>' + esc(t) + '</option>').join("")}</select></label><p class="muted">${esc(copy.hint)} Use information you want visitors to see. Leave home addresses and private phone numbers out. Your résumé can suggest editable text after sign-in. Nothing from it is published until you explicitly apply changes and the studio owner approves the website.</p><form id="content" class="panel"><div class="field-row">${field(copy.name+" *", "name", input.content.name)}${field(copy.headline+" *", "headline", input.content.headline)}</div>${field(copy.bio, "bio", input.content.bio, "textarea")}${field("Hero label (optional)", "heroLabel", input.content.heroLabel || "")}${field("Main button text", "ctaLabel", input.content.ctaLabel || "Explore my work")}${field(copy.projects+" (freeform)", "projects", input.content.projects, "textarea")}<div class="notice"><h3>Feature your work beautifully</h3><p>Optional structured cards: one per line, in the form <strong>Title | Description | https://link.example</strong>. Leave empty to use your freeform projects instead.</p>${folioProjectFields}${field(copy.services+" (one per line)", "servicesText", (input.content.services || []).map(x=>[x.title,x.description,x.url].join(" | ")).join("\n"), "textarea")}${field("Testimonials (only genuine quotes)", "testimonialsText", (input.content.testimonials || []).map(x=>[x.quote,x.attribution].join(" | ")).join("\n"), "textarea")}</div><div class="field-row">${field("Education", "education", input.content.education, "textarea")}${field(copy.experience, "experience", input.content.experience, "textarea")}</div>${field(copy.skills, "skills", input.content.skills)}${field("Public contact email (optional)", "publicEmail", input.content.publicEmail)}${field("HTTPS profile links (one per line)", "links", input.content.links.join("\n"), "textarea")}${hasCustomEditorialMedia(input.template) ? field("Hero video URL (optional: YouTube, Vimeo or HTTPS MP4/WebM)", "heroVideoUrl", input.content.heroVideoUrl || "") + '<p class="muted">Upload photos in display order: hero image first, then project images. Videos currently use links, not file uploads.</p>' : ""}<label class="field">${esc(copy.media)} (up to 12 files, 4 MB each)<input id="files" type="file" multiple accept=".pdf,.docx,.jpg,.jpeg,.png,.webp"></label><p class="muted">Selected photos will be included in your website after review. Only choose images you have permission to publish. PDF and DOCX documents remain private.</p><ul class="file-list" id="file-list"></ul><button type="button" class="btn secondary small" id="clear-files">Clear selected files</button><div class="notice"><h3>Import details from your résumé</h3><p>Choose a PDF or DOCX above, then preview suggestions. We do not automatically publish them, infer qualifications, or save the extraction result.</p><button type="button" class="btn secondary small" id="resume-analyze">Preview résumé suggestions ↗︎</button><p id="resume-feedback" role="status" class="feedback"></p><div id="resume-review"></div><div id="resume-auth"></div></div></form>`;
-    el.querySelector("#site-purpose").onchange = e => { input.type = e.target.value; };
+    el.querySelector("#site-purpose").onchange = e => { input.type = e.target.value; rememberWizard(); };
     const filelist = () => {
       $("#file-list").innerHTML = files
         .map(
@@ -335,6 +362,7 @@ function draw() {
       if(hasCustomEditorialMedia(input.template)) input.content.heroVideoUrl = String(f.heroVideoUrl || "");
       input.content.services = structured(f.servicesText, ["title","description","url"],12);
       input.content.testimonials = structured(f.testimonialsText, ["quote","attribution"],8);
+      rememberWizard();
     };
   }
   if (step === 4) {
@@ -414,6 +442,7 @@ function draw() {
       if (localFeedback) localFeedback.textContent = e?.message || "Could not continue. Please retry.";
     }
   };
+  rememberWizard();
 }
 async function checkout() {
   const btn = $("#next");
@@ -462,6 +491,7 @@ async function checkout() {
     const url = new URL(r.url);
     if (url.hostname !== "checkout.stripe.com" || url.protocol !== "https:")
       throw Error("Unexpected checkout destination.");
+    try { sessionStorage.removeItem(WIZARD_STORAGE_KEY); } catch {}
     location.assign(url.href);
   } finally {
     btn.disabled = false;
@@ -491,12 +521,13 @@ async function saveDraft() {
     draftId=data.id;
     draftVersion=data.version;
     // The project identifier is a lookup reference, never an authentication token.
-    history.replaceState(null,"",`/order.html?draft=${draftId}`);
+    history.replaceState(null,"",`/order?draft=${draftId}`);
+    try { sessionStorage.removeItem(WIZARD_STORAGE_KEY); } catch {}
     const message=$("#save-status");
     if (message) {
       message.textContent="Design saved privately. You can resume it using this page or from your account. ";
       const link=document.createElement("a");
-      link.href="/account.html";
+      link.href="/account";
       link.textContent="Go to your projects ↗︎";
       message.append(link);
     }
@@ -537,18 +568,22 @@ async function restoreDraft() {
     }
   }
 }
-const requestedTier=new URLSearchParams(location.search).get("tier");
-if(requestedTier==="premium")window.location.replace(AWE_CUSTOM_URL);
-else if(requestedTier==="starter"||requestedTier==="signature"){
-  selectedTier=requestedTier;syncPackage();
-  const eligible=templatesForTier(requestedTier);
-  if(eligible.length)setTemplate(eligible[0].id);
-  step=1;
+const params = new URLSearchParams(location.search);
+const requestedTier = params.get("tier");
+if (requestedTier === "premium") window.location.replace(AWE_CUSTOM_URL);
+else if (requestedTier === "starter" || requestedTier === "signature") {
+  selectedTier = requestedTier;
+  syncPackage();
+  const eligible = templatesForTier(requestedTier);
+  if (eligible.length) setTemplate(eligible[0].id);
+  step = 1;
+} else if (!params.has("draft")) {
+  restoreWizard();
 }
-// Allow a public, allowlisted AWE Express preview to carry its actual design
-// into the existing tier and checkout wizard. The server remains authoritative.
-const requestedTemplate=new URLSearchParams(location.search).get("template");
-if(requestedTemplate&&selectedTier&&templatesForTier(selectedTier).some(t=>t.id===requestedTemplate)){
+// Explicit tier and template links take precedence over session progress.
+const requestedTemplate = params.get("template");
+if (requestedTemplate && selectedTier &&
+    templatesForTier(selectedTier).some(t => t.id === requestedTemplate)) {
   setTemplate(requestedTemplate);
 }
 draw();
