@@ -421,6 +421,7 @@ async function checkout() {
   try {
     const p = selectedPackage();
     if (!p || !packageAllowsTemplate(p, input.template)) throw Error("Select a supported package and template before checkout.");
+    if ($("#consent")?.checked !== true) throw Error("Review and accept the package terms before checkout.");
     if (!orderId && draftId) {
       const prepared = await api(`drafts/${draftId}/prepare`, {
         input,
