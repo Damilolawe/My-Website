@@ -161,6 +161,9 @@ async function dispatch(req) {
   if(p[0]==='orders'&&p[2]==='preview'&&req.method==='GET') {
     const o=await owned(p[1],u);
     if(o.payment!=='paid'||!o.draft_version)fail('Your website draft is not ready yet.',409);
+    if(o.status!=='customer_review' &&
+      !(o.public_version===o.draft_version && ['published','delivered'].includes(o.status)))
+      fail('The studio has not released this version for customer review.',403);
     const v=(await rows('awe_versions',`id=eq.${o.draft_version}&order_id=eq.${o.id}`))[0];
     if(!v)fail('Your website draft is not ready yet.',409);
     const page=url.searchParams.get('page')||'index.html';
