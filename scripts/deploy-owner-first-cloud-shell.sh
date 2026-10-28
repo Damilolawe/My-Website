@@ -8,7 +8,7 @@ node -e 'if(Number(process.versions.node.split(".")[0])<22)throw Error("Node 22 
 npm ci
 # Authenticate/check tools before any database or hosting writes.
 npx --yes firebase-tools@14.22.0 projects:list --non-interactive >/dev/null
-npx --no-install supabase db query --project-ref "$PROJECT_REF" 'select 1 as deployment_access_check;'
+npx --no-install supabase db query --linked --project-ref "$PROJECT_REF" 'select 1 as deployment_access_check;'
 if [[ ! -x /usr/bin/chromium && -z "${PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH:-}" ]]; then
   npx --no-install playwright install chromium
 fi
@@ -47,7 +47,7 @@ END $release$;
 COMMIT;
 ''')
 PY
-npx --no-install supabase db query --project-ref "$PROJECT_REF" -f "$MIGRATION_SQL"
+npx --no-install supabase db query --linked --project-ref "$PROJECT_REF" -f "$MIGRATION_SQL"
 npx --no-install supabase functions deploy awe-api --project-ref "$PROJECT_REF" --no-verify-jwt --use-api
 FIREBASE_HOSTING_UPLOAD_CONCURRENCY=2 npx --yes firebase-tools@14.22.0 deploy --only hosting --project awe-digital --non-interactive
 curl --fail --silent --show-error --retry 3 --max-time 30 \
