@@ -61,6 +61,8 @@ export async function runJobs(limit = 3) {
         await sendSandboxWorkHandoff(o, job.version_id);
       } else if (job.kind === "notify_review") {
         await inviteToReview(o, job.version_id);
+      } else if (job.kind === "notify_owner_draft" || job.kind === "notify_owner_revision") {
+        await notifyOwner(o, job.version_id, job.kind);
       } else if (job.kind === "deliver") {
         await deliver(o, job.version_id);
       }
@@ -86,6 +88,34 @@ export async function runJobs(limit = 3) {
       console.error("Job failed", job.id, e.status || 500);
     }
   }
+}
+async function notifyOwner(o, version, kind) {
+  if (o.payment !== "paid") return;
+  if (!env().RESEND_API_KEY || !env().EMAIL_FROM)
+    fail("Studio notification email is not configured.",503);
+  const revision = kind === "notify_owner_revision";
+  const url = `${env().SITE_ORIGIN}/admin?order=${o.id}`;
+  const response = await fetch("https://api.resend.com/emails",{
+    method:"POST",
+    headers:{
+      Authorization:`Bearer ${env().RESEND_API_KEY}`,
+      "Content-Type":"application/json",
+      "Idempotency-Key":`studio/${kind}/${o.id}/${version}`
+    },
+    body:JSON.stringify({
+      from:env().EMAIL_FROM,
+      to:["contact@aweconcepts.com"],
+      subject: revision ? "Awe Concepts: customer requested changes" :
+        "Awe Concepts: paid website ready for your review",
+      text:(revision ? "A customer has submitted a revision request." :
+        "A paid website draft is ready for your personal review and improvements.") +
+        `\n\nOpen the private order: ${url}\n\nAwe Concepts`
+    }),
+    signal:AbortSignal.timeout(20000)
+  });
+  if(!response.ok) fail("Studio notification email failed.",502);
+  await insert("awe_events",{order_id:o.id,kind:"studio_notification_accepted",
+    details:{version,type:kind}});
 }
 async function inviteToReview(o, version) {
   // A newer studio edit or customer revision voids this invitation.
