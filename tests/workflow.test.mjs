@@ -441,7 +441,7 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
           assert.equal(order.public_version,null);
           assert.equal((await request(`admin/orders/${oid}/release`,{actor:"owner",data:{version:order.version,confirm:oid}})).status,409);
           emailFails=false;
-          await runJobs(1); // Reviewed invitation is sent; website remains private.
+          await runJobs(2); // Owner new-order alert, then customer reviewed-draft invitation.
           assert.equal((await db.query("select public_version from awe_orders")).rows[0].public_version,null);
           emailFails=true;
           assert.equal((await request(`orders/${oid}/approve`,{actor:"stranger",data:{version:order.draft_version}})).status,404);
@@ -511,7 +511,7 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
           (await db.query("select status from awe_orders")).rows[0].status,
           "delivered",
         );
-        assert.equal(emailCalls, flow.tier === "signature" ? 3 : 2);
+        assert.equal(emailCalls, flow.tier === "signature" ? 4 : 2);
       },
     );
     await t.test(
