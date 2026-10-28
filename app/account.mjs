@@ -16,7 +16,7 @@ function revisionSummary(o) {
 function projectTimeline(o) {
   const stage = o.review_stage || "preparing";
   const steps = [
-    ["payment","Payment confirmed"],
+    ["payment",stage==="payment"?"Awaiting payment":"Payment confirmed"],
     ["preparing","Studio preparing"],
     ["studio","Studio reviewing"],
     ["customer","Your approval"],
