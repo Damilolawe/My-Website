@@ -319,18 +319,20 @@ export default async function (req) {
       }
       if (action === "approve" && method === "POST") {
         const b = await body(req, 1024);
-        if (o.payment !== "paid" || !o.draft_version || b.version !== o.draft_version)
-          fail("Review the current paid website draft before approving.", 409);
+        if (o.payment !== "paid" || o.status !== "customer_review" ||
+            !o.draft_version || b.version !== o.draft_version)
+          fail("Review the current studio-approved website draft before approving.", 409);
         await rpc("awe_customer_approve", {p_order:o.id,p_version:uuid(b.version),p_actor:u.id});
-        return json({ok:true});
+        return json({ok:true,published:true,url:`/sites/${o.slug}`});
       }
-      if (action === "revision") {
-        if (o.payment !== "paid" || !o.draft_version) fail("Revisions open when your paid website draft is ready.");
+      if (action === "revision" && method === "POST") {
         const b = await body(req, 8000);
         const message = text(b.message, 4000);
-        if (message.length < 5) fail("Describe the changes you would like.");
-        await insert("awe_revisions", { id: id(), order_id: o.id, message });
-        return json({ ok: true });
+        if (message.length < 5 || !o.draft_version) fail("Describe the changes you would like.");
+        await rpc("awe_customer_revision", {
+          p_order:o.id,p_version:o.draft_version,p_actor:u.id,p_message:message
+        });
+        return json({ok:true});
       }
     }
     if (route === "briefs" && method === "POST") {
@@ -488,6 +490,11 @@ export default async function (req) {
           });
         }
         if (op === "preview" && method === "GET") {
+          if (o.payment !== "paid" || !o.draft_version ||
+              !["customer_review","published","delivered"].includes(o.status))
+            fail("The studio has not released this draft for your review.", 403);
+          if (o.status !== "customer_review" && o.public_version !== o.draft_version)
+            fail("The latest draft is not available for your review.", 403);
           const v = (
             await rows(
               "awe_versions",
@@ -568,21 +575,17 @@ export default async function (req) {
             });
             return json({ ok: true });
           }
-          if (op === "publish") {
-            if (b.confirm !== o.id)
-              fail("Confirm this exact order before publishing.");
-              const approvals = await rows("awe_events", `order_id=eq.${o.id}&kind=eq.customer_approved&actor=eq.${o.user_id}&details->>version=eq.${o.draft_version}&order=created_at.desc&limit=1`);
-            const latestRequests = await rows("awe_revisions", `order_id=eq.${o.id}&order=created_at.desc&limit=1`);
-            if (!approvals.length || (latestRequests.length && Date.parse(approvals[0].created_at) < Date.parse(latestRequests[0].created_at)))
-              fail("The customer must approve this saved draft after their latest revision request.", 409);
-            await rpc("awe_publish", {
-              p_order: o.id,
-              p_expected: o.version,
-              p_version: o.draft_version,
-              p_actor: u.id,
+          if (op === "release") {
+            if (b.confirm !== o.id) fail("Confirm this exact order before sending it for review.");
+            if (o.payment !== "paid" || o.status !== "awaiting_review" ||
+                !o.draft_version) fail("Review and save the paid private draft first.",409);
+            await rpc("awe_owner_release",{
+              p_order:o.id,p_expected:o.version,p_version:o.draft_version,p_actor:u.id
             });
-            return json({ url: `/sites/${o.slug}` });
+            return json({ok:true});
           }
+          if (op === "publish")
+            fail("A customer acceptance automatically publishes your pre-approved version.",409);
         }
       }
     }
