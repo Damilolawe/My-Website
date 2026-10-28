@@ -227,10 +227,11 @@ async function dispatch(req) {
     fail('Inquiry endpoint not found.',404);
   }
   const response=await legacyApi(relocate(req,'/api/'+path));
-  if (response.ok && req.method==='POST' && p.length===4 &&
-      p[0]==='admin' && p[1]==='orders' && p[3]==='publish') {
-    // The legacy handler verifies owner JWT and commits approval atomically.
-    // Never kick off delivery if authorization or publishing failed.
+  if (response.ok && req.method==='POST' &&
+      ((p.length===4 && p[0]==='admin' && p[1]==='orders' && p[3]==='release') ||
+       (p.length===3 && p[0]==='orders' && p[2]==='approve'))) {
+    // The owner review queues an invitation; the customer's matching approval
+    // atomically publishes the approved version and queues delivery.
     startBackgroundJobs();
   }
   if(response.ok && p.at(-1)==='preview')return json({html:await response.text()});
