@@ -126,15 +126,14 @@ export default async function (req) {
     }
     const admin = await isOwner(u);
     if (route === "me") return json({ email: u.email, admin });
-    if (route === "orders" && method === "GET" && !key)
-      return json(
-        (
-          await rows(
-            "awe_orders",
-            `user_id=eq.${u.id}&order=created_at.desc&limit=100`,
-          )
-        ).map(customerOrder),
-      );
+    if (route === "orders" && method === "GET" && !key) {
+      const [orders,usage] = await Promise.all([
+        rows("awe_orders",`user_id=eq.${u.id}&order=created_at.desc&limit=100`),
+        rpc("awe_customer_revision_usage",{p_actor:u.id})
+      ]);
+      const counts=new Map(usage.map(r=>[r.order_id,Number(r.used)||0]));
+      return json(orders.map(o=>customerOrder(o,counts.get(o.id)||0)));
+    }
     if (route === "orders" && method === "POST" && !key) {
       if (!liveCheckoutConfigured())
         fail("Orders are not open yet.", 503);
@@ -197,7 +196,10 @@ export default async function (req) {
           fail("File transfer is not included in this package.", 403);
         return await exportApproved(o);
       }
-      if (method === "GET") return json(customerOrder(o));
+      if (method === "GET") {
+        const usage=await rpc("awe_customer_revision_usage",{p_actor:u.id});
+        return json(customerOrder(o,Number(usage.find(r=>r.order_id===o.id)?.used)||0));
+      }
       if (action === "upload") {
         if (o.checkout_at || o.stripe_session || o.payment !== "unpaid")
           fail(
@@ -419,7 +421,9 @@ export default async function (req) {
           features: (b.features || []).map((x) => text(x, 200)).slice(0, 20),
           hosting: text(b.hosting, 2000),
           ownership: text(b.ownership, 2000),
-          revisions: text(b.revisions, 2000),
+          revisions: (b.tier==="premium" ? "Unlimited revision requests within the agreed project scope." :
+            b.tier==="signature" ? "3 included revision requests; major scope additions require a separate quote." :
+            "1 included revision request; major scope additions require a separate quote."),
           refunds: text(b.refunds, 2000),
           delivery: b.delivery === "awe-multipage" ? "awe-multipage" : "awe-hosted",
           pageCount: b.delivery === "awe-multipage" ? 5 : 1,
