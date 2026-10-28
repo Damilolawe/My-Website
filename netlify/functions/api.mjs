@@ -453,6 +453,15 @@ export default async function (req) {
       if (key === "orders" && action) {
         const o = await owned(action, u, true);
         const op = path[3];
+        if (op === "work-status" && method === "GET") {
+          return json(await rows("awe_work_runs", `order_id=eq.${o.id}&order=created_at.desc&limit=50`));
+        }
+        if (["work-claim", "work-finish"].includes(op) && method === "POST") {
+          const b = await body(req, 2048);
+          const refs = {p_order:o.id,p_version:uuid(b.version),p_run:uuid(b.runId),p_actor:u.id};
+          if (op === "work-claim") return json(await rpc("awe_work_claim", refs));
+          return json(await rpc("awe_work_finish", {...refs,p_result:b.result || null,p_failure:b.failure ?? null}));
+        }
         if (method === "GET" && op === "export") return await exportApproved(o);
         if (method === "GET" && op === "handoff-export") return await exportPrivateDraft(o);
         if (method === "GET" && !op) {

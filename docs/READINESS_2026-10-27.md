@@ -1,3 +1,5 @@
+Follow-up live backend changes and current blockers: [October 28 release record](RELEASE_2026-10-28.md).
+
 # Awe Concepts release verification
 
 Verified against main `c552afa644824695ef7e105990f8af5124855782` on October 27 EDT / October 28 UTC, 2026. The accepted GitHub Actions deployment limitation is excluded from the score.

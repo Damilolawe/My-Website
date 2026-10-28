@@ -1,4 +1,4 @@
-import { env, fail, insert, rpc } from "./backend.mjs";
+import { env, fail, insert, rpc, stripe } from "./backend.mjs";
 
 export const WORK_HANDOFF_SUBJECT = "AWE WORK HANDOFF | DRAFT READY";
 export const WORK_HANDOFF_RECIPIENT = "contact@aweconcepts.com";
@@ -29,8 +29,9 @@ export function workHandoffMessage(order, version, siteOrigin) {
   ].join("\n");
 }
 
-export async function sendWorkHandoff(order, version) {
-  if (env().AWE_WORK_HANDOFF_ENABLED !== "true") return false;
+export async function sendWorkHandoff(order, version, {sandboxVerified = false} = {}) {
+  if (env().AWE_WORK_HANDOFF_ENABLED !== "true" &&
+      !(sandboxVerified === true && order.package_snapshot?.testOnly === true)) return false;
   if (order.payment !== "paid" || !version) return false;
   if (order.package_snapshot?.aiProcessingConsent?.granted !== true ||
       order.package_snapshot.aiProcessingConsent.policy !== "chatgpt-work-v1") return false;
@@ -70,4 +71,19 @@ export async function sendWorkHandoff(order, version) {
     details: {version, provider_id: result.id},
   });
   return true;
+}
+
+// One-off owner-queued acceptance jobs may exercise the email trigger without
+// opening production handoff globally. A real paid SANDBOX session is required.
+export async function sendSandboxWorkHandoff(order, version) {
+  if (order.package_snapshot?.testOnly !== true || order.payment !== "paid" ||
+      !version || order.draft_version !== version || !order.stripe_session)
+    fail("A current paid sandbox draft is required.", 403);
+  const session = await stripe("test").checkout.sessions.retrieve(order.stripe_session);
+  if (session.livemode !== false || session.mode !== "payment" ||
+      session.payment_status !== "paid" || session.client_reference_id !== order.id ||
+      session.amount_total !== order.package_snapshot.amount ||
+      session.currency !== order.package_snapshot.currency)
+    fail("Sandbox payment verification failed.", 403);
+  return sendWorkHandoff(order, version, {sandboxVerified:true});
 }
