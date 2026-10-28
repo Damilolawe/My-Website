@@ -124,6 +124,26 @@ update public.awe_packages set data=jsonb_set(jsonb_set(data,'{revisions}',
 where coalesce(data->>'testOnly','false')<>'true'
   and data->>'tier' in ('starter','signature','premium');
 
+-- Keep the stored checkout feature list consistent with the enforceable policy.
+-- Preserve non-revision features in their original order, replace any older
+-- one-round wording, and append one canonical entitlement per tier.
+update public.awe_packages p
+set data=jsonb_set(p.data,'{features}', (
+  coalesce((
+    select jsonb_agg(to_jsonb(f.feature) order by f.ord)
+    from jsonb_array_elements_text(coalesce(p.data->'features','[]'::jsonb))
+      with ordinality as f(feature,ord)
+    where lower(f.feature) not like '%revision%'
+  ),'[]'::jsonb)
+  || to_jsonb(array[case p.data->>'tier'
+    when 'signature' then '3 included revisions'
+    when 'premium' then 'Unlimited revisions within the agreed project scope'
+    else '1 included revision'
+  end])
+))
+where coalesce(p.data->>'testOnly','false')<>'true'
+  and p.data->>'tier' in ('starter','signature','premium');
+
 -- Notify the owner when a paid automated first draft is saved, without
 -- making the generation transaction depend on external email delivery.
 create function public.awe_queue_studio_notice() returns trigger
