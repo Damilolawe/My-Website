@@ -15,7 +15,7 @@ export function report(error) {
   $("#feedback").textContent = error.message || error;
 }
 export function authForm(container, onDone) {
-  container.innerHTML = `<div class="auth panel"><p class="eyebrow">Your Awe Concepts account</p><h2>A little hello.</h2><p>Sign in with a code sent to your email. No password to remember.</p><form id="auth-form"><label class="field">Email address<input name="email" type="email" required autocomplete="email"></label><label class="field" id="code-field" hidden>Email code<input name="token" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" minlength="6" maxlength="6"></label><button class="btn" type="submit">Send sign-in code ↗︎</button></form><p id="auth-feedback" role="status"></p></div>`;
+  container.innerHTML = `<div class="auth panel"><p class="eyebrow">Your Awe Concepts account</p><h2>A little hello.</h2><p>Sign in with a code sent to your email. No password to remember.</p><form id="auth-form"><label class="field">Email address<input name="email" type="email" required autocomplete="email"></label><label class="field" id="code-field" hidden>Email code<input name="token" inputmode="numeric" autocomplete="one-time-code" pattern="([0-9]{6}|[0-9]{8})" minlength="6" maxlength="8"></label><button class="btn" type="submit">Send sign-in code ↗︎</button></form><p id="auth-feedback" role="status"></p></div>`;
   let sent = false;
   $("#auth-form", container).onsubmit = async (e) => {
     e.preventDefault();
