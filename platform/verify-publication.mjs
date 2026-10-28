@@ -34,8 +34,14 @@ async function verifyApprovedSubpages(fetcher,siteUrl,version,requiredPages) {
     });
     if (!response.ok) fail("Multi-page website is awaiting deployment.");
     const html=await response.text();
+    // Direct serving identifies the immutable approved version in the same
+    // header as the homepage. Static Firebase documents use the HTML marker.
+    // A conflicting direct-version header must never be rescued by a marker.
+    const directVersion=response.headers.get("x-awe-version");
+    const versionMatches=directVersion !== null ? directVersion === version :
+      html.includes('<meta name="awe-approved-version" content="'+version+'">');
     if (!/^<!doctype html>/i.test(html.slice(0,60)) ||
-        !html.includes('<meta name="awe-approved-version" content="'+version+'">') ||
+        !versionMatches ||
         !/<h1(?:\s|>)/i.test(html) || hasUnsafeExecutableMarkup(html))
       fail("Multi-page publication verification failed.");
   }

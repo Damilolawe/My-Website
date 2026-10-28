@@ -75,3 +75,21 @@ test("Starter shows only single-page templates, Signature only five-page designs
  assert(home.includes('/order.html?tier=starter'));
  assert(home.includes('/order.html?tier=signature'));
 });
+
+for(const [name,path] of [["legacy","../platform/verify-publication.mjs"],["edge","../supabase/functions/awe-api/platform/verify-publication.mjs"]]) {
+ test(`${name}: direct five-page delivery verifies every version header and rejects contradictory static markers`,async()=>{
+  const {verifyPublication:verify}=await import(path);
+  let stalePage=false,unsafePage=false;
+  const fetcher=async url=>{
+   const subpage=pages.some(p=>url===origin+"/"+p);
+   assert(url===origin||subpage,url);
+   const body='<!doctype html><html><head></head><body><h1>Approved page</h1></body></html>';
+   return new Response(stalePage&&subpage?doc("Stale header with current marker"):unsafePage&&subpage?body.replace('</body>','<script>alert(1)</script></body>'):body,{headers:{'x-awe-version':stalePage&&subpage?'11111111-2222-4333-8444-555555555556':version}});
+  };
+  assert.equal((await verify({siteUrl:origin,publicApiUrl,version,requiredPages:pages,fetcher})).mode,'direct');
+  stalePage=true;
+  await assert.rejects(verify({siteUrl:origin,publicApiUrl,version,requiredPages:pages,fetcher}),/verification failed/);
+  stalePage=false;unsafePage=true;
+  await assert.rejects(verify({siteUrl:origin,publicApiUrl,version,requiredPages:pages,fetcher}),/verification failed/);
+ });
+}

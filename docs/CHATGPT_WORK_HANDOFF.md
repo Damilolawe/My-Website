@@ -22,7 +22,7 @@ The supported fallback is an owner-authorized private ZIP, a separate private re
 
 ## Release
 
-Apply the three readiness migrations, deploy the existing Supabase `awe-api` source, and deploy the static build to the existing Firebase project/domain when the accepted deployment limitation clears. Keep handoff disabled until account/filter binding, consent, private file access, duplicate handling and one sandbox round trip are verified.
+The notification-reservation, refund-ordering and processing-ledger migrations are already applied; do not apply them again. Only `20261028035042_customer_draft_approval.sql` remains pending. Apply it together with the matching API and customer/owner static interfaces through the existing Firebase project/domain release when the accepted limitation clears. Keep production handoff disabled until event activation, authorized private file access and a recorded autonomous refinement/return round trip are verified. See RELEASE_2026-10-28.md for the migration version mapping.
 
 Do not modify or retry GitHub Actions, enable billing, change hosting, or publish to an alternative domain. Local validation substitutes for unavailable CI execution; it does not make changes live.
 
@@ -35,7 +35,7 @@ A failed or abandoned claim cannot be automatically taken over. Reconcile it as 
 
 The owner queue supports a one-off `work_acceptance` job for an existing paid test-only fixture. It independently retrieves the Stripe **sandbox** Checkout Session and verifies its mode, paid state, order reference, amount and currency before allowing the metadata-only notification with production handoff disabled. This does not initiate payment or enable ordinary customer handoff. Consent and durable notification reservation still apply.
 
-Live backend version 91 contains the independently released checkout guard, consented private export, processing endpoints, durable notification path and acceptance worker. The full customer approval/static release remains coordinated and pending. See the follow-up release record for applied versus pending migrations.
+Live backend version 92 contains the independently released checkout guard, consented private export, processing endpoints, durable notification path, acceptance worker and approved multipage delivery-verification repair. The full customer approval/static release remains coordinated and pending. See the follow-up release record for applied versus pending migrations.
 
 
 ## Acceptance outcome

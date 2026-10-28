@@ -11,7 +11,19 @@ import site from "../netlify/functions/site.mjs";
 import webhook from "../netlify/functions/webhook.mjs";
 import { runJobs } from "../platform/production.mjs";
 import { sample } from "../shared/model.mjs";
-test("HTTP workflow with real PostgreSQL and simulated external providers", async (t) => {
+import edgeApi from "../supabase/functions/awe-api/netlify/functions/api.mjs";
+import edgeSite from "../supabase/functions/awe-api/netlify/functions/site.mjs";
+import edgeWebhook from "../supabase/functions/awe-api/netlify/functions/webhook.mjs";
+import {runJobs as edgeRunJobs} from "../supabase/functions/awe-api/platform/production.mjs";
+import {allowedApprovedPageNames} from "../shared/approved-pages.mjs";
+
+for (const flow of [
+  {name:"Starter $75", amount:7500, template:sample.template, tier:"starter", delivery:"awe-hosted", pages:1, api, site, webhook, runJobs},
+  {name:"Signature $150 Edge", amount:15000, template:"runwaymulti", tier:"signature", delivery:"awe-multipage", pages:5, api:edgeApi, site:edgeSite, webhook:edgeWebhook, runJobs:edgeRunJobs},
+]) {
+const {api,site,webhook,runJobs}=flow;
+const design={...sample,template:flow.template};
+test(flow.name+": HTTP workflow with real PostgreSQL and simulated external providers", async (t) => {
   const db = new PGlite();
   await db.exec(
     "create role anon;create role authenticated;create role service_role bypassrls;create schema storage;create table storage.buckets(id text primary key,name text,public boolean,file_size_limit bigint,allowed_mime_types text[]);",
@@ -24,13 +36,13 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
     const migration = (await readdir("supabase/migrations")).find(f=>f.endsWith(suffix));
     await db.exec(await readFile("supabase/migrations/"+migration,"utf8"));
   }
-  const owner = randomUUID(),
+  const owner = "220ddd21-710f-4dea-bc24-e34c8ba9cef8",
     customer = randomUUID(),
     stranger = randomUUID();
   const accounts = {
     owner: {
       id: owner,
-      email: "owner@example.test",
+      email: "contact@aweconcepts.com",
       email_confirmed_at: "now",
     },
     customer: {
@@ -45,6 +57,7 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
     },
   };
   await db.query("insert into awe_owner values($1)", [owner]);
+  const savedEnv={...process.env};
   Object.assign(process.env, {
     SITE_ORIGIN: "https://studio.example",
     SUPABASE_URL: "https://db.example",
@@ -61,6 +74,9 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
     EMAIL_FROM: "studio@example.test",
   });
   const original = globalThis.fetch;
+  const originalHttpClient=Stripe._platformFunctions.createDefaultHttpClient;
+  Stripe._platformFunctions.createDefaultHttpClient=()=>Stripe.createFetchHttpClient(globalThis.fetch);
+  let checkoutCalls=0;
   const storage = new Map();
   let emailFails = true,
     emailCalls = 0;
@@ -88,6 +104,17 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
   }
   globalThis.fetch = async (input, options = {}) => {
     const url = new URL(typeof input === "string" ? input : input.url);
+    if (url.hostname === "api.stripe.com") {
+      assert.equal(url.pathname,"/v1/checkout/sessions");
+      assert.equal(options.method,"POST");
+      const params=new URLSearchParams(options.body);
+      assert.equal(params.get("line_items[0][price_data][unit_amount]"),String(flow.amount));
+      assert.equal(params.get("line_items[0][price_data][currency]"),"usd");
+      assert.equal(params.get("client_reference_id"),oid);
+      assert.equal(params.get("mode"),"payment");
+      checkoutCalls++;
+      return response({id:"cs_test_fixture",status:"open",url:"https://checkout.example.test/fixture"});
+    }
     if (url.hostname === "studio.example")
       return site(new Request(url, options));
     if (url.hostname === "api.resend.com") {
@@ -114,6 +141,7 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
         headers: { "Content-Type": "image/webp" },
       });
     }
+    assert.equal(url.hostname,"db.example","External network access is forbidden in this acceptance flow");
     try {
       const route = url.pathname.split("/").filter(Boolean);
       if (route[2] === "rpc") {
@@ -192,18 +220,18 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
   try {
     await t.test("unconfigured terms prevent creating an order", async () => {
       const r = await request("orders", {
-        data: { input: sample, packageId: "express", consent: true },
+        data: { input: design, packageId: "express", consent: true },
       });
       assert.equal(r.status, 400);
     });
     const pkg = {
       name: "Fictional test package",
       enabled: true,
-      amount: 7500,
+      amount: flow.amount,
       currency: "usd",
-      tier: "starter",
-      delivery: "awe-hosted",
-      pageCount: 1,
+      tier: flow.tier,
+      delivery: flow.delivery,
+      pageCount: flow.pages,
       features: ["Test fixture only"],
       hosting: "Test terms",
       ownership: "Test terms",
@@ -214,18 +242,25 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
     await db.query("update awe_packages set data=$1 where id='express'", [
       JSON.stringify(pkg),
     ]);
+    await db.query("insert into awe_templates(id,enabled,label) values($1,true,$2) on conflict(id) do update set enabled=true",[flow.template,flow.name]);
+    await t.test("missing agreement and stale terms cannot create orders",async()=>{
+      for(const agreement of [{consent:false,termsVersion:"test-v1"},{consent:true,termsVersion:"stale"}]) {
+        assert.equal((await request("orders",{data:{input:design,packageId:"express",...agreement}})).status,400);
+      }
+      assert.equal((await db.query("select count(*)::int as n from awe_orders")).rows[0].n,0);
+    });
     await t.test(
       "customer order snapshots package and stays unpaid",
       async () => {
         const r = await request("orders", {
           data: {
-            input: sample,
+            input: design,
             packageId: "express",
             termsVersion: "test-v1",
             consent: true,
           },
         });
-        assert.equal(r.status, 200);
+        assert.equal(r.status, 200, await r.clone().text());
         oid = (await r.json()).id;
         assert.equal(
           (await db.query("select payment from awe_orders")).rows[0].payment,
@@ -270,13 +305,22 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
       );
     });
     const input = {
-      ...sample,
+      ...design,
       content: { ...sample.content, photoIds: [aid] },
     };
     await db.query(
-      "update awe_orders set stripe_session='cs_test_fixture',input=$1 where id=$2",
+      "update awe_orders set input=$1 where id=$2",
       [JSON.stringify(input), oid],
     );
+    await t.test("checkout uses the immutable package amount and records its session",async()=>{
+      const r=await request(`orders/${oid}/checkout`,{data:{input,amount:1,currency:"eur"}});
+      assert.equal(r.status,200,await r.clone().text());
+      assert.equal((await r.json()).url,"https://checkout.example.test/fixture");
+      assert.equal(checkoutCalls,1);
+      const saved=(await db.query("select * from awe_orders")).rows[0];
+      assert.equal(saved.stripe_session,"cs_test_fixture");
+      assert.equal(saved.package_snapshot.amount,flow.amount);
+    });
     const stripe = new Stripe("sk_test_fictional");
     async function event(eid, status, type = "checkout.session.completed") {
       const payload = JSON.stringify({
@@ -289,7 +333,7 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
             mode: "payment",
             client_reference_id: oid,
             payment_status: status,
-            amount_total: 7500,
+            amount_total: flow.amount,
             currency: "usd",
             payment_intent: "pi_test_fixture",
           },
@@ -440,7 +484,7 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
         );
       },
     );
-    await t.test("approved export is owner-gated and contains portable assets",async()=>{assert.equal((await request(`orders/${oid}/export`)).status,403);const r=await request(`admin/orders/${oid}/export`,{actor:'owner'});assert.equal(r.status,200);const files=unzipSync(new Uint8Array(await r.arrayBuffer()));assert(files['index.html']);assert(files['assets/'+aid+'.webp']);assert(!strFromU8(files['index.html']).includes('/api/assets/'));});
+    await t.test("approved export is owner-gated and contains portable assets",async()=>{assert.equal((await request(`orders/${oid}/export`)).status,403);const r=await request(`admin/orders/${oid}/export`,{actor:'owner'});assert.equal(r.status,200);const files=unzipSync(new Uint8Array(await r.arrayBuffer()));assert(files['index.html']);for(const page of allowedApprovedPageNames(flow.template))assert(files[page],page);const asset=(await db.query('select mime from awe_assets where id=$1',[aid])).rows[0];const extension={'image/webp':'webp','image/png':'png','image/jpeg':'jpg'}[asset.mime];assert(files['assets/'+aid+'.'+extension]);assert(!strFromU8(files['index.html']).includes('/api/assets/'));});
     await t.test(
       "email failure is retained and retry records successful acceptance",
       async () => {
@@ -495,6 +539,11 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
     );
   } finally {
     globalThis.fetch = original;
+    Stripe._platformFunctions.createDefaultHttpClient=originalHttpClient;
+    for(const key of Object.keys(process.env))if(!(key in savedEnv))delete process.env[key];
+    Object.assign(process.env,savedEnv);
     await db.close();
   }
 });
+
+}
