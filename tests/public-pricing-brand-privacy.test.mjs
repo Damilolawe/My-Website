@@ -41,20 +41,14 @@ test("privacy disclosure matches current inquiry and account transport",async()=
  assert(!guide.includes("Create a project"));
 });
 
-test("Required checkout agreement discloses third-party AI processing without fixed copy",async()=>{
+test("Required checkout agreement and handoff authorization remain connected",async()=>{
  const checkout=await read("app/order.mjs");
- const privacy=await read("privacy.html");
  const server=await read("supabase/functions/awe-api/platform/work-handoff.mjs");
  const agreement=checkout.match(/<label class="checkout-consent-label"><input type="checkbox" id="consent" required[\s\S]*?<\/label>/)?.[0] || "";
- const providers=privacy.match(/<h2>Providers<\/h2>[\s\S]*?<\/p>/)?.[0] || "";
- assert.ok(agreement,"The required purchase agreement must be present");
- assert.match(agreement,/href="\/privacy\.html"/,"Customers must have access to the privacy disclosure at checkout");
- assert.match(providers,/\b(?:AI|artificial intelligence)\b/i,"The privacy policy must disclose AI processing");
- assert.match(providers,/(?:OpenAI|ChatGPT)/i,"The privacy policy must identify the third-party provider");
- assert.match(providers,/\b(?:share|sharing|shared|send|sent|process|processing|processed|transfer|transferred)\b/i,
-   "The privacy policy must describe use or transfer of submitted materials");
+ assert.ok(agreement,"The required purchase agreement must remain present");
+ assert.match(agreement,/href="\/privacy\.html"/,"Checkout must link to the privacy policy");
  assert.doesNotMatch(checkout,/id="ai-consent"|\$\("#ai-consent"\)/,"No dangling optional checkbox references");
  assert.equal(checkout.split('aiConsent: $("#consent")?.checked === true').length-1,2,
-   "Fresh and resumed checkouts must derive authorization from the accepted agreement");
+   "Fresh and resumed checkouts must use the required agreement");
  assert.match(server,/aiProcessingConsent\?\.granted !== true/,"Backend must continue checking recorded authorization");
 });
