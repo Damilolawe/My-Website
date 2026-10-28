@@ -48,6 +48,7 @@ begin
  update public.awe_orders set status='revisions_required',version=version+1,updated_at=now() where id=p_order;
  insert into public.awe_events(order_id,actor,kind,details)
  values(p_order,p_actor,'customer_revision_requested',jsonb_build_object('version',p_version));
+ insert into public.awe_jobs(order_id,kind,version_id) values(p_order,'notify_owner_revision',p_version);
 end $$;
 revoke all on function public.awe_customer_revision(uuid,uuid,uuid,text) from public,anon,authenticated;
 grant execute on function public.awe_customer_revision(uuid,uuid,uuid,text) to service_role;
@@ -119,3 +120,21 @@ update public.awe_packages set data=jsonb_set(jsonb_set(data,'{revisions}',
   '{termsVersion}',to_jsonb(gen_random_uuid()::text))
 where coalesce(data->>'testOnly','false')<>'true'
   and data->>'tier' in ('starter','signature','premium');
+
+-- Notify the owner when a paid automated first draft is saved, without
+-- making the generation transaction depend on external email delivery.
+create function public.awe_queue_studio_notice() returns trigger
+language plpgsql security invoker set search_path=public as $$
+begin
+ if new.kind='draft_saved' and new.actor is null then
+   insert into public.awe_jobs(order_id,kind,version_id)
+   values(new.order_id,'notify_owner_draft',(new.details->>'version')::uuid);
+ end if;
+ return new;
+end $$;
+revoke all on function public.awe_queue_studio_notice() from public,anon,authenticated;
+grant execute on function public.awe_queue_studio_notice() to service_role;
+create trigger awe_initial_draft_studio_notice
+after insert on public.awe_events for each row
+when (new.kind='draft_saved' and new.actor is null)
+execute function public.awe_queue_studio_notice();
