@@ -498,8 +498,9 @@ export function customerOrder(o) {
         received: "Order received",
         payment_verified: "Payment confirmed",
         generating: "Website in preparation",
-        awaiting_review: "Quality review",
-        revisions_required: "Quality review",
+        awaiting_review: "Studio review",
+        customer_review: "Ready for your review",
+        revisions_required: "Changes in progress",
         approved: "Quality review",
         publishing: "Quality review",
         published: "Website ready",
@@ -509,11 +510,21 @@ export function customerOrder(o) {
       }[o.status] || "Order received",
     payment: o.payment,
     package: o.package_snapshot,
-    preview_version: o.payment === "paid" ? o.draft_version || null : null,
-    preview_ready: o.payment === "paid" && Boolean(o.draft_version),
+    preview_version: o.payment === "paid" &&
+      (o.status === "customer_review" ||
+       (["published","delivered"].includes(o.status) && o.public_version === o.draft_version))
+      ? o.draft_version || null : null,
+    preview_ready: o.payment === "paid" && Boolean(o.draft_version) &&
+      (o.status === "customer_review" ||
+       (["published","delivered"].includes(o.status) && o.public_version === o.draft_version)),
     preview_pages: o.input?.template === "runwaymulti" ? ["index.html","research.html","work.html","studio.html","journal.html"] :
       zipDesignFor(o.input?.template)?.multipage ? ["index.html","work.html","features.html","studio.html","contact.html"] : ["index.html"],
     public_url: o.public_version ? `/sites/${o.slug}` : null,
+    review_stage: o.payment !== "paid" ? "payment" :
+      o.status === "customer_review" ? "customer" :
+      o.status === "delivered" ? "delivered" :
+      o.status === "published" ? "published" :
+      ["awaiting_review","revisions_required"].includes(o.status) ? "studio" : "preparing",
   };
 }
 export function assertOwner(user, owner) {
