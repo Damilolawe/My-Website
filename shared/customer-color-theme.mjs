@@ -51,8 +51,8 @@ export function applyCustomerColors(html,value){
  body.liquidmetal{--accent:var(--awe-primary)!important}
  body.site,body.trio-site,body.fd-site,body.folio-editorial,
  body.arcade-night,body.liquidmetal,body.rw-site{background-color:var(--awe-canvas)!important}
- body.site :is(.hero,.contact,.study-approach,.fn-hero,.fv-panel,.pq-hero),
- body.trio-site :is(.clay-hero,.clay-features,.nike-editorial,.ferrari-vision,.trio-contact),
+ body.site :is(.hero,.contact,.study-approach,.fn-hero,.fn-contact,.fv-hero,.fv-panel,.fv-contact,.pq-hero,.pq-contact),
+ body.trio-site :is(.clay-hero,.clay-features,.nike-hero,.nike-editorial,.ferrari-hero,.ferrari-vision,.trio-contact),
  body.fd-site :is(.fd-hero,.fd-contact),
  body.folio-editorial :is(.fe-hero,.fe-contact),
  body.arcade-night :is(.arcade-hero,.arcade-contact),
@@ -60,19 +60,21 @@ export function applyCustomerColors(html,value){
  body.rw-site :is(.rw-light,.rw-intro,.rw-research,.rw-manifesto){
    background-color:var(--awe-surface)!important
  }
- body.site :is(.hero,.contact),
+ body.site :is(.hero,.contact,.fn-hero,.pq-hero),
  body.trio-site :is(.clay-hero,.clay-features,.nike-editorial,.ferrari-vision,.trio-contact),
- body.fd-site .fd-contact,
- body.folio-editorial .fe-contact,
- body.arcade-night .arcade-contact,
- body.liquidmetal .lm-contact{
+ body.fd-site :is(.fd-hero,.fd-contact),
+ body.folio-editorial :is(.fe-hero,.fe-contact),
+ body.arcade-night :is(.arcade-hero,.arcade-contact),
+ body.liquidmetal :is(.lm-hero,.lm-contact){
    color:var(--awe-on-surface)!important
  }
  body.site .hero :is(h1,h2,p,.eyebrow),
  body.site .contact :is(h1,h2,p),
  body.trio-clay .clay-hero :is(h1,h2,p),
  body.trio-site .trio-contact :is(h1,h2,p),
- body.fd-site .fd-contact :is(h1,h2,p){
+ body.fd-site :is(.fd-hero,.fd-contact) :is(h1,h2,p,.fd-lead),
+ body.folio-editorial .fe-hero :is(h1,h2,p),
+ body.arcade-night .arcade-hero :is(h1,h2,p){
    color:var(--awe-on-surface)!important
  }
  body.site :is(.section,.card,.study-approach-item),
@@ -110,6 +112,9 @@ export function applyCustomerColors(html,value){
  body.folio-editorial :is(.fe-hero h1 em,.fe-heading em),
  body.liquidmetal .lm-eyebrow{
    text-decoration-color:var(--awe-primary);
+ }
+ body.rw-site .rw-text-link{
+   color:var(--awe-primary)!important;border-color:var(--awe-primary)!important
  }
  body.site :is(.fn-secondary,.pq-secondary),
  body.arcade-night .arcade-button-secondary,
