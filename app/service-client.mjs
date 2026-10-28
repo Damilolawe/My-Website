@@ -116,8 +116,8 @@ export function createAweClient({
   async function verifyEmailCode(email, token) {
     if (typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
       fail("Enter a valid email address.");
-    if (typeof token !== "string" || !/^\d{6,10}$/.test(token.trim()))
-      fail("Enter the code from your email.");
+    if (typeof token !== "string" || !/^\d{6}$/.test(token.trim()))
+      fail("Enter the six-digit code from your email.");
     const result = await request("/auth/v1/verify",
       { email: email.trim(), token: token.trim(), type: "email" });
     if (!result?.user?.email_confirmed_at) fail("Verify your email before continuing.");
