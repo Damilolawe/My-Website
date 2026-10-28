@@ -489,7 +489,14 @@ export function sampleForTemplate(id,purpose){
     sections:t.id==="folio" ? ["work","services","about",...kit.sections.filter(s=>!["work","services","about","contact"].includes(s)),"contact"] : purpose===undefined && (originalDirection||uploadedDirection||freeDirection) ? ["about","work","contact"] : kit.sections
   },content};
 }
-export function customerOrder(o) {
+export function customerOrder(o, revisionsUsed = 0) {
+  const packageTier = o.package_snapshot?.tier ||
+    (o.package_snapshot?.amount >= 25000 ? "premium" :
+     o.package_snapshot?.amount >= 15000 ? "signature" : "starter");
+  const revisionLimit = packageTier === "premium" ? null :
+    packageTier === "signature" ? 3 : 1;
+  const revisionsRemaining = revisionLimit === null ? null :
+    Math.max(0, revisionLimit - revisionsUsed);
   return {
     id: o.id,
     created_at: o.created_at,
@@ -510,6 +517,11 @@ export function customerOrder(o) {
       }[o.status] || "Order received",
     payment: o.payment,
     package: o.package_snapshot,
+    revision_limit: revisionLimit,
+    revisions_used: revisionsUsed,
+    revisions_remaining: revisionsRemaining,
+    revisions_label: revisionLimit === null ? "Unlimited revisions" :
+      revisionLimit === 1 ? "1 included revision" : revisionLimit + " included revisions",
     preview_version: o.payment === "paid" &&
       (o.status === "customer_review" ||
        (["published","delivered"].includes(o.status) && o.public_version === o.draft_version))
