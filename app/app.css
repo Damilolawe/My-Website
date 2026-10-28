@@ -372,11 +372,6 @@ button:disabled {
   padding: 15px;
   min-width: 0;
   align-self: start;
-  position: sticky;
-  top: 20px;
-}
-/* In the owner dashboard, move the preview with the page instead of pinning it. */
-.admin-dashboard .preview-shell {
   position: static;
   top: auto;
 }
