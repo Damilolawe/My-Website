@@ -133,6 +133,12 @@
  .bld-lightbox::backdrop{backdrop-filter:none}
 }
 
+/* The original moves smoothly to the background when a viewer opts in. */
+.bld-window-before{
+  transition:transform .75s cubic-bezier(.18,.8,.2,1),
+    width .75s cubic-bezier(.18,.8,.2,1),left .75s cubic-bezier(.18,.8,.2,1),
+    top .75s cubic-bezier(.18,.8,.2,1),box-shadow .5s,border-color .35s;
+}
 /* Spoiler-free transformation: ONLY the original is shown on initial paint.
    The redesigned screenshot is invisible and non-interactive until the
    visitor explicitly activates the Reveal Redesign control. */
