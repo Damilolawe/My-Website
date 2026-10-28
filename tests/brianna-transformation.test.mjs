@@ -145,6 +145,7 @@ test("original website is the sole visible screenshot until the visitor explicit
  assert(scene.includes('data-bld-showcase data-active="before"'),"Default HTML must be original first, even before JavaScript runs");
  assert(scene.includes('data-bld-focus="before" aria-pressed="true"'),"Original button should start selected");
  assert(scene.includes('data-bld-focus="after" aria-pressed="false"'),"Redesign button should start unselected");
+ assert(scene.includes('aria-label="Brianna\'s redesigned website" aria-hidden="true"'),"Before interaction, screen readers must not expose redesign controls");
  assert(scene.includes('REVEAL REDESIGN'),"Visitor must have an explicit reveal action");
  assert(scene.includes('ORIGINAL WEBSITE / BEFORE'),"Initial status should describe the visible original");
  assert(css.includes('.bld-showcase[data-active="before"] .bld-window-after{'),"Before state must control hidden redesign");
@@ -155,6 +156,7 @@ test("original website is the sole visible screenshot until the visitor explicit
  assert(css.includes('.bld-showcase[data-active="before"] .bld-window-before{width:90%;left:5%;top:22%'),
   "Mobile original should stay centered and prominent");
  assert(js.includes('if (ready) focus("before")'),"Image load must never reveal the redesign automatically");
+ assert(js.includes('afterPanel?.setAttribute("aria-hidden", String(side !== "after"))'),"Reveal and reset must synchronize screen-reader visibility");
  assert(!js.includes('if (ready) focus("after")'),"Do not auto-focus the redesign");
  assert(js.includes('focus(button.dataset.bldFocus)'),"Redesign should reveal on a viewer click");
  assert(js.includes('modalSide(button.dataset.bldOpen)'),"Full-screen viewer should remain available after a click");
