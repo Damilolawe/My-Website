@@ -127,7 +127,8 @@ function draw() {
     const cards = tiers.map((t, i) => {
       const packageForTier = activePackagesForTier(t.id)[0];
       const details = packageForTier?.features?.length
-        ? packageForTier.features.slice(0, 4).map(f => '<li>' + esc(f) + '</li>').join("")
+        ? packageForTier.features.filter(f => !/revisions?/i.test(f)).slice(0, 4)
+            .map(f => '<li>' + esc(f) + '</li>').join("")
         : '<li>' + esc(t.note) + '</li><li>' + (t.id === "premium" ? "Share your brief for a personal quote" : "Choose your design before customizing") + '</li>';
       const price = t.id === "premium" ? "Custom Quote" : packageForTier ? money(packageForTier) : t.inquiry;
       const note = t.id === "premium" ? "Custom project quote" : packageForTier ? "Available package" : "Starting inquiry price";
