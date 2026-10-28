@@ -40,3 +40,19 @@ test("privacy disclosure matches current inquiry and account transport",async()=
  assert(guide.includes("awe-digital"));
  assert(!guide.includes("Create a project"));
 });
+
+test("One required checkout agreement includes informed AI-processing authorization",async()=>{
+ const checkout=await read("app/order.mjs");
+ const privacy=await read("privacy.html");
+ const server=await read("supabase/functions/awe-api/platform/work-handoff.mjs");
+ assert.match(checkout,/id="consent" required/,"The purchase agreement must remain required");
+ assert.match(checkout,/AI-assisted website production:/,"AI processing must be clearly labeled");
+ assert.match(checkout,/OpenAI ChatGPT Work/,"The AI processor must be identified");
+ assert.doesNotMatch(checkout,/id="ai-consent"|\$\("#ai-consent"\)/,"No dangling optional checkbox references");
+ assert.equal(checkout.split('aiConsent: $("#consent")?.checked === true').length-1,2,
+   "Fresh and resumed checkouts must derive AI authorization from the accepted agreement");
+ assert.match(privacy,/required checkout agreement includes authorization/);
+ assert.match(privacy,/OpenAI ChatGPT Work/);
+ assert.doesNotMatch(privacy,/If you separately opt in at package review/);
+ assert.match(server,/aiProcessingConsent\?\.granted !== true/,"Backend must continue checking recorded authorization");
+});
