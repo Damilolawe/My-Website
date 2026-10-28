@@ -9,7 +9,7 @@ Verified against main `c552afa644824695ef7e105990f8af5124855782` on October 27 E
 3. Stripe verification: enabled live webhook covers completion, asynchronous success/failure, expiration and refunds. Live charge history is empty. The connected sandbox contains a completed, paid $1 test checkout. No financial transaction was initiated during this work.
 4. Payment recovery/refunds: signed-webhook replay and delayed-payment tests pass. Full refunds cannot be downgraded by late partial-refund events; invalid/null payment inputs fail closed.
 5. Authentication/data isolation: OTP login, refresh, logout, own-order access, owner checks, uploads and denial paths pass regression tests. All 15 live private tables have RLS and no browser SELECT grants; privileged RPCs deny anon/authenticated execution. No public policies were added. Dependency audit reports zero vulnerabilities.
-6. Owner controls: private preview/export, immutable versions, exact-order confirmation and owner-only publication are covered by tests. Asynchronous export errors are returned as normal API errors.
+6. Owner controls: private preview/export, bounded page-query routing, immutable versions, exact-order confirmation and owner-only publication are covered by tests. Asynchronous export errors are returned as normal API errors.
 7. Customer lifecycle: PostgreSQL-backed simulated workflow covers payment → generation → private review → revision → customer sign-off → owner approval → publication → verified delivery and downloads. Customer approval is bound to a draft UUID; revising invalidates the prior sign-off.
 8. Catalog/build: 116 currently enabled templates; complete static build and validation of 939 pages pass. Local thumbnail generation used an isolated Chromium runtime after the default browser download failed.
 9. Browser/visual QA: 380 template renders across desktop/mobile plus Brianna mouse/keyboard reveal pass. All Signature chapter pages are checked on mobile. Four real overflow cases were repaired by constraining teaser artwork to its card width. Local image loading checks were adjusted to load lazy images before evaluating them. Representative screenshots were inspected; this is not a complete WCAG audit or testing every interactive state.
@@ -17,7 +17,7 @@ Verified against main `c552afa644824695ef7e105990f8af5124855782` on October 27 E
 
 ## Validation
 
-- 559 Node tests passing, including real PostgreSQL via PGlite and controlled Stripe/email/storage simulations.
+- 560 Node tests passing, including real PostgreSQL via PGlite and controlled Stripe/email/storage simulations.
 - Static validation: 939 pages; local links/fragments, unique IDs, titles, language, H1 and authored JS syntax.
 - Browser validation: 116 templates, 381 final checks, zero failures; corrected five-template retest: 27 checks, zero failures.
 - Dependency audit: zero reported vulnerabilities.

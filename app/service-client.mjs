@@ -138,7 +138,8 @@ export function createAweClient({
     if (route === "auth/start") return beginEmailSignIn(payload?.email);
     if (route === "auth/verify") return verifyEmailCode(payload?.email, payload?.token);
     if (route === "auth/logout") return logout();
-    if (!/^[a-z0-9][a-z0-9/_-]{0,180}$/i.test(route) || route.includes("//"))
+    const previewPage = /^(?:orders|admin\/orders)\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\/preview\?page=(?:index|research|work|features|studio|journal|contact)\.html$/i.test(route);
+    if ((!/^[a-z0-9][a-z0-9/_-]{0,180}$/i.test(route) && !previewPage) || route.includes("//"))
       fail("Invalid API route.");
     const token = await accessToken();
     if (!token && !PUBLIC_ROUTES.has(route)) {

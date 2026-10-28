@@ -127,3 +127,25 @@ test("Customer upload retains multipart FormData without forced JSON encoding",a
   assert.strictEqual(options.body,form);
   assert.equal(options.headers["Content-Type"],undefined);
 });
+
+
+test("private preview page selection permits only authenticated preview routes and known HTML pages",async()=>{
+ const calls=[];
+ const client=makeClient(async(url,options)=>{
+  calls.push({url,options});
+  if(url.endsWith("/auth/v1/verify"))return reply({user:{email_confirmed_at:"now"},access_token:"fixture-access",refresh_token:"fixture-refresh",expires_in:3600});
+  return reply({html:"<!doctype html><h1>Private fixture</h1>"});
+ });
+ await client.verifyEmailCode("fixture@example.test","123456");
+ const id="aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
+ for(const prefix of ["orders/","admin/orders/"]){
+  const route=prefix+id+"/preview?page=contact.html";
+  assert.match((await client.api(route)).html,/Private fixture/);
+  assert.equal(calls.at(-1).options.headers.Authorization,"Bearer fixture-access");
+  assert(calls.at(-1).url.endsWith(route));
+ }
+ const before=calls.length;
+ for(const route of ["orders/"+id+"/preview?page=../secret","orders/"+id+"/preview?page=index.html&token=secret","orders/"+id+"/preview?page=unknown.html","catalog?page=index.html","https://other.example/preview?page=index.html"])
+  await assert.rejects(client.api(route),/Invalid API route/);
+ assert.equal(calls.length,before);
+});
