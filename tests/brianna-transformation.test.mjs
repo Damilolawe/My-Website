@@ -125,7 +125,7 @@ test("Brianna case-study buttons, captions, accessibility text and shipped asset
       page+" must not expose the website builder in copy, controls or assets");
    assert(section.includes("BRIANNA / REDESIGNED WEBSITE"));
    assert(section.includes("02 / REDESIGNED WEBSITE"));
-   assert(section.includes(">REDESIGNED WEBSITE <span"));
+   assert(!section.includes('class="bld-case-footer"'),"Removed paragraph and external CTA row must not return");
    assert(section.includes(">OPEN REDESIGN SITE"));
    assert(section.includes('href="https://damilolawe03.wixstudio.com/website?rc=test-site"'),
       "Keep the real redesign destination working while removing visible vendor names");
@@ -160,4 +160,22 @@ test("original website is the sole visible screenshot until the visitor explicit
  assert(!js.includes('if (ready) focus("after")'),"Do not auto-focus the redesign");
  assert(js.includes('focus(button.dataset.bldFocus)'),"Redesign should reveal on a viewer click");
  assert(js.includes('modalSide(button.dataset.bldOpen)'),"Full-screen viewer should remain available after a click");
+});
+
+test("Brianna showcase omits the lower description and original/redesign CTA row",async()=>{
+ const [html,css]=await Promise.all(["index.html","brianna-case.css"].map(read));
+ const from=html.indexOf('<section class="bld-case"');
+ const end=html.indexOf("</section>",from);
+ const section=html.slice(from,end);
+ assert(!section.includes('class="bld-case-footer"'));
+ assert(!section.includes('class="bld-case-links"'));
+ assert(!section.includes("Discover the transformation."));
+ assert(!section.includes("Both images are preserved even if the original domain changes."));
+ assert(!section.includes("YOUR SITE COULD BE NEXT"));
+ assert(!css.includes(".bld-case-footer"));
+ assert(!css.includes(".bld-case-links"));
+ assert(section.includes('data-bld-focus="before"'),"Original reveal controls remain");
+ assert(section.includes('data-bld-focus="after"'),"Redesign reveal controls remain");
+ assert(section.includes('data-bld-lightbox'),"Screenshot modal remains");
+ assert(section.includes('data-bld-capture-fallback'),"Missing screenshot fallback remains available");
 });
