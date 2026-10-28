@@ -110,8 +110,6 @@
  .bld-scene-hint-detail{display:none}
  .bld-live-previews{grid-template-columns:1fr}
  .bld-live-preview{min-height:220px}
- .bld-case-links{width:100%}
- .bld-case-links a{flex:1 1 170px}
  .bld-lightbox{max-width:100vw;width:100vw;max-height:95dvh}
  .bld-lightbox-head>.mono{font-size:9px}
 }
