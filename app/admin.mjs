@@ -28,7 +28,7 @@ function ownerSignIn() {
       <p class="muted">Verification codes are sent only to <strong>${OWNER_EMAIL}</strong>.</p>
       <label class="field" id="owner-code-field" hidden>Verification code
         <input name="token" autocomplete="one-time-code" inputmode="numeric"
-          pattern="[0-9]{6,10}" minlength="6" maxlength="10" disabled required></label>
+          pattern="[0-9]{6}" minlength="6" maxlength="6" disabled required></label>
       <button type="submit" class="btn acid" id="owner-login-submit">Send owner sign-in code ↗︎</button>
     </form>
     <p id="owner-login-feedback" role="status" aria-live="polite"></p>
