@@ -462,6 +462,12 @@ button:disabled {
   max-width: 440px;
   margin: 30px auto;
 }
+/* Keep the email and code labels clear of the focused input outline. */
+.auth .field input:not([type="checkbox"]) {
+  margin-top: 14px;
+  outline-offset: 2px;
+}
+
 .table-scroll {
   overflow: auto;
 }
