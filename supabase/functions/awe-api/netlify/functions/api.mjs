@@ -328,9 +328,18 @@ export default async function (req) {
         return json({ok:true,published:true,url:`/sites/${o.slug}`});
       }
       if (action === "revision" && method === "POST") {
+        if (o.payment !== "paid" || !o.draft_version ||
+            !["customer_review","published","delivered"].includes(o.status))
+          fail("Revisions open after the studio releases your reviewed website.",409);
+        const tier=packageTier(o.package_snapshot);
+        const allowed=tier==="premium"?null:tier==="signature"?3:1;
+        const usage=await rpc("awe_customer_revision_usage",{p_actor:u.id});
+        const used=Number(usage.find(r=>r.order_id===o.id)?.used)||0;
+        if (allowed !== null && used >= allowed)
+          fail("All included revision requests have been used. Contact the studio for additional scope.",409);
         const b = await body(req, 8000);
         const message = text(b.message, 4000);
-        if (message.length < 5 || !o.draft_version) fail("Describe the changes you would like.");
+        if (message.length < 5) fail("Describe the changes you would like.");
         await rpc("awe_customer_revision", {
           p_order:o.id,p_version:o.draft_version,p_actor:u.id,p_message:message
         });
