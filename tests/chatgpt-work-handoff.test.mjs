@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { unzipSync, strFromU8 } from "fflate";
+import { exportPrivateDraft } from "../platform/export.mjs";
 import { workHandoffMessage, sendWorkHandoff, WORK_HANDOFF_SUBJECT, WORK_HANDOFF_RECIPIENT } from "../platform/work-handoff.mjs";
 
 test("Work handoff email includes only an owner-only draft reference, not customer materials", () => {
@@ -90,6 +92,58 @@ test("Work notification is gated by verified payment and idempotent in simulated
     for (const key of keys) {
       if (old[key] === undefined) delete process.env[key];
       else process.env[key] = old[key];
+    }
+  }
+});
+
+test("owner private draft export packages approved assets without exposing unauthenticated public URLs", async () => {
+  const orderId = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
+  const versionId = "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb";
+  const assetId = "cccccccc-cccc-4ccc-8ccc-cccccccccccc";
+  const oldFetch = globalThis.fetch;
+  const keys = ["SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_PUBLISHABLE_KEY"];
+  const oldEnv = Object.fromEntries(keys.map(k => [k, process.env[k]]));
+  try {
+    Object.assign(process.env, {
+      SUPABASE_URL: "https://db.example.test",
+      SUPABASE_SERVICE_ROLE_KEY: "private-test-key",
+      SUPABASE_PUBLISHABLE_KEY: "public-test-key",
+    });
+    globalThis.fetch = async input => {
+      const url = new URL(input);
+      assert.equal(url.hostname, "db.example.test");
+      if (url.pathname.endsWith("/awe_versions"))
+        return Response.json([{
+          id: versionId, order_id: orderId,
+          html: `<!doctype html><html><body><h1>Client portfolio</h1><img src="/api/assets/${assetId}"></body></html>`,
+          input: {template:"folio",content:{name:"Client"}},
+          asset_ids: [assetId],
+        }]);
+      if (url.pathname.endsWith("/awe_assets"))
+        return Response.json([{id:assetId,order_id:orderId,mime:"image/png",
+          public_allowed:true,path:"private/client-photo.png"}]);
+      if (url.pathname.endsWith("/storage/v1/object/awe-private/private/client-photo.png"))
+        return new Response(new Uint8Array([137,80,78,71]),{
+          headers:{"Content-Type":"image/png"}});
+      throw Error("Unexpected private storage request: "+url.pathname);
+    };
+    const order = {id:orderId,payment:"paid",draft_version:versionId};
+    const response = await exportPrivateDraft(order);
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get("Cache-Control"), "private, no-store");
+    const files = unzipSync(new Uint8Array(await response.arrayBuffer()));
+    const html = strFromU8(files["index.html"]);
+    assert.match(html,new RegExp("assets/"+assetId+"\\\\.png"));
+    assert.doesNotMatch(html,/src="\\/api\\/assets\\//);
+    assert.ok(files["assets/"+assetId+".png"]);
+    assert.equal(JSON.parse(strFromU8(files["awe-design-input.json"])).privateVersion,versionId);
+    assert.ok(files["CHATGPT-WORK-INSTRUCTIONS.txt"]);
+    await assert.rejects(exportPrivateDraft({...order,payment:"unpaid"}),/verified paid/);
+  } finally {
+    globalThis.fetch = oldFetch;
+    for (const key of keys) {
+      if (oldEnv[key] === undefined) delete process.env[key];
+      else process.env[key] = oldEnv[key];
     }
   }
 });
