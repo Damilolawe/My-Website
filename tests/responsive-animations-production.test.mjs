@@ -49,5 +49,6 @@ test("Client authorizes only the confirmed owner; payment never auto-publishes",
  assert(production.includes('"awe_approvals"'));
  assert(production.includes("o.public_version !== version"));
  assert(router.includes("verified.ok"));
- assert(router.includes("p[3]==='publish'"));
+ assert(router.includes("p[3]==='release'"),"Only the confirmed owner may release a saved studio draft");
+ assert(router.includes("p[2]==='approve'"),"Only matching customer acceptance may initiate publication and delivery");
 });
