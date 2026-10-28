@@ -133,8 +133,8 @@ test("owner private draft export packages approved assets without exposing unaut
     assert.equal(response.headers.get("Cache-Control"), "private, no-store");
     const files = unzipSync(new Uint8Array(await response.arrayBuffer()));
     const html = strFromU8(files["index.html"]);
-    assert.match(html,new RegExp("assets/"+assetId+"\\\\.png"));
-    assert.doesNotMatch(html,/src="\\/api\\/assets\\//);
+    assert.ok(html.includes("assets/"+assetId+".png"));
+    assert.equal(html.includes('src="/api/assets/'),false);
     assert.ok(files["assets/"+assetId+".png"]);
     assert.equal(JSON.parse(strFromU8(files["awe-design-input.json"])).privateVersion,versionId);
     assert.ok(files["CHATGPT-WORK-INSTRUCTIONS.txt"]);
