@@ -36,6 +36,7 @@ async function revision(db,o) {
 async function nextVersion(db,o) {
  const old=await current(db,o.oid), v=randomUUID();
  await db.query("select awe_save_draft($1,$2,$3,$4,$5,$6,$7)",[o.oid,old.version,v,"{}","<h1>Updated website</h1>","[]",o.owner]);
+ o.v=v;
 }
 test("Owner-first release hides initial drafts and customer approval publishes exactly once",async()=>{
  const db=await database();
@@ -44,6 +45,8 @@ test("Owner-first release hides initial drafts and customer approval publishes e
   const o=await order(db,owner,"signature");
   await assert.rejects(db.query("select awe_customer_approve($1,$2,$3)",[o.oid,o.v,o.uid]),/studio-approved/i);
   await assert.rejects(db.query("select awe_owner_release($1,0,$2,$3)",[o.oid,o.v,o.uid]),/Owner required/);
+  await assert.rejects(studioRelease(db,o),/personally reviewed studio version/i);
+  await nextVersion(db,o);
   await studioRelease(db,o);
   assert.equal((await current(db,o.oid)).status,"customer_review");
   await assert.rejects(db.query("select awe_customer_approve($1,$2,$3)",[o.oid,o.v,randomUUID()]),/Order not found/);
@@ -63,6 +66,7 @@ test("Starter allows 1, Signature 3 and Premium unlimited customer revision requ
   for (const [tier,limit] of [["starter",1],["signature",3],["premium",5]]) {
    const o=await order(db,owner,tier);
    await assert.rejects(revision(db,o),/Current website is not available/);
+   await nextVersion(db,o);
    for(let i=0;i<limit;i++){
      await studioRelease(db,o);
      await revision(db,o);
