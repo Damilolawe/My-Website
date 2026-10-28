@@ -8,6 +8,7 @@
   const focusButtons = [...stage.querySelectorAll("[data-bld-focus]")];
   const previews = [...stage.querySelectorAll("img[data-bld-shot]")];
   const openButtons = [...stage.querySelectorAll("[data-bld-open]")];
+  const afterPanel = stage.querySelector('[data-bld-panel="after"]');
   const status = stage.querySelector("[data-bld-status]");
   const hint = stage.querySelector(".bld-scene-hint-detail");
   const fallback = section?.querySelector("[data-bld-capture-fallback]");
@@ -27,6 +28,7 @@
   const focus = side => {
     if (!labels[side]) return;
     stage.dataset.active = side;
+    afterPanel?.setAttribute("aria-hidden", String(side !== "after"));
     for (const button of focusButtons) button.setAttribute("aria-pressed", String(button.dataset.bldFocus === side));
     status.textContent = side === "after" ? "REDESIGN REVEALED" : "ORIGINAL WEBSITE / BEFORE";
     if (hint) hint.textContent = side === "after"
