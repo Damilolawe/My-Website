@@ -32,7 +32,7 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
     x.endsWith("_awe_platform.sql"),
   );
   await db.exec(await readFile("supabase/migrations/" + file, "utf8"));
-  for (const suffix of ["_customer_draft_approval.sql", "_payment_refund_event_ordering.sql", "_work_handoff_notification_reservation.sql"]) {
+  for (const suffix of ["_customer_draft_approval.sql", "_payment_refund_event_ordering.sql", "_work_handoff_notification_reservation.sql", ...(flow.tier==="signature"?["_owner_first_review.sql"]:[])]) {
     const migration = (await readdir("supabase/migrations")).find(f=>f.endsWith(suffix));
     await db.exec(await readFile("supabase/migrations/"+migration,"utf8"));
   }
@@ -399,7 +399,7 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
         const revision = await request(`orders/${oid}/revision`, {
           data: { message: "Please revise this private draft before publishing." },
         });
-        assert.equal(revision.status, 200);
+        assert.equal(revision.status, flow.tier === "signature" ? 409 : 200);
         assert.equal((await db.query("select public_version from awe_orders")).rows[0].public_version, null);
         assert.equal((await request(`orders/${oid}/revision`, {
           actor: "stranger", data: { message: "Unauthorized private draft revision." },
@@ -431,31 +431,34 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
       "approval requires explicit exact-order confirmation and owner auth",
       async () => {
         const base = { version: order.version, confirm: oid };
-        assert.equal(
-          (await request(`admin/orders/${oid}/publish`, { data: base })).status,
-          403,
-        );
-        assert.equal(
-          (
-            await request(`admin/orders/${oid}/publish`, {
-              actor: "owner",
-              data: { ...base, confirm: "wrong" },
-            })
-          ).status,
-          400,
-        );
-        assert.equal((await request(`admin/orders/${oid}/publish`, {actor:"owner",data:base})).status,409);
-        assert.equal((await request(`orders/${oid}/approve`, {actor:"stranger",data:{version:order.draft_version}})).status,404);
-        assert.equal((await request(`orders/${oid}/approve`, {data:{version:order.draft_version}})).status,200);
-        assert.equal(
-          (
-            await request(`admin/orders/${oid}/publish`, {
-              actor: "owner",
-              data: base,
-            })
-          ).status,
-          200,
-        );
+        if (flow.tier === "signature") {
+          assert.equal((await request(`orders/${oid}/approve`,{data:{version:order.draft_version}})).status,409);
+          assert.equal((await request(`orders/${oid}/preview`)).status,403);
+          assert.equal((await request(`admin/orders/${oid}/release`,{data:base})).status,403);
+          assert.equal((await request(`admin/orders/${oid}/release`,{actor:"owner",data:{...base,confirm:"wrong"}})).status,400);
+          assert.equal((await request(`admin/orders/${oid}/release`,{actor:"owner",data:base})).status,200);
+          order=(await db.query("select * from awe_orders")).rows[0];
+          assert.equal(order.status,"customer_review");
+          assert.equal(order.public_version,null);
+          assert.equal((await request(`orders/${oid}/preview`)).status,200);
+          assert.equal((await request(`admin/orders/${oid}/release`,{actor:"owner",data:{version:order.version,confirm:oid}})).status,409);
+          emailFails=false;
+          await runJobs(1); // Reviewed invitation is sent; website remains private.
+          assert.equal((await db.query("select public_version from awe_orders")).rows[0].public_version,null);
+          emailFails=true;
+          assert.equal((await request(`orders/${oid}/approve`,{actor:"stranger",data:{version:order.draft_version}})).status,404);
+          assert.equal((await request(`orders/${oid}/approve`,{data:{version:randomUUID()}})).status,409);
+          assert.equal((await request(`orders/${oid}/approve`,{data:{version:order.draft_version}})).status,200);
+          assert.equal((await request(`orders/${oid}/approve`,{data:{version:order.draft_version}})).status,409);
+          assert.equal((await request(`admin/orders/${oid}/publish`,{actor:"owner",data:{version:order.version,confirm:oid}})).status,409);
+        } else {
+          assert.equal((await request(`admin/orders/${oid}/publish`,{data:base})).status,403);
+          assert.equal((await request(`admin/orders/${oid}/publish`,{actor:"owner",data:{...base,confirm:"wrong"}})).status,400);
+          assert.equal((await request(`admin/orders/${oid}/publish`,{actor:"owner",data:base})).status,409);
+          assert.equal((await request(`orders/${oid}/approve`,{actor:"stranger",data:{version:order.draft_version}})).status,404);
+          assert.equal((await request(`orders/${oid}/approve`,{data:{version:order.draft_version}})).status,200);
+          assert.equal((await request(`admin/orders/${oid}/publish`,{actor:"owner",data:base})).status,200);
+        }
         order = (await db.query("select * from awe_orders")).rows[0];
         const r = await site(
           new Request(`https://studio.example/sites/${order.slug}`),
@@ -510,7 +513,7 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
           (await db.query("select status from awe_orders")).rows[0].status,
           "delivered",
         );
-        assert.equal(emailCalls, 2);
+        assert.equal(emailCalls, flow.tier === "signature" ? 3 : 2);
       },
     );
     await t.test(
