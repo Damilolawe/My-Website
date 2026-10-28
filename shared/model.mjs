@@ -509,6 +509,7 @@ export function customerOrder(o) {
       }[o.status] || "Order received",
     payment: o.payment,
     package: o.package_snapshot,
+    preview_version: o.payment === "paid" ? o.draft_version || null : null,
     preview_ready: o.payment === "paid" && Boolean(o.draft_version),
     preview_pages: o.input?.template === "runwaymulti" ? ["index.html","research.html","work.html","studio.html","journal.html"] :
       zipDesignFor(o.input?.template)?.multipage ? ["index.html","work.html","features.html","studio.html","contact.html"] : ["index.html"],

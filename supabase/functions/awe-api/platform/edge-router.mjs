@@ -142,7 +142,7 @@ async function dispatch(req) {
       if(b.consent!==true||b.termsVersion!==v.termsVersion)fail('Review the current package terms.');
       if(!(await rows('awe_templates',`id=eq.${data.template}&enabled=eq.true`)).length)fail('This template is unavailable.');
       if(!packageAllowsTemplate(v,data.template))fail('This design requires a higher package tier.',403);
-      changes.package_snapshot={id:pkg.id,...v};
+      changes.package_snapshot={id:pkg.id,...v,aiProcessingConsent:{granted:b.aiConsent===true,policy:"chatgpt-work-v1",recordedAt:new Date().toISOString()}};
     }
     if(b.version!==o.version)fail('Your draft changed in another tab. Reload it before saving.',409);
     const updated=await patch('awe_orders',`id=eq.${o.id}&version=eq.${o.version}&checkout_at=is.null`,changes);

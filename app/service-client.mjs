@@ -178,11 +178,11 @@ export function createAweClient({
     return data;
   }
   async function download(route) {
-    // Do not grant arbitrary binary access. All three routes are authenticated
+    // Do not grant arbitrary binary access. These routes are authenticated
     // and individually authorized again by the Supabase Edge server.
     const uuid = "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
     const permitted = new RegExp("^(?:orders/" + uuid + "/export|admin/orders/" +
-      uuid + "/export|assets/" + uuid + ")$", "i");
+      uuid + "/(?:export|handoff-export)|assets/" + uuid + ")$", "i");
     if (!permitted.test(route)) fail("Invalid download route.");
     const token = await accessToken();
     if (!token) {

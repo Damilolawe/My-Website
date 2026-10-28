@@ -20,6 +20,10 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
     x.endsWith("_awe_platform.sql"),
   );
   await db.exec(await readFile("supabase/migrations/" + file, "utf8"));
+  for (const suffix of ["_customer_draft_approval.sql", "_payment_refund_event_ordering.sql", "_work_handoff_notification_reservation.sql"]) {
+    const migration = (await readdir("supabase/migrations")).find(f=>f.endsWith(suffix));
+    await db.exec(await readFile("supabase/migrations/"+migration,"utf8"));
+  }
   const owner = randomUUID(),
     customer = randomUUID(),
     stranger = randomUUID();
@@ -69,14 +73,15 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
     const clauses = [];
     for (const [k, v] of params) {
       if (["select", "order", "limit", "on_conflict"].includes(k)) continue;
-      assert.match(k, /^[a-z_]+$/);
+      assert(k === "details->>version" || /^[a-z_]+$/.test(k));
+      const column = k === "details->>version" ? "(details->>'version')" : k;
       if (v === "is.null") clauses.push(`${k} is null`);
       else if (v === "not.is.null") clauses.push(`${k} is not null`);
       else if (v.startsWith("eq.")) {
         vals.push(
           v === "eq.true" ? true : v === "eq.false" ? false : v.slice(3),
         );
-        clauses.push(`${k}=$${vals.length}`);
+        clauses.push(`${column}=$${vals.length}`);
       } else throw Error("Unhandled test filter " + v);
     }
     return clauses.length ? " where " + clauses.join(" and ") : "";
@@ -395,6 +400,9 @@ test("HTTP workflow with real PostgreSQL and simulated external providers", asyn
           ).status,
           400,
         );
+        assert.equal((await request(`admin/orders/${oid}/publish`, {actor:"owner",data:base})).status,409);
+        assert.equal((await request(`orders/${oid}/approve`, {actor:"stranger",data:{version:order.draft_version}})).status,404);
+        assert.equal((await request(`orders/${oid}/approve`, {data:{version:order.draft_version}})).status,200);
         assert.equal(
           (
             await request(`admin/orders/${oid}/publish`, {
