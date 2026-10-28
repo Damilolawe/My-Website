@@ -9,6 +9,7 @@
   const previews = [...stage.querySelectorAll("img[data-bld-shot]")];
   const openButtons = [...stage.querySelectorAll("[data-bld-open]")];
   const status = stage.querySelector("[data-bld-status]");
+  const hint = stage.querySelector(".bld-scene-hint-detail");
   const fallback = section?.querySelector("[data-bld-capture-fallback]");
   const viewer = section?.querySelector("[data-bld-lightbox]");
   const viewerImage = viewer?.querySelector("[data-bld-lightbox-image]");
@@ -27,7 +28,10 @@
     if (!labels[side]) return;
     stage.dataset.active = side;
     for (const button of focusButtons) button.setAttribute("aria-pressed", String(button.dataset.bldFocus === side));
-    status.textContent = side === "after" ? "REDESIGN IN FOCUS" : "ORIGINAL IN FOCUS";
+    status.textContent = side === "after" ? "REDESIGN REVEALED" : "ORIGINAL WEBSITE / BEFORE";
+    if (hint) hint.textContent = side === "after"
+      ? "SELECT EITHER WINDOW TO ENLARGE"
+      : "CLICK REVEAL REDESIGN TO SEE THE TRANSFORMATION";
   };
 
   const modalSide = side => {
@@ -83,6 +87,6 @@
     const ready = results.every(Boolean);
     stage.hidden = !ready;
     fallback.hidden = ready;
-    if (ready) focus("after");
+    if (ready) focus("before");
   });
 })();
