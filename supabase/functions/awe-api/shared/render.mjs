@@ -70,7 +70,7 @@ export function compactInlineStyles(html, {preserve = []} = {}) {
 // customer media IDs, asset delivery, and approval workflows with all templates.
 export function renderSite(input, options = {}) {
   const normalized = normalize(input);
-  if(zipDesignFor(normalized.template))return applyTypographySafety(renderZipDesign(normalized,options), normalized.template);
+  if(zipDesignFor(normalized.template))return applyTypographySafety(renderZipDesign(normalized,options), normalized.template).replace(/[↗↘↖↙←→↑↓⇄✳✺✻✽✿✦✧❦▶✓](?!\uFE0E)/gu, "  if(zipDesignFor(normalized.template))return applyTypographySafety(renderZipDesign(normalized,options), normalized.template);\uFE0E");
   const page = normalized.template === "folio"
     ? renderFolioEditorial(normalized, options)
     : renderPremium(normalized, options);
