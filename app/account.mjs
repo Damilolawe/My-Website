@@ -28,7 +28,7 @@ function projectTimeline(o) {
     <p class="eyebrow">PROJECT PROGRESS</p>
     <ol style="display:grid;gap:.65rem;padding-left:1.2rem">
       ${steps.map(([key,title],index)=>`<li style="opacity:${index>at?".42":"1"}">
-        <strong>${esc(title)}</strong> ${index<at?"✓":index===at?"· Current":""}
+        <strong>${esc(title)}</strong> ${index<at?"✓︎":index===at?"· Current":""}
       </li>`).join("")}
     </ol>
     <p class="muted">${esc(
