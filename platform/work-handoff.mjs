@@ -1,6 +1,7 @@
 import { env, fail, insert, rows } from "./backend.mjs";
 
 export const WORK_HANDOFF_SUBJECT = "AWE WORK HANDOFF | DRAFT READY";
+export const WORK_HANDOFF_RECIPIENT = "contact@aweconcepts.com";
 
 // Keep client material and credentials out of the Gmail trigger. Work must
 // authenticate as the verified studio owner before it can see the draft.
@@ -31,7 +32,11 @@ export function workHandoffMessage(order, version, siteOrigin) {
 export async function sendWorkHandoff(order, version) {
   if (env().AWE_WORK_HANDOFF_ENABLED !== "true") return false;
   if (order.payment !== "paid" || !version) return false;
-  const recipient = env().AWE_WORK_HANDOFF_EMAIL?.trim();
+  // Never send client order metadata to a different (including personal) inbox.
+  const recipient = WORK_HANDOFF_RECIPIENT;
+  if (env().AWE_WORK_HANDOFF_EMAIL &&
+      env().AWE_WORK_HANDOFF_EMAIL.trim().toLowerCase() !== recipient)
+    fail("Work handoff recipient must be the Awe Concepts business mailbox.", 503);
   const from = env().EMAIL_FROM;
   if (!recipient || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient) ||
       !env().RESEND_API_KEY || !from || !env().SITE_ORIGIN)
