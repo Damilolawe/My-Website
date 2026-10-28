@@ -9,17 +9,23 @@ test("Only successful, signed webhook responses can start background generation"
  assert.match(source,/if \(verified\.ok\) startBackgroundJobs\(\);/);
  assert(!source.includes("if(path==='stripe-webhook')return webhook(req)"));
 });
-test("Only authenticated successfully approved publish routes can kick delivery",async()=>{
+test("Owner release and customer approval kick only their authorized queued jobs",async()=>{
  const source=await readFile(new URL("../supabase/functions/awe-api/platform/edge-router.mjs",import.meta.url),"utf8");
  const handler=source.slice(source.indexOf("const response=await legacyApi("));
  assert(handler.includes("response.ok && req.method==='POST'"));
  assert(handler.includes("p.length===4"));
- assert(handler.includes("p[0]==='admin' && p[1]==='orders' && p[3]==='publish'"));
+ assert(handler.includes("p[0]==='admin' && p[1]==='orders' && p[3]==='release'"));
+ assert(handler.includes("p[0]==='orders' && p[2]==='approve'"));
  assert(handler.includes("startBackgroundJobs()"));
  const legacy=await readFile(new URL("../supabase/functions/awe-api/netlify/functions/api.mjs",import.meta.url),"utf8");
  assert(legacy.includes('if (op === "publish")'));
- assert(legacy.includes('await rpc("awe_publish"'));
+ assert(legacy.includes('await rpc("awe_owner_release"'));
+ assert(legacy.includes('await rpc("awe_customer_approve"'));
  const schema=await readFile(new URL("../supabase/migrations/20261022024259_awe_platform.sql",import.meta.url),"utf8");
+ const ownerFirst=await readFile(new URL("../supabase/migrations/20261028230000_owner_first_review.sql",import.meta.url),"utf8");
+ assert(ownerFirst.includes("owner_preapproved"));
+ assert(ownerFirst.includes("status='customer_review'"));
+ assert(ownerFirst.includes("kind,version_id) values(p_order,'deliver',p_version)"));
  assert(schema.includes("not exists(select 1 from awe_owner where user_id=p_actor)"));
  assert(schema.includes("o.payment<>'paid'"));
  assert(schema.includes("insert into awe_jobs(order_id,kind,version_id) values(p_order,'deliver',p_version)"));
