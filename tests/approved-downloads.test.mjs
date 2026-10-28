@@ -54,7 +54,8 @@ test("owner can download approved ZIP and customer materials using protected Edg
  await client.verifyEmailCode("owner@example.test","123456");
  assert.equal((await client.download("admin/orders/"+UUID+"/export")).mime,"application/zip");
  assert.equal((await client.download("assets/"+UUID)).filename,UUID+".jpg");
- assert.equal(requests,2);
+ assert.equal((await client.download("admin/orders/"+UUID+"/handoff-export")).mime,"image/jpeg");
+ assert.equal(requests,3);
 });
 
 test("download does not expose unauthenticated or unexpected destinations",async()=>{
