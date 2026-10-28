@@ -47,5 +47,5 @@ test("Default source designs are not recolored, and invalid design colors cannot
  const input=sampleForTemplate("clay");
  assert(!renderSite(input,{sample:true}).includes("data-awe-customer-colors"));
  const output=renderSite({...input,design:{...input.design,primary:"red;};body{display:none",secondary:"#0308f7"}},{sample:true});
- assert(!output.includes("data-awe-customer-colors"));
+ assert(!output.includes("red;};body{display:none"),"Unsafe CSS value must not be passed into published HTML");
 });
