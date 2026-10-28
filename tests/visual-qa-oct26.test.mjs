@@ -16,8 +16,15 @@ test("all 74 study demos use different artwork for projects and avoid the duplic
   assert(!html.includes('<h2>Artfully considered.</h2>'),template.id+" duplicated approach");
   if(!template.multipage){
    assert(html.includes('study-approach')||template.id==="md-nintendo-2001",template.id+" missing editorial approach or independent arcade system");
-   assert.equal((html.match(/<div class="cards">/g)||[]).length,1,template.id+" repeats the same gallery");
-   assert.equal((html.match(/data-scene="[^"]+"/g)||[]).length,3,template.id+" must show three independent project illustrations");
+   if(template.id==="md-nintendo-2001"){
+    // PixelQuest has a purpose-built arcade gallery instead of generic study cards.
+    assert.equal((html.match(/<div class="cards pq-games">/g)||[]).length,1,template.id+" repeats the arcade game shelf");
+    assert.equal((html.match(/<article class="card pq-game">/g)||[]).length,3,template.id+" must have three customizable game projects");
+    assert(html.includes(".pq-game:nth-child(2) .pq-poster")&&html.includes(".pq-game:nth-child(3) .pq-poster"),template.id+" loses independent game-poster styling");
+   }else{
+    assert.equal((html.match(/<div class="cards">/g)||[]).length,1,template.id+" repeats the same gallery");
+    assert.equal((html.match(/data-scene="[^"]+"/g)||[]).length,3,template.id+" must show three independent project illustrations");
+   }
   }
  }
 });
