@@ -421,17 +421,21 @@ export default async function (req) {
           fail("Enter a price in minor currency units.");
         if (!["usd", "eur", "gbp", "cad", "aud"].includes(b.currency))
           fail("Supported currencies: usd, eur, gbp, cad, aud.");
+        const tier = ["starter", "signature", "premium"].includes(b.tier) ? b.tier : packageTier(b);
+        const revisionFeature = tier === "premium" ? "Unlimited revisions within the agreed project scope" :
+          tier === "signature" ? "3 included revisions" : "1 included revision";
         const data = {
           name: text(b.name, 100),
-          tier: ["starter", "signature", "premium"].includes(b.tier) ? b.tier : packageTier(b),
+          tier,
           enabled: b.enabled === true,
           amount: b.amount,
           currency: b.currency,
-          features: (b.features || []).map((x) => text(x, 200)).slice(0, 20),
+          features: (b.features || []).map((x) => text(x, 200))
+            .filter(x => !/revisions?/i.test(x)).slice(0, 19).concat(revisionFeature),
           hosting: text(b.hosting, 2000),
           ownership: text(b.ownership, 2000),
-          revisions: (b.tier==="premium" ? "Unlimited revision requests within the agreed project scope." :
-            b.tier==="signature" ? "3 included revision requests; major scope additions require a separate quote." :
+          revisions: (tier==="premium" ? "Unlimited revision requests within the agreed project scope." :
+            tier==="signature" ? "3 included revision requests; major scope additions require a separate quote." :
             "1 included revision request; major scope additions require a separate quote."),
           refunds: text(b.refunds, 2000),
           delivery: b.delivery === "awe-multipage" ? "awe-multipage" : "awe-hosted",
