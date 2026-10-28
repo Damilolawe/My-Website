@@ -1,13 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { workHandoffMessage, sendWorkHandoff, WORK_HANDOFF_SUBJECT } from "../platform/work-handoff.mjs";
+import { workHandoffMessage, sendWorkHandoff, WORK_HANDOFF_SUBJECT, WORK_HANDOFF_RECIPIENT } from "../platform/work-handoff.mjs";
 
 test("Work handoff email includes only an owner-only draft reference, not customer materials", () => {
   const id = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
   const version = "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb";
   const txt = workHandoffMessage({id, email:"secret@example.test", input:{content:{bio:"PRIVATE BIO"}}},version,"https://aweconcepts.com");
   assert.equal(WORK_HANDOFF_SUBJECT,"AWE WORK HANDOFF | DRAFT READY");
+  assert.equal(WORK_HANDOFF_RECIPIENT,"contact@aweconcepts.com");
   assert.match(txt,/admin\.html\?order=aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa/);
   assert.match(txt,/owner approval/i);
   assert.doesNotMatch(txt,/PRIVATE BIO|secret@example\.test/);
@@ -44,7 +45,7 @@ test("Work notification is gated by verified payment and idempotent in simulated
   try {
     Object.assign(process.env, {
       AWE_WORK_HANDOFF_ENABLED:"true",
-      AWE_WORK_HANDOFF_EMAIL:"work-owner@example.test",
+      AWE_WORK_HANDOFF_EMAIL:"contact@aweconcepts.com",
       RESEND_API_KEY:"example",
       EMAIL_FROM:"studio@example.test",
       SITE_ORIGIN:"https://aweconcepts.com",
@@ -57,7 +58,7 @@ test("Work notification is gated by verified payment and idempotent in simulated
       if (u.hostname === "api.resend.com") {
         mailCount++;
         const message = JSON.parse(options.body);
-        assert.deepEqual(message.to,["work-owner@example.test"]);
+        assert.deepEqual(message.to,[WORK_HANDOFF_RECIPIENT]);
         assert.equal(message.subject, WORK_HANDOFF_SUBJECT);
         assert.match(options.headers["Idempotency-Key"],/work-handoff/);
         return json({id:"resend-accepted"});
@@ -77,6 +78,10 @@ test("Work notification is gated by verified payment and idempotent in simulated
     assert.equal(events[0].details.version, version);
     assert.equal(await sendWorkHandoff(order,version), false);
     assert.equal(mailCount,1);
+    process.env.AWE_WORK_HANDOFF_EMAIL="damilolawe03@gmail.com";
+    await assert.rejects(sendWorkHandoff(order,"dddddddd-dddd-4ddd-8ddd-dddddddddddd"), /business mailbox/);
+    assert.equal(mailCount,1);
+    process.env.AWE_WORK_HANDOFF_EMAIL="contact@aweconcepts.com";
     process.env.AWE_WORK_HANDOFF_ENABLED="false";
     assert.equal(await sendWorkHandoff(order,version), false);
     assert.equal(mailCount,1);
