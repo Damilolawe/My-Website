@@ -78,7 +78,7 @@ test("deployed and legacy API both gate and recover checkout with one idempotenc
   ]) {
     const file = await readFile(new URL("../" + path, import.meta.url), "utf8");
     const begin = file.indexOf('if (action === "checkout")');
-    const end = file.indexOf('if (action === "revision")', begin);
+    const end = file.indexOf('if (action === "revision" && method === "POST")', begin);
     assert(begin >= 0 && end > begin, "Checkout handler missing: " + path);
     const flow = file.slice(begin, end);
     assert(flow.includes("!liveCheckoutConfigured() && !qaAllowed"), path);
