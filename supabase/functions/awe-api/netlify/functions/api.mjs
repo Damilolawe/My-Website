@@ -490,11 +490,6 @@ export default async function (req) {
           });
         }
         if (op === "preview" && method === "GET") {
-          if (o.payment !== "paid" || !o.draft_version ||
-              !["customer_review","published","delivered"].includes(o.status))
-            fail("The studio has not released this draft for your review.", 403);
-          if (o.status !== "customer_review" && o.public_version !== o.draft_version)
-            fail("The latest draft is not available for your review.", 403);
           const v = (
             await rows(
               "awe_versions",
