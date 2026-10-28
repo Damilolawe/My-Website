@@ -16,7 +16,7 @@ The owner's `admin/orders/:order/handoff-export` route exports the paid, consent
 
 The existing automation was updated in place with an exact-subject Gmail trigger bound to the verified business Gmail connector. It remains unscheduled and event-driven. There is no recorded production run. Email receipt alone cannot establish successful Work execution.
 
-Work needs a separately authenticated owner session or a private ZIP explicitly supplied by the owner. The connected Gmail account does not grant owner-dashboard access. A complete authenticated export → Work refinement → private result has not been exercised. There is no arbitrary AI HTML importer. A durable owner-only claim/completion protocol is now implemented and live; see RELEASE_2026-10-28.md. The saved task correctly stops if those prerequisites are unavailable; do not enable autonomous processing on the strength of the notification dedupe alone.
+Work needs a separately authenticated owner session or a private ZIP explicitly supplied by the owner. The connected Gmail account does not grant owner-dashboard access. A complete authorized private-data → manual Work refinement → private result round trip has now passed on the synthetic sandbox fixture; autonomous event-trigger execution remains unverified. There is no arbitrary AI HTML importer. A durable owner-only claim/completion protocol is now implemented and live; see RELEASE_2026-10-28.md. The saved task correctly stops if those prerequisites are unavailable; do not enable autonomous processing on the strength of the notification dedupe alone.
 
 The supported fallback is an owner-authorized private ZIP, a separate private revised ZIP returned by Work, and manual owner review/application. Never publish customer files or put them in a public repository. Preserve the original version. Owner approval is mandatory, and publication also requires customer approval of the exact saved version.
 
@@ -36,3 +36,8 @@ A failed or abandoned claim cannot be automatically taken over. Reconcile it as 
 The owner queue supports a one-off `work_acceptance` job for an existing paid test-only fixture. It independently retrieves the Stripe **sandbox** Checkout Session and verifies its mode, paid state, order reference, amount and currency before allowing the metadata-only notification with production handoff disabled. This does not initiate payment or enable ordinary customer handoff. Consent and durable notification reservation still apply.
 
 Live backend version 91 contains the independently released checkout guard, consented private export, processing endpoints, durable notification path and acceptance worker. The full customer approval/static release remains coordinated and pending. See the follow-up release record for applied versus pending migrations.
+
+
+## Acceptance outcome
+
+The live owner sign-in, sandbox payment re-verification, notification delivery to the business inbox, authorized manual draft retrieval/refinement, private ZIP result, completion ledger and duplicate skip all passed. Inbox delivery did not produce a recorded autonomous task run in the available task history. The saved Gmail predicate accepts verified INBOX deliveries even when self-addressing also assigns SENT; it still rejects outgoing-only messages and nonmatching subjects. See RELEASE_2026-10-28.md for the bounded attempts and limitations. Do not keep generating test emails or claim autonomous success without a real recorded result.
