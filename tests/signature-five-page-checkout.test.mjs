@@ -70,7 +70,7 @@ test("Starter shows only single-page templates, Signature only five-page designs
  const [client,account,home]=await Promise.all(["app/order.mjs","app/account.mjs","index.html"].map(p=>readFile(new URL("../"+p,import.meta.url),"utf8")));
  assert(client.includes('const templatesForTier=tier=>galleryTemplates.filter(t=>templateFitsTier(t.id,tier))'));
  assert(client.includes('window.location.assign(AWE_CUSTOM_URL)'));
- assert(client.includes('AWE_CUSTOM_URL="/account.html?custom=1"'));
+ assert(client.includes('AWE_CUSTOM_URL="/account?custom=1"'));
  assert(account.includes('get("custom")==="1"'));
  assert(home.includes('/order.html?tier=starter'));
  assert(home.includes('/order.html?tier=signature'));
