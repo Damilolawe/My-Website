@@ -161,6 +161,9 @@ async function dispatch(req) {
   if(p[0]==='orders'&&p[2]==='preview'&&req.method==='GET') {
     const o=await owned(p[1],u);
     if(o.payment!=='paid'||!o.draft_version)fail('Your website draft is not ready yet.',409);
+    if(o.status!=='customer_review' &&
+      !(o.public_version===o.draft_version && ['published','delivered'].includes(o.status)))
+      fail('The studio has not released this version for customer review.',403);
     const v=(await rows('awe_versions',`id=eq.${o.draft_version}&order_id=eq.${o.id}`))[0];
     if(!v)fail('Your website draft is not ready yet.',409);
     const page=url.searchParams.get('page')||'index.html';
@@ -227,10 +230,11 @@ async function dispatch(req) {
     fail('Inquiry endpoint not found.',404);
   }
   const response=await legacyApi(relocate(req,'/api/'+path));
-  if (response.ok && req.method==='POST' && p.length===4 &&
-      p[0]==='admin' && p[1]==='orders' && p[3]==='publish') {
-    // The legacy handler verifies owner JWT and commits approval atomically.
-    // Never kick off delivery if authorization or publishing failed.
+  if (response.ok && req.method==='POST' &&
+      ((p.length===4 && p[0]==='admin' && p[1]==='orders' && p[3]==='release') ||
+       (p.length===3 && p[0]==='orders' && p[2]==='approve'))) {
+    // The owner review queues an invitation; the customer's matching approval
+    // atomically publishes the approved version and queues delivery.
     startBackgroundJobs();
   }
   if(response.ok && p.at(-1)==='preview')return json({html:await response.text()});

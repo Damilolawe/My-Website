@@ -58,7 +58,7 @@ const templateDefinitions = [
   ...zipDesigns,
 ];
 const names = ["Velocity","Hearth","Apex","Bluepoint","Broadcast","Calendar","Goldline","Modular","Evergreen","Thoughtful","Luminance","Bluewave","Voiceprint","Canvas","Harmony","Heritage","Skyline","Composition","Exhibit","Framework","Frame","Gridline","Dialogue","Pathfinder","Clearview","Deepwater","Grand Touring","Daydream","Balance","Current","Connect","Verdant","Ember","Microcosm","Fieldnotes","Whiteboard","Marketplace","Compass","Notebook","Playroom","Vertex","Structure","Arcadia","Openfield","Momentum","Pinboard","Insight","Storefront","Flowstate","Replica","Foundation","Enterprise","Postmark","Orbitals","Collaboration","Coffeehouse","Roadster","Prism","Perspective","Monochrome","Transit","Supernova","Greenhouse","Togetherness","Signal Red","Editorial","Blueprint","Brightside","Automate","Frontier","Clarity","Catalyst","Launchpad","Zenith"];
-const overrides = {runwayml:'Cinematic',runwaymulti:'Cinematic Pages',nike:'Athletic',clay:'Sculpt',ferrari:'Motorsport'};
+const overrides = {folio:'Folio',terminal:'Terminal',orbit:'Orbit',runwayml:'Cinematic',runwaymulti:'Cinematic Pages',nike:'Athletic',clay:'Sculpt',ferrari:'Motorsport'};
 export const templates = templateDefinitions.map(t => ({...t,tier: t.tier || "starter",name: t.id.startsWith('md-') ? names[t.sourceIndex] : (overrides[t.id] || t.name)}));
 export const types = [
   "Student résumé",
@@ -489,7 +489,14 @@ export function sampleForTemplate(id,purpose){
     sections:t.id==="folio" ? ["work","services","about",...kit.sections.filter(s=>!["work","services","about","contact"].includes(s)),"contact"] : purpose===undefined && (originalDirection||uploadedDirection||freeDirection) ? ["about","work","contact"] : kit.sections
   },content};
 }
-export function customerOrder(o) {
+export function customerOrder(o, revisionsUsed = 0) {
+  const packageTier = o.package_snapshot?.tier ||
+    (o.package_snapshot?.amount >= 25000 ? "premium" :
+     o.package_snapshot?.amount >= 15000 ? "signature" : "starter");
+  const revisionLimit = packageTier === "premium" ? null :
+    packageTier === "signature" ? 3 : 1;
+  const revisionsRemaining = revisionLimit === null ? null :
+    Math.max(0, revisionLimit - revisionsUsed);
   return {
     id: o.id,
     created_at: o.created_at,
@@ -498,8 +505,9 @@ export function customerOrder(o) {
         received: "Order received",
         payment_verified: "Payment confirmed",
         generating: "Website in preparation",
-        awaiting_review: "Quality review",
-        revisions_required: "Quality review",
+        awaiting_review: "Studio review",
+        customer_review: "Ready for your review",
+        revisions_required: "Changes in progress",
         approved: "Quality review",
         publishing: "Quality review",
         published: "Website ready",
@@ -509,11 +517,26 @@ export function customerOrder(o) {
       }[o.status] || "Order received",
     payment: o.payment,
     package: o.package_snapshot,
-    preview_version: o.payment === "paid" ? o.draft_version || null : null,
-    preview_ready: o.payment === "paid" && Boolean(o.draft_version),
+    revision_limit: revisionLimit,
+    revisions_used: revisionsUsed,
+    revisions_remaining: revisionsRemaining,
+    revisions_label: revisionLimit === null ? "Unlimited revisions" :
+      revisionLimit === 1 ? "1 included revision" : revisionLimit + " included revisions",
+    preview_version: o.payment === "paid" &&
+      (o.status === "customer_review" ||
+       (["published","delivered"].includes(o.status) && o.public_version === o.draft_version))
+      ? o.draft_version || null : null,
+    preview_ready: o.payment === "paid" && Boolean(o.draft_version) &&
+      (o.status === "customer_review" ||
+       (["published","delivered"].includes(o.status) && o.public_version === o.draft_version)),
     preview_pages: o.input?.template === "runwaymulti" ? ["index.html","research.html","work.html","studio.html","journal.html"] :
       zipDesignFor(o.input?.template)?.multipage ? ["index.html","work.html","features.html","studio.html","contact.html"] : ["index.html"],
     public_url: o.public_version ? `/sites/${o.slug}` : null,
+    review_stage: o.payment !== "paid" ? "payment" :
+      o.status === "customer_review" ? "customer" :
+      o.status === "delivered" ? "delivered" :
+      o.status === "published" ? "published" :
+      ["awaiting_review","revisions_required"].includes(o.status) ? "studio" : "preparing",
   };
 }
 export function assertOwner(user, owner) {

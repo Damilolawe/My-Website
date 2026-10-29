@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import edge from '../supabase/functions/awe-api/platform/edge-router.mjs';
-import {customerOrder, sample} from '../shared/model.mjs';
+import {sample} from '../shared/model.mjs';
+import {customerOrder} from '../supabase/functions/awe-api/shared/model.mjs';
 
 test('customer private draft reads enforce payment, ownership, immutable version and page allowlist', async () => {
   const oid='11111111-1111-4111-8111-111111111111';
@@ -10,7 +11,7 @@ test('customer private draft reads enforce payment, ownership, immutable version
   const original=globalThis.fetch;
   const saved={...process.env};
   let customer=uid;
-  let order={id:oid,user_id:uid,payment:'paid',draft_version:vid,input:{template:'index'}};
+  let order={id:oid,user_id:uid,payment:'paid',status:'awaiting_review',draft_version:vid,input:{template:'index'}};
   let version={id:vid,order_id:oid,input:sample,html:'<!doctype html><html><body><h1>Immutable private draft</h1></body></html>'};
   const reply=x=>new Response(JSON.stringify(x),{headers:{'content-type':'application/json'}});
   Object.assign(process.env,{SUPABASE_URL:'https://db.example',SUPABASE_SERVICE_ROLE_KEY:'fake-server',SUPABASE_PUBLISHABLE_KEY:'fake-public'});
@@ -27,6 +28,9 @@ test('customer private draft reads enforce payment, ownership, immutable version
   };
   const get=(query='')=>edge(new Request('https://db.example/functions/v1/awe-api/orders/'+oid+'/preview'+query,{headers:{Authorization:'Bearer fake-customer'}}));
   try {
+    assert.equal((await get()).status,403,'owner-only draft must stay private');
+    assert.equal(customerOrder(order).preview_ready,false);
+    order={...order,status:'customer_review'};
     let r=await get(); assert.equal(r.status,200);
     assert.equal(r.headers.get('cache-control'),'private, no-store');
     assert.equal((await r.json()).html,version.html);

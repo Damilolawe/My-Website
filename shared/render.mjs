@@ -6,6 +6,7 @@ import { applyColorConsistency } from "./color-consistency.mjs";
 import {zipDesignFor} from "./zip-design-catalog.mjs";
 import {renderZipDesign} from "./zip-design-render.mjs";
 import { applyTypographySafety } from "./typography-guard.mjs";
+import {applyCustomerColors} from "./customer-color-theme.mjs";
 import {exactGuideCSSFor} from "./exact-design-css.mjs";
 
 // Preserve authored CSS tokens (including quoted content, descendant selectors and
@@ -70,12 +71,14 @@ export function compactInlineStyles(html, {preserve = []} = {}) {
 // customer media IDs, asset delivery, and approval workflows with all templates.
 export function renderSite(input, options = {}) {
   const normalized = normalize(input);
-  if(zipDesignFor(normalized.template))return applyTypographySafety(renderZipDesign(normalized,options), normalized.template);
+  if(zipDesignFor(normalized.template))return applyCustomerColors(
+    applyTypographySafety(renderZipDesign(normalized,options), normalized.template),normalized);
   const page = normalized.template === "folio"
     ? renderFolioEditorial(normalized, options)
     : renderPremium(normalized, options);
   const upgraded = applyPremiumStudy(page, normalized.template, normalized.content);
-  const finished = applyTypographySafety(applyColorConsistency(upgraded, normalized.template, normalized.design), normalized.template);
+  const finished = applyCustomerColors(applyTypographySafety(
+    applyColorConsistency(upgraded, normalized.template, normalized.design),normalized.template),normalized);
   // Only optimize a design-guide page when its original rendered document
   // is approaching the strict 240,000-character preview limit. This protects
   // the next Refero guide from unexpectedly tripping the size gate as well.

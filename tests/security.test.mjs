@@ -238,7 +238,8 @@ test("customer response strips internal content, drafts, notes and jobs", () => 
   });
   assert(!("draft_version" in result));
   assert(!("input" in result));
-  assert.equal(result.status, "Quality review");
+  assert.equal(result.status, "Studio review");
+  assert.equal(result.preview_ready, false, "An unreleased owner draft must remain private");
   assert.equal(result.public_url, null);
 });
 test("uploads decode images, strip metadata and reject forged or unsupported files", async () => {

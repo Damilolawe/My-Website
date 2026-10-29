@@ -19,18 +19,30 @@ test("the entire 20-template catalog maps the chosen colors to its major hero, n
     const pink = palette(id, "#ff0077", "#1d53d7");
     const green = palette(id, "#20bb42", "#efad34");
     if(id!=="liquidmetal"&&id!=="runwayml"&&id!=="runwaymulti"&&!["nike","clay","ferrari"].includes(id))assert.notEqual(pink, green, id + " ignored the selected colors");
-    if(["nike","clay","ferrari"].includes(id)){assert.equal(pink,green,id+" retains guide-defined visual palette");assert(pink.includes("trio-"+id));continue;}
+    if(["nike","clay","ferrari"].includes(id)){
+      assert.notEqual(pink,green,id+" must respond to selected colors");
+      assert(pink.includes("trio-"+id),id+" must retain authored architecture");
+      assert(pink.includes("--awe-primary:#ff0077"),id+" primary should reach attached buttons");
+      assert(pink.includes("--awe-secondary:#1d53d7"),id+" secondary should reach major surfaces");
+      continue;
+    }
     if(freeDesignFor(id)){
       assert(pink.includes("--accent:#ff0077;--secondary:#1d53d7"),id+" missed palette selections");
       assert(green.includes("--accent:#20bb42;--secondary:#efad34"),id+" did not update palette");
       assert(pink.includes('class="fd-site fd-'+id),id+" did not retain unique architecture");
       continue;
     }
-    if((id==="runwayml"||id==="runwaymulti")) {assert(pink.includes("class=\"rw-site"));assert.equal(pink,green,"RunwayML preserves its original monochrome styling");continue;}
+    if(id==="runwayml"||id==="runwaymulti"){
+      assert(pink.includes('class="rw-site'),"RunwayML architecture must remain unchanged");
+      assert.notEqual(pink,green,"RunwayML must respond to the customer brand colors");
+      assert(pink.includes("--awe-primary:#ff0077"));
+      continue;
+    }
     if(id==="liquidmetal") {
       assert(pink.includes("class=\"liquidmetal"),"Liquid Metal must retain its exact monochrome source palette");
       assert(pink.includes("--lm-primary:#E8EAEE"),"Missing source primary");
-      assert(!pink.includes("--accent:#ff0077"),"Liquid Metal must not introduce forbidden saturated palette overrides");
+      assert(pink.includes("--awe-primary:#ff0077"),"Liquid Metal must honor custom brand colors");
+      assert.notEqual(pink,green,"Liquid Metal must react to changed color pickers");
       continue;
     }
     if(id==="folio") {
@@ -96,7 +108,7 @@ test("customer preview passes the live picker selections into the exact producti
   assert(code.includes('name="secondary" type="color"'));
   assert(code.includes('$("#design").oninput = update'));
   assert(code.includes('design: input.design'));
-  assert(code.includes("Primary changes accents, buttons and selected hero highlights"));
+  assert(code.includes("Primary updates your brand accents and matching buttons"));
   const production = await file("supabase/functions/awe-api/shared/premium.mjs");
   const edge = await file("supabase/functions/awe-api/shared/theme-palette.mjs");
   assert(production.includes("paletteInline(accent,second,dark)"));
