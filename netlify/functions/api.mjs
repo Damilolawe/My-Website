@@ -281,6 +281,7 @@ export default async function (req) {
         const session = await stripeClient.checkout.sessions.create(
           {
             mode: "payment",
+            allow_promotion_codes: true,
             integration_identifier: "awe_express_" + o.id.slice(0, 8).replace(/[0-9a-f]/g, (c) => "abcdefghijklmnop"[parseInt(c, 16)]),
             client_reference_id: o.id,
             customer_email: o.email,
