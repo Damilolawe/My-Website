@@ -9,7 +9,12 @@ const hex=rgb=>"#"+rgb.map(x=>Math.max(0,Math.min(255,Math.round(x))).toString(1
 const mix=(a,b,weight)=>hex(channels(a).map((x,i)=>x*weight+channels(b)[i]*(1-weight)));
 const lightness=color=>channels(color).map(v=>{const x=v/255;return x<=0.04045?x/12.92:((x+.055)/1.055)**2.4;})
   .reduce((sum,x,i)=>sum+x*[.2126,.7152,.0722][i],0);
-const ink=color=>lightness(color)>0.179?"#101216":"#ffffff";
+const ink=color=>{
+ const l=lightness(color),dark="#101216";
+ if((l+.05)/(lightness(dark)+.05)>=4.5)return dark;
+ if(1.05/(l+.05)>=4.5)return "#ffffff";
+ return "#000000";
+};
 const darkBody=value=>value.design?.appearance==="dark";
 
 // Only opt in to the new CSS when the visitor has CHANGED a color. This protects
@@ -96,6 +101,37 @@ export function applyCustomerColors(html,value){
    background-color:var(--awe-canvas)!important;
    color:var(--awe-on-canvas)!important
  }
+ /* Velocity's authored surfaces use their own fv-* classes and fixed colors.
+    Cover all five chapters and the narrow menu after source-guide styles. */
+ body.site.fg-velocity{--fv-brass:var(--awe-primary);--fv-paper:var(--awe-surface);
+   --fv-muted:var(--awe-on-canvas);color:var(--awe-on-canvas)!important}
+ body.site.fg-velocity :is(.fv-reveal,.fv-home-preview,.fv-home-engineer,
+   .fv-work-intro,.fv-collection,.fv-model-register,.fv-features,.fv-studio,.fv-studio-opening,
+   .fv-contact-page,.fv-model-story:nth-child(3)){
+   background:var(--awe-surface)!important;color:var(--awe-on-surface)!important
+ }
+ body.site.fg-velocity :is(.fv-reveal,.fv-home-preview,.fv-home-engineer,
+   .fv-work-intro,.fv-collection,.fv-model-register,.fv-features,.fv-studio,.fv-studio-opening,
+   .fv-contact-page) :is(h1,h2,h3,p,strong,.fv-home-spec,.fv-model-aside,
+   .fv-engineer-signature,.fv-contact-details){color:var(--awe-on-surface)!important}
+ body.site.fg-velocity header.fv-header,
+ body.site.fg-velocity :is(.fv-menu-panel,.fv-mobile-menu summary,.fv-footer){
+   background:var(--awe-canvas)!important;color:var(--awe-on-canvas)!important;
+   border-color:var(--awe-primary)!important
+ }
+ body.site.fg-velocity :is(.fv-brand,.fv-nav a,.fv-header-label,.fv-menu-panel a,.fv-footer a){
+   color:var(--awe-on-canvas)!important
+ }
+ body.site.fg-velocity :is(.fv-eyebrow,.fv-concierge-label,.fv-process-step>span){
+   color:var(--awe-on-surface)!important;
+   text-decoration:underline;text-decoration-color:var(--awe-primary)
+ }
+ body.site.fg-velocity .fv-hero-photo:after{
+   background:linear-gradient(90deg,color-mix(in srgb,var(--awe-secondary) 55%,#000) 0%,
+     color-mix(in srgb,var(--awe-secondary) 30%,transparent) 45%,transparent 85%),
+     linear-gradient(0deg,#11120f 0%,transparent 45%,#05060550 100%)!important
+ }
+ body.site.fg-velocity .fv-hero :is(h1,p,.fv-eyebrow){color:#fff!important}
  body.site :is(a.button,button.button,.fn-primary,.fn-header-cta,.fv-primary,.fv-button,.fv-contact-action,.pq-primary,.pq-button),
  body.trio-site .trio-button,
  body.fd-site :is(.fd-primary,a.fd-primary),

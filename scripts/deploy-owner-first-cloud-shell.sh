@@ -48,6 +48,7 @@ COMMIT;
 ''')
 PY
 npx --no-install supabase db query --linked --project-ref "$PROJECT_REF" -f "$MIGRATION_SQL"
+npx --no-install supabase db query --linked --project-ref "$PROJECT_REF" -f scripts/repair-signature-copy.sql
 npx --no-install supabase functions deploy awe-api --project-ref "$PROJECT_REF" --no-verify-jwt --use-api
 FIREBASE_HOSTING_UPLOAD_CONCURRENCY=2 npx --yes firebase-tools@14.22.0 deploy --only hosting --project awe-digital --non-interactive
 curl --fail --silent --show-error --retry 3 --max-time 30 \
