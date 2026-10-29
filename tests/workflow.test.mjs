@@ -32,7 +32,7 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
     x.endsWith("_awe_platform.sql"),
   );
   await db.exec(await readFile("supabase/migrations/" + file, "utf8"));
-  for (const suffix of ["_customer_draft_approval.sql", "_payment_refund_event_ordering.sql", "_work_handoff_notification_reservation.sql"]) {
+  for (const suffix of ["_customer_draft_approval.sql", "_payment_refund_event_ordering.sql", "_work_handoff_notification_reservation.sql", "_paid_order_confirmation.sql"]) {
     const migration = (await readdir("supabase/migrations")).find(f=>f.endsWith(suffix));
     await db.exec(await readFile("supabase/migrations/"+migration,"utf8"));
   }
@@ -377,14 +377,16 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
           ).status,
           200,
         );
-        assert.equal((await db.query("select * from awe_jobs")).rows.length, 1);
+        assert.equal((await db.query("select * from awe_jobs")).rows.length, 2);
       },
     );
     let order;
     await t.test(
       "worker generates HTML and assets remain inaccessible publicly",
       async () => {
-        await runJobs(1);
+        // Payment confirmation is queued first; its simulated mail outage
+        // cannot block the separate website generation job.
+        await runJobs(2);
         order = (await db.query("select * from awe_orders")).rows[0];
         assert.equal(order.status, "awaiting_review");
         assert.equal(order.public_version, null);
@@ -510,7 +512,12 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
           (await db.query("select status from awe_orders")).rows[0].status,
           "delivered",
         );
-        assert.equal(emailCalls, 2);
+        assert.equal(emailCalls, 3);
+        // A queued purchase confirmation retries safely after the provider recovers.
+        await db.exec("update awe_jobs set available_at=now()-interval '1 minute' where kind='order_confirmation'");
+        await runJobs(1);
+        assert.equal(emailCalls, 4);
+        assert.equal((await db.query("select state from awe_order_confirmations where order_id=$1", [oid])).rows[0].state,"accepted");
       },
     );
     await t.test(
