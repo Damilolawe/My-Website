@@ -5,6 +5,7 @@ import { premiumStudyIds } from "../shared/premium-art-direction-35.mjs";
 import { verifyPublication } from "./verify-publication.mjs";
 import {allowedApprovedPageNames} from "../shared/approved-pages.mjs";
 import { sendWorkHandoff, sendSandboxWorkHandoff } from "./work-handoff.mjs";
+import { sendOrderConfirmation } from "./confirmation.mjs";
 export async function saveDraft(order, input, actor = null) {
   const data = validate(input);
   const assets = await rows("awe_assets", `order_id=eq.${order.id}`);
@@ -57,10 +58,14 @@ export async function runJobs(limit = 3) {
           // happens here, and no publication is performed automatically.
           await sendWorkHandoff(o, draftVersion);
         }
+      } else if (job.kind === "order_confirmation") {
+        await sendOrderConfirmation(o);
       } else if (job.kind === "work_acceptance") {
         await sendSandboxWorkHandoff(o, job.version_id);
       } else if (job.kind === "deliver") {
         await deliver(o, job.version_id);
+      } else {
+        fail("Unsupported job kind.", 503);
       }
       await patch("awe_jobs", `id=eq.${job.id}&lease=eq.${job.lease}`, {
         done: true,
