@@ -42,8 +42,22 @@ export default async (req) => {
       if (!o) return json({ error: "Checkout not recorded yet" }, 503);
       if (x.client_reference_id !== o.id)
         return json({ error: "Reference mismatch" }, 400);
+      // Verify the immutable list price and Stripe's actual discounted total.
+      // This permits legitimate promo codes without trusting a client-entered price.
+      const expected = Number(o.package_snapshot?.amount);
+      if (
+        !Number.isSafeInteger(expected) || expected <= 0 ||
+        !Number.isSafeInteger(x.amount_total) || x.amount_total < 0 ||
+        x.amount_total > expected || x.currency !== o.package_snapshot?.currency ||
+        (x.amount_total !== expected &&
+          (x.amount_subtotal !== expected ||
+            x.total_details?.amount_discount !== expected - x.amount_total))
+      ) return json({ error: "Amount mismatch" }, 400);
+      const freeWithPromo = event.type === "checkout.session.completed" &&
+        x.payment_status === "no_payment_required" && x.amount_total === 0 &&
+        x.total_details?.amount_discount === expected;
       kind =
-        x.payment_status === "paid"
+        (x.payment_status === "paid" || freeWithPromo)
           ? "paid"
           : [
                 "checkout.session.async_payment_failed",
