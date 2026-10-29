@@ -84,6 +84,7 @@ test("deployed and legacy API both gate and recover checkout with one idempotenc
     assert(flow.includes("!liveCheckoutConfigured() && !qaAllowed"), path);
     assert(flow.indexOf('const stripeClient = stripe(qaAllowed ? "test" : "live");') < flow.indexOf("checkout_at: new Date()"), path);
     assert(flow.includes("checkoutPackageIsValid(p)"), path);
+    assert(flow.includes("allow_promotion_codes: true"), "Hosted checkout must show promo input: " + path);
     assert(flow.includes('reservation === "manual-review"'), path);
     assert(flow.includes('reservation === "new"'), path);
     assert(flow.includes("if (!locked.length)"), path);
