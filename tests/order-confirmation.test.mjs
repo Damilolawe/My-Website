@@ -6,8 +6,12 @@ import {confirmationMessage as edgeMessage, sendOrderConfirmation as edgeSend} f
 const ref = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
 const order = {
   id:ref, payment:"paid", stripe_session:"cs_test_fixture",
-  email:"client@example.test",
-  package_snapshot:{name:'Starter <script>alert("x")</script>',revisions:"1 revision"}
+  email:"client@example.test", input:{template:"folio"},
+  package_snapshot:{name:'Starter <script>alert("x")</script>',tier:"starter",
+    delivery:"awe-hosted",amount:7500,revisions:"1 included revision request",
+    refunds:"ALL SALES FINAL — NON-REFUNDABLE except where required by applicable law.",
+    hosting:"Hosting and domain registration are not included.",
+    ownership:"Customer owns original delivered files after final delivery."}
 };
 const payment = {amount:0,currency:"usd",kind:"paid"};
 const old = {...process.env};
@@ -16,13 +20,40 @@ test("customer confirmation renders exact discounted payment, revision policy an
   for (const render of [confirmationMessage,edgeMessage]) {
     const msg=render(order,payment,"https://aweconcepts.com");
     assert.match(msg.subject,/Order confirmed/);
-    assert.match(msg.text,/Amount charged: \$0\.00/);
-    assert.match(msg.text,/Included revisions: 1 revision/);
+    assert.match(msg.text,/Total paid: \$0\.00/);
+    assert.match(msg.text,/Package price: \$75\.00/);
+    assert.match(msg.text,/Discount applied: -\$75\.00/);
+    assert.match(msg.text,/Website purchased: One-page website/);
+    assert.match(msg.text,/Included revisions: 1 included revision request/);
+    assert.match(msg.text,/ALL SALES FINAL — NON-REFUNDABLE/);
+    assert.match(msg.text,/Hosting and domain registration are not included/);
+    assert.match(msg.text,/Your site draft is not ready immediately/);
+    assert.match(msg.html,/Customer owns original delivered files/);
     assert.match(msg.text,new RegExp(ref));
-    assert.match(msg.text,/https:\/\/aweconcepts.com\/account.html/);
+    assert.match(msg.text,/https:\/\/aweconcepts.com\/account.html\?order=aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa/);
     assert.ok(!msg.html.includes("<script>alert"));
     assert.match(msg.html,/&lt;script&gt;/);
-    assert.match(msg.html,/View your order/);
+    assert.match(msg.html,/Sign in to your client account/);
+    assert.match(msg.html,/once it has been prepared and released for review/);
+  }
+});
+
+test("Signature details, no discount, and safe formatting are preserved",()=>{
+  const signature={...order,package_snapshot:{
+    name:"Signature Five-Page Website",tier:"signature",
+    delivery:"awe-multipage",pageCount:5,amount:15000,
+    revisions:"3 included revision requests",
+    refunds:"Non-refundable except where required by law.",
+    hosting:"Customer-managed hosting; no included domain.",
+    ownership:"Original approved website files delivered to customer."
+  }};
+  for(const render of [confirmationMessage,edgeMessage]){
+    const msg=render(signature,{amount:15000,currency:"usd"},"https://aweconcepts.com","Runway Studio");
+    assert.match(msg.text,/Website purchased: 5-page website/);
+    assert.match(msg.text,/Chosen design: Runway Studio/);
+    assert.match(msg.text,/3 included revision requests/);
+    assert.match(msg.text,/Total paid: \$150\.00/);
+    assert.ok(!msg.text.includes("Discount applied:"));
   }
 });
 test("unpaid orders and refunds never send confirmations",async()=>{
@@ -51,6 +82,7 @@ test("verified paid order sends a single branded message and records provider ac
       return Response.json({id:"resend_accepted_1"});
     }
     if(url.pathname==="/rest/v1/awe_payments")return Response.json([payment]);
+    if(url.pathname==="/rest/v1/awe_templates")return Response.json([{label:"The Editorial Folio"}]);
     if(url.pathname==="/rest/v1/rpc/awe_reserve_order_confirmation")
       return Response.json(reservation);
     if(url.pathname==="/rest/v1/awe_order_confirmations" && options.method==="PATCH")
@@ -64,6 +96,9 @@ test("verified paid order sends a single branded message and records provider ac
     assert.equal(await sendOrderConfirmation(order),true);
     assert.equal(mail.length,1);
     assert.deepEqual(mail[0].body.to,["client@example.test"]);
+    assert.match(mail[0].body.text,/Chosen design: The Editorial Folio/);
+    assert.match(mail[0].body.text,/NON-REFUNDABLE/);
+    assert.match(mail[0].body.text,/account.html\?order=/);
     assert.equal(mail[0].body.reply_to,"contact@aweconcepts.com");
     assert.equal(mail[0].headers["Idempotency-Key"],"order-confirmation/"+ref);
     assert.equal(events[0].kind,"order_confirmation_email_accepted");
