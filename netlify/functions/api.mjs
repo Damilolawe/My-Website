@@ -3,6 +3,7 @@ import { packageAllowsTemplate, packageTier } from "../../shared/tiers.mjs";
 import { checkoutReservationState, checkoutPackageIsValid } from "../../shared/checkout-recovery.mjs";
 import {
   env,
+  isOwner,
   fail,
   ready,
   sb,
@@ -33,9 +34,10 @@ import { saveDraft, runJobs } from "../../platform/production.mjs";
 import { inspectUpload } from "../../platform/uploads.mjs";
 import { previewResume } from "../../platform/resume.mjs";
 import { exportApproved, exportPrivateDraft } from "../../platform/export.mjs";
-import { renderApprovedRunwayPages, RUNWAY_PAGES } from "../../shared/runway-customer-pages.mjs";
-function owner(u) {
-  assertOwner(u, env().OWNER_USER_ID);
+import {renderApprovedDesignPages,allowedApprovedPageNames} from "../../shared/approved-pages.mjs";
+import {zipDesigns} from "../../shared/zip-design-catalog.mjs";
+async function owner(u) {
+  if (!(await isOwner(u))) fail("Owner access required.", 403);
 }
 export default async function (req) {
   try {
@@ -122,17 +124,16 @@ export default async function (req) {
       const { bytes, mime } = await inspectUpload(file);
       return json(previewResume(bytes, mime));
     }
-    const admin = u.id === env().OWNER_USER_ID;
+    const admin = await isOwner(u);
     if (route === "me") return json({ email: u.email, admin });
-    if (route === "orders" && method === "GET" && !key)
-      return json(
-        (
-          await rows(
-            "awe_orders",
-            `user_id=eq.${u.id}&order=created_at.desc&limit=100`,
-          )
-        ).map(customerOrder),
-      );
+    if (route === "orders" && method === "GET" && !key) {
+      const [orders,usage] = await Promise.all([
+        rows("awe_orders",`user_id=eq.${u.id}&order=created_at.desc&limit=100`),
+        rpc("awe_customer_revision_usage",{p_actor:u.id})
+      ]);
+      const counts=new Map(usage.map(r=>[r.order_id,Number(r.used)||0]));
+      return json(orders.map(o=>customerOrder(o,counts.get(o.id)||0)));
+    }
     if (route === "orders" && method === "POST" && !key) {
       if (!liveCheckoutConfigured())
         fail("Orders are not open yet.", 503);
@@ -195,7 +196,10 @@ export default async function (req) {
           fail("File transfer is not included in this package.", 403);
         return await exportApproved(o);
       }
-      if (method === "GET") return json(customerOrder(o));
+      if (method === "GET") {
+        const usage=await rpc("awe_customer_revision_usage",{p_actor:u.id});
+        return json(customerOrder(o,Number(usage.find(r=>r.order_id===o.id)?.used)||0));
+      }
       if (action === "upload") {
         if (o.checkout_at || o.stripe_session || o.payment !== "unpaid")
           fail(
@@ -318,18 +322,29 @@ export default async function (req) {
       }
       if (action === "approve" && method === "POST") {
         const b = await body(req, 1024);
-        if (o.payment !== "paid" || !o.draft_version || b.version !== o.draft_version)
-          fail("Review the current paid website draft before approving.", 409);
+        if (o.payment !== "paid" || o.status !== "customer_review" ||
+            !o.draft_version || b.version !== o.draft_version)
+          fail("Review the current studio-approved website draft before approving.", 409);
         await rpc("awe_customer_approve", {p_order:o.id,p_version:uuid(b.version),p_actor:u.id});
-        return json({ok:true});
+        return json({ok:true,published:true,url:`/sites/${o.slug}`});
       }
-      if (action === "revision") {
-        if (o.payment !== "paid" || !o.draft_version) fail("Revisions open when your paid website draft is ready.");
+      if (action === "revision" && method === "POST") {
+        if (o.payment !== "paid" || !o.draft_version ||
+            !["customer_review","published","delivered"].includes(o.status))
+          fail("Revisions open after the studio releases your reviewed website.",409);
+        const tier=packageTier(o.package_snapshot);
+        const allowed=tier==="premium"?null:tier==="signature"?3:1;
+        const usage=await rpc("awe_customer_revision_usage",{p_actor:u.id});
+        const used=Number(usage.find(r=>r.order_id===o.id)?.used)||0;
+        if (allowed !== null && used >= allowed)
+          fail("All included revision requests have been used. Contact the studio for additional scope.",409);
         const b = await body(req, 8000);
         const message = text(b.message, 4000);
         if (message.length < 5) fail("Describe the changes you would like.");
-        await insert("awe_revisions", { id: id(), order_id: o.id, message });
-        return json({ ok: true });
+        await rpc("awe_customer_revision", {
+          p_order:o.id,p_version:o.draft_version,p_actor:u.id,p_message:message
+        });
+        return json({ok:true});
       }
     }
     if (route === "briefs" && method === "POST") {
@@ -348,7 +363,7 @@ export default async function (req) {
       return json({ ok: true });
     }
     if (route === "assets" && method === "GET") {
-      owner(u);
+      await owner(u);
       const a = (await rows("awe_assets", `id=eq.${uuid(key)}`))[0];
       if (!a) fail("Not found.", 404);
       const r = await sb(`/storage/v1/object/awe-private/${a.path}`, {
@@ -367,7 +382,7 @@ export default async function (req) {
       });
     }
     if (route === "admin") {
-      owner(u);
+      await owner(u);
       if (key === "overview") {
         const [orders, packages, briefs, jobs, templateSettings] =
           await Promise.all([
@@ -407,20 +422,26 @@ export default async function (req) {
           fail("Enter a price in minor currency units.");
         if (!["usd", "eur", "gbp", "cad", "aud"].includes(b.currency))
           fail("Supported currencies: usd, eur, gbp, cad, aud.");
+        const tier = ["starter", "signature", "premium"].includes(b.tier) ? b.tier : packageTier(b);
+        const revisionFeature = tier === "premium" ? "Unlimited revisions within the agreed project scope" :
+          tier === "signature" ? "3 included revisions" : "1 included revision";
         const data = {
           name: text(b.name, 100),
-          tier: ["starter", "signature", "premium"].includes(b.tier) ? b.tier : packageTier(b),
+          tier,
           enabled: b.enabled === true,
           amount: b.amount,
           currency: b.currency,
-          features: (b.features || []).map((x) => text(x, 200)).slice(0, 20),
+          features: (b.features || []).map((x) => text(x, 200))
+            .filter(x => !/revisions?/i.test(x)).slice(0, 19).concat(revisionFeature),
           hosting: text(b.hosting, 2000),
           ownership: text(b.ownership, 2000),
-          revisions: text(b.revisions, 2000),
+          revisions: (tier==="premium" ? "Unlimited revision requests within the agreed project scope." :
+            tier==="signature" ? "3 included revision requests; major scope additions require a separate quote." :
+            "1 included revision request; major scope additions require a separate quote."),
           refunds: text(b.refunds, 2000),
           delivery: b.delivery === "awe-multipage" ? "awe-multipage" : "awe-hosted",
           pageCount: b.delivery === "awe-multipage" ? 5 : 1,
-          allowedTemplates: b.delivery === "awe-multipage" ? ["runwaymulti"] : [],
+          allowedTemplates: b.delivery === "awe-multipage" ? ["runwaymulti",...zipDesigns.filter(x=>x.multipage).map(x=>x.id)] : [],
           filesIncluded: b.filesIncluded === true,
           termsVersion: id(),
         };
@@ -495,9 +516,9 @@ export default async function (req) {
           )[0];
           if (!v) fail("No draft yet.", 404);
           const requestedPage = new URL(req.url).searchParams.get("page") || "index.html";
-          if (!RUNWAY_PAGES.includes(requestedPage)) fail("Unknown preview page.", 400);
-          const preview = v.input?.template === "runwaymulti"
-            ? renderApprovedRunwayPages(v.input)[requestedPage] : v.html;
+          if (!allowedApprovedPageNames(v.input?.template).includes(requestedPage)) fail("Unknown preview page.", 400);
+          const preview = allowedApprovedPageNames(v.input?.template).length===5
+            ? renderApprovedDesignPages(v.input)[requestedPage] : v.html;
           return new Response(preview, {
             headers: {
               "Content-Type": "text/html",
@@ -567,21 +588,17 @@ export default async function (req) {
             });
             return json({ ok: true });
           }
-          if (op === "publish") {
-            if (b.confirm !== o.id)
-              fail("Confirm this exact order before publishing.");
-              const approvals = await rows("awe_events", `order_id=eq.${o.id}&kind=eq.customer_approved&actor=eq.${o.user_id}&details->>version=eq.${o.draft_version}&order=created_at.desc&limit=1`);
-            const latestRequests = await rows("awe_revisions", `order_id=eq.${o.id}&order=created_at.desc&limit=1`);
-            if (!approvals.length || (latestRequests.length && Date.parse(approvals[0].created_at) < Date.parse(latestRequests[0].created_at)))
-              fail("The customer must approve this saved draft after their latest revision request.", 409);
-            await rpc("awe_publish", {
-              p_order: o.id,
-              p_expected: o.version,
-              p_version: o.draft_version,
-              p_actor: u.id,
+          if (op === "release") {
+            if (b.confirm !== o.id) fail("Confirm this exact order before sending it for review.");
+            if (o.payment !== "paid" || o.status !== "awaiting_review" ||
+                !o.draft_version) fail("Review and save the paid private draft first.",409);
+            await rpc("awe_owner_release",{
+              p_order:o.id,p_expected:o.version,p_version:o.draft_version,p_actor:u.id
             });
-            return json({ url: `/sites/${o.slug}` });
+            return json({ok:true});
           }
+          if (op === "publish")
+            fail("A customer acceptance automatically publishes your pre-approved version.",409);
         }
       }
     }
@@ -607,4 +624,5 @@ export const config = {
     windowLimit: 90,
   },
 };
+
 
