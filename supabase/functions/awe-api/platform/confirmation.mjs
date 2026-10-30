@@ -82,11 +82,21 @@ export async function sendOrderConfirmation(order) {
     fail("Customer email is missing.", 503);
   if (!env().RESEND_API_KEY || !env().EMAIL_FROM || !env().SITE_ORIGIN)
     fail("Confirmation email service is not configured.", 503);
+  // Display the purchased design without making email delivery depend on a catalog lookup.
   const templateId = order.input?.template;
-  const template = typeof templateId === "string" && /^[a-z0-9_-]{1,80}$/i.test(templateId)
-    ? (await rows("awe_templates", `id=eq.${encodeURIComponent(templateId)}&select=label&limit=1`))[0]
-    : null;
-  const message = confirmationMessage(order, payment, env().SITE_ORIGIN, template?.label || "");
+  let templateLabel = "";
+  if (typeof templateId === "string" && /^[a-z0-9_-]{1,80}$/i.test(templateId)) {
+    templateLabel = templateId.replace(/[-_]+/g, " ");
+    try {
+      const template = (await rows("awe_templates",
+        `id=eq.${encodeURIComponent(templateId)}&select=label&limit=1`))[0];
+      if (typeof template?.label === "string" && template.label.trim())
+        templateLabel = template.label;
+    } catch {
+      // Payment-confirmation delivery is more important than cosmetic catalog metadata.
+    }
+  }
+  const message = confirmationMessage(order, payment, env().SITE_ORIGIN, templateLabel);
   const reservation = await rpc("awe_reserve_order_confirmation", {p_order: order.id});
   if (reservation === "accepted") return false;
   if (reservation !== "send")
