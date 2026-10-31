@@ -32,6 +32,7 @@ const files = [
   "assets",
   "vendor",
   "demos",
+  "preview",
   "app",
   "shared",
   "order.html",
