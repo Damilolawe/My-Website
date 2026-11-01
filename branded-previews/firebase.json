@@ -38,6 +38,13 @@
           }
         ]
       }
+    ],
+    "redirects": [
+      {
+        "source": "/shotsbyriq/",
+        "destination": "/shotsbyriq",
+        "type": 302
+      }
     ]
   }
 }
