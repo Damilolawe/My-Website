@@ -67,13 +67,13 @@ test("Shots by Riq concept has working scoped navigation, real booking and Awe C
  const html=await read("public/shotsbyriq/index.html");
  const css=await read("public/shotsbyriq/styles.css");
  const js=await read("public/shotsbyriq/site.js");
- assert.match(html, /href="\\/shotsbyriq\\/styles\\.css"/);
- assert.match(html, /src="\\/shotsbyriq\\/site\\.js"/);
- assert.match(html, /href="\\/shotsbyriq\\/"/);
- assert.match(html, /app\\.acuityscheduling\\.com\\/schedule\\/18b40bc9/);
- assert.match(html, /instagram\\.com\\/shotsbyriq_/);
+ assert.match(html, /href="\/shotsbyriq\/styles\.css"/);
+ assert.match(html, /src="\/shotsbyriq\/site\.js"/);
+ assert.match(html, /href="\/shotsbyriq\/"/);
+ assert.match(html, /app\.acuityscheduling\.com\/schedule\/18b40bc9/);
+ assert.match(html, /instagram\.com\/shotsbyriq_/);
  assert.match(html, /Designed by Awe Concepts/);
- assert.match(html, /aweconcepts\\.com/);
+ assert.match(html, /aweconcepts\.com/);
  assert.match(html, /Not the official Shots by Riq website/);
  assert.match(html, /noindex,nofollow/);
  for(const section of ["work","services","about","details","book"]) assert.match(html,new RegExp('id="'+section+'"'));
@@ -82,6 +82,6 @@ test("Shots by Riq concept has working scoped navigation, real booking and Awe C
  assert.match(js,/image-unavailable/);
  assert.match(js,/ArrowRight/);
  assert.match(css,/prefers-reduced-motion/);
- assert.doesNotMatch(html, /href="\\/(?:styles\\.css|site\\.js)"/);
- assert.doesNotMatch(html, /[\\u{1F300}-\\u{1FAFF}]/u);
+ assert.doesNotMatch(html, /href="\/(?:styles\.css|site\.js)"/);
+ assert.doesNotMatch(html, /[\u{1F300}-\u{1FAFF}]/u);
 });
