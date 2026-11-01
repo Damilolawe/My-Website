@@ -27,4 +27,41 @@ document.addEventListener('DOMContentLoaded',()=>{
  lightbox.addEventListener('touchstart',event=>{if(event.touches.length===1)touchStart={x:event.touches[0].clientX,y:event.touches[0].clientY}},{passive:true});
  lightbox.addEventListener('touchend',event=>{if(!touchStart||event.changedTouches.length!==1)return;const dx=event.changedTouches[0].clientX-touchStart.x;const dy=event.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>65&&Math.abs(dx)>Math.abs(dy)*1.5)show(current+(dx<0?1:-1))},{passive:true});
  }
+
+ // Progressive motion: enhance the existing page without hiding content on
+ // browsers that do not support IntersectionObserver or reduced-motion queries.
+ const motionPreference=window.matchMedia('(prefers-reduced-motion: reduce)');
+ if(!motionPreference.matches&&'IntersectionObserver'in window){
+  document.documentElement.classList.add('motion-enhanced');
+  const staggerGroups=document.querySelectorAll('.split,.features,.press,.story-stats,.visit-grid,.course-list,.gallery-grid,.menu-photo');
+  staggerGroups.forEach(group=>{
+   const children=[...group.children].filter(el=>el.matches('.reveal,.course,.feature,.gallery-tile,.contact-line,a,.image-shell,div'));
+   children.forEach((el,index)=>el.style.setProperty('--motion-delay',Math.min(index%4,3)*90+'ms'));
+  });
+  const animated=[...document.querySelectorAll('.gallery-tile,.feature,.press a,.story-stats > div,.contact-line,.faq details')];
+  const motionObserver=new IntersectionObserver(entries=>{
+   entries.forEach(entry=>{
+    if(entry.isIntersecting){
+     entry.target.classList.add('in-view');
+     motionObserver.unobserve(entry.target);
+    }
+   });
+  },{threshold:.08,rootMargin:'0px 0px -20px 0px'});
+  animated.forEach(el=>{el.classList.add('motion-item');motionObserver.observe(el)});
+  // The tiny progress accent is purely decorative and never captures input.
+  const progress=document.createElement('span');
+  progress.className='scroll-progress';
+  progress.setAttribute('aria-hidden','true');
+  document.body.appendChild(progress);
+  let scheduled=false;
+  const syncProgress=()=>{
+   const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+   progress.style.transform='scaleX('+Math.max(0,Math.min(1,window.scrollY/max))+')';
+   scheduled=false;
+  };
+  const queueProgress=()=>{if(!scheduled){scheduled=true;requestAnimationFrame(syncProgress)}};
+  queueProgress();
+  window.addEventListener('scroll',queueProgress,{passive:true});
+  window.addEventListener('resize',queueProgress,{passive:true});
+ }
 });

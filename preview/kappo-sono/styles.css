@@ -47,3 +47,60 @@ footer{background:#0c0908;border-top:1px solid var(--line)}.footer-main{padding:
  .gallery-tile{min-width:0}
 }
 @media(prefers-reduced-motion:reduce){.gallery-tile img,.image-shell img{transform:none!important}}
+
+
+/* Kappo Sono motion enhancement — quiet, cinematic and progressive. */
+.scroll-progress{position:fixed;top:0;left:0;width:100%;height:2px;z-index:110;pointer-events:none;transform:scaleX(0);transform-origin:left center;background:linear-gradient(90deg,#b36e55,#f0c5a0)}
+.filter{transition:background .28s ease,border-color .28s ease,transform .28s ease}
+.menu-toggle[aria-expanded="true"] span:first-child{transform:translateY(4px) rotate(45deg)}
+.menu-toggle[aria-expanded="true"] span:last-child{transform:translateY(-4px) rotate(-45deg)}
+@keyframes kappaRise{from{opacity:0;transform:translate3d(0,26px,0)}to{opacity:1;transform:translateZ(0)}}
+@keyframes kappaImageEnter{from{opacity:.45;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+@keyframes kappaBackdrop{from{opacity:0}to{opacity:1}}
+@keyframes kappaLink{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:no-preference){
+ .motion-enhanced .sweep{animation:none}
+ .motion-enhanced .sweep>.kicker{animation:kappaRise .85s .08s both cubic-bezier(.22,1,.36,1)}
+ .motion-enhanced .sweep>h1{animation:kappaRise 1.02s .18s both cubic-bezier(.22,1,.36,1)}
+ .motion-enhanced .sweep>.hero-copy{animation:kappaRise 1s .36s both cubic-bezier(.22,1,.36,1)}
+ .motion-enhanced .sweep>.hero-actions{animation:kappaRise .95s .5s both cubic-bezier(.22,1,.36,1)}
+ .motion-enhanced .page-hero .kicker{animation:kappaRise .72s .09s both cubic-bezier(.22,1,.36,1)}
+ .motion-enhanced .page-hero h1{animation:kappaRise .95s .2s both cubic-bezier(.22,1,.36,1)}
+ .motion-enhanced .page-hero .lead{animation:kappaRise .85s .36s both cubic-bezier(.22,1,.36,1)}
+ .motion-enhanced .reveal{transition-delay:var(--motion-delay,0ms)}
+ .motion-enhanced .motion-item{opacity:0;transform:translate3d(0,19px,0);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);transition-delay:var(--motion-delay,0ms)}
+ .motion-enhanced .motion-item.in-view{opacity:1;transform:none}
+ .motion-enhanced .course{position:relative}
+ .motion-enhanced .course::before{content:"";position:absolute;top:-1px;left:0;width:100%;height:1px;background:var(--rust);transform:scaleX(0);transform-origin:left;opacity:.68;pointer-events:none;transition:transform 1s cubic-bezier(.22,1,.36,1);transition-delay:var(--motion-delay,0ms)}
+ .motion-enhanced .course.in-view::before{transform:scaleX(1)}
+ .motion-enhanced .button{position:relative;overflow:hidden;isolation:isolate}
+ .motion-enhanced .button::before{content:"";position:absolute;top:-30%;bottom:-30%;left:-85%;width:42%;background:linear-gradient(90deg,transparent,#ffffff20,transparent);transform:skewX(-25deg);transition:left .72s ease;pointer-events:none}
+ .motion-enhanced .button:hover::before,.motion-enhanced .button:focus-visible::before{left:135%}
+ .motion-enhanced .filter:hover{transform:translateY(-2px)}
+ .motion-enhanced .feature{transition:background .35s ease,box-shadow .35s ease,transform .35s ease}
+ .motion-enhanced .feature.motion-item.in-view:hover{transform:translateY(-5px);background:#251b17;box-shadow:inset 0 1px 0 #c2806170}
+ .motion-enhanced .gallery-tile{transition:box-shadow .35s ease,filter .35s ease,opacity .75s ease,transform .8s cubic-bezier(.22,1,.36,1)}
+ .motion-enhanced .gallery-tile::after{content:"";position:absolute;inset:0;border:1px solid #deb69c;opacity:0;transition:opacity .35s;pointer-events:none}
+ .motion-enhanced .gallery-tile:hover::after,.motion-enhanced .gallery-tile:focus-visible::after{opacity:.8}
+ .motion-enhanced .gallery-tile.motion-item.in-view:hover{transform:translateY(-4px);box-shadow:0 16px 35px #0005}
+ .motion-enhanced .image-shell::after{content:"";position:absolute;inset:12px;border:1px solid #fff8;opacity:0;transform:scale(1.035);transition:opacity .55s,transform .55s;pointer-events:none}
+ .motion-enhanced .image-shell:hover::after{opacity:.85;transform:scale(1)}
+ .motion-enhanced .mobile-nav.open a{animation:kappaLink .36s ease both}
+ .motion-enhanced .mobile-nav.open a:nth-child(2){animation-delay:55ms}
+ .motion-enhanced .mobile-nav.open a:nth-child(3){animation-delay:110ms}
+ .motion-enhanced .mobile-nav.open a:nth-child(4){animation-delay:165ms}
+ .motion-enhanced .mobile-nav.open a:nth-child(5){animation-delay:220ms}
+ .motion-enhanced .mobile-nav.open a:nth-child(6){animation-delay:275ms}
+ .motion-enhanced .faq details[open] p{animation:kappaRise .32s ease both}
+ .motion-enhanced .lightbox:not([hidden]){animation:kappaBackdrop .3s ease both}
+ .motion-enhanced .lightbox:not([hidden]) .lightbox-image{animation:kappaImageEnter .4s cubic-bezier(.22,1,.36,1) both}
+}
+@media(prefers-reduced-motion:reduce){
+ .scroll-progress{display:none}
+ .motion-enhanced .motion-item,.motion-enhanced .motion-item.in-view{opacity:1!important;transform:none!important}
+ .motion-enhanced .course::before{display:none}
+ .motion-enhanced .gallery-tile,.motion-enhanced .feature{transform:none!important}
+}
+@media(hover:none){
+ .motion-enhanced .gallery-tile.motion-item.in-view:hover,.motion-enhanced .feature.motion-item.in-view:hover{transform:none}
+}
