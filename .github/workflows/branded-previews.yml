@@ -6,6 +6,7 @@ on:
     paths:
       - 'preview/kappo-sono/**'
       - 'preview/otaku-haven/**'
+      - 'preview/shotsbyriq/**'
       - 'scripts/rewrite-kappo-preview-urls.mjs'
       - 'scripts/build-branded-previews.mjs'
       - 'scripts/validate-preview-icons.mjs'
