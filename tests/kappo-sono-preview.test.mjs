@@ -57,3 +57,38 @@ test("all 13 archival course descriptions end with punctuation",async()=>{
  assert.equal(descriptions.length,13);
  descriptions.forEach((description,i)=>assert.match(description,/[.!?。]$/,"Course "+(i+1)+" is missing punctuation"));
 });
+
+test("Audit: booking disclosures prevent redirecting to a former venue without warning",async()=>{
+ const pages=["index.html","menu.html","story.html","gallery.html","visit.html"];
+ for(const page of pages){
+  const h=await get(page);
+  assert.match(h,/<a class="nav-cta" href="visit.html">Visit & reservations<\/a>/);
+  assert.ok(!h.includes('>Reservations through Resy'));
+  assert.match(h,/aria-label="Mobile navigation"/);
+ }
+ const visit=await get("visit.html");
+ assert.match(visit,/former 39 East 13th Street location/);
+ assert.match(visit,/Verify the new venue/);
+ assert.match(visit,/role="note"/);
+ assert.match(visit,/View existing Resy listing/);
+});
+test("Audit: gallery announces filter results, labels modal, and supports touch navigation",async()=>{
+ const gallery=await get("gallery.html");
+ const script=await get("site.js");
+ assert.match(gallery,/class="gallery-count" role="status" aria-live="polite"/);
+ assert.match(gallery,/aria-describedby="lightbox-caption"/);
+ assert.match(script,/touchstart/);
+ assert.match(script,/touchend/);
+ assert.match(script,/const n=tiles.filter/);
+});
+test("Audit: all restaurant photographs support responsive image loading",async()=>{
+ for(const page of ["index.html","menu.html","story.html","gallery.html"]){
+  const html=await get(page);
+  const images=[...html.matchAll(/<img\b[^>]*src="https:\/\/images\.squarespace-cdn\.com[^>]*>/g)];
+  assert.ok(images.length>0,page+": no photos");
+  for(const image of images){
+   assert.match(image[0],/srcset="/,page+": image must have responsive source sizes");
+   assert.match(image[0],/decoding="async"/,page+": image decode should not block paint");
+  }
+ }
+});

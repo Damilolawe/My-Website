@@ -26,3 +26,24 @@ footer{background:#0c0908;border-top:1px solid var(--line)}.footer-main{padding:
 @media(max-width:680px){.site-header{min-height:70px;padding:12px 5vw}.mark .jp{font-size:20px}.mark .en{font-size:8px}.desktop-nav{display:none}.menu-toggle{display:block}.mobile-nav{position:absolute;display:flex;flex-direction:column;gap:0;top:100%;left:0;right:0;background:#1a1311;border-bottom:1px solid var(--line);padding:0 6vw;max-height:0;visibility:hidden;overflow:hidden;transition:max-height .35s,visibility .35s}.mobile-nav.open{visibility:visible;max-height:420px}.mobile-nav a{border-top:1px solid var(--line);padding:16px 5px;font-size:12px;letter-spacing:.15em;text-transform:uppercase}.hero{min-height:690px;min-height:calc(100svh - 100px)}.hero .container{padding-top:80px;padding-bottom:110px}.hero-photo{background-position:56% center}.hero-shade{background:linear-gradient(90deg,#110b0be8,#110b0b88),linear-gradient(0deg,#100b0ae0,transparent 40%)}.hero h1{font-size:clamp(50px,15vw,86px)}.hero h1 em{font-size:clamp(31px,8vw,55px)}.hero-aside{left:6vw}.vertical-word{display:none}.chap{padding:70px 0}.split,.menu-intro,.visit-grid{grid-template-columns:1fr;gap:32px}.split.image-first .image-shell{order:-1}.image-shell.tall{aspect-ratio:5/4}.visual-triptych{gap:8px}.visual-triptych figure:nth-child(2){transform:translateY(18px)}.features,.press{grid-template-columns:1fr}.press{gap:23px}.feature{padding:25px}.interlude{padding:85px 6vw}.poster{padding:75px 6vw}.page-hero{min-height:300px;padding:70px 0 60px}.page-hero h1{font-size:clamp(48px,13vw,70px)}.course{grid-template-columns:35px 1fr;gap:14px}.course>div:last-child{grid-column:2}.course h3{font-size:23px}.menu-photo{grid-template-columns:1fr}.menu-photo .image-shell{aspect-ratio:1.25}.gallery-grid{gap:9px}.gallery-tile.wide-tile{grid-column:span 2}.gallery-tile .gallery-caption{padding:45px 12px 12px;font-size:11px}.lightbox{padding:65px 9vw}.lightbox-prev{left:4px}.lightbox-next{right:4px}.story-stats{gap:10px}.story-stats strong{font-size:23px}.story-stats span{font-size:10px}.footer-main{grid-template-columns:1fr 1fr;gap:32px;padding:55px 0 40px}.footer-main>div:first-child{grid-column:span 2}.footer-bottom{display:block}.footer-bottom span{display:block;margin-bottom:8px}}
 @media(max-width:390px){.hero-actions{flex-direction:column;align-items:flex-start}.hero .container{padding-top:50px}.button{gap:20px}.footer-main{grid-template-columns:1fr}.footer-main>div:first-child{grid-column:span 1}}
 @media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.hero-photo{transform:none}}
+
+/* Audit 2026-11-01: improve keyboard focus, mobile interaction and contextual booking notice. */
+:where(a,button,summary):focus-visible{outline:2px solid #dfad87;outline-offset:5px}
+.cream :where(a,button,summary):focus-visible{outline-color:#813528}
+.reservation-advisory{margin:27px 0 28px;border:1px solid rgba(194,128,97,.62);border-left:3px solid var(--rust);padding:21px 23px 24px;background:rgba(194,128,97,.09)}
+.reservation-advisory strong{display:block;color:#efd9cc;font:500 11px/1.5 var(--sans);text-transform:uppercase;letter-spacing:.16em}
+.reservation-advisory p{font-size:13px;line-height:1.75;color:#d2bfb1;margin:13px 0 17px}
+.reservation-advisory .link-underline{font-size:10px;color:#ead5c9}
+.gallery-count{margin:0 0 20px;color:var(--muted);font:400 12px/1.4 var(--sans);letter-spacing:.04em}
+.gallery-tile:focus-visible{outline-offset:3px}
+@media(max-width:680px){
+ .mark{min-width:0;max-width:calc(100% - 65px)}
+ .mark .jp{font-size:clamp(18px,5.2vw,21px);letter-spacing:.045em}
+ .mark .en{font-size:8px;letter-spacing:.23em}
+ .site-header{gap:12px}
+ .menu-toggle{flex:none}
+ .mobile-nav a{min-height:48px;display:flex;align-items:center}
+ .reservation-advisory{padding:17px 18px 20px}
+ .gallery-tile{min-width:0}
+}
+@media(prefers-reduced-motion:reduce){.gallery-tile img,.image-shell img{transform:none!important}}
