@@ -6,7 +6,7 @@ import { KAPPO_PAGES } from "../scripts/rewrite-kappo-preview-urls.mjs";
 
 const root = "branded-previews/";
 const read = async path => readFile(root + path, "utf8");
-const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html"].sort();
+const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json"].sort();
 
 test("branded previews build exactly the allowlisted independent public concepts", async () => {
  execFileSync(process.execPath, ["scripts/build-branded-previews.mjs"], {stdio:"pipe"});
@@ -19,7 +19,8 @@ test("branded previews build exactly the allowlisted independent public concepts
   }
  };
  await walk(root+"public");
- assert.deepEqual(actual.sort(),expectedFiles);
+ assert.deepEqual(actual.filter(path=>!path.startsWith("shotsbyriq/photos/")).sort(),expectedFiles);
+ assert.ok(actual.every(path=>!path.includes("admin/")&&!path.includes("orders/")),"Private content must not enter the isolated preview");
  const landing=await read("public/index.html");
  assert.match(landing,/href="\/otaku-haven\/"/);
  assert.match(landing,/href="\/kappo-sono\/"/);
@@ -44,14 +45,29 @@ test("restaurant pages resolve logo, navigation, script and CSS on branded host"
  }
 });
 
-test("photographer preview features actual portraits, booking and Awe credit", async () => {
+test("photographer editorial imports real Instagram post photographs with original source attribution",async()=>{
  const html=await read("public/shotsbyriq/index.html");
- assert.match(html,/Independent portfolio concept by Awe Concepts/);
+ const css=await read("public/shotsbyriq/styles.css");
+ const js=await read("public/shotsbyriq/site.js");
+ const source=JSON.parse(await readFile("preview/shotsbyriq/instagram-sources.json","utf8"));
+ const status=JSON.parse(await read("public/shotsbyriq/import-status.json"));
+ assert.equal(source.images.length,9);
+ assert.equal(status.requested,9);
+ assert.match(html,/UNOFFICIAL DESIGN STUDY BY/);
  assert.match(html,/app\.acuityscheduling\.com\/schedule\.php\?owner=30252037/);
- assert.match(html,/data:image\/webp;base64,/);
  assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
- assert.match(html,/noindex, nofollow/);
+ assert.match(html,/noindex,nofollow/);
  assert.match(html,/id="lightbox"/);
+ assert.match(html,/href="\/shotsbyriq\/styles\.css"/);
+ assert.match(html,/src="\/shotsbyriq\/site\.js"/);
+ assert.match(html,/data-category="creative"/);
+ assert.match(html,/data-category="editorial"/);
+ assert.match(html,/SEE ORIGINAL POST/);
+ assert.ok(source.images.every(p=>p.post.startsWith("https://www.instagram.com/shotsbyriq_/p/")));
+ assert.ok(source.images.every(p=>html.includes(p.url)||html.includes("/shotsbyriq/photos/"+p.file)),"Every photo should come from its original Instagram post");
+ assert.match(css, /contact-sheet/);assert.match(js,/ArrowRight/);
+ assert.doesNotMatch(html,/data:image\/webp;base64/);
+ assert.doesNotMatch(html,/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2600-\u27BF]/u);
 });
 
 test("preview Firebase target is separate from production and not a private draft deployment", async () => {

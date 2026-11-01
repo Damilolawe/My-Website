@@ -10,6 +10,7 @@ on:
       - 'scripts/rewrite-kappo-preview-urls.mjs'
       - 'scripts/build-branded-previews.mjs'
       - 'scripts/validate-preview-icons.mjs'
+      - 'scripts/import-shotsbyriq-photos.mjs'
       - 'branded-previews/**'
       - 'tests/branded-previews.test.mjs'
       - 'tests/otaku-haven-preview.test.mjs'
