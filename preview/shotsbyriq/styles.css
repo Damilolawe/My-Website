@@ -237,3 +237,71 @@ a:focus-visible,button:focus-visible{outline-color:#86a3ff}
  .cover-media:after{background:linear-gradient(180deg,#080d177a 0%,#0b13238e 35%,#090d19f2 100%),linear-gradient(90deg,#090e1aa8,transparent)}
 }
 @media(min-width:761px) and (max-width:940px){.menu-panel{background:#111b2b}}
+
+/* PHONE RECORDING QA — responsive refinements (Nov 2026).
+   Protect the intentionally oversized magazine typography without losing text. */
+.logo{gap:0;letter-spacing:-.075em}
+.logo span{display:inline-block}
+.logo small{
+  display:inline-block;
+  transform:none;
+  padding:0 .47em;
+  font:500 .44em/1 var(--font-mono);
+  letter-spacing:.04em;
+  color:#a8bdff;
+  white-space:nowrap;
+  align-self:center
+}
+.logo b:empty{display:none}
+.spread-copy h2 .headline-long{
+  display:block;
+  font-size:clamp(26px,4.3vw,76px);
+  line-height:1.12;
+  letter-spacing:-.085em;
+  white-space:nowrap;
+  max-width:100%
+}
+.footer-logo{
+  display:inline-flex;
+  align-items:baseline;
+  white-space:nowrap;
+  max-width:100%;
+  font-size:clamp(35px,6.8vw,90px);
+  letter-spacing:-.085em
+}
+.footer-logo .footer-by{
+  font:500 .29em/1 var(--font-mono);
+  letter-spacing:.025em;
+  color:#93acff;
+  margin:0 .42em;
+  align-self:center
+}
+/* Gallery photography should be visible despite the midnight palette. */
+.archive .frame img{filter:brightness(.96) contrast(1.045) saturate(.95)}
+.archive .frame:hover img,.archive .frame:focus-visible img{filter:brightness(1.04) contrast(1.03) saturate(1.02)}
+@media(max-width:760px){
+  .logo{font-size:clamp(21px,5.8vw,26px)}
+  .logo small{font-size:.48em;padding:0 .4em}
+  .spread-copy{min-width:0;overflow:hidden}
+  .spread-copy h2{max-width:100%;overflow-wrap:normal}
+  .spread-copy h2 .headline-long{font-size:clamp(25px,8.25vw,54px);letter-spacing:-.08em}
+  .intermission p{font-size:clamp(45px,11.6vw,76px);letter-spacing:-.1em}
+  .cover-topline{column-gap:18px}
+  .cover-topline span:first-child{max-width:64%}
+  .brief-rule p{font-size:14px;line-height:1.78}
+  .brief-item small{font-size:13px}
+  .brief-intro p,.section-heading p{font-size:14px}
+  .session-note{font-size:12px;line-height:1.75}
+  .footnote{font-size:11px;line-height:1.85}
+  .footer-logo{font-size:clamp(35px,9vw,63px);letter-spacing:-.08em}
+  .footer-logo .footer-by{font-size:.28em}
+  .frame-hover small{font-size:9px}
+  .frame-hover strong{font-size:clamp(16px,4.1vw,23px)}
+  .archive .frame:after{opacity:.54}
+  .archive .frame img{filter:brightness(1) contrast(1.035) saturate(.96)}
+}
+@media(max-width:360px){
+  .spread-copy h2 .headline-long{font-size:clamp(24px,8vw,30px)}
+  .footer-logo{font-size:34px}
+  .logo{font-size:21px}
+}
