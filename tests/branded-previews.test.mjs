@@ -6,7 +6,7 @@ import { KAPPO_PAGES } from "../scripts/rewrite-kappo-preview-urls.mjs";
 
 const root = "branded-previews/";
 const read = async path => readFile(root + path, "utf8");
-const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name)].sort();
+const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js"].sort();
 
 test("branded previews build exactly the allowlisted public restaurant concept", async () => {
  execFileSync(process.execPath, ["scripts/build-branded-previews.mjs"], {stdio:"pipe"});
@@ -21,6 +21,7 @@ test("branded previews build exactly the allowlisted public restaurant concept",
  await walk(root+"public");
  assert.deepEqual(actual.sort(),expectedFiles);
  const landing=await read("public/index.html");
+ assert.match(landing,/href="\/otaku-haven\/"/);
  assert.match(landing,/href="\/kappo-sono\/"/);
  assert.match(landing,/independent design studies/);
  assert.match(landing,/noindex,nofollow/);
