@@ -1,4 +1,5 @@
 import { renderPremium } from "./premium.mjs";
+import { applyAweDesignCredit } from "./brand-credit.mjs";
 import { renderFolioEditorial } from "./folio-editorial.mjs";
 import { normalize } from "./model.mjs";
 import { applyPremiumStudy } from "./premium-art-direction-35.mjs";
@@ -70,7 +71,7 @@ export function compactInlineStyles(html, {preserve = []} = {}) {
 // customer media IDs, asset delivery, and approval workflows with all templates.
 export function renderSite(input, options = {}) {
   const normalized = normalize(input);
-  if(zipDesignFor(normalized.template))return applyTypographySafety(renderZipDesign(normalized,options), normalized.template);
+  if(zipDesignFor(normalized.template))return applyAweDesignCredit(applyTypographySafety(renderZipDesign(normalized,options), normalized.template));
   const page = normalized.template === "folio"
     ? renderFolioEditorial(normalized, options)
     : renderPremium(normalized, options);
@@ -80,12 +81,12 @@ export function renderSite(input, options = {}) {
   // is approaching the strict 240,000-character preview limit. This protects
   // the next Refero guide from unexpectedly tripping the size gate as well.
   if (finished.length >= 230000 && exactGuideCSSFor(normalized.template)) {
-    return compactInlineStyles(finished, {
+    return applyAweDesignCredit(compactInlineStyles(finished, {
       preserve: [
         exactGuideCSSFor(normalized.template),
         "/* Secondary visual QA: scoped legibility adjustments, preserving branding and motion. */"
       ]
-    });
+    }));
   }
-  return finished;
+  return applyAweDesignCredit(finished);
 }
