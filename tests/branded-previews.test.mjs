@@ -78,6 +78,11 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.doesNotMatch(html,/schedule\.php\?owner=30252037/);
  assert.match(css,/#101014/);
  assert.match(css,/booking-brief/);
+ assert.match(css,/\/\* BLUE HOUR/,"Blue Hour photographer theme should load after legacy dark theme");
+ assert.match(css,/--blue:#4c6fff/,"Primary highlight should be cobalt blue");
+ assert.match(css,/--accent-soft:#86a3ff/,"Secondary highlight should be cool blue");
+ assert.match(css,/\.nav-book,\.cover-cta a,\.booking-link\{background:#4c6fff;color:#fff\}/,"All primary booking/hero CTAs use blue");
+ assert.match(css,/\.brief-head h2 i\{color:#aec2ff\}/,"Booking policy headlines use blue");
  assert.match(html,/SEE ORIGINAL POST/);
  assert.ok(source.images.every(p=>p.post.startsWith("https://www.instagram.com/shotsbyriq_/p/")));
  assert.ok(source.images.every(p=>html.includes("/shotsbyriq/photos/"+p.file)),"Every photograph should be a stable first-party hosted import");
