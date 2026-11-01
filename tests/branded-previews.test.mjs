@@ -6,9 +6,9 @@ import { KAPPO_PAGES } from "../scripts/rewrite-kappo-preview-urls.mjs";
 
 const root = "branded-previews/";
 const read = async path => readFile(root + path, "utf8");
-const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js"].sort();
+const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html"].sort();
 
-test("branded previews build exactly the allowlisted public restaurant concept", async () => {
+test("branded previews build exactly the allowlisted independent public concepts", async () => {
  execFileSync(process.execPath, ["scripts/build-branded-previews.mjs"], {stdio:"pipe"});
  const actual = [];
  const walk = async (base, prefix="") => {
@@ -24,6 +24,7 @@ test("branded previews build exactly the allowlisted public restaurant concept",
  assert.match(landing,/href="\/otaku-haven\/"/);
  assert.match(landing,/href="\/kappo-sono\/"/);
  assert.match(landing,/independent design studies/);
+ assert.match(landing,/href="\\/shotsbyriq\\/"/);
  assert.match(landing,/noindex,nofollow/);
  assert.equal(await read("public/robots.txt"),"User-agent: *\nDisallow: /\n");
 });
@@ -41,6 +42,16 @@ test("restaurant pages resolve logo, navigation, script and CSS on branded host"
     assert.ok(html.includes('href="/kappo-sono/'+page+'.html"'),name+" missing "+page);
   }
  }
+});
+
+test("photographer preview features actual portraits, booking and Awe credit", async () => {
+ const html=await read("public/shotsbyriq/index.html");
+ assert.match(html,/Independent portfolio concept by Awe Concepts/);
+ assert.match(html,/app\.acuityscheduling\.com\/schedule\.php\?owner=30252037/);
+ assert.match(html,/data:image\/webp;base64,/);
+ assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
+ assert.match(html,/noindex, nofollow/);
+ assert.match(html,/id="lightbox"/);
 });
 
 test("preview Firebase target is separate from production and not a private draft deployment", async () => {
