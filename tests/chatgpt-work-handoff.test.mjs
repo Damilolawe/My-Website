@@ -25,7 +25,7 @@ test("Work handoff is opt-in, owner-gated, and never bypasses draft review", asy
   assert.match(production,/sendWorkHandoff\(/);
   assert.match(handoff,/AWE_WORK_HANDOFF_ENABLED !== "true"/);
   assert.match(handoff,/order\.payment !== "paid"/);
-  assert.match(api,/if \(route === "admin"\) \{\s*owner\(u\);/);
+  assert.match(api,/if \(route === "admin"\) \{\s*await owner\(u\);/);
   assert.match(api,/exportPrivateDraft\(o\)/);
   assert.match(admin,/data-work-export/);
   assert.match(production,/await saveDraft\(/);

@@ -1,6 +1,16 @@
 import { randomUUID } from "node:crypto";
 import Stripe from "stripe";
 export const env = () => process.env;
+// Keep legacy compatibility owner checks aligned with the deployed Edge API.
+// A verified email alone never grants owner privileges; service-only table membership is required.
+const STUDIO_OWNER_USER_ID = "220ddd21-710f-4dea-bc24-e34c8ba9cef8";
+const STUDIO_OWNER_EMAIL = "contact@aweconcepts.com";
+export async function isOwner(u) {
+  if (!u?.email_confirmed_at ||
+      u.id !== STUDIO_OWNER_USER_ID ||
+      u.email?.trim().toLowerCase() !== STUDIO_OWNER_EMAIL) return false;
+  return (await rows("awe_owner", `user_id=eq.${uuid(u.id)}&limit=1`)).length === 1;
+}
 export function fail(message, status = 400) {
   throw Object.assign(new Error(message), { status });
 }

@@ -18,7 +18,9 @@ test("Only authenticated successfully approved publish routes can kick delivery"
  assert(handler.includes("startBackgroundJobs()"));
  const legacy=await readFile(new URL("../supabase/functions/awe-api/netlify/functions/api.mjs",import.meta.url),"utf8");
  assert(legacy.includes('if (op === "publish")'));
- assert(legacy.includes('await rpc("awe_publish"'));
+ assert(legacy.includes('await rpc("awe_owner_release"'));
+ assert(legacy.includes('if (b.confirm !== o.id)'));
+ assert(legacy.includes('if (op === "publish")'));
  const schema=await readFile(new URL("../supabase/migrations/20261022024259_awe_platform.sql",import.meta.url),"utf8");
  assert(schema.includes("not exists(select 1 from awe_owner where user_id=p_actor)"));
  assert(schema.includes("o.payment<>'paid'"));

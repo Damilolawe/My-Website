@@ -45,5 +45,8 @@ test("Paid orders cannot be published before owner's explicit approval",async()=
   assert(source.includes('"awe_approvals"'));
   const api=await read("supabase/functions/awe-api/netlify/functions/api.mjs");
   assert(api.includes('if (b.confirm !== o.id)'));
-  assert(api.includes('await rpc("awe_publish"'));
+  assert(api.includes('await rpc("awe_owner_release"'));
+  assert(api.includes('if (b.confirm !== o.id)'));
+  assert(api.includes('o.payment !== "paid" || o.status !== "awaiting_review"'));
+  assert(api.includes('if (op === "publish")'));
 });

@@ -14,6 +14,6 @@ test('out-of-order refund events cannot downgrade a full refund or enqueue anoth
  assert.equal((await db.query('select payment from awe_orders where id=$1',[discounted])).rows[0].payment,'paid');
  assert.equal((await db.query("select amount from awe_payments where event_id='free_paid'")).rows[0].amount,0);
  await event('paid','paid');await event('full','refunded');await event('late-partial','partially_refunded');await event('late-paid','paid');await event('full','refunded');
- assert.equal((await db.query('select payment from awe_orders')).rows[0].payment,'refunded');assert.equal((await db.query('select count(*)::int as n from awe_jobs')).rows[0].n,1);
+ assert.equal((await db.query('select payment from awe_orders where id=$1',[oid])).rows[0].payment,'refunded');assert.equal((await db.query('select count(*)::int as n from awe_jobs')).rows[0].n,1);
  }finally{await db.close();}
 });
