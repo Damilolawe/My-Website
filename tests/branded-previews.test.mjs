@@ -24,7 +24,7 @@ test("branded previews build exactly the allowlisted independent public concepts
  assert.match(landing,/href="\/otaku-haven\/"/);
  assert.match(landing,/href="\/kappo-sono\/"/);
  assert.match(landing,/independent design studies/);
- assert.match(landing,/href="\/shotsbyriq\/"/);
+ assert.match(landing,/href="\/shotsbyriq"/);
  assert.match(landing,/noindex,nofollow/);
  assert.equal(await read("public/robots.txt"),"User-agent: *\nDisallow: /\n");
 });
@@ -62,6 +62,7 @@ test("preview Firebase target is separate from production and not a private draf
  const rc=JSON.parse(await read(".firebaserc"));
  assert.equal(config.hosting.public,"public");
  assert.equal(config.hosting.target,"previews");
+ assert.ok(config.hosting.redirects.some(rule=>rule.source==="/shotsbyriq/"&&rule.destination==="/shotsbyriq"&&rule.type===302));
  assert.equal(rc.projects.default,"awe-digital");
  assert.deepEqual(rc.targets["awe-digital"].hosting.previews,["awe-concepts-previews"]);
  assert.ok(config.hosting.headers[0].headers.some(h=>h.key==="X-Robots-Tag"&&h.value.includes("noindex")));
