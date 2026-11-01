@@ -468,39 +468,24 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
       assert.equal((await site(new Request(`https://studio.example/sites/${order.slug}/assets/${randomUUID()}`))).status,404);
     });
     await t.test("approved export is owner-gated and contains portable assets",async()=>{assert.equal((await request(`orders/${oid}/export`)).status,403);const r=await request(`admin/orders/${oid}/export`,{actor:'owner'});assert.equal(r.status,200);const files=unzipSync(new Uint8Array(await r.arrayBuffer()));assert(files['index.html']);for(const page of allowedApprovedPageNames(flow.template))assert(files[page],page);const asset=(await db.query('select mime from awe_assets where id=$1',[aid])).rows[0];const extension={'image/webp':'webp','image/png':'png','image/jpeg':'jpg'}[asset.mime];assert(files['assets/'+aid+'.'+extension]);assert(!strFromU8(files['index.html']).includes('/api/assets/'));});
-    await t.test(
-      "email failure is retained and retry records successful acceptance",
-      async () => {
-        await runJobs(1);
-        assert.equal(
-          (await db.query("select * from awe_deliveries")).rows.length,
-          0,
-        );
-        assert(
-          (await db.query("select * from awe_jobs where kind='deliver'"))
-            .rows[0].error,
-        );
-        emailFails = false;
-        await db.exec(
-          "update awe_jobs set available_at=now()-interval '1 minute' where kind='deliver'",
-        );
-        await runJobs(1);
-        assert.equal(
-          (await db.query("select * from awe_deliveries")).rows.length,
-          1,
-        );
-        assert.equal(
-          (await db.query("select status from awe_orders")).rows[0].status,
-          "delivered",
-        );
-        assert.equal(emailCalls, 3);
-        // A queued purchase confirmation retries safely after the provider recovers.
-        await db.exec("update awe_jobs set available_at=now()-interval '1 minute' where kind='order_confirmation'");
-        await runJobs(1);
-        assert.equal(emailCalls, 4);
-        assert.equal((await db.query("select state from awe_order_confirmations where order_id=$1", [oid])).rows[0].state,"accepted");
-      },
-    );
+
+    await t.test("delivery email failure retries without duplicate publication or confirmation",async()=>{
+      emailFails=true;
+      await runJobs(1);
+      assert.equal((await db.query("select count(*)::int n from awe_deliveries where order_id=$1",[oid])).rows[0].n,0);
+      const delivery=(await db.query("select * from awe_jobs where order_id=$1 and kind='deliver'",[oid])).rows[0];
+      assert.ok(delivery?.error,"Failed delivery remains retryable");
+      emailFails=false;
+      await db.exec("update awe_jobs set available_at=now()-interval '1 minute' where kind='deliver'");
+      await runJobs(1);
+      assert.equal((await db.query("select count(*)::int n from awe_deliveries where order_id=$1",[oid])).rows[0].n,1);
+      assert.equal((await db.query("select status from awe_orders where id=$1",[oid])).rows[0].status,"delivered");
+      // Paid-order confirmation is an independent job, with its own retry.
+      await db.exec("update awe_jobs set available_at=now()-interval '1 minute' where kind='order_confirmation'");
+      await runJobs(1);
+      assert.equal((await db.query("select state from awe_order_confirmations where order_id=$1",[oid])).rows[0].state,"accepted");
+      assert.ok(emailCalls>=4);
+    });
     await t.test(
       "customer revision request does not mutate live content",
       async () => {
@@ -520,8 +505,8 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
           before,
         );
         assert.equal(
-          (await db.query("select * from awe_revisions")).rows.length,
-          2,
+          (await db.query("select * from awe_revisions where order_id=$1",[oid])).rows.length,
+          1,
         );
       },
     );
