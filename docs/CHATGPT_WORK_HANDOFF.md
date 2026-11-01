@@ -41,3 +41,7 @@ Live backend version 92 contains the independently released checkout guard, cons
 ## Acceptance outcome
 
 The live owner sign-in, sandbox payment re-verification, notification delivery to the business inbox, authorized manual draft retrieval/refinement, private ZIP result, completion ledger and duplicate skip all passed. Inbox delivery did not produce a recorded autonomous task run in the available task history. The saved Gmail predicate accepts verified INBOX deliveries even when self-addressing also assigns SENT; it still rejects outgoing-only messages and nonmatching subjects. See RELEASE_2026-10-28.md for the bounded attempts and limitations. Do not keep generating test emails or claim autonomous success without a real recorded result.
+
+## Required studio credit (effective November 2026)
+
+Every new AI-produced or AI-refined website design draft and private exported HTML/ZIP must include a small footer signature: the authentic Awe Concepts logo, the text **Designed by Awe Concepts**, and a clickable link to https://aweconcepts.com/. Use `applyAweDesignCredit()` in the shared renderer; in other standalone code reproduce the same accessible signature without external image dependencies. Add it before owner/customer approval. Never secretly modify an approved immutable customer version to add branding, never skip payment or publication gates, and never expose customer data publicly.

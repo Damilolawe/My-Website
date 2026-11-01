@@ -2,6 +2,7 @@
 // Generates five fully linked, self-contained HTML documents. Does not mutate
 // orders, charge customers, publish drafts, or include proprietary Runway assets.
 import {normalize,esc} from "./model.mjs";
+import {applyAweDesignCredit} from "./brand-credit.mjs";
 import {renderRunwayML} from "./runwayml.mjs";
 const E=x=>esc(x??"");
 export const RUNWAY_PAGES=Object.freeze(["index.html","research.html","work.html","studio.html","journal.html"]);
@@ -74,5 +75,5 @@ export function renderApprovedRunwayPages(input,options={}){
    if(!/^<!doctype html>/i.test(html)||html.includes("<script")||html.length>220000)
      throw Error("Unsafe or oversized RunwayML page: "+name);
  }
- return result;
+ return Object.fromEntries(Object.entries(result).map(([name,html])=>[name,applyAweDesignCredit(html)]));
 }

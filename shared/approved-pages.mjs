@@ -1,6 +1,7 @@
 // Render approved customer-site pages from the immutable version only.
 // The caller enforces ownership, review and publication authorization.
 import {normalize} from "./model.mjs";
+import {applyAweDesignCredit} from "./brand-credit.mjs";
 import {renderZipDesign} from "./zip-design-render.mjs";
 import {applyTypographySafety} from "./typography-guard.mjs";
 import {zipDesignFor,zipPages} from "./zip-design-catalog.mjs";
@@ -13,8 +14,8 @@ export const allowedApprovedPageNames=template=>{
 };
 export function renderApprovedDesignPages(input,options={}){
  const v=normalize(input),t=zipDesignFor(v.template);
- if(v.template==="runwaymulti")return renderApprovedRunwayPages(v,options);
+ if(v.template==="runwaymulti")return Object.fromEntries(Object.entries(renderApprovedRunwayPages(v,options)).map(([name,html])=>[name,applyAweDesignCredit(html)]));
  if(!t?.multipage)throw Error("Five-page documents require an approved multipage template.");
  const opts={assetBase:"/api/assets/",assetSuffix:"",...options,sample:false,customerPages:true};
- return Object.fromEntries(zipPages.map((page,i)=>[STUDY_PAGES[i],applyTypographySafety(renderZipDesign(v,opts,page),v.template)]));
+ return Object.fromEntries(zipPages.map((page,i)=>[STUDY_PAGES[i],applyAweDesignCredit(applyTypographySafety(renderZipDesign(v,opts,page),v.template))]));
 }

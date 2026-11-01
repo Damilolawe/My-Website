@@ -1,4 +1,5 @@
 import {zipDesignFor,zipPages,zipChapterLabels,isDarkHex} from "./zip-design-catalog.mjs";
+import {applyAweDesignCredit} from "./brand-credit.mjs";
 import {sourceGuideCSS,sourceGuideScene,sceneStyles} from "./zip-guide-fidelity.mjs";
 import {moreGuideCSS,moreGuideScene,moreSceneStyles} from "./zip-guide-fidelity-more.mjs";
 import {waveCSS,waveScene} from "./zip-guide-fidelity-wave3.mjs";
@@ -36,12 +37,12 @@ export function renderZipDesign(v,options={},page="home"){
  // These flagships are independent complete websites, not skins of the study renderer.
  const flagshipRenderer=t.source==="bugatti"?renderVelocity:t.source==="mintlify"?renderFieldnotes:t.source==="nintendo-2001"?renderPixelQuest:null;
  if(flagshipRenderer){
-  return flagshipRenderer({
+  return applyAweDesignCredit(flagshipRenderer({
    t,v,options,page:label,profile,
    sourceCSS:sourceGuideCSS(t.id)+moreGuideCSS(t.id)+waveCSS(t.id),
    sourceArtCSS:sceneStyles+moreSceneStyles,
    sourceScene:moreGuideScene(t,0)||waveScene(t,0)||sourceGuideScene(t,0)||artistic(t,0)
-  });
+  }));
  }
  const content=v.content,which=kind(t.source),contrast=isDarkHex(v.design?.primary||t.accent)?"#fff":"#101010";
  const font=which==="editorial"?"Georgia,serif":which==="code"?"ui-monospace,monospace":"Arial,system-ui,sans-serif";
@@ -73,5 +74,5 @@ export function renderZipDesign(v,options={},page="home"){
   const paths={home:"index.html",work:"work.html",features:"features.html",studio:"studio.html",contact:"contact.html"};
   for(const [page,name] of Object.entries(paths))output=output.replaceAll("/templates/"+t.id+"/"+page+".html","./"+name);
  }
- return output;
+ return applyAweDesignCredit(output);
 }

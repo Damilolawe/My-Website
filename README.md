@@ -40,3 +40,7 @@ The existing [Firebase Hosting workflow](.github/workflows/firebase-hosting.yml)
 Public `config.js` contains `contact@aweconcepts.com`. The homepage brief sends through the same Supabase inquiry intake as the contact page; copy and download remain optional. The account’s Custom brief uses the authenticated dashboard API.
 
 ResidenceOS and Cirvo remain labeled as original products in development. Fictional demos and template samples are labeled as such.
+
+## Attribution standard
+
+All **new** client website drafts and portfolio proposals include a discreet **Designed by Awe Concepts** footer with the official SVG mark and a link to https://aweconcepts.com/. Shared renderers enforce this; details and the owner/customer sign-off boundary are documented in [Frontend Icon & Typography Policy](docs/FRONTEND_ICON_POLICY.md). Existing immutable customer approvals are not silently changed.
