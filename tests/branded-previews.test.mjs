@@ -76,7 +76,7 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.match(html,/\$50 fee/);
  assert.match(html,/\$100/);
  assert.doesNotMatch(html,/schedule\.php\?owner=30252037/);
- assert.match(css,/#0d0b0f/);
+ assert.match(css,/#101014/);
  assert.match(css,/booking-brief/);
  assert.match(html,/SEE ORIGINAL POST/);
  assert.ok(source.images.every(p=>p.post.startsWith("https://www.instagram.com/shotsbyriq_/p/")));
