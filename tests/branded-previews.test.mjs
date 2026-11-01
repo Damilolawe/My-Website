@@ -54,20 +54,20 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.equal(source.images.length,9);
  assert.equal(status.requested,9);
  assert.match(html,/UNOFFICIAL DESIGN STUDY BY/);
- assert.match(html,/app\\.acuityscheduling\\.com\\/schedule\\.php\\?owner=30252037/);
- assert.match(html,/Designed by <strong>Awe Concepts<\\/strong>/);
+ assert.match(html,/app\.acuityscheduling\.com\/schedule\.php\?owner=30252037/);
+ assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
  assert.match(html,/noindex,nofollow/);
  assert.match(html,/id="lightbox"/);
- assert.match(html,/href="\\/shotsbyriq\\/styles\\.css"/);
- assert.match(html,/src="\\/shotsbyriq\\/site\\.js"/);
+ assert.match(html,/href="\/shotsbyriq\/styles\.css"/);
+ assert.match(html,/src="\/shotsbyriq\/site\.js"/);
  assert.match(html,/data-category="creative"/);
  assert.match(html,/data-category="editorial"/);
  assert.match(html,/SEE ORIGINAL POST/);
  assert.ok(source.images.every(p=>p.post.startsWith("https://www.instagram.com/shotsbyriq_/p/")));
  assert.ok(source.images.every(p=>html.includes(p.url)||html.includes("/shotsbyriq/photos/"+p.file)),"Every photo should come from its original Instagram post");
  assert.match(css, /contact-sheet/);assert.match(js,/ArrowRight/);
- assert.doesNotMatch(html,/data:image\\/webp;base64/);
- assert.doesNotMatch(html,/[\\u{1F000}-\\u{1FAFF}\\u2190-\\u21FF\\u2600-\\u27BF]/u);
+ assert.doesNotMatch(html,/data:image\/webp;base64/);
+ assert.doesNotMatch(html,/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2600-\u27BF]/u);
 });
 
 test("preview Firebase target is separate from production and not a private draft deployment", async () => {
