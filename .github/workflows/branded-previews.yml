@@ -1,0 +1,75 @@
+name: Branded Awe Concepts public previews
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'preview/kappo-sono/**'
+      - 'scripts/rewrite-kappo-preview-urls.mjs'
+      - 'scripts/build-branded-previews.mjs'
+      - 'branded-previews/**'
+      - 'tests/branded-previews.test.mjs'
+      - '.github/workflows/branded-previews.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: awe-branded-public-previews
+  cancel-in-progress: true
+
+jobs:
+  deploy-public-previews:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+      FIREBASE_READY: ${{ vars.FIREBASE_PROJECT_ID == 'awe-digital' && secrets.FIREBASE_SERVICE_ACCOUNT != '' }}
+    steps:
+      - name: Require existing Firebase project and credentials
+        if: env.FIREBASE_READY != 'true'
+        run: |
+          echo "::error::Set FIREBASE_PROJECT_ID=awe-digital and FIREBASE_SERVICE_ACCOUNT in GitHub repository settings. No Firebase change was made."
+          exit 1
+      - name: Checkout public preview sources
+        if: env.FIREBASE_READY == 'true'
+        uses: actions/checkout@v4
+      - name: Use Node 22
+        if: env.FIREBASE_READY == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build allowlisted public concepts
+        if: env.FIREBASE_READY == 'true'
+        run: node scripts/build-branded-previews.mjs
+      - name: Validate navigation, public-only output and independent deployment target
+        if: env.FIREBASE_READY == 'true'
+        run: node --test tests/branded-previews.test.mjs tests/kappo-sono-preview.test.mjs
+      - name: Authenticate existing Firebase deploy service account
+        if: env.FIREBASE_READY == 'true'
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+      - name: Provision isolated Hosting site if not already present
+        if: env.FIREBASE_READY == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --global firebase-tools@latest
+          if firebase hosting:sites:get awe-concepts-previews --project "$FIREBASE_PROJECT_ID" --non-interactive > /dev/null 2>&1; then
+            echo "Found existing Awe Concepts branded preview Hosting site."
+          else
+            echo "Creating secondary Hosting site. Production site is not changed."
+            firebase hosting:sites:create awe-concepts-previews --project "$FIREBASE_PROJECT_ID" --non-interactive
+          fi
+      - name: Publish ONLY branded public preview site to its live channel
+        if: env.FIREBASE_READY == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: '${{ vars.FIREBASE_PROJECT_ID }}'
+          entryPoint: 'branded-previews'
+          target: 'previews'
+          channelId: live
+          disableComment: true

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "awe-digital"
+  },
+  "targets": {
+    "awe-digital": {
+      "hosting": {
+        "previews": [
+          "awe-concepts-previews"
+        ]
+      }
+    }
+  }
+}

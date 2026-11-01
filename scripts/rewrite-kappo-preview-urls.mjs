@@ -10,11 +10,12 @@ export const KAPPO_PAGES = [
   "gallery.html", "visit.html", "404.html",
 ];
 
-export function toEmbeddedKappoUrls(html) {
+export function toEmbeddedKappoUrls(html, basePath = KAPPO_EMBEDDED_BASE) {
   if (typeof html !== "string") throw new TypeError("Expected HTML source");
+  if (!/^\/(?:[a-z0-9-]+\/)*$/i.test(basePath)) throw new Error("Invalid absolute preview base path");
   return html.replace(
     /\b(href|src)="\/(styles\.css|site\.js|index\.html|menu\.html|story\.html|gallery\.html|visit\.html)?"/g,
-    (_match, attribute, resource) => `${attribute}="${KAPPO_EMBEDDED_BASE}${resource || ""}"`,
+    (_match, attribute, resource) => `${attribute}="${basePath}${resource || ""}"`,
   );
 }
 
