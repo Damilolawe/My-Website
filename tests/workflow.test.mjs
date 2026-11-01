@@ -155,6 +155,10 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
           `select * from ${fn}(${keys.map((k, i) => `${k}=>$${i + 1}`).join(",")})`,
           vals,
         );
+        // PostgREST serializes scalar-returning RPCs as a scalar JSON value,
+        // not as the SELECT-row array emitted by PGlite.
+        if (fn === "awe_reserve_order_confirmation" || fn === "awe_reserve_work_handoff")
+          return response(result.rows[0]?.[fn] ?? null);
         return response(result.rows);
       }
       const table = route[2];
