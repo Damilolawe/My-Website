@@ -181,3 +181,6 @@ a:focus-visible,button:focus-visible{outline-color:#f2bfcb}
  .brief-bottom a{grid-column:auto;justify-self:start}
  .booking-brief{padding-top:78px;padding-bottom:80px}
 }
+
+/* Keep the four-item editorial navigation from crowding tablet widths. */
+@media(min-width:761px) and (max-width:940px){.topbar{grid-template-columns:1fr auto}.nav,.nav-book{display:none}.menu-button{display:block}.menu-panel{background:#171119}}
