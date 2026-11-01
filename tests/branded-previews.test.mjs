@@ -57,7 +57,7 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.ok(status.assets.every(asset=>asset.imported && asset.bytes>4000));
  assert.ok(status.assets.every(asset=>["original-instagram-post","published-photo-snapshot"].includes(asset.source)));
  assert.match(html,/UNOFFICIAL DESIGN STUDY BY/);
- assert.match(html,/app\.acuityscheduling\.com\/schedule\.php\?owner=30252037/);
+ assert.match(html,/app\.acuityscheduling\.com\/schedule\/18b40bc9/);
  assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
  assert.match(html,/noindex,nofollow/);
  assert.match(html,/id="lightbox"/);
@@ -65,6 +65,19 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.match(html,/src="\/shotsbyriq\/site\.js"/);
  assert.match(html,/data-category="creative"/);
  assert.match(html,/data-category="editorial"/);
+ assert.match(html,/id="booking-info"/);
+ assert.match(html,/STRICT NO-REFUND POLICY/);
+ assert.match(html,/BROOKLYN, NY/);
+ assert.match(html,/MONDAY THROUGH SUNDAY/i);
+ assert.match(html,/48 hours/i);
+ assert.match(html,/3–14 days/);
+ assert.match(html,/24 hours/);
+ assert.match(html,/7 days/);
+ assert.match(html,/\\$50 fee/);
+ assert.match(html,/\\$100/);
+ assert.doesNotMatch(html,/schedule\\.php\\?owner=30252037/);
+ assert.match(css,/#0d0b0f/);
+ assert.match(css,/booking-brief/);
  assert.match(html,/SEE ORIGINAL POST/);
  assert.ok(source.images.every(p=>p.post.startsWith("https://www.instagram.com/shotsbyriq_/p/")));
  assert.ok(source.images.every(p=>html.includes("/shotsbyriq/photos/"+p.file)),"Every photograph should be a stable first-party hosted import");
