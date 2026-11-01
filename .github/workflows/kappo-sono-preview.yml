@@ -1,0 +1,39 @@
+name: Kappo Sono — isolated restaurant proposal preview
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'preview/kappo-sono/**'
+      - '.github/workflows/kappo-sono-preview.yml'
+      - 'tests/kappo-sono-preview.test.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: kappo-sono-proposal-preview
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify standalone proposal, disclosures, and link structure
+        run: node --test tests/kappo-sono-preview.test.mjs
+      - name: Publish to a separate Firebase preview channel (never production live)
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: '${{ vars.FIREBASE_PROJECT_ID }}'
+          entryPoint: 'preview/kappo-sono'
+          channelId: kappo-sono-proposal
+          expires: 30d
