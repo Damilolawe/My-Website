@@ -2,6 +2,7 @@
 
 Public domain (after Firebase and DNS are connected): **https://preview.aweconcepts.com/**
 Kappo Sono concept: **https://preview.aweconcepts.com/kappo-sono/**
+Otaku Haven independent concept: **https://preview.aweconcepts.com/otaku-haven/**
 
 These URLs are **not active until the separate Firebase Hosting site, custom domain and DNS records are confirmed**.
 
@@ -27,6 +28,8 @@ These URLs are **not active until the separate Firebase Hosting site, custom dom
 This is intentionally a **public example** host, not a secure client review portal. `noindex`, `robots.txt` and disabling indexing are **not authentication**. Never copy paid client draft websites, account records, contact details or unapproved designs into `branded-previews/public`. For private customer previews use the existing authenticated client dashboard or a separately secured authenticated solution.
 
 ## Deployment maintenance
+
+Otaku Haven's public concept has a conspicuous independence disclosure and links to the real app. Obtain the brand owner's approval before commercial publication or reuse of official assets.
 
 - Only files on the allowlist in `scripts/build-branded-previews.mjs` are published.
 - To add a public concept, obtain permission and add it to the explicit allowlist, with a suitable business-consent disclosure and automated tests.
