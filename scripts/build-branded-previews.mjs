@@ -12,9 +12,14 @@ await rm(output, { recursive: true, force: true });
 await mkdir(publicKappo, { recursive: true });
 await mkdir(publicOtaku, { recursive: true });
 await mkdir(publicRiq, { recursive: true });
-for (const asset of ["index.html", "styles.css", "site.js"]) {
+for (const asset of ["styles.css", "site.js"]) {
   await cp(`preview/shotsbyriq/${asset}`, `${publicRiq}/${asset}`);
 }
+// In the main-site repo previews live at /preview/shotsbyriq/.
+// For the isolated branded host, rewrite to /shotsbyriq/ so navigation
+// and assets resolve independently; do not change the production site.
+const riqHtml = await readFile("preview/shotsbyriq/index.html", "utf8");
+await writeFile(`${publicRiq}/index.html`, riqHtml.replaceAll("/preview/shotsbyriq/", "/shotsbyriq/"));
 for (const asset of ['index.html', 'styles.css', 'site.js']) {
   await cp(`preview/otaku-haven/${asset}`, `${publicOtaku}/${asset}`);
 }
