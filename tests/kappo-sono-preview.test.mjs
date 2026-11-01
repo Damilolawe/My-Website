@@ -119,3 +119,18 @@ test("Audit: all restaurant photographs support responsive image loading",async(
   }
  }
 });
+
+test("Kappo Sono motion is progressive, reduced-motion aware and nonblocking",async()=>{
+ const css=await get("styles.css");
+ const js=await get("site.js");
+ for(const hook of ["prefers-reduced-motion: reduce","IntersectionObserver","motion-enhanced","motion-item","scroll-progress"]){
+  assert.ok(js.includes(hook),"Motion hook missing: "+hook);
+ }
+ assert.match(css,/\.motion-enhanced \.page-hero h1/);
+ assert.match(css,/\.motion-enhanced \.course\.in-view::before/);
+ assert.match(css,/\.motion-enhanced \.gallery-tile/);
+ assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
+ assert.match(css,/\.motion-enhanced \.motion-item\.in-view/);
+ assert.match(js,/document\.documentElement\.classList\.add\('motion-enhanced'\)/);
+ assert.ok(!js.includes("setInterval("),"Motion should not run a continuous polling timer");
+});
