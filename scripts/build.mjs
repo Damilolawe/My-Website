@@ -48,6 +48,11 @@ const files = [
 await rm("dist", { recursive: true, force: true });
 await mkdir("dist");
 for (const file of files) await cp(file, "dist/" + file, { recursive: true });
+// The isolated Kappo Sono Firebase preview is hosted at /, while this
+// production build embeds the same concept under /preview/kappo-sono/.
+// Resolve home links, navigation, CSS and JS from the correct root.
+const { rewriteKappoPreviewPages } = await import("./rewrite-kappo-preview-urls.mjs");
+await rewriteKappoPreviewPages("dist/preview/kappo-sono");
 await mkdir("dist/templates", { recursive: true });
 const { templates, types, typeSlugs, sampleForTemplate } = await import("../shared/model.mjs");
 const { renderSite } = await import("../shared/render.mjs");
