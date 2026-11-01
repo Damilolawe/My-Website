@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { toEmbeddedKappoUrls, KAPPO_EMBEDDED_BASE } from "../scripts/rewrite-kappo-preview-urls.mjs";
 const root="preview/kappo-sono/";
 const get=async file=>readFile(root+file,"utf8");
 test("Kappo Sono proposal is self-contained five-page navigation and accessible viewer",async()=>{
@@ -8,16 +9,42 @@ test("Kappo Sono proposal is self-contained five-page navigation and accessible 
  const contents=await Promise.all(pages.map(get));
  for(let i=0;i<pages.length;i++){
   const html=contents[i];
-  for(const link of pages)assert.ok(html.includes('href="'+link+'"'),pages[i]+" missing "+link);
+  for(const link of pages){
+   const target=link==="index.html"?"/":"/"+link;
+   assert.ok(html.includes('href="'+target+'"'),pages[i]+" missing "+target);
+  }
   assert.ok(html.includes('content="noindex,nofollow"'),pages[i]);
-  assert.ok(html.includes('src="site.js"'),pages[i]);
-  assert.ok(html.includes('href="styles.css"'),pages[i]);
+  assert.ok(html.includes('src="/site.js"'),pages[i]);
+  assert.ok(html.includes('href="/styles.css"'),pages[i]);
   assert.ok(html.includes('https://www.kapposono.com/'),pages[i]);
  }
  const gallery=contents[3];
  assert.ok(gallery.includes('aria-modal="true"'));
  assert.ok(gallery.includes('data-gallery-filter="savory"'));
  assert.ok((gallery.match(/class="gallery-tile/g)||[]).length>=10);
+});
+test("Kappo Sono navigation and styles survive Firebase cleanUrls and both hosting roots",async()=>{
+ const pages=["index.html","menu.html","story.html","gallery.html","visit.html"];
+ for(const page of pages){
+  const source=await get(page);
+  assert.doesNotMatch(source,/\b(?:href|src)="(?:index|menu|story|gallery|visit)\.html"/);
+  assert.ok(source.includes('href="/"'),page+" needs the standalone root home link");
+  assert.ok(source.includes('href="/styles.css"'),page+" must not have relative CSS");
+  assert.ok(source.includes('src="/site.js"'),page+" must not have relative script");
+  const embedded=toEmbeddedKappoUrls(source);
+  for(const local of ["styles.css","site.js","menu.html","story.html","gallery.html","visit.html"]){
+   assert.ok(embedded.includes(KAPPO_EMBEDDED_BASE+local),page+" wrong embedded "+local);
+  }
+  assert.ok(embedded.includes('href="'+KAPPO_EMBEDDED_BASE+'"'),page+" wrong embedded homepage");
+  assert.ok(embedded.includes('href="#main"'),page+" skip link must stay on current page");
+  const css=new URL(KAPPO_EMBEDDED_BASE+"styles.css","https://aweconcepts.com/preview/kappo-sono").pathname;
+  assert.equal(css,"/preview/kappo-sono/styles.css");
+  const home=new URL(KAPPO_EMBEDDED_BASE,"https://aweconcepts.com/preview/kappo-sono/menu").pathname;
+  assert.equal(home,"/preview/kappo-sono/");
+ }
+ const notFound=toEmbeddedKappoUrls(await get("404.html"));
+ assert.ok(notFound.includes('href="'+KAPPO_EMBEDDED_BASE+'"'));
+ assert.ok(notFound.includes('href="'+KAPPO_EMBEDDED_BASE+'styles.css"'));
 });
 test("Kappo Sono site labels historical menu and photography honestly",async()=>{
  const menu=await get("menu.html");
@@ -62,7 +89,7 @@ test("Audit: booking disclosures prevent redirecting to a former venue without w
  const pages=["index.html","menu.html","story.html","gallery.html","visit.html"];
  for(const page of pages){
   const h=await get(page);
-  assert.match(h,/<a class="nav-cta" href="visit.html">Visit & reservations<\/a>/);
+  assert.match(h,/<a class="nav-cta" href="\/visit.html">Visit & reservations<\/a>/);
   assert.ok(!h.includes('>Reservations through Resy'));
   assert.match(h,/aria-label="Mobile navigation"/);
  }
