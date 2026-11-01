@@ -24,7 +24,7 @@ test("branded previews build exactly the allowlisted independent public concepts
  assert.match(landing,/href="\/otaku-haven\/"/);
  assert.match(landing,/href="\/kappo-sono\/"/);
  assert.match(landing,/independent design studies/);
- assert.match(landing,/href="\\/shotsbyriq\\/"/);
+ assert.match(landing,/href="\/shotsbyriq\/"/);
  assert.match(landing,/noindex,nofollow/);
  assert.equal(await read("public/robots.txt"),"User-agent: *\nDisallow: /\n");
 });
