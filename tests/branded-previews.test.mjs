@@ -93,6 +93,18 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.match(css,/--accent-soft:#86a3ff/,"Secondary highlight should be cool blue");
  assert.match(css,/\.nav-book,\.cover-cta a,\.booking-link\{background:#4c6fff;color:#fff\}/,"All primary booking/hero CTAs use blue");
  assert.match(css,/\.brief-head h2 i\{color:#aec2ff\}/,"Booking policy headlines use blue");
+ // Face-first photography layout: brand copy may never cover the subject on mobile.
+ assert.match(html,/<h1 id="cover-heading">BE<br><em>SEEN<span class="endmark">\.<\/span><\/em><\/h1>/);
+ assert.doesNotMatch(html,/THE(?:<br>|\s+)<em>IMAGE<\/em>|THE IMAGE ISSUE|THE PHOTOGRAPHY ISSUE/);
+ assert.match(html,/<span>SHOTSBYRIQ \/ PORTRAIT PHOTOGRAPHY<\/span>/);
+ assert.match(html,/<span>BROOKLYN \/ NYC<\/span>/);
+ assert.match(html,/<meta property="og:title" content="SHOTSBYRIQ \| Portraits in Focus">/);
+ assert.match(css,/\/\* FACE-FIRST HERO/);
+ assert.match(css,/\.cover-media:after\{display:none\}/,"No gradient should obscure the portrait");
+ assert.match(css,/@media\(max-width:760px\)\{\s*\.cover\{\s*display:flex;\s*flex-direction:column;/,"Mobile hero must stack its photograph above the text");
+ assert.match(css,/\.cover-media\{\s*order:0;[\s\S]*?aspect-ratio:4\/5;/,"Mobile photograph must receive its own uncropped full-width 4:5 panel");
+ assert.match(css,/\.cover-type\{\s*order:1;/,"Mobile headlines and buttons must be located beneath the photograph");
+ assert.match(css,/\.cover h1\{\s*font-size:clamp\(78px,18\.6vw,129px\)/,"Heading must resize within mobile text panel");
  assert.match(html,/SEE ORIGINAL POST/);
  assert.ok(source.images.every(p=>p.post.startsWith("https://www.instagram.com/shotsbyriq_/p/")));
  assert.ok(source.images.every(p=>html.includes("/shotsbyriq/photos/"+p.file)),"Every photograph should be a stable first-party hosted import");
