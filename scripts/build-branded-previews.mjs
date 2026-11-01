@@ -1,9 +1,15 @@
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { KAPPO_PAGES, toEmbeddedKappoUrls } from "./rewrite-kappo-preview-urls.mjs";
+import { auditPreviewGlyphs } from "./validate-preview-icons.mjs";
 
 // Only an explicit list of PUBLIC, independently labeled concept pages is
 // allowed on this separate host. Never copy dist/, Supabase data, customer
 // orders, unpublished client drafts or admin resources into this directory.
+const forbiddenIcons = await auditPreviewGlyphs("preview");
+if (forbiddenIcons.length) throw new Error(
+  "Branded preview build blocked: replace text emoji / decorative arrows with SVG or CSS.\\n" +
+  forbiddenIcons.join("\\n")
+);
 const output = "branded-previews/public";
 const publicKappo = `${output}/kappo-sono`;
 const publicOtaku = `${output}/otaku-haven`;
