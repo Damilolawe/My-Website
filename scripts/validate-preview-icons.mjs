@@ -1,5 +1,5 @@
 import { readdir, readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 // Text-based pictographs render inconsistently between operating systems and
@@ -39,7 +39,7 @@ export async function auditPreviewGlyphs(root = "preview") {
   return failures;
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === fileURLToPath(new URL("file://" + process.argv[1]))) {
+if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   const failures = await auditPreviewGlyphs();
   if (failures.length) {
     for (const violation of failures) console.error(violation);
