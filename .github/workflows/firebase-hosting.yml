@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths-ignore:
       - 'preview/**'
+      - 'branded-previews/**'
+      - 'tests/branded-previews.test.mjs'
+      - 'tests/otaku-haven-preview.test.mjs'
       - 'scripts/build-branded-previews.mjs'
       - '.github/workflows/branded-previews.yml'
       - '.github/workflows/kappo-sono-preview.yml'
