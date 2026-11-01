@@ -102,6 +102,68 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.doesNotMatch(html,/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2600-\u27BF]/u);
 });
 
+test("photographer links, booking routes, gallery destinations, and social preview assets remain valid", async () => {
+ const html=await read("public/shotsbyriq/index.html");
+ const js=await read("public/shotsbyriq/site.js");
+ const manifest=JSON.parse(await readFile("preview/shotsbyriq/instagram-sources.json","utf8"));
+ const base="https://preview.aweconcepts.com/shotsbyriq";
+ const booking="https://app.acuityscheduling.com/schedule/18b40bc9";
+ const profile="https://www.instagram.com/shotsbyriq_/";
+ const originalPosts=new Set(manifest.images.map(photo=>photo.post));
+ const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
+ assert.equal(new Set(ids).size,ids.length,"Duplicate section IDs break navigation");
+ const anchors=[...html.matchAll(/<a\b[^>]*>/g)].map(match=>match[0]);
+ assert.ok(anchors.length>=25,"Missing expected navigation, booking and attribution links");
+ const destinations=new Set();
+ for(const anchor of anchors){
+  const href=anchor.match(/\bhref="([^"]+)"/)?.[1];
+  assert.ok(href,"Every anchor must have a usable href: "+anchor);
+  destinations.add(href);
+  assert.doesNotMatch(href,/^(?:javascript:|data:|http:|\/\/)/i);
+  if(href.startsWith("#")){
+   assert.ok(href.length>1&&ids.includes(href.slice(1)),"Missing on-page section for "+href);
+  }else{
+   const url=new URL(href);
+   assert.equal(url.protocol,"https:");
+   assert.ok(["aweconcepts.com","app.acuityscheduling.com","www.instagram.com"].includes(url.host),"Unexpected or mistyped outbound host: "+href);
+   if(url.host==="app.acuityscheduling.com")assert.equal(href,booking,"Use the photographer's current direct booking URL");
+   if(url.host==="www.instagram.com")assert.ok(href===profile||originalPosts.has(href),"Use a verified photographer profile or original post");
+   if(url.host==="aweconcepts.com")assert.equal(href,"https://aweconcepts.com/");
+  }
+  if(/target="_blank"/.test(anchor))assert.match(anchor,/rel="noopener noreferrer"/,"Off-site links must be safe in new tabs");
+ }
+ for(const id of ["top","archive","approach","sessions","booking-info","contact","content"]){
+  assert.ok(destinations.has("#"+id),"Missing expected navigation link to #"+id);
+ }
+ for(const href of [booking,profile,"https://aweconcepts.com/"])assert.ok(destinations.has(href),"Missing key public action "+href);
+ const gallery=[...html.matchAll(/<button\b[^>]*class="frame frame--\d+"[^>]*data-category="([^"]+)"[^>]*data-photo="(\d+)"[^>]*>/g)];
+ assert.equal(gallery.length,manifest.images.length,"Photo buttons must map to every imported image");
+ const dynamicPosts=[...js.matchAll(/\{label:'([^']+)',post:'([^']+)'\}/g)];
+ assert.equal(dynamicPosts.length,manifest.images.length,"Photo-viewer original-post links must match all gallery images");
+ gallery.forEach((match,i)=>{
+  const item=manifest.images[i];
+  assert.equal(Number(match[2]),i,"Photo button index mismatch");
+  assert.equal(match[1],item.category,"Gallery filter mismatch");
+  assert.equal(dynamicPosts[i][1],item.label,"Photo viewer title mismatch");
+  assert.equal(dynamicPosts[i][2],item.post,"Original Instagram post link mismatch");
+  assert.ok(html.includes("/shotsbyriq/photos/"+item.file),"Missing local gallery photo");
+ });
+ const filterCategories=[...html.matchAll(/<button\b[^>]*data-filter="([^"]+)"/g)].map(match=>match[1]);
+ assert.ok(filterCategories.includes("all"));
+ assert.deepEqual(new Set(filterCategories.filter(x=>x!=="all")),new Set(manifest.images.map(p=>p.category)),"Every category should have a filter");
+ assert.match(js,/menuButton\?\.addEventListener\('click'/,"Mobile menu must respond to taps");
+ assert.match(js,/menu\?\.querySelectorAll\('a'\)/,"Mobile menu must close after navigation");
+ assert.match(js,/modalPost\.href=p\.post/,"Lightbox must navigate to the selected original post");
+ const srcs=[...html.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/g)].map(match=>match[1]);
+ assert.ok(srcs.length>=9,"Expected all locally hosted photographs");
+ for(const src of srcs)assert.ok(src.startsWith("/shotsbyriq/photos/"),"Unstable external image source: "+src);
+ assert.match(html,/<meta property="og:url" content="https:\/\/preview\.aweconcepts\.com\/shotsbyriq">/);
+ assert.match(html,/<meta property="og:image" content="https:\/\/preview\.aweconcepts\.com\/shotsbyriq\/photos\/golden-era-01\.jpg">/);
+ assert.match(html,/<meta name="twitter:image" content="https:\/\/preview\.aweconcepts\.com\/shotsbyriq\/photos\/golden-era-01\.jpg">/);
+ assert.doesNotMatch(html,/<meta property="og:image" content="https:\/\/(?:scontent|instagram)\./,"Social-share photo must not expire");
+ assert.ok(base.length>0);
+});
+
 test("preview Firebase target is separate from production and not a private draft deployment", async () => {
  const production = JSON.parse(await readFile("firebase.json","utf8"));
  assert.equal(production.hosting.public,"dist");
