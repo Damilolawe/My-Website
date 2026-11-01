@@ -53,6 +53,9 @@ test("photographer editorial imports real Instagram post photographs with origin
  const status=JSON.parse(await read("public/shotsbyriq/import-status.json"));
  assert.equal(source.images.length,9);
  assert.equal(status.requested,9);
+ assert.equal(status.count,9,"Never publish a partial/broken photographer portfolio");
+ assert.ok(status.assets.every(asset=>asset.imported && asset.bytes>4000));
+ assert.ok(status.assets.every(asset=>["original-instagram-post","published-photo-snapshot"].includes(asset.source)));
  assert.match(html,/UNOFFICIAL DESIGN STUDY BY/);
  assert.match(html,/app\.acuityscheduling\.com\/schedule\.php\?owner=30252037/);
  assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
@@ -64,7 +67,8 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.match(html,/data-category="editorial"/);
  assert.match(html,/SEE ORIGINAL POST/);
  assert.ok(source.images.every(p=>p.post.startsWith("https://www.instagram.com/shotsbyriq_/p/")));
- assert.ok(source.images.every(p=>html.includes(p.url)||html.includes("/shotsbyriq/photos/"+p.file)),"Every photo should come from its original Instagram post");
+ assert.ok(source.images.every(p=>html.includes("/shotsbyriq/photos/"+p.file)),"Every photograph should be a stable first-party hosted import");
+ assert.ok(source.images.every(p=>!html.includes(p.url)),"Do not leave expiring signed Instagram CDN URLs in the published page");
  assert.match(css, /contact-sheet/);assert.match(js,/ArrowRight/);
  assert.doesNotMatch(html,/data:image\/webp;base64/);
  assert.doesNotMatch(html,/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2600-\u27BF]/u);
