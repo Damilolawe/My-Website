@@ -29,3 +29,158 @@
 .control-x{display:inline-block;position:relative;width:14px;height:14px}
 .control-x:before,.control-x:after{content:"";position:absolute;width:17px;height:1.5px;background:currentColor;left:-1px;top:6px;transform:rotate(45deg)}
 .control-x:after{transform:rotate(-45deg)}
+
+/* AFTER HOURS — SHOTSBYRIQ darkroom editorial treatment.
+   Explicitly independent of Awe Concepts' own visual identity. */
+:root{
+  --paper:#101014;
+  --ink:#f4edf0;
+  --line:#494049;
+  --blue:#c89fac;
+  --light:#f8ede7;
+  --pink:#d8a3af;
+}
+body{background:#101014;color:var(--ink)}
+.notice{background:#08090d;color:#bcb3bc;border-bottom:1px solid #342c33}
+.notice a{color:#e7bdc7}
+.topbar{background:rgba(14,13,18,.965);border-bottom-color:#51404b;color:#f4edf0;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.logo{color:#f4edf0}
+.logo small{color:#d4abb8}
+.nav a{color:#e9dfe4}
+.nav a:hover{color:#e6aebc}
+.nav a:after{background:#d6a8b6}
+.nav-book{background:#e2b8c1;color:#1b1118}
+.nav-book:hover{background:#f3d4d4;color:#1b1118}
+.menu-button{border-color:#a99ba4}
+.menu-button span{background:#f4edf0}
+.menu-panel{background:#16131a;border-color:#594952}
+.menu-panel a{color:#f3e8ef;border-bottom-color:#51404b}
+.skip-link{background:#fff;color:#111}
+a:focus-visible,button:focus-visible{outline-color:#f2bfcb}
+.cover{background:#09090e;color:#f9f3f1}
+.cover-media{background:#171018}
+.cover-media:after{background:linear-gradient(90deg,#09090f 1%,#09090fd9 18%,#09090f35 64%),linear-gradient(0deg,#0b0913d4 0%,transparent 43%),linear-gradient(180deg,#11101435,transparent 42%)}
+.cover-photo{filter:contrast(1.1) saturate(.82) brightness(.75)}
+.cover-photo-credit{background:#100e14dd;color:#ddcdd2}
+.cover h1 em{color:#e4b8c5;text-shadow:0 0 70px #551f3660}
+.cover h1 .endmark{color:#d29aa8}
+.cover-kicker,.cover-topline{color:#ebcbd5}
+.cover-cta a{background:#e9c7cd;color:#180f17}
+.cover-cta a:hover{background:#fff4f2}
+.cover-cta>span{color:#c7b4c2}
+.cover:before{content:"";position:absolute;z-index:1;inset:0;pointer-events:none;background:radial-gradient(ellipse at 45% 5%,#7a334222,transparent 57%)}
+.intro-panel{background:#121016;border-bottom-color:#4d3e47}
+.intro-eyebrow{color:#c4a7b6}
+.dot{background:#d9b1bf}
+.intro-panel p{color:#faf1ef}
+.intro-panel p strong{color:#dcb0bd}
+.intro-stamp,.intro-stamp span{color:#a891a2}
+.archive{background:#101014;color:#f6edf0}
+.section-heading h2{color:#f4edf0}
+.section-heading h2 i{color:#daa8b6}
+.section-heading p{color:#b2a6ad}
+.micro-label{color:#b99aa8}
+.archive-topbar{border-top-color:#54444e}
+.filters button{color:#b5a9b0}
+.filters button:hover,.filters button.is-selected{color:#f1c5d0;border-bottom-color:#d9a3b2}
+#archive-count{color:#d9acb8}
+.frame{background:#271e29}
+.frame img{filter:brightness(.87) contrast(1.055) saturate(.9)}
+.frame:hover img{filter:brightness(1) contrast(1.025) saturate(1)}
+.frame:after{background:linear-gradient(transparent,#09070bbf)}
+.after-gallery{border-top-color:#52434d;color:#bbb0b7}
+.after-gallery a{color:#e6bbca;border-color:#e6bbca}
+.feature-spread{background:#100e14;color:#f4e9eb}
+.spread-photo{background:#22121c}
+.spread-photo img{filter:brightness(.8) contrast(1.08) saturate(.84)}
+.spread-copy{background:#271720}
+.spread-copy:after{color:#ffffff08}
+.spread-copy h2{color:#fff3f1}
+.spread-copy h2 em{color:#e1b3be}
+.spread-copy p{color:#c7b7c1}
+.spread-copy a{color:#e7b9c6;border-color:#bb929e}
+.spread-figure{background:#130e15da}
+.intermission{background:radial-gradient(ellipse at 55% 50%,#4d2539 0%,#271622 56%,#160f1a 100%);color:#f9eef2;border-top:1px solid #664451;border-bottom:1px solid #664451}
+.intermission p{text-shadow:0 9px 34px #100b1255}
+.intermission p em{color:#d6a8bb}
+.intermission>span{color:#ccb0bd}
+.sessions{background:#121014;color:#f5ebed}
+.session-list{border-top-color:#61505a}
+.session-line{border-bottom-color:#61505a}
+.session-line:hover{background:#2b202b}
+.session-line strong{color:#f5ebed}
+.session-no{color:#e5b6c5}
+.session-line>span:nth-child(3){color:#b5a8b2}
+.session-note{color:#a99ca5}
+.end-spread{background:#0a090f;color:#faf2f1}
+.end-type h2 em{color:#e4b2c0}
+.booking-link{background:#e9c7ce;color:#1a1118}
+.booking-link:hover{background:#fff2ed}
+.end-photos{background:#23141f}
+.end-photo-one,.end-photo-two{background:#2e202b;box-shadow:20px 20px 0 #09050e66}
+.end-photos img{filter:brightness(.9) saturate(.87)}
+.end-type p{color:#c1b2bd}
+.end-photos>span{color:#eee0e8}
+.footer{background:#08090c;color:#f3e8ed}
+.footer-logo span{color:#dab0bb}
+.footer-top>div{color:#c3b7be}
+.footer-top nav a{color:#f2e3e9}
+.footer-top nav a:hover{color:#deb1c0}
+.footnote{color:#a69ba4}
+.lightbox{background:#07070afb}
+.lightbox button{border-color:#a58c99}
+.lightbox figcaption{color:#e2d2dc}
+.link-diag{color:inherit}
+/* Policy ledger, designed to belong to the photographer rather than a
+   generic pricing widget. All numbers reflect the public Acuity policy. */
+.booking-brief{background:#1c131b;color:#f6eef0;padding-top:115px;padding-bottom:105px;position:relative;isolation:isolate}
+.booking-brief:before{content:"";position:absolute;pointer-events:none;z-index:-1;top:0;left:0;right:0;height:420px;background:radial-gradient(ellipse at 85% 5%,#5b2c425e,transparent 63%)}
+.brief-head{display:grid;grid-template-columns:1.6fr .65fr;gap:40px;align-items:end;padding-bottom:53px}
+.brief-head h2{font:400 clamp(58px,9.1vw,148px)/.88 var(--font-head);letter-spacing:-.105em;margin:27px 0 0;color:#f9f2f1}
+.brief-head h2 i{font:italic 400 1.08em/.88 var(--font-serif);letter-spacing:-.085em;color:#e3b5c2}
+.brief-intro{max-width:355px;justify-self:end;align-self:end}
+.brief-coordinate{font:500 10px var(--font-mono);letter-spacing:.13em;color:#bb8b9e}
+.brief-intro p{color:#d2bdc8;font:400 14px/1.8 var(--font-sans);margin:21px 0 25px}
+.brief-intro a{font:500 11px var(--font-mono);text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid #c89cac;padding-bottom:7px;color:#eed2d8}
+.brief-hero{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #7b6070;border-bottom:1px solid #7b6070}
+.brief-item{padding:35px 28px 37px;border-right:1px solid #6a5260;display:flex;flex-direction:column;gap:13px}
+.brief-item:first-child{padding-left:0}
+.brief-item:last-child{border-right:0}
+.brief-item>span{font:500 10px var(--font-mono);letter-spacing:.12em;color:#d5a2b5}
+.brief-item strong{font:400 clamp(25px,3vw,47px)/1 var(--font-head);letter-spacing:-.07em;color:#fff5f1}
+.brief-item small{font:400 12px/1.65 var(--font-sans);color:#b9a6b2;max-width:300px}
+.brief-rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:32px 0 0}
+.brief-rule{padding:36px 6vw 35px 0;border-bottom:1px solid #57424f;min-height:200px}
+.brief-rule:nth-child(2n){padding-left:3.5vw;padding-right:0;border-left:1px solid #57424f}
+.rule-no{font:500 10px var(--font-mono);color:#cda0b4;letter-spacing:.1em}
+.brief-rule h3{font:400 clamp(19px,2.4vw,33px)/1.1 var(--font-head);letter-spacing:-.075em;margin:14px 0 13px;color:#fff0ed}
+.brief-rule p{font:400 13px/1.88 var(--font-sans);color:#c8b5c0;margin:0;max-width:520px}
+.brief-rule p strong{color:#f2d4dc;font-weight:700}
+.brief-bottom{padding:35px 0 0;display:grid;grid-template-columns:.75fr 1.2fr .85fr;align-items:start;gap:32px}
+.brief-bottom>span{font:500 13px/1.4 var(--font-mono);color:#f2c3d0;letter-spacing:.07em}
+.brief-bottom p{margin:0;color:#bcabb7;font:400 12px/1.75 var(--font-sans)}
+.brief-bottom a{justify-self:end;font:500 11px var(--font-mono);color:#f4d2dc;display:inline-flex;align-items:center;white-space:nowrap;gap:10px;border-bottom:1px solid #c9a3b0;padding-bottom:9px}
+@media(max-width:1050px){.brief-head{grid-template-columns:1.1fr .8fr}.brief-head h2{font-size:clamp(56px,9vw,110px)}.brief-bottom{grid-template-columns:.8fr 1.4fr}.brief-bottom a{grid-column:2;justify-self:start}}
+@media(max-width:760px){
+ .menu-panel{background:#171119}
+ .cover-media:after{background:linear-gradient(180deg,#0b09117d 0%,#0b09116b 35%,#0b0912f5 100%),linear-gradient(90deg,#0b0911a8,transparent)}
+ .cover h1{color:#fff2f2;text-shadow:0 4px 26px #0009}
+ .cover-photo{filter:contrast(1.1) brightness(.68) saturate(.8)}
+ .intro-panel{border-bottom-color:#55404e}
+ .brief-head{display:block;padding-bottom:42px}
+ .brief-head h2{font-size:clamp(58px,12vw,95px)}
+ .brief-intro{justify-self:auto;margin-top:32px;max-width:500px}
+ .brief-hero{grid-template-columns:1fr}
+ .brief-item,.brief-item:first-child{padding:25px 0;border-right:0;border-bottom:1px solid #57414d}
+ .brief-item:last-child{border-bottom:0}
+ .brief-item strong{font-size:35px}
+ .brief-rules{grid-template-columns:1fr;padding-top:15px}
+ .brief-rule,.brief-rule:nth-child(2n){min-height:0;padding:29px 0;border-left:0}
+ .brief-rule h3{font-size:clamp(24px,6vw,34px)}
+ .brief-bottom{grid-template-columns:1fr;gap:16px}
+ .brief-bottom a{grid-column:auto;justify-self:start}
+ .booking-brief{padding-top:78px;padding-bottom:80px}
+}
+
+/* Keep the four-item editorial navigation from crowding tablet widths. */
+@media(min-width:761px) and (max-width:940px){.topbar{grid-template-columns:1fr auto}.nav,.nav-book{display:none}.menu-button{display:block}.menu-panel{background:#171119}}
