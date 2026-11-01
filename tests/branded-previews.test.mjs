@@ -6,9 +6,9 @@ import { KAPPO_PAGES } from "../scripts/rewrite-kappo-preview-urls.mjs";
 
 const root = "branded-previews/";
 const read = async path => readFile(root + path, "utf8");
-const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js"].sort();
+const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js"].sort();
 
-test("branded previews build exactly the allowlisted public restaurant concept", async () => {
+test("branded previews build exactly the allowlisted public concepts", async () => {
  execFileSync(process.execPath, ["scripts/build-branded-previews.mjs"], {stdio:"pipe"});
  const actual = [];
  const walk = async (base, prefix="") => {
@@ -22,6 +22,7 @@ test("branded previews build exactly the allowlisted public restaurant concept",
  assert.deepEqual(actual.sort(),expectedFiles);
  const landing=await read("public/index.html");
  assert.match(landing,/href="\/otaku-haven\/"/);
+ assert.match(landing,/href="\/shotsbyriq\/"/);
  assert.match(landing,/href="\/kappo-sono\/"/);
  assert.match(landing,/independent design studies/);
  assert.match(landing,/noindex,nofollow/);
@@ -59,4 +60,28 @@ test("preview Firebase target is separate from production and not a private draf
  assert.match(workflow,/entryPoint: 'branded-previews'/);
  assert.match(workflow,/channelId: live/);
  assert.doesNotMatch(workflow,/npm run build/);
+});
+
+
+test("Shots by Riq concept has working scoped navigation, real booking and Awe Concepts credit", async () => {
+ const html=await read("public/shotsbyriq/index.html");
+ const css=await read("public/shotsbyriq/styles.css");
+ const js=await read("public/shotsbyriq/site.js");
+ assert.match(html, /href="\\/shotsbyriq\\/styles\\.css"/);
+ assert.match(html, /src="\\/shotsbyriq\\/site\\.js"/);
+ assert.match(html, /href="\\/shotsbyriq\\/"/);
+ assert.match(html, /app\\.acuityscheduling\\.com\\/schedule\\/18b40bc9/);
+ assert.match(html, /instagram\\.com\\/shotsbyriq_/);
+ assert.match(html, /Designed by Awe Concepts/);
+ assert.match(html, /aweconcepts\\.com/);
+ assert.match(html, /Not the official Shots by Riq website/);
+ assert.match(html, /noindex,nofollow/);
+ for(const section of ["work","services","about","details","book"]) assert.match(html,new RegExp('id="'+section+'"'));
+ for(const label of ["studio","lifestyle","events"]) assert.match(html,new RegExp('data-filter="'+label+'"'));
+ assert.match(js,/PORTFOLIO=/);
+ assert.match(js,/image-unavailable/);
+ assert.match(js,/ArrowRight/);
+ assert.match(css,/prefers-reduced-motion/);
+ assert.doesNotMatch(html, /href="\\/(?:styles\\.css|site\\.js)"/);
+ assert.doesNotMatch(html, /[\\u{1F300}-\\u{1FAFF}]/u);
 });
