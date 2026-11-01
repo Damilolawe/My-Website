@@ -27,7 +27,7 @@ test("Kappo Sono navigation and styles survive Firebase cleanUrls and both hosti
  const pages=["index.html","menu.html","story.html","gallery.html","visit.html"];
  for(const page of pages){
   const source=await get(page);
-  assert.doesNotMatch(source,/\\b(?:href|src)="(?:index|menu|story|gallery|visit)\\.html"/);
+  assert.doesNotMatch(source,/\b(?:href|src)="(?:index|menu|story|gallery|visit)\.html"/);
   assert.ok(source.includes('href="/"'),page+" needs the standalone root home link");
   assert.ok(source.includes('href="/styles.css"'),page+" must not have relative CSS");
   assert.ok(source.includes('src="/site.js"'),page+" must not have relative script");
