@@ -78,6 +78,16 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.doesNotMatch(html,/schedule\.php\?owner=30252037/);
  assert.match(css,/#101014/);
  assert.match(css,/booking-brief/);
+ // Regression coverage for phone recording: no clipped long editorial word
+ // and no illegible rotated BY glyph in the header/footer branding.
+ assert.match(html,/class="headline-long">PERSONALITY\.<\/span>/);
+ assert.match(css,/\.spread-copy h2 \.headline-long\{font-size:clamp\(25px,8\.25vw,54px\)/);
+ assert.match(html,/class="footer-logo" aria-label="SHOTSBYRIQ, back to top"/);
+ assert.match(html,/class="footer-by">BY<\/span>RIQ/);
+ assert.match(css,/\.logo small\{[^}]*transform:none;/);
+ assert.match(css,/\.brief-rule p\{font-size:14px;line-height:1\.78\}/);
+ assert.match(css,/\.archive \.frame img\{filter:brightness\(\.96\)/);
+ assert.doesNotMatch(html,/class="footer-logo">S<span>\/<\/span>RIQ/);
  assert.match(css,/\/\* BLUE HOUR/,"Blue Hour photographer theme should load after legacy dark theme");
  assert.match(css,/--blue:#4c6fff/,"Primary highlight should be cobalt blue");
  assert.match(css,/--accent-soft:#86a3ff/,"Secondary highlight should be cool blue");
