@@ -3,6 +3,11 @@ name: Firebase Hosting (Awe Concepts)
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'preview/**'
+      - 'scripts/build-branded-previews.mjs'
+      - '.github/workflows/branded-previews.yml'
+      - '.github/workflows/kappo-sono-preview.yml'
   workflow_dispatch:
 
 permissions:
@@ -60,4 +65,3 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           projectId: ${{ vars.FIREBASE_PROJECT_ID }}
           channelId: live
-
