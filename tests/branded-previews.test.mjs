@@ -73,9 +73,9 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.match(html,/3–14 days/);
  assert.match(html,/24 hours/);
  assert.match(html,/7 days/);
- assert.match(html,/\\$50 fee/);
- assert.match(html,/\\$100/);
- assert.doesNotMatch(html,/schedule\\.php\\?owner=30252037/);
+ assert.match(html,/\$50 fee/);
+ assert.match(html,/\$100/);
+ assert.doesNotMatch(html,/schedule\.php\?owner=30252037/);
  assert.match(css,/#0d0b0f/);
  assert.match(css,/booking-brief/);
  assert.match(html,/SEE ORIGINAL POST/);
