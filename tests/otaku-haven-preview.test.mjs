@@ -55,7 +55,7 @@ test("interaction is responsive, accessible and respects reduced motion", async 
   assert.doesNotMatch(html, /awe-digital\.web\.app/);
 });
 
-test("all three standalone Otaku Haven files are in the public preview build", async () => {
+test("Otaku Haven assets are build-allowlisted, nonempty, and hosted independently", async () => {
   const build = await readFile("scripts/build-branded-previews.mjs", "utf8");
   assert.match(build, /publicOtaku/);
   for (const filename of ["index.html", "site.js", "styles.css"]) {
