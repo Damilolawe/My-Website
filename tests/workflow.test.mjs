@@ -32,7 +32,7 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
     x.endsWith("_awe_platform.sql"),
   );
   await db.exec(await readFile("supabase/migrations/" + file, "utf8"));
-  for (const suffix of ["_customer_draft_approval.sql", "_payment_refund_event_ordering.sql", "_work_handoff_notification_reservation.sql", "_paid_order_confirmation.sql"]) {
+  for (const suffix of ["_customer_draft_approval.sql", "_payment_refund_event_ordering.sql", "_work_handoff_notification_reservation.sql", "_paid_order_confirmation.sql", "_owner_review_customer_acceptance.sql"]) {
     const migration = (await readdir("supabase/migrations")).find(f=>f.endsWith(suffix));
     await db.exec(await readFile("supabase/migrations/"+migration,"utf8"));
   }
@@ -401,7 +401,7 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
         const revision = await request(`orders/${oid}/revision`, {
           data: { message: "Please revise this private draft before publishing." },
         });
-        assert.equal(revision.status, 200);
+        assert.equal(revision.status, 409, "Customers cannot revise drafts before studio release.");
         assert.equal((await db.query("select public_version from awe_orders")).rows[0].public_version, null);
         assert.equal((await request(`orders/${oid}/revision`, {
           actor: "stranger", data: { message: "Unauthorized private draft revision." },
@@ -429,63 +429,44 @@ test(flow.name+": HTTP workflow with real PostgreSQL and simulated external prov
       order = (await db.query("select * from awe_orders")).rows[0];
       assert.equal(order.public_version, null);
     });
-    await t.test(
-      "approval requires explicit exact-order confirmation and owner auth",
-      async () => {
-        const base = { version: order.version, confirm: oid };
-        assert.equal(
-          (await request(`admin/orders/${oid}/publish`, { data: base })).status,
-          403,
-        );
-        assert.equal(
-          (
-            await request(`admin/orders/${oid}/publish`, {
-              actor: "owner",
-              data: { ...base, confirm: "wrong" },
-            })
-          ).status,
-          400,
-        );
-        assert.equal((await request(`admin/orders/${oid}/publish`, {actor:"owner",data:base})).status,409);
-        assert.equal((await request(`orders/${oid}/approve`, {actor:"stranger",data:{version:order.draft_version}})).status,404);
-        assert.equal((await request(`orders/${oid}/approve`, {data:{version:order.draft_version}})).status,200);
-        assert.equal(
-          (
-            await request(`admin/orders/${oid}/publish`, {
-              actor: "owner",
-              data: base,
-            })
-          ).status,
-          200,
-        );
-        order = (await db.query("select * from awe_orders")).rows[0];
-        const r = await site(
-          new Request(`https://studio.example/sites/${order.slug}`),
-        );
-        assert.equal(r.status, 200);
-        assert((await r.text()).includes("Reviewed by the owner"));
-        assert.equal(
-          (
-            await site(
-              new Request(
-                `https://studio.example/sites/${order.slug}/assets/${aid}`,
-              ),
-            )
-          ).status,
-          200,
-        );
-        assert.equal(
-          (
-            await site(
-              new Request(
-                `https://studio.example/sites/${order.slug}/assets/${randomUUID()}`,
-              ),
-            )
-          ).status,
-          404,
-        );
-      },
-    );
+
+    await t.test("owner release requires current personally saved draft and exact confirmation",async()=>{
+      const base={version:order.version,confirm:oid};
+      assert.equal((await request(`orders/${oid}/approve`,{data:{version:order.draft_version}})).status,409);
+      assert.equal((await request(`admin/orders/${oid}/release`,{data:base})).status,403);
+      assert.equal((await request(`admin/orders/${oid}/release`,{actor:"owner",data:{...base,confirm:"wrong"}})).status,400);
+      assert.equal((await request(`admin/orders/${oid}/publish`,{actor:"owner",data:base})).status,409);
+      const released=await request(`admin/orders/${oid}/release`,{actor:"owner",data:base});
+      assert.equal(released.status,200,await released.clone().text());
+      order=(await db.query("select * from awe_orders where id=$1",[oid])).rows[0];
+      assert.equal(order.status,"customer_review");
+      assert.equal(order.public_version,null);
+      assert.equal((await db.query("select count(*)::int n from awe_events where order_id=$1 and kind='owner_preapproved'",[oid])).rows[0].n,1);
+    });
+    await t.test("review invitation retries safely without publishing",async()=>{
+      await runJobs(1);
+      const review=(await db.query("select * from awe_jobs where order_id=$1 and kind='notify_review'",[oid])).rows[0];
+      assert.ok(review?.error,"Failed invitation must remain retryable");
+      assert.equal((await db.query("select public_version from awe_orders where id=$1",[oid])).rows[0].public_version,null);
+      emailFails=false;
+      await db.exec("update awe_jobs set available_at=now()-interval '1 minute' where kind='notify_review'");
+      await runJobs(1);
+      assert.equal((await db.query("select count(*)::int n from awe_events where order_id=$1 and kind='review_invitation_accepted'",[oid])).rows[0].n,1);
+    });
+    await t.test("customer accepts only the exact studio-approved version",async()=>{
+      assert.equal((await request(`orders/${oid}/approve`,{actor:"stranger",data:{version:order.draft_version}})).status,404);
+      const approved=await request(`orders/${oid}/approve`,{data:{version:order.draft_version}});
+      assert.equal(approved.status,200,await approved.clone().text());
+      order=(await db.query("select * from awe_orders where id=$1",[oid])).rows[0];
+      assert.equal(order.status,"published");
+      assert.equal(order.public_version,order.draft_version);
+      assert.equal((await request(`orders/${oid}/approve`,{data:{version:order.draft_version}})).status,409);
+      const page=await site(new Request(`https://studio.example/sites/${order.slug}`));
+      assert.equal(page.status,200);
+      assert((await page.text()).includes("Reviewed by the owner"));
+      assert.equal((await site(new Request(`https://studio.example/sites/${order.slug}/assets/${aid}`))).status,200);
+      assert.equal((await site(new Request(`https://studio.example/sites/${order.slug}/assets/${randomUUID()}`))).status,404);
+    });
     await t.test("approved export is owner-gated and contains portable assets",async()=>{assert.equal((await request(`orders/${oid}/export`)).status,403);const r=await request(`admin/orders/${oid}/export`,{actor:'owner'});assert.equal(r.status,200);const files=unzipSync(new Uint8Array(await r.arrayBuffer()));assert(files['index.html']);for(const page of allowedApprovedPageNames(flow.template))assert(files[page],page);const asset=(await db.query('select mime from awe_assets where id=$1',[aid])).rows[0];const extension={'image/webp':'webp','image/png':'png','image/jpeg':'jpg'}[asset.mime];assert(files['assets/'+aid+'.'+extension]);assert(!strFromU8(files['index.html']).includes('/api/assets/'));});
     await t.test(
       "email failure is retained and retry records successful acceptance",
