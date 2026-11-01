@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile, stat } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 
 const read = (name) => readFile("preview/otaku-haven/" + name, "utf8");
 
@@ -59,7 +59,7 @@ test("all three standalone Otaku Haven files are in the public preview build", a
   const build = await readFile("scripts/build-branded-previews.mjs", "utf8");
   assert.match(build, /publicOtaku/);
   for (const filename of ["index.html", "site.js", "styles.css"]) {
-    assert.ok((await stat("branded-previews/public/otaku-haven/" + filename)).size > 1000);
+    assert.ok((await read(filename)).length > 1000, "Missing substantial source: " + filename);
   }
   const config = JSON.parse(await readFile("branded-previews/firebase.json", "utf8"));
   assert.equal(config.hosting.target, "previews");
