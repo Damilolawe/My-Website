@@ -35,3 +35,25 @@ test("Kappo Sono site labels historical menu and photography honestly",async()=>
  assert.ok(csp.includes("https://images.squarespace-cdn.com"));
  assert.ok((await readFile("scripts/build.mjs","utf8")).includes('"preview"'));
 });
+
+test("Kappo Sono interface icons never fall back to iOS emoji",async()=>{
+ const pages=["index.html","menu.html","story.html","gallery.html","visit.html"];
+ for(const page of pages){
+  const html=await get(page);
+  assert.doesNotMatch(html,/[\u2196-\u2199\uFE0F]|\p{Emoji_Presentation}/u,page+" must not contain emoji-presented UI symbols");
+  assert.doesNotMatch(html,/割烹\s+園/u,page+" must keep the Japanese wordmark unbroken");
+  assert.ok(html.includes('class="icon-external"')||html.includes('class="arrow icon-external"'),page+" must use styled icons");
+ }
+ const css=await get("styles.css");
+ assert.match(css,/\.icon-external::before/);
+ assert.match(css,/\.icon-external::after/);
+ const home=await get("index.html");
+ for(const label of ["01 / ONE","02 / TWO","03 / THREE"])assert.ok(home.includes(label),"Missing clear numbered feature label: "+label);
+ for(const old of ["一 — ONE","二 — TWO","三 — THREE"])assert.ok(!home.includes(old),"Remove ambiguous horizontal-stroke numerals");
+});
+test("all 13 archival course descriptions end with punctuation",async()=>{
+ const html=await get("menu.html");
+ const descriptions=[...html.matchAll(/<article class="course reveal">[\s\S]*?<div><p>([^<]+)<\/p><\/div><\/article>/g)].map(m=>m[1].trim());
+ assert.equal(descriptions.length,13);
+ descriptions.forEach((description,i)=>assert.match(description,/[.!?。]$/,"Course "+(i+1)+" is missing punctuation"));
+});
