@@ -13,7 +13,7 @@ test("Otaku Haven concept is brand-accurate, clearly unofficial and safe to shar
   for (const phrase of ["SHONEN SHOWDOWN", "COSPLAY CHRONICLES", "OTAKU BAZAAR", "ZAI", "Timothy", "Andrea"]) {
     assert.ok(html.toUpperCase().includes(phrase.toUpperCase()), "Missing verified brand feature: " + phrase);
   }
-  assert.doesNotMatch(html, /\u{1F300}-\u{1FAFF}/u);
+  assert.doesNotMatch(html, /[\u{1F300}-\u{1FAFF}]/u);
 });
 
 test("every official store and community CTA leads to a verified destination", async () => {
