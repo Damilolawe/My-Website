@@ -8,6 +8,7 @@ on:
       - 'preview/otaku-haven/**'
       - 'preview/shotsbyriq/**'
       - 'preview/jay-millz-shot-em/**'
+      - 'preview/pace-sbdc/**'
       - 'scripts/rewrite-kappo-preview-urls.mjs'
       - 'scripts/build-branded-previews.mjs'
       - 'scripts/validate-preview-icons.mjs'
