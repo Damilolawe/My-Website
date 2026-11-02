@@ -8,7 +8,7 @@ import { mediaSlugs } from "../preview/pace-sbdc/media-content.mjs";
 
 const root = "branded-previews/";
 const read = async path => readFile(root + path, "utf8");
-const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json","jay-millz-shot-em/index.html","jay-millz-shot-em/styles.css","jay-millz-shot-em/site.js","jay-millz-shot-em/import-status.json", ...["index","services","about","stories","events","resources","contact","team","locations","library","media","partners","spanish",...detailSlugs,...mediaSlugs].map(name=>"pace-sbdc/"+name+".html"),"pace-sbdc/styles.css","pace-sbdc/site.js"].sort();
+const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json","jay-millz-shot-em/index.html","jay-millz-shot-em/styles.css","jay-millz-shot-em/site.js","jay-millz-shot-em/import-status.json", ...["index","services","about","stories","events","resources","contact","team","teambio","locations","library","media","partners","spanish",...detailSlugs,...mediaSlugs].map(name=>"pace-sbdc/"+name+".html"),"pace-sbdc/styles.css","pace-sbdc/site.js"].sort();
 
 test("branded previews build exactly the allowlisted independent public concepts", async () => {
  execFileSync(process.execPath, ["scripts/build-branded-previews.mjs"], {stdio:"pipe"});
@@ -410,7 +410,7 @@ test("Pace SBDC retains authentic brand colors, assets and the original full con
   assert.match(html,/href="\.\/spanish\.html"/);
  }
  const team=await read("public/pace-sbdc/team.html");
- for(const person of ["Rawle Brown","Sandra Cely","Greg Callender","Susan Gluck","Sanchit deep Singh","Eeshani Juthani","Lily Lin","Roxanna Astorga","Andrew Flamm"])assert.ok(team.includes(person),person+" absent");
+ for(const person of ["Rawle Brown","Sandra Cely","Greg Callender","Susan Gluck","Sanchit Deep Singh","Eeshani Juthani","Lily Lin","Roxanna Astorga","Andrew Flamm"])assert.ok(team.includes(person),person+" absent");
  const locations=await read("public/pace-sbdc/locations.html");
  for(const area of ["Canarsie","Crown Heights","East Williamsburg","Flatbush","Grand Army Plaza","Industry City","Midtown Manhattan","Park Slope","Prospect Lefferts Gardens","Red Hook","Sunset Park BID","Williamsburg"])assert.ok(locations.includes(area),area+" absent");
  const library=await read("public/pace-sbdc/library.html");
