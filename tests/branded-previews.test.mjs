@@ -63,8 +63,8 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
  assert.match(html,/noindex,nofollow/);
  assert.match(html,/id="lightbox"/);
- assert.match(html,/href="\/shotsbyriq\/styles\.css"/);
- assert.match(html,/src="\/shotsbyriq\/site\.js"/);
+ assert.match(html,/href="\/shotsbyriq\/styles\.css\?v=motion-20261102"/);
+ assert.match(html,/src="\/shotsbyriq\/site\.js\?v=motion-20261102"/);
  assert.match(html,/data-category="creative"/);
  assert.match(html,/data-category="editorial"/);
  assert.match(html,/id="booking-info"/);
