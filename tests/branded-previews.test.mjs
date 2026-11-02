@@ -344,7 +344,7 @@ test("all deployed pages reference the current animation revision, not stale cac
 
 
 test("Pace SBDC redesign ships seven independent, accurate and usable public pages",async()=>{
- const names=["index","services","about","stories","events","resources","contact","team","locations","library","media","partners","spanish",...detailSlugs,...mediaSlugs];
+ const names=["index","services","about","stories","events","resources","contact","team","teambio","locations","library","media","partners","spanish",...detailSlugs,...mediaSlugs];
  const host="https://www.pacesbdc.org";
  for(const name of names){
   const doc=await read("public/pace-sbdc/"+name+".html");
@@ -398,7 +398,7 @@ test("Pace SBDC retains authentic brand colors, assets and the original full con
  for(const color of ["#002d73","#0036a1","#ffb81a","#4780b5"])assert.ok(css.includes(color),"Missing authentic Pace color "+color);
  assert.match(css,/\.official-lockup/);
  assert.match(css,/\.official-extra-nav/);
- const pageNames=["index","services","about","stories","events","resources","contact","team","locations","library","media","partners","spanish"];
+ const pageNames=["index","services","about","stories","events","resources","contact","team","teambio","locations","library","media","partners","spanish"];
  for(const name of pageNames){
   const html=await read("public/pace-sbdc/"+name+".html");
   assert.match(html,/8f09f9_6f772fba8eba4d78869d1198efd188ed/,"Official Pace SBDC source artwork");
@@ -432,7 +432,7 @@ test("Pace SBDC retains authentic brand colors, assets and the original full con
 
 
 test("Every original Pace SBDC section is rebuilt locally without external old-site links",async()=>{
- const ids=["index","services","about","stories","events","resources","contact","team","locations","library","media","partners","spanish",...detailSlugs,...mediaSlugs];
+ const ids=["index","services","about","stories","events","resources","contact","team","teambio","locations","library","media","partners","spanish",...detailSlugs,...mediaSlugs];
  assert.ok(ids.length>=45,"Site should include all source routes");
  const paths=new Set(ids.map(slug=>slug+".html"));
  for(const slug of ids){
