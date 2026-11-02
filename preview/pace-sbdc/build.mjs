@@ -1,6 +1,8 @@
 import {mkdir,readFile,writeFile,cp} from "node:fs/promises";
 import {join} from "node:path";
 import { pageBody, inlineEnrichment, extraSlugs } from "./official-content.mjs";
+import { detailEntries, detailSlugs, renderDetail } from "./deep-content.mjs";
+import { mediaSlugs, renderMedia } from "./media-content.mjs";
 
 // Build seven isolated public concept pages. This is not an official Pace site.
 const base="preview/pace-sbdc";
@@ -35,6 +37,34 @@ function rebrandDocument(html){
  '<div class="container official-accreditation"><a href="https://nysbdc.org/" target="_blank" rel="noopener noreferrer"><img src="'+verifiedAccreditation+'" alt="NYSBDC accreditation and SBA funding acknowledgement" loading="lazy" decoding="async"></a><div><strong>AN OFFICIAL NYSBDC NETWORK PROGRAM</strong><p>Funding support from the Small Business Administration, New York State and Pace University; official disclosures and requirements are on the original organization site.</p></div></div><div class="container footer-disclosure">');
  html=html.replace('</footer>','<nav class="container official-source-links" aria-label="Original Pace SBDC website policies and records"><a href="https://www.pacesbdc.org/privacy-policy" target="_blank" rel="noopener noreferrer">ORIGINAL PRIVACY POLICY</a><a href="https://www.pacesbdc.org/faqs" target="_blank" rel="noopener noreferrer">SERVICE FAQ & GUIDELINES</a><a href="https://www.pacesbdc.org/year-in-review" target="_blank" rel="noopener noreferrer">2021–2025 ANNUAL REPORTS</a><a href="https://www.pacesbdc.org/contact" target="_blank" rel="noopener noreferrer">OFFICIAL CONTACT</a><a href="https://www.pacesbdc.org/counseling-form" target="_blank" rel="noopener noreferrer">ORIGINAL APPOINTMENT INSTRUCTIONS</a></nav><div class="container official-transit"><strong>VISITING THE LOWER MANHATTAN OFFICE</strong><span>Fulton St: A, C, J, Z, 2, 3, 4, 5 &nbsp; / &nbsp; World Trade Center: E &nbsp; / &nbsp; Brooklyn Bridge–City Hall: 6</span></div></footer>');
  return html;
+}
+
+
+const allPageSlugs=new Set(["","index","services","about","stories","events","resources","contact",...extraSlugs,...detailSlugs,...mediaSlugs]);
+const oldSitePattern=/^https?:\/\/(?:www\.)?pacesbdc\.org(?:\/|$)/i;
+function rewriteLegacyLinks(html){
+ return html.replace(/<a\b[^>]*>/gi,tag=>{
+  const match=tag.match(/\bhref="([^"]+)"/);
+  if(!match||!oldSitePattern.test(match[1]))return tag;
+  const url=new URL(match[1]);
+  const slug=decodeURIComponent(url.pathname.replace(/^\/+|\/+$/g,""));
+  if(!allPageSlugs.has(slug))throw Error("Original Pace SBDC link has no local replacement: "+slug);
+  const target=slug==="index"||slug===""?"./":"./"+slug+".html";
+  return tag.replace(match[0],'href="'+target+'"').replace(/\s+target="_blank"/g,"").replace(/\s+rel="noopener noreferrer"/g,"");
+ });
+}
+function refineNavigation(html){
+ // The original website must never be required to traverse the redesign.
+ html=rewriteLegacyLinks(html);
+ html=html.replace(/VISIT THE OFFICIAL WEBSITE/g,"RETURN TO THE HOMEPAGE");
+ html=html.replace(/ORIGINAL PRIVACY POLICY/g,"PRIVACY POLICY").replace(/ORIGINAL APPOINTMENT INSTRUCTIONS/g,"APPOINTMENT INSTRUCTIONS").replace(/OFFICIAL CONTACT/g,"CONTACT INFORMATION");
+ html=html.replace(/VIEW OFFICIAL DETAILS/g,"EXPLORE THIS TOPIC").replace(/READ THE OFFICIAL MISSION/g,"ABOUT THE CENTER").replace(/READ THEIR STORY/g,"READ CLIENT STORY");
+ // Internal navigation remains within the preview tab.
+ if(/<a\b[^>]*href="https?:\/\/(?:www\.)?pacesbdc\.org/i.test(html))throw Error("Legacy website link remains");
+ return html;
+}
+async function publishPage(outPath,html){
+ await writeFile(outPath,refineNavigation(html));
 }
 
 const paths=[
@@ -75,7 +105,7 @@ export async function buildPaceSbdc(output){
    top=top.replace(/<title>[\s\S]*?<\/title>/,'<title>'+info[name][0]+' | Pace SBDC — Independent Redesign</title>');
    const middle='<main id="main">'+intro(info[name])+(name==="contact"?contactInfo:"")+
      map[name].map(section=>getSection(original,section)).join("\n")+inlineEnrichment(name)+'</main>';
-   await writeFile(join(output,name+".html"),top+middle+bottom);
+   await publishPage(join(output,name+".html"),top+middle+bottom);
  }
  for(const slug of extraSlugs){
    let top=header, bottom=footer;
@@ -85,7 +115,7 @@ export async function buildPaceSbdc(output){
    }
    top=top.replace(/<title>[\s\S]*?<\/title>/,'<title>Pace SBDC | '+slug+' — Independent Redesign</title>');
    if(slug==="spanish")top=top.replace('<html lang="en">','<html lang="es">');
-   await writeFile(join(output,slug+".html"),top+'<main id="main">'+pageBody(slug)+'</main>'+bottom);
+   await publishPage(join(output,slug+".html"),top+'<main id="main">'+pageBody(slug)+'</main>'+bottom);
  }
  const homeGuide='<section class="section-pad official-section official-home-guide"><div class="container"><div class="eyebrow"><span></span> ORIGINAL PROGRAM INFORMATION</div><h2>The full Pace SBDC.<br><em>All in one place.</em></h2><p class="source-lead">Explore the center beyond the basics: current staff, neighborhood counseling sites, specialized business guides, annual reports, client successes, partnerships, and Spanish-language assistance.</p><div class="official-card-grid">'+[
  ["Meet the team","Meet the current certified business advisors, coordinator and interns.","team.html"],
@@ -95,6 +125,14 @@ export async function buildPaceSbdc(output){
  ["Community partnerships","Learn about Pace, NYSBDC and community programs.","partners.html"],
  ["Asistencia en español","Solicite asesoría confidencial y gratuita en español.","spanish.html"]
  ].map(item=>'<a class="official-card home-guide-card" href="./'+item[2]+'"><h3>'+item[0]+'</h3><p>'+item[1]+'</p><span>EXPLORE SECTION <span class="css-arrow" aria-hidden="true"></span></span></a>').join('')+'</div></div></section>';
- await writeFile(join(output,"index.html"),original.replace('</main>',homeGuide+'</main>'));
- console.log("Built public Pace SBDC concept: home + six dedicated pages.");
+ await publishPage(join(output,"index.html"),original.replace('</main>',homeGuide+'</main>'));
+ for(const entry of detailEntries){
+   const top=header.replace(/<title>[\s\S]*?<\/title>/,'<title>'+entry.title+' | Pace SBDC — Independent Redesign</title>');
+   await publishPage(join(output,entry.slug+".html"),top+'<main id="main">'+renderDetail(entry)+'</main>'+footer);
+ }
+ for(const slug of mediaSlugs){
+   const top=header.replace(/<title>[\s\S]*?<\/title>/,'<title>'+slug.replace(/-/g," ")+' | Pace SBDC — Independent Redesign</title>');
+   await publishPage(join(output,slug+".html"),top.replace(slug==="espanol"||slug==="contacto"?'<html lang="en">':'___NEVER_MATCH___',slug==="espanol"||slug==="contacto"?'<html lang="es">':'___NEVER_MATCH___')+'<main id="main">'+renderMedia(slug)+'</main>'+footer);
+ }
+  console.log("Built public Pace SBDC concept: every verified original content route as a local page.");
 }
