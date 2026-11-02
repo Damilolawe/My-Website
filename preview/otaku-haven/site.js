@@ -23,6 +23,49 @@
   const updateHeader = () => header?.classList.toggle("scrolled", window.scrollY > 12);
   window.addEventListener("scroll", updateHeader, { passive: true });
   updateHeader();
+
+  // Loop a complete repeating segment, not half of a viewport-sized track.
+  // Extra copies prevent empty space on ultrawide desktop displays.
+  const ticker = document.querySelector(".ticker");
+  const tickerTrack = ticker?.querySelector(".ticker-track");
+  const tickerSeed = tickerTrack?.querySelector(".ticker-segment");
+  const tickerToggle = ticker?.querySelector(".ticker-motion-toggle");
+  const tickerMotionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let tickerOptedIn = false;
+  const updateTickerPreference = () => {
+    ticker?.classList.toggle("is-playing", tickerMotionPreference.matches && tickerOptedIn);
+    if (tickerToggle) {
+      tickerToggle.hidden = !tickerMotionPreference.matches;
+      tickerToggle.textContent = tickerOptedIn ? "PAUSE MOTION" : "PLAY MOTION";
+      tickerToggle.setAttribute("aria-label", tickerOptedIn ? "Pause scrolling banner" : "Play scrolling banner");
+    }
+  };
+  tickerToggle?.addEventListener("click", () => {
+    tickerOptedIn = !tickerOptedIn;
+    updateTickerPreference();
+  });
+  tickerMotionPreference.addEventListener?.("change", () => {
+    tickerOptedIn = false;
+    updateTickerPreference();
+  });
+  updateTickerPreference();
+  const layoutTicker = () => {
+    if (!ticker || !tickerTrack || !tickerSeed) return;
+    const width = tickerSeed.getBoundingClientRect().width;
+    if (width <= 0) return;
+    const needed = Math.max(2, Math.ceil(ticker.clientWidth / width) + 2);
+    while (tickerTrack.children.length < needed) tickerTrack.appendChild(tickerSeed.cloneNode(true));
+    while (tickerTrack.children.length > needed) tickerTrack.lastElementChild.remove();
+    tickerTrack.style.setProperty("--ticker-loop-width", width + "px");
+    tickerTrack.style.setProperty("--ticker-duration", (width / 32).toFixed(2) + "s");
+  };
+  layoutTicker();
+  document.fonts?.ready?.then(layoutTicker);
+  let tickerResizeFrame = 0;
+  window.addEventListener("resize", () => {
+    if (tickerResizeFrame) cancelAnimationFrame(tickerResizeFrame);
+    tickerResizeFrame = requestAnimationFrame(layoutTicker);
+  }, { passive: true });
   const features = [
     {
       image: "https://otakuhavenapp.com/wp-content/uploads/2026/10/1-554x1024.webp",

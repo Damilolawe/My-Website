@@ -457,3 +457,18 @@ test("Every original Pace SBDC section is rebuilt locally without external old-s
  assert.match(footer,/href="\.\/year-in-review\.html"/);
  assert.doesNotMatch(footer,/VISIT THE OFFICIAL WEBSITE/);
 });
+
+test("Otaku Haven ticker repeats seamlessly on desktop, respects motion preferences and has updated rank copy", async () => {
+ const html=await read("public/otaku-haven/index.html");
+ const css=await read("public/otaku-haven/styles.css");
+ const js=await read("public/otaku-haven/site.js");
+ assert.match(html,/RISE THROUGH<br>THE <span>RANKS\.<\/span>/);
+ assert.doesNotMatch(html,/EVERY LEGEND<br>STARTS AT/);
+ assert.match(html,/ticker-motion-toggle/);
+ assert.match(html,/styles\.css\?v=motion-20261102-marquee-2/);
+ assert.match(html,/site\.js\?v=motion-20261102-marquee-2/);
+ assert.match(css,/ticker-loop-width/);
+ assert.match(css,/ticker\.is-playing/);
+ assert.match(js,/Math\.ceil\(ticker\.clientWidth \/ width\) \+ 2/);
+ assert.match(js,/tickerMotionPreference\.matches/);
+});

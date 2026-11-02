@@ -46,6 +46,7 @@ await importShotsByRiqPhotos(output);
 await buildPaceSbdc(`${output}/pace-sbdc`);
 // Motion assets are explicitly versioned only on the isolated preview host.
 const animationRevision = "motion-20261102";
+const otakuAnimationRevision = "motion-20261102-marquee-2";
 for (const page of [
   ...KAPPO_PAGES.map(name => "kappo-sono/" + name),
   "otaku-haven/index.html", "shotsbyriq/index.html", "jay-millz-shot-em/index.html",
@@ -53,12 +54,13 @@ for (const page of [
 ]) {
   const path = output + "/" + page;
   const html = await readFile(path, "utf8");
+  const revision = page.startsWith("otaku-haven/") ? otakuAnimationRevision : animationRevision;
   const updated = html.replace(
     /(href|src)="((?:\.\/|\/(?:kappo-sono|otaku-haven|shotsbyriq|jay-millz-shot-em|pace-sbdc)\/)(?:styles\.css|site\.js))(?:\?[^"]*)?"/g,
-    (_, attr, asset) => attr + '="' + asset + "?v=" + animationRevision + '"'
+    (_, attr, asset) => attr + '="' + asset + "?v=" + revision + '"'
   );
-  if (updated === html || !updated.includes("styles.css?v=" + animationRevision) ||
-      (!page.endsWith("404.html") && !updated.includes("site.js?v=" + animationRevision))) {
+  if (updated === html || !updated.includes("styles.css?v=" + revision) ||
+      (!page.endsWith("404.html") && !updated.includes("site.js?v=" + revision))) {
     throw new Error("Preview motion assets not versioned for " + page);
   }
   await writeFile(path, updated);
