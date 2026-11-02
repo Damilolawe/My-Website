@@ -45,7 +45,7 @@ await buildPaceSbdc(`${output}/pace-sbdc`);
 // Motion assets are explicitly versioned only on the isolated preview host.
 const animationRevision = "motion-20261102";
 for (const page of [
-  ...KAPPO_PAGES.filter(name => name !== "404.html").map(name => "kappo-sono/" + name),
+  ...KAPPO_PAGES.map(name => "kappo-sono/" + name),
   "otaku-haven/index.html", "shotsbyriq/index.html", "jay-millz-shot-em/index.html",
   ...["index","services","about","stories","events","resources","contact"].map(name=>"pace-sbdc/"+name+".html")
 ]) {
@@ -56,7 +56,7 @@ for (const page of [
     (_, attr, asset) => attr + '="' + asset + "?v=" + animationRevision + '"'
   );
   if (updated === html || !updated.includes("styles.css?v=" + animationRevision) ||
-      !updated.includes("site.js?v=" + animationRevision)) {
+      (!page.endsWith("404.html") && !updated.includes("site.js?v=" + animationRevision))) {
     throw new Error("Preview motion assets not versioned for " + page);
   }
   await writeFile(path, updated);
