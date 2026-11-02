@@ -51,10 +51,36 @@ export async function importJayMillzPhotos(publicDir) {
     }
     return { id: image.id, file: image.file, imported: false, source: "photographer-acuity-image-fallback" };
   }));
+  // The About image must come from Jay's own personal Instagram, not a
+  // client session or temporary external URL. Keep a locally hosted copy.
+  const aboutSource = JSON.parse(await readFile("preview/jay-millz-shot-em/about-source.json", "utf8"));
+  if (aboutSource.file !== "about-jay.jpg" ||
+      aboutSource.account !== "itsjaymillz" ||
+      !/^https:\/\/www\.instagram\.com\/itsjaymillz\/p\/[A-Za-z0-9_-]+\/$/.test(aboutSource.post))
+    throw new Error("Unverified Jay Millz personal portrait source");
+  let about = null;
+  for (const candidate of [
+    { url: aboutSource.url, source: "original-personal-instagram-post" },
+    { url: host + directory + aboutSource.file, source: "published-personal-photo-snapshot" }
+  ]) {
+    try {
+      const data = await getJpeg(candidate.url);
+      await writeFile(join(folder, aboutSource.file), data);
+      about = { file: aboutSource.file, post: aboutSource.post, imported: true, bytes: data.length, source: candidate.source };
+      break;
+    } catch {
+      // Reuse the previously hosted photo if Instagram rotates the source.
+    }
+  }
+  if (!about) throw new Error("Jay Millz personal About photo unavailable; preserve the last working release rather than publish an incorrect image.");
   let html = await readFile("preview/jay-millz-shot-em/index.html", "utf8");
   let imageIndex = 0;
   html = html.replace(/<img\b[^>]*?\bsrc="([^"]+)"[^>]*>/g, (tag, original) => {
     const photo = results[imageIndex++];
+    if (tag.includes('data-about-portrait="personal"')) {
+      if (!about?.imported || !photo) throw new Error("Personal About image mapping failed");
+      return tag.replace(original, directory + about.file);
+    }
     if (!photo || !photo.imported) return tag;
     return tag.replace(original, directory + photo.file);
   });
@@ -62,7 +88,7 @@ export async function importJayMillzPhotos(publicDir) {
     throw new Error("Photo mapping changed; inspect current Jay Millz HTML before shipping");
   await writeFile(join(publicDir, "jay-millz-shot-em", "index.html"), html);
   await writeFile(join(publicDir, "jay-millz-shot-em", "import-status.json"),
-    JSON.stringify({ photographer: "Jay Millz Shot Em", count: results.filter(x => x.imported).length, requested: results.length, assets: results }, null, 2));
+    JSON.stringify({ photographer: "Jay Millz Shot Em", count: results.filter(x => x.imported).length, requested: results.length, assets: results, about }, null, 2));
   console.log("Jay Millz: first-party photographs " + results.filter(x => x.imported).length +
     "/9; other photographs use photographer's Acuity images with broken-photo fallback.");
   return results;
