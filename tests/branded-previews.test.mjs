@@ -93,18 +93,26 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.match(css,/--accent-soft:#86a3ff/,"Secondary highlight should be cool blue");
  assert.match(css,/\.nav-book,\.cover-cta a,\.booking-link\{background:#4c6fff;color:#fff\}/,"All primary booking/hero CTAs use blue");
  assert.match(css,/\.brief-head h2 i\{color:#aec2ff\}/,"Booking policy headlines use blue");
- // Face-first photography layout: brand copy may never cover the subject on mobile.
+ // Face-first photography layout with oversized type only in the photo's
+ // upper negative space, and the clickable CTA outside the photograph.
  assert.match(html,/<h1 id="cover-heading">BE<br><em>SEEN<span class="endmark">\.<\/span><\/em><\/h1>/);
  assert.doesNotMatch(html,/THE(?:<br>|\s+)<em>IMAGE<\/em>|THE IMAGE ISSUE|THE PHOTOGRAPHY ISSUE/);
  assert.match(html,/<span>SHOTSBYRIQ \/ PORTRAIT PHOTOGRAPHY<\/span>/);
  assert.match(html,/<span>BROOKLYN \/ NYC<\/span>/);
  assert.match(html,/<meta property="og:title" content="SHOTSBYRIQ \| Portraits in Focus">/);
  assert.match(css,/\/\* FACE-FIRST HERO/);
- assert.match(css,/\.cover-media:after\{display:none\}/,"No gradient should obscure the portrait");
- assert.match(css,/@media\(max-width:760px\)\{\s*\.cover\{\s*display:flex;\s*flex-direction:column;/,"Mobile hero must stack its photograph above the text");
- assert.match(css,/\.cover-media\{\s*order:0;[\s\S]*?aspect-ratio:4\/5;/,"Mobile photograph must receive its own uncropped full-width 4:5 panel");
- assert.match(css,/\.cover-type\{\s*order:1;/,"Mobile headlines and buttons must be located beneath the photograph");
- assert.match(css,/\.cover h1\{\s*font-size:clamp\(78px,18\.6vw,129px\)/,"Heading must resize within mobile text panel");
+ assert.match(css,/\/\* NEGATIVE-SPACE COVER/);
+ const newCover=css.slice(css.lastIndexOf("/* NEGATIVE-SPACE COVER"));
+ assert.match(newCover,/@media\(max-width:760px\)\{\s*\.cover\{\s*display:block;/,"On phones the image is one continuous full-bleed background");
+ assert.match(newCover,/\.cover-media\{\s*position:absolute;/,"Photograph must occupy the background layer");
+ assert.match(newCover,/height:calc\(100% - 126px\)/,"Photo ends before the CTA");
+ assert.match(newCover,/\.cover-media:after\{\s*content:"";\s*display:block;/,"Top-only readable scrim should layer over photo");
+ assert.match(newCover,/transparent 39%\)/,"Gradient must clear the model's face");
+ assert.match(newCover,/\.cover-type\{\s*display:flex;\s*position:relative;/,"Headline floats over the image's blank top background");
+ assert.match(newCover,/\.cover h1\{\s*max-width:100%/,"Headline width must fit smaller screens");
+ assert.match(newCover,/\.cover-cta\{\s*position:absolute;\s*inset:100% 0 auto;/,"Call to action sits below the photo, not across the model");
+ assert.match(newCover,/\.cover-cta\{[\s\S]*?pointer-events:auto;/,"CTA remains clickable");
+ assert.match(newCover,/@media\(max-width:760px\) and \(max-height:700px\)/,"Very short phone viewports require smaller type");
  assert.match(html,/SEE ORIGINAL POST/);
  assert.ok(source.images.every(p=>p.post.startsWith("https://www.instagram.com/shotsbyriq_/p/")));
  assert.ok(source.images.every(p=>html.includes("/shotsbyriq/photos/"+p.file)),"Every photograph should be a stable first-party hosted import");
