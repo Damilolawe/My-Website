@@ -6,7 +6,7 @@ import { KAPPO_PAGES } from "../scripts/rewrite-kappo-preview-urls.mjs";
 
 const root = "branded-previews/";
 const read = async path => readFile(root + path, "utf8");
-const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json"].sort();
+const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json","jay-millz-shot-em/index.html","jay-millz-shot-em/styles.css","jay-millz-shot-em/site.js"].sort();
 
 test("branded previews build exactly the allowlisted independent public concepts", async () => {
  execFileSync(process.execPath, ["scripts/build-branded-previews.mjs"], {stdio:"pipe"});
@@ -26,6 +26,7 @@ test("branded previews build exactly the allowlisted independent public concepts
  assert.match(landing,/href="\/kappo-sono\/"/);
  assert.match(landing,/independent design studies/);
  assert.match(landing,/href="\/shotsbyriq"/);
+ assert.match(landing,/href="\/jay-millz-shot-em\/"/);
  assert.match(landing,/noindex,nofollow/);
  assert.equal(await read("public/robots.txt"),"User-agent: *\nDisallow: /\n");
 });
@@ -201,4 +202,53 @@ test("preview Firebase target is separate from production and not a private draf
  assert.match(workflow,/entryPoint: 'branded-previews'/);
  assert.match(workflow,/channelId: live/);
  assert.doesNotMatch(workflow,/npm run build/);
+});
+
+
+test("Jay Millz concept maintains verified booking destination and original blue design", async () => {
+ const html=await read("public/jay-millz-shot-em/index.html");
+ const css=await read("public/jay-millz-shot-em/styles.css");
+ const js=await read("public/jay-millz-shot-em/site.js");
+ const booking="https://jaymillzshotem.as.me/schedule/1a0370e8";
+ assert.match(html,/INDEPENDENT WEBSITE DESIGN CONCEPT/);
+ assert.match(html,/NOT THE PHOTOGRAPHER'S OFFICIAL WEBSITE/);
+ assert.match(html,/Designed by/i);
+ assert.match(html,/AWE CONCEPTS/);
+ assert.match(html,/name="robots" content="noindex,nofollow"/);
+ assert.match(html,/class="awe-credit"/);
+ assert.match(html,/THE<br>SHOT <em>IS<\/em>/);
+ for(const amount of ["$100","$200","$275","$250"])assert.ok(html.includes(amount));
+ assert.match(html,/50% non-refundable deposit/);
+ assert.match(html,/3–4 day turnaround/);
+ assert.match(html,/Da Beauty Bundle/i);
+ assert.match(html,/src="\.\/styles\.css"/);
+ assert.match(html,/src="\.\/site\.js"/);
+ assert.match(html,/href="\.\/styles\.css"/);
+ assert.match(css,/--blue:#356dff/);
+ assert.match(css,/--blue2:#77a8ff/);
+ assert.match(css,/@media\(max-width:620px\)/);
+ assert.match(css,/Photography and text never overlap/);
+ assert.match(js,/querySelectorAll\('button\[data-filter\]'\)/);
+ assert.match(js,/lightbox\?\.showModal\(\)/);
+ assert.match(js,/className = 'photo-fallback'/);
+ const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
+ assert.equal(ids.length,new Set(ids).size,"Section IDs must remain unique");
+ const anchors=[...html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)];
+ assert.ok(anchors.length>=25);
+ for(const match of anchors){
+  const href=match[1],tag=match[0];
+  if(href.startsWith("#")) assert.ok(ids.includes(href.slice(1)),"Missing section: "+href);
+  else{
+   const url=new URL(href);
+   assert.equal(url.protocol,"https:");
+   assert.ok(["aweconcepts.com","jaymillzshotem.as.me","www.instagram.com"].includes(url.host),"Unexpected host "+url.host);
+   if(url.host==="jaymillzshotem.as.me")assert.equal(href,booking);
+   if(/target="_blank"/.test(tag))assert.match(tag,/rel="noopener noreferrer"/);
+  }
+ }
+ const images=[...html.matchAll(/<img\b[^>]*src="([^"]+)"[^>]*>/g)];
+ assert.ok(images.length>=9);
+ for(const match of images)assert.equal(new URL(match[1]).host,"cdn-s.acuityscheduling.com");
+ for(const filter of ["all","portraits","studio","lifestyle"])assert.ok(html.includes('data-filter="'+filter+'"'));
+ assert.doesNotMatch(html,/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2600-\u27BF]/u);
 });
