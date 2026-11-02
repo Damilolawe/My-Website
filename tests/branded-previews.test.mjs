@@ -3,10 +3,12 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFile, readdir } from "node:fs/promises";
 import { KAPPO_PAGES } from "../scripts/rewrite-kappo-preview-urls.mjs";
+import { detailSlugs } from "../preview/pace-sbdc/deep-content.mjs";
+import { mediaSlugs } from "../preview/pace-sbdc/media-content.mjs";
 
 const root = "branded-previews/";
 const read = async path => readFile(root + path, "utf8");
-const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json","jay-millz-shot-em/index.html","jay-millz-shot-em/styles.css","jay-millz-shot-em/site.js","jay-millz-shot-em/import-status.json", ...["index","services","about","stories","events","resources","contact","team","locations","library","media","partners","spanish"].map(name=>"pace-sbdc/"+name+".html"),"pace-sbdc/styles.css","pace-sbdc/site.js"].sort();
+const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json","jay-millz-shot-em/index.html","jay-millz-shot-em/styles.css","jay-millz-shot-em/site.js","jay-millz-shot-em/import-status.json", ...["index","services","about","stories","events","resources","contact","team","locations","library","media","partners","spanish",...detailSlugs,...mediaSlugs].map(name=>"pace-sbdc/"+name+".html"),"pace-sbdc/styles.css","pace-sbdc/site.js"].sort();
 
 test("branded previews build exactly the allowlisted independent public concepts", async () => {
  execFileSync(process.execPath, ["scripts/build-branded-previews.mjs"], {stdio:"pipe"});
@@ -342,7 +344,7 @@ test("all deployed pages reference the current animation revision, not stale cac
 
 
 test("Pace SBDC redesign ships seven independent, accurate and usable public pages",async()=>{
- const names=["index","services","about","stories","events","resources","contact","team","locations","library","media","partners","spanish"];
+ const names=["index","services","about","stories","events","resources","contact","team","locations","library","media","partners","spanish",...detailSlugs,...mediaSlugs];
  const host="https://www.pacesbdc.org";
  for(const name of names){
   const doc=await read("public/pace-sbdc/"+name+".html");
@@ -370,7 +372,10 @@ test("Pace SBDC redesign ships seven independent, accurate and usable public pag
  for(const item of ["Big ideas.","20,100","$255","10,600","1986","Services","Our impact","GET FREE ADVISING","Request"]){
   assert.ok(home.toLowerCase().includes(item.toLowerCase()),"Homepage missing "+item);
  }
- for(const url of [host+"/about",host+"/services",host+"/success-stories",host+"/events",host+"/faqs"])assert.ok(home.includes(url));
+ for(const page of ["about","services","success-stories","events","faqs"]){
+  assert.ok(home.includes('./'+page+'.html'),"Homepage must use the local "+page+" page");
+ }
+ assert.ok(!home.includes('href="'+host),"No legacy links in homepage");
  for(const category of ["all","starting","growing"])assert.match(home,new RegExp('data-service="'+category+'"'));
  const js=await read("public/pace-sbdc/site.js");
  assert.match(js,/service-filter-btn/);
@@ -423,4 +428,32 @@ test("Pace SBDC retains authentic brand colors, assets and the original full con
  assert.match(source,/originalDirectory/);
  assert.match(source,/inlineEnrichment/);
  assert.doesNotMatch(source,/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2600-\u27BF\uFE0E\uFE0F\u200D]/u);
+});
+
+
+test("Every original Pace SBDC section is rebuilt locally without external old-site links",async()=>{
+ const ids=["index","services","about","stories","events","resources","contact","team","locations","library","media","partners","spanish",...detailSlugs,...mediaSlugs];
+ assert.ok(ids.length>=45,"Site should include all source routes");
+ const paths=new Set(ids.map(slug=>slug+".html"));
+ for(const slug of ids){
+  const doc=await read("public/pace-sbdc/"+slug+".html");
+  assert.doesNotMatch(doc,/<a\b[^>]*href="https?:\/\/(?:www\.)?pacesbdc\.org/i,slug+" incorrectly exits to old website");
+  assert.match(doc,/src="\.\/site\.js\?v=motion-20261102"/);
+  assert.match(doc,/href="\.\/styles\.css\?v=motion-20261102"/);
+  const all=[...doc.matchAll(/<a\b[^>]*\bhref="([^"]+)"[^>]*>/g)];
+  for(const match of all){
+   const href=match[1];
+   if(href.startsWith("./")&&href.endsWith(".html"))assert.ok(paths.has(href.slice(2)),slug+" links to missing local page "+href);
+  }
+ }
+ const selected=await read("public/pace-sbdc/library.html");
+ for(const slug of ["financing","sbaloans","bonding","training","hiring","realestate","business-planning","tax-planning","marketing-sales","leadgeneration","social-media-marketing","website","email-marketing","internationaltrade","procurement"])
+  assert.match(selected,new RegExp('href="\\./'+slug+'\\.html"'),"Local resource "+slug+" not listed");
+ for(const slug of ["blog","photos","newsletter","press","video","social","sbdc-day","year-in-review","success-stories","testimonials"])
+  assert.ok(await read("public/pace-sbdc/"+slug+".html"),"Missing media or impact section "+slug);
+ const footer=await read("public/pace-sbdc/contact.html");
+ assert.match(footer,/href="\.\/privacy-policy\.html"/);
+ assert.match(footer,/href="\.\/counseling-form\.html"/);
+ assert.match(footer,/href="\.\/year-in-review\.html"/);
+ assert.doesNotMatch(footer,/VISIT THE OFFICIAL WEBSITE/);
 });
