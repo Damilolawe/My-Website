@@ -293,3 +293,36 @@ test("Jay Millz concept maintains verified booking destination and original blue
  for(const filter of ["all","portraits","studio","lifestyle"])assert.ok(html.includes('data-filter="'+filter+'"'));
  assert.doesNotMatch(html,/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2600-\u27BF]/u);
 });
+
+
+test("each independent preview has a unique, accessible motion signature", async () => {
+  const cases = [
+    {
+      name: "kappo-sono", css: ["ks-silk-open","ks-ink-draw","ks-page-rise"],
+      js: ["motion-reached","IntersectionObserver"], selectors: [".hero:after",".page-hero h1"]
+    },
+    {
+      name: "otaku-haven", css: ["oh-power-orbit","oh-rank-advance","oh-button-charge"],
+      js: ["--oh-spot-x","is-powered","showcase.animate"], selectors: [".hero-art:after",".rank-panel.is-powered"]
+    },
+    {
+      name: "shotsbyriq", css: ["riq-viewfinder","riq-contact-in","riq-flash"],
+      js: ["exposure-progress","photo-arrived"], selectors: [".cover-media:before",".frame:before"]
+    },
+    {
+      name: "jay-millz-shot-em", css: ["jm-title-in","jm-focus-on","jm-flash"],
+      js: ["motion-ready"], selectors: [".hero-primary:before",".session-card:before"]
+    }
+  ];
+  for(const site of cases){
+    const css=await read("public/"+site.name+"/styles.css");
+    const js=await read("public/"+site.name+"/site.js");
+    for(const name of site.css) assert.ok(css.includes(name),site.name+" missing effect "+name);
+    for(const name of site.js) assert.ok(js.includes(name),site.name+" missing motion handler "+name);
+    for(const selector of site.selectors) assert.ok(css.includes(selector),site.name+" missing decorative selector "+selector);
+    assert.match(css, /prefers-reduced-motion:reduce/,site.name+" must turn off motion if requested");
+    assert.ok(!js.includes("setInterval("),site.name+" must not run perpetual JS timers");
+    assert.ok(!js.includes("setTimeout("),site.name+" motion should not rely on timers");
+    assert.doesNotMatch(css,/url\(['"]?http:\/\//,site.name+" introduces insecure content");
+  }
+});
