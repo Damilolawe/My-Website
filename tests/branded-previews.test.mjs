@@ -65,8 +65,8 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
  assert.match(html,/noindex,nofollow/);
  assert.match(html,/id="lightbox"/);
- assert.match(html,/href="\/shotsbyriq\/styles\.css\?v=motion-20261102"/);
- assert.match(html,/src="\/shotsbyriq\/site\.js\?v=motion-20261102"/);
+ assert.match(html,/href="\/shotsbyriq\/styles\.css\?v=motion-20261102-collage-1"/);
+ assert.match(html,/src="\/shotsbyriq\/site\.js\?v=motion-20261102-collage-1"/);
  assert.match(html,/data-category="creative"/);
  assert.match(html,/data-category="editorial"/);
  assert.match(html,/id="booking-info"/);
@@ -343,8 +343,9 @@ test("all deployed pages reference the current animation revision, not stale cac
   "shotsbyriq/index.html","jay-millz-shot-em/index.html"];
  for(const page of pages){
   const html=await read("public/"+page);
-  assert.match(html,/styles\.css\?v=motion-20261102/,page+" stylesheet cache-bust");
-  assert.match(html,/site\.js\?v=motion-20261102/,page+" script cache-bust");
+  const expectedRevision=page.startsWith("shotsbyriq/") ? "motion-20261102-collage-1" : "motion-20261102";
+  assert.ok(html.includes("styles.css?v="+expectedRevision),page+" stylesheet cache-bust");
+  assert.ok(html.includes("site.js?v="+expectedRevision),page+" script cache-bust");
  }
 });
 
