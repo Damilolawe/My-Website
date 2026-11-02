@@ -23,3 +23,46 @@
 
 @media(max-width:900px){.vision-visual img{object-position:center 19%}}
 @media(max-width:620px){.vision-visual img{object-position:center 16%}.vision-caption{padding:14px 12px;font-size:8px;letter-spacing:.09em}}
+
+
+/* AWE motion study: Jay Millz / electric-blue focus locks and flash. */
+@keyframes jm-title-in{from{opacity:.2;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes jm-focus-on{0%{opacity:0;transform:scale(1.08)}65%{opacity:1}100%{opacity:.95;transform:scale(1)}}
+@keyframes jm-flash{0%{opacity:.3}100%{opacity:0}}
+@keyframes jm-pulse{0%,100%{box-shadow:0 0 0 0 #7badff00}50%{box-shadow:0 0 0 9px #7badff16}}
+.motion-ready .hero-pretitle{animation:jm-title-in .75s ease-out both}
+.motion-ready .hero h1{animation:jm-title-in .9s cubic-bezier(.16,1,.3,1) .09s both}
+.motion-ready .hero-body{animation:jm-title-in .8s cubic-bezier(.16,1,.3,1) .22s both}
+.motion-ready .hero-actions{animation:jm-title-in .8s cubic-bezier(.16,1,.3,1) .3s both}
+.hero-primary:before{
+ content:"";position:absolute;z-index:2;pointer-events:none;inset:13px;
+ background:
+ linear-gradient(#b8d4ff,#b8d4ff) left top / 36px 2px no-repeat,
+ linear-gradient(#b8d4ff,#b8d4ff) left top / 2px 36px no-repeat,
+ linear-gradient(#b8d4ff,#b8d4ff) right top / 36px 2px no-repeat,
+ linear-gradient(#b8d4ff,#b8d4ff) right top / 2px 36px no-repeat,
+ linear-gradient(#b8d4ff,#b8d4ff) left bottom / 36px 2px no-repeat,
+ linear-gradient(#b8d4ff,#b8d4ff) left bottom / 2px 36px no-repeat,
+ linear-gradient(#b8d4ff,#b8d4ff) right bottom / 36px 2px no-repeat,
+ linear-gradient(#b8d4ff,#b8d4ff) right bottom / 2px 36px no-repeat;
+ filter:drop-shadow(0 0 5px #5d9fff7e);opacity:.95;
+ animation:jm-focus-on 1.15s cubic-bezier(.16,1,.3,1) .45s both;
+}
+.shot{transition:border-color .28s ease,box-shadow .35s ease}
+.shot:hover,.shot:focus-visible{border-color:#a6ceff;box-shadow:inset 0 0 0 2px #7eaeff7d}
+.session-card:before{
+ content:"";position:absolute;top:0;left:0;right:0;height:2px;z-index:3;
+ background:linear-gradient(90deg,transparent,#a9d7ff 50%,transparent);
+ transform:scaleX(0);transform-origin:center;transition:transform .45s cubic-bezier(.16,1,.3,1);pointer-events:none;
+}
+.session-card:hover:before,.session-card:focus-within:before{transform:scaleX(1)}
+.lightbox[open]:before{
+ content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+ background:#e7f3ff;opacity:0;animation:jm-flash .33s ease-out both;
+}
+.vision-visual:focus-within,.vision-visual:hover{animation:jm-pulse 2s ease-in-out 1}
+@media(max-width:620px){.hero-primary:before{inset:9px;background-size:22px 2px,2px 22px,22px 2px,2px 22px,22px 2px,2px 22px,22px 2px,2px 22px}}
+@media(prefers-reduced-motion:reduce){
+ .motion-ready .hero-pretitle,.motion-ready .hero h1,.motion-ready .hero-body,.motion-ready .hero-actions,.hero-primary:before,.lightbox[open]:before,.vision-visual:hover{animation:none!important}
+ .session-card:before{transition:none!important}
+}
