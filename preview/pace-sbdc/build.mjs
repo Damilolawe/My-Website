@@ -1,5 +1,6 @@
 import {mkdir,readFile,writeFile,cp} from "node:fs/promises";
 import {join} from "node:path";
+import { pageBody, inlineEnrichment, extraSlugs } from "./official-content.mjs";
 
 // Build seven isolated public concept pages. This is not an official Pace site.
 const base="preview/pace-sbdc";
@@ -19,6 +20,23 @@ const info={
  resources:["YOUR TOOLKIT","Better questions. <em>Better decisions.</em>","Reliable guidance and answers to help you move forward with more confidence.","KNOWLEDGE / CONNECTION"],
  contact:["GET CONNECTED","Let's talk about <em>what's next.</em>","Your first step toward confidential, no-cost business advising. Appointments are coordinated by the official NYSBDC intake service.","YOUR BUSINESS / YOUR NEXT MOVE"]
 };
+const verifiedLogo="https://static.wixstatic.com/media/8f09f9_6f772fba8eba4d78869d1198efd188ed~mv2.png";
+const verifiedAccreditation="https://static.wixstatic.com/media/8f09f9_15d5736f9cd347fdb6f0be8a7dac6f33~mv2.png";
+const officialInfoLink='<nav class="official-extra-nav" aria-label="Explore all Pace SBDC content"><a href="./team.html">THE TEAM</a><a href="./locations.html">MEETING LOCATIONS</a><a href="./library.html">RESOURCE LIBRARY</a><a href="./media.html">NEWS & REPORTS</a><a href="./partners.html">PARTNERS</a><a href="./spanish.html" lang="es">ESPAÑOL</a></nav>';
+function rebrandDocument(html){
+ // Source artwork, typography, brand blue & gold respect Pace's original
+ // institutional identification. All pages retain prominent nonaffiliation.
+ const logo='<img class="official-lockup" src="'+verifiedLogo+'" alt="Pace University Small Business Development Center — Serving Entrepreneurs in Brooklyn and Downtown Manhattan" loading="eager" decoding="async">';
+ html=html.replace(/<span class="wordmark-icon"[^>]*>[\s\S]*?<\/span><span class="wordmark-copy">[\s\S]*?<\/span><\/a>/,logo+'</a>');
+ html=html.replace("</header>","</header>"+officialInfoLink);
+ html=html.replace('href="https://www.pacesbdc.org/espanol"','href="./spanish.html"');
+ html=html.replace('<span class="awe-icon"','<span class="awe-icon"'); 
+ html=html.replace('<div class="container footer-disclosure">',
+ '<div class="container official-accreditation"><a href="https://nysbdc.org/" target="_blank" rel="noopener noreferrer"><img src="'+verifiedAccreditation+'" alt="NYSBDC accreditation and SBA funding acknowledgement" loading="lazy" decoding="async"></a><div><strong>AN OFFICIAL NYSBDC NETWORK PROGRAM</strong><p>Funding support from the Small Business Administration, New York State and Pace University; official disclosures and requirements are on the original organization site.</p></div></div><div class="container footer-disclosure">');
+ html=html.replace('</footer>','<div class="container official-transit"><strong>VISITING THE LOWER MANHATTAN OFFICE</strong><span>Fulton St: A, C, J, Z, 2, 3, 4, 5 &nbsp; / &nbsp; World Trade Center: E &nbsp; / &nbsp; Brooklyn Bridge–City Hall: 6</span></div></footer>');
+ return html;
+}
+
 const paths=[
  ["#why","./about.html"],["#services","./services.html"],
  ["#impact","./stories.html"],["#events","./events.html"],
@@ -40,8 +58,10 @@ function intro(props){
 const contactInfo='<section class="contact-detail section-pad"><div class="container contact-grid"><div><div class="eyebrow"><span></span> THE OFFICIAL REGISTRATION</div><h2>Start the <em>conversation.</em></h2><p>Complete the official NYSBDC intake form. The Pace team can then connect you to an advisor. No visitor information is collected on this independent design concept.</p><a class="button button-dark" href="https://nysbdc.ecenterdirect.com/signup?centerid=31" target="_blank" rel="noopener noreferrer">OPEN OFFICIAL ADVISING INTAKE <span class="css-arrow" aria-hidden="true"></span></a></div><div class="contact-facts"><div><small>EMAIL</small><a href="mailto:sbdc@pace.edu">sbdc@pace.edu</a></div><div><small>PHONE</small><a href="tel:+12126186655">(212) 618-6655</a></div><div><small>ADDRESS</small><strong>1 Pace Plaza, Room W501<br>New York, NY 10038</strong></div><a href="https://www.google.com/maps/search/?api=1&query=1+Pace+Plaza+New+York+NY+10038" target="_blank" rel="noopener noreferrer">GET DIRECTIONS <span class="css-arrow" aria-hidden="true"></span></a></div></div></section>';
 export async function buildPaceSbdc(output){
  await mkdir(output,{recursive:true});
- const original=await readFile(join(base,"index.html"),"utf8");
- await Promise.all(["site.js","styles.css"].map(file=>cp(join(base,file),join(output,file))));
+ const original=rebrandDocument(await readFile(join(base,"index.html"),"utf8"));
+ await cp(join(base,"site.js"),join(output,"site.js"));
+ const css=await readFile(join(base,"styles.css"),"utf8");
+ await writeFile(join(output,"styles.css"),css);
  const main=original.indexOf('<main id="main">'),foot=original.indexOf('<footer class="footer">');
  if(main<0||foot<main)throw new Error("Missing source page boundaries");
  const header=original.slice(0,main),footer=original.slice(foot);
@@ -54,8 +74,17 @@ export async function buildPaceSbdc(output){
    }
    top=top.replace(/<title>[\s\S]*?<\/title>/,'<title>'+info[name][0]+' | Pace SBDC — Independent Redesign</title>');
    const middle='<main id="main">'+intro(info[name])+(name==="contact"?contactInfo:"")+
-     map[name].map(section=>getSection(original,section)).join("\n")+'</main>';
+     map[name].map(section=>getSection(original,section)).join("\n")+inlineEnrichment(name)+'</main>';
    await writeFile(join(output,name+".html"),top+middle+bottom);
+ }
+ for(const slug of extraSlugs){
+   let top=header, bottom=footer;
+   for(const pair of paths){
+     top=top.replaceAll('href="'+pair[0]+'"','href="'+pair[1]+'"');
+     bottom=bottom.replaceAll('href="'+pair[0]+'"','href="'+pair[1]+'"');
+   }
+   top=top.replace(/<title>[\s\S]*?<\/title>/,'<title>Pace SBDC | '+slug+' — Independent Redesign</title>');
+   await writeFile(join(output,slug+".html"),top+'<main id="main">'+pageBody(slug)+'</main>'+bottom);
  }
  await writeFile(join(output,"index.html"),original);
  console.log("Built public Pace SBDC concept: home + six dedicated pages.");
