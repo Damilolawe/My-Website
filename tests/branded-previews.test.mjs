@@ -114,7 +114,7 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.match(html,/class="cover-bottomline"/);
  assert.match(css,/\/\* RIQ \/ VOLUME 01/);
  assert.doesNotMatch(css,/\/\* FACE-FIRST HERO/,"Obsolete one-photo layout overrides must stay removed");
- const overlyTight=[...css.matchAll(/letter-spacing:\\s*(-?(?:\\d+\\.?\\d*|\\.\\d+))em/g)]
+ const overlyTight=[...css.matchAll(/letter-spacing:\s*(-?(?:\d+\.?\d*|\.\d+))em/g)]
    .filter(match=>Number(match[1]) < -0.05);
  assert.equal(overlyTight.length,0,"Do not compress heavy display fonts with excessive negative letter spacing");
  assert.match(css,/\/\* TYPOGRAPHY NORMALIZATION/,"Consistent kerning must be enforced for Riq");
