@@ -25,7 +25,7 @@
   // Images are served from the photographer's own public scheduler.
   // Never show browser broken-image icons if an image is removed there.
   document.querySelectorAll('.image-panel img, .gallery img, .vision-visual img').forEach(img => {
-    img.addEventListener('error', () => {
+    function markUnavailable() {
       const placeholder = document.createElement('div');
       placeholder.className = 'photo-fallback';
       const heading = document.createElement('strong');
@@ -36,7 +36,9 @@
       img.replaceWith(placeholder);
       const card = placeholder.closest('button.shot');
       if (card) card.dataset.unavailable = 'true';
-    }, { once: true });
+    }
+    img.addEventListener('error', markUnavailable, { once: true });
+    if (img.complete && img.naturalWidth === 0) markUnavailable();
   });
 
   const filters = [...document.querySelectorAll('button[data-filter]')];
