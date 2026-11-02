@@ -64,4 +64,19 @@ document.addEventListener('DOMContentLoaded',()=>{
   window.addEventListener('scroll',queueProgress,{passive:true});
   window.addEventListener('resize',queueProgress,{passive:true});
  }
+ // A single-observer, progressive brushstroke on imagery and chapter panels.
+ // The images themselves are never hidden, and the movement is skipped for
+ // reduced-motion users.
+ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+  const inkSurfaces=document.querySelectorAll('.chap .image-shell,.menu-photo .image-shell');
+  const inkObserver=new IntersectionObserver(entries=>{
+   for(const entry of entries){
+    if(!entry.isIntersecting)continue;
+    entry.target.classList.add('motion-reached');
+    inkObserver.unobserve(entry.target);
+   }
+  },{threshold:.18});
+  inkSurfaces.forEach(element=>inkObserver.observe(element));
+ }
+
 });
