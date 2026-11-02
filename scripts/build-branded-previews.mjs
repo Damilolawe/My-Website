@@ -2,6 +2,7 @@ import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { KAPPO_PAGES, toEmbeddedKappoUrls } from "./rewrite-kappo-preview-urls.mjs";
 import { auditPreviewGlyphs } from "./validate-preview-icons.mjs";
 import { importShotsByRiqPhotos } from "./import-shotsbyriq-photos.mjs";
+import { importJayMillzPhotos } from "../preview/jay-millz-shot-em/import-photos.mjs";
 
 // Only an explicit list of PUBLIC, independently labeled concept pages is
 // allowed on this separate host. Never copy dist/, Supabase data, customer
@@ -34,6 +35,7 @@ await mkdir(`${output}/jay-millz-shot-em`, { recursive: true });
 for (const asset of ["index.html", "styles.css", "site.js"]) {
   await cp(`preview/jay-millz-shot-em/${asset}`, `${output}/jay-millz-shot-em/${asset}`);
 }
+await importJayMillzPhotos(output);
 await mkdir(`${output}/shotsbyriq`, { recursive: true });
 for (const asset of ["styles.css","site.js"]) await cp(`preview/shotsbyriq/${asset}`, `${output}/shotsbyriq/${asset}`);
 await importShotsByRiqPhotos(output);
