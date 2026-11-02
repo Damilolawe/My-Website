@@ -33,4 +33,30 @@ modal.addEventListener('click',e=>{if(e.target===modal)close()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();closeMenu()}if(modal.hidden)return;if(e.key==='ArrowRight'){e.preventDefault();display(activeIndex+1)}if(e.key==='ArrowLeft'){e.preventDefault();display(activeIndex-1)}if(e.key==='Tab'){const controls=[closeButton,modal.querySelector('.lb-prev'),modal.querySelector('.lb-next'),modalPost],first=controls[0],last=controls.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
 let start=null;modal.addEventListener('touchstart',e=>{if(e.touches.length===1)start={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});modal.addEventListener('touchend',e=>{if(!start||e.changedTouches.length!==1)return;const dx=e.changedTouches[0].clientX-start.x,dy=e.changedTouches[0].clientY-start.y;start=null;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.3)display(activeIndex+(dx<0?1:-1))},{passive:true});
 filterView('all');
+
+// An unobtrusive camera-exposure meter and staggered contact-sheet reveal.
+const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reducedMotion && 'IntersectionObserver' in window){
+ const meter=document.createElement('span');
+ meter.className='exposure-progress';
+ meter.setAttribute('aria-hidden','true');
+ document.body.appendChild(meter);
+ let scheduled=false;
+ const update=()=>{
+  const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+  meter.style.transform='scaleX('+Math.max(0,Math.min(1,scrollY/max))+')';
+  scheduled=false;
+ };
+ const queue=()=>{if(!scheduled){scheduled=true;requestAnimationFrame(update)}};
+ addEventListener('scroll',queue,{passive:true});
+ addEventListener('resize',queue,{passive:true});
+ update();
+ const observer=new IntersectionObserver(entries=>{
+  for(const entry of entries){
+   if(entry.isIntersecting){entry.target.classList.add('photo-arrived');observer.unobserve(entry.target)}
+  }
+ },{threshold:.06,rootMargin:'0px 0px 45px 0px'});
+ tiles.forEach(tile=>observer.observe(tile));
+ document.body.classList.add('photo-motion');
+}
 })();
