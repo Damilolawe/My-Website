@@ -97,26 +97,32 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.match(css,/--accent-soft:#86a3ff/,"Secondary highlight should be cool blue");
  assert.match(css,/\.nav-book,\.cover-cta a,\.booking-link\{background:#4c6fff;color:#fff\}/,"All primary booking/hero CTAs use blue");
  assert.match(css,/\.brief-head h2 i\{color:#aec2ff\}/,"Booking policy headlines use blue");
- // Face-first photography layout with oversized type only in the photo's
- // upper negative space, and the clickable CTA outside the photograph.
+ // Editorial hero must be an actual five-image contact-sheet collage.
+ // The oversized headline belongs in a separate text panel on every viewport.
  assert.match(html,/<h1 id="cover-heading">BE<br><em>SEEN<span class="endmark">\.<\/span><\/em><\/h1>/);
- assert.doesNotMatch(html,/THE(?:<br>|\s+)<em>IMAGE<\/em>|THE IMAGE ISSUE|THE PHOTOGRAPHY ISSUE/);
  assert.match(html,/<span>SHOTSBYRIQ \/ PORTRAIT PHOTOGRAPHY<\/span>/);
  assert.match(html,/<span>BROOKLYN \/ NYC<\/span>/);
  assert.match(html,/<meta property="og:title" content="SHOTSBYRIQ \| Portraits in Focus">/);
- assert.match(css,/\/\* FACE-FIRST HERO/);
- assert.match(css,/\/\* NEGATIVE-SPACE COVER/);
- const newCover=css.slice(css.lastIndexOf("/* NEGATIVE-SPACE COVER"));
- assert.match(newCover,/@media\(max-width:760px\)\{\s*\.cover\{\s*display:block;/,"On phones the image is one continuous full-bleed background");
- assert.match(newCover,/\.cover-media\{\s*position:absolute;/,"Photograph must occupy the background layer");
- assert.match(newCover,/height:calc\(100% - 126px\)/,"Photo ends before the CTA");
- assert.match(newCover,/\.cover-media:after\{\s*content:"";\s*display:block;/,"Top-only readable scrim should layer over photo");
- assert.match(newCover,/transparent 39%\)/,"Gradient must clear the model's face");
- assert.match(newCover,/\.cover-type\{\s*display:flex;\s*position:relative;/,"Headline floats over the image's blank top background");
- assert.match(newCover,/\.cover h1\{\s*max-width:100%/,"Headline width must fit smaller screens");
- assert.match(newCover,/\.cover-cta\{\s*position:absolute;\s*inset:100% 0 auto;/,"Call to action sits below the photo, not across the model");
- assert.match(newCover,/\.cover-cta\{[\s\S]*?pointer-events:auto;/,"CTA remains clickable");
- assert.match(newCover,/@media\(max-width:760px\) and \(max-height:700px\)/,"Very short phone viewports require smaller type");
+ assert.doesNotMatch(html,/THE(?:<br>|\s+)<em>IMAGE<\/em>|THE IMAGE ISSUE|THE PHOTOGRAPHY ISSUE/);
+ assert.equal([...html.matchAll(/class="hero-shot hero-shot--/g)].length,5,"Exactly five real photos make up the hero collage");
+ for(const id of ["0","4","2","7","6"]){
+  assert.match(html,new RegExp('data-open-photo="'+id+'"'));
+ }
+ assert.match(html,/class="hero-collage"/);
+ assert.match(html,/class="cover-deck"/);
+ assert.match(html,/class="film-ticker"/);
+ assert.match(html,/class="cover-bottomline"/);
+ assert.match(css,/\/\* RIQ \/ VOLUME 01/);
+ assert.match(css,/@keyframes riq-mosaic-enter/);
+ assert.match(css,/@keyframes riq-endless-contact/);
+ const collageCss=css.slice(css.lastIndexOf("/* RIQ / VOLUME 01"));
+ assert.match(collageCss,/grid-template-columns:repeat\(12,minmax\(0,1fr\)\)/);
+ assert.match(collageCss,/@media\(max-width:760px\)\{\s*\.cover\{\s*display:flex;/,"Mobile collage must stack above the separate headline, not cover a face");
+ assert.match(collageCss,/\.cover-type\{[\s\S]*?order:1;[\s\S]*?background:/);
+ assert.match(collageCss,/\.cover-cta\{[\s\S]*?pointer-events:auto;/,"Keep the booking/gallery CTA usable on phones");
+ assert.match(collageCss,/@media\(prefers-reduced-motion:reduce\)/);
+ assert.match(js,/querySelectorAll\('\[data-open-photo\]'\)/);
+ assert.match(js,/filterView\('all'\);\s*open\(tile\)/);
  assert.match(html,/SEE ORIGINAL POST/);
  assert.ok(source.images.every(p=>p.post.startsWith("https://www.instagram.com/shotsbyriq_/p/")));
  assert.ok(source.images.every(p=>html.includes("/shotsbyriq/photos/"+p.file)),"Every photograph should be a stable first-party hosted import");
