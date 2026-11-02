@@ -116,4 +116,10 @@
     }, { threshold: .07, rootMargin: '0px 0px 24px 0px' });
     elements.forEach(element => observer.observe(element));
   }
+
+  // Turn on the entrance sequence after script readiness; content is always
+  // visible if JavaScript is disabled or reduced motion is enabled.
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.body.classList.add('motion-ready');
+  }
 })();
