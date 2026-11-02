@@ -46,7 +46,7 @@ await importShotsByRiqPhotos(output);
 await buildPaceSbdc(`${output}/pace-sbdc`);
 // Motion assets are explicitly versioned only on the isolated preview host.
 const animationRevision = "motion-20261102";
-const otakuAnimationRevision = "motion-20261102-marquee-2";
+const otakuAnimationRevision = "motion-20261102-always-3";
 for (const page of [
   ...KAPPO_PAGES.map(name => "kappo-sono/" + name),
   "otaku-haven/index.html", "shotsbyriq/index.html", "jay-millz-shot-em/index.html",

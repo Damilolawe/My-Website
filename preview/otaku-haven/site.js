@@ -29,26 +29,6 @@
   const ticker = document.querySelector(".ticker");
   const tickerTrack = ticker?.querySelector(".ticker-track");
   const tickerSeed = tickerTrack?.querySelector(".ticker-segment");
-  const tickerToggle = ticker?.querySelector(".ticker-motion-toggle");
-  const tickerMotionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let tickerOptedIn = false;
-  const updateTickerPreference = () => {
-    ticker?.classList.toggle("is-playing", tickerMotionPreference.matches && tickerOptedIn);
-    if (tickerToggle) {
-      tickerToggle.hidden = !tickerMotionPreference.matches;
-      tickerToggle.textContent = tickerOptedIn ? "PAUSE MOTION" : "PLAY MOTION";
-      tickerToggle.setAttribute("aria-label", tickerOptedIn ? "Pause scrolling banner" : "Play scrolling banner");
-    }
-  };
-  tickerToggle?.addEventListener("click", () => {
-    tickerOptedIn = !tickerOptedIn;
-    updateTickerPreference();
-  });
-  tickerMotionPreference.addEventListener?.("change", () => {
-    tickerOptedIn = false;
-    updateTickerPreference();
-  });
-  updateTickerPreference();
   const layoutTicker = () => {
     if (!ticker || !tickerTrack || !tickerSeed) return;
     const width = tickerSeed.getBoundingClientRect().width;
@@ -56,7 +36,7 @@
     const needed = Math.max(2, Math.ceil(ticker.clientWidth / width) + 2);
     while (tickerTrack.children.length < needed) tickerTrack.appendChild(tickerSeed.cloneNode(true));
     while (tickerTrack.children.length > needed) tickerTrack.lastElementChild.remove();
-    tickerTrack.style.setProperty("--ticker-loop-width", width + "px");
+    tickerTrack.style.setProperty("--ticker-loop-offset", "-" + width + "px");
     tickerTrack.style.setProperty("--ticker-duration", (width / 32).toFixed(2) + "s");
   };
   layoutTicker();

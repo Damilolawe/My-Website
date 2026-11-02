@@ -458,19 +458,23 @@ test("Every original Pace SBDC section is rebuilt locally without external old-s
  assert.doesNotMatch(footer,/VISIT THE OFFICIAL WEBSITE/);
 });
 
-test("Otaku Haven ticker repeats seamlessly on desktop, respects motion preferences and has updated rank copy", async () => {
+test("Otaku Haven ticker automatically scrolls on every screen without pause controls", async () => {
  const html=await read("public/otaku-haven/index.html");
  const css=await read("public/otaku-haven/styles.css");
  const js=await read("public/otaku-haven/site.js");
  assert.match(html,/RISE THROUGH<br>THE <span>RANKS\.<\/span>/);
  assert.doesNotMatch(html,/EVERY LEGEND<br>STARTS AT/);
- assert.match(html,/ticker-motion-toggle/);
- assert.match(html,/styles\.css\?v=motion-20261102-marquee-2/);
- assert.match(html,/site\.js\?v=motion-20261102-marquee-2/);
- assert.match(css,/ticker-loop-width/);
- assert.match(css,/ticker\.is-playing/);
+ assert.match(html,/class="ticker-track"/);
+ assert.doesNotMatch(html,/ticker-motion-toggle|PLAY MOTION|PAUSE MOTION/);
+ assert.match(html,/styles\.css\?v=motion-20261102-always-3/);
+ assert.match(html,/site\.js\?v=motion-20261102-always-3/);
+ assert.match(css,/ticker-loop-offset/);
+ assert.match(css,/\.ticker-track\{[^}]*animation:marquee [^;]+ linear infinite/);
+ assert.match(css,/@media\(prefers-reduced-motion:reduce\)\{\.ticker \.ticker-track\{animation:marquee [^}]+!important\}\}/);
+ assert.doesNotMatch(css,/ticker-motion-toggle|ticker\.is-playing|\.ticker-track\{animation:none\}/);
  assert.match(js,/Math\.ceil\(ticker\.clientWidth \/ width\) \+ 2/);
- assert.match(js,/tickerMotionPreference\.matches/);
+ assert.match(js,/setProperty\("--ticker-loop-offset", "-" \+ width \+ "px"\)/);
+ assert.doesNotMatch(js,/tickerMotionPreference|tickerOptedIn|tickerToggle|updateTickerPreference/);
 });
 
 
