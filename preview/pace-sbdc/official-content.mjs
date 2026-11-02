@@ -1,6 +1,6 @@
 // Verified public information index from pacesbdc.org (reviewed Nov 2, 2026).
-// This independent concept paraphrases program information and links back to
-// the maintained official pages instead of copying their articles or policies.
+// This independent concept paraphrases source information in a fully local
+// set of pages. Official operational registration remains on NYSBDC.
 const official="https://www.pacesbdc.org/";
 const cite=(path,label)=>'<a href="'+official+path+'" target="_blank" rel="noopener noreferrer">'+label+'<span class="css-arrow" aria-hidden="true"></span></a>';
 const sectionTitle=(id,eyebrow,title,lead)=>'<div class="eyebrow"><span></span>'+eyebrow+'</div><h2 id="'+id+'">'+title+'</h2><p class="source-lead">'+lead+'</p>';
@@ -85,12 +85,12 @@ const mediaLinks=[
  ]}
 ];
 export const extraSlugs=["team","teambio","locations","library","media","partners","spanish"];
-const wrap=(slug,heading,sub,content)=>'<section class="official-hero"><div class="container"><div class="eyebrow"><span></span> OFFICIAL INFORMATION / INDEPENDENT REDESIGN</div><h1>'+heading+'</h1><p>'+sub+'</p><div class="official-small">SOURCE: PACE SBDC PUBLIC WEBSITE · REVIEWED NOVEMBER 2, 2026 · SEE LINKED OFFICIAL CONTENT FOR FULL AND CURRENT DETAILS</div></div></section><section class="section-pad official-section"><div class="container">'+content+'</div></section>';
+const wrap=(slug,heading,sub,content)=>'<section class="official-hero"><div class="container"><div class="eyebrow"><span></span> OFFICIAL INFORMATION / INDEPENDENT REDESIGN</div><h1>'+heading+'</h1><p>'+sub+'</p><div class="official-small">SOURCE INFORMATION REVIEWED NOVEMBER 2, 2026 · INDEPENDENT DESIGN CONCEPT · CONFIRM EVENT DATES AND PROGRAM ELIGIBILITY</div></div></section><section class="section-pad official-section"><div class="container">'+content+'</div></section>';
 const locationsCard='<div class="official-card-grid">'+locations.map(([city,address])=>'<article class="official-card"><span class="official-card-mark">LOCATION / NYC</span><h3>'+city+'</h3><p>'+address+'</p></article>').join("")+'</div>';
 const locationsText=sectionTitle("outreach","02 / WHERE TO MEET","Neighborhood access,<br><em>business support.</em>","Free one-to-one counseling can be arranged at the Lower Manhattan office, online, or at participating Brooklyn and Manhattan partner sites. Confirm availability when booking.")+
 '<div class="official-feature"><strong>MAIN OFFICE</strong><p>One Pace Plaza, Room W501, New York, NY 10038. Take A, C, J, Z, 2, 3, 4, 5 to Fulton Street, E to World Trade Center, or 6 to Brooklyn Bridge.</p><strong>HOW IT WORKS</strong><p>Satellite visits require an appointment; the official intake asks for your preferred meeting location or virtual appointment.</p>'+cite("counseling-form","CONFIRM SERVICE LOCATIONS")+'</div>'+locationsCard+
 '<div class="source-callout"><h3>New to Brooklyn?</h3><p>After the City Tech center closed at the end of 2023, the Pace center began serving Brooklyn clients in January 2024, including coordination with the Brooklyn Public Library Business & Career Center.</p>'+cite("welcome-brooklyn","READ THE BROOKLYN EXPANSION")+'</div>';
-const teamText=sectionTitle("people","01 / OUR PEOPLE","The people behind<br><em>the guidance.</em>","Current team roles listed on the original Pace SBDC team page; see the official profiles for biographies and updates.")+
+const teamText=sectionTitle("people","01 / OUR PEOPLE","The people behind<br><em>the guidance.</em>","Meet the advisors, coordinator and interns. Select a person to read their biography within this redesigned website.")+
 '<div class="official-card-grid">'+advisor.map(([name,title])=>'<article class="official-card person-card"><span class="official-card-mark">PACE UNIVERSITY SBDC</span><h3>'+name+'</h3><p>'+title+'</p>'+'<a href="./teambio.html#'+name.toLowerCase().replace(/[^a-z0-9]+/g,"-")+'">READ PROFILE <span class="css-arrow" aria-hidden="true"></span></a>'+'</article>').join("")+'</div>'+
 '<div class="source-callout"><h3>Regional Director: Andrew Flamm</h3><p>The Pace SBDC also highlights Andrew Flamm’s regional leadership, business-management teaching, and collaborations with faculty, students, and small businesses.</p>'+'<a href="./teambio.html#andrew-flamm">MEET THE DIRECTOR <span class="css-arrow" aria-hidden="true"></span></a>'+'</div>';
 const welcome='<div class="source-callout"><h3>Office hours, languages and eligibility</h3><p>Advising is confidential and offered at no cost. You may discuss an existing business or a specific business idea. Remote meetings and Spanish-language advising are available; mention your preference in the official intake.</p>'+cite("faqs","FULL SERVICE FAQ")+'</div>';
