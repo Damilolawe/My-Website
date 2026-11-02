@@ -472,3 +472,43 @@ test("Otaku Haven ticker repeats seamlessly on desktop, respects motion preferen
  assert.match(js,/Math\.ceil\(ticker\.clientWidth \/ width\) \+ 2/);
  assert.match(js,/tickerMotionPreference\.matches/);
 });
+
+
+test("Pace SBDC complete-site quality gate validates 50 pages, staff biographies and current training",async()=>{
+ const slugs=["index","services","about","stories","events","resources","contact","team","teambio","locations","library","media","partners","spanish",...detailSlugs,...mediaSlugs];
+ assert.equal(slugs.length,50,"Pace SBDC inventory unexpectedly changed");
+ const all=new Map;
+ for(const slug of slugs)all.set(slug,await read("public/pace-sbdc/"+slug+".html"));
+ const known=new Set(slugs);
+ for(const [slug,html] of all){
+  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
+  assert.equal(ids.length,new Set(ids).size,slug+" has duplicate IDs");
+  const present=new Set(ids);
+  for(const match of html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)){
+   const href=match[1],tag=match[0];
+   assert.ok(href,slug+" contains an empty link");
+   assert.doesNotMatch(href,/^https?:\/\/(?:www\.)?pacesbdc\.org/i,slug+" links to superseded original site");
+   if(href.startsWith("#"))assert.ok(present.has(href.slice(1)),slug+" has broken in-page anchor "+href);
+   if(href.startsWith("./")&&href.includes(".html")){
+    const matchPage=href.match(/^\.\/([^#?]+)\.html(?:#(.+))?$/);
+    if(matchPage){
+     assert.ok(known.has(matchPage[1]),slug+" points to missing page "+href);
+     if(matchPage[2])assert.ok(all.get(matchPage[1]).includes('id="'+matchPage[2]+'"'),slug+" broken staff/article anchor "+href);
+    }
+   }
+   if(tag.includes('target="_blank"'))assert.match(tag,/rel="noopener noreferrer"/,slug+" has unsafe new-window link");
+  }
+  assert.match(html,/<meta property="og:title"/,slug+" lacks page title metadata");
+ }
+ const team=all.get("teambio");
+ for(const person of ["Andrew Flamm","Rawle Brown","Sandra Cely","Greg Callender","Susan Gluck","Eeshani Juthani","Roxanna Astorga","Sanchit Deep Singh","Lily Lin"])
+  assert.ok(team.includes(person),person+" biography missing");
+ const directory=all.get("team");
+ for(const anchor of ["rawle-brown","sandra-cely","greg-callender","susan-gluck","eeshani-juthani","roxanna-astorga","sanchit-deep-singh","lily-lin"])
+  assert.ok(directory.includes('./teambio.html#'+anchor),"Team directory lacks local "+anchor+" profile");
+ const eventPage=all.get("events");
+ for(const name of ["NELP Contract Basics","Small Business Website Workday","Building a New Business Website","NELP Small Business Legal Clinic","Understanding SBA Microloans","Small Business Financing Panel & Networking"])
+  assert.ok(eventPage.includes(name),"Missing upcoming event "+name);
+ assert.equal((eventPage.match(/class="event-row reveal"/g)||[]).length,6);
+ assert.match(all.get("financing"),/href="\.\/"/,"Detail-page logo must take readers home");
+});
