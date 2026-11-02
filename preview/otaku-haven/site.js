@@ -68,6 +68,15 @@
     title.textContent = feature.title;
     description.textContent = feature.description;
     count.textContent = String(index + 1).padStart(2, "0") + " / 04";
+    if (focus || document.activeElement?.classList?.contains("feature-tab")) {
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+          typeof showcase.animate === "function") {
+        showcase.animate([
+          { opacity: .76, transform: "translateY(9px)" },
+          { opacity: 1, transform: "translateY(0)" }
+        ], { duration: 420, easing: "cubic-bezier(.16,1,.3,1)" });
+      }
+    }
     if (focus) tabs[index].focus();
   };
   tabs.forEach((tab, index) => {
@@ -108,4 +117,28 @@
     // Cached failures can complete before the deferred script attaches listeners.
     if (img.complete && img.naturalWidth === 0) handleUnavailable();
   });
+
+  // One pointer-driven glow, attached only to the interactive feature panel.
+  // No mousemove handlers on the window and no persistent animation loop.
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    showcase?.addEventListener("pointermove", (event) => {
+      const rect = showcase.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      showcase.style.setProperty("--oh-spot-x", ((event.clientX - rect.left) / rect.width * 100).toFixed(1) + "%");
+      showcase.style.setProperty("--oh-spot-y", ((event.clientY - rect.top) / rect.height * 100).toFixed(1) + "%");
+    }, { passive: true });
+  }
+  const rankPanel = document.querySelector(".rank-panel");
+  if (rankPanel && "IntersectionObserver" in window &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const charge = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-powered");
+          charge.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .3 });
+    charge.observe(rankPanel);
+  }
 })();
