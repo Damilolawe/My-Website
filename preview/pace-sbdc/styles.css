@@ -198,3 +198,9 @@ body{color:#16355b;background:#fff}
 .biography a{font-size:11px;font-weight:800;letter-spacing:.07em;display:inline-flex;align-items:center;gap:9px;color:#0036a1}
 .biography a:hover{text-decoration:underline}
 @media(max-width:700px){.biography-grid{grid-template-columns:1fr}.biography{padding:25px}}
+
+
+/* Real staff photos are supplied from Pace SBDC's published Wix media assets. */
+.team-headshot{display:block;width:100%;height:200px;object-fit:cover;object-position:center 26%;margin:0 0 20px;background:#edf2fa}
+.biography-photo{display:block;width:min(100%,245px);height:255px;object-fit:cover;object-position:center 22%;background:#edf2fa;margin:0 0 20px;border-bottom:4px solid #ffb81a}
+@media(max-width:700px){.team-headshot{height:230px}.biography-photo{width:min(100%,205px);height:225px}}
