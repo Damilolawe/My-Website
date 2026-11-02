@@ -6,7 +6,7 @@ import { KAPPO_PAGES } from "../scripts/rewrite-kappo-preview-urls.mjs";
 
 const root = "branded-previews/";
 const read = async path => readFile(root + path, "utf8");
-const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json","jay-millz-shot-em/index.html","jay-millz-shot-em/styles.css","jay-millz-shot-em/site.js"].sort();
+const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json","jay-millz-shot-em/index.html","jay-millz-shot-em/styles.css","jay-millz-shot-em/site.js","jay-millz-shot-em/import-status.json"].sort();
 
 test("branded previews build exactly the allowlisted independent public concepts", async () => {
  execFileSync(process.execPath, ["scripts/build-branded-previews.mjs"], {stdio:"pipe"});
@@ -19,7 +19,7 @@ test("branded previews build exactly the allowlisted independent public concepts
   }
  };
  await walk(root+"public");
- assert.deepEqual(actual.filter(path=>!path.startsWith("shotsbyriq/photos/")).sort(),expectedFiles);
+ assert.deepEqual(actual.filter(path=>!path.startsWith("shotsbyriq/photos/")&&!path.startsWith("jay-millz-shot-em/photos/")).sort(),expectedFiles);
  assert.ok(actual.every(path=>!path.includes("admin/")&&!path.includes("orders/")),"Private content must not enter the isolated preview");
  const landing=await read("public/index.html");
  assert.match(landing,/href="\/otaku-haven\/"/);
@@ -247,7 +247,20 @@ test("Jay Millz concept maintains verified booking destination and original blue
  }
  const images=[...html.matchAll(/<img\b[^>]*src="([^"]+)"[^>]*>/g)];
  assert.ok(images.length>=9);
- for(const match of images)assert.equal(new URL(match[1]).host,"cdn-s.acuityscheduling.com");
+ const importStatus=JSON.parse(await read("public/jay-millz-shot-em/import-status.json"));
+ const manifest=JSON.parse(await readFile("preview/jay-millz-shot-em/instagram-sources.json","utf8"));
+ assert.equal(manifest.images.length,9);
+ assert.equal(importStatus.requested,9);
+ assert.equal(importStatus.assets.length,9);
+ assert.equal(importStatus.count,importStatus.assets.filter(p=>p.imported).length);
+ images.forEach((match,i)=>{
+  const imported=importStatus.assets[i];
+  assert.equal(imported.id,i+1);
+  if(imported.imported){
+   assert.equal(match[1],"/jay-millz-shot-em/photos/"+imported.file);
+   assert.ok(imported.bytes>3500);
+  }else assert.equal(new URL(match[1]).host,"cdn-s.acuityscheduling.com");
+ });
  for(const filter of ["all","portraits","studio","lifestyle"])assert.ok(html.includes('data-filter="'+filter+'"'));
  assert.doesNotMatch(html,/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2600-\u27BF]/u);
 });
