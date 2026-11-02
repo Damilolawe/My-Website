@@ -40,6 +40,27 @@ function rebrandDocument(html){
 }
 
 
+const extraPageTitles={
+ team:"Meet the Team",
+ teambio:"Team Biographies",
+ locations:"Business Advising Locations",
+ library:"Complete Business Resource Library",
+ media:"News, Media & Reports",
+ partners:"Community Partners",
+ spanish:"Asesoría Empresarial en Español"
+};
+const mediaPageTitles={
+ blog:"News and Articles",
+ photos:"Community Photo Gallery",
+ newsletter:"Newsletter Archive",
+ press:"Press and Recognition",
+ video:"Business Webinars and Videos",
+ social:"Connect with Pace SBDC",
+ "sbdc-day":"SBDC Day",
+ contacto:"Contacto en Español",
+ espanol:"Asesoría Empresarial en Español",
+ "privacy-policy":"Privacy and Data"
+};
 const allPageSlugs=new Set(["","index","services","about","stories","events","resources","contact",...extraSlugs,...detailSlugs,...mediaSlugs]);
 const oldSitePattern=/^https?:\/\/(?:www\.)?pacesbdc\.org(?:\/|$)/i;
 function rewriteLegacyLinks(html){
@@ -71,6 +92,14 @@ async function publishPage(outPath,html){
  const pageTitle=html.match(/<title>([^<]+)<\/title>/)?.[1];
  if(pageTitle)html=html.replace(/<meta property="og:title" content="[^"]*">/,
    '<meta property="og:title" content="'+pageTitle.replace(/&/g,"&amp;").replace(/"/g,"&quot;")+'">');
+
+ const heading=html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]
+   ?.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim();
+ if(heading){
+   const desc=("Independent Pace University SBDC redesign concept: "+heading+" Explore small business services, events, stories and no-cost advising.").replace(/&/g,"&amp;").replace(/"/g,"&quot;");
+   html=html.replace(/<meta name="description" content="[^"]*">/,'<meta name="description" content="'+desc+'">');
+ }
+
  const active=["about","services","stories","events","resources","contact","team","locations","library","media","partners","spanish"].includes(slug)?slug:null;
  if(active)html=html.replace('href="./'+active+'.html"','href="./'+active+'.html" aria-current="page"');
  await writeFile(outPath,html);
@@ -122,7 +151,7 @@ export async function buildPaceSbdc(output){
      top=top.replaceAll('href="'+pair[0]+'"','href="'+pair[1]+'"');
      bottom=bottom.replaceAll('href="'+pair[0]+'"','href="'+pair[1]+'"');
    }
-   top=top.replace(/<title>[\s\S]*?<\/title>/,'<title>Pace SBDC | '+slug+' — Independent Redesign</title>');
+   top=top.replace(/<title>[\s\S]*?<\/title>/,'<title>'+(extraPageTitles[slug]||slug)+' | Pace SBDC — Independent Redesign</title>');
    if(slug==="spanish")top=top.replace('<html lang="en">','<html lang="es">');
    await publishPage(join(output,slug+".html"),top+'<main id="main">'+pageBody(slug)+'</main>'+bottom);
  }
@@ -140,7 +169,7 @@ export async function buildPaceSbdc(output){
    await publishPage(join(output,entry.slug+".html"),top+'<main id="main">'+renderDetail(entry)+'</main>'+footer);
  }
  for(const slug of mediaSlugs){
-   const top=header.replace(/<title>[\s\S]*?<\/title>/,'<title>'+slug.replace(/-/g," ")+' | Pace SBDC — Independent Redesign</title>');
+   const top=header.replace(/<title>[\s\S]*?<\/title>/,'<title>'+(mediaPageTitles[slug]||slug.replace(/-/g," "))+' | Pace SBDC — Independent Redesign</title>');
    await publishPage(join(output,slug+".html"),top.replace(slug==="espanol"||slug==="contacto"?'<html lang="en">':'___NEVER_MATCH___',slug==="espanol"||slug==="contacto"?'<html lang="es">':'___NEVER_MATCH___')+'<main id="main">'+renderMedia(slug)+'</main>'+footer);
  }
   console.log("Built public Pace SBDC concept: every verified original content route as a local page.");
