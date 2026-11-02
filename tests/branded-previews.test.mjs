@@ -219,6 +219,10 @@ test("Jay Millz concept maintains verified booking destination and original blue
  assert.match(html,/class="awe-symbol"/);
  assert.match(html,/viewBox="0 0 64 64"/);
  assert.match(html,/class="photo-rights-note"/);
+ assert.match(html,/data-about-portrait="personal"/);
+ assert.match(html,/https:\/\/www\.instagram\.com\/itsjaymillz\/p\/De7iLMDAPf_\//);
+ assert.match(html,/THE PERSON BEHIND THE LENS \/ @ITSJAYMILLZ/);
+
  assert.match(html,/Photography sourced from Jay Millz Shot Em/);
  assert.match(html,/public Instagram portfolio/);
  assert.doesNotMatch(html,/Photography from Jay Millz Shot Em&#39;s public scheduling site/);
@@ -267,11 +271,20 @@ test("Jay Millz concept maintains verified booking destination and original blue
  assert.equal(manifest.images.length,9);
  assert.equal(importStatus.requested,9);
  assert.equal(importStatus.assets.length,9);
+ assert.equal(importStatus.about?.file,"about-jay.jpg");
+ assert.equal(importStatus.about?.imported,true);
+ assert.ok(importStatus.about?.bytes>3500);
+ const aboutSource=JSON.parse(await readFile("preview/jay-millz-shot-em/about-source.json","utf8"));
+ assert.equal(aboutSource.account,"itsjaymillz");
+ assert.equal(aboutSource.post,"https://www.instagram.com/itsjaymillz/p/De7iLMDAPf_/");
+
  assert.equal(importStatus.count,importStatus.assets.filter(p=>p.imported).length);
  images.forEach((match,i)=>{
   const imported=importStatus.assets[i];
   assert.equal(imported.id,i+1);
-  if(imported.imported){
+  if(i===8){
+   assert.equal(match[1],"/jay-millz-shot-em/photos/about-jay.jpg");
+  }else if(imported.imported){
    assert.equal(match[1],"/jay-millz-shot-em/photos/"+imported.file);
    assert.ok(imported.bytes>3500);
   }else assert.equal(new URL(match[1]).host,"cdn-s.acuityscheduling.com");
