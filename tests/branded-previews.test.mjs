@@ -217,6 +217,14 @@ test("Jay Millz concept maintains verified booking destination and original blue
  assert.match(html,/name="robots" content="noindex,nofollow"/);
  assert.match(html,/class="awe-credit"/);
  assert.match(html,/THE<br>SHOT <em>IS<\/em>/);
+ assert.match(html,/YOUR MOMENT\.<br><em>IN FOCUS\.<\/em>/);
+ assert.match(html,/THE CAMERA IS READY/);
+ assert.match(html,/create portraits that feel unmistakably yours/);
+ assert.doesNotMatch(html,/READY TO<br>GET <em>SHOT\?<\/em>/);
+ assert.doesNotMatch(html,/QUICK FIRE/);
+ assert.match(css,/\.final-cta h2\{font:800 clamp\(64px,11\.8vw,170px\)/);
+ assert.match(css,/\.final-cta h2\{font-size:clamp\(49px,14\.8vw,84px\)/);
+
  for(const amount of ["$100","$200","$275","$250"])assert.ok(html.includes(amount));
  assert.match(html,/50% non-refundable deposit/);
  assert.match(html,/3–4 day turnaround/);
