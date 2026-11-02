@@ -34,12 +34,12 @@ test("branded previews build exactly the allowlisted independent public concepts
 test("restaurant pages resolve logo, navigation, script and CSS on branded host", async () => {
  for(const name of KAPPO_PAGES){
   const html = await read("public/kappo-sono/"+name);
-  assert.match(html,/href="\/kappo-sono\/styles.css"/);
+  assert.match(html,/href="\/kappo-sono\/styles.css\?v=motion-20261102"/);
   assert.match(html,/href="\/kappo-sono\/"/);
   assert.doesNotMatch(html,/\b(?:href|src)="\/(?:styles\.css|site\.js|menu\.html|story\.html|gallery\.html|visit\.html)"/);
   assert.match(html,/noindex/);
   if(name !== "404.html"){
-   assert.match(html,/src="\/kappo-sono\/site.js"/);
+   assert.match(html,/src="\/kappo-sono\/site.js\?v=motion-20261102"/);
    for(const page of ["menu","story","gallery","visit"])
     assert.ok(html.includes('href="/kappo-sono/'+page+'.html"'),name+" missing "+page);
   }
@@ -241,8 +241,8 @@ test("Jay Millz concept maintains verified booking destination and original blue
  assert.match(html,/50% non-refundable deposit/);
  assert.match(html,/3–4 day turnaround/);
  assert.match(html,/Da Beauty Bundle/i);
- assert.match(html,/src="\.\/site\.js"/);
- assert.match(html,/href="\.\/styles\.css\?v=20261102-cta"/);
+ assert.match(html,/src="\.\/site\.js\?v=motion-20261102"/);
+ assert.match(html,/href="\.\/styles\.css\?v=motion-20261102"/);
  assert.match(css,/--blue:#356dff/);
  assert.match(css,/--blue2:#77a8ff/);
  assert.match(css,/@media\(max-width:620px\)/);
@@ -325,4 +325,16 @@ test("each independent preview has a unique, accessible motion signature", async
     assert.ok(!js.includes("setTimeout("),site.name+" motion should not rely on timers");
     assert.doesNotMatch(css,/url\(['"]?http:\/\//,site.name+" introduces insecure content");
   }
+});
+
+
+test("all deployed pages reference the current animation revision, not stale cached assets", async()=>{
+ const pages=["kappo-sono/index.html","kappo-sono/menu.html","kappo-sono/story.html",
+  "kappo-sono/gallery.html","kappo-sono/visit.html","otaku-haven/index.html",
+  "shotsbyriq/index.html","jay-millz-shot-em/index.html"];
+ for(const page of pages){
+  const html=await read("public/"+page);
+  assert.match(html,/styles\.css\?v=motion-20261102/,page+" stylesheet cache-bust");
+  assert.match(html,/site\.js\?v=motion-20261102/,page+" script cache-bust");
+ }
 });
