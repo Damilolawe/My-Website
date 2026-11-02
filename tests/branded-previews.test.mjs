@@ -223,7 +223,8 @@ test("Jay Millz concept maintains verified booking destination and original blue
  assert.match(html,/https:\/\/www\.instagram\.com\/itsjaymillz\/p\/De7iLMDAPf_\//);
  assert.match(html,/THE PERSON BEHIND THE LENS \/ @ITSJAYMILLZ/);
 
- assert.match(html,/Photography sourced from Jay Millz Shot Em/);
+ assert.match(html,/Portfolio photos are from @jaymillzshotem/);
+ assert.match(html,/About portrait is from @itsjaymillz/);
  assert.match(html,/public Instagram portfolio/);
  assert.doesNotMatch(html,/Photography from Jay Millz Shot Em&#39;s public scheduling site/);
 
