@@ -501,6 +501,8 @@ test("Pace SBDC complete-site quality gate validates 50 pages, staff biographies
   assert.match(html,/<meta property="og:title"/,slug+" lacks page title metadata");
  }
  const team=all.get("teambio");
+ assert.equal((team.match(/class="biography-photo"/g)||[]).length,8,"Eight published staff portraits should be shown");
+ assert.equal((all.get("team").match(/class="team-headshot"/g)||[]).length,8,"Team directory should use the same real staff photos");
  for(const person of ["Andrew Flamm","Rawle Brown","Sandra Cely","Greg Callender","Susan Gluck","Eeshani Juthani","Roxanna Astorga","Sanchit Deep Singh","Lily Lin"])
   assert.ok(team.includes(person),person+" biography missing");
  const directory=all.get("team");
