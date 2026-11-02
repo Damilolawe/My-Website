@@ -41,3 +41,50 @@
 .tiny-cross:before,.tiny-cross:after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:currentColor;border-radius:1px}
 .tiny-cross:before{width:16px;height:2px}
 .tiny-cross:after{width:2px;height:16px}
+
+
+/* AWE motion study: Otaku Haven / playful power-ups, no decorative emoji. */
+@keyframes oh-power-orbit{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes oh-charged{0%,100%{filter:drop-shadow(0 0 5px #f894bd44)}50%{filter:drop-shadow(0 0 20px #ff739eaa)}}
+@keyframes oh-rank-advance{from{opacity:.45;transform:translateY(9px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes oh-button-charge{from{background-position:200% 50%}to{background-position:-100% 50%}}
+.hero-art:after{
+ content:"";position:absolute;inset:10% 5%;border-radius:50%;pointer-events:none;
+ background:conic-gradient(from 25deg,transparent 0 48%,#f18cb949 51%,transparent 55% 75%,#a881f34a 78%,transparent 81%);
+ mask:radial-gradient(ellipse,transparent 0 67%,#000 71% 74%,transparent 79%);
+ animation:oh-power-orbit 22s linear infinite;opacity:.7;z-index:0;
+}
+.hero-phone,.hero-image-halo{z-index:1}
+.hero-star{z-index:2}
+.button-primary{
+ background-image:linear-gradient(110deg,transparent 15%,#fff5 42%,transparent 54%);
+ background-size:270% 100%;
+}
+.button-primary:hover,.button-primary:focus-visible{animation:oh-button-charge .95s linear 1}
+.world-card{transition:border-color .3s ease,box-shadow .3s ease}
+.world-card:hover,.world-card:focus-within{border-color:#e578ab;box-shadow:0 0 0 1px #c3649b50,0 18px 60px #d82d8021}
+.feature-showcase:after{
+ content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;
+ background:radial-gradient(240px circle at var(--oh-spot-x,50%) var(--oh-spot-y,35%),#ffb2d322,transparent 72%);
+ transition:opacity .3s ease;
+}
+.feature-showcase:hover:after{opacity:1}
+.rank-panel.is-powered .rank-track .selected{
+ animation:oh-charged 2.2s ease-in-out 3;
+}
+.rank-panel.is-powered .rank-track span{animation:oh-rank-advance .45s cubic-bezier(.2,.8,.2,1) both}
+.rank-panel.is-powered .rank-track span:nth-child(2){animation-delay:.07s}
+.rank-panel.is-powered .rank-track span:nth-child(3){animation-delay:.14s}
+.rank-panel.is-powered .rank-track span:nth-child(4){animation-delay:.21s}
+.rank-panel.is-powered .rank-track span:nth-child(5){animation-delay:.28s}
+.rank-panel.is-powered .rank-track span:nth-child(6){animation-delay:.35s}
+.rank-panel.is-powered .rank-track span:nth-child(7){animation-delay:.42s}
+.rank-panel.is-powered .rank-track span:nth-child(8){animation-delay:.49s}
+.rank-panel.is-powered .rank-track span:nth-child(9){animation-delay:.56s}
+@media(hover:none){.feature-showcase:after{display:none}.world-card:hover{box-shadow:none}}
+@media(max-width:780px){.hero-art:after{opacity:.38}.rank-panel.is-powered .rank-track span{animation-duration:.25s}}
+@media(prefers-reduced-motion:reduce){
+ .hero-art:after{animation:none!important}
+ .button-primary:hover,.button-primary:focus-visible,.rank-panel.is-powered .rank-track .selected,.rank-panel.is-powered .rank-track span{animation:none!important}
+ .feature-showcase:after{display:none}
+}
