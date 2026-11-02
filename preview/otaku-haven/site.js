@@ -96,13 +96,16 @@
     reveals.forEach((element) => observer.observe(element));
   }
   document.querySelectorAll("img").forEach((img) => {
-    img.addEventListener("error", () => {
+    const handleUnavailable = () => {
       if (img.classList.contains("logo-mark")) {
         img.hidden = true;
       } else {
         img.style.visibility = "hidden";
         img.parentElement?.classList.add("asset-unavailable");
       }
-    });
+    };
+    img.addEventListener("error", handleUnavailable, { once: true });
+    // Cached failures can complete before the deferred script attaches listeners.
+    if (img.complete && img.naturalWidth === 0) handleUnavailable();
   });
 })();
