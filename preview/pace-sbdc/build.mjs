@@ -64,7 +64,16 @@ function refineNavigation(html){
  return html;
 }
 async function publishPage(outPath,html){
- await writeFile(outPath,refineNavigation(html));
+ const slug=outPath.split("/").pop().replace(/\.html$/,"");
+ // Page logos return home rather than scrolling an article to its own top.
+ if(slug!=="index")html=html.replaceAll('href="#top"','href="./"');
+ html=refineNavigation(html);
+ const pageTitle=html.match(/<title>([^<]+)<\/title>/)?.[1];
+ if(pageTitle)html=html.replace(/<meta property="og:title" content="[^"]*">/,
+   '<meta property="og:title" content="'+pageTitle.replace(/&/g,"&amp;").replace(/"/g,"&quot;")+'">');
+ const active=["about","services","stories","events","resources","contact","team","locations","library","media","partners","spanish"].includes(slug)?slug:null;
+ if(active)html=html.replace('href="./'+active+'.html"','href="./'+active+'.html" aria-current="page"');
+ await writeFile(outPath,html);
 }
 
 const paths=[
