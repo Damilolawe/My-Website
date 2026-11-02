@@ -6,7 +6,7 @@ import { KAPPO_PAGES } from "../scripts/rewrite-kappo-preview-urls.mjs";
 
 const root = "branded-previews/";
 const read = async path => readFile(root + path, "utf8");
-const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json","jay-millz-shot-em/index.html","jay-millz-shot-em/styles.css","jay-millz-shot-em/site.js","jay-millz-shot-em/import-status.json"].sort();
+const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json","jay-millz-shot-em/index.html","jay-millz-shot-em/styles.css","jay-millz-shot-em/site.js","jay-millz-shot-em/import-status.json", ...["index","services","about","stories","events","resources","contact"].map(name=>"pace-sbdc/"+name+".html"),"pace-sbdc/styles.css","pace-sbdc/site.js"].sort();
 
 test("branded previews build exactly the allowlisted independent public concepts", async () => {
  execFileSync(process.execPath, ["scripts/build-branded-previews.mjs"], {stdio:"pipe"});
@@ -27,6 +27,7 @@ test("branded previews build exactly the allowlisted independent public concepts
  assert.match(landing,/independent design studies/);
  assert.match(landing,/href="\/shotsbyriq"/);
  assert.match(landing,/href="\/jay-millz-shot-em\/"/);
+ assert.match(landing,/href="\/pace-sbdc\/"/);
  assert.match(landing,/noindex,nofollow/);
  assert.equal(await read("public/robots.txt"),"User-agent: *\nDisallow: /\n");
 });
@@ -337,4 +338,51 @@ test("all deployed pages reference the current animation revision, not stale cac
   assert.match(html,/styles\.css\?v=motion-20261102/,page+" stylesheet cache-bust");
   assert.match(html,/site\.js\?v=motion-20261102/,page+" script cache-bust");
  }
+});
+
+
+test("Pace SBDC redesign ships seven independent, accurate and usable public pages",async()=>{
+ const names=["index","services","about","stories","events","resources","contact"];
+ const host="https://www.pacesbdc.org";
+ for(const name of names){
+  const doc=await read("public/pace-sbdc/"+name+".html");
+  assert.match(doc,/INDEPENDENT WEBSITE REDESIGN CONCEPT/i);
+  assert.match(doc,/NOT (?:AFFILIATED WITH THE OFFICIAL|THE OFFICIAL)/);
+  assert.match(doc,/noindex,nofollow/);
+  assert.match(doc,/https:\/\/nysbdc\.ecenterdirect\.com\/signup\?centerid=31/);
+  assert.match(doc,/href="\.\/styles\.css\?v=motion-20261102"/);
+  assert.match(doc,/src="\.\/site\.js\?v=motion-20261102"/);
+  assert.match(doc,/href="https:\/\/aweconcepts\.com\/"/);
+  assert.match(doc,/Designed by/i);
+  const ids=[...doc.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
+  assert.equal(ids.length,new Set(ids).size,name+" duplicate IDs");
+  const hrefs=[...doc.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)];
+  for(const match of hrefs){
+   const h=match[1],tag=match[0];
+   assert.ok(h&&!h.startsWith("http:"),name+" unsafe empty or mixed-content anchor");
+   if(h.startsWith("#"))assert.ok(ids.includes(h.slice(1)),name+" broken anchor: "+h);
+   if(/target="_blank"/.test(tag))assert.match(tag,/rel="noopener noreferrer"/,name+" unsafe tab");
+  }
+  assert.doesNotMatch(doc,/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2600-\u27BF\uFE0E\uFE0F\u200D]/u);
+  assert.doesNotMatch(doc,/<form\b/,"This concept must never collect visitor data");
+ }
+ const home=await read("public/pace-sbdc/index.html");
+ for(const item of ["Big ideas.","20,100","$255","10,600","1986","Services","Our impact","GET FREE ADVISING","Request"]){
+  assert.ok(home.toLowerCase().includes(item.toLowerCase()),"Homepage missing "+item);
+ }
+ for(const url of [host+"/about",host+"/services",host+"/success-stories",host+"/events",host+"/faqs"])assert.ok(home.includes(url));
+ for(const category of ["all","starting","growing"])assert.match(home,new RegExp('data-service="'+category+'"'));
+ const js=await read("public/pace-sbdc/site.js");
+ assert.match(js,/service-filter-btn/);
+ assert.match(js,/aria-pressed/);
+ assert.match(js,/IntersectionObserver/);
+ assert.match(js,/prefers-reduced-motion/);
+ assert.match(js,/image/i);
+ const css=await read("public/pace-sbdc/styles.css");
+ assert.match(css,/@media\(max-width:700px\)/);
+ assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
+ assert.match(css,/\.inner-hero/);
+ assert.match(css,/\.services-grid/);
+ const csp=JSON.parse(await readFile("branded-previews/firebase.json","utf8")).hosting.headers[0].headers.find(x=>x.key==="Content-Security-Policy").value;
+ assert.match(csp,/https:\/\/static\.wixstatic\.com/);
 });
