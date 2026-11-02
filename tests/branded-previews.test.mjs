@@ -216,6 +216,13 @@ test("Jay Millz concept maintains verified booking destination and original blue
  assert.match(html,/AWE CONCEPTS/);
  assert.match(html,/name="robots" content="noindex,nofollow"/);
  assert.match(html,/class="awe-credit"/);
+ assert.match(html,/class="awe-symbol"/);
+ assert.match(html,/viewBox="0 0 64 64"/);
+ assert.match(html,/class="photo-rights-note"/);
+ assert.match(html,/Photography sourced from Jay Millz Shot Em/);
+ assert.match(html,/public Instagram portfolio/);
+ assert.doesNotMatch(html,/Photography from Jay Millz Shot Em&#39;s public scheduling site/);
+
  assert.match(html,/THE<br>SHOT <em>IS<\/em>/);
  assert.match(html,/YOUR MOMENT\.<br><em>IN FOCUS\.<\/em>/);
  assert.match(html,/THE CAMERA IS READY/);
