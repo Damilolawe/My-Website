@@ -140,3 +140,12 @@ body{color:#16355b;background:#fff}
 .official-faq summary span{color:#0036a1}
 @media(max-width:1050px){.wordmark{max-width:220px}.official-lockup{height:50px}.official-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.official-extra-nav{gap:12px;justify-content:flex-start;padding:12px 18px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:thin}.official-extra-nav a{flex:none;font-size:9px}.wordmark{min-width:155px;width:50%;max-width:205px}.official-lockup{height:51px}.official-accreditation{align-items:flex-start;flex-direction:column;margin-top:38px}.official-accreditation img{width:180px}.official-hero{padding:65px 0}.official-hero h1{font-size:clamp(52px,12vw,82px)}.official-card-grid,.official-steps{grid-template-columns:1fr}.official-card{min-height:185px}.official-section h2{font-size:clamp(48px,9.7vw,70px)}.official-feature,.source-callout{padding:21px}.official-card-grid{gap:10px}}
+
+/* Additional original-site reference and overview components */
+.official-source-links{display:flex;flex-wrap:wrap;gap:12px 22px;padding-top:30px;margin-top:15px;border-top:1px solid #365682}
+.official-source-links a{font-size:9px;color:#f1c85c;font-weight:800;letter-spacing:.06em}
+.official-source-links a:hover{text-decoration:underline}
+.official-home-guide{background:#fff}
+.official-home-guide .official-card-grid{margin-top:35px}
+.home-guide-card>span{margin-top:auto;font-size:10px;font-weight:800;color:#0036a1;display:flex;align-items:center;gap:8px}
+.home-guide-card:hover>span{color:#002d73}
