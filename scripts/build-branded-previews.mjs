@@ -47,7 +47,7 @@ const animationRevision = "motion-20261102";
 for (const page of [
   ...KAPPO_PAGES.map(name => "kappo-sono/" + name),
   "otaku-haven/index.html", "shotsbyriq/index.html", "jay-millz-shot-em/index.html",
-  ...["index","services","about","stories","events","resources","contact"].map(name=>"pace-sbdc/"+name+".html")
+  ...["index","services","about","stories","events","resources","contact","team","locations","library","media","partners","spanish"].map(name=>"pace-sbdc/"+name+".html")
 ]) {
   const path = output + "/" + page;
   const html = await readFile(path, "utf8");
