@@ -49,7 +49,7 @@ for (const page of [
   const html = await readFile(path, "utf8");
   const updated = html.replace(
     /(href|src)="((?:\.\/|\/(?:kappo-sono|otaku-haven|shotsbyriq|jay-millz-shot-em)\/)(?:styles\.css|site\.js))(?:\?[^"]*)?"/g,
-    (_, attr, asset) => attr + '="' + asset + "?v=" + animationRevision + '"')
+    (_, attr, asset) => attr + '="' + asset + "?v=" + animationRevision + '"'
   );
   if (updated === html || !updated.includes("styles.css?v=" + animationRevision) ||
       !updated.includes("site.js?v=" + animationRevision)) {
