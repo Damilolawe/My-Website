@@ -240,12 +240,12 @@ a:focus-visible,button:focus-visible{outline-color:#86a3ff}
 
 /* PHONE RECORDING QA — responsive refinements (Nov 2026).
    Protect the intentionally oversized magazine typography without losing text. */
-.logo{gap:0;letter-spacing:-.075em}
+.logo{gap:.17em;letter-spacing:-.065em}
 .logo span{display:inline-block}
 .logo small{
   display:inline-block;
   transform:none;
-  padding:0 .47em;
+  padding:0;
   font:500 .44em/1 var(--font-mono);
   letter-spacing:.04em;
   color:#a8bdff;
@@ -267,13 +267,14 @@ a:focus-visible,button:focus-visible{outline-color:#86a3ff}
   white-space:nowrap;
   max-width:100%;
   font-size:clamp(35px,6.8vw,90px);
-  letter-spacing:-.085em
+  letter-spacing:-.065em;
+  gap:.13em
 }
 .footer-logo .footer-by{
   font:500 .29em/1 var(--font-mono);
   letter-spacing:.025em;
   color:#93acff;
-  margin:0 .42em;
+  margin:0;
   align-self:center
 }
 /* Gallery photography should be visible despite the midnight palette. */
@@ -281,7 +282,7 @@ a:focus-visible,button:focus-visible{outline-color:#86a3ff}
 .archive .frame:hover img,.archive .frame:focus-visible img{filter:brightness(1.04) contrast(1.03) saturate(1.02)}
 @media(max-width:760px){
   .logo{font-size:clamp(21px,5.8vw,26px)}
-  .logo small{font-size:.48em;padding:0 .4em}
+  .logo small{font-size:.48em;padding:0}
   .spread-copy{min-width:0;overflow:hidden}
   .spread-copy h2{max-width:100%;overflow-wrap:normal}
   .spread-copy h2 .headline-long{font-size:clamp(25px,8.25vw,54px);letter-spacing:-.08em}
