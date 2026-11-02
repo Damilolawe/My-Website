@@ -28,6 +28,15 @@ const display=(index)=>{if(!visible.length)return;activeIndex=(index+visible.len
 const open=(tile)=>{previousFocus=document.activeElement;display(visible.indexOf(tile));modal.hidden=false;document.body.classList.add('modal-open');closeButton.focus()};
 const close=()=>{if(modal.hidden)return;modal.hidden=true;document.body.classList.remove('modal-open');modalImage.removeAttribute('src');previousFocus?.focus()};
 tiles.forEach(tile=>tile.addEventListener('click',()=>open(tile)));
+const collageLinks=[...document.querySelectorAll('[data-open-photo]')];
+collageLinks.forEach(link=>link.addEventListener('click',event=>{
+ const index=Number(link.dataset.openPhoto);
+ const tile=tiles.find(item=>Number(item.dataset.photo)===index);
+ if(!tile)return;
+ event.preventDefault();
+ filterView('all');
+ open(tile);
+}));
 closeButton.addEventListener('click',close);modal.querySelector('.lb-prev').addEventListener('click',()=>display(activeIndex-1));modal.querySelector('.lb-next').addEventListener('click',()=>display(activeIndex+1));
 modal.addEventListener('click',e=>{if(e.target===modal)close()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();closeMenu()}if(modal.hidden)return;if(e.key==='ArrowRight'){e.preventDefault();display(activeIndex+1)}if(e.key==='ArrowLeft'){e.preventDefault();display(activeIndex-1)}if(e.key==='Tab'){const controls=[closeButton,modal.querySelector('.lb-prev'),modal.querySelector('.lb-next'),modalPost],first=controls[0],last=controls.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
