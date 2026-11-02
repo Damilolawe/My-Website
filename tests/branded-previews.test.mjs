@@ -230,7 +230,7 @@ test("Jay Millz concept maintains verified booking destination and original blue
  assert.match(html,/3–4 day turnaround/);
  assert.match(html,/Da Beauty Bundle/i);
  assert.match(html,/src="\.\/site\.js"/);
- assert.match(html,/href="\.\/styles\.css"/);
+ assert.match(html,/href="\.\/styles\.css\?v=20261102-cta"/);
  assert.match(css,/--blue:#356dff/);
  assert.match(css,/--blue2:#77a8ff/);
  assert.match(css,/@media\(max-width:620px\)/);
