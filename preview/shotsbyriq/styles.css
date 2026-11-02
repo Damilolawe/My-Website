@@ -904,3 +904,7 @@ a:focus-visible,button:focus-visible{outline-color:#86a3ff}
 
 /* Editorial ticker flourish drawn in CSS so the preview passes the no-pictograph rule. */
 .film-ticker b.ticker-spark{display:inline-block;width:13px;height:13px;padding:0;margin:0 21px;background:#cad8ff;clip-path:polygon(46% 0,56% 39%,100% 46%,61% 56%,54% 100%,44% 61%,0 54%,39% 44%);vertical-align:-2px}
+
+/* Keep gallery buttons inside their assigned grid tracks; intrinsic image widths must not overlap adjacent photos. */
+.contact-sheet > .frame{min-width:0;width:100%}
+.contact-sheet > .frame img{min-width:0}
