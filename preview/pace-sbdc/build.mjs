@@ -33,7 +33,7 @@ function rebrandDocument(html){
  html=html.replace('<span class="awe-icon"','<span class="awe-icon"'); 
  html=html.replace('<div class="container footer-disclosure">',
  '<div class="container official-accreditation"><a href="https://nysbdc.org/" target="_blank" rel="noopener noreferrer"><img src="'+verifiedAccreditation+'" alt="NYSBDC accreditation and SBA funding acknowledgement" loading="lazy" decoding="async"></a><div><strong>AN OFFICIAL NYSBDC NETWORK PROGRAM</strong><p>Funding support from the Small Business Administration, New York State and Pace University; official disclosures and requirements are on the original organization site.</p></div></div><div class="container footer-disclosure">');
- html=html.replace('</footer>','<div class="container official-transit"><strong>VISITING THE LOWER MANHATTAN OFFICE</strong><span>Fulton St: A, C, J, Z, 2, 3, 4, 5 &nbsp; / &nbsp; World Trade Center: E &nbsp; / &nbsp; Brooklyn Bridge–City Hall: 6</span></div></footer>');
+ html=html.replace('</footer>','<nav class="container official-source-links" aria-label="Original Pace SBDC website policies and records"><a href="https://www.pacesbdc.org/privacy-policy" target="_blank" rel="noopener noreferrer">ORIGINAL PRIVACY POLICY</a><a href="https://www.pacesbdc.org/faqs" target="_blank" rel="noopener noreferrer">SERVICE FAQ & GUIDELINES</a><a href="https://www.pacesbdc.org/year-in-review" target="_blank" rel="noopener noreferrer">2021–2025 ANNUAL REPORTS</a><a href="https://www.pacesbdc.org/contact" target="_blank" rel="noopener noreferrer">OFFICIAL CONTACT</a><a href="https://www.pacesbdc.org/counseling-form" target="_blank" rel="noopener noreferrer">ORIGINAL APPOINTMENT INSTRUCTIONS</a></nav><div class="container official-transit"><strong>VISITING THE LOWER MANHATTAN OFFICE</strong><span>Fulton St: A, C, J, Z, 2, 3, 4, 5 &nbsp; / &nbsp; World Trade Center: E &nbsp; / &nbsp; Brooklyn Bridge–City Hall: 6</span></div></footer>');
  return html;
 }
 
@@ -84,8 +84,17 @@ export async function buildPaceSbdc(output){
      bottom=bottom.replaceAll('href="'+pair[0]+'"','href="'+pair[1]+'"');
    }
    top=top.replace(/<title>[\s\S]*?<\/title>/,'<title>Pace SBDC | '+slug+' — Independent Redesign</title>');
+   if(slug==="spanish")top=top.replace('<html lang="en">','<html lang="es">');
    await writeFile(join(output,slug+".html"),top+'<main id="main">'+pageBody(slug)+'</main>'+bottom);
  }
- await writeFile(join(output,"index.html"),original);
+ const homeGuide='<section class="section-pad official-section official-home-guide"><div class="container"><div class="eyebrow"><span></span> ORIGINAL PROGRAM INFORMATION</div><h2>The full Pace SBDC.<br><em>All in one place.</em></h2><p class="source-lead">Explore the center beyond the basics: current staff, neighborhood counseling sites, specialized business guides, annual reports, client successes, partnerships, and Spanish-language assistance.</p><div class="official-card-grid">'+[
+ ["Meet the team","Meet the current certified business advisors, coordinator and interns.","team.html"],
+ ["Where to get advising","Find Manhattan and Brooklyn neighborhood counseling locations.","locations.html"],
+ ["All business resources","Finance, tax, hiring, export, contracting, real estate, marketing and more.","library.html"],
+ ["Reports and media","Annual reports, press, newsletters, awards, video and client stories.","media.html"],
+ ["Community partnerships","Learn about Pace, NYSBDC and community programs.","partners.html"],
+ ["Asistencia en español","Solicite asesoría confidencial y gratuita en español.","spanish.html"]
+ ].map(item=>'<a class="official-card home-guide-card" href="./'+item[2]+'"><h3>'+item[0]+'</h3><p>'+item[1]+'</p><span>EXPLORE SECTION <span class="css-arrow" aria-hidden="true"></span></span></a>').join('')+'</div></div></section>';
+ await writeFile(join(output,"index.html"),original.replace('</main>',homeGuide+'</main>'));
  console.log("Built public Pace SBDC concept: home + six dedicated pages.");
 }
