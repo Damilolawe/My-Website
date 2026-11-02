@@ -221,7 +221,6 @@ test("Jay Millz concept maintains verified booking destination and original blue
  assert.match(html,/50% non-refundable deposit/);
  assert.match(html,/3–4 day turnaround/);
  assert.match(html,/Da Beauty Bundle/i);
- assert.match(html,/src="\.\/styles\.css"/);
  assert.match(html,/src="\.\/site\.js"/);
  assert.match(html,/href="\.\/styles\.css"/);
  assert.match(css,/--blue:#356dff/);
