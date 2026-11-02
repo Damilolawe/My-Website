@@ -35,6 +35,9 @@ test("every official store and community CTA leads to a verified destination", a
     assert.match(html, new RegExp('href="#' + anchor + '"'));
   }
   assert.match(html, /Designed by/);
+  assert.match(html, /class="awe-signature"/);
+  assert.match(html, /viewBox="0 0 64 64"/);
+  assert.match(html, /aria-label="Designed by Awe Concepts"/);
 });
 
 test("interaction is responsive, accessible and respects reduced motion", async () => {
