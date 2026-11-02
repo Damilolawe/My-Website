@@ -6,7 +6,7 @@ import { KAPPO_PAGES } from "../scripts/rewrite-kappo-preview-urls.mjs";
 
 const root = "branded-previews/";
 const read = async path => readFile(root + path, "utf8");
-const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json","jay-millz-shot-em/index.html","jay-millz-shot-em/styles.css","jay-millz-shot-em/site.js","jay-millz-shot-em/import-status.json", ...["index","services","about","stories","events","resources","contact"].map(name=>"pace-sbdc/"+name+".html"),"pace-sbdc/styles.css","pace-sbdc/site.js"].sort();
+const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json","jay-millz-shot-em/index.html","jay-millz-shot-em/styles.css","jay-millz-shot-em/site.js","jay-millz-shot-em/import-status.json", ...["index","services","about","stories","events","resources","contact","team","locations","library","media","partners","spanish"].map(name=>"pace-sbdc/"+name+".html"),"pace-sbdc/styles.css","pace-sbdc/site.js"].sort();
 
 test("branded previews build exactly the allowlisted independent public concepts", async () => {
  execFileSync(process.execPath, ["scripts/build-branded-previews.mjs"], {stdio:"pipe"});
@@ -342,7 +342,7 @@ test("all deployed pages reference the current animation revision, not stale cac
 
 
 test("Pace SBDC redesign ships seven independent, accurate and usable public pages",async()=>{
- const names=["index","services","about","stories","events","resources","contact"];
+ const names=["index","services","about","stories","events","resources","contact","team","locations","library","media","partners","spanish"];
  const host="https://www.pacesbdc.org";
  for(const name of names){
   const doc=await read("public/pace-sbdc/"+name+".html");
@@ -385,4 +385,42 @@ test("Pace SBDC redesign ships seven independent, accurate and usable public pag
  assert.match(css,/\.services-grid/);
  const csp=JSON.parse(await readFile("branded-previews/firebase.json","utf8")).hosting.headers[0].headers.find(x=>x.key==="Content-Security-Policy").value;
  assert.match(csp,/https:\/\/static\.wixstatic\.com/);
+});
+
+
+test("Pace SBDC retains authentic brand colors, assets and the original full content taxonomy",async()=>{
+ const css=await read("public/pace-sbdc/styles.css");
+ for(const color of ["#002d73","#0036a1","#ffb81a","#4780b5"])assert.ok(css.includes(color),"Missing authentic Pace color "+color);
+ assert.match(css,/\.official-lockup/);
+ assert.match(css,/\.official-extra-nav/);
+ const pageNames=["index","services","about","stories","events","resources","contact","team","locations","library","media","partners","spanish"];
+ for(const name of pageNames){
+  const html=await read("public/pace-sbdc/"+name+".html");
+  assert.match(html,/8f09f9_6f772fba8eba4d78869d1198efd188ed/,"Official Pace SBDC source artwork");
+  assert.match(html,/8f09f9_15d5736f9cd347fdb6f0be8a7dac6f33/,"Official NYSBDC/SBA accreditation");
+  assert.match(html,/INDEPENDENT WEBSITE REDESIGN CONCEPT/);
+  assert.match(html,/href="\.\/library\.html"/);
+  assert.match(html,/href="\.\/team\.html"/);
+  assert.match(html,/href="\.\/locations\.html"/);
+  assert.match(html,/href="\.\/spanish\.html"/);
+ }
+ const team=await read("public/pace-sbdc/team.html");
+ for(const person of ["Rawle Brown","Sandra Cely","Greg Callender","Susan Gluck","Sanchit deep Singh","Eeshani Juthani","Lily Lin","Roxanna Astorga","Andrew Flamm"])assert.ok(team.includes(person),person+" absent");
+ const locations=await read("public/pace-sbdc/locations.html");
+ for(const area of ["Canarsie","Crown Heights","East Williamsburg","Flatbush","Grand Army Plaza","Industry City","Midtown Manhattan","Park Slope","Prospect Lefferts Gardens","Red Hook","Sunset Park BID","Williamsburg"])assert.ok(locations.includes(area),area+" absent");
+ const library=await read("public/pace-sbdc/library.html");
+ for(const subject of ["Financing Options","Bonding Assistance","Government Procurement","International Trade","Hiring & Pace Internships","Employee Training","Real Estate","Website Planning","Email Marketing","COVID-19 Recovery Archive","Social Media Marketing","Business Planning"])assert.ok(library.includes(subject),subject+" absent");
+ const media=await read("public/pace-sbdc/media.html");
+ for(const category of ["Latest Blog","Newsletter Archive","Press Coverage","Photo Collection","Video and Webinars","SBDC Day","2025 Year in Review","Testimonials","Brooklyn Expansion"])assert.ok(media.includes(category),category+" absent");
+ const contact=await read("public/pace-sbdc/contact.html");
+ assert.match(contact,/THE OFFICIAL REGISTRATION/);
+ assert.match(contact,/Brooklyn Public Library/);
+ assert.match(contact,/NYSBDC eCenter Direct/i);
+ const spanish=await read("public/pace-sbdc/spanish.html");
+ assert.match(spanish,/signup\?centerid=31&_locale=es_MX/);
+ assert.match(spanish,/Asesoría/);
+ const source=await readFile("preview/pace-sbdc/official-content.mjs","utf8");
+ assert.match(source,/originalDirectory/);
+ assert.match(source,/inlineEnrichment/);
+ assert.doesNotMatch(source,/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2600-\u27BF\uFE0E\uFE0F\u200D]/u);
 });
