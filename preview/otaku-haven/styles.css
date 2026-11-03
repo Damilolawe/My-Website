@@ -91,3 +91,6 @@
 
 /* The ticker plays automatically on every device; other motion respects the preference. */
 @media(prefers-reduced-motion:reduce){.ticker .ticker-track{animation:marquee var(--ticker-duration,31s) linear infinite!important;animation-duration:var(--ticker-duration,31s)!important;animation-iteration-count:infinite!important}}
+
+/* Mobile QA: keep the angled ticker visually animated without extending the document width. */
+@media(max-width:700px){.ticker{transform:none;width:100%;max-width:100%;overflow:hidden;contain:paint}.ticker-track{max-width:none}.ticker-segment{flex-shrink:0}}
