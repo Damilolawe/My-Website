@@ -1,7 +1,5 @@
 {
-  "sites": [
-    "chong"
-  ],
-  "requestId": "initial-chong-mobile-audit-2026-11-03",
-  "purpose": "On-demand mobile visual inspection initiated from ChatGPT"
+  "sites": "all",
+  "requestId": "all-public-previews-2026-11-03",
+  "purpose": "Audit every existing and future publicly deployed Awe Concepts preview"
 }
