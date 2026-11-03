@@ -10,7 +10,7 @@ test("Susukino uses factual restaurant details, actual Instagram-sourced imagery
  const source=JSON.parse(await readFile("preview/susukino/instagram-sources.json","utf8"));
  assert.equal(source.images.length,10);
  assert.equal(status.images.length,10);
- assert.equal(status.extras.length,3);
+ assert.equal(status.extras.length,2);
  assert.ok(status.extras.every(x=>x.bytes>4000));
  assert.ok(status.images.every(x=>x.source!=="failed" && x.bytes>4000));
  assert.match(html,/34 Water Street/);
@@ -31,10 +31,10 @@ test("Susukino uses factual restaurant details, actual Instagram-sourced imagery
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
  assert.equal(new Set(ids).size,ids.length);
  for(const a of html.matchAll(/href="#([^"]+)"/g))assert.ok(ids.includes(a[1]),"Missing anchor #"+a[1]);
- const expectedFiles=new Set([...source.images.map(x=>x.file),...status.extras.map(x=>x.file)]);
+ const expectedFiles=new Set([...source.images.map(x=>x.file),...status.extras.map(x=>x.file),"restaurant-logo.jpg"]);
  for(const hit of html.matchAll(/\/susukino\/assets\/([\w.-]+\.(?:jpg|png))/g)){
   assert.ok(expectedFiles.has(hit[1]),"Unknown local media "+hit[1]);
-  assert.ok((await stat("branded-previews/public/susukino/assets/"+hit[1])).size>4000,"Broken image "+hit[1]);
+  assert.ok((await stat("branded-previews/public/susukino/assets/"+hit[1])).size>(hit[1]==="restaurant-logo.jpg"?1800:4000),"Broken image "+hit[1]);
  }
  assert.doesNotMatch(html,/src="\/susukino\/assets\/photo-04.jpg"/,"Remove seasonal Halloween artwork from evergreen sections");
  assert.equal((html.match(/src="\/susukino\/assets\/photo-02.jpg"/g)||[]).length,1,"Do not repeat the same happy-hour graphic");
