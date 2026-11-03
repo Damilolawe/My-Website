@@ -11,12 +11,17 @@ nav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
 }));
 
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(reduce){document.querySelectorAll('.reveal').forEach(el=>el.classList.add('is-visible'));}
-else{
+if(!reduce){
   const observer=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
-      if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}
+      if(entry.isIntersecting){
+        entry.target.animate(
+          [{opacity:.15,transform:'translateY(28px)'},{opacity:1,transform:'translateY(0)'}],
+          {duration:750,easing:'cubic-bezier(.2,.8,.2,1)',fill:'both'}
+        );
+        observer.unobserve(entry.target);
+      }
     });
-  },{threshold:.12,rootMargin:'0px 0px -6%'});
+  },{threshold:0,rootMargin:'120px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 }
