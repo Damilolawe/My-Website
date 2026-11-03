@@ -10,7 +10,8 @@ test("Mesa Bar concept is factual, safe and distinctly designed",async()=>{
  assert.match(html,/220 Front Street/);
  assert.match(html,/Expected in 2026/);
  for(const fact of ["Levent Cakir","Spaghetti Western","vinyl","wine tastings"])assert.ok(html.includes(fact),`Missing ${fact}`);
- assert.match(html,/Designed by <a href="https:\/\/aweconcepts\.com\/">Awe Concepts<\/a>/);
+ assert.match(html,/data-awe-design-credit="v1"/);
+ assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
  assert.doesNotMatch(html,/<form\b/i);
  assert.doesNotMatch(html,/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2600-\u27BF]/u);
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);

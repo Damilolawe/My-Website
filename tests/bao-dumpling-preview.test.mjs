@@ -15,7 +15,8 @@ test("Bao Dumpling concept is accurate, safe and independently labeled", async (
   assert.match(html, /baodumpling\.official/);
   assert.match(html, /Spicy Kung Pao Chicken/);
   assert.match(html, /Orange Beef/);
-  assert.match(html, /Designed by <a href="https:\/\/aweconcepts\.com\/">Awe Concepts<\/a>/);
+  assert.match(html,/data-awe-design-credit="v1"/);
+  assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
   assert.doesNotMatch(html, /<form\b/i);
   assert.doesNotMatch(html, /[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2600-\u27BF]/u);
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);

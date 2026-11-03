@@ -9,7 +9,8 @@ test("CHONG redesign is accurate, multipage and independently labeled",async()=>
     assert.match(html,/Independent, unofficial redesign concept by Awe Concepts/i);
     assert.match(html,/not the official CHONG website/i);
     assert.match(html,/noindex,nofollow/i);
-    assert.match(html,/Designed by <a href="https:\/\/aweconcepts\.com"/);
+    assert.match(html,/data-awe-design-credit="v1"/);
+    assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
     assert.doesNotMatch(html,/<form\b/i);
     assert.doesNotMatch(html,/[🀀-🫿←-⇿☀-➿]/u);
     for(const match of html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)){
