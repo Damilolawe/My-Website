@@ -87,4 +87,5 @@ jobs:
       - name: Report audit result
         if: steps.audit.outcome == 'failure'
         run: |
-          echo "::warning::Mobile layout audit found issues. Review screenshots on mobile-qa-screenshots branch."
+          echo "::error::Mobile layout audit found issues. Review screenshots on mobile-qa-screenshots branch."
+          exit 1
