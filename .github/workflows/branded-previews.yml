@@ -13,6 +13,7 @@ on:
       - 'preview/bao-dumpling/**'
       - 'preview/mesa-bar/**'
       - 'preview/casa-serra/**'
+      - 'preview/solerum/**'
       - 'scripts/rewrite-kappo-preview-urls.mjs'
       - 'scripts/build-branded-previews.mjs'
       - 'scripts/validate-preview-icons.mjs'
@@ -21,6 +22,7 @@ on:
       - 'tests/bao-dumpling-preview.test.mjs'
       - 'tests/mesa-bar-preview.test.mjs'
       - 'tests/casa-serra-preview.test.mjs'
+      - 'tests/solerum-preview.test.mjs'
       - 'branded-previews/**'
       - 'tests/branded-previews.test.mjs'
       - 'tests/otaku-haven-preview.test.mjs'
@@ -61,7 +63,7 @@ jobs:
         run: node scripts/build-branded-previews.mjs
       - name: Validate navigation, public-only output and independent deployment target
         if: env.FIREBASE_READY == 'true'
-        run: node --test tests/branded-previews.test.mjs tests/kappo-sono-preview.test.mjs tests/otaku-haven-preview.test.mjs tests/preview-no-pictographs.test.mjs tests/susukino-preview.test.mjs tests/bao-dumpling-preview.test.mjs tests/mesa-bar-preview.test.mjs tests/casa-serra-preview.test.mjs
+        run: node --test tests/branded-previews.test.mjs tests/kappo-sono-preview.test.mjs tests/otaku-haven-preview.test.mjs tests/preview-no-pictographs.test.mjs tests/susukino-preview.test.mjs tests/bao-dumpling-preview.test.mjs tests/mesa-bar-preview.test.mjs tests/casa-serra-preview.test.mjs tests/solerum-preview.test.mjs
       - name: Authenticate existing Firebase deploy service account
         if: env.FIREBASE_READY == 'true'
         uses: google-github-actions/auth@v2
