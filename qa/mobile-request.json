@@ -1,7 +1,5 @@
 {
-  "sites": [
-    "chong"
-  ],
-  "requestId": "chong-visual-fix-2026-11-03",
-  "purpose": "Fresh iPhone and Android screenshots for visual review and repairs"
+  "sites": "all",
+  "requestId": "all-preview-mobile-fix-2026-11-03-1519",
+  "purpose": "Audit all public preview websites on iPhone and Android; inspect and repair mobile layout issues"
 }
