@@ -1,6 +1,12 @@
 name: Mobile preview visual QA
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'preview/**'
+      - 'scripts/qa-mobile-previews.mjs'
+      - '.github/workflows/mobile-preview-qa.yml'
   workflow_dispatch:
     inputs:
       sites:
@@ -9,14 +15,20 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: awe-mobile-preview-qa
+  cancel-in-progress: true
 
 jobs:
   mobile-qa:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -25,13 +37,52 @@ jobs:
       - name: Install Chromium browser
         run: npx playwright install --with-deps chromium
       - name: Audit live mobile previews
+        id: audit
+        continue-on-error: true
         env:
           PREVIEW_SITES: ${{ inputs.sites }}
         run: node scripts/qa-mobile-previews.mjs
-      - name: Upload mobile screenshots
+      - name: Upload screenshots as workflow artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: mobile-preview-screenshots
           path: artifacts/mobile-qa/
           if-no-files-found: warn
+          retention-days: 14
+      - name: Publish screenshots to retrievable GitHub branch
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if [ ! -d artifacts/mobile-qa ] || [ -z "$(find artifacts/mobile-qa -type f -name '*.png' -print -quit)" ]; then
+            echo "::warning::No screenshots to publish"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p /tmp/awe-mobile-qa
+          cp artifacts/mobile-qa/*.png /tmp/awe-mobile-qa/
+          git fetch origin mobile-qa-screenshots || true
+          if git show-ref --verify --quiet refs/remotes/origin/mobile-qa-screenshots; then
+            git switch --detach origin/mobile-qa-screenshots
+            git switch -c mobile-qa-screenshots
+          else
+            git switch --orphan mobile-qa-screenshots
+            git rm -rf --ignore-unmatch . >/dev/null 2>&1 || true
+          fi
+          mkdir -p screenshots
+          cp /tmp/awe-mobile-qa/*.png screenshots/
+          printf 'Generated from %s at %s\n' "$GITHUB_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > screenshots/manifest.txt
+          git add -f screenshots/
+          if git diff --cached --quiet; then
+            echo "Screenshots unchanged"
+          else
+            git commit -m "Update mobile preview screenshots"
+            git push origin HEAD:mobile-qa-screenshots
+          fi
+      - name: Report audit result
+        if: steps.audit.outcome == 'failure'
+        run: |
+          echo "::warning::Mobile layout audit found issues. Review screenshots on mobile-qa-screenshots branch."
