@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {readFile} from "node:fs/promises";
+import {readFile,stat} from "node:fs/promises";
 const read=(p)=>readFile("branded-previews/public/susukino/"+p,"utf8");
 test("Susukino uses factual restaurant details, actual Instagram-sourced imagery and working destinations",async()=>{
  const html=await read("index.html");
@@ -8,8 +8,10 @@ test("Susukino uses factual restaurant details, actual Instagram-sourced imagery
  const css=await read("styles.css");
  const status=JSON.parse(await read("import-status.json"));
  const source=JSON.parse(await readFile("preview/susukino/instagram-sources.json","utf8"));
- assert.equal(source.images.length,8);
- assert.equal(status.images.length,8);
+ assert.equal(source.images.length,10);
+ assert.equal(status.images.length,10);
+ assert.equal(status.extras.length,3);
+ assert.ok(status.extras.every(x=>x.bytes>4000));
  assert.ok(status.images.every(x=>x.source!=="failed" && x.bytes>4000));
  assert.match(html,/34 Water Street/);
  assert.match(html,/212\) 884-6191/);
@@ -29,6 +31,18 @@ test("Susukino uses factual restaurant details, actual Instagram-sourced imagery
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
  assert.equal(new Set(ids).size,ids.length);
  for(const a of html.matchAll(/href="#([^"]+)"/g))assert.ok(ids.includes(a[1]),"Missing anchor #"+a[1]);
- for(const i of source.images)assert.ok(html.includes("/susukino/assets/"+i.file),"Missing import "+i.file);
+ const expectedFiles=new Set([...source.images.map(x=>x.file),...status.extras.map(x=>x.file)]);
+ for(const hit of html.matchAll(/\/susukino\/assets\/([\w.-]+\.(?:jpg|png))/g)){
+  assert.ok(expectedFiles.has(hit[1]),"Unknown local media "+hit[1]);
+  assert.ok((await stat("branded-previews/public/susukino/assets/"+hit[1])).size>4000,"Broken image "+hit[1]);
+ }
+ assert.doesNotMatch(html,/src="\/susukino\/assets\/photo-04.jpg"/,"Remove seasonal Halloween artwork from evergreen sections");
+ assert.equal((html.match(/src="\/susukino\/assets\/photo-02.jpg"/g)||[]).length,1,"Do not repeat the same happy-hour graphic");
+ assert.match(html,/restaurant-interior.jpg/);
+ assert.match(html,/ramen-set.jpg/);
+ assert.match(html,/Lunch Ramen Set/);
+ assert.match(js,/Karaage/);
+ assert.match(js,/Pork Gyoza/);
+ assert.match(js,/data-show-sets/);
  assert.ok(!html.includes("cdninstagram.com"),"Do not publish expiring Instagram CDN URLs");
 });
