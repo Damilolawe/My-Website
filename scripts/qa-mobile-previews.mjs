@@ -55,6 +55,24 @@ for (const [deviceName, config] of [['iphone-13', devices['iPhone 13']], ['pixel
           return r.width > 0 && style.position !== 'fixed' && r.right > document.documentElement.clientWidth + 3 && r.left >= 0;
         }).slice(0, 8).map(el => `${el.tagName.toLowerCase()}${el.className && typeof el.className === 'string' ? '.' + el.className.trim().replace(/\s+/g, '.') : ''}`)
       }));
+      const visualIssues = await page.evaluate(() => {
+        const issues = [];
+        for (const img of document.images) {
+          if (!img.complete || img.naturalWidth === 0) issues.push('broken image: ' + (img.getAttribute('src') || 'unknown'));
+        }
+        for (const el of document.querySelectorAll('h1,h2,h3,p,a,button')) {
+          const st = getComputedStyle(el), r = el.getBoundingClientRect();
+          if (r.width < 1 || r.height < 1 || st.visibility === 'hidden' || st.display === 'none') continue;
+          if (r.left < -4 || r.right > document.documentElement.clientWidth + 4) {
+            issues.push('clipped text: ' + el.tagName.toLowerCase() + ' ' + (el.textContent || '').trim().slice(0,55));
+          }
+        }
+        return issues.slice(0,30);
+      });
+      if (visualIssues.length) {
+        console.warn('VISUAL WARN ' + deviceName + ' ' + url + ': ' + visualIssues.join(' | '));
+        failures += visualIssues.length;
+      }
       const overflow = info.document > info.viewport + 3;
       console.log(`${overflow ? 'FAIL' : 'PASS'} ${deviceName} ${url} viewport=${info.viewport} page=${info.document}${overflow ? ' suspects=' + info.overflowingElements.join(', ') : ''}`);
       if (overflow) failures++;
