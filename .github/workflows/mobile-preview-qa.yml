@@ -1,0 +1,37 @@
+name: Mobile preview visual QA
+
+on:
+  workflow_dispatch:
+    inputs:
+      sites:
+        description: 'Comma-separated preview slugs (leave blank for all)'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  mobile-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Install Chromium browser
+        run: npx playwright install --with-deps chromium
+      - name: Audit live mobile previews
+        env:
+          PREVIEW_SITES: ${{ inputs.sites }}
+        run: node scripts/qa-mobile-previews.mjs
+      - name: Upload mobile screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-preview-screenshots
+          path: artifacts/mobile-qa/
+          if-no-files-found: warn
