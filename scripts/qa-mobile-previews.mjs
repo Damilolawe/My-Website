@@ -1,9 +1,21 @@
 import { chromium, devices } from 'playwright';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const base = (process.env.PREVIEW_BASE_URL || 'https://preview.aweconcepts.com').replace(/\/$/, '');
-const sites = (process.env.PREVIEW_SITES || 'chong,shotsbyriq,jay-millz-shot-em,otaku-haven,kappo-sono,susukino,bao-dumpling,mesa-bar,casa-serra,solerum,jj-deli,pace-sbdc').split(',').map(s => s.trim()).filter(Boolean);
+const defaultSites = 'chong,shotsbyriq,jay-millz-shot-em,otaku-haven,kappo-sono,susukino,bao-dumpling,mesa-bar,casa-serra,solerum,jj-deli,pace-sbdc';
+let requestedSites = process.env.PREVIEW_SITES;
+if (!requestedSites && process.env.MOBILE_QA_REQUEST_FILE) {
+  try {
+    const request = JSON.parse(await readFile(process.env.MOBILE_QA_REQUEST_FILE, 'utf8'));
+    requestedSites = Array.isArray(request.sites) ? request.sites.join(',') : request.site;
+    console.log('Mobile audit request:', JSON.stringify({ sites: requestedSites, requestId: request.requestId || null }));
+  } catch (error) {
+    console.warn('No valid mobile QA request file; using default sites:', error.message);
+  }
+}
+const sites = (requestedSites || defaultSites).split(',').map(s => s.trim()).filter(Boolean);
+if (sites.some(s => !/^[a-z0-9][a-z0-9-]*$/.test(s))) throw new Error('Invalid preview site slug');
 const output = process.env.MOBILE_QA_OUTPUT || 'artifacts/mobile-qa';
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
