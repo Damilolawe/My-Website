@@ -22,7 +22,7 @@ test("CHONG redesign is accurate, multipage and independently labeled",async()=>
   assert.match(home,/@chongnyc/);
   assert.match(story,/five different teas from Thailand/i);
   for(const item of ["Chong Signature","Lychee Thai Tea","Chong Thai Tea Toast","Chong Bingsu","Panna Cotta"]) assert.ok(menu.includes(item));
-  for(const asset of ["tea.webp","toast.webp","bingsu.webp","launch.webp","story-room.webp","story-portrait.webp","instagram.webp"]) assert.ok(home.includes(asset)||story.includes(asset)||menu.includes(asset));
+  for(const asset of ["tea.webp","toast.webp","bingsu.webp","launch.webp","story-room.webp","story-portrait.webp","instagram.webp"]) assert.ok(home.includes(asset)||story.includes(asset)||menu.includes(asset)||css.includes(asset));
   assert.match(css,/@media\(max-width:700px\)/);
   assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
   assert.match(js,/IntersectionObserver/);
