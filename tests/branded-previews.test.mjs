@@ -38,7 +38,7 @@ test("branded previews build exactly the allowlisted independent public concepts
  assert.match(landing,/href="\/jj-deli\/"/);
  assert.match(landing,/href="\/chong\/"/);
  assert.match(landing,/noindex,nofollow/);
- assert.equal(await read("public/robots.txt"),"User-agent: *\\nDisallow: /\\n");
+ assert.equal(await read("public/robots.txt"),"User-agent: *\nDisallow: /\n");
  for(const path of actual.filter(path=>path.endsWith(".html"))){
   const doc=await read("public/"+path);
   assert.equal((doc.match(/data-awe-design-credit="v1"/g)||[]).length,1,path+" must contain one canonical Awe Concepts watermark");
@@ -247,7 +247,7 @@ test("Jay Millz concept maintains verified booking destination and original blue
  assert.match(html,/Designed by/i);
  assert.match(html,/AWE CONCEPTS/);
  assert.match(html,/name="robots" content="noindex,nofollow"/);
- assert.match(html,/class="awe-credit"/);
+ assert.match(html,/data-awe-design-credit="v1"/);
  assert.match(html,/class="awe-symbol"/);
  assert.match(html,/viewBox="0 0 64 64"/);
  assert.match(html,/class="photo-rights-note"/);
