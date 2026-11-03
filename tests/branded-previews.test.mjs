@@ -8,7 +8,7 @@ import { mediaSlugs } from "../preview/pace-sbdc/media-content.mjs";
 
 const root = "branded-previews/";
 const read = async path => readFile(root + path, "utf8");
-const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json","jay-millz-shot-em/index.html","jay-millz-shot-em/styles.css","jay-millz-shot-em/site.js","jay-millz-shot-em/import-status.json", ...["index","services","about","stories","events","resources","contact","team","teambio","locations","library","media","partners","spanish",...detailSlugs,...mediaSlugs].map(name=>"pace-sbdc/"+name+".html"),"pace-sbdc/styles.css","pace-sbdc/site.js","susukino/index.html","susukino/styles.css","susukino/site.js","susukino/import-status.json"].sort();
+const expectedFiles = ["404.html", "index.html", "robots.txt", "kappo-sono/styles.css", "kappo-sono/site.js", ...KAPPO_PAGES.map(name=>"kappo-sono/"+name),"otaku-haven/index.html","otaku-haven/styles.css","otaku-haven/site.js","shotsbyriq/index.html","shotsbyriq/styles.css","shotsbyriq/site.js","shotsbyriq/import-status.json","jay-millz-shot-em/index.html","jay-millz-shot-em/styles.css","jay-millz-shot-em/site.js","jay-millz-shot-em/import-status.json", ...["index","services","about","stories","events","resources","contact","team","teambio","locations","library","media","partners","spanish",...detailSlugs,...mediaSlugs].map(name=>"pace-sbdc/"+name+".html"),"pace-sbdc/styles.css","pace-sbdc/site.js","susukino/index.html","susukino/styles.css","susukino/site.js","susukino/import-status.json","bao-dumpling/index.html","bao-dumpling/styles.css","bao-dumpling/site.js"].sort();
 
 test("branded previews build exactly the allowlisted independent public concepts", async () => {
  execFileSync(process.execPath, ["scripts/build-branded-previews.mjs"], {stdio:"pipe"});
@@ -31,6 +31,7 @@ test("branded previews build exactly the allowlisted independent public concepts
  assert.match(landing,/href="\/jay-millz-shot-em\/"/);
  assert.match(landing,/href="\/pace-sbdc\/"/);
  assert.match(landing,/href="\/susukino\/"/);
+ assert.match(landing,/href="\/bao-dumpling\/"/);
  assert.match(landing,/noindex,nofollow/);
  assert.equal(await read("public/robots.txt"),"User-agent: *\nDisallow: /\n");
 });
