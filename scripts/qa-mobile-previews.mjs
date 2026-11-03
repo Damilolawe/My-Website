@@ -14,7 +14,24 @@ if (!requestedSites && process.env.MOBILE_QA_REQUEST_FILE) {
     console.warn('No valid mobile QA request file; using default sites:', error.message);
   }
 }
-const sites = (requestedSites || defaultSites).split(',').map(s => s.trim()).filter(Boolean);
+// Discover future PUBLIC previews from the deployed preview index, never from private source folders.
+let sites;
+if (!requestedSites || requestedSites === 'all') {
+  try {
+    const indexResponse = await fetch(base + '/', { signal: AbortSignal.timeout(15000) });
+    if (!indexResponse.ok) throw new Error('Index HTTP ' + indexResponse.status);
+    const indexHtml = await indexResponse.text();
+    const discovered = [...indexHtml.matchAll(/href=["']\/?([a-z0-9][a-z0-9-]*)\/?["']/gi)].map(m => m[1]);
+    sites = [...new Set(discovered.filter(s => !['index', 'assets'].includes(s)))];
+    if (!sites.length) throw new Error('No public preview links found');
+    console.log('Discovered public preview sites:', sites.join(', '));
+  } catch (error) {
+    console.warn('Public preview discovery failed; using known public sites:', error.message);
+    sites = defaultSites.split(',');
+  }
+} else {
+  sites = requestedSites.split(',').map(s => s.trim()).filter(Boolean);
+}
 if (sites.some(s => !/^[a-z0-9][a-z0-9-]*$/.test(s))) throw new Error('Invalid preview site slug');
 const output = process.env.MOBILE_QA_OUTPUT || 'artifacts/mobile-qa';
 await mkdir(output, { recursive: true });
