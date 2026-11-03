@@ -6,6 +6,7 @@ on:
     paths:
       - 'preview/**'
       - 'scripts/qa-mobile-previews.mjs'
+      - 'qa/mobile-request.json'
       - '.github/workflows/mobile-preview-qa.yml'
   workflow_dispatch:
     inputs:
@@ -41,6 +42,7 @@ jobs:
         continue-on-error: true
         env:
           PREVIEW_SITES: ${{ inputs.sites }}
+          MOBILE_QA_REQUEST_FILE: qa/mobile-request.json
         run: node scripts/qa-mobile-previews.mjs
       - name: Upload screenshots as workflow artifact
         if: always()
