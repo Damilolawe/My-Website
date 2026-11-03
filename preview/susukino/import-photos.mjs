@@ -7,7 +7,6 @@ async function download(url){const res=await fetch(url,{headers:{"User-Agent":"M
 const results=await Promise.all(manifest.images.map(async item=>{let data;let source="instagram";try{data=await download(item.url)}catch(e){try{data=await download(fallback);source="restaurant-interior-fallback"}catch(again){return{file:item.file,source:"failed",error:String(e)+"; "+String(again)}}}await writeFile(out+"/"+item.file,data);return{file:item.file,source,bytes:data.byteLength}}));
 
 const extraAssets=[
-{file:"restaurant-logo.png",urls:["https://ddsemenu.com/wp-content/uploads/2025/03/Logo.png","https://ddsemenu.com/wp-content/uploads/2025/03/Logo-400x309.png"],origin:"published-menu-logo"},
 {file:"restaurant-interior.jpg",urls:["https://images.squarespace-cdn.com/content/v1/67d098b46c116641dd43048a/0966128e-2aae-4fab-8ee9-44725d8d4484/2024-08-28.jpg",manifest.images[0].url],origin:"published-restaurant-interior"},
 {file:"ramen-set.jpg",urls:["https://doordash-static.s3.amazonaws.com/media/store/header/a7d1e07c-dd15-4948-81c1-e23d058a4b77.jpg","https://img.cdn4dd.com/cdn-cgi/image/fit%3Dcover%2Cwidth%3D600%2Cheight%3D400%2Cformat%3Dauto%2Cquality%3D80/https%3A/doordash-static.s3.amazonaws.com/media/store/header/a7d1e07c-dd15-4948-81c1-e23d058a4b77.jpg",manifest.images[7].url],origin:"restaurant-ordering-menu"}
 ];

@@ -47,6 +47,8 @@ await buildPaceSbdc(`${output}/pace-sbdc`);
 await mkdir(`${output}/susukino`,{recursive:true});
 for (const asset of ["index.html","styles.css","site.js"]) await cp(`preview/susukino/${asset}`,`${output}/susukino/${asset}`);
 await import("../preview/susukino/import-photos.mjs");
+// Original Susukino logo from the user-provided Instagram screenshot, committed locally to prevent expiring remote branding links.
+await cp("preview/susukino/assets/restaurant-logo.jpg", `${output}/susukino/assets/restaurant-logo.jpg`);
 // Motion assets are explicitly versioned only on the isolated preview host.
 const animationRevision = "motion-20261102";
 const otakuAnimationRevision = "motion-20261102-always-3";
