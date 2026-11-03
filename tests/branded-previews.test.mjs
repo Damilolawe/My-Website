@@ -38,7 +38,17 @@ test("branded previews build exactly the allowlisted independent public concepts
  assert.match(landing,/href="\/jj-deli\/"/);
  assert.match(landing,/href="\/chong\/"/);
  assert.match(landing,/noindex,nofollow/);
- assert.equal(await read("public/robots.txt"),"User-agent: *\nDisallow: /\n");
+ assert.equal(await read("public/robots.txt"),"User-agent: *\\nDisallow: /\\n");
+ for(const path of actual.filter(path=>path.endsWith(".html"))){
+  const doc=await read("public/"+path);
+  assert.equal((doc.match(/data-awe-design-credit="v1"/g)||[]).length,1,path+" must contain one canonical Awe Concepts watermark");
+  assert.equal((doc.match(/data-awe-credit-style="v1"/g)||[]).length,1,path+" must contain one canonical watermark stylesheet");
+  assert.equal((doc.match(/id="awe-design-credit"/g)||[]).length,1,path+" must not duplicate the watermark");
+  assert.match(doc,/href="https:\\/\\/aweconcepts\\.com\/"[^>]*aria-label="Designed by Awe Concepts/);
+  assert.match(doc,/viewBox="0 0 64 64"/);
+  assert.match(doc,/Designed by <strong>Awe Concepts<\\/strong>/);
+  assert.doesNotMatch(doc,/class=["'][^"']*\\bawe-(?:credit|signature)\\b/);
+ }
 });
 
 test("restaurant pages resolve logo, navigation, script and CSS on branded host", async () => {
