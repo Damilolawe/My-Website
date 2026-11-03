@@ -248,7 +248,7 @@ test("Jay Millz concept maintains verified booking destination and original blue
  assert.match(html,/AWE CONCEPTS/);
  assert.match(html,/name="robots" content="noindex,nofollow"/);
  assert.match(html,/data-awe-design-credit="v1"/);
- assert.match(html,/class="awe-symbol"/);
+ assert.match(html,/fill="#c6ff00"/);
  assert.match(html,/viewBox="0 0 64 64"/);
  assert.match(html,/class="photo-rights-note"/);
  assert.match(html,/data-about-portrait="personal"/);
