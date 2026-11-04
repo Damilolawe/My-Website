@@ -42,7 +42,7 @@ for (const asset of ["index.html", "styles.css", "site.js"]) {
   await cp(`preview/jj-deli/${asset}`, `${publicJjDeli}/${asset}`);
 }
 await mkdir(`${publicBao}/assets`, { recursive: true });
-await cp("preview/bao-dumpling/assets/gold-street-spread.webp", `${publicBao}/assets/gold-street-spread.webp`);
+// All Bao photography now uses licensed, unbranded stock sources; never republish competitors’ promotional photography.
 for (const asset of ["index.html", "story.html", "menu.html", "styles.css", "site.js"]) {
   await cp(`preview/chong/${asset}`, `${publicChong}/${asset}`);
 }

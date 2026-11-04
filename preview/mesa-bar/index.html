@@ -9,6 +9,31 @@
   <title>Mesa Bar | South Street Seaport</title>
   <link rel="stylesheet" href="/mesa-bar/styles.css?v=concept-20261103">
   <script src="/mesa-bar/site.js?v=concept-20261103" defer></script>
+<style>
+/* AWE preview: two identically sized, duplicated motion units create gap-free desktop loops. */
+.awe-motion-banner{width:100%;max-width:100%;overflow:hidden;position:relative;z-index:5;background:var(--band-bg);color:var(--band-fg);padding:17px 0;isolation:isolate}
+.awe-motion-track{display:flex;width:max-content;align-items:center;animation:awe-scroll-banner 28s linear infinite;will-change:transform;backface-visibility:hidden}
+.awe-motion-unit{display:flex;align-items:center;justify-content:space-around;flex:0 0 auto;min-width:100vw;gap:clamp(25px,3vw,50px);padding:0 clamp(22px,3vw,50px);white-space:nowrap}
+.awe-motion-unit span{display:inline-block;white-space:nowrap;flex:none;font-size:clamp(16px,1.8vw,23px);font-weight:500;letter-spacing:.01em;line-height:1.35}
+.awe-motion-unit i{display:block;flex:0 0 6px;width:6px;height:6px;border-radius:50%;background:var(--band-accent)}
+@keyframes awe-scroll-banner{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(-50%,0,0)}}
+@media(max-width:600px){.awe-motion-banner{padding:12px 0}.awe-motion-track{animation-duration:20s}.awe-motion-unit{gap:20px;padding:0 18px}.awe-motion-unit span{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.awe-motion-track{animation-duration:60s}}
+
+
+.hero>awe-placeholder{display:none}
+.hero .awe-photo-bg{position:absolute;inset:0;display:block;margin:0;z-index:0;overflow:hidden;background:var(--night)}
+.hero .awe-photo-bg img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero:before{z-index:1;background:linear-gradient(90deg,rgba(23,33,31,.85),rgba(23,33,31,.54) 66%,rgba(23,33,31,.24))}
+.hero-copy,.hero-side{z-index:2}
+.hero .awe-photo-bg figcaption{position:absolute;right:17px;top:18px;padding:6px 9px;font:10px var(--sans);background:rgba(23,33,31,.76);color:#fff}
+.record.awe-photo{position:relative;display:block;margin:0;padding:0;min-height:650px;background:var(--night);overflow:hidden}
+.record.awe-photo:before{content:none;display:none}
+.record.awe-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.record.awe-photo figcaption{position:absolute;right:16px;bottom:16px;padding:7px 10px;background:rgba(23,33,31,.78);color:#fff;font:11px var(--sans)}
+@media(max-width:850px){.record.awe-photo{min-height:420px}}
+
+</style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -20,8 +45,7 @@
   </header>
   <main id="main">
     <section class="hero" id="top">
-      <div class="sun" aria-hidden="true"></div>
-      <div class="mountains" aria-hidden="true"><i></i><i></i><i></i></div>
+      <figure class="awe-photo-bg"><img class="" src="https://images.pexels.com/photos/30658142/pexels-photo-30658142.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Warmly lit cocktail bar with bottles and intimate atmosphere; illustrative stock photography" width="1600" height="1100" loading="eager" decoding="async"><figcaption>Illustrative stock photography</figcaption></figure>
       <div class="hero-copy">
         <p class="kicker">Coming to 220 Front Street</p>
         <h1>High desert.<br><em>Low lights.</em></h1>
@@ -30,6 +54,8 @@
       </div>
       <div class="hero-side"><span>NYC</span><span>2026</span></div>
     </section>
+
+    <section class="awe-motion-banner" aria-label="Mesa Bar creative concept" style="--band-bg:#17211f;--band-fg:#f6eedf;--band-accent:#d5a34a"><div class="awe-motion-track"><div class="awe-motion-unit"><span>COCKTAILS</span><i aria-hidden="true"></i><span>WINE</span><i aria-hidden="true"></i><span>VINYL</span><i aria-hidden="true"></i><span>LATE NIGHTS</span><i aria-hidden="true"></i></div><div class="awe-motion-unit" aria-hidden="true"><span>COCKTAILS</span><i aria-hidden="true"></i><span>WINE</span><i aria-hidden="true"></i><span>VINYL</span><i aria-hidden="true"></i><span>LATE NIGHTS</span><i aria-hidden="true"></i></div></div></section>
 
     <section class="manifesto" id="experience">
       <p class="kicker">The experience</p>
@@ -49,7 +75,7 @@
     </section>
 
     <section class="programming" id="programming">
-      <div class="record" aria-hidden="true"><span></span></div>
+      <figure class="record awe-photo"><img class="" src="https://images.pexels.com/photos/10138317/pexels-photo-10138317.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Classic vinyl turntable in warm light, illustrative stock photograph" width="1600" height="1100" loading="lazy" decoding="async"><figcaption>Illustrative stock photography</figcaption></figure>
       <div class="program-copy"><p class="kicker">Beyond the bar</p><h2>Stay for the next reel.</h2><p>Announced programming ideas include Spaghetti Western screenings and intimate wine tastings, giving regulars new reasons to return.</p><div class="schedule"><div><span>Screen</span><strong>Spaghetti Westerns</strong></div><div><span>Listen</span><strong>Vinyl selections</strong></div><div><span>Taste</span><strong>Intimate wine events</strong></div></div></div>
     </section>
 
