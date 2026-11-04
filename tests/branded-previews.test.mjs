@@ -210,7 +210,7 @@ test("photographer links, booking routes, gallery destinations, and social previ
  assert.match(js,/modalPost\.href=p\.post/,"Lightbox must navigate to the selected original post");
  const srcs=[...html.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/g)].map(match=>match[1]);
  assert.ok(srcs.length>=9,"Expected all locally hosted photographs");
- for(const src of srcs)assert.ok(src.startsWith("/shotsbyriq/photos/"),"Unstable external image source: "+src);
+ for(const src of srcs)assert.ok(src.startsWith("/shotsbyriq/photos/")||src.startsWith("data:image/jpeg;base64,"),"Unstable external image source: "+src);
  assert.match(html,/<meta property="og:url" content="https:\/\/preview\.aweconcepts\.com\/shotsbyriq">/);
  assert.match(html,/<meta property="og:image" content="https:\/\/preview\.aweconcepts\.com\/shotsbyriq\/photos\/golden-era-01\.jpg">/);
  assert.match(html,/<meta name="twitter:image" content="https:\/\/preview\.aweconcepts\.com\/shotsbyriq\/photos\/golden-era-01\.jpg">/);
