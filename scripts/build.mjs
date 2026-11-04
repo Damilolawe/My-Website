@@ -1,4 +1,5 @@
-import { cp, mkdir, rm, readFile, stat } from "node:fs/promises";
+import { cp, mkdir, rm, readFile, stat, writeFile as saveBrandAsset } from "node:fs/promises";
+import sharp from "sharp";
 const files = [
   "index.html",
   "404.html",
@@ -48,6 +49,25 @@ const files = [
 await rm("dist", { recursive: true, force: true });
 await mkdir("dist");
 for (const file of files) await cp(file, "dist/" + file, { recursive: true });
+
+// Google Search uses a raster favicon, while the site header uses the approved
+// AWE Concepts vector mark. Render BOTH from the same source to avoid the old
+// lime AW icon in Google results or legacy browser favicon.ico fallbacks.
+const brandIcon = Buffer.from(await readFile("favicon.svg"));
+const searchPng = await sharp(brandIcon).resize(192, 192).png().toBuffer();
+await saveBrandAsset("dist/favicon.png", searchPng);
+const icoPng = await sharp(brandIcon).resize(48, 48).png().toBuffer();
+const icoDirectory = Buffer.alloc(22);
+icoDirectory.writeUInt16LE(1, 2);   // ICO file type: icon
+icoDirectory.writeUInt16LE(1, 4);   // One 48x48 PNG image
+icoDirectory[6] = 48;
+icoDirectory[7] = 48;
+icoDirectory.writeUInt16LE(1, 10);  // Color planes
+icoDirectory.writeUInt16LE(32, 12); // Bits per pixel
+icoDirectory.writeUInt32LE(icoPng.length, 14);
+icoDirectory.writeUInt32LE(22, 18);
+await saveBrandAsset("dist/favicon.ico", Buffer.concat([icoDirectory, icoPng]));
+
 // The isolated Kappo Sono Firebase preview is hosted at /, while this
 // production build embeds the same concept under /preview/kappo-sono/.
 // Resolve home links, navigation, CSS and JS from the correct root.
