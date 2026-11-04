@@ -1,5 +1,5 @@
 {
   "sites": "all",
-  "requestId": "batch-two-live-verification-2026-11-04-2015",
-  "purpose": "Verify all 22 deployed public previews after the second five-site production batch"
+  "requestId": "batch-three-final-live-verification-2026-11-04-2033",
+  "purpose": "Verify all 27 deployed public previews after the third five-site production batch and mobile overflow repair"
 }
