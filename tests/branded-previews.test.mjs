@@ -149,7 +149,9 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.match(js,/filterView\('all'\);\s*open\(tile\)/);
  assert.match(html,/SEE ORIGINAL POST/);
  assert.ok(source.images.every(p=>p.post.startsWith("https://www.instagram.com/shotsbyriq_/p/")));
- const embeddedRiq=new Set(["portrait-01.jpg","golden-era-02.jpg"]);\n assert.ok((html.match(/data:image\\/jpeg;base64,/g)||[]).length>=2,"Fragile verified portraits should be embedded");\n assert.ok(source.images.every(p=>embeddedRiq.has(p.file)||html.includes("/shotsbyriq/photos/"+p.file)),"Every photograph should be stable or embedded");
+ const embeddedRiq=new Set(["portrait-01.jpg","golden-era-02.jpg"]);
+ assert.ok((html.match(/data:image\/jpeg;base64,/g)||[]).length>=2,"Fragile verified portraits should be embedded");
+ assert.ok(source.images.every(p=>embeddedRiq.has(p.file)||html.includes("/shotsbyriq/photos/"+p.file)),"Every photograph should be stable or embedded");
  assert.ok(source.images.every(p=>!html.includes(p.url)),"Do not leave expiring signed Instagram CDN URLs in the published page");
  assert.match(css, /contact-sheet/);assert.match(js,/ArrowRight/);
  assert.doesNotMatch(html,/data:image\/webp;base64/);
