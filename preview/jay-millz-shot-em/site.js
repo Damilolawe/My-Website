@@ -24,7 +24,7 @@
 
   // Images are served from the photographer's own public scheduler.
   // Never show browser broken-image icons if an image is removed there.
-  document.querySelectorAll('.image-panel img, .gallery img, .vision-visual img').forEach(img => {
+  document.querySelectorAll('img[src]').forEach(img => {
     function markUnavailable() {
       const placeholder = document.createElement('div');
       placeholder.className = 'photo-fallback';

@@ -86,7 +86,9 @@ for (const [deviceName, config] of auditDevices) {
       const visualIssues = await page.evaluate(() => {
         const issues = [];
         for (const img of document.images) {
-          if (!img.complete || img.naturalWidth === 0) issues.push('broken image: ' + (img.getAttribute('src') || 'unknown'));
+          const source = img.getAttribute('src');
+          if (!source) continue;
+          if (!img.complete || img.naturalWidth === 0) issues.push('broken image: ' + source);
         }
         for (const el of document.querySelectorAll('h1,h2,h3,p,a,button')) {
           const st = getComputedStyle(el), r = el.getBoundingClientRect();

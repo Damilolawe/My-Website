@@ -6,6 +6,23 @@ menuButton?.addEventListener('click',()=>{const opening=menu.hidden;menu.hidden=
 menu?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
 document.addEventListener('click',e=>{if(!menu.hidden&&!menu.contains(e.target)&&!menuButton.contains(e.target))closeMenu()});
 const header=document.querySelector('.topbar');addEventListener('scroll',()=>header?.classList.toggle('is-scrolled',scrollY>25),{passive:true});
+const replaceBrokenPhoto=img=>{
+ if(img.dataset.fallbackApplied)return;
+ img.dataset.fallbackApplied='1';
+ const fallback=document.createElement('a');
+ fallback.href='https://www.instagram.com/shotsbyriq_/';
+ fallback.target='_blank';
+ fallback.rel='noopener noreferrer';
+ fallback.setAttribute('aria-label','View SHOTSBYRIQ photography on Instagram');
+ fallback.textContent='VIEW PHOTOGRAPHY ON INSTAGRAM';
+ Object.assign(fallback.style,{display:'grid',placeItems:'center',width:'100%',height:'100%',minHeight:'180px',padding:'24px',background:'#151a26',color:'#8fb7ff',font:'700 12px/1.4 Arial,sans-serif',letterSpacing:'.12em',textAlign:'center',textDecoration:'none'});
+ img.replaceWith(fallback);
+};
+document.querySelectorAll('img[src]').forEach(img=>{
+ if(img.id==='lb-image')return;
+ img.addEventListener('error',()=>replaceBrokenPhoto(img),{once:true});
+ if(img.complete&&img.naturalWidth===0)replaceBrokenPhoto(img);
+});
 const tiles=[...document.querySelectorAll('.frame')],filters=[...document.querySelectorAll('[data-filter]')],sheet=document.querySelector('.contact-sheet'),count=document.querySelector('#archive-count');
 let category='all',visible=tiles,activeIndex=0,previousFocus=null;
 const filterView=tag=>{

@@ -9,7 +9,7 @@ const items=document.querySelector('#menu-items');
 const image=document.querySelector('#menu-image');
 const caption=document.querySelector('#menu-caption');
 const panel=document.querySelector('#menu-panel');
-function paintMenu(key){const group=menuData[key];if(!group)return;items.replaceChildren();for(const [name,desc,price] of group.items){const wrap=document.createElement('div');wrap.className='dish';const copy=document.createElement('div');const title=document.createElement('h3');title.textContent=name;const text=document.createElement('p');text.textContent=desc;copy.append(title,text);const cost=document.createElement('strong');cost.textContent=price;wrap.append(copy,cost);items.append(wrap)}image.src='/susukino/assets/'+group.image;caption.textContent=group.caption;for(const tab of tabs){const selected=tab.dataset.menu===key;tab.setAttribute('aria-selected',String(selected));tab.tabIndex=selected?0:-1}panel.setAttribute('aria-labelledby','tab-'+key)}
+function paintMenu(key){const group=menuData[key];if(!group)return;items.replaceChildren();for(const [name,desc,price] of group.items){const wrap=document.createElement('div');wrap.className='dish';const copy=document.createElement('div');const title=document.createElement('h3');title.textContent=name;const text=document.createElement('p');text.textContent=desc;copy.append(title,text);const cost=document.createElement('strong');cost.textContent=price;wrap.append(copy,cost);items.append(wrap)}delete image.dataset.failed;image.src=group.image.startsWith('http')?group.image:'/susukino/assets/'+group.image;caption.textContent=group.caption;for(const tab of tabs){const selected=tab.dataset.menu===key;tab.setAttribute('aria-selected',String(selected));tab.tabIndex=selected?0:-1}panel.setAttribute('aria-labelledby','tab-'+key)}
 tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>paintMenu(tab.dataset.menu));tab.addEventListener('keydown',e=>{const shift=e.key==='ArrowRight'?1:e.key==='ArrowDown'?1:e.key==='ArrowLeft'?-1:e.key==='ArrowUp'?-1:0;if(!shift)return;e.preventDefault();const next=tabs[(i+shift+tabs.length)%tabs.length];paintMenu(next.dataset.menu);next.focus()})});
 document.querySelector('[data-show-sets]')?.addEventListener('click',()=>{paintMenu('sets');document.querySelector('#menu')?.scrollIntoView({behavior:'smooth',block:'start'})});
 const menuBtn=document.querySelector('.menu-toggle');const mobile=document.querySelector('#mobile-nav');
@@ -19,5 +19,18 @@ mobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
 document.addEventListener('click',e=>{if(!mobile.hidden&&!e.target.closest('.site-header'))closeMenu()});
 const observer=window.IntersectionObserver?new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}})},{threshold:.10}):null;document.querySelectorAll('.reveal').forEach(el=>observer?observer.observe(el):el.classList.add('is-visible'));
-const backup='/susukino/assets/restaurant-interior.jpg';
-document.querySelectorAll('img[data-fallback]').forEach(img=>img.addEventListener('error',()=>{if(img.dataset.failed)return;img.dataset.failed='1';img.src=backup}));
+const stockFallbacks=[
+'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1400&q=85',
+'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1400&q=85',
+'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1400&q=85'
+];
+document.querySelectorAll('img').forEach((img,index)=>{
+ const replace=()=>{
+  if(img.dataset.failed)return;
+  img.dataset.failed='1';
+  if(img.closest('.brand-ring')){img.remove();return}
+  img.src=stockFallbacks[index%stockFallbacks.length];
+ };
+ img.addEventListener('error',replace);
+ if(img.complete&&img.naturalWidth===0)replace();
+});

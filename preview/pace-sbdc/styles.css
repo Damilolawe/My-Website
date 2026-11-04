@@ -204,3 +204,6 @@ body{color:#16355b;background:#fff}
 .team-headshot{display:block;width:100%;height:200px;object-fit:cover;object-position:center 26%;margin:0 0 20px;background:#edf2fa}
 .biography-photo{display:block;width:min(100%,245px);height:255px;object-fit:cover;object-position:center 22%;background:#edf2fa;margin:0 0 20px;border-bottom:4px solid #ffb81a}
 @media(max-width:700px){.team-headshot{height:230px}.biography-photo{width:min(100%,205px);height:225px}}
+
+.accreditation-mark{display:grid;place-items:center;width:190px;min-height:72px;border:2px solid #d4a739;color:#fff;font:800 25px/1 var(--display);letter-spacing:-.04em;background:#0a2f63}
+@media(max-width:700px){.official-extra-nav{overflow-x:visible;flex-wrap:wrap}.official-extra-nav a{white-space:normal}.accreditation-mark{width:180px}}
