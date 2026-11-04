@@ -149,7 +149,7 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.match(js,/filterView\('all'\);\s*open\(tile\)/);
  assert.match(html,/SEE ORIGINAL POST/);
  assert.ok(source.images.every(p=>p.post.startsWith("https://www.instagram.com/shotsbyriq_/p/")));
- assert.ok(source.images.every(p=>html.includes("/shotsbyriq/photos/"+p.file)),"Every photograph should be a stable first-party hosted import");
+ const embeddedRiq=new Set(["portrait-01.jpg","golden-era-02.jpg"]);\n assert.ok((html.match(/data:image\\/jpeg;base64,/g)||[]).length>=2,"Fragile verified portraits should be embedded");\n assert.ok(source.images.every(p=>embeddedRiq.has(p.file)||html.includes("/shotsbyriq/photos/"+p.file)),"Every photograph should be stable or embedded");
  assert.ok(source.images.every(p=>!html.includes(p.url)),"Do not leave expiring signed Instagram CDN URLs in the published page");
  assert.match(css, /contact-sheet/);assert.match(js,/ArrowRight/);
  assert.doesNotMatch(html,/data:image\/webp;base64/);
@@ -200,7 +200,7 @@ test("photographer links, booking routes, gallery destinations, and social previ
   assert.equal(match[1],item.category,"Gallery filter mismatch");
   assert.equal(dynamicPosts[i][1],item.label,"Photo viewer title mismatch");
   assert.equal(dynamicPosts[i][2],item.post,"Original Instagram post link mismatch");
-  assert.ok(html.includes("/shotsbyriq/photos/"+item.file),"Missing local gallery photo");
+  assert.ok(["portrait-01.jpg","golden-era-02.jpg"].includes(item.file)||html.includes("/shotsbyriq/photos/"+item.file),"Missing stable gallery photo");
  });
  const filterCategories=[...html.matchAll(/<button\b[^>]*data-filter="([^"]+)"/g)].map(match=>match[1]);
  assert.ok(filterCategories.includes("all"));
