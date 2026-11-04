@@ -84,18 +84,18 @@ await cp("preview/susukino/assets/restaurant-logo.jpg", `${output}/susukino/asse
 // Motion assets are explicitly versioned only on the isolated preview host.
 const animationRevision = "motion-20261102";
 const otakuAnimationRevision = "motion-20261102-always-3";
-const riqCollageRevision = "motion-20261102-collage-1";
+const repairRevision = "repair-20261104-1";
 for (const page of [
   ...KAPPO_PAGES.map(name => "kappo-sono/" + name),
-  "otaku-haven/index.html", "bao-dumpling/index.html", "mesa-bar/index.html", "casa-serra/index.html", "solerum/index.html", "jj-deli/index.html", "chong/index.html", "chong/story.html", "chong/menu.html", "shotsbyriq/index.html", "jay-millz-shot-em/index.html",
+  "otaku-haven/index.html", "bao-dumpling/index.html", "mesa-bar/index.html", "casa-serra/index.html", "solerum/index.html", "jj-deli/index.html", "chong/index.html", "chong/story.html", "chong/menu.html", "shotsbyriq/index.html", "jay-millz-shot-em/index.html", "susukino/index.html",
   ...batchOneSlugs.map(slug => slug + "/index.html"),
   ...["index","services","about","stories","events","resources","contact","team","teambio","locations","library","media","partners","spanish",...detailSlugs,...mediaSlugs].map(name=>"pace-sbdc/"+name+".html")
 ]) {
   const path = output + "/" + page;
   const html = await readFile(path, "utf8");
-  const revision = page.startsWith("otaku-haven/") ? otakuAnimationRevision : page.startsWith("shotsbyriq/") ? riqCollageRevision : animationRevision;
+  const revision = page.startsWith("otaku-haven/") ? otakuAnimationRevision : /^(?:shotsbyriq|jay-millz-shot-em|pace-sbdc|susukino)\//.test(page) ? repairRevision : animationRevision;
   const updated = html.replace(
-    /(href|src)="((?:\.\/|\/(?:kappo-sono|otaku-haven|bao-dumpling|mesa-bar|casa-serra|solerum|jj-deli|shotsbyriq|jay-millz-shot-em|pace-sbdc|chong)\/)(?:styles\.css|site\.js))(?:\?[^"]*)?"/g,
+    /(href|src)="((?:\.\/|\/(?:kappo-sono|otaku-haven|bao-dumpling|mesa-bar|casa-serra|solerum|jj-deli|shotsbyriq|jay-millz-shot-em|pace-sbdc|susukino|chong)\/)(?:styles\.css|site\.js))(?:\?[^"]*)?"/g,
     (_, attr, asset) => attr + '="' + asset + "?v=" + revision + '"'
   );
   if (updated === html || !updated.includes("styles.css?v=" + revision) ||

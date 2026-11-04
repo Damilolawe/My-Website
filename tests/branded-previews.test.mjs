@@ -83,8 +83,8 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
  assert.match(html,/noindex,nofollow/);
  assert.match(html,/id="lightbox"/);
- assert.match(html,/href="\/shotsbyriq\/styles\.css\?v=motion-20261102-collage-1"/);
- assert.match(html,/src="\/shotsbyriq\/site\.js\?v=motion-20261102-collage-1"/);
+ assert.match(html,/href="\/shotsbyriq\/styles\.css\?v=repair-20261104-1"/);
+ assert.match(html,/src="\/shotsbyriq\/site\.js\?v=repair-20261104-1"/);
  assert.match(html,/data-category="creative"/);
  assert.match(html,/data-category="editorial"/);
  assert.match(html,/id="booking-info"/);
@@ -274,8 +274,8 @@ test("Jay Millz concept maintains verified booking destination and original blue
  assert.match(html,/50% non-refundable deposit/);
  assert.match(html,/3–4 day turnaround/);
  assert.match(html,/Da Beauty Bundle/i);
- assert.match(html,/src="\.\/site\.js\?v=motion-20261102"/);
- assert.match(html,/href="\.\/styles\.css\?v=motion-20261102"/);
+ assert.match(html,/src="\.\/site\.js\?v=repair-20261104-1"/);
+ assert.match(html,/href="\.\/styles\.css\?v=repair-20261104-1"/);
  assert.match(css,/--blue:#356dff/);
  assert.match(css,/--blue2:#77a8ff/);
  assert.match(css,/@media\(max-width:620px\)/);
@@ -367,7 +367,7 @@ test("all deployed pages reference the current animation revision, not stale cac
   "shotsbyriq/index.html","jay-millz-shot-em/index.html"];
  for(const page of pages){
   const html=await read("public/"+page);
-  const expectedRevision=page.startsWith("shotsbyriq/") ? "motion-20261102-collage-1" : "motion-20261102";
+  const expectedRevision=/^(?:shotsbyriq|jay-millz-shot-em)\//.test(page) ? "repair-20261104-1" : "motion-20261102";
   assert.ok(html.includes("styles.css?v="+expectedRevision),page+" stylesheet cache-bust");
   assert.ok(html.includes("site.js?v="+expectedRevision),page+" script cache-bust");
  }
@@ -383,8 +383,8 @@ test("Pace SBDC redesign ships seven independent, accurate and usable public pag
   assert.match(doc,/NOT (?:AFFILIATED WITH THE OFFICIAL|THE OFFICIAL)/);
   assert.match(doc,/noindex,nofollow/);
   assert.match(doc,/https:\/\/nysbdc\.ecenterdirect\.com\/signup\?centerid=31/);
-  assert.match(doc,/href="\.\/styles\.css\?v=motion-20261102"/);
-  assert.match(doc,/src="\.\/site\.js\?v=motion-20261102"/);
+  assert.match(doc,/href="\.\/styles\.css\?v=repair-20261104-1"/);
+  assert.match(doc,/src="\.\/site\.js\?v=repair-20261104-1"/);
   assert.match(doc,/href="https:\/\/aweconcepts\.com\/"/);
   assert.match(doc,/Designed by/i);
   const ids=[...doc.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
@@ -469,8 +469,8 @@ test("Every original Pace SBDC section is rebuilt locally without external old-s
  for(const slug of ids){
   const doc=await read("public/pace-sbdc/"+slug+".html");
   assert.doesNotMatch(doc,/<a\b[^>]*href="https?:\/\/(?:www\.)?pacesbdc\.org/i,slug+" incorrectly exits to old website");
-  assert.match(doc,/src="\.\/site\.js\?v=motion-20261102"/);
-  assert.match(doc,/href="\.\/styles\.css\?v=motion-20261102"/);
+  assert.match(doc,/src="\.\/site\.js\?v=repair-20261104-1"/);
+  assert.match(doc,/href="\.\/styles\.css\?v=repair-20261104-1"/);
   const all=[...doc.matchAll(/<a\b[^>]*\bhref="([^"]+)"[^>]*>/g)];
   for(const match of all){
    const href=match[1];
