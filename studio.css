@@ -20,3 +20,32 @@ html.has-js .reveal,html.has-js .hero-line>span,html.has-js .hero-line>em{opacit
 
 /* Stable cross-platform vector navigation symbols (no emoji font fallback). */
 .ui-vector-icon{display:block;width:1em;height:1em;flex:none;vertical-align:middle}
+
+/* AWE-HOME-TICKER-2026-11-03 — independently looping homepage ribbon.
+   The global reduced-motion blanket in styles.css also affects the desktop
+   banner. This explicit motion rule preserves the requested always-running
+   brand ticker without changing any other site's reduced-motion behavior. */
+.ticker-wrap{isolation:isolate;overflow:hidden}
+.ticker-track{
+  display:flex;
+  flex:0 0 max-content;
+  width:max-content;
+  gap:0;
+  will-change:transform;
+  backface-visibility:hidden;
+  animation:awe-home-ticker-loop 28s linear infinite !important;
+  animation-play-state:running !important;
+}
+.ticker-track>span{display:block;flex:0 0 auto;white-space:nowrap}
+@keyframes awe-home-ticker-loop{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(-50%,0,0)}
+}
+@media(prefers-reduced-motion:reduce){
+  .ticker-track{
+    animation-name:awe-home-ticker-loop !important;
+    animation-duration:42s !important;
+    animation-iteration-count:infinite !important;
+    animation-play-state:running !important;
+  }
+}
