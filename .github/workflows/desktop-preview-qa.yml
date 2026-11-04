@@ -1,0 +1,91 @@
+name: Desktop preview visual QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'preview/**'
+      - 'scripts/qa-mobile-previews.mjs'
+      - 'qa/desktop-request.json'
+      - '.github/workflows/desktop-preview-qa.yml'
+  workflow_dispatch:
+    inputs:
+      sites:
+        description: 'Comma-separated public preview slugs, or all (default)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: awe-desktop-preview-qa
+  cancel-in-progress: true
+
+jobs:
+  desktop-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Install Chromium browser
+        run: npx playwright install --with-deps chromium
+      - name: Capture desktop previews and check layout
+        id: audit
+        continue-on-error: true
+        env:
+          PREVIEW_QA_MODE: desktop
+          PREVIEW_SITES: ${{ inputs.sites }}
+          PREVIEW_QA_REQUEST_FILE: qa/desktop-request.json
+          PREVIEW_QA_OUTPUT: artifacts/desktop-qa
+        run: node scripts/qa-mobile-previews.mjs
+      - name: Upload desktop screenshots as workflow artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-preview-screenshots
+          path: artifacts/desktop-qa/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Publish retrievable desktop screenshots to GitHub branch
+        if: always()
+        run: |
+          set -euo pipefail
+          if [ ! -d artifacts/desktop-qa ] || [ -z "$(find artifacts/desktop-qa -type f -name '*.png' -print -quit)" ]; then
+            echo "::warning::No desktop screenshots to publish"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p /tmp/awe-desktop-qa
+          cp artifacts/desktop-qa/*.png /tmp/awe-desktop-qa/
+          git fetch origin desktop-qa-screenshots || true
+          if git show-ref --verify --quiet refs/remotes/origin/desktop-qa-screenshots; then
+            git switch --detach origin/desktop-qa-screenshots
+            git switch -c desktop-qa-screenshots
+          else
+            git switch --orphan desktop-qa-screenshots
+            git rm -rf --ignore-unmatch . >/dev/null 2>&1 || true
+          fi
+          mkdir -p screenshots
+          cp /tmp/awe-desktop-qa/*.png screenshots/
+          printf 'Generated from %s at %s\nModes: desktop-1440 and desktop-1920, full-page and viewport\n' "$GITHUB_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > screenshots/manifest.txt
+          git add -f screenshots/
+          if git diff --cached --quiet; then
+            echo "Screenshots unchanged"
+          else
+            git commit -m "Update desktop preview screenshots"
+            git push origin HEAD:desktop-qa-screenshots
+          fi
+      - name: Report desktop audit result
+        if: steps.audit.outcome == 'failure'
+        run: |
+          echo "::error::Desktop layout audit found issues. Review desktop-qa-screenshots branch."
+          exit 1

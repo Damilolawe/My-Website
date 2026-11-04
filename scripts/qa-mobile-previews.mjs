@@ -3,15 +3,18 @@ import { mkdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const base = (process.env.PREVIEW_BASE_URL || 'https://preview.aweconcepts.com').replace(/\/$/, '');
+const qaMode = process.env.PREVIEW_QA_MODE || 'mobile';
+if (!['mobile', 'desktop'].includes(qaMode)) throw new Error('Invalid PREVIEW_QA_MODE (expected mobile or desktop)');
 const defaultSites = 'chong,shotsbyriq,jay-millz-shot-em,otaku-haven,kappo-sono,susukino,bao-dumpling,mesa-bar,casa-serra,solerum,jj-deli,pace-sbdc';
 let requestedSites = process.env.PREVIEW_SITES;
-if (!requestedSites && process.env.MOBILE_QA_REQUEST_FILE) {
+const requestFile = process.env.PREVIEW_QA_REQUEST_FILE || process.env.MOBILE_QA_REQUEST_FILE;
+if (!requestedSites && requestFile) {
   try {
-    const request = JSON.parse(await readFile(process.env.MOBILE_QA_REQUEST_FILE, 'utf8'));
+    const request = JSON.parse(await readFile(requestFile, 'utf8'));
     requestedSites = Array.isArray(request.sites) ? request.sites.join(',') : request.sites || request.site;
-    console.log('Mobile audit request:', JSON.stringify({ sites: requestedSites, requestId: request.requestId || null }));
+    console.log('Preview audit request:', JSON.stringify({ sites: requestedSites, requestId: request.requestId || null }));
   } catch (error) {
-    console.warn('No valid mobile QA request file; using default sites:', error.message);
+    console.warn('No valid preview QA request file; using default sites:', error.message);
   }
 }
 // Discover future PUBLIC previews from the deployed preview index, never from private source folders.
@@ -33,7 +36,7 @@ if (!requestedSites || requestedSites === 'all') {
   sites = requestedSites.split(',').map(s => s.trim()).filter(Boolean);
 }
 if (sites.some(s => !/^[a-z0-9][a-z0-9-]*$/.test(s))) throw new Error('Invalid preview site slug');
-const output = process.env.MOBILE_QA_OUTPUT || 'artifacts/mobile-qa';
+const output = process.env.PREVIEW_QA_OUTPUT || process.env.MOBILE_QA_OUTPUT || 'artifacts/mobile-qa';
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 let failures = 0;
@@ -41,19 +44,20 @@ const desktopMotionSites = new Set(['chong','bao-dumpling','casa-serra','jj-deli
 const auditDevices = [
   ['iphone-13', devices['iPhone 13']],
   ['pixel-7', devices['Pixel 7']],
-  ['desktop-1440', { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 }]
-];
+  ['desktop-1440', { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 }],
+  ['desktop-1920', { viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 }]
+].filter(([name]) => qaMode === 'desktop' ? name.startsWith('desktop-') : name !== 'desktop-1920');
 for (const [deviceName, config] of auditDevices) {
   const context = await browser.newContext({ ...config, defaultBrowserType: undefined });
   for (const site of sites) {
-    if (deviceName === 'desktop-1440' && !desktopMotionSites.has(site)) continue;
+    if (qaMode === 'mobile' && deviceName === 'desktop-1440' && !desktopMotionSites.has(site)) continue;
     const page = await context.newPage();
     const url = `${base}/${site}/`;
     try {
       const response = await page.goto(url, { waitUntil: 'networkidle', timeout: 45000 });
       if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() ?? 'no response'}`);
       // On desktop confirm the track is not merely present: its rendered position must move.
-      if (deviceName === 'desktop-1440') {
+      if (deviceName === 'desktop-1440' && desktopMotionSites.has(site)) {
         const motion = await page.evaluate(async () => {
           const track = document.querySelector('.awe-motion-track');
           if (!track) return { ok: false, reason: 'banner track not found' };
@@ -82,6 +86,10 @@ for (const [deviceName, config] of auditDevices) {
         await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
       });
       await page.screenshot({ path: join(output, `${site}-${deviceName}.png`), fullPage: true, animations: 'disabled' });
+      // A second desktop image shows the actual above-the-fold viewport at its native height.
+      if (qaMode === 'desktop') {
+        await page.screenshot({ path: join(output, `${site}-${deviceName}-viewport.png`), fullPage: false, animations: 'disabled' });
+      }
       const info = await page.evaluate(() => ({
         viewport: document.documentElement.clientWidth,
         document: document.documentElement.scrollWidth,
@@ -125,6 +133,6 @@ for (const [deviceName, config] of auditDevices) {
 }
 await browser.close();
 if (failures) {
-  console.error(`Mobile QA found ${failures} issue(s). See screenshots in ${output}.`);
+  console.error(`${qaMode} QA found ${failures} issue(s). See screenshots in ${output}.`);
   process.exitCode = 1;
 }
