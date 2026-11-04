@@ -37,14 +37,42 @@ const output = process.env.MOBILE_QA_OUTPUT || 'artifacts/mobile-qa';
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 let failures = 0;
-for (const [deviceName, config] of [['iphone-13', devices['iPhone 13']], ['pixel-7', devices['Pixel 7']]]) {
+const desktopMotionSites = new Set(['chong','bao-dumpling','casa-serra','jj-deli','mesa-bar','solerum']);
+const auditDevices = [
+  ['iphone-13', devices['iPhone 13']],
+  ['pixel-7', devices['Pixel 7']],
+  ['desktop-1440', { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 }]
+];
+for (const [deviceName, config] of auditDevices) {
   const context = await browser.newContext({ ...config, defaultBrowserType: undefined });
   for (const site of sites) {
+    if (deviceName === 'desktop-1440' && !desktopMotionSites.has(site)) continue;
     const page = await context.newPage();
     const url = `${base}/${site}/`;
     try {
       const response = await page.goto(url, { waitUntil: 'networkidle', timeout: 45000 });
       if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() ?? 'no response'}`);
+      // On desktop confirm the track is not merely present: its rendered position must move.
+      if (deviceName === 'desktop-1440') {
+        const motion = await page.evaluate(async () => {
+          const track = document.querySelector('.awe-motion-track');
+          if (!track) return { ok: false, reason: 'banner track not found' };
+          const initialStyle = getComputedStyle(track);
+          const animation = initialStyle.animationName;
+          const playState = initialStyle.animationPlayState;
+          const first = track.getBoundingClientRect().left;
+          await new Promise(resolve => setTimeout(resolve, 550));
+          const second = track.getBoundingClientRect().left;
+          return { ok: animation !== 'none' && playState === 'running' && Math.abs(second - first) > 2,
+                   animation, playState, pixelsMoved: Math.round((second-first)*10)/10 };
+        });
+        if (!motion.ok) {
+          failures++;
+          console.error('FAIL desktop banner motion ' + url + ' ' + JSON.stringify(motion));
+        } else {
+          console.log('PASS desktop banner motion ' + url + ' ' + JSON.stringify(motion));
+        }
+      }
       await page.screenshot({ path: join(output, `${site}-${deviceName}.png`), fullPage: true, animations: 'disabled' });
       const info = await page.evaluate(() => ({
         viewport: document.documentElement.clientWidth,
