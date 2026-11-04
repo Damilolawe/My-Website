@@ -25,3 +25,14 @@ test("preview CSP allows every remote image source used by business previews", a
   }
   assert.equal(stockPhotoCount, 9, "The nine verified, licensed stock photos must remain displayable");
 });
+
+test("business preview photos display without stock-photo overlay labels", async () => {
+  const sites = ["bao-dumpling", "mesa-bar", "casa-serra", "solerum", "jj-deli", "chong"];
+  for (const site of sites) {
+    const html = await readFile(`preview/${site}/index.html`, "utf8");
+    assert.doesNotMatch(html, /illustrative stock photograph(?:y)?/i, `${site}: do not display stock photo label`);
+    assert.doesNotMatch(html, /<(?:figcaption|span)\\b[^>]*>\\s*illustrative stock photograph/i,
+      `${site}: image overlay labels must not reappear`);
+    assert.match(html, /aweconcepts\\.com|Awe Concepts/i, `${site}: preserve Awe Concepts attribution`);
+  }
+});
