@@ -11,6 +11,26 @@
   <title>Bao Dumpling | Wall Street</title>
   <link rel="stylesheet" href="/bao-dumpling/styles.css?v=concept-20261103">
   <script src="/bao-dumpling/site.js?v=concept-20261103" defer></script>
+<style>
+/* AWE preview: two identically sized, duplicated motion units create gap-free desktop loops. */
+.awe-motion-banner{width:100%;max-width:100%;overflow:hidden;position:relative;z-index:5;background:var(--band-bg);color:var(--band-fg);padding:17px 0;isolation:isolate}
+.awe-motion-track{display:flex;width:max-content;align-items:center;animation:awe-scroll-banner 28s linear infinite;will-change:transform;backface-visibility:hidden}
+.awe-motion-unit{display:flex;align-items:center;justify-content:space-around;flex:0 0 auto;min-width:100vw;gap:clamp(25px,3vw,50px);padding:0 clamp(22px,3vw,50px);white-space:nowrap}
+.awe-motion-unit span{display:inline-block;white-space:nowrap;flex:none;font-size:clamp(16px,1.8vw,23px);font-weight:500;letter-spacing:.01em;line-height:1.35}
+.awe-motion-unit i{display:block;flex:0 0 6px;width:6px;height:6px;border-radius:50%;background:var(--band-accent)}
+@keyframes awe-scroll-banner{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(-50%,0,0)}}
+@media(max-width:600px){.awe-motion-banner{padding:12px 0}.awe-motion-track{animation-duration:20s}.awe-motion-unit{gap:20px;padding:0 18px}.awe-motion-unit span{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.awe-motion-track{animation-duration:60s}}
+
+
+.hero-art.awe-photo{min-height:620px;padding:0;margin:0;display:block;position:relative;overflow:hidden;background:#753723}
+.hero-art.awe-photo img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center;display:block}
+.hero-art.awe-photo figcaption{position:absolute;bottom:20px;right:18px;z-index:2;padding:7px 10px;color:white;background:rgba(23,19,15,.75);font:11px var(--sans);letter-spacing:0}
+.brand-photo>img{width:100%;height:100%;min-height:520px;object-fit:cover;object-position:center}
+@media(max-width:900px){.hero-art.awe-photo{min-height:470px}}
+@media(max-width:700px){.hero-art.awe-photo{min-height:370px}}
+
+</style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -42,25 +62,11 @@
           <a class="button button-line" href="https://www.google.com/maps/search/?api=1&query=Bao+Dumpling+40+Gold+Street+New+York+NY+10038" target="_blank" rel="noopener noreferrer">Get directions</a>
         </div>
       </div>
-      <div class="hero-art" aria-label="Stylized illustration of dumplings in a bamboo steamer">
-        <div class="steam steam-one"></div>
-        <div class="steam steam-two"></div>
-        <div class="steam steam-three"></div>
-        <div class="steamer">
-          <span class="dumpling d-one"></span>
-          <span class="dumpling d-two"></span>
-          <span class="dumpling d-three"></span>
-          <span class="dumpling d-four"></span>
-        </div>
-        <p>40 GOLD ST.<br>NEW YORK</p>
-      </div>
-      <div class="ticker" aria-hidden="true">
-        <div class="ticker-track">
-          <span>DUMPLINGS</span><i></i><span>RICE BOWLS</span><i></i><span>BAO</span><i></i><span>NOODLES</span><i></i>
-          <span>DUMPLINGS</span><i></i><span>RICE BOWLS</span><i></i><span>BAO</span><i></i><span>NOODLES</span><i></i>
-        </div>
+      <figure class="hero-art awe-photo"><img class="" src="https://images.pexels.com/photos/32393809/pexels-photo-32393809.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Fresh steamed dumplings arranged in a bamboo basket; illustrative stock photography" width="1600" height="1100" loading="eager" decoding="async"><figcaption>Illustrative stock photography</figcaption></figure>
       </div>
     </section>
+
+    <section class="awe-motion-banner" aria-label="Bao Dumpling menu offerings" style="--band-bg:#17130f;--band-fg:#fff9ec;--band-accent:#d6a944"><div class="awe-motion-track"><div class="awe-motion-unit"><span>DUMPLINGS</span><i aria-hidden="true"></i><span>RICE BOWLS</span><i aria-hidden="true"></i><span>BAO</span><i aria-hidden="true"></i><span>NOODLES</span><i aria-hidden="true"></i></div><div class="awe-motion-unit" aria-hidden="true"><span>DUMPLINGS</span><i aria-hidden="true"></i><span>RICE BOWLS</span><i aria-hidden="true"></i><span>BAO</span><i aria-hidden="true"></i><span>NOODLES</span><i aria-hidden="true"></i></div></div></section>
 
     <section class="menu-section" id="menu" aria-labelledby="menu-title">
       <div class="section-heading reveal">
@@ -100,14 +106,14 @@
       <div class="story-copy reveal">
         <p class="eyebrow">The Gold Street debut</p>
         <h2 id="story-title">A new dumpling stop built for downtown pace.</h2>
-        <p>Bao Dumpling debuted at 40 Gold Street on October 1, 2026, as part of a three-concept fast-casual destination with Kyuramen Express and Aokō Matcha.</p>
+        <p>Bao Dumpling debuted at 40 Gold Street on October 1, 2026, bringing a new dumpling-focused fast-casual option to downtown Manhattan.</p>
         <p>Its focus is direct: sauce-tossed dumpling bowls alongside rice bowls, bao, noodles and shareable bites for dine-in, takeout or delivery.</p>
       </div>
     </section>
 
-    <section class="brand-photo" aria-label="Bao Dumpling and its Gold Street sister concepts">
-      <img src="/bao-dumpling/assets/gold-street-spread.webp" alt="Bao Dumpling, Kyuramen Express and Aoko Matcha dishes served together at the Gold Street location" width="1200" height="675">
-      <div class="brand-photo-copy reveal"><p class="eyebrow">One address, three concepts</p><h2>Build the meal you want.</h2><p>Bao Dumpling shares 40 Gold Street with Kyuramen Express and Aokō Matcha, bringing dumplings, ramen, drinks and dessert together under one roof.</p><small>Official launch photography credited to KYURAMEN.</small></div>
+    <section class="brand-photo" aria-label="Illustrative dumpling photography">
+      <img src="https://images.pexels.com/photos/28460866/pexels-photo-28460866.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Steamed dumplings served with dipping sauce; illustrative stock photography" loading="lazy" decoding="async" width="1200" height="675">
+      <div class="brand-photo-copy reveal"><p class="eyebrow">Dumpling inspiration</p><h2>Build the meal you want.</h2><p>Explore savory dumpling bowls, soft bao, rice bowls and shareable bites built for busy downtown days.</p><small>Illustrative stock photography. Not a photograph of Bao Dumpling menu items.</small></div>
     </section>
 
     <section class="visit-section" id="visit" aria-labelledby="visit-title">
