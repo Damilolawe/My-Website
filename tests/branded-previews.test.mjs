@@ -317,7 +317,7 @@ test("Jay Millz concept maintains verified booking destination and original blue
   const imported=importStatus.assets[i];
   assert.equal(imported.id,i+1);
   if(i===8){
-   assert.equal(match[1],"/jay-millz-shot-em/photos/about-jay.jpg");
+   assert.match(match[1],/^data:image\/jpeg;base64,/);
   }else if(imported.imported){
    assert.equal(match[1],"/jay-millz-shot-em/photos/"+imported.file);
    assert.ok(imported.bytes>3500);

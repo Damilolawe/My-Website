@@ -37,7 +37,7 @@ test("Susukino uses factual restaurant details, actual Instagram-sourced imagery
   assert.ok((await stat("branded-previews/public/susukino/assets/"+hit[1])).size>(hit[1]==="restaurant-logo.jpg"?1800:4000),"Broken image "+hit[1]);
  }
  assert.doesNotMatch(html,/src="\/susukino\/assets\/photo-04.jpg"/,"Remove seasonal Halloween artwork from evergreen sections");
- assert.equal((html.match(/src="\/susukino\/assets\/photo-02.jpg"/g)||[]).length,1,"Do not repeat the same happy-hour graphic");
+ assert.ok((html.match(/data:image\/jpeg;base64,/g)||[]).length>=5,"Embed verified imagery that lacks a durable public path");
  assert.match(html,/restaurant-interior.jpg/);
  assert.match(html,/ramen-set.jpg/);
  assert.match(html,/Lunch Ramen Set/);

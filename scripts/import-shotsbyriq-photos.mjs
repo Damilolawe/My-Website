@@ -43,6 +43,8 @@ export async function importShotsByRiqPhotos(publicDir) {
 
   let html = await readFile("preview/shotsbyriq/index.html", "utf8");
   const paths = new Set();
+  const embeddedFiles = new Set(["portrait-01.jpg","golden-era-02.jpg"]);
+  const embedded = new Map();
   const photosDir = join(publicDir, "shotsbyriq", "photos");
   await mkdir(photosDir, { recursive: true });
 
@@ -65,6 +67,7 @@ export async function importShotsByRiqPhotos(publicDir) {
       try {
         const bytes = await getVerifiedJpeg(candidate.url);
         await writeFile(join(photosDir, image.file), bytes);
+        if (embeddedFiles.has(image.file)) embedded.set(image.file, bytes.toString("base64"));
         return { id: image.id, imported: true, bytes: bytes.length, source: candidate.source };
       } catch (error) {
         problems.push(candidate.source + ": " + String(error.message));
@@ -81,8 +84,10 @@ export async function importShotsByRiqPhotos(publicDir) {
       failures.map(item => item.id + " (" + item.errors.join("; ") + ")").join(", ") +
       ". The current live preview was not replaced.");
 
-  for (const image of manifest.images)
-    html = html.replaceAll(image.url, "/shotsbyriq/photos/" + image.file);
+  for (const image of manifest.images) {
+    const replacement = embedded.has(image.file) ? "data:image/jpeg;base64," + embedded.get(image.file) : "/shotsbyriq/photos/" + image.file;
+    html = html.replaceAll(image.url, replacement);
+  }
   html = html.replaceAll("/preview/shotsbyriq/styles.css", "/shotsbyriq/styles.css")
              .replaceAll("/preview/shotsbyriq/site.js", "/shotsbyriq/site.js");
   await writeFile(join(publicDir, "shotsbyriq", "index.html"), html);

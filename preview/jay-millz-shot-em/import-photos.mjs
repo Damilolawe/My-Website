@@ -59,6 +59,7 @@ export async function importJayMillzPhotos(publicDir) {
       !/^https:\/\/www\.instagram\.com\/itsjaymillz\/p\/[A-Za-z0-9_-]+\/$/.test(aboutSource.post))
     throw new Error("Unverified Jay Millz personal portrait source");
   let about = null;
+  let aboutBytes = null;
   for (const candidate of [
     { url: aboutSource.url, source: "original-personal-instagram-post" },
     { url: host + directory + aboutSource.file, source: "published-personal-photo-snapshot" }
@@ -66,6 +67,7 @@ export async function importJayMillzPhotos(publicDir) {
     try {
       const data = await getJpeg(candidate.url);
       await writeFile(join(folder, aboutSource.file), data);
+      aboutBytes = data;
       about = { file: aboutSource.file, post: aboutSource.post, imported: true, bytes: data.length, source: candidate.source };
       break;
     } catch {
@@ -79,7 +81,7 @@ export async function importJayMillzPhotos(publicDir) {
     const photo = results[imageIndex++];
     if (tag.includes('data-about-portrait="personal"')) {
       if (!about?.imported || !photo) throw new Error("Personal About image mapping failed");
-      return tag.replace(original, directory + about.file);
+      return tag.replace(original, "data:image/jpeg;base64," + aboutBytes.toString("base64"));
     }
     if (!photo || !photo.imported) return tag;
     return tag.replace(original, directory + photo.file);
