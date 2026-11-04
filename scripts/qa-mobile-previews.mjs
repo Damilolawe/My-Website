@@ -8,7 +8,7 @@ let requestedSites = process.env.PREVIEW_SITES;
 if (!requestedSites && process.env.MOBILE_QA_REQUEST_FILE) {
   try {
     const request = JSON.parse(await readFile(process.env.MOBILE_QA_REQUEST_FILE, 'utf8'));
-    requestedSites = Array.isArray(request.sites) ? request.sites.join(',') : request.site;
+    requestedSites = Array.isArray(request.sites) ? request.sites.join(',') : request.sites || request.site;
     console.log('Mobile audit request:', JSON.stringify({ sites: requestedSites, requestId: request.requestId || null }));
   } catch (error) {
     console.warn('No valid mobile QA request file; using default sites:', error.message);
@@ -73,6 +73,14 @@ for (const [deviceName, config] of auditDevices) {
           console.log('PASS desktop banner motion ' + url + ' ' + JSON.stringify(motion));
         }
       }
+      // Full-page screenshots can race lazy/data-image decoding on emulated mobile.
+      // Eagerly decode every authored image before deciding that it is broken.
+      await page.evaluate(async () => {
+        const images = [...document.images].filter(img => img.getAttribute('src'));
+        for (const img of images) img.loading = 'eager';
+        await Promise.all(images.map(img => img.decode().catch(() => undefined)));
+        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      });
       await page.screenshot({ path: join(output, `${site}-${deviceName}.png`), fullPage: true, animations: 'disabled' });
       const info = await page.evaluate(() => ({
         viewport: document.documentElement.clientWidth,
