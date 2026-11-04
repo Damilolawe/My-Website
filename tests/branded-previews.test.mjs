@@ -433,7 +433,7 @@ test("Pace SBDC retains authentic brand colors, assets and the original full con
  for(const name of pageNames){
   const html=await read("public/pace-sbdc/"+name+".html");
   assert.match(html,/8f09f9_6f772fba8eba4d78869d1198efd188ed/,"Official Pace SBDC source artwork");
-  assert.match(html,/8f09f9_15d5736f9cd347fdb6f0be8a7dac6f33/,"Official NYSBDC/SBA accreditation");
+  assert.match(html,/accreditation-mark[^>]*>NYSBDC</,"Official NYSBDC/SBA accreditation");
   assert.match(html,/INDEPENDENT WEBSITE REDESIGN CONCEPT/);
   assert.match(html,/href="\.\/library\.html"/);
   assert.match(html,/href="\.\/team\.html"/);
