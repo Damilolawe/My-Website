@@ -1,5 +1,5 @@
 {
   "sites": "all",
-  "requestId": "all-preview-repair-verification-2026-11-04-2001",
-  "purpose": "Verify all 17 public preview websites after recovered-site image and responsive navigation repairs"
+  "requestId": "batch-two-live-verification-2026-11-04-2015",
+  "purpose": "Verify all 22 deployed public previews after the second five-site production batch"
 }
