@@ -2,7 +2,7 @@ name: Prototype visual review
 on:
   workflow_dispatch:
   push:
-    branches: [awe-111-prototype-revamp]
+    branches: [prototype-redesign-review]
 permissions:
   contents: read
 jobs:
