@@ -1,6 +1,6 @@
 {
   "count": 111,
-  "generatedAt": "2026-11-05T18:33:41.070Z",
+  "generatedAt": "2026-11-05T18:42:37.240Z",
   "sites": [
     {
       "slug": "18-steps-dengdeng-noodles",
@@ -147,7 +147,7 @@
     },
     {
       "slug": "bensonhurst-bagels-and-deli",
-      "name": "Bensonhurst Bagels &amp; Deli",
+      "name": "Bensonhurst Bagels & Deli",
       "genre": "bakery",
       "design": 6,
       "area": "Bensonhurst",
@@ -238,7 +238,7 @@
     },
     {
       "slug": "cana-coffee-and-bakery",
-      "name": "Cana Coffee &amp; Bakery",
+      "name": "Cana Coffee & Bakery",
       "genre": "bakery",
       "design": 4,
       "area": "Hoboken",
@@ -264,7 +264,7 @@
     },
     {
       "slug": "chianti-sports-bar-and-restaurant-sugar-and-cake",
-      "name": "Chianti Sports Bar &amp; Restaurant / Sugar &amp; Cake",
+      "name": "Chianti Sports Bar & Restaurant / Sugar & Cake",
       "genre": "bar",
       "design": 9,
       "area": "Corona",
@@ -394,7 +394,7 @@
     },
     {
       "slug": "evelyn-bar-and-kitchen",
-      "name": "Evelyn Bar &amp; Kitchen",
+      "name": "Evelyn Bar & Kitchen",
       "genre": "bar",
       "design": 9,
       "area": "Financial District",
@@ -485,7 +485,7 @@
     },
     {
       "slug": "grizzly-coffee-and-tea-house",
-      "name": "Grizzly Coffee &amp; Tea House",
+      "name": "Grizzly Coffee & Tea House",
       "genre": "coffee",
       "design": 1,
       "area": "Midwood",
@@ -589,7 +589,7 @@
     },
     {
       "slug": "isla-and-co",
-      "name": "Isla &amp; Co.",
+      "name": "Isla & Co.",
       "genre": "restaurant",
       "design": 9,
       "area": "Williamsburg",
@@ -836,7 +836,7 @@
     },
     {
       "slug": "lima-wok-and-bowl",
-      "name": "Lima Wok &amp; Bowl",
+      "name": "Lima Wok & Bowl",
       "genre": "asian",
       "design": 3,
       "area": "Greenpoint",
@@ -966,7 +966,7 @@
     },
     {
       "slug": "mr-fire-bar-and-grill",
-      "name": "Mr. Fire Bar &amp; Grill",
+      "name": "Mr. Fire Bar & Grill",
       "genre": "bar",
       "design": 4,
       "area": "East New York",
@@ -1096,7 +1096,7 @@
     },
     {
       "slug": "rb-bakery-and-cafe",
-      "name": "RB Bakery &amp; Cafe",
+      "name": "RB Bakery & Cafe",
       "genre": "bakery",
       "design": 8,
       "area": "Forest Hills",
@@ -1200,7 +1200,7 @@
     },
     {
       "slug": "senzu-juice-and-smoothies",
-      "name": "Senzu Juice &amp; Smoothies",
+      "name": "Senzu Juice & Smoothies",
       "genre": "sweets",
       "design": 11,
       "area": "Gowanus",
@@ -1382,7 +1382,7 @@
     },
     {
       "slug": "wayne-and-sons",
-      "name": "Wayne &amp; Sons",
+      "name": "Wayne & Sons",
       "genre": "restaurant",
       "design": 9,
       "area": "Williamsburg",
@@ -1434,7 +1434,7 @@
     },
     {
       "slug": "your-choice-halal-chicken-and-pizza",
-      "name": "Your Choice Halal Chicken &amp; Pizza",
+      "name": "Your Choice Halal Chicken & Pizza",
       "genre": "pizza",
       "design": 8,
       "area": "Parkchester",
