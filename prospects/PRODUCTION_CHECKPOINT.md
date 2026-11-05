@@ -96,3 +96,8 @@ Added and deployed five new public concepts: Cultiva Cafe, Hot's Coffee, Nena Sw
 ## Batch five — November 5, 2026
 
 Added and deployed five new public concepts: Dovetail Bakery, Smør Bakery Carroll Gardens, Caputo Bagels, Swaine's, and Vibra Restaurant & Lounge. The tracker now contains 148 records, 37 public inventory entries, 25 new sites, and 111 screening records still requiring individual verification. Final desktop and mobile QA requests were issued for all 37 previews.
+
+
+## Batch six — November 5, 2026
+
+Added five new concepts: Café Mia, Problem Baker Park Slope, Atelier Artist, Prema Brooklyn, and :3Coffee Halletts Point. Current tracker totals are 153 prospects, 42 inventory entries, 30 new sites, and 111 screening records awaiting individual verification. Deployment and final QA are running through the branded preview pipeline.
