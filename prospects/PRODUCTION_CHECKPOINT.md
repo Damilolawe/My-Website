@@ -100,4 +100,9 @@ Added and deployed five new public concepts: Dovetail Bakery, Smør Bakery Carro
 
 ## Batch six — November 5, 2026
 
-Added five new concepts: Café Mia, Problem Baker Park Slope, Atelier Artist, Prema Brooklyn, and :3Coffee Halletts Point. Current tracker totals are 153 prospects, 42 inventory entries, 30 new sites, and 111 screening records awaiting individual verification. Deployment and final QA are running through the branded preview pipeline.
+Added five new concepts: Café Mia, Problem Baker Park Slope, Atelier Artist, Prema Brooklyn, and :3Coffee Halletts Point. Current tracker totals are 158 prospects, 42 inventory entries, 30 new sites, and 111 screening records awaiting individual verification. Deployment and final QA are running through the branded preview pipeline.
+
+
+## Batch seven
+
+Five additional prototypes were created for Loved Ones Coffee, WorksbyNET, Studio Shipley, Hanare Organic Japanese Spa, and Tiny Topiary. Sources are registered in the branded preview builder and the batch-seven live deployment completed successfully at commit `e763be10899f4b4486e6db7f9f1600d972c61b6c`. Final 47-site desktop and mobile visual QA requests are recorded in `qa/desktop-request.json` and `qa/mobile-request.json`; their terminal QA status is pending.
