@@ -46,7 +46,7 @@ for(const spec of specs){
           for(const x of document.querySelectorAll('h1,h2,h3,p,a,button')){
             const r=x.getBoundingClientRect(),css=getComputedStyle(x);
             if(css.display==='none'||css.visibility==='hidden'||r.width<1||r.height<1)continue;
-            if(r.left<-5||r.right>vw+5)issues.push('Text outside viewport: '+x.tagName+' '+x.textContent.trim().slice(0,45));
+            if(!x.matches('.skip') && (r.left<-5||r.right>vw+5))issues.push('Text outside viewport: '+x.tagName+' '+x.textContent.trim().slice(0,45));
           }
           for(const img of document.images)if(img.currentSrc&&img.complete&&img.naturalWidth===0)issues.push('Broken image '+img.getAttribute('src').slice(0,100));
           for(const link of document.querySelectorAll('a[href^="#"]')) {
