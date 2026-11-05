@@ -76,7 +76,8 @@ function category(str) {
   if (/market|shop|store|boutique|books|deli|retail/.test(s)) return 'retail';
   return 'restaurant';
 }
-const dirs = (await readdir(root, {withFileTypes:true})).filter(x=>x.isDirectory()).map(x=>x.name);
+const approved = new Set(JSON.parse(await readFile('qa/111-prospect-revamp.json','utf8')).sites.map(site=>site.slug));
+const dirs = (await readdir(root, {withFileTypes:true})).filter(x=>x.isDirectory() && approved.has(x.name)).map(x=>x.name);
 const transformed = [];
 for(const slug of dirs) {
   const dir = join(root, slug);
