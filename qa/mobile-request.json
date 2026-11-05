@@ -1,5 +1,5 @@
 {
   "sites": "all",
-  "requestId": "final-27-mobile-after-otaku-desktop-repair-2026-11-04",
-  "purpose": "Final live mobile verification after all batch-three and recovered-site repairs"
+  "requestId": "final-32-mobile-batch-four-2026-11-05",
+  "purpose": "Run final mobile QA for 32 deployed previews"
 }
