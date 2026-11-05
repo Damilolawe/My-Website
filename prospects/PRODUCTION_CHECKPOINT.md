@@ -121,3 +121,15 @@ The repaired 52-site inventory passed the final desktop visual QA run #79 and mo
 ## Final Otaku repair verification — November 5, 2026
 
 The isolated branded preview was redeployed from source commit `88a32d0d1e14ca64f70264557e4357479c11db5c`. Live verification at `https://preview.aweconcepts.com/otaku-haven/?v=stockfix3` confirms the repaired Unsplash assets are publicly rendered (logo, hero, feature imagery) instead of the previously broken stock URLs. The final desktop/mobile QA request files were retriggered as `final-52-desktop-batch-eight-final-2026-11-05-rerun` and `final-52-mobile-batch-eight-final-2026-11-05-rerun`; prior 52-site visual QA passed before this image-only repair.
+
+
+## Batch nine — November 5, 2026
+
+Five additional concepts were created and deployed through branded preview run `42063729841` (run 255, successful): Studio Ephemera, LOOVE Labs, BEM, OneTwoOne Cafe, and Chique Collective. Live route verification passed for all five routes with responsive metadata, noindex protection and rendered Unsplash assets. Current production inventory is 57 public prototypes (45 new concepts plus 12 recovered public prototypes); the master tracker remains the authoritative spreadsheet for prospect-level status.
+
+Live routes:
+- https://preview.aweconcepts.com/studio-ephemera/
+- https://preview.aweconcepts.com/loove-labs/
+- https://preview.aweconcepts.com/bem-books/
+- https://preview.aweconcepts.com/one-two-one-cafe/
+- https://preview.aweconcepts.com/chique-collective/
