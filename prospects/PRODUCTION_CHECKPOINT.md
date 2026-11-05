@@ -91,3 +91,8 @@ Added and deployed five new public concepts: Cultiva Cafe, Hot's Coffee, Nena Sw
 - Desktop visual QA: workflow run #19 (successful; commit `58f8541`).
 - Mobile visual QA: workflow run #64 (successful; commit `7c31d41`).
 - The separate production Firebase workflow runs triggered by tracker-only/request commits failed in the existing production pipeline; no production site change was made. The isolated branded preview deployment remained successful.
+
+
+## Batch five — November 5, 2026
+
+Added and deployed five new public concepts: Dovetail Bakery, Smør Bakery Carroll Gardens, Caputo Bagels, Swaine's, and Vibra Restaurant & Lounge. The tracker now contains 148 records, 37 public inventory entries, 25 new sites, and 111 screening records still requiring individual verification. Final desktop and mobile QA requests were issued for all 37 previews.
