@@ -110,4 +110,9 @@ Five additional prototypes were created for Loved Ones Coffee, WorksbyNET, Studi
 
 ## Batch eight
 
-Five additional live previews were added for Kora Bakery, Old Mill Cafe, Birdee, Café Pri Middle Village, and latte da cafés. Branded deployment is verified at commit `8613ec5dee027d4f5feb01b048e65aa289d67a0c`; final 52-site desktop and mobile QA requests are now queued.
+Five additional live previews were added for Kora Bakery, Old Mill Cafe, Birdee, Café Pri Middle Village, and latte da cafés. Branded deployment is verified at commit `8613ec5dee027d4f5feb01b048e65aa289d67a0c`; final 52-site desktop and mobile QA both passed in runs #79 and #124.
+
+
+## QA verification
+
+The repaired 52-site inventory passed the final desktop visual QA run #79 and mobile visual QA run #124. The isolated branded preview build passed as run #244. Production Firebase workflow failures on tracker/request-only commits are unrelated to the isolated preview deployment and did not modify production hosting.
