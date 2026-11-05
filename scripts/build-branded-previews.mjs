@@ -83,7 +83,7 @@ await import("../preview/susukino/import-photos.mjs");
 await cp("preview/susukino/assets/restaurant-logo.jpg", `${output}/susukino/assets/restaurant-logo.jpg`);
 // Motion assets are explicitly versioned only on the isolated preview host.
 const animationRevision = "motion-20261102";
-const otakuAnimationRevision = "motion-20261102-always-3";
+const otakuAnimationRevision = "motion-20261105-stockfix";
 const repairRevision = "repair-20261104-1";
 for (const page of [
   ...KAPPO_PAGES.map(name => "kappo-sono/" + name),
