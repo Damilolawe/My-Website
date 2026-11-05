@@ -217,7 +217,7 @@ for(const slug of dirs) {
   if(!name || !eyebrow) throw new Error('Missing business metadata for ' + slug);
   const [area,...typeParts] = eyebrow.split(' / ');
   const type = typeParts.join(' / ') || 'Neighborhood destination';
-  const overrides = {'jane-s-matcha':'matcha','senzu-juice-and-smoothies':'sweets','oreas-gourmet-juice-bar':'sweets','baker-studio':'wellness','cloud-catering':'creative','hashi-market':'retail','uncorked-wines':'retail','greens-goods-grill':'restaurant','aoko-matcha':'matcha','anna-bella-pizza-cafe':'pizza','cafe-69-sports-bar':'bar','chianti-sports-bar-and-restaurant-sugar-and-cake':'bar','dumbo-oyster-bar':'restaurant','santinos-slices-and-italian-ices':'pizza','julieta-taberna':'bar','mr-fire-bar-and-grill':'bar','kampos-taverna':'restaurant','pies-n-thighs':'burger','bensonhurst-bagels-and-deli':'bakery'};
+  const overrides = {'jane-s-matcha':'matcha','senzu-juice-and-smoothies':'coffee','oreas-gourmet-juice-bar':'coffee','baker-studio':'wellness','cloud-catering':'restaurant','hashi-market':'retail','uncorked-wines':'retail','greens-goods-grill':'restaurant','aoko-matcha':'matcha','anna-bella-pizza-cafe':'pizza','cafe-69-sports-bar':'bar','chianti-sports-bar-and-restaurant-sugar-and-cake':'bar','dumbo-oyster-bar':'restaurant','santinos-slices-and-italian-ices':'pizza','julieta-taberna':'bar','mr-fire-bar-and-grill':'bar','kampos-taverna':'restaurant','pies-n-thighs':'restaurant','bensonhurst-bagels-and-deli':'bakery'};
   const direction = businessDirections[slug] || {};
   const genre = direction.genre || overrides[slug] || category(type + ' ' + slug);
   const h = hash(slug);
@@ -227,6 +227,14 @@ for(const slug of dirs) {
   const headline = direction.headline || mood.line[Math.floor(h/47)%mood.line.length];
   const pick = imgs[genre];
   const photos = [0,1,2].map((_,i)=> image(pick[(Math.floor(h/17)+i)%pick.length]));
+  // Independently licensed stock photos, selected to avoid reusing a single photo three times.
+  if (genre === 'matcha') { const matchaPhotos = [
+    'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1600&q=85',
+    'https://images.unsplash.com/photo-1542728928-1413d1894ed1?auto=format&fit=crop&w=1600&q=85',
+    'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1600&q=85'
+  ]; photos.splice(0,3,...matchaPhotos); }
+  if (slug === 'senzu-juice-and-smoothies' || slug === 'oreas-gourmet-juice-bar') { photos.splice(0,3,image('photo-1610970881699-44a5587cabec'),image('photo-1505252585461-04db1eb84625'),image('photo-1622597467836-f3285f2131b8')); }
+  if (slug === 'pies-n-thighs') { photos.splice(0,3,image('photo-1562967914-608f82629710'),image('photo-1484723091739-30a097e8f929'),image('photo-1555507036-ab1f4038808a')); }
   // Mixed-menu restaurant: show distinct food categories instead of a misleading burger-only hero.
   if (slug === 'your-choice-halal-chicken-and-pizza') { photos[0] = image(imgs.restaurant[3]); photos[1] = image(imgs.pizza[1]); photos[2] = image(imgs.restaurant[0]); }
   // Kyuramen's primary product is ramen, not sushi: force a bowl-first hero and gallery.
