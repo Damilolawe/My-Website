@@ -83,3 +83,11 @@ The remaining 115 records are screening leads, not fully qualified production as
 ## Batch four — November 5, 2026
 
 Added and deployed five new public concepts: Cultiva Cafe, Hot's Coffee, Nena Sweets Cakes, The Bier & Cheese Collective, and Rachel's Handmade Cookies. Public preview routes are under `https://preview.aweconcepts.com/`. The tracker now contains 143 records, 32 inventory entries, 20 new sites, and 111 screening records still requiring individual verification.
+
+
+## Verification IDs
+
+- Branded preview deployment: GitHub Actions run `41966348574` (successful).
+- Desktop visual QA: run `419666?` (successful run shown as Desktop preview visual QA #19; commit `58f8541`).
+- Mobile visual QA: run `419666?` (successful run shown as Mobile preview visual QA #64; commit `7c31d41`).
+- The separate production Firebase workflow runs triggered by tracker-only/request commits failed in the existing production pipeline; no production site change was made. The isolated branded preview deployment remained successful.
