@@ -106,3 +106,8 @@ Added five new concepts: Café Mia, Problem Baker Park Slope, Atelier Artist, Pr
 ## Batch seven
 
 Five additional prototypes were created for Loved Ones Coffee, WorksbyNET, Studio Shipley, Hanare Organic Japanese Spa, and Tiny Topiary. Sources are registered in the branded preview builder and the batch-seven live deployment completed successfully at commit `e763be10899f4b4486e6db7f9f1600d972c61b6c`. Final 47-site desktop and mobile visual QA requests are recorded in `qa/desktop-request.json` and `qa/mobile-request.json`; their terminal QA status is pending.
+
+
+## Batch eight
+
+Five additional live previews were added for Kora Bakery, Old Mill Cafe, Birdee, Café Pri Middle Village, and latte da cafés. Branded deployment is verified at commit `8613ec5dee027d4f5feb01b048e65aa289d67a0c`; final 52-site desktop and mobile QA requests are now queued.
