@@ -500,8 +500,8 @@ test("Otaku Haven ticker automatically scrolls on every screen without pause con
  assert.doesNotMatch(html,/EVERY LEGEND<br>STARTS AT/);
  assert.match(html,/class="ticker-track"/);
  assert.doesNotMatch(html,/ticker-motion-toggle|PLAY MOTION|PAUSE MOTION/);
- assert.match(html,/styles\.css\?v=motion-20261102-always-3/);
- assert.match(html,/site\.js\?v=motion-20261102-always-3/);
+ assert.match(html,/styles\.css\?v=motion-20261105-stockfix/);
+ assert.match(html,/site\.js\?v=motion-20261105-stockfix/);
  assert.match(css,/ticker-loop-offset/);
  assert.match(css,/\.ticker-track\{[^}]*animation:marquee [^;]+ linear infinite/);
  assert.match(css,/@media\(prefers-reduced-motion:reduce\)\{\.ticker \.ticker-track\{animation:marquee [^}]+!important\}\}/);
