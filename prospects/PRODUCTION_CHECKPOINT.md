@@ -116,3 +116,8 @@ Five additional live previews were added for Kora Bakery, Old Mill Cafe, Birdee,
 ## QA verification
 
 The repaired 52-site inventory passed the final desktop visual QA run #79 and mobile visual QA run #124. The isolated branded preview build passed as run #244. Production Firebase workflow failures on tracker/request-only commits are unrelated to the isolated preview deployment and did not modify production hosting.
+
+
+## Final Otaku repair verification — November 5, 2026
+
+The isolated branded preview was redeployed from source commit `88a32d0d1e14ca64f70264557e4357479c11db5c`. Live verification at `https://preview.aweconcepts.com/otaku-haven/?v=stockfix3` confirms the repaired Unsplash assets are publicly rendered (logo, hero, feature imagery) instead of the previously broken stock URLs. The final desktop/mobile QA request files were retriggered as `final-52-desktop-batch-eight-final-2026-11-05-rerun` and `final-52-mobile-batch-eight-final-2026-11-05-rerun`; prior 52-site visual QA passed before this image-only repair.
