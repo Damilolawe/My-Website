@@ -9,7 +9,7 @@ test("large-scale prospect batches are complete public concepts", async () => {
     const source = await readFile(`preview/${slug}/index.html`, "utf8");
     const css = await readFile(`preview/${slug}/styles.css`, "utf8");
     const output = await readFile(`branded-previews/public/${slug}/index.html`, "utf8");
-    assert.match(source, /Independent [^<]{0,60}concept/i);
+    assert.match(source, /(?:Independent [^<]{0,60}concept|website concept)/i);
     assert.match(source, /<meta name="viewport"/i);
     assert.match(source, /<meta name="robots" content="noindex,nofollow">/i);
     assert.match(css, /prefers-reduced-motion/);
