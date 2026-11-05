@@ -1,8 +1,429 @@
 {
   "total": 111,
   "checks": 222,
-  "passed": 222,
-  "flagged": 0,
-  "issues": [],
-  "completedAt": "2026-11-05T18:33:13.545Z"
+  "passed": 198,
+  "flagged": 24,
+  "issues": [
+    {
+      "slug": "bensonhurst-bagels-and-deli",
+      "view": "desktop",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "bensonhurst-bagels-and-deli-desktop.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "images": 4,
+        "title": "Bensonhurst Bagels &amp; Deli | Independent Website Concept"
+      },
+      "banner": {
+        "ok": true,
+        "delta": -34.937514305114746,
+        "width": 1863.4375
+      }
+    },
+    {
+      "slug": "cana-coffee-and-bakery",
+      "view": "desktop",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "cana-coffee-and-bakery-desktop.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "images": 4,
+        "title": "Cana Coffee &amp; Bakery | Independent Website Concept"
+      },
+      "banner": {
+        "ok": true,
+        "delta": -34.939374923706055,
+        "width": 1863.4375
+      }
+    },
+    {
+      "slug": "chianti-sports-bar-and-restaurant-sugar-and-cake",
+      "view": "desktop",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "chianti-sports-bar-and-restaurant-sugar-and-cake-desktop.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "images": 4,
+        "title": "Chianti Sports Bar &amp; Restaurant / Sugar &amp; Cake | Independent Website Concept"
+      },
+      "banner": {
+        "ok": true,
+        "delta": -42.017069816589355,
+        "width": 2241
+      }
+    },
+    {
+      "slug": "evelyn-bar-and-kitchen",
+      "view": "desktop",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "evelyn-bar-and-kitchen-desktop.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "images": 4,
+        "title": "Evelyn Bar &amp; Kitchen | Independent Website Concept"
+      },
+      "banner": {
+        "ok": true,
+        "delta": -42.27871131896973,
+        "width": 2255.125
+      }
+    },
+    {
+      "slug": "grizzly-coffee-and-tea-house",
+      "view": "desktop",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "grizzly-coffee-and-tea-house-desktop.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "images": 4,
+        "title": "Grizzly Coffee &amp; Tea House | Independent Website Concept"
+      },
+      "banner": {
+        "ok": true,
+        "delta": -41.713565826416016,
+        "width": 2224.8125
+      }
+    },
+    {
+      "slug": "isla-and-co",
+      "view": "desktop",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "isla-and-co-desktop.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "images": 4,
+        "title": "Isla &amp; Co. | Independent Website Concept"
+      },
+      "banner": {
+        "ok": true,
+        "delta": -37.99886703491211,
+        "width": 2026.6875
+      }
+    },
+    {
+      "slug": "lima-wok-and-bowl",
+      "view": "desktop",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "lima-wok-and-bowl-desktop.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "images": 4,
+        "title": "Lima Wok &amp; Bowl | Independent Website Concept"
+      },
+      "banner": {
+        "ok": true,
+        "delta": -35.45366287231445,
+        "width": 1890.9375
+      }
+    },
+    {
+      "slug": "mr-fire-bar-and-grill",
+      "view": "desktop",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "mr-fire-bar-and-grill-desktop.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "images": 4,
+        "title": "Mr. Fire Bar &amp; Grill | Independent Website Concept"
+      },
+      "banner": {
+        "ok": true,
+        "delta": -42.28190279006958,
+        "width": 2255.125
+      }
+    },
+    {
+      "slug": "rb-bakery-and-cafe",
+      "view": "desktop",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "rb-bakery-and-cafe-desktop.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "images": 4,
+        "title": "RB Bakery &amp; Cafe | Independent Website Concept"
+      },
+      "banner": {
+        "ok": true,
+        "delta": -34.99953651428223,
+        "width": 1866.6875
+      }
+    },
+    {
+      "slug": "senzu-juice-and-smoothies",
+      "view": "desktop",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "senzu-juice-and-smoothies-desktop.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "images": 4,
+        "title": "Senzu Juice &amp; Smoothies | Independent Website Concept"
+      },
+      "banner": {
+        "ok": true,
+        "delta": -40.61303520202637,
+        "width": 2166.3125
+      }
+    },
+    {
+      "slug": "wayne-and-sons",
+      "view": "desktop",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "wayne-and-sons-desktop.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "images": 4,
+        "title": "Wayne &amp; Sons | Independent Website Concept"
+      },
+      "banner": {
+        "ok": true,
+        "delta": -37.99920845031738,
+        "width": 2026.6875
+      }
+    },
+    {
+      "slug": "your-choice-halal-chicken-and-pizza",
+      "view": "desktop",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "your-choice-halal-chicken-and-pizza-desktop.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "images": 4,
+        "title": "Your Choice Halal Chicken &amp; Pizza | Independent Website Concept"
+      },
+      "banner": {
+        "ok": true,
+        "delta": -43.30138969421387,
+        "width": 2309.5
+      }
+    },
+    {
+      "slug": "bensonhurst-bagels-and-deli",
+      "view": "mobile",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "bensonhurst-bagels-and-deli-mobile.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 390,
+        "scrollWidth": 390,
+        "images": 4,
+        "title": "Bensonhurst Bagels &amp; Deli | Independent Website Concept"
+      }
+    },
+    {
+      "slug": "cana-coffee-and-bakery",
+      "view": "mobile",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "cana-coffee-and-bakery-mobile.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 390,
+        "scrollWidth": 390,
+        "images": 4,
+        "title": "Cana Coffee &amp; Bakery | Independent Website Concept"
+      }
+    },
+    {
+      "slug": "chianti-sports-bar-and-restaurant-sugar-and-cake",
+      "view": "mobile",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "chianti-sports-bar-and-restaurant-sugar-and-cake-mobile.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 390,
+        "scrollWidth": 390,
+        "images": 4,
+        "title": "Chianti Sports Bar &amp; Restaurant / Sugar &amp; Cake | Independent Website Concept"
+      }
+    },
+    {
+      "slug": "evelyn-bar-and-kitchen",
+      "view": "mobile",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "evelyn-bar-and-kitchen-mobile.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 390,
+        "scrollWidth": 390,
+        "images": 4,
+        "title": "Evelyn Bar &amp; Kitchen | Independent Website Concept"
+      }
+    },
+    {
+      "slug": "grizzly-coffee-and-tea-house",
+      "view": "mobile",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "grizzly-coffee-and-tea-house-mobile.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 390,
+        "scrollWidth": 390,
+        "images": 4,
+        "title": "Grizzly Coffee &amp; Tea House | Independent Website Concept"
+      }
+    },
+    {
+      "slug": "isla-and-co",
+      "view": "mobile",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "isla-and-co-mobile.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 390,
+        "scrollWidth": 390,
+        "images": 4,
+        "title": "Isla &amp; Co. | Independent Website Concept"
+      }
+    },
+    {
+      "slug": "lima-wok-and-bowl",
+      "view": "mobile",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "lima-wok-and-bowl-mobile.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 390,
+        "scrollWidth": 390,
+        "images": 4,
+        "title": "Lima Wok &amp; Bowl | Independent Website Concept"
+      }
+    },
+    {
+      "slug": "mr-fire-bar-and-grill",
+      "view": "mobile",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "mr-fire-bar-and-grill-mobile.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 390,
+        "scrollWidth": 390,
+        "images": 4,
+        "title": "Mr. Fire Bar &amp; Grill | Independent Website Concept"
+      }
+    },
+    {
+      "slug": "rb-bakery-and-cafe",
+      "view": "mobile",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "rb-bakery-and-cafe-mobile.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 390,
+        "scrollWidth": 390,
+        "images": 4,
+        "title": "RB Bakery &amp; Cafe | Independent Website Concept"
+      }
+    },
+    {
+      "slug": "senzu-juice-and-smoothies",
+      "view": "mobile",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "senzu-juice-and-smoothies-mobile.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 390,
+        "scrollWidth": 390,
+        "images": 4,
+        "title": "Senzu Juice &amp; Smoothies | Independent Website Concept"
+      }
+    },
+    {
+      "slug": "wayne-and-sons",
+      "view": "mobile",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "wayne-and-sons-mobile.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 390,
+        "scrollWidth": 390,
+        "images": 4,
+        "title": "Wayne &amp; Sons | Independent Website Concept"
+      }
+    },
+    {
+      "slug": "your-choice-halal-chicken-and-pizza",
+      "view": "mobile",
+      "issues": [
+        "Visible HTML entity in text"
+      ],
+      "screenshot": "your-choice-halal-chicken-and-pizza-mobile.jpg",
+      "metrics": {
+        "issues": [],
+        "viewport": 390,
+        "scrollWidth": 390,
+        "images": 4,
+        "title": "Your Choice Halal Chicken &amp; Pizza | Independent Website Concept"
+      }
+    }
+  ],
+  "completedAt": "2026-11-05T18:35:37.827Z"
 }
