@@ -1,5 +1,7 @@
 name: Prototype visual review
 on:
+  pull_request:
+    branches: [main]
   workflow_dispatch:
   push:
     branches: [prototype-redesign-review]
