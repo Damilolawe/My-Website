@@ -1,6 +1,6 @@
 {
   "count": 111,
-  "generatedAt": "2026-11-05T19:11:45.560Z",
+  "generatedAt": "2026-11-05T19:17:38.766Z",
   "sites": [
     {
       "slug": "18-steps-dengdeng-noodles",
@@ -63,8 +63,8 @@
       "address": "40 Gold Street, New York, NY 10038",
       "photos": [
         "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1542728928-1413d1894ed1?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -278,14 +278,14 @@
     {
       "slug": "cloud-catering",
       "name": "Cloud Catering",
-      "genre": "creative",
+      "genre": "restaurant",
       "design": 2,
       "area": "Sunnyside",
       "address": "40-11 Skillman Avenue",
       "photos": [
-        "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -648,8 +648,8 @@
       "address": "93 Franklin Street",
       "photos": [
         "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1542728928-1413d1894ed1?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -790,7 +790,7 @@
       "area": "Financial District",
       "address": "40 Gold Street, New York, NY 10038",
       "photos": [
-        "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1519984388953-d2406bc725e1?auto=format&fit=crop&w=1600&q=85"
       ]
@@ -1019,14 +1019,14 @@
     {
       "slug": "oreas-gourmet-juice-bar",
       "name": "Oreas Gourmet Juice Bar",
-      "genre": "sweets",
+      "genre": "coffee",
       "design": 10,
       "area": "Concourse",
       "address": "1091 Ogden Avenue",
       "photos": [
-        "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -1071,14 +1071,14 @@
     {
       "slug": "pies-n-thighs",
       "name": "Pies 'n' Thighs",
-      "genre": "burger",
+      "genre": "restaurant",
       "design": 5,
       "area": "Gowanus",
       "address": "244 Flatbush Avenue",
       "photos": [
-        "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -1201,14 +1201,14 @@
     {
       "slug": "senzu-juice-and-smoothies",
       "name": "Senzu Juice & Smoothies",
-      "genre": "sweets",
+      "genre": "coffee",
       "design": 11,
       "area": "Gowanus",
       "address": "529 Atlantic Avenue",
       "photos": [
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -1271,7 +1271,7 @@
       "area": "Prospect Heights",
       "address": "565 Vanderbilt Avenue",
       "photos": [
-        "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1519984388953-d2406bc725e1?auto=format&fit=crop&w=1600&q=85"
       ]
