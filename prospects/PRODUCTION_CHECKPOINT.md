@@ -88,6 +88,6 @@ Added and deployed five new public concepts: Cultiva Cafe, Hot's Coffee, Nena Sw
 ## Verification IDs
 
 - Branded preview deployment: GitHub Actions run `41966348574` (successful).
-- Desktop visual QA: run `419666?` (successful run shown as Desktop preview visual QA #19; commit `58f8541`).
-- Mobile visual QA: run `419666?` (successful run shown as Mobile preview visual QA #64; commit `7c31d41`).
+- Desktop visual QA: workflow run #19 (successful; commit `58f8541`).
+- Mobile visual QA: workflow run #64 (successful; commit `7c31d41`).
 - The separate production Firebase workflow runs triggered by tracker-only/request commits failed in the existing production pipeline; no production site change was made. The isolated branded preview deployment remained successful.
