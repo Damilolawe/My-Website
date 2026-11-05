@@ -38,7 +38,8 @@ test("branded previews build exactly the allowlisted independent public concepts
  assert.match(landing,/href="\/jj-deli\/"/);
  assert.match(landing,/href="\/chong\/"/);
  for(const slug of ["tbili","la-mestiza","santuario-cafe","le-loup-cafe","duro-market","the-block-coffee","splendid-cafe","cafe-aroma-y-sabor","fiolicchia-bakery","hairby-matty","from-duo","studio-and-story","underscore-glasserie","atma-yoga","four-winds-games", "cultiva-cafe", "hots-coffee", "nena-sweets-cakes", "bier-cheese", "rachels-handmade-cookies", "dovetail-bakery", "smor-carroll-gardens", "caputo-bagels", "swaines-bk", "vibra-bronx", "cafe-mia", "problem-baker-parkslope", "atelier-artist", "prema-fulton", "three-coffee-halletts"]) assert.match(landing,new RegExp('href="/'+slug+'/"'));
- for(const slug of ["kora-bakery","old-mill-cafe","birdee","cafe-pr","latte-da"]) assert.match(landing,new RegExp("href=\\\"/"+slug+"/"));\n assert.match(landing,/noindex,nofollow/);
+ for(const slug of ["kora-bakery","old-mill-cafe","birdee","cafe-pr","latte-da"]) assert.match(landing,new RegExp('href="/'+slug+'/"'));
+ assert.match(landing,/noindex,nofollow/);
  assert.equal(await read("public/robots.txt"),"User-agent: *\nDisallow: /\n");
  for(const path of actual.filter(path=>path.endsWith(".html"))){
   const doc=await read("public/"+path);
