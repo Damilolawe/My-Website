@@ -1,6 +1,6 @@
 {
   "count": 111,
-  "generatedAt": "2026-11-05T18:59:59.899Z",
+  "generatedAt": "2026-11-05T19:11:45.560Z",
   "sites": [
     {
       "slug": "18-steps-dengdeng-noodles",
@@ -1435,14 +1435,14 @@
     {
       "slug": "your-choice-halal-chicken-and-pizza",
       "name": "Your Choice Halal Chicken & Pizza",
-      "genre": "burger",
+      "genre": "restaurant",
       "design": 8,
       "area": "Parkchester",
       "address": "1401 White Plains Road",
       "photos": [
-        "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85"
       ]
     }
   ]
