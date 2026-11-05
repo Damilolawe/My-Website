@@ -133,3 +133,10 @@ Live routes:
 - https://preview.aweconcepts.com/bem-books/
 - https://preview.aweconcepts.com/one-two-one-cafe/
 - https://preview.aweconcepts.com/chique-collective/
+
+
+## All-at-once remaining production — November 5, 2026
+
+The remaining 111 screening records were converted into independent single-page concepts in one repository commit `de176cd85d37c916c382d26214af33c3828f60a0`. Branded deployment run 256 passed. The public landing page now exposes 167 routes; a concurrent HTTP audit checked all 167 routes. All routes returned successfully with authored content, noindex protection and canonical Awe Concepts attribution. One legacy Otaku route uses `noindex, nofollow` spacing rather than the compact metadata string used by the audit; its page remains live and was separately verified after the final image repair.
+
+The master spreadsheet was regenerated and replaced in Library as version 17. It contains 163 prospect records and 163 website-inventory records, with generated routes marked deployed and automated desktop/mobile QA status recorded. Browser screenshot workflows remain in progress because the GitHub runner's Chromium installation is stalled; the fallback audit completed all live routes over HTTP, and a live desktop visual inspection confirmed the generated responsive layout.
