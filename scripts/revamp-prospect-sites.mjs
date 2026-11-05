@@ -4,7 +4,7 @@ import { join } from 'node:path';
 const root = 'preview';
 const SHARED = await readFile('preview/prospect-shared/site.js', 'utf8');
 const { existsSync } = await import('node:fs');
-const decodeHtml = x => String(x ?? '').replace(/&(?:amp|#38);/gi,'&').replace(/&(?:quot|#34);/gi,'"').replace(/&#(?:39|x27);/gi,"'").replace(/&(?:lt|#60);/gi,'<').replace(/&(?:gt|#62);/gi,'>');
+const decodeHtml = x => { let value=String(x ?? ''); for(let i=0;i<6;i++){const next=value.replace(/&(?:amp|#38);/gi,'&').replace(/&(?:quot|#34);/gi,'"').replace(/&#(?:39|x27);/gi,"'").replace(/&(?:lt|#60);/gi,'<').replace(/&(?:gt|#62);/gi,'>'); if(next===value)break; value=next;} return value; };
 const escapeHtml = x => String(x ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const hash = s => [...s].reduce((n,c) => (Math.imul(n,33)+c.charCodeAt(0))>>>0,5381);
 const image = id => 'https://images.unsplash.com/' + id + '?auto=format&fit=crop&w=1600&q=85';
