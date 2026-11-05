@@ -58,6 +58,20 @@ for(const spec of specs){
           return {issues,viewport:vw,scrollWidth:document.documentElement.scrollWidth,images:document.images.length,title:document.title};
         });
         record.issues.push(...metrics.issues);record.metrics=metrics;
+        const contentChecks=await page.evaluate(()=>{
+          const visible=document.body.innerText;
+          const hero=document.querySelector('.hero')?.innerText || '';
+          const photos=[...document.images].map(img=>img.currentSrc);
+          return {visible,hero,photos};
+        });
+        if(/&(?:amp|quot|#38|#34);/i.test(contentChecks.visible))record.issues.push('Visible HTML entity in text');
+        if(['aoko-matcha','jane-s-matcha'].includes(site.slug)){
+          if(!/matcha/i.test(contentChecks.hero))record.issues.push('Matcha business lacks matcha-focused hero copy');
+          if(/coffee, conversation|coffee, community|coffee shop/i.test(contentChecks.visible))record.issues.push('Matcha business has generic coffee messaging');
+          if(contentChecks.photos.some(url=>/photo-1495474472287|photo-1442512595331|photo-1501339847302/.test(url)))record.issues.push('Matcha site contains coffee stock photography');
+        }
+        if(site.slug==='baker-studio' && /photography|photographer|creative studio/i.test(contentChecks.hero))record.issues.push('Baker Studio still presents photography/creative positioning');
+        if((contentChecks.visible.match(/Designed by Awe Concepts/g)||[]).length!==1)record.issues.push('Awe Concepts footer attribution duplicated or missing');
         if(spec.name==='desktop'){
           const banner=await page.evaluate(async()=>{
             const el=document.querySelector('.marquee-track');
