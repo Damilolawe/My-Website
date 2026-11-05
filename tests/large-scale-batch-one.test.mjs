@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
-const slugs = ["tbili", "la-mestiza", "santuario-cafe", "le-loup-cafe", "duro-market", "the-block-coffee", "splendid-cafe", "cafe-aroma-y-sabor", "fiolicchia-bakery", "hairby-matty", "from-duo", "studio-and-story", "underscore-glasserie", "atma-yoga", "four-winds-games", "cultiva-cafe", "hots-coffee", "nena-sweets-cakes", "bier-cheese", "rachels-handmade-cookies", "dovetail-bakery", "smor-carroll-gardens", "caputo-bagels", "swaines-bk", "vibra-bronx", "cafe-mia", "problem-baker-parkslope", "atelier-artist", "prema-fulton", "three-coffee-halletts", "loved-ones-coffee", "worksbynet", "studio-shipley", "hanare-spa", "tiny-topiary", "kora-bakery", "old-mill-cafe", "birdee", "cafe-pr", "latte-da"];
+const slugs = ["tbili", "la-mestiza", "santuario-cafe", "le-loup-cafe", "duro-market", "the-block-coffee", "splendid-cafe", "cafe-aroma-y-sabor", "fiolicchia-bakery", "hairby-matty", "from-duo", "studio-and-story", "underscore-glasserie", "atma-yoga", "four-winds-games", "cultiva-cafe", "hots-coffee", "nena-sweets-cakes", "bier-cheese", "rachels-handmade-cookies", "dovetail-bakery", "smor-carroll-gardens", "caputo-bagels", "swaines-bk", "vibra-bronx", "cafe-mia", "problem-baker-parkslope", "atelier-artist", "prema-fulton", "three-coffee-halletts", "loved-ones-coffee", "worksbynet", "studio-shipley", "hanare-spa", "tiny-topiary", "kora-bakery", "old-mill-cafe", "birdee", "cafe-pr", "latte-da", "studio-ephemera", "loove-labs", "bem-books", "one-two-one-cafe", "chique-collective"];
 
 test("large-scale prospect batches are complete public concepts", async () => {
   for (const slug of slugs) {
