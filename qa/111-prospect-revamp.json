@@ -1,0 +1,1449 @@
+{
+  "count": 111,
+  "generatedAt": "2026-11-05T17:47:15.836Z",
+  "sites": [
+    {
+      "slug": "18-steps-dengdeng-noodles",
+      "name": "18 Steps Dengdeng Noodles",
+      "genre": "asian",
+      "design": 4,
+      "area": "Flushing",
+      "address": "40-09 Prince Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "adda-kitchen",
+      "name": "Adda Kitchen",
+      "genre": "restaurant",
+      "design": 10,
+      "area": "Jackson Heights",
+      "address": "37-11 73 Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "al-aqusa-restaurant",
+      "name": "Al Aqusa Restaurant",
+      "genre": "restaurant",
+      "design": 4,
+      "area": "Bay Ridge",
+      "address": "6917 5 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "anna-bella-pizza-cafe",
+      "name": "Anna Bella Pizza Cafe",
+      "genre": "coffee",
+      "design": 7,
+      "area": "Bay Ridge",
+      "address": "7521 3 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "aoko-matcha",
+      "name": "Aoko Matcha",
+      "genre": "sweets",
+      "design": 2,
+      "area": "Financial District",
+      "address": "40 Gold Street, New York, NY 10038",
+      "photos": [
+        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "argo",
+      "name": "Argo",
+      "genre": "restaurant",
+      "design": 2,
+      "area": "Gravesend",
+      "address": "1985 Coney Island Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "ato-kitchens",
+      "name": "Ato Kitchens",
+      "genre": "restaurant",
+      "design": 7,
+      "area": "Long Island City",
+      "address": "48-18 Northern Boulevard",
+      "photos": [
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "baby-cafe",
+      "name": "Baby Cafe",
+      "genre": "coffee",
+      "design": 11,
+      "area": "Jackson Heights",
+      "address": "74-23 37 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "baker-studio",
+      "name": "Baker Studio",
+      "genre": "wellness",
+      "design": 11,
+      "area": "Hoboken",
+      "address": "1450 Garden Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "barchino",
+      "name": "Barchino",
+      "genre": "pizza",
+      "design": 11,
+      "area": "Jersey City Waterfront",
+      "address": "502 Washington Boulevard",
+      "photos": [
+        "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "below-sro",
+      "name": "Below SRO",
+      "genre": "bar",
+      "design": 11,
+      "area": "Hoboken",
+      "address": "107 10th Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1536935338788846bb9981813?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "bensonhurst-bagels-and-deli",
+      "name": "Bensonhurst Bagels & Deli",
+      "genre": "bakery",
+      "design": 6,
+      "area": "Bensonhurst",
+      "address": "8016 20 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "bk-halal-grill",
+      "name": "BK Halal Grill",
+      "genre": "burger",
+      "design": 8,
+      "area": "Fort Greene",
+      "address": "133 Park Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "blanca-s-bakery",
+      "name": "Blanca's Bakery",
+      "genre": "bakery",
+      "design": 9,
+      "area": "Bensonhurst",
+      "address": "1878 86 Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1608198093002-ad4e005484df?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "brooklyn-billiards",
+      "name": "Brooklyn Billiards",
+      "genre": "entertainment",
+      "design": 8,
+      "area": "Bushwick",
+      "address": "339 Troutman Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "brooklyn-improv",
+      "name": "Brooklyn Improv",
+      "genre": "entertainment",
+      "design": 3,
+      "area": "Williamsburg",
+      "address": "64 North 9 Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "cafe-69-sports-bar",
+      "name": "Cafe 69 Sports Bar",
+      "genre": "coffee",
+      "design": 2,
+      "area": "Woodside",
+      "address": "40-04 69 Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "cali-tajadas-bakery",
+      "name": "Cali Tajadas Bakery",
+      "genre": "bakery",
+      "design": 10,
+      "area": "Bay Ridge",
+      "address": "241 Bay Ridge Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1608198093002-ad4e005484df?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "cana-coffee-and-bakery",
+      "name": "Cana Coffee & Bakery",
+      "genre": "bakery",
+      "design": 4,
+      "area": "Hoboken",
+      "address": "254 9th Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1608198093002-ad4e005484df?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "cemitas-cholula-restaurant",
+      "name": "Cemitas Cholula Restaurant",
+      "genre": "mexican",
+      "design": 6,
+      "area": "Norwood",
+      "address": "679 Allerton Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "chianti-sports-bar-and-restaurant-sugar-and-cake",
+      "name": "Chianti Sports Bar & Restaurant / Sugar & Cake",
+      "genre": "sweets",
+      "design": 9,
+      "area": "Corona",
+      "address": "97-15 37 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "cloud-catering",
+      "name": "Cloud Catering",
+      "genre": "creative",
+      "design": 2,
+      "area": "Sunnyside",
+      "address": "40-11 Skillman Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "desi-zaika",
+      "name": "Desi Zaika",
+      "genre": "restaurant",
+      "design": 7,
+      "area": "Richmond Hill",
+      "address": "118-05 101 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "dubu-hana",
+      "name": "Dubu Hana",
+      "genre": "asian",
+      "design": 6,
+      "area": "Jersey City",
+      "address": "8 Erie Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "dumbo-oyster-bar",
+      "name": "Dumbo Oyster Bar",
+      "genre": "pizza",
+      "design": 9,
+      "area": "DUMBO",
+      "address": "7 Old Fulton Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "dutch-s-express",
+      "name": "Dutch's Express",
+      "genre": "retail",
+      "design": 0,
+      "area": "Jersey City",
+      "address": "270 Grand Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1481437156560-3205f6a55735?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "east-wang",
+      "name": "East Wang",
+      "genre": "asian",
+      "design": 0,
+      "area": "Bensonhurst",
+      "address": "7222 18 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "el-puerto-de-mexico-restaurant",
+      "name": "El Puerto de Mexico Restaurant",
+      "genre": "mexican",
+      "design": 0,
+      "area": "Jamaica",
+      "address": "84-28 Jamaica Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "emerald-cafe",
+      "name": "Emerald Cafe",
+      "genre": "coffee",
+      "design": 7,
+      "area": "Bushwick",
+      "address": "119 Saint Nicholas Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "equis-pica-pollo-de-verdad",
+      "name": "Equis Pica Pollo de Verdad",
+      "genre": "mexican",
+      "design": 10,
+      "area": "Concourse",
+      "address": "1708 MLK Jr Boulevard",
+      "photos": [
+        "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "evelyn-bar-and-kitchen",
+      "name": "Evelyn Bar & Kitchen",
+      "genre": "bar",
+      "design": 9,
+      "area": "Financial District",
+      "address": "11 Hanover Square, New York, NY 10005",
+      "photos": [
+        "https://images.unsplash.com/photo-1536935338788846bb9981813?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "fresh-pizza-and-pasta",
+      "name": "Fresh Pizza and Pasta",
+      "genre": "pizza",
+      "design": 10,
+      "area": "Soundview",
+      "address": "801C Soundview Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "fu-ying",
+      "name": "Fu Ying",
+      "genre": "asian",
+      "design": 8,
+      "area": "Forest Hills",
+      "address": "97-09 Queens Boulevard",
+      "photos": [
+        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "gloria",
+      "name": "Gloria",
+      "genre": "restaurant",
+      "design": 11,
+      "area": "Williamsburg",
+      "address": "544 Union Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "good-taste",
+      "name": "Good Taste",
+      "genre": "asian",
+      "design": 8,
+      "area": "Crown Heights",
+      "address": "235 Kingston Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "good-taste-restaurant-168",
+      "name": "Good Taste Restaurant 168",
+      "genre": "asian",
+      "design": 6,
+      "area": "Sunset Park",
+      "address": "775 50 Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "greens-goods-grill",
+      "name": "Greens, Goods + Grill",
+      "genre": "burger",
+      "design": 9,
+      "area": "Hoboken",
+      "address": "603 Washington Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "grizzly-coffee-and-tea-house",
+      "name": "Grizzly Coffee & Tea House",
+      "genre": "coffee",
+      "design": 1,
+      "area": "Midwood",
+      "address": "992 Coney Island Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "guda",
+      "name": "Guda",
+      "genre": "restaurant",
+      "design": 6,
+      "area": "Brighton Beach",
+      "address": "2027 Emmons Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "guisados-maria",
+      "name": "Guisados Maria",
+      "genre": "mexican",
+      "design": 7,
+      "area": "Bushwick",
+      "address": "1077 Flushing Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "halal-street-eatz",
+      "name": "Halal Street Eatz",
+      "genre": "burger",
+      "design": 4,
+      "area": "Flatbush",
+      "address": "214 Parkside Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "hashi-market",
+      "name": "Hashi Market",
+      "genre": "japanese",
+      "design": 7,
+      "area": "Jersey City",
+      "address": "75 Park Lane South",
+      "photos": [
+        "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "herbie-s-burgers",
+      "name": "Herbie's Burgers",
+      "genre": "burger",
+      "design": 7,
+      "area": "Greenpoint",
+      "address": "160 Huron Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "house-of-amrut",
+      "name": "House of Amrut",
+      "genre": "bar",
+      "design": 5,
+      "area": "Jersey City",
+      "address": "136 Newark Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "hudson-golf",
+      "name": "Hudson Golf",
+      "genre": "entertainment",
+      "design": 7,
+      "area": "Jersey City",
+      "address": "130 Bay Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "isla-and-co",
+      "name": "Isla & Co.",
+      "genre": "restaurant",
+      "design": 9,
+      "area": "Williamsburg",
+      "address": "66 Grand Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "jalopy-theatre",
+      "name": "Jalopy Theatre",
+      "genre": "entertainment",
+      "design": 2,
+      "area": "Red Hook",
+      "address": "315 Columbia Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "jamaica-fried-chicken",
+      "name": "Jamaica Fried Chicken",
+      "genre": "burger",
+      "design": 8,
+      "area": "Jamaica",
+      "address": "176-27 137 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "jamaica-fry-chicken",
+      "name": "Jamaica Fry Chicken",
+      "genre": "burger",
+      "design": 3,
+      "area": "Norwood",
+      "address": "3716 White Plains Road",
+      "photos": [
+        "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "jane-s-matcha",
+      "name": "Jane's Matcha",
+      "genre": "coffee",
+      "design": 10,
+      "area": "Jersey City Heights",
+      "address": "93 Franklin Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "janet-s-pizza",
+      "name": "Janet's Pizza",
+      "genre": "pizza",
+      "design": 6,
+      "area": "Bay Ridge",
+      "address": "8619 4 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "jannat-aden-restaurant",
+      "name": "Jannat Aden Restaurant",
+      "genre": "restaurant",
+      "design": 0,
+      "area": "Brighton Beach",
+      "address": "2620 Avenue Z",
+      "photos": [
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "julieta-taberna",
+      "name": "Julieta Taberna",
+      "genre": "mexican",
+      "design": 5,
+      "area": "Jackson Heights",
+      "address": "37-63 81 Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "kampos-taverna",
+      "name": "Kampos Taverna",
+      "genre": "bar",
+      "design": 6,
+      "area": "Bay Ridge",
+      "address": "8413 3 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "kee-s-chocolates",
+      "name": "Kee's Chocolates",
+      "genre": "sweets",
+      "design": 4,
+      "area": "South Street Seaport",
+      "address": "222 Front Street, New York, NY 10038",
+      "photos": [
+        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "kings-co-imperial",
+      "name": "Kings Co. Imperial",
+      "genre": "asian",
+      "design": 0,
+      "area": "Park Slope",
+      "address": "357 3 Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "kitty-o-shea-s",
+      "name": "Kitty O'Shea's",
+      "genre": "bar",
+      "design": 8,
+      "area": "Jersey City Heights",
+      "address": "49 Beacon Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "kostantina-frozen-yogurt",
+      "name": "Kostantina Frozen Yogurt",
+      "genre": "sweets",
+      "design": 5,
+      "area": "Forest Hills",
+      "address": "72-38 Austin Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "kuttley-house",
+      "name": "Kuttley House",
+      "genre": "coffee",
+      "design": 0,
+      "area": "Greenpoint",
+      "address": "216 Driggs Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "kyan-cafe",
+      "name": "Kyan Cafe",
+      "genre": "coffee",
+      "design": 0,
+      "area": "Bay Ridge",
+      "address": "7603 5 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "kyuramen-express",
+      "name": "Kyuramen Express",
+      "genre": "japanese",
+      "design": 0,
+      "area": "Financial District",
+      "address": "40 Gold Street, New York, NY 10038",
+      "photos": [
+        "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1519984388953-d2406bc725e1?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "l-oranaise",
+      "name": "L'Oranaise",
+      "genre": "restaurant",
+      "design": 0,
+      "area": "Bay Ridge",
+      "address": "8101 5 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "la-bagel-delight",
+      "name": "LA Bagel Delight",
+      "genre": "bakery",
+      "design": 0,
+      "area": "Park Slope",
+      "address": "106 7 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1608198093002-ad4e005484df?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "leanly-ii-chinese-food",
+      "name": "Leanly II Chinese Food",
+      "genre": "asian",
+      "design": 2,
+      "area": "Coney Island",
+      "address": "2406 Mermaid Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "lima-wok-and-bowl",
+      "name": "Lima Wok & Bowl",
+      "genre": "asian",
+      "design": 3,
+      "area": "Greenpoint",
+      "address": "316 McGuinness Boulevard",
+      "photos": [
+        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "loco-cafe",
+      "name": "Loco Cafe",
+      "genre": "coffee",
+      "design": 2,
+      "area": "Greenpoint",
+      "address": "626 Manhattan Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "luana-s-tavern",
+      "name": "Luana's Tavern",
+      "genre": "bar",
+      "design": 7,
+      "area": "Carroll Gardens",
+      "address": "449 Court Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1536935338788846bb9981813?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "lucky-zhang-s-restaurant",
+      "name": "Lucky Zhang's Restaurant",
+      "genre": "asian",
+      "design": 0,
+      "area": "Sunset Park",
+      "address": "5622 8 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "madame-sousou",
+      "name": "Madame Sousou",
+      "genre": "restaurant",
+      "design": 9,
+      "area": "Astoria",
+      "address": "31-05 33 Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "magic-nutrition",
+      "name": "Magic Nutrition",
+      "genre": "wellness",
+      "design": 11,
+      "area": "Corona",
+      "address": "40-08 108 Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "maki",
+      "name": "Maki",
+      "genre": "japanese",
+      "design": 11,
+      "area": "Bedford-Stuyvesant",
+      "address": "19 Bogart Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "marbre",
+      "name": "Marbre",
+      "genre": "bakery",
+      "design": 6,
+      "area": "Gowanus",
+      "address": "186 5 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "minitalia-pizzeria",
+      "name": "Minitalia Pizzeria",
+      "genre": "pizza",
+      "design": 0,
+      "area": "Ridgewood",
+      "address": "66-25 Fresh Pond Road",
+      "photos": [
+        "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "miss-bagel",
+      "name": "Miss Bagel",
+      "genre": "bakery",
+      "design": 1,
+      "area": "Bedford-Stuyvesant",
+      "address": "1351 Fulton Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "mr-fire-bar-and-grill",
+      "name": "Mr. Fire Bar & Grill",
+      "genre": "mexican",
+      "design": 4,
+      "area": "East New York",
+      "address": "3175 Fulton Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "my-life-nutrition",
+      "name": "My Life Nutrition",
+      "genre": "wellness",
+      "design": 9,
+      "area": "Astoria",
+      "address": "45-07 30 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "notable",
+      "name": "Notable",
+      "genre": "restaurant",
+      "design": 6,
+      "area": "Astoria",
+      "address": "25-11 30 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "om-wok",
+      "name": "Om Wok",
+      "genre": "asian",
+      "design": 3,
+      "area": "Astoria",
+      "address": "33-09 36 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "oreas-gourmet-juice-bar",
+      "name": "Oreas Gourmet Juice Bar",
+      "genre": "sweets",
+      "design": 10,
+      "area": "Concourse",
+      "address": "1091 Ogden Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "orion-s",
+      "name": "Orion's",
+      "genre": "restaurant",
+      "design": 8,
+      "area": "Co-op City",
+      "address": "2260 Tillotson Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "pa-nash-eurosoul",
+      "name": "Pa-Nash Eurosoul",
+      "genre": "restaurant",
+      "design": 8,
+      "area": "Cambria Heights",
+      "address": "144-14 243 Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "petaled",
+      "name": "PETALED",
+      "genre": "flowers",
+      "design": 8,
+      "area": "Jersey City Heights",
+      "address": "6 Bleecker Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1457089328109-e5d9bd499191?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1487070183336-b863922373d4?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "pies-n-thighs",
+      "name": "Pies 'n' Thighs",
+      "genre": "restaurant",
+      "design": 5,
+      "area": "Gowanus",
+      "address": "244 Flatbush Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "pilates-addiction",
+      "name": "Pilates Addiction",
+      "genre": "wellness",
+      "design": 11,
+      "area": "Hoboken",
+      "address": "921 Madison Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "rb-bakery-and-cafe",
+      "name": "RB Bakery & Cafe",
+      "genre": "bakery",
+      "design": 8,
+      "area": "Forest Hills",
+      "address": "96-16 Queens Boulevard",
+      "photos": [
+        "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "restaurante-la-plaza-de-tulcingo",
+      "name": "Restaurante La Plaza de Tulcingo",
+      "genre": "mexican",
+      "design": 10,
+      "area": "Concourse",
+      "address": "10 East Clarke Place",
+      "photos": [
+        "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "rey-tacos",
+      "name": "Rey Tacos",
+      "genre": "mexican",
+      "design": 8,
+      "area": "Mott Haven",
+      "address": "626 Melrose Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "rick-s-restaurant",
+      "name": "Rick's Restaurant",
+      "genre": "restaurant",
+      "design": 8,
+      "area": "Bedford-Stuyvesant",
+      "address": "1503 Fulton Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "route-66-smokehouse",
+      "name": "Route 66 Smokehouse",
+      "genre": "burger",
+      "design": 9,
+      "area": "Financial District",
+      "address": "79 Pearl Street, New York, NY 10004",
+      "photos": [
+        "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "royal-canton-seafood-palace",
+      "name": "Royal Canton Seafood Palace",
+      "genre": "asian",
+      "design": 9,
+      "area": "College Point",
+      "address": "20-07 127 Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "sadie-s-bakery",
+      "name": "Sadie's Bakery",
+      "genre": "bakery",
+      "design": 2,
+      "area": "South Street Seaport",
+      "address": "203 Fulton Street, New York, NY 10038",
+      "photos": [
+        "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1608198093002-ad4e005484df?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "santinos-slices-and-italian-ices",
+      "name": "Santinos Slices and Italian Ices",
+      "genre": "sweets",
+      "design": 0,
+      "area": "West Farms",
+      "address": "1671B Boston Road",
+      "photos": [
+        "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "senzu-juice-and-smoothies",
+      "name": "Senzu Juice & Smoothies",
+      "genre": "sweets",
+      "design": 11,
+      "area": "Gowanus",
+      "address": "529 Atlantic Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "shashlik-uz-n1",
+      "name": "Shashlik Uz N1",
+      "genre": "restaurant",
+      "design": 0,
+      "area": "Kensington",
+      "address": "115 Ditmas Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "smash-time-burger-co",
+      "name": "Smash Time Burger Co",
+      "genre": "burger",
+      "design": 0,
+      "area": "Throgs Neck",
+      "address": "4007 East Tremont Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "socotra-restaurant",
+      "name": "Socotra Restaurant",
+      "genre": "restaurant",
+      "design": 10,
+      "area": "Morris Park",
+      "address": "711 Morris Park Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "space-54",
+      "name": "Space 54",
+      "genre": "entertainment",
+      "design": 7,
+      "area": "Maspeth",
+      "address": "54-20 Flushing Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "ssrp-ramen",
+      "name": "SSRP Ramen",
+      "genre": "japanese",
+      "design": 9,
+      "area": "Prospect Heights",
+      "address": "565 Vanderbilt Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1519984388953-d2406bc725e1?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "sugar-pop-candy-bar-pinkberry",
+      "name": "Sugar Pop Candy Bar / Pinkberry",
+      "genre": "sweets",
+      "design": 4,
+      "area": "Gravesend",
+      "address": "512 Kings Highway",
+      "photos": [
+        "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "sur-1st-cafe",
+      "name": "Sur 1st Cafe",
+      "genre": "coffee",
+      "design": 0,
+      "area": "Williamsburg",
+      "address": "338 Wythe Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "surf-city-pizzeria-2",
+      "name": "Surf City Pizzeria 2",
+      "genre": "pizza",
+      "design": 1,
+      "area": "Bensonhurst",
+      "address": "2301 65 Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "sweetness-usa",
+      "name": "Sweetness USA",
+      "genre": "sweets",
+      "design": 0,
+      "area": "Midwood",
+      "address": "1095 Coney Island Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "turbine-cafe",
+      "name": "Turbine Cafe",
+      "genre": "coffee",
+      "design": 2,
+      "area": "Park Slope",
+      "address": "322 3 Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "uncorked-wines",
+      "name": "Uncorked Wines",
+      "genre": "bar",
+      "design": 11,
+      "area": "Hoboken",
+      "address": "1450 Washington Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1536935338788846bb9981813?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "vicoletto",
+      "name": "Vicoletto",
+      "genre": "pizza",
+      "design": 10,
+      "area": "Jersey City",
+      "address": "357 7th Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "wan-chong-shan-xia",
+      "name": "Wan Chong Shan Xia",
+      "genre": "asian",
+      "design": 1,
+      "area": "Flushing",
+      "address": "133-47 Roosevelt Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "wayne-and-sons",
+      "name": "Wayne & Sons",
+      "genre": "restaurant",
+      "design": 9,
+      "area": "Williamsburg",
+      "address": "404 Wythe Avenue",
+      "photos": [
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "wei-zhi-yuan",
+      "name": "Wei Zhi Yuan",
+      "genre": "asian",
+      "design": 8,
+      "area": "Flushing",
+      "address": "141-41 Northern Boulevard",
+      "photos": [
+        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "weng-s-garden",
+      "name": "Weng's Garden",
+      "genre": "asian",
+      "design": 4,
+      "area": "Bedford-Stuyvesant",
+      "address": "872 Hancock Street",
+      "photos": [
+        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "wolf-forest-cafe",
+      "name": "Wolf Forest Cafe",
+      "genre": "coffee",
+      "design": 1,
+      "area": "Financial District",
+      "address": "213 Pearl Street, New York, NY 10038",
+      "photos": [
+        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85"
+      ]
+    },
+    {
+      "slug": "your-choice-halal-chicken-and-pizza",
+      "name": "Your Choice Halal Chicken & Pizza",
+      "genre": "pizza",
+      "design": 8,
+      "area": "Parkchester",
+      "address": "1401 White Plains Road",
+      "photos": [
+        "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85"
+      ]
+    }
+  ]
+}
