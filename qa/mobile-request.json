@@ -1,5 +1,5 @@
 {
   "sites": "all",
-  "requestId": "batch-three-final-live-verification-2026-11-04-2033",
-  "purpose": "Verify all 27 deployed public previews after the third five-site production batch and mobile overflow repair"
+  "requestId": "batch-three-final-postdeploy-mobile-2026-11-04",
+  "purpose": "Final post-deployment mobile verification for all 27 public previews after Underscore viewport repair"
 }
