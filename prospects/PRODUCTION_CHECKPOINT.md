@@ -6,16 +6,16 @@ This file is the authoritative continuation checkpoint for the large-scale prosp
 
 ## Current totals
 
-- Qualified and screening prospects recorded: 138
+- Qualified and screening prospects recorded: 142
 - Previously researched businesses recovered: 19
 - Existing public prototypes recovered: 12
-- Existing prototypes repaired in this cycle: 4
-- New prototypes created in batch one: 5
-- Total public prototype inventory: 17
-- New batch-one desktop QA: passed
-- New batch-one mobile QA: passed on iPhone 13 and Pixel 7
-- Full 17-site mobile re-audit: passed on iPhone 13 and Pixel 7
-- Remaining prospect records without a prototype: 121
+- Existing prototypes repaired in this cycle: 5
+- New prototypes created across three production batches: 15
+- Total public prototype inventory: 27
+- Full desktop QA: passed at 1440×900 and 1920×1080
+- Full mobile QA: passed on iPhone 13 and Pixel 7
+- Remaining screening records without a prototype: 115
+- Confirmed paying clients represented by this tracker: none verified
 
 ## Batch one
 
@@ -27,12 +27,33 @@ This file is the authoritative continuation checkpoint for the large-scale prosp
 | Le Loup Cafe | https://preview.aweconcepts.com/le-loup-cafe/ | Deployed; desktop and mobile QA passed |
 | Duro Market | https://preview.aweconcepts.com/duro-market/ | Deployed; desktop and mobile QA passed |
 
+## Batch two
+
+| Business | Preview | Status |
+| --- | --- | --- |
+| The Block Coffee | https://preview.aweconcepts.com/the-block-coffee/ | Deployed; desktop and mobile QA passed |
+| Splendid Cafe & Pastry | https://preview.aweconcepts.com/splendid-cafe/ | Deployed; desktop and mobile QA passed |
+| Cafe Aroma y Sabor | https://preview.aweconcepts.com/cafe-aroma-y-sabor/ | Deployed; desktop and mobile QA passed |
+| Fiolicchia Bakery NYC | https://preview.aweconcepts.com/fiolicchia-bakery/ | Deployed; desktop and mobile QA passed |
+| Hairby.matty | https://preview.aweconcepts.com/hairby-matty/ | Deployed; desktop and mobile QA passed |
+
+## Batch three
+
+| Business | Preview | Status |
+| --- | --- | --- |
+| From Duo | https://preview.aweconcepts.com/from-duo/ | Deployed; desktop and mobile QA passed |
+| Studio & Story | https://preview.aweconcepts.com/studio-and-story/ | Deployed; desktop and mobile QA passed |
+| Underscore Glasserie | https://preview.aweconcepts.com/underscore-glasserie/ | Deployed; desktop and mobile QA passed |
+| ĀTMĀ Yoga Collective | https://preview.aweconcepts.com/atma-yoga/ | Deployed; desktop and mobile QA passed |
+| Four Winds Games | https://preview.aweconcepts.com/four-winds-games/ | Deployed; desktop and mobile QA passed |
+
 ## Recovered previews repaired in this cycle
 
 - SHOTSBYRIQ: stabilized fragile verified photography assets and updated QA coverage.
 - Jay Millz Shot Em: stabilized the verified personal About portrait.
 - Pace SBDC: replaced a broken accreditation graphic with a responsive text lockup and repaired the small-screen secondary navigation.
 - Susukino: stabilized verified restaurant imagery and protected the gallery against failed media requests.
+- Otaku Haven: removed desktop overflow from decorative hero orbits and the animated marquee while retaining automatic motion.
 
 ## Production rules
 
@@ -44,13 +65,16 @@ This file is the authoritative continuation checkpoint for the large-scale prosp
 - Every public prototype must include the canonical Awe Concepts attribution, noindex metadata, responsive navigation, working actions, reduced-motion support, and desktop/mobile QA.
 - Deploy only through the isolated `awe-concepts-previews` Firebase Hosting target.
 
-## Next queue
+## Remaining queue
 
-Continue individual verification before building. Current research candidates include The Block Coffee, Splendid Cafe and Pastry, Cafe Aroma Y Sabor, Fiolicchia Bakery NYC, and Hairby.matty. Confirm each candidate's current social profile, brand assets, existing website quality, and public contact route before production.
+The remaining 115 records are screening leads, not fully qualified production assignments. Each requires current operating-status, website, social, contact, brand-asset and offering verification before it can move to high priority or receive a prototype. This distinction prevents unverified permit or inspection records from being treated as open businesses.
 
 ## Verification references
 
-- Preview deployment run: https://github.com/Damilolawe/My-Website/actions/runs/41901719724
-- Full mobile QA run: https://github.com/Damilolawe/My-Website/actions/runs/41902579696
-- Latest QA harness commit: `2ca8bc718fd6321e023b320b2bb579e5db30ce6d`
-
+- Final preview deployment: https://github.com/Damilolawe/My-Website/actions/runs/41962531423
+- Final 27-site mobile QA: https://github.com/Damilolawe/My-Website/actions/runs/41962707167
+- Final 27-site desktop QA: https://github.com/Damilolawe/My-Website/actions/runs/41962705455
+- Second-batch source commit: `688446da32fe18186cf1abfb0c9c9a29c982dee4`
+- Third-batch deployment allowlist commit: `28e38b8daca7d2d2a9beafba59f92fec73da7785`
+- Final Underscore mobile repair: `717cb98bd94f590749f5b12266619637b4844ada`
+- Final Otaku desktop repair: `4d87344d4a54310d5a347ddf27f441e99f714b4b`
