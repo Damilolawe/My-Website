@@ -11,7 +11,9 @@ const stock={
  bar:['photo-1514933651103-005eec06c04b','photo-1470337458703-46ad1756a187','photo-1515003197210-e0cd71810b5f'],
  bakery:['photo-1509440159596-0249088772ff','photo-1484723091739-30a097e8f929','photo-1555507036-ab1f4038808a'],
  pizza:['photo-1513104890138-7c749659a591','photo-1579751626657-72bc17010498','photo-1565299624946-b28f40a0ae38'],
- restaurant:['photo-1517248135467-4c7edcad34c4','photo-1414235077428-338989a2e8c0','photo-1559339352-11d035aa65de']
+ restaurant:['photo-1517248135467-4c7edcad34c4','photo-1414235077428-338989a2e8c0','photo-1559339352-11d035aa65de'],
+ mexican:['photo-1551504734-5ee1c4a1479b','photo-1565299585323-38d6b0865b47','photo-1552332386-f8dd00dc2f85'],
+ oyster:['photo-1729269529109-b4254a628dba','photo-1769816042382-969141ce4b67','photo-1517248135467-4c7edcad34c4']
 };
 const tone={
  restaurant:{desc:['A place to gather, connect, and make the next meal a little more memorable.','Good company and a new place to discover: find your next table in the neighborhood.','Every outing begins with a place that catches your eye. Discover the setting and plan your visit.'],heads:['Around the table.','A reason to gather.','Find your place.'],cards:[['The atmosphere','Explore the setting and take a closer look at the space.'],['Food & drink','Visit or contact the business for current menus, offerings, and availability.'],['In the neighborhood','Map the location and discover what is nearby.']]},
@@ -42,13 +44,16 @@ for(const site of manifest.sites){
  if(['cafe-69-sports-bar','chianti-sports-bar-and-restaurant-sugar-and-cake'].includes(site.slug))genre='bar';
  if(['dumbo-oyster-bar','cloud-catering'].includes(site.slug))genre='restaurant';
  if(['oreas-gourmet-juice-bar','senzu-juice-and-smoothies'].includes(site.slug))genre='coffee';
- if(['barchino'].includes(site.slug))genre='bar';
+ if(['barchino'].includes(site.slug))genre='pizza';
+ if(['ato-kitchens'].includes(site.slug))genre='mexican';
  let photos=site.photos;
  if(genre==='matcha')photos=stock.matcha.map((v,i)=>url(stock.matcha[(i+hash(site.slug)%3)%3]));
  if(genre==='asian'&&(/noodle/i.test(site.name)))photos=stock.noodles.map((v,i)=>url(stock.noodles[(i+hash(site.slug)%3)%3]));
  if(genre==='pizza'&&site.genre!=='pizza')photos=stock.pizza.map(url);
  if(genre==='bar'&&site.genre!=='bar')photos=stock.bar.map(url);
  if(genre==='restaurant'&&site.genre!=='restaurant')photos=stock.restaurant.map(url);
+ if(genre==='mexican'&&site.genre!=='mexican')photos=stock.mexican.map(url);
+ if(site.slug==='dumbo-oyster-bar')photos=stock.oyster.map(url);
  if(genre==='coffee'&&site.genre!=='coffee')photos=site.photos.map((v,i)=>url(['photo-1495474472287-4d71bcdd2085','photo-1442512595331-e89e73853f31','photo-1501339847302-ac426a4a7cbb'][i]));
  photos=photos.map(v=>v.replace('photo-1608198093002-ad4e005484df','photo-1509440159596-0249088772ff').replace('photo-1536935338788846bb9981813','photo-1470337458703-46ad1756a187'));
  for(let i=0;i<oldPhotos.length;i++){

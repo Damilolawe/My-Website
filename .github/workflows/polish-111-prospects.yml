@@ -90,10 +90,10 @@ jobs:
           cp artifacts/prospect-111-polished-qa/contact-*.jpg /tmp/awe-prospect-review/
           cp artifacts/prospect-111-polished-qa/qa-results.json /tmp/awe-prospect-review/
           git fetch origin prospect-111-polished-qa || true
-          if git show-ref --verify --quiet refs/remotes/origin/prospect-111-qa; then
-            git switch -C prospect-111-qa origin/prospect-111-qa
+          if git show-ref --verify --quiet refs/remotes/origin/prospect-111-polished-qa; then
+            git switch -C prospect-111-polished-qa origin/prospect-111-polished-qa
           else
-            git switch --orphan prospect-111-qa
+            git switch --orphan prospect-111-polished-qa
             git rm -rf --ignore-unmatch . >/dev/null 2>&1 || true
           fi
           mkdir -p review
@@ -101,7 +101,7 @@ jobs:
           git add -f review/
           if ! git diff --cached --quiet; then
             git commit -m "Publish corrected 111 desktop and mobile contact sheets"
-            git push origin HEAD:prospect-111-qa
+            git push origin HEAD:prospect-111-polished-qa
           fi
       - name: Make visual failures explicit
         if: steps.visual-qa.outcome == 'failure'
