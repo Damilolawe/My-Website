@@ -78,3 +78,8 @@ The remaining 115 records are screening leads, not fully qualified production as
 - Third-batch deployment allowlist commit: `28e38b8daca7d2d2a9beafba59f92fec73da7785`
 - Final Underscore mobile repair: `717cb98bd94f590749f5b12266619637b4844ada`
 - Final Otaku desktop repair: `4d87344d4a54310d5a347ddf27f441e99f714b4b`
+
+
+## Batch four — November 5, 2026
+
+Added and deployed five new public concepts: Cultiva Cafe, Hot's Coffee, Nena Sweets Cakes, The Bier & Cheese Collective, and Rachel's Handmade Cookies. Public preview routes are under `https://preview.aweconcepts.com/`. The tracker now contains 143 records, 32 inventory entries, 20 new sites, and 111 screening records still requiring individual verification.
