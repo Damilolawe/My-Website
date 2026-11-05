@@ -65,8 +65,8 @@ const descriptors = {
 
 // Business-specific creative direction. Never represent illustrative stock as the client's own photography.
 const businessDirections = {
-  'your-choice-halal-chicken-and-pizza': {headline:'Chicken nights. Pizza nights. Your choice.', intro:'A neighborhood kitchen concept with room for halal chicken, pizza and the meals that bring everyone to the table.', genre:'restaurant', terms:['HALAL CHICKEN','PIZZA','YOUR CHOICE'], cards:[['Chicken & more','Give halal chicken and other confirmed kitchen favorites equal space alongside pizza.'],['Pizza for the table','Highlight the pizza side of the menu without reducing the whole restaurant to a pizzeria.'],['Find the kitchen','Help neighbors get directions and plan a visit.']]},
-  'baker-studio': {headline:'Movement with room to breathe.',intro:'A calm, movement-led studio concept with space for verified classes, instructors and booking information.',terms:['MOVEMENT','STUDIO','YOUR PACE']},
+  'your-choice-halal-chicken-and-pizza': {headline:'Chicken nights. Pizza nights. Your choice.', intro:'A neighborhood kitchen concept with room for halal chicken, pizza and the meals that bring everyone to the table.', genre:'restaurant', terms:['HALAL CHICKEN','PIZZA','YOUR CHOICE'], cards:[['Chicken & more','A spotlight on the chicken side of the kitchen.'],['Pizza for the table','Make room for slices and pies alongside the rest of the menu.'],['Find the kitchen','Directions and a simple way to plan your visit.']]},
+  'baker-studio': {headline:'Movement with room to breathe.',intro:'Baker Studio brings together movement and wellness, with yoga, Pilates, meditation and fitness as part of the Baker Health experience.',terms:['YOGA','PILATES','WELLNESS'],cards:[['Yoga & Pilates','Movement-focused classes designed to support strength and balance.'],['Meditation & fitness','A space for both active movement and quieter moments.'],['Explore classes','Discover the studio and find the right class for your day.']]},
   'aoko-matcha': {headline:'Aoko. A moment for matcha.',intro:'A matcha-centered concept with a green-tea-first visual identity and space for verified drinks and shop details.',terms:['AOKO','MATCHA','GREEN TEA']},
   'jane-s-matcha': {headline:'Meet Jane’s matcha moment.',intro:'A green tea-focused neighborhood concept that makes matcha the unmistakable star.',terms:['JANE’S','MATCHA','THE RITUAL']},
   'lima-wok-and-bowl': {headline:'From the wok to the bowl.',intro:'A lively concept built around wok cooking, bowls and an easy route to the restaurant.',terms:['WOK','BOWL','FRESH FLAVOR']},
@@ -81,7 +81,7 @@ const businessDirections = {
   'senzu-juice-and-smoothies': {headline:'A fresh take on your day.',intro:'A juice-and-smoothie concept built around bright ingredients and a refreshing everyday ritual.',terms:['JUICE','SMOOTHIES','FRESH']},
   'oreas-gourmet-juice-bar': {headline:'Good energy, freshly poured.',intro:'A juice-bar concept with a fresh visual direction and room for verified drinks.',terms:['JUICE','FRESH','EVERY DAY']},
   'route-66-smokehouse': {headline:'Bring the smokehouse appetite.',intro:'A smokehouse-inspired concept with room for confirmed barbecue favorites and kitchen details.',terms:['SMOKEHOUSE','FLAVOR','GATHER']},
-  'kyuramen-express': {headline:'Ramen worth making time for.',intro:'A ramen-forward concept built around the bowl and a quick path to the restaurant.',terms:['RAMEN','NOODLES','EXPRESS']},
+  'kyuramen-express': {headline:'Ramen worth making time for.',intro:'A ramen-first concept focused on rich broth, noodles and a satisfying bowl.',terms:['RAMEN','BROTH','NOODLES'],cards:[['The ramen','Put the noodles, broth and toppings at the center of the experience.'],['Find your bowl','Make the ramen offering easy to explore.'],['Visit Kyuramen','Make it simple to find the restaurant.']]},
   'ssrp-ramen': {headline:'All roads lead to ramen.',intro:'A noodle-shop concept centered on ramen and the experience around the bowl.',terms:['RAMEN','BROTH','NOODLES']}
 };
 
@@ -229,6 +229,8 @@ for(const slug of dirs) {
   const photos = [0,1,2].map((_,i)=> image(pick[(Math.floor(h/17)+i)%pick.length]));
   // Mixed-menu restaurant: show distinct food categories instead of a misleading burger-only hero.
   if (slug === 'your-choice-halal-chicken-and-pizza') { photos[0] = image(imgs.restaurant[3]); photos[1] = image(imgs.pizza[1]); photos[2] = image(imgs.restaurant[0]); }
+  // Kyuramen's primary product is ramen, not sushi: force a bowl-first hero and gallery.
+  if (slug === 'kyuramen-express' || slug === 'ssrp-ramen') { photos[0] = image('photo-1569718212165-3a8278d5f624'); photos[1] = image('photo-1555126634-323283e090fa'); photos[2] = image('photo-1519984388953-d2406bc725e1'); }
   // Rotate hero framing and content order by concept, rather than repeating one hero composition.
   const visualMode = h % 4;
   const n = escapeHtml(name), a = escapeHtml(area), t = escapeHtml(type), addr=escapeHtml(address);
