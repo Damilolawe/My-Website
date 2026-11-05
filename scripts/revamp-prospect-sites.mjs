@@ -62,6 +62,29 @@ const descriptors = {
   entertainment:{line:['This is where it happens.','Something worth showing up for.','Gather for the good stuff.','Make every night count.'],intro:'A high-energy concept designed for happenings, community and moments worth sharing.',cards:[['The experience','Put the atmosphere and activity up front.'],['What is next','Room for verified events, schedules and updates.'],['Come through','A clear path from interest to attendance.']],terms:['PLAY','GATHER','EXPERIENCE']},
   flowers:{line:['Life in full color.','A little beauty goes a long way.','For all the moments that bloom.','Bring some color home.'],intro:'An expressive, botanical visual world with space for offerings and meaningful occasions.',cards:[['The collection','Room for verified floral work and offerings.'],['The feeling','Let organic shapes and color tell the story.'],['Stop in','Help visitors find the studio or storefront.']],terms:['BLOOM','COLOR','DISCOVER']}
 };
+
+// Business-specific creative direction. Never represent illustrative stock as the client's own photography.
+const businessDirections = {
+  'your-choice-halal-chicken-and-pizza': {headline:'Chicken nights. Pizza nights. Your choice.', intro:'A neighborhood kitchen concept with room for halal chicken, pizza and the meals that bring everyone to the table.', genre:'burger', terms:['HALAL CHICKEN','PIZZA','YOUR CHOICE'], cards:[['Chicken & more','Give halal chicken and other confirmed kitchen favorites equal space alongside pizza.'],['Pizza for the table','Highlight the pizza side of the menu without reducing the whole restaurant to a pizzeria.'],['Find the kitchen','Help neighbors get directions and plan a visit.']]},
+  'baker-studio': {headline:'Movement with room to breathe.',intro:'A calm, movement-led studio concept with space for verified classes, instructors and booking information.',terms:['MOVEMENT','STUDIO','YOUR PACE']},
+  'aoko-matcha': {headline:'Aoko. A moment for matcha.',intro:'A matcha-centered concept with a green-tea-first visual identity and space for verified drinks and shop details.',terms:['AOKO','MATCHA','GREEN TEA']},
+  'jane-s-matcha': {headline:'Meet Jane’s matcha moment.',intro:'A green tea-focused neighborhood concept that makes matcha the unmistakable star.',terms:['JANE’S','MATCHA','THE RITUAL']},
+  'lima-wok-and-bowl': {headline:'From the wok to the bowl.',intro:'A lively concept built around wok cooking, bowls and an easy route to the restaurant.',terms:['WOK','BOWL','FRESH FLAVOR']},
+  'brooklyn-billiards': {headline:'Rack up a Brooklyn night.',intro:'A pool-hall concept focused on games, friends and the energy around the table.',terms:['BILLIARDS','BROOKLYN','PLAY']},
+  'brooklyn-improv': {headline:'No script. Just Brooklyn.',intro:'A performance-first concept with room for confirmed shows, classes and ticket links.',terms:['IMPROV','COMEDY','LIVE']},
+  'hudson-golf': {headline:'Make the next round count.',intro:'A golf-focused destination concept with space for verified experiences, reservations and events.',terms:['GOLF','PLAY','HUDSON']},
+  'jalopy-theatre': {headline:'The stage belongs to the story.',intro:'An intimate live-performance concept built for upcoming shows, music and community.',terms:['LIVE MUSIC','THEATRE','COMMUNITY']},
+  'petaled': {headline:'Something beautiful is growing.',intro:'A floral concept celebrating thoughtful arrangements and the occasions they mark.',terms:['FLOWERS','PETALS','OCCASIONS']},
+  'kee-s-chocolates': {headline:'A little chocolate goes a long way.',intro:'A chocolate-forward concept with space for confirmed collections, gifting and special occasions.',terms:['CHOCOLATE','GIFTING','SMALL JOYS']},
+  'pilates-addiction': {headline:'Find your strength in motion.',intro:'A Pilates-focused concept designed around movement, classes and a welcoming studio experience.',terms:['PILATES','STRENGTH','MOVEMENT']},
+  'uncorked-wines': {headline:'Find a bottle worth sharing.',intro:'A wine-shop concept that puts discovery, selection and a neighborhood visit first.',terms:['WINE','DISCOVERY','NEIGHBORHOOD']},
+  'senzu-juice-and-smoothies': {headline:'A fresh take on your day.',intro:'A juice-and-smoothie concept built around bright ingredients and a refreshing everyday ritual.',terms:['JUICE','SMOOTHIES','FRESH']},
+  'oreas-gourmet-juice-bar': {headline:'Good energy, freshly poured.',intro:'A juice-bar concept with a fresh visual direction and room for verified drinks.',terms:['JUICE','FRESH','EVERY DAY']},
+  'route-66-smokehouse': {headline:'Bring the smokehouse appetite.',intro:'A smokehouse-inspired concept with room for confirmed barbecue favorites and kitchen details.',terms:['SMOKEHOUSE','FLAVOR','GATHER']},
+  'kyuramen-express': {headline:'Ramen worth making time for.',intro:'A ramen-forward concept built around the bowl and a quick path to the restaurant.',terms:['RAMEN','NOODLES','EXPRESS']},
+  'ssrp-ramen': {headline:'All roads lead to ramen.',intro:'A noodle-shop concept centered on ramen and the experience around the bowl.',terms:['RAMEN','BROTH','NOODLES']}
+};
+
 function category(str) {
   const s = str.toLowerCase();
   if (/flor|flower|plant|topiary|petal/.test(s)) return 'flowers';
@@ -95,14 +118,17 @@ for(const slug of dirs) {
   const [area,...typeParts] = eyebrow.split(' / ');
   const type = typeParts.join(' / ') || 'Neighborhood destination';
   const overrides = {'jane-s-matcha':'matcha','senzu-juice-and-smoothies':'sweets','oreas-gourmet-juice-bar':'sweets','baker-studio':'wellness','cloud-catering':'creative','hashi-market':'retail','uncorked-wines':'retail','greens-goods-grill':'restaurant','aoko-matcha':'matcha','anna-bella-pizza-cafe':'pizza','cafe-69-sports-bar':'bar','chianti-sports-bar-and-restaurant-sugar-and-cake':'bar','dumbo-oyster-bar':'restaurant','santinos-slices-and-italian-ices':'pizza','julieta-taberna':'bar','mr-fire-bar-and-grill':'bar','kampos-taverna':'restaurant','pies-n-thighs':'burger','bensonhurst-bagels-and-deli':'bakery'};
-  const genre = overrides[slug] || category(type + ' ' + slug);
+  const direction = businessDirections[slug] || {};
+  const genre = direction.genre || overrides[slug] || category(type + ' ' + slug);
   const h = hash(slug);
   const design = h % 12;
   const scheme = palettes[genre][Math.floor(h/13)%palettes[genre].length];
-  const mood = descriptors[genre];
-  const headline = mood.line[Math.floor(h/47)%mood.line.length];
+  const mood = {...descriptors[genre], ...direction};
+  const headline = direction.headline || mood.line[Math.floor(h/47)%mood.line.length];
   const pick = imgs[genre];
   const photos = [0,1,2].map((_,i)=> image(pick[(Math.floor(h/17)+i)%pick.length]));
+  // Rotate hero framing and content order by concept, rather than repeating one hero composition.
+  const visualMode = h % 4;
   const n = escapeHtml(name), a = escapeHtml(area), t = escapeHtml(type), addr=escapeHtml(address);
   const intro = escapeHtml(mood.intro);
   const loc = address ? (/new york|brooklyn|queens|bronx|staten island|\bNY\b/i.test(address) ? address : address + ', New York') : area + ', New York';
@@ -115,7 +141,7 @@ for(const slug of dirs) {
   '<title>'+n+' | Independent Website Concept</title><link rel="preconnect" href="https://images.unsplash.com">',
   '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
   '<link rel="stylesheet" href="./styles.css"><script defer src="./site.js"></script></head>',
-  '<body class="concept variant-'+design+'"><a class="skip" href="#main">Skip to content</a>',
+  '<body class="concept variant-'+design+' visual-mode-'+visualMode+'"><a class="skip" href="#main">Skip to content</a>',
   '<div class="concept-notice">Independent design concept for '+n+' <span>Not the business&rsquo;s official website</span></div>',
   '<header class="site-header"><a class="wordmark" href="#top" aria-label="'+n+' home">'+mark+'</a>',
   '<button class="menu-toggle" data-menu type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><span></span><span></span></button>',
@@ -148,6 +174,7 @@ for(const slug of dirs) {
   ][Math.floor(h/7)%6];
   const fontSize = name.length>42?'clamp(3rem,5.2vw,5.5rem)':name.length>26?'clamp(3.5rem,6.4vw,7.3rem)':'clamp(4.1rem,8.5vw,10rem)';
   const css = [
+  '.visual-mode-1 .hero-media .frame{transform:rotate(-2deg);box-shadow:18px 18px 0 var(--accent)}.visual-mode-2 .hero-media .frame{border-radius:220px 220px 12px 12px}.visual-mode-3 .hero-media .frame{border:12px solid var(--paper);box-shadow:0 28px 70px #0002}.visual-mode-1 .photo-b{transform:translateY(-24px)}.visual-mode-2 .photo-a{border-radius:50% 50% 8px 8px}.visual-mode-3 .photo-b{border-radius:120px 120px 0 0}',
   ':root{--paper:'+scheme[0]+';--ink:'+scheme[1]+';--accent:'+scheme[2]+';--muted:'+scheme[3]+';--headline:'+fonts[0]+';--body:'+fonts[1]+';--hero-size:'+fontSize+';--radius:'+([0,20,80,12,120,3][h%6])+'px}',
   '*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--body);overflow-x:clip}img{display:block;width:100%;max-width:100%;object-fit:cover}a{color:inherit}button{font:inherit}a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:4px}.skip{position:absolute;left:-9999px;top:8px;z-index:100;background:var(--accent);color:var(--ink);padding:10px}.skip:focus{left:8px}',
   '.concept-notice{font:500 10px/1.5 var(--body);letter-spacing:.065em;text-align:center;padding:7px 18px;background:var(--ink);color:var(--paper)}.concept-notice span{opacity:.72;margin-left:12px}.site-header{position:relative;z-index:20;min-height:88px;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,88px);border-bottom:1px solid currentColor;background:var(--paper)}.wordmark{font:800 clamp(19px,2.1vw,30px)/1.04 var(--headline);letter-spacing:-.035em;text-decoration:none;max-width:min(45%,470px);overflow-wrap:anywhere}.site-nav{display:flex;align-items:center;gap:clamp(16px,2.8vw,42px)}.site-nav a{font:600 11px/1.2 var(--body);text-decoration:none;text-transform:uppercase;letter-spacing:.09em}.site-nav a:hover{text-decoration:underline;text-underline-offset:5px}.site-nav .nav-button{background:var(--accent);color:var(--paper);padding:15px 20px;text-decoration:none}.menu-toggle{display:none}',
