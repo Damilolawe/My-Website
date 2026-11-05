@@ -58,6 +58,18 @@ for(const spec of specs){
           return {issues,viewport:vw,scrollWidth:document.documentElement.scrollWidth,images:document.images.length,title:document.title};
         });
         record.issues.push(...metrics.issues);record.metrics=metrics;
+        if(spec.name==='desktop'){
+          const banner=await page.evaluate(async()=>{
+            const el=document.querySelector('.marquee-track');
+            if(!el)return {ok:false,reason:'Missing marquee track'};
+            const before=el.getBoundingClientRect().left;
+            await new Promise(resolve=>setTimeout(resolve,900));
+            const after=el.getBoundingClientRect().left;
+            return {ok:Math.abs(after-before)>2,delta:after-before,width:el.getBoundingClientRect().width};
+          });
+          record.banner=banner;
+          if(!banner.ok)record.issues.push('Desktop banner not visibly moving: '+JSON.stringify(banner));
+        }
         if(spec.name==='mobile'){
           const menu=page.locator('[data-menu]');
           await menu.click();
