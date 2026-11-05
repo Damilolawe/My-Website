@@ -4,10 +4,12 @@ import { join } from 'node:path';
 const root = 'preview';
 const SHARED = await readFile('preview/prospect-shared/site.js', 'utf8');
 const { existsSync } = await import('node:fs');
+const decodeHtml = x => String(x ?? '').replace(/&(?:amp|#38);/gi,'&').replace(/&(?:quot|#34);/gi,'"').replace(/&#(?:39|x27);/gi,"'").replace(/&(?:lt|#60);/gi,'<').replace(/&(?:gt|#62);/gi,'>');
 const escapeHtml = x => String(x ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const hash = s => [...s].reduce((n,c) => (Math.imul(n,33)+c.charCodeAt(0))>>>0,5381);
 const image = id => 'https://images.unsplash.com/' + id + '?auto=format&fit=crop&w=1600&q=85';
 const imgs = {
+  matcha:['photo-1515823064-d6e0c04616a7','photo-1515823064-d6e0c04616a7','photo-1515823064-d6e0c04616a7','photo-1515823064-d6e0c04616a7'],
   coffee:['photo-1495474472287-4d71bcdd2085','photo-1442512595331-e89e73853f31','photo-1501339847302-ac426a4a7cbb','photo-1521017432531-fbd92d768814'],
   bakery:['photo-1509440159596-0249088772ff','photo-1484723091739-30a097e8f929','photo-1509440159596-0249088772ff','photo-1555507036-ab1f4038808a'],
   sweets:['photo-1578985545062-69928b1d9587','photo-1488477181946-6428a0291777','photo-1551024506-0bccd828d307','photo-1563805042-7684c019e1cb'],
@@ -25,6 +27,7 @@ const imgs = {
   flowers:['photo-1490750967868-88aa4486c946','photo-1457089328109-e5d9bd499191','photo-1487070183336-b863922373d4','photo-1468327768560-75b778cbb551']
 };
 const palettes = {
+  matcha:[['#e8efdf','#263a2b','#688a45','#72846a'],['#203c2e','#f1f4e4','#a3c575','#b0c5a5'],['#f1f1e1','#29412d','#8da94f','#6d806b']],
   coffee:[['#f6efe4','#37251d','#ae482b','#6b5a51'],['#161e1b','#f4eedf','#becc8b','#a7aaa0'],['#e7d5bd','#2a251f','#6f4429','#75675c']],
   bakery:[['#fff2df','#4b281f','#d1593a','#8b6d57'],['#e5d5b2','#2a251e','#946733','#60574d'],['#40251f','#ffebd2','#e8a35b','#cfb9a8']],
   sweets:[['#fbebf1','#47273b','#b64078','#8c6177'],['#4a2146','#fff0df','#d992b3','#dfbed0'],['#f6dbbb','#623c44','#db5971','#866067']],
@@ -42,6 +45,7 @@ const palettes = {
   flowers:[['#f1e5da','#314d3d','#bd7487','#758575'],['#24392e','#fae8de','#e5b1c5','#a5b9ab'],['#fbf0e1','#463a39','#bd774f','#827773']]
 };
 const descriptors = {
+  matcha:{line:['A greener kind of ritual.','Made for the matcha moment.','Slow down. Sip something green.','A little calm in every cup.'],intro:'A matcha-first concept celebrating green tea, careful preparation and everyday rituals.',cards:[['The matcha','Space to showcase verified matcha drinks and preparation.'],['The ritual','A thoughtful introduction to the atmosphere and experience.'],['Find us','A simple path to the storefront.']],terms:['MATCHA','GREEN TEA','THE RITUAL']},
   coffee:{line:['A daily ritual, made your own.','Good days start somewhere.','Meet me over something warm.','Find a moment worth keeping.'],intro:'Coffee, conversation and the in-between moments deserve an inviting place online.',cards:[['The ritual','A first look at the drinks, the energy and the moments that bring people together.'],['A place to pause','A visual introduction designed to feel as welcoming as a familiar neighborhood stop.'],['Find your way','An easy path from discovery to the front door.']],terms:['COFFEE','COMMUNITY','MORNINGS']},
   bakery:{line:['Made for the good part of the day.','Good things take shape here.','A little more to look forward to.','The neighborhood deserves a treat.'],intro:'A warm, tactile digital home built around the pleasure of discovering a neighborhood bakery.',cards:[['The bake','Room to spotlight the bakery’s signature goods as details are confirmed.'],['Little moments','An inviting first impression, from everyday visits to special occasions.'],['Stop by','Practical location details without the clutter.']],terms:['BAKED','FRESH','LOCAL']},
   sweets:{line:['Make room for something sweet.','Worth celebrating the little things.','A sweet spot in the city.','The good part, in every detail.'],intro:'A playful visual identity with room to show sweets, gifting and the joy of an everyday treat.',cards:[['The treats','A future home for verified flavors, favorites and seasonal offerings.'],['The occasion','Make the small celebrations feel just as special as the big ones.'],['The visit','Everything guests need to find the storefront.']],terms:['SWEET','CELEBRATE','DISCOVER']},
@@ -84,13 +88,13 @@ for(const slug of dirs) {
   let source;
   try { source=await readFile(join(dir,'index.html'),'utf8'); } catch { continue; }
   if(!(source.includes('This independent study organizes the business story') && source.includes('AWE / CONCEPT')) && !source.includes('Independent Website Concept</title>')) continue;
-  const name = source.match(/<h1>([^<]+)<\/h1>/)?.[1];
-  const eyebrow = source.match(/<p class="eyebrow">([^<]+)<\/p>/)?.[1] || source.match(/<p class="overline"><span class="line"><\/span>([^<]+)<\/p>/)?.[1];
-  const address = source.match(/<section id="visit"[\s\S]*?<h2>[^<]*<\/h2><p>([^<]+)<\/p>/)?.[1] || source.match(/<p class="closing-location">[\s\S]*?<\/span>([^<]*)<\/p>/)?.[1] || '';
+  const name = decodeHtml(source.match(/<h1>([^<]+)<\/h1>/)?.[1]);
+  const eyebrow = decodeHtml(source.match(/<p class="eyebrow">([^<]+)<\/p>/)?.[1] || source.match(/<p class="overline"><span class="line"><\/span>([^<]+)<\/p>/)?.[1]);
+  const address = decodeHtml(source.match(/<section id="visit"[\s\S]*?<h2>[^<]*<\/h2><p>([^<]+)<\/p>/)?.[1] || source.match(/<p class="closing-location">[\s\S]*?<\/span>([^<]*)<\/p>/)?.[1] || '');
   if(!name || !eyebrow) throw new Error('Missing business metadata for ' + slug);
   const [area,...typeParts] = eyebrow.split(' / ');
   const type = typeParts.join(' / ') || 'Neighborhood destination';
-  const overrides = {'jane-s-matcha':'coffee','senzu-juice-and-smoothies':'sweets','oreas-gourmet-juice-bar':'sweets','baker-studio':'creative','cloud-catering':'creative','hashi-market':'retail','uncorked-wines':'retail','greens-goods-grill':'restaurant','aoko-matcha':'coffee','anna-bella-pizza-cafe':'pizza','cafe-69-sports-bar':'bar','chianti-sports-bar-and-restaurant-sugar-and-cake':'bar','dumbo-oyster-bar':'restaurant','santinos-slices-and-italian-ices':'pizza','julieta-taberna':'bar','mr-fire-bar-and-grill':'bar','kampos-taverna':'restaurant','pies-n-thighs':'burger','bensonhurst-bagels-and-deli':'bakery'};
+  const overrides = {'jane-s-matcha':'matcha','senzu-juice-and-smoothies':'sweets','oreas-gourmet-juice-bar':'sweets','baker-studio':'wellness','cloud-catering':'creative','hashi-market':'retail','uncorked-wines':'retail','greens-goods-grill':'restaurant','aoko-matcha':'matcha','anna-bella-pizza-cafe':'pizza','cafe-69-sports-bar':'bar','chianti-sports-bar-and-restaurant-sugar-and-cake':'bar','dumbo-oyster-bar':'restaurant','santinos-slices-and-italian-ices':'pizza','julieta-taberna':'bar','mr-fire-bar-and-grill':'bar','kampos-taverna':'restaurant','pies-n-thighs':'burger','bensonhurst-bagels-and-deli':'bakery'};
   const genre = overrides[slug] || category(type + ' ' + slug);
   const h = hash(slug);
   const design = h % 12;
