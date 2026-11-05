@@ -370,7 +370,7 @@ test("all deployed pages reference the current animation revision, not stale cac
   "shotsbyriq/index.html","jay-millz-shot-em/index.html"];
  for(const page of pages){
   const html=await read("public/"+page);
-  const expectedRevision=page.startsWith("otaku-haven/") ? "motion-20261105-stockfix2" : /^(?:shotsbyriq|jay-millz-shot-em)\//.test(page) ? "repair-20261104-1" : "motion-20261102";
+  const expectedRevision=page.startsWith("otaku-haven/") ? "motion-20261105-stockfix3" : /^(?:shotsbyriq|jay-millz-shot-em)\//.test(page) ? "repair-20261104-1" : "motion-20261102";
   assert.ok(html.includes("styles.css?v="+expectedRevision),page+" stylesheet cache-bust");
   assert.ok(html.includes("site.js?v="+expectedRevision),page+" script cache-bust");
  }
@@ -500,8 +500,8 @@ test("Otaku Haven ticker automatically scrolls on every screen without pause con
  assert.doesNotMatch(html,/EVERY LEGEND<br>STARTS AT/);
  assert.match(html,/class="ticker-track"/);
  assert.doesNotMatch(html,/ticker-motion-toggle|PLAY MOTION|PAUSE MOTION/);
- assert.match(html,/styles\.css\?v=motion-20261105-stockfix2/);
- assert.match(html,/site\.js\?v=motion-20261105-stockfix2/);
+ assert.match(html,/styles\.css\?v=motion-20261105-stockfix3/);
+ assert.match(html,/site\.js\?v=motion-20261105-stockfix3/);
  assert.match(css,/ticker-loop-offset/);
  assert.match(css,/\.ticker-track\{[^}]*animation:marquee [^;]+ linear infinite/);
  assert.match(css,/@media\(prefers-reduced-motion:reduce\)\{\.ticker \.ticker-track\{animation:marquee [^}]+!important\}\}/);
