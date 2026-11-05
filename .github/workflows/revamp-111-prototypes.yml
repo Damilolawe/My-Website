@@ -8,6 +8,7 @@ permissions:
 jobs:
   screenshots:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -15,10 +16,19 @@ jobs:
           node-version: '22'
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: node scripts/revamp-prospect-sites.mjs
-      - run: node scripts/qa-111-prototypes.mjs
-      - uses: actions/upload-artifact@v4
+      - name: Generate all 111 redesigns
+        run: node scripts/revamp-prospect-sites.mjs
+      - name: Build deployable previews
+        run: node scripts/build-branded-previews.mjs
+      - name: Run desktop and mobile visual checks
+        run: node scripts/qa-111-prototypes.mjs
+      - name: Upload redesigned website files and screenshots
         if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: prototype-screenshots
-          path: qa/111-prototype-screenshots/
+          name: awe-111-redesigns-and-screenshots
+          path: |
+            preview/
+            artifacts/prospect-111-qa/
+            qa/111-prospect-revamp.json
+          retention-days: 14
