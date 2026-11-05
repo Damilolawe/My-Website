@@ -3,12 +3,13 @@ import { join } from 'node:path';
 
 const root = 'preview';
 const SHARED = await readFile('preview/prospect-shared/site.js', 'utf8');
+const { existsSync } = await import('node:fs');
 const escapeHtml = x => String(x ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const hash = s => [...s].reduce((n,c) => (Math.imul(n,33)+c.charCodeAt(0))>>>0,5381);
 const image = id => 'https://images.unsplash.com/' + id + '?auto=format&fit=crop&w=1600&q=85';
 const imgs = {
   coffee:['photo-1495474472287-4d71bcdd2085','photo-1442512595331-e89e73853f31','photo-1501339847302-ac426a4a7cbb','photo-1521017432531-fbd92d768814'],
-  bakery:['photo-1509440159596-0249088772ff','photo-1484723091739-30a097e8f929','photo-1608198093002-ad4e005484df','photo-1555507036-ab1f4038808a'],
+  bakery:['photo-1509440159596-0249088772ff','photo-1484723091739-30a097e8f929','photo-1509440159596-0249088772ff','photo-1555507036-ab1f4038808a'],
   sweets:['photo-1578985545062-69928b1d9587','photo-1488477181946-6428a0291777','photo-1551024506-0bccd828d307','photo-1563805042-7684c019e1cb'],
   restaurant:['photo-1517248135467-4c7edcad34c4','photo-1414235077428-338989a2e8c0','photo-1559339352-11d035aa65de','photo-1547592180-85f173990554'],
   pizza:['photo-1513104890138-7c749659a591','photo-1579751626657-72bc17010498','photo-1565299624946-b28f40a0ae38','photo-1593560708920-61dd98c46a4e'],
@@ -16,7 +17,7 @@ const imgs = {
   asian:['photo-1563245372-f21724e3856d','photo-1546069901-ba9599a7e63c','photo-1552566626-52f8b828add9','photo-1512058564366-18510be2db19'],
   mexican:['photo-1551504734-5ee1c4a1479b','photo-1565299585323-38d6b0865b47','photo-1552332386-f8dd00dc2f85','photo-1547592166-23ac45744acd'],
   burger:['photo-1568901346375-23c9450c58cd','photo-1550547660-d9450f859349','photo-1571091718767-18b5b1457add','photo-1551782450-a2132b4ba21d'],
-  bar:['photo-1514933651103-005eec06c04b','photo-1470337458703-46ad1756a187','photo-1536935338788846bb9981813','photo-1515003197210-e0cd71810b5f'],
+  bar:['photo-1514933651103-005eec06c04b','photo-1470337458703-46ad1756a187','photo-1470337458703-46ad1756a187','photo-1515003197210-e0cd71810b5f'],
   wellness:['photo-1544367567-0f2fcb009e0b','photo-1540555700478-4be289fbecef','photo-1518611012118-696072aa579a','photo-1506126613408-eca07ce68773'],
   creative:['photo-1513364776144-60967b0f800f','photo-1497366811353-6870744d04b2','photo-1542038784456-1ea8e935640e','photo-1503602642458-232111445657'],
   retail:['photo-1441986300917-64674bd600d8','photo-1473186578172-c141e6798cf4','photo-1490481651871-ab68de25d43d','photo-1481437156560-3205f6a55735'],
@@ -81,14 +82,15 @@ for(const slug of dirs) {
   const dir = join(root, slug);
   let source;
   try { source=await readFile(join(dir,'index.html'),'utf8'); } catch { continue; }
-  if(!source.includes('This independent study organizes the business story') || !source.includes('AWE / CONCEPT')) continue;
+  if(!(source.includes('This independent study organizes the business story') && source.includes('AWE / CONCEPT')) && !source.includes('Independent Website Concept</title>')) continue;
   const name = source.match(/<h1>([^<]+)<\/h1>/)?.[1];
-  const eyebrow = source.match(/<p class="eyebrow">([^<]+)<\/p>/)?.[1];
-  const address = source.match(/<section id="visit"[\s\S]*?<h2>[^<]*<\/h2><p>([^<]+)<\/p>/)?.[1] || '';
+  const eyebrow = source.match(/<p class="eyebrow">([^<]+)<\/p>/)?.[1] || source.match(/<p class="overline"><span class="line"><\/span>([^<]+)<\/p>/)?.[1];
+  const address = source.match(/<section id="visit"[\s\S]*?<h2>[^<]*<\/h2><p>([^<]+)<\/p>/)?.[1] || source.match(/<p class="closing-location">[\s\S]*?<\/span>([^<]*)<\/p>/)?.[1] || '';
   if(!name || !eyebrow) throw new Error('Missing business metadata for ' + slug);
   const [area,...typeParts] = eyebrow.split(' / ');
   const type = typeParts.join(' / ') || 'Neighborhood destination';
-  const genre = category(type + ' ' + slug);
+  const overrides = {'aoko-matcha':'coffee','anna-bella-pizza-cafe':'pizza','cafe-69-sports-bar':'bar','chianti-sports-bar-and-restaurant-sugar-and-cake':'bar','dumbo-oyster-bar':'restaurant','santinos-slices-and-italian-ices':'pizza','julieta-taberna':'bar','mr-fire-bar-and-grill':'bar','kampos-taverna':'restaurant','pies-n-thighs':'burger','bensonhurst-bagels-and-deli':'bakery'};
+  const genre = overrides[slug] || category(type + ' ' + slug);
   const h = hash(slug);
   const design = h % 12;
   const scheme = palettes[genre][Math.floor(h/13)%palettes[genre].length];
@@ -98,7 +100,7 @@ for(const slug of dirs) {
   const photos = [0,1,2].map((_,i)=> image(pick[(Math.floor(h/17)+i)%pick.length]));
   const n = escapeHtml(name), a = escapeHtml(area), t = escapeHtml(type), addr=escapeHtml(address);
   const intro = escapeHtml(mood.intro);
-  const loc = address ? address + ', New York' : area + ', New York';
+  const loc = address ? (/new york|brooklyn|queens|bronx|staten island|\bNY\b/i.test(address) ? address : address + ', New York') : area + ', New York';
   const map = 'https://www.google.com/maps/search/?api=1&amp;query=' + encodeURIComponent(loc);
   const summary = escapeHtml(name + ' - ' + type + ' in ' + area + '. Independent website design proposal.');
   const mark = escapeHtml(name.length>29 ? name.split(' ').slice(0,3).join(' ') : name);
