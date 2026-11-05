@@ -10,9 +10,9 @@
       "area": "Flushing",
       "address": "40-09 Prince Street",
       "photos": [
-        "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1657457320616-dad53ad0f038?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1725325514130-a48d295a09e4?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -44,27 +44,27 @@
     {
       "slug": "anna-bella-pizza-cafe",
       "name": "Anna Bella Pizza Cafe",
-      "genre": "coffee",
+      "genre": "pizza",
       "design": 7,
       "area": "Bay Ridge",
       "address": "7521 3 Avenue",
       "photos": [
-        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
       "slug": "aoko-matcha",
       "name": "Aoko Matcha",
-      "genre": "sweets",
+      "genre": "matcha",
       "design": 2,
       "area": "Financial District",
       "address": "40 Gold Street, New York, NY 10038",
       "photos": [
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1759363580278-058211df7102?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1751563721808-3b81940b88f7?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1775846933630-3c1531299e5a?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -122,14 +122,14 @@
     {
       "slug": "barchino",
       "name": "Barchino",
-      "genre": "pizza",
+      "genre": "bar",
       "design": 11,
       "area": "Jersey City Waterfront",
       "address": "502 Washington Boulevard",
       "photos": [
-        "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -142,7 +142,7 @@
       "photos": [
         "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1536935338788846bb9981813?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -181,7 +181,7 @@
       "photos": [
         "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1608198093002-ad4e005484df?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -213,14 +213,14 @@
     {
       "slug": "cafe-69-sports-bar",
       "name": "Cafe 69 Sports Bar",
-      "genre": "coffee",
+      "genre": "bar",
       "design": 2,
       "area": "Woodside",
       "address": "40-04 69 Street",
       "photos": [
-        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -232,7 +232,7 @@
       "address": "241 Bay Ridge Avenue",
       "photos": [
         "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1608198093002-ad4e005484df?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1600&q=85"
       ]
     },
@@ -246,7 +246,7 @@
       "photos": [
         "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1608198093002-ad4e005484df?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -265,27 +265,27 @@
     {
       "slug": "chianti-sports-bar-and-restaurant-sugar-and-cake",
       "name": "Chianti Sports Bar & Restaurant / Sugar & Cake",
-      "genre": "sweets",
+      "genre": "bar",
       "design": 9,
       "area": "Corona",
       "address": "97-15 37 Avenue",
       "photos": [
-        "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
       "slug": "cloud-catering",
       "name": "Cloud Catering",
-      "genre": "creative",
+      "genre": "restaurant",
       "design": 2,
       "area": "Sunnyside",
       "address": "40-11 Skillman Avenue",
       "photos": [
-        "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -317,14 +317,14 @@
     {
       "slug": "dumbo-oyster-bar",
       "name": "Dumbo Oyster Bar",
-      "genre": "pizza",
+      "genre": "restaurant",
       "design": 9,
       "area": "DUMBO",
       "address": "7 Old Fulton Street",
       "photos": [
-        "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -400,7 +400,7 @@
       "area": "Financial District",
       "address": "11 Hanover Square, New York, NY 10005",
       "photos": [
-        "https://images.unsplash.com/photo-1536935338788846bb9981813?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85"
       ]
@@ -642,14 +642,14 @@
     {
       "slug": "jane-s-matcha",
       "name": "Jane's Matcha",
-      "genre": "coffee",
+      "genre": "matcha",
       "design": 10,
       "area": "Jersey City Heights",
       "address": "93 Franklin Street",
       "photos": [
-        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1775846933630-3c1531299e5a?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1759363580278-058211df7102?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1751563721808-3b81940b88f7?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -818,7 +818,7 @@
       "photos": [
         "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1608198093002-ad4e005484df?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -868,7 +868,7 @@
       "area": "Carroll Gardens",
       "address": "449 Court Street",
       "photos": [
-        "https://images.unsplash.com/photo-1536935338788846bb9981813?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85"
       ]
@@ -1019,14 +1019,14 @@
     {
       "slug": "oreas-gourmet-juice-bar",
       "name": "Oreas Gourmet Juice Bar",
-      "genre": "sweets",
+      "genre": "coffee",
       "design": 10,
       "area": "Concourse",
       "address": "1091 Ogden Avenue",
       "photos": [
-        "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -1182,7 +1182,7 @@
       "photos": [
         "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1608198093002-ad4e005484df?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -1201,14 +1201,14 @@
     {
       "slug": "senzu-juice-and-smoothies",
       "name": "Senzu Juice & Smoothies",
-      "genre": "sweets",
+      "genre": "coffee",
       "design": 11,
       "area": "Gowanus",
       "address": "529 Atlantic Avenue",
       "photos": [
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -1349,7 +1349,7 @@
       "area": "Hoboken",
       "address": "1450 Washington Street",
       "photos": [
-        "https://images.unsplash.com/photo-1536935338788846bb9981813?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85"
       ]
@@ -1445,5 +1445,11 @@
         "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85"
       ]
     }
-  ]
+  ],
+  "polishedAt": "2026-11-05T18:00:57.316Z",
+  "polishStats": {
+    "count": 111,
+    "imagesFixed": 41,
+    "genreFixed": 10
+  }
 }
