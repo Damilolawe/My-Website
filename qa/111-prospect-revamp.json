@@ -1,6 +1,6 @@
 {
   "count": 111,
-  "generatedAt": "2026-11-05T18:17:43.369Z",
+  "generatedAt": "2026-11-05T18:33:41.070Z",
   "sites": [
     {
       "slug": "18-steps-dengdeng-noodles",
@@ -57,14 +57,14 @@
     {
       "slug": "aoko-matcha",
       "name": "Aoko Matcha",
-      "genre": "coffee",
+      "genre": "matcha",
       "design": 2,
       "area": "Financial District",
       "address": "40 Gold Street, New York, NY 10038",
       "photos": [
-        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -109,14 +109,14 @@
     {
       "slug": "baker-studio",
       "name": "Baker Studio",
-      "genre": "creative",
+      "genre": "wellness",
       "design": 11,
       "area": "Hoboken",
       "address": "1450 Garden Street",
       "photos": [
-        "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
@@ -642,14 +642,14 @@
     {
       "slug": "jane-s-matcha",
       "name": "Jane's Matcha",
-      "genre": "coffee",
+      "genre": "matcha",
       "design": 10,
       "area": "Jersey City Heights",
       "address": "93 Franklin Street",
       "photos": [
-        "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
-        "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85"
+        "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1600&q=85",
+        "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1600&q=85"
       ]
     },
     {
