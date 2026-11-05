@@ -1,5 +1,5 @@
 {
   "sites": "all",
-  "requestId": "initial-desktop-screenshots-2026-11-04",
-  "purpose": "Capture desktop full-page and viewport screenshots for all public Awe Concepts previews"
+  "requestId": "batch-three-final-postdeploy-desktop-2026-11-04",
+  "purpose": "Final post-deployment desktop verification for all 27 public previews"
 }
