@@ -131,12 +131,19 @@ const sourceLinks = html => [...html.matchAll(/<a\b[^>]*?href=["']([^"']+)["'][^
   .map(match => ({href: match[1], label: cleanText(match[2].replace(/<[^>]+>/g, " "))}))
   .filter(link => link.href && link.label && !link.href.startsWith("#") && !/^designed by awe concepts/i.test(link.label));
 const designSeed = slug => [...slug].reduce((hash, char) => (Math.imul(hash, 33) + char.charCodeAt(0)) >>> 0, 5381);
-const prospectPage = ({slug, name, kind, source}) => {
+const prospectPage = ({slug, name, kind, source, sourceCss = ''}) => {
   const seed = designSeed(slug);
   const hue = seed % 360;
-  const ink = seed % 2 ? "#181715" : "#f8f3e9";
-  const paper = seed % 2 ? "#f8f3e9" : "#181715";
-  const accent = "hsl(" + hue + " 58% 52%)";
+  // Carry the business's EXISTING brand palette onto secondary pages, instead
+  // of inventing a random unrelated hue for every route.
+  const cssVar = key => sourceCss.match(new RegExp('(?:^|[;{])\\\\s*--' + key + '\\\\s*:\\\\s*([^;}]+)', 'i'))?.[1]?.trim();
+  const safeColor = value => /^(?:#[a-f0-9]{3,8}|(?:rgb|hsl)a?\\([^<>]+\\))$/i.test(value || '') ? value : null;
+  const ink = safeColor(cssVar('ink')) || (seed % 2 ? '#181715' : '#f8f3e9');
+  const paper = safeColor(cssVar('paper')) || (seed % 2 ? '#f8f3e9' : '#181715');
+  const accent = safeColor(cssVar('accent')) || 'hsl(' + hue + ' 58% 52%)';
+  const headline = cssVar('headline')?.replace(/[<>;]/g, '') || 'Georgia, serif';
+  const bodyFont = cssVar('body')?.replace(/[<>;]/g, '') || 'system-ui, sans-serif';
+  const layout = Number(source.match(/\\bvariant-(\\d+)\\b/)?.[1] || seed % 8 + 1);
   const paragraphs = sourceText(source, "p").slice(0, 5);
   const headings = sourceText(source, "h2").concat(sourceText(source, "h3")).slice(0, 6);
   const images = sourceImages(source);
@@ -152,15 +159,20 @@ const prospectPage = ({slug, name, kind, source}) => {
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><title>${escapePage(name)} · ${escapePage(title)}</title>
 <style>
-:root{--ink:${ink};--paper:${paper};--accent:${accent};color-scheme:light dark}
-*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+:root{--ink:${ink};--paper:${paper};--accent:${accent};--headline:${headline};--body:${bodyFont}}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 var(--body)}
 a{color:inherit}.page-nav{display:flex;justify-content:space-between;gap:24px;align-items:center;padding:22px 5vw;border-bottom:1px solid color-mix(in srgb,var(--ink) 24%,transparent);position:sticky;top:0;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(12px);z-index:2}
 .wordmark{font-weight:800;letter-spacing:-.04em;text-decoration:none}.nav-links{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;text-transform:uppercase;letter-spacing:.12em}.nav-links a{text-underline-offset:5px}
-main{max-width:1240px;margin:auto;padding:clamp(64px,10vw,150px) 5vw 100px}.kicker{color:var(--accent);font-size:11px;letter-spacing:.22em;text-transform:uppercase}.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);gap:clamp(32px,8vw,140px);align-items:end}.hero h1{font-size:clamp(48px,8vw,128px);line-height:.94;letter-spacing:-.075em;max-width:900px;margin:18px 0 28px}.intro{font-size:clamp(18px,2vw,27px);max-width:600px}.hero-media{min-height:360px;background:var(--accent);overflow:hidden}.hero-media img{width:100%;height:100%;min-height:360px;display:block;object-fit:cover;filter:saturate(.9) contrast(1.02)}
+main{max-width:1240px;margin:auto;padding:clamp(64px,10vw,150px) 5vw 100px}.kicker{color:var(--accent);font-size:11px;letter-spacing:.22em;text-transform:uppercase}.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);gap:clamp(32px,8vw,140px);align-items:end}.hero h1{font-family:var(--headline);font-size:clamp(48px,8vw,128px);line-height:.99;letter-spacing:-.075em;max-width:900px;margin:18px 0 28px}.intro{font-family:var(--headline);font-size:clamp(18px,2vw,27px);max-width:600px}.hero-media{min-height:360px;background:var(--accent);overflow:hidden}.hero-media img{width:100%;height:100%;min-height:360px;display:block;object-fit:cover;filter:saturate(.9) contrast(1.02)}
+.layout-1 .hero{grid-template-columns:1fr 1fr}.layout-2 .hero-media{border-radius:50% 50% 4px 4px}.layout-3 .hero{grid-template-columns:.85fr 1.15fr}.layout-4 .hero-media{clip-path:polygon(10% 0,100% 0,100% 100%,0 90%)}
+.layout-5 .hero{grid-template-columns:1.25fr .75fr}.layout-5 .hero-media{border-radius:50%}.layout-6 .hero{grid-template-columns:.9fr 1.1fr}.layout-6 .hero h1{font-style:italic}
+.layout-7 .hero{grid-template-columns:1fr}.layout-7 .hero-media{max-height:500px}.layout-8 .hero-media{border:16px solid var(--accent)}
+.section-story .grid{grid-template-columns:1fr 1fr 1fr}.section-services .grid{grid-template-columns:repeat(3,minmax(0,1fr))}.section-journal .grid{grid-template-columns:1fr 2fr}.section-visit .hero{grid-template-columns:1fr 1fr}
+.section-visit .hero h1{max-width:680px}.section-visit .hero-media{clip-path:none}
 .rule{height:1px;background:color-mix(in srgb,var(--ink) 24%,transparent);margin:clamp(56px,9vw,130px) 0 36px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:color-mix(in srgb,var(--ink) 24%,transparent)}article{padding:28px;min-height:240px;background:var(--paper)}article h2{font-size:clamp(23px,3vw,42px);line-height:1.02;letter-spacing:-.045em;margin:24px 0 18px}article p{max-width:32em}.num{color:var(--accent);font-size:12px;letter-spacing:.2em}.note{border-left:4px solid var(--accent);padding:8px 0 8px 22px;max-width:720px}.outbound{display:flex;gap:16px;flex-wrap:wrap;margin-top:32px}.outbound a{border-bottom:1px solid currentColor;padding-bottom:5px}.back{display:inline-flex;margin-top:42px;color:var(--accent);text-transform:uppercase;letter-spacing:.14em;font-size:12px}
-@media(max-width:760px){.page-nav{align-items:flex-start;flex-direction:column}.nav-links{gap:12px}.hero{grid-template-columns:1fr}.hero-media{min-height:260px}.hero-media img{min-height:260px}.grid{grid-template-columns:1fr}main{padding-top:62px}.hero h1{font-size:clamp(48px,15vw,82px)}}
+@media(max-width:760px){.page-nav{align-items:flex-start;flex-direction:column}.nav-links{gap:12px}.hero{grid-template-columns:1fr}.hero-media{min-height:260px}.hero-media img{min-height:260px}.grid,.section-story .grid,.section-services .grid,.section-journal .grid{grid-template-columns:1fr}.layout-1 .hero,.layout-3 .hero,.layout-5 .hero,.layout-6 .hero,.layout-7 .hero,.section-visit .hero{grid-template-columns:1fr}main{padding-top:62px}.hero h1{font-size:clamp(48px,15vw,82px)}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
-</style></head><body>
+</style></head><body class="layout-${layout} section-${escapePage(kind)}">
 <nav class="page-nav"><a class="wordmark" href="./">${escapePage(name)}</a><div class="nav-links"><a href="./">Home</a><a href="./story.html">Story</a><a href="./services.html">Services</a><a href="./journal.html">Journal</a><a href="./visit.html">Visit</a></div></nav>
 <main><section class="hero"><div><div class="kicker">${escapePage(name)} / ${escapePage(kind)}</div><h1>${escapePage(title)}.</h1><p class="intro">${escapePage(intro)}</p></div>${image ? "<div class=\"hero-media\"><img src=\"" + escapePage(image) + "\" alt=\"Representative image for the independent " + escapePage(name) + " concept\" loading=\"eager\"></div>" : "<div class=\"hero-media\" aria-hidden=\"true\"></div>"}</section>
 <div class="rule\"></div><p class="note">${escapePage(note)}</p><section class="grid">${cards}</section>
@@ -172,8 +184,16 @@ for (const slug of batchOneSlugs) {
   try { source = await readFile(sourcePath, "utf8"); } catch { continue; }
   const heading = sourceText(source, "h1")[0] || slug.replace(/-/g, " ");
   const name = heading.replace(/\\.$/, "");
+  const sourceCss = await readFile(`preview/${slug}/styles.css`, 'utf8');
   for (const kind of generatedPageKinds) {
-    await writeFile(`${output}/${slug}/${kind}.html`, prospectPage({slug, name, kind, source}));
+    // Preserve a thoroughly researched, hand-authored page when present.
+    // Do not overwrite it with a generic auto-generated page.
+    let authored;
+    try { authored = await readFile(`preview/${slug}/${kind}.html`, 'utf8'); }
+    catch (error) { if (error.code !== 'ENOENT') throw error; }
+    await writeFile(`${output}/${slug}/${kind}.html`, authored
+      ? applyAweDesignCredit(authored)
+      : prospectPage({slug, name, kind, source, sourceCss}));
   }
 }
 
