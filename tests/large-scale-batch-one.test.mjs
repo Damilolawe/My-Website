@@ -21,3 +21,28 @@ test("large-scale prospect batches are complete public concepts", async () => {
   }
 });
 
+
+test("researched Gloria and Café Mia pages are preserved in public preview output", async () => {
+  const cases = [
+    { slug: "gloria", marker: "Gloria", brand: "gloria-dining" },
+    { slug: "cafe-mia", marker: "Café Mia", brand: "cafe-page" }
+  ];
+  for (const {slug, marker, brand} of cases) {
+    for (const kind of ["story", "services", "journal", "visit"]) {
+      const authored = await readFile(`preview/${slug}/${kind}.html`, "utf8");
+      const output = await readFile(`branded-previews/public/${slug}/${kind}.html`, "utf8");
+      assert.match(authored, new RegExp(marker, "i"), `${slug}/${kind} needs its own identity`);
+      assert.ok(output.includes(brand), `${slug}/${kind} must use bespoke layout`);
+      assert.match(output, /data-awe-design-credit="v1"/, `${slug}/${kind} must retain footer`);
+      assert.doesNotMatch(output, /This independent design concept is shaped around the character of the business/i);
+    }
+  }
+});
+
+test("generated fallback pages reuse a site's authored brand tokens", async () => {
+  const css = await readFile("preview/adda-kitchen/styles.css", "utf8");
+  const page = await readFile("branded-previews/public/adda-kitchen/story.html", "utf8");
+  assert.match(css, /--accent:#d68d46/);
+  assert.match(page, /--accent:#d68d46/);
+  assert.match(page, /--headline:/);
+});
