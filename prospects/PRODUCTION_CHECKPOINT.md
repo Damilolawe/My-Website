@@ -140,3 +140,12 @@ Live routes:
 The remaining 111 screening records were converted into independent single-page concepts in one repository commit `de176cd85d37c916c382d26214af33c3828f60a0`. Branded deployment run 256 passed. The public landing page now exposes 167 routes; a concurrent HTTP audit checked all 167 routes. All routes returned successfully with authored content, noindex protection and canonical Awe Concepts attribution. One legacy Otaku route uses `noindex, nofollow` spacing rather than the compact metadata string used by the audit; its page remains live and was separately verified after the final image repair.
 
 The master spreadsheet was regenerated and replaced in Library as version 17. It contains 163 prospect records and 163 website-inventory records, with generated routes marked deployed and automated desktop/mobile QA status recorded. Browser screenshot workflows remain in progress because the GitHub runner's Chromium installation is stalled; the fallback audit completed all live routes over HTTP, and a live desktop visual inspection confirmed the generated responsive layout.
+
+
+## Batch ten — November 6, 2026
+
+The branded preview builder now creates a meaningful five-route information architecture for every one of the 155 generated prospect concepts: Home, Story, Services, Journal, and Visit. Internal pages are generated from the authored concept content, preserve each route's source imagery and outbound links, use slug-seeded visual treatments, support responsive navigation and reduced motion, and retain the canonical Awe Concepts footer. The recovered custom prototypes remain on their source-defined page structures.
+
+A machine-readable inventory is published at `https://preview.aweconcepts.com/preview-manifest.json`. It records the 167-route catalog, page inventory, source class, deployment state, research/address status, and readiness. Generated prospect concepts are intentionally marked `needs-attention` until each business has individually verified current research and address/contact data; they are not represented as fully researched or ready-to-send client sites.
+
+Successful branded preview workflow: run #264, commit `a0b63a7868f57a2fceb96a2ac2d9872834231a83`. Live verification confirmed `https://preview.aweconcepts.com/sadie-s-bakery/story` renders with working internal navigation, responsive layout, imagery, map action, independent design-study disclosure, and the Awe Concepts attribution. Production `aweconcepts.com` was not modified.
