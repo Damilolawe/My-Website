@@ -30,7 +30,9 @@ test("researched Gloria and Café Mia pages are preserved in public preview outp
     { slug: "jalopy-theatre", marker: "Jalopy", brand: "detail-hero" },
     { slug: "adda-kitchen", marker: "Adda Kitchen", brand: "adda-inner" },
     { slug: "petaled", marker: "PETALED", brand: "detail-block" },
-    { slug: "pilates-addiction", marker: "Pilates Addiction", brand: "detail-band" }
+    { slug: "pilates-addiction", marker: "Pilates Addiction", brand: "detail-band" },
+    { slug: "jane-s-matcha", marker: "Jane", brand: "inner-hero" },
+    { slug: "aoko-matcha", marker: "Aokō", brand: "subhero" }
   ];
   for (const {slug, marker, brand} of cases) {
     for (const kind of ["story", "services", "journal", "visit"]) {
@@ -61,4 +63,26 @@ test("PETALED and Pilates Addiction homepages depict their real disciplines, not
   assert.match(addiction, /November 8, 2026/);
   assert.match(addiction, /Aurum/);
   assert.doesNotMatch(addiction, /photo-1506126613408|WELLNESS IN FOCUS/i);
+});
+
+test("two distinct matcha shops have different photography and brand architecture", async () => {
+  const jane = await readFile("preview/jane-s-matcha/index.html", "utf8");
+  const aoko = await readFile("preview/aoko-matcha/index.html", "utf8");
+  assert.match(jane, /Jane Yang/);
+  assert.match(aoko, /five-intensity|five-shade|five shades|five-intensity/i);
+  assert.doesNotMatch(jane + aoko, /photo-1515823064-d6e0c04616a7/);
+  const photo = html => html.match(/<img[^>]+src="([^"]+)"/)?.[1];
+  assert.notEqual(photo(jane), photo(aoko), "Both matcha shops cannot share the same hero image");
+  assert.match(jane, /class="hero-image"/);
+  assert.match(aoko, /class="shades"/);
+});
+
+test("QA filters only intentionally offscreen skip-to-content links", async () => {
+  const script = await readFile("scripts/qa-mobile-previews.mjs", "utf8");
+  assert.match(script, /el\.tagName === 'A' && r\.right <= 0/);
+  assert.match(script, /skip\\s\+to/);
+  assert.match(script, /r\.right > document\.documentElement\.clientWidth \+ 4/);
+  const css = await readFile("preview/bem-books/styles.css", "utf8");
+  assert.match(css, /grid-template-columns:minmax\(0,1fr\)/);
+  assert.match(css, /\.hero-copy,\.hero-image\{min-width:0;max-width:100%;width:100%\}/);
 });
