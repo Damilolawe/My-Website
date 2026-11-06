@@ -46,26 +46,25 @@ jobs:
           PREVIEW_QA_REQUEST_FILE: qa/desktop-request.json
           PREVIEW_QA_OUTPUT: artifacts/desktop-qa
         run: node scripts/qa-mobile-previews.mjs
-      - name: Upload desktop screenshots as workflow artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: desktop-preview-screenshots
-          path: artifacts/desktop-qa/
-          if-no-files-found: warn
-          retention-days: 14
       - name: Publish retrievable desktop screenshots to GitHub branch
         if: always()
         run: |
           set -euo pipefail
-          if [ ! -d artifacts/desktop-qa ] || [ -z "$(find artifacts/desktop-qa -type f -name '*.png' -print -quit)" ]; then
-            echo "::warning::No desktop screenshots to publish"
-            exit 0
+          if [ ! -d artifacts/desktop-qa ] || [ -z "$(find artifacts/desktop-qa -type f -name '*.jpg' -print -quit)" ]; then
+            echo "::error::No desktop screenshots were captured; refusing to publish stale results."
+            exit 1
+          fi
+          if [ ! -s artifacts/desktop-qa/report.json ]; then
+            echo "::error::Audit report missing. Refusing to publish incomplete screenshot results."
+            exit 1
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p /tmp/awe-desktop-qa
-          cp artifacts/desktop-qa/*.png /tmp/awe-desktop-qa/
+          cp artifacts/desktop-qa/*.jpg /tmp/awe-desktop-qa/
+          if [ -f artifacts/desktop-qa/report.json ]; then
+            cp artifacts/desktop-qa/report.json /tmp/awe-desktop-qa/report.json
+          fi
           git fetch origin desktop-qa-screenshots || true
           if git show-ref --verify --quiet refs/remotes/origin/desktop-qa-screenshots; then
             git switch --detach origin/desktop-qa-screenshots
@@ -75,15 +74,36 @@ jobs:
             git rm -rf --ignore-unmatch . >/dev/null 2>&1 || true
           fi
           mkdir -p screenshots
-          cp /tmp/awe-desktop-qa/*.png screenshots/
-          printf 'Generated from %s at %s\nModes: desktop-1440 and desktop-1920, full-page and viewport\n' "$GITHUB_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > screenshots/manifest.txt
-          git add -f screenshots/
+          # Keep the branch small: replace old captures rather than retaining them.
+          find screenshots -maxdepth 1 -type f \( -name '*.png' -o -name '*.jpg' \) -delete
+          cp /tmp/awe-desktop-qa/*.jpg screenshots/
+          if [ -f /tmp/awe-desktop-qa/report.json ]; then
+            cp /tmp/awe-desktop-qa/report.json screenshots/report.json
+          fi
+          printf 'Generated from %s at %s\nModes: desktop-1440 and desktop-1920, JPEG full-page and viewport\n' "$GITHUB_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > screenshots/manifest.txt
+          git add -A -f screenshots/
           if git diff --cached --quiet; then
             echo "Screenshots unchanged"
           else
             git commit -m "Update desktop preview screenshots"
             git push origin HEAD:desktop-qa-screenshots
           fi
+      - name: Summarize desktop screenshot delivery
+        if: always()
+        env:
+          QA_OUTCOME: ${{ steps.audit.outcome }}
+        run: |
+          {
+            echo "### Desktop preview QA"
+            echo "Screenshots: [desktop-qa-screenshots](https://github.com/Damilolawe/My-Website/tree/desktop-qa-screenshots/screenshots)"
+            echo "Detailed findings: [report.json](https://github.com/Damilolawe/My-Website/blob/desktop-qa-screenshots/screenshots/report.json)"
+            if [ -f artifacts/desktop-qa/report.json ]; then
+              ISSUES=$(node -p "JSON.parse(require('fs').readFileSync('artifacts/desktop-qa/report.json','utf8')).issues")
+              echo "Automated findings: **$ISSUES** (not a client-readiness certification)"
+            fi
+            echo "Automated layout/image checks: **$QA_OUTCOME**"
+            echo "Screenshots use Git branches, not GitHub Actions artifact storage."
+          } >> "$GITHUB_STEP_SUMMARY"
       - name: Report desktop audit result
         if: steps.audit.outcome == 'failure'
         run: |

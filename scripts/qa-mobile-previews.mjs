@@ -1,5 +1,5 @@
 import { chromium, devices } from 'playwright';
-import { mkdir, readFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const base = (process.env.PREVIEW_BASE_URL || 'https://preview.aweconcepts.com').replace(/\/$/, '');
@@ -40,6 +40,7 @@ const output = process.env.PREVIEW_QA_OUTPUT || process.env.MOBILE_QA_OUTPUT || 
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 let failures = 0;
+const findings = [];
 const desktopMotionSites = new Set(['chong','bao-dumpling','casa-serra','jj-deli','mesa-bar','solerum']);
 const auditDevices = [
   ['iphone-13', devices['iPhone 13']],
@@ -72,6 +73,7 @@ for (const [deviceName, config] of auditDevices) {
         });
         if (!motion.ok) {
           failures++;
+          findings.push({ site, viewport: deviceName, type: 'banner-motion', details: motion });
           console.error('FAIL desktop banner motion ' + url + ' ' + JSON.stringify(motion));
         } else {
           console.log('PASS desktop banner motion ' + url + ' ' + JSON.stringify(motion));
@@ -85,10 +87,10 @@ for (const [deviceName, config] of auditDevices) {
         await Promise.all(images.map(img => img.decode().catch(() => undefined)));
         await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
       });
-      await page.screenshot({ path: join(output, `${site}-${deviceName}.png`), fullPage: true, animations: 'disabled' });
+      await page.screenshot({ path: join(output, `${site}-${deviceName}.jpg`), type: 'jpeg', quality: 78, fullPage: true, animations: 'disabled' });
       // A second desktop image shows the actual above-the-fold viewport at its native height.
       if (qaMode === 'desktop') {
-        await page.screenshot({ path: join(output, `${site}-${deviceName}-viewport.png`), fullPage: false, animations: 'disabled' });
+        await page.screenshot({ path: join(output, `${site}-${deviceName}-viewport.jpg`), type: 'jpeg', quality: 82, fullPage: false, animations: 'disabled' });
       }
       const info = await page.evaluate(() => ({
         viewport: document.documentElement.clientWidth,
@@ -118,12 +120,17 @@ for (const [deviceName, config] of auditDevices) {
       if (visualIssues.length) {
         console.warn('VISUAL WARN ' + deviceName + ' ' + url + ': ' + visualIssues.join(' | '));
         failures += visualIssues.length;
+        findings.push(...visualIssues.map(message => ({ site, viewport: deviceName, type: 'visual', message })));
       }
       const overflow = info.document > info.viewport + 3;
       console.log(`${overflow ? 'FAIL' : 'PASS'} ${deviceName} ${url} viewport=${info.viewport} page=${info.document}${overflow ? ' suspects=' + info.overflowingElements.join(', ') : ''}`);
-      if (overflow) failures++;
+      if (overflow) {
+        failures++;
+        findings.push({ site, viewport: deviceName, type: 'horizontal-overflow', viewportWidth: info.viewport, pageWidth: info.document, suspects: info.overflowingElements });
+      }
     } catch (error) {
       failures++;
+      findings.push({ site, viewport: deviceName, type: 'navigation-or-capture', message: error.message });
       console.error(`FAIL ${deviceName} ${url}: ${error.message}`);
     } finally {
       await page.close();
@@ -132,6 +139,9 @@ for (const [deviceName, config] of auditDevices) {
   await context.close();
 }
 await browser.close();
+const report = { generatedAt: new Date().toISOString(), mode: qaMode, baseUrl: base, testedSites: sites.length, issues: failures, findings };
+await writeFile(join(output, 'report.json'), JSON.stringify(report, null, 2) + '\n');
+console.log(`Visual QA report: ${join(output, 'report.json')} (${failures} findings across ${sites.length} sites)`);
 if (failures) {
   console.error(`${qaMode} QA found ${failures} issue(s). See screenshots in ${output}.`);
   process.exitCode = 1;

@@ -44,28 +44,27 @@ jobs:
           PREVIEW_SITES: ${{ inputs.sites }}
           MOBILE_QA_REQUEST_FILE: qa/mobile-request.json
         run: node scripts/qa-mobile-previews.mjs
-      - name: Upload screenshots as workflow artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: mobile-preview-screenshots
-          path: artifacts/mobile-qa/
-          if-no-files-found: warn
-          retention-days: 14
       - name: Publish screenshots to retrievable GitHub branch
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          if [ ! -d artifacts/mobile-qa ] || [ -z "$(find artifacts/mobile-qa -type f -name '*.png' -print -quit)" ]; then
-            echo "::warning::No screenshots to publish"
-            exit 0
+          if [ ! -d artifacts/mobile-qa ] || [ -z "$(find artifacts/mobile-qa -type f -name '*.jpg' -print -quit)" ]; then
+            echo "::error::No mobile screenshots were captured; refusing to publish stale results."
+            exit 1
+          fi
+          if [ ! -s artifacts/mobile-qa/report.json ]; then
+            echo "::error::Audit report missing. Refusing to publish incomplete screenshot results."
+            exit 1
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p /tmp/awe-mobile-qa
-          cp artifacts/mobile-qa/*.png /tmp/awe-mobile-qa/
+          cp artifacts/mobile-qa/*.jpg /tmp/awe-mobile-qa/
+          if [ -f artifacts/mobile-qa/report.json ]; then
+            cp artifacts/mobile-qa/report.json /tmp/awe-mobile-qa/report.json
+          fi
           git fetch origin mobile-qa-screenshots || true
           if git show-ref --verify --quiet refs/remotes/origin/mobile-qa-screenshots; then
             git switch --detach origin/mobile-qa-screenshots
@@ -75,15 +74,36 @@ jobs:
             git rm -rf --ignore-unmatch . >/dev/null 2>&1 || true
           fi
           mkdir -p screenshots
-          cp /tmp/awe-mobile-qa/*.png screenshots/
+          # Replace old captures so the current screenshot branch stays compact.
+          find screenshots -maxdepth 1 -type f \( -name '*.png' -o -name '*.jpg' \) -delete
+          cp /tmp/awe-mobile-qa/*.jpg screenshots/
+          if [ -f /tmp/awe-mobile-qa/report.json ]; then
+            cp /tmp/awe-mobile-qa/report.json screenshots/report.json
+          fi
           printf 'Generated from %s at %s\n' "$GITHUB_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > screenshots/manifest.txt
-          git add -f screenshots/
+          git add -A -f screenshots/
           if git diff --cached --quiet; then
             echo "Screenshots unchanged"
           else
             git commit -m "Update mobile preview screenshots"
             git push origin HEAD:mobile-qa-screenshots
           fi
+      - name: Summarize mobile screenshot delivery
+        if: always()
+        env:
+          QA_OUTCOME: ${{ steps.audit.outcome }}
+        run: |
+          {
+            echo "### Mobile preview QA"
+            echo "Screenshots: [mobile-qa-screenshots](https://github.com/Damilolawe/My-Website/tree/mobile-qa-screenshots/screenshots)"
+            echo "Detailed findings: [report.json](https://github.com/Damilolawe/My-Website/blob/mobile-qa-screenshots/screenshots/report.json)"
+            if [ -f artifacts/mobile-qa/report.json ]; then
+              ISSUES=$(node -p "JSON.parse(require('fs').readFileSync('artifacts/mobile-qa/report.json','utf8')).issues")
+              echo "Automated findings: **$ISSUES** (not a client-readiness certification)"
+            fi
+            echo "Automated layout/image checks: **$QA_OUTCOME**"
+            echo "Screenshots use Git branches, not GitHub Actions artifact storage."
+          } >> "$GITHUB_STEP_SUMMARY"
       - name: Report audit result
         if: steps.audit.outcome == 'failure'
         run: |
