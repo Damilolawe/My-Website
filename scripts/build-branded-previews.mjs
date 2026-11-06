@@ -136,14 +136,14 @@ const prospectPage = ({slug, name, kind, source, sourceCss = ''}) => {
   const hue = seed % 360;
   // Carry the business's EXISTING brand palette onto secondary pages, instead
   // of inventing a random unrelated hue for every route.
-  const cssVar = key => sourceCss.match(new RegExp('(?:^|[;{])\\\\s*--' + key + '\\\\s*:\\\\s*([^;}]+)', 'i'))?.[1]?.trim();
-  const safeColor = value => /^(?:#[a-f0-9]{3,8}|(?:rgb|hsl)a?\\([^<>]+\\))$/i.test(value || '') ? value : null;
+  const cssVar = key => sourceCss.match(new RegExp('(?:^|[;{])\\s*--' + key + '\\s*:\\s*([^;}]+)', 'i'))?.[1]?.trim();
+  const safeColor = value => /^(?:#[a-f0-9]{3,8}|(?:rgb|hsl)a?\([^<>]+\))$/i.test(value || '') ? value : null;
   const ink = safeColor(cssVar('ink')) || (seed % 2 ? '#181715' : '#f8f3e9');
   const paper = safeColor(cssVar('paper')) || (seed % 2 ? '#f8f3e9' : '#181715');
   const accent = safeColor(cssVar('accent')) || 'hsl(' + hue + ' 58% 52%)';
   const headline = cssVar('headline')?.replace(/[<>;]/g, '') || 'Georgia, serif';
   const bodyFont = cssVar('body')?.replace(/[<>;]/g, '') || 'system-ui, sans-serif';
-  const layout = Number(source.match(/\\bvariant-(\\d+)\\b/)?.[1] || seed % 8 + 1);
+  const layout = Number(source.match(/\bvariant-(\d+)\b/)?.[1] || seed % 8 + 1);
   const paragraphs = sourceText(source, "p").slice(0, 5);
   const headings = sourceText(source, "h2").concat(sourceText(source, "h3")).slice(0, 6);
   const images = sourceImages(source);
