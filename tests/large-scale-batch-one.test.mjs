@@ -25,7 +25,8 @@ test("large-scale prospect batches are complete public concepts", async () => {
 test("researched Gloria and Café Mia pages are preserved in public preview output", async () => {
   const cases = [
     { slug: "gloria", marker: "Gloria", brand: "gloria-dining" },
-    { slug: "cafe-mia", marker: "Café Mia", brand: "cafe-page" }
+    { slug: "cafe-mia", marker: "Café Mia", brand: "cafe-page" },
+    { slug: "om-wok", marker: "Om Wok", brand: "om-inner" }
   ];
   for (const {slug, marker, brand} of cases) {
     for (const kind of ["story", "services", "journal", "visit"]) {
