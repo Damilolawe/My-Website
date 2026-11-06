@@ -86,3 +86,12 @@ test("QA filters only intentionally offscreen skip-to-content links", async () =
   assert.match(css, /grid-template-columns:minmax\(0,1fr\)/);
   assert.match(css, /\.hero-copy,\.hero-image\{min-width:0;max-width:100%;width:100%\}/);
 });
+
+test("Pilates Addiction and PETALED use different licensed photo collections", async () => {
+  const petaled = await readFile("preview/petaled/index.html", "utf8");
+  const addiction = await readFile("preview/pilates-addiction/index.html", "utf8");
+  const imageIds = html => [...html.matchAll(/images\\.unsplash\\.com\\/(photo-[^?" ]+)/g)].map(x => x[1]);
+  const shared = imageIds(petaled).filter(x => imageIds(addiction).includes(x));
+  assert.deepEqual(shared, [], "Different studios should not share the same stock photographs");
+  assert.match(addiction, /photo-1717500251997-80b234166d00/);
+});
