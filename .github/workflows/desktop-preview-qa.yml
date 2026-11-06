@@ -51,8 +51,12 @@ jobs:
         run: |
           set -euo pipefail
           if [ ! -d artifacts/desktop-qa ] || [ -z "$(find artifacts/desktop-qa -type f -name '*.jpg' -print -quit)" ]; then
-            echo "::warning::No desktop screenshots to publish"
-            exit 0
+            echo "::error::No desktop screenshots were captured; refusing to publish stale results."
+            exit 1
+          fi
+          if [ ! -s artifacts/desktop-qa/report.json ]; then
+            echo "::error::Audit report missing. Refusing to publish incomplete screenshot results."
+            exit 1
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -93,6 +97,10 @@ jobs:
             echo "### Desktop preview QA"
             echo "Screenshots: [desktop-qa-screenshots](https://github.com/Damilolawe/My-Website/tree/desktop-qa-screenshots/screenshots)"
             echo "Detailed findings: [report.json](https://github.com/Damilolawe/My-Website/blob/desktop-qa-screenshots/screenshots/report.json)"
+            if [ -f artifacts/desktop-qa/report.json ]; then
+              ISSUES=$(node -p "JSON.parse(require('fs').readFileSync('artifacts/desktop-qa/report.json','utf8')).issues")
+              echo "Automated findings: **$ISSUES** (not a client-readiness certification)"
+            fi
             echo "Automated layout/image checks: **$QA_OUTCOME**"
             echo "Screenshots use Git branches, not GitHub Actions artifact storage."
           } >> "$GITHUB_STEP_SUMMARY"
