@@ -49,10 +49,11 @@ test("researched Gloria and Café Mia pages are preserved in public preview outp
 });
 
 test("generated fallback pages reuse a site's authored brand tokens", async () => {
-  const css = await readFile("preview/dumbo-oyster-bar/styles.css", "utf8");
-  const page = await readFile("branded-previews/public/dumbo-oyster-bar/story.html", "utf8");
-  assert.match(css, /--accent:#9f522f/);
-  assert.match(page, /--accent:#9f522f/);
+  const css = await readFile("preview/isla-and-co/styles.css", "utf8");
+  const page = await readFile("branded-previews/public/isla-and-co/story.html", "utf8");
+  const accent = css.match(/--accent:([^;}]+)/)?.[1];
+  assert.ok(accent, "Generated fallback must start from a branded source palette");
+  assert.ok(page.includes("--accent:" + accent), "Fallback page must inherit the source accent");
   assert.match(page, /--headline:/);
 });
 
