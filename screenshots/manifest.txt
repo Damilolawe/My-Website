@@ -1,2 +1,2 @@
-Generated from 4381ba9688621e04807762189d1565ca08569760 at 2026-11-05T17:33:03Z
+Generated from 439fcafd43f069961cd65534aec094a0f5e3dc28 at 2026-11-06T18:36:20Z
 Modes: desktop-1440 and desktop-1920, full-page and viewport
