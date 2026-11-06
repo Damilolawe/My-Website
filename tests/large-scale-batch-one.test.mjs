@@ -33,6 +33,7 @@ test("researched Gloria and Café Mia pages are preserved in public preview outp
     { slug: "pilates-addiction", marker: "Pilates Addiction", brand: "detail-band" },
     { slug: "dumbo-oyster-bar", marker: "Dumbo Oyster Bar", brand: "oyster-inner-hero" },
     { slug: "baker-studio", marker: "Baker Studio", brand: "inner-hero" },
+    { slug: "bem-books", marker: "BEM", brand: "inner-hero" },
     { slug: "jane-s-matcha", marker: "Jane", brand: "inner-hero" },
     { slug: "aoko-matcha", marker: "Aokō", brand: "subhero" }
   ];
@@ -87,7 +88,8 @@ test("QA filters only intentionally offscreen skip-to-content links", async () =
   assert.match(script, /r\.right > document\.documentElement\.clientWidth \+ 4/);
   const css = await readFile("preview/bem-books/styles.css", "utf8");
   assert.match(css, /grid-template-columns:minmax\(0,1fr\)/);
-  assert.match(css, /\.hero-copy,\.hero-image\{min-width:0;max-width:100%;width:100%\}/);
+  assert.match(css, /\.hero h1\{font-size:clamp\(51px/);
+  assert.match(css, /\.hero-media\{min-height:0;height:480px\}/);
 });
 
 test("Pilates Addiction and PETALED use different licensed photo collections", async () => {
@@ -125,4 +127,16 @@ test("browser QA catches an unrelated stylesheet despite successful CSS network 
   assert.match(script, /unstyled page: stylesheet selectors do not match/);
   assert.match(script, /styledCount <= 1/);
   assert.match(script, /document\.styleSheets/);
+});
+
+test("BEM preview is grounded in Black food literature and accurately communicates the 2026 transition", async () => {
+  const page = await readFile("preview/bem-books/index.html", "utf8");
+  assert.match(page, /Gabrielle and Danielle Davenport/);
+  assert.match(page, /373 Lewis Avenue/);
+  assert.match(page, /August 10/);
+  assert.match(page, /Black culinary/);
+  assert.match(page, /paused regular in-person bookselling/i);
+  assert.doesNotMatch(page, /A clearer front door|Designed around how people decide|Open business site OPEN/i);
+  const script = await readFile("preview/bem-books/site.js", "utf8");
+  assert.match(script, /aria-expanded/);
 });
