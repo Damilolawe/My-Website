@@ -177,6 +177,37 @@ for (const slug of batchOneSlugs) {
   }
 }
 
+
+const manifestSlugs = [...new Set(batchOneSlugs)];
+const recoveredSlugs = new Set([
+  "kappo-sono","otaku-haven","shotsbyriq","jay-millz-shot-em","pace-sbdc","susukino",
+  "bao-dumpling","mesa-bar","casa-serra","solerum","jj-deli","chong"
+]);
+await writeFile(\`\${output}/preview-manifest.json\`, JSON.stringify({
+  generatedAt: new Date().toISOString(),
+  previewBase: "https://preview.aweconcepts.com",
+  productionHostExcluded: true,
+  inventoryCount: manifestSlugs.length + recoveredSlugs.size,
+  sites: [
+    ...[...recoveredSlugs].map(slug => ({
+      slug, url: "https://preview.aweconcepts.com/" + slug + "/",
+      sourceClass: "recovered-prototype",
+      pages: "source-defined",
+      researchStatus: "source-dossier-present",
+      addressStatus: "source-defined",
+      readiness: "requires-live-browser-recheck"
+    })),
+    ...manifestSlugs.map(slug => ({
+      slug, url: "https://preview.aweconcepts.com/" + slug + "/",
+      sourceClass: "generated-prospect-concept",
+      pages: ["index.html", ...generatedPageKinds.map(page => page + ".html")],
+      researchStatus: "individual-verification-required",
+      addressStatus: "not-published-without-verification",
+      readiness: "needs-attention"
+    }))
+  ]
+}, null, 2) + "\\n");
+
 const landing = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#0b0b0b"><title>Website Previews | Awe Concepts</title><style>
 :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:dark}*{box-sizing:border-box}body{background:#0b0b0b;color:#f7f7f1;margin:0;min-height:100vh}main{max-width:960px;margin:0 auto;padding:clamp(36px,7vw,84px) 24px}a{color:inherit}.brand{font-size:14px;font-weight:700;letter-spacing:.07em;text-decoration:none}.accent{color:#c6ff00}.eyebrow{margin:clamp(48px,10vw,110px) 0 14px;font-size:11px;letter-spacing:.23em;text-transform:uppercase;color:#c6ff00}h1{font-size:clamp(42px,8vw,94px);letter-spacing:-.06em;line-height:1.03;margin:0 0 18px;max-width:740px}p{max-width:580px;line-height:1.75;color:#bbbcb7}.preview{display:block;margin-top:46px;padding:28px;border:1px solid #373a33;border-radius:12px;text-decoration:none;transition:border-color .2s,transform .2s}.preview:hover,.preview:focus-visible{border-color:#c6ff00;transform:translateY(-2px)}.preview strong{display:block;font-size:23px;font-weight:550}.preview span{display:block;margin-top:8px;color:#bbbcb7;font-size:13px}footer{padding:32px 24px;text-align:center;color:#979992;font-size:12px;border-top:1px solid #292a28}footer a{text-underline-offset:4px}@media(prefers-reduced-motion:reduce){.preview{transition:none}}
