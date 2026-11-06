@@ -29,7 +29,8 @@ test("researched Gloria and Café Mia pages are preserved in public preview outp
     { slug: "om-wok", marker: "Om Wok", brand: "om-inner" },
     { slug: "jalopy-theatre", marker: "Jalopy", brand: "detail-hero" },
     { slug: "adda-kitchen", marker: "Adda Kitchen", brand: "adda-inner" },
-    { slug: "petaled", marker: "PETALED", brand: "detail-block" }
+    { slug: "petaled", marker: "PETALED", brand: "detail-block" },
+    { slug: "pilates-addiction", marker: "Pilates Addiction", brand: "detail-band" }
   ];
   for (const {slug, marker, brand} of cases) {
     for (const kind of ["story", "services", "journal", "visit"]) {
@@ -49,4 +50,15 @@ test("generated fallback pages reuse a site's authored brand tokens", async () =
   assert.match(css, /--accent:#9f522f/);
   assert.match(page, /--accent:#9f522f/);
   assert.match(page, /--headline:/);
+});
+
+test("PETALED and Pilates Addiction homepages depict their real disciplines, not flowers or meditation", async () => {
+  const petaled = await readFile("preview/petaled/index.html", "utf8");
+  const addiction = await readFile("preview/pilates-addiction/index.html", "utf8");
+  assert.match(petaled, /Springboard Pilates/i);
+  assert.match(petaled, /Kourtney Patterson/);
+  assert.doesNotMatch(petaled, /floral concept|FLOWERS IN FOCUS|photo-1457089328109/i);
+  assert.match(addiction, /November 8, 2026/);
+  assert.match(addiction, /Aurum/);
+  assert.doesNotMatch(addiction, /photo-1506126613408|WELLNESS IN FOCUS/i);
 });
