@@ -183,7 +183,7 @@ const recoveredSlugs = new Set([
   "kappo-sono","otaku-haven","shotsbyriq","jay-millz-shot-em","pace-sbdc","susukino",
   "bao-dumpling","mesa-bar","casa-serra","solerum","jj-deli","chong"
 ]);
-await writeFile(\`\${output}/preview-manifest.json\`, JSON.stringify({
+await writeFile(`${output}/preview-manifest.json`, JSON.stringify({
   generatedAt: new Date().toISOString(),
   previewBase: "https://preview.aweconcepts.com",
   productionHostExcluded: true,
