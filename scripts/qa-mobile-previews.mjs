@@ -111,6 +111,10 @@ for (const [deviceName, config] of auditDevices) {
         for (const el of document.querySelectorAll('h1,h2,h3,p,a,button')) {
           const st = getComputedStyle(el), r = el.getBoundingClientRect();
           if (r.width < 1 || r.height < 1 || st.visibility === 'hidden' || st.display === 'none') continue;
+          // An accessible skip link intentionally lives offscreen until focused.
+          // Ignore it ONLY when it is off the left edge; visible clipped links
+          // and every other offscreen text node remain real QA findings.
+          if (el.tagName === 'A' && r.right <= 0 && /^(?:skip\s+to\s+(?:main\s+)?content)$/i.test((el.textContent || '').trim())) continue;
           if (r.left < -4 || r.right > document.documentElement.clientWidth + 4) {
             issues.push('clipped text: ' + el.tagName.toLowerCase() + ' ' + (el.textContent || '').trim().slice(0,55));
           }
