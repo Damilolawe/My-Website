@@ -27,7 +27,8 @@ test("researched Gloria and Café Mia pages are preserved in public preview outp
     { slug: "gloria", marker: "Gloria", brand: "gloria-dining" },
     { slug: "cafe-mia", marker: "Café Mia", brand: "cafe-page" },
     { slug: "om-wok", marker: "Om Wok", brand: "om-inner" },
-    { slug: "jalopy-theatre", marker: "Jalopy", brand: "detail-hero" }
+    { slug: "jalopy-theatre", marker: "Jalopy", brand: "detail-hero" },
+    { slug: "adda-kitchen", marker: "Adda Kitchen", brand: "adda-inner" }
   ];
   for (const {slug, marker, brand} of cases) {
     for (const kind of ["story", "services", "journal", "visit"]) {
