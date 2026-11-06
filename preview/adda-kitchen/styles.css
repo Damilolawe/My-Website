@@ -45,3 +45,28 @@
 .adda-bengal .closing .button{background:#291d25;color:#fff0dd}
 .adda-bengal .site-footer{background:#291d25;color:#fff0dd}
 @media(max-width:700px){.adda-bengal .hero h1{font-size:clamp(55px,13.5vw,100px)}.adda-bengal .hero-media .frame{height:clamp(320px,100vw,520px);border-width:5px}.adda-bengal .hero-copy{padding:72px 6vw 50px}.adda-bengal .hero-line{font-size:clamp(23px,7vw,40px)}}
+
+
+/* ADDA / DINES & CHINESE — authored pages, warm family-table editorial */
+.adda-inner .adda-hero{padding:clamp(75px,10vw,155px) 7vw;background:#291d25;color:#fff0dd;position:relative;overflow:hidden}
+.adda-inner .adda-hero:after{content:"ADDA";position:absolute;right:-5vw;bottom:-.18em;font:900 clamp(160px,30vw,510px)/1 Georgia,serif;opacity:.05;pointer-events:none}
+.adda-inner .adda-label{font:800 11px/1.5 Arial,sans-serif;letter-spacing:.19em;text-transform:uppercase;color:#d68d46}
+.adda-inner .adda-hero h1{font:900 clamp(52px,8vw,124px)/.98 "Trebuchet MS",Arial,sans-serif;letter-spacing:-.075em;max-width:13ch;margin:24px 0 28px;text-transform:uppercase}
+.adda-inner .adda-hero p{font:400 clamp(20px,2.2vw,30px)/1.6 Georgia,serif;max-width:36em;position:relative;z-index:1}
+.adda-inner .adda-section{padding:clamp(65px,9vw,130px) 7vw;background:#fff0dd;color:#291d25}
+.adda-inner .adda-two{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(30px,7vw,110px);align-items:center}
+.adda-inner .adda-two.reverse .adda-photo{order:-1}
+.adda-inner .adda-two h2{font:900 clamp(40px,5.7vw,84px)/1.02 "Trebuchet MS",Arial,sans-serif;letter-spacing:-.065em;text-transform:uppercase;max-width:15ch;margin:22px 0 27px}
+.adda-inner .adda-two p{font:400 clamp(16px,1.7vw,21px)/1.72 Georgia,serif;max-width:52ch}
+.adda-inner .adda-photo{margin:0;overflow:hidden;aspect-ratio:4/5;background:#d68d46;border-radius:3px 150px 3px 150px;box-shadow:17px 17px 0 #291d25}
+.adda-inner .adda-photo img{width:100%;height:100%;object-fit:cover}
+.adda-inner .adda-cta{display:inline-flex;align-items:center;background:#9a482e;color:#fff7e6;text-decoration:none;text-transform:uppercase;font:800 11px Arial,sans-serif;letter-spacing:.1em;padding:16px 24px;min-height:50px;margin:22px 0 0}
+.adda-inner .adda-block{padding:clamp(65px,8vw,125px) 7vw;background:#291d25;color:#fff0dd}
+.adda-inner .adda-block h2{font:900 clamp(42px,6vw,86px)/1.05 "Trebuchet MS",Arial,sans-serif;text-transform:uppercase;letter-spacing:-.065em;max-width:14ch;margin:22px 0 45px}
+.adda-inner .adda-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,55px)}
+.adda-inner .adda-cards article{border-top:1px solid #fff0dd70;padding:20px 0}
+.adda-inner .adda-cards h3{font:700 clamp(24px,2.6vw,38px)/1.1 Georgia,serif;margin:24px 0 18px}
+.adda-inner .adda-cards p{font:400 16px/1.75 Arial,sans-serif;max-width:32ch}
+.adda-inner .adda-note{font:400 14px/1.7 Arial,sans-serif;opacity:.78;max-width:70ch;margin:35px 0 0}
+.adda-inner .site-footer{background:#291d25;color:#fff0dd}
+@media(max-width:760px){.adda-inner .adda-hero,.adda-inner .adda-section,.adda-inner .adda-block{padding-left:6vw;padding-right:6vw}.adda-inner .adda-two,.adda-inner .adda-cards{grid-template-columns:1fr}.adda-inner .adda-two.reverse .adda-photo{order:0}.adda-inner .adda-photo{max-height:500px;border-radius:3px 100px 3px 100px;box-shadow:8px 8px 0 #291d25}.adda-inner .adda-hero h1{font-size:clamp(47px,11vw,79px);overflow-wrap:anywhere}.adda-inner .adda-section{padding-top:80px;padding-bottom:80px}}
