@@ -105,6 +105,78 @@ for (const page of [
   await writeFile(path, updated);
 }
 
+
+// Generated prospect pages: each catalog concept receives a purposeful internal
+// architecture derived from its authored homepage. Facts are never invented here:
+// the pages reuse the site's own verified/qualified copy and disclose when details
+// still need client confirmation. Distinct palette, type and layout variables are
+// derived from the slug so the catalog does not collapse into one visual template.
+const generatedPageKinds = ["story", "services", "journal", "visit"];
+const pageTitles = {
+  story: ["The story behind the place", "A closer look at the idea"],
+  services: ["What visitors come here for", "The details that make it worth finding"],
+  journal: ["Notes from the concept", "A few things to notice"],
+  visit: ["Plan your visit", "Find your way here"],
+};
+const escapePage = value => String(value ?? "")
+  .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const cleanText = value => String(value ?? "").replace(/\s+/g, " ").trim();
+const sourceText = (html, tag) => [...html.matchAll(new RegExp("<" + tag + "\\\\b[^>]*>([\\\\s\\\\S]*?)<\\\\/" + tag + ">", "gi"))]
+  .map(match => cleanText(match[1].replace(/<[^>]+>/g, " ")))
+  .filter(text => text.length > 18 && !/^independent design concept/i.test(text));
+const sourceImages = html => [...html.matchAll(/<img\\\\b[^>]*?src=["']([^"']+)["'][^>]*>/gi)]
+  .map(match => match[1]).filter(Boolean);
+const sourceLinks = html => [...html.matchAll(/<a\\\\b[^>]*?href=["']([^"']+)["'][^>]*>([\\\\s\\\\S]*?)<\\\\/a>/gi)]
+  .map(match => ({href: match[1], label: cleanText(match[2].replace(/<[^>]+>/g, " "))}))
+  .filter(link => link.href && link.label && !link.href.startsWith("#") && !/^designed by awe concepts/i.test(link.label));
+const designSeed = slug => [...slug].reduce((hash, char) => (Math.imul(hash, 33) + char.charCodeAt(0)) >>> 0, 5381);
+const prospectPage = ({slug, name, kind, source}) => {
+  const seed = designSeed(slug);
+  const hue = seed % 360;
+  const ink = seed % 2 ? "#181715" : "#f8f3e9";
+  const paper = seed % 2 ? "#f8f3e9" : "#181715";
+  const accent = "hsl(" + hue + " 58% 52%)";
+  const paragraphs = sourceText(source, "p").slice(0, 5);
+  const headings = sourceText(source, "h2").concat(sourceText(source, "h3")).slice(0, 6);
+  const images = sourceImages(source);
+  const links = sourceLinks(source);
+  const title = pageTitles[kind][seed % pageTitles[kind].length];
+  const intro = paragraphs[0] || "This independent design concept is shaped around the character of the business and the experience it wants to offer.";
+  const note = "This is an independent Awe Concepts design study. Business facts, hours, menu details and imagery remain subject to confirmation by the business owner.";
+  const cards = (headings.length ? headings : ["The experience", "The details", "The next step"]).slice(0, 3)
+    .map((heading, i) => "<article><span class=\"num\">0" + (i + 1) + "</span><h2>" + escapePage(heading) + "</h2><p>" + escapePage(paragraphs[i + 1] || intro) + "</p></article>").join("");
+  const image = images[kind === "visit" ? images.length - 1 : (seed + kind.length) % Math.max(images.length, 1)] || "";
+  const outbound = links.slice(0, 4).map(link => "<a href=\"" + escapePage(link.href) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + escapePage(link.label) + " <span aria-hidden=\"true\">↗</span></a>").join("");
+  return applyAweDesignCredit(\`<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>\${escapePage(name)} · \${escapePage(title)}</title>
+<style>
+:root{--ink:\${ink};--paper:\${paper};--accent:\${accent};color-scheme:light dark}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit}.page-nav{display:flex;justify-content:space-between;gap:24px;align-items:center;padding:22px 5vw;border-bottom:1px solid color-mix(in srgb,var(--ink) 24%,transparent);position:sticky;top:0;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(12px);z-index:2}
+.wordmark{font-weight:800;letter-spacing:-.04em;text-decoration:none}.nav-links{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;text-transform:uppercase;letter-spacing:.12em}.nav-links a{text-underline-offset:5px}
+main{max-width:1240px;margin:auto;padding:clamp(64px,10vw,150px) 5vw 100px}.kicker{color:var(--accent);font-size:11px;letter-spacing:.22em;text-transform:uppercase}.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);gap:clamp(32px,8vw,140px);align-items:end}.hero h1{font-size:clamp(48px,8vw,128px);line-height:.94;letter-spacing:-.075em;max-width:900px;margin:18px 0 28px}.intro{font-size:clamp(18px,2vw,27px);max-width:600px}.hero-media{min-height:360px;background:var(--accent);overflow:hidden}.hero-media img{width:100%;height:100%;min-height:360px;display:block;object-fit:cover;filter:saturate(.9) contrast(1.02)}
+.rule{height:1px;background:color-mix(in srgb,var(--ink) 24%,transparent);margin:clamp(56px,9vw,130px) 0 36px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:color-mix(in srgb,var(--ink) 24%,transparent)}article{padding:28px;min-height:240px;background:var(--paper)}article h2{font-size:clamp(23px,3vw,42px);line-height:1.02;letter-spacing:-.045em;margin:24px 0 18px}article p{max-width:32em}.num{color:var(--accent);font-size:12px;letter-spacing:.2em}.note{border-left:4px solid var(--accent);padding:8px 0 8px 22px;max-width:720px}.outbound{display:flex;gap:16px;flex-wrap:wrap;margin-top:32px}.outbound a{border-bottom:1px solid currentColor;padding-bottom:5px}.back{display:inline-flex;margin-top:42px;color:var(--accent);text-transform:uppercase;letter-spacing:.14em;font-size:12px}
+@media(max-width:760px){.page-nav{align-items:flex-start;flex-direction:column}.nav-links{gap:12px}.hero{grid-template-columns:1fr}.hero-media{min-height:260px}.hero-media img{min-height:260px}.grid{grid-template-columns:1fr}main{padding-top:62px}.hero h1{font-size:clamp(48px,15vw,82px)}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style></head><body>
+<nav class="page-nav"><a class="wordmark" href="./">\${escapePage(name)}</a><div class="nav-links"><a href="./">Home</a><a href="./story.html">Story</a><a href="./services.html">Services</a><a href="./journal.html">Journal</a><a href="./visit.html">Visit</a></div></nav>
+<main><section class="hero"><div><div class="kicker">\${escapePage(name)} / \${escapePage(kind)}</div><h1>\${escapePage(title)}.</h1><p class="intro">\${escapePage(intro)}</p></div>\${image ? "<div class=\"hero-media\"><img src=\"" + escapePage(image) + "\" alt=\"Representative image for the independent " + escapePage(name) + " concept\" loading=\"eager\"></div>" : "<div class=\"hero-media\" aria-hidden=\"true\"></div>"}</section>
+<div class="rule\"></div><p class="note">\${escapePage(note)}</p><section class="grid">\${cards}</section>
+\${outbound ? "<div class=\"outbound\">" + outbound + "</div>" : ""}<a class="back" href="./">Return to \${escapePage(name)}</a></main></body></html>\`);
+};
+for (const slug of batchOneSlugs) {
+  const sourcePath = \`\${output}/\${slug}/index.html\`;
+  let source = "";
+  try { source = await readFile(sourcePath, "utf8"); } catch { continue; }
+  const heading = sourceText(source, "h1")[0] || slug.replace(/-/g, " ");
+  const name = heading.replace(/\\.$/, "");
+  for (const kind of generatedPageKinds) {
+    await writeFile(\`\${output}/\${slug}/\${kind}.html\`, prospectPage({slug, name, kind, source}));
+  }
+}
+
 const landing = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#0b0b0b"><title>Website Previews | Awe Concepts</title><style>
 :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:dark}*{box-sizing:border-box}body{background:#0b0b0b;color:#f7f7f1;margin:0;min-height:100vh}main{max-width:960px;margin:0 auto;padding:clamp(36px,7vw,84px) 24px}a{color:inherit}.brand{font-size:14px;font-weight:700;letter-spacing:.07em;text-decoration:none}.accent{color:#c6ff00}.eyebrow{margin:clamp(48px,10vw,110px) 0 14px;font-size:11px;letter-spacing:.23em;text-transform:uppercase;color:#c6ff00}h1{font-size:clamp(42px,8vw,94px);letter-spacing:-.06em;line-height:1.03;margin:0 0 18px;max-width:740px}p{max-width:580px;line-height:1.75;color:#bbbcb7}.preview{display:block;margin-top:46px;padding:28px;border:1px solid #373a33;border-radius:12px;text-decoration:none;transition:border-color .2s,transform .2s}.preview:hover,.preview:focus-visible{border-color:#c6ff00;transform:translateY(-2px)}.preview strong{display:block;font-size:23px;font-weight:550}.preview span{display:block;margin-top:8px;color:#bbbcb7;font-size:13px}footer{padding:32px 24px;text-align:center;color:#979992;font-size:12px;border-top:1px solid #292a28}footer a{text-underline-offset:4px}@media(prefers-reduced-motion:reduce){.preview{transition:none}}
