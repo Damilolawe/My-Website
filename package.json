@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "node scripts/build.mjs",
-    "test": "node --test tests/*.test.mjs",
+    "test": "node scripts/build-branded-previews.mjs && node --test --test-concurrency=1 tests/*.test.mjs",
     "check": "python3 scripts/check.py",
     "qa:visual": "node scripts/qa-visual-acceptance.mjs",
     "qa:catalog": "node scripts/qa-catalog-visual.mjs"
