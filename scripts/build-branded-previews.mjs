@@ -147,7 +147,7 @@ const prospectPage = ({slug, name, kind, source}) => {
   const cards = (headings.length ? headings : ["The experience", "The details", "The next step"]).slice(0, 3)
     .map((heading, i) => "<article><span class=\"num\">0" + (i + 1) + "</span><h2>" + escapePage(heading) + "</h2><p>" + escapePage(paragraphs[i + 1] || intro) + "</p></article>").join("");
   const image = images[kind === "visit" ? images.length - 1 : (seed + kind.length) % Math.max(images.length, 1)] || "";
-  const outbound = links.slice(0, 4).map(link => "<a href=\"" + escapePage(link.href) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + escapePage(link.label) + " <span aria-hidden=\"true\">↗</span></a>").join("");
+  const outbound = links.slice(0, 4).map(link => "<a href=\"" + escapePage(link.href) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + escapePage(link.label) + " <span>OPEN</span></a>").join("");
   return applyAweDesignCredit(\`<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><title>\${escapePage(name)} · \${escapePage(title)}</title>
