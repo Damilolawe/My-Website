@@ -148,11 +148,11 @@ const prospectPage = ({slug, name, kind, source}) => {
     .map((heading, i) => "<article><span class=\"num\">0" + (i + 1) + "</span><h2>" + escapePage(heading) + "</h2><p>" + escapePage(paragraphs[i + 1] || intro) + "</p></article>").join("");
   const image = images[kind === "visit" ? images.length - 1 : (seed + kind.length) % Math.max(images.length, 1)] || "";
   const outbound = links.slice(0, 4).map(link => "<a href=\"" + escapePage(link.href) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + escapePage(link.label) + " <span>OPEN</span></a>").join("");
-  return applyAweDesignCredit(\`<!doctype html>
+  return applyAweDesignCredit(`<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow"><title>\${escapePage(name)} · \${escapePage(title)}</title>
+<meta name="robots" content="noindex,nofollow"><title>${escapePage(name)} · ${escapePage(title)}</title>
 <style>
-:root{--ink:\${ink};--paper:\${paper};--accent:\${accent};color-scheme:light dark}
+:root{--ink:${ink};--paper:${paper};--accent:${accent};color-scheme:light dark}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 a{color:inherit}.page-nav{display:flex;justify-content:space-between;gap:24px;align-items:center;padding:22px 5vw;border-bottom:1px solid color-mix(in srgb,var(--ink) 24%,transparent);position:sticky;top:0;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(12px);z-index:2}
 .wordmark{font-weight:800;letter-spacing:-.04em;text-decoration:none}.nav-links{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;text-transform:uppercase;letter-spacing:.12em}.nav-links a{text-underline-offset:5px}
@@ -161,19 +161,19 @@ main{max-width:1240px;margin:auto;padding:clamp(64px,10vw,150px) 5vw 100px}.kick
 @media(max-width:760px){.page-nav{align-items:flex-start;flex-direction:column}.nav-links{gap:12px}.hero{grid-template-columns:1fr}.hero-media{min-height:260px}.hero-media img{min-height:260px}.grid{grid-template-columns:1fr}main{padding-top:62px}.hero h1{font-size:clamp(48px,15vw,82px)}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 </style></head><body>
-<nav class="page-nav"><a class="wordmark" href="./">\${escapePage(name)}</a><div class="nav-links"><a href="./">Home</a><a href="./story.html">Story</a><a href="./services.html">Services</a><a href="./journal.html">Journal</a><a href="./visit.html">Visit</a></div></nav>
-<main><section class="hero"><div><div class="kicker">\${escapePage(name)} / \${escapePage(kind)}</div><h1>\${escapePage(title)}.</h1><p class="intro">\${escapePage(intro)}</p></div>\${image ? "<div class=\"hero-media\"><img src=\"" + escapePage(image) + "\" alt=\"Representative image for the independent " + escapePage(name) + " concept\" loading=\"eager\"></div>" : "<div class=\"hero-media\" aria-hidden=\"true\"></div>"}</section>
-<div class="rule\"></div><p class="note">\${escapePage(note)}</p><section class="grid">\${cards}</section>
-\${outbound ? "<div class=\"outbound\">" + outbound + "</div>" : ""}<a class="back" href="./">Return to \${escapePage(name)}</a></main></body></html>\`);
+<nav class="page-nav"><a class="wordmark" href="./">${escapePage(name)}</a><div class="nav-links"><a href="./">Home</a><a href="./story.html">Story</a><a href="./services.html">Services</a><a href="./journal.html">Journal</a><a href="./visit.html">Visit</a></div></nav>
+<main><section class="hero"><div><div class="kicker">${escapePage(name)} / ${escapePage(kind)}</div><h1>${escapePage(title)}.</h1><p class="intro">${escapePage(intro)}</p></div>${image ? "<div class=\"hero-media\"><img src=\"" + escapePage(image) + "\" alt=\"Representative image for the independent " + escapePage(name) + " concept\" loading=\"eager\"></div>" : "<div class=\"hero-media\" aria-hidden=\"true\"></div>"}</section>
+<div class="rule\"></div><p class="note">${escapePage(note)}</p><section class="grid">${cards}</section>
+${outbound ? "<div class=\"outbound\">" + outbound + "</div>" : ""}<a class="back" href="./">Return to ${escapePage(name)}</a></main></body></html>`);
 };
 for (const slug of batchOneSlugs) {
-  const sourcePath = \`\${output}/\${slug}/index.html\`;
+  const sourcePath = `${output}/${slug}/index.html`;
   let source = "";
   try { source = await readFile(sourcePath, "utf8"); } catch { continue; }
   const heading = sourceText(source, "h1")[0] || slug.replace(/-/g, " ");
   const name = heading.replace(/\\.$/, "");
   for (const kind of generatedPageKinds) {
-    await writeFile(\`\${output}/\${slug}/\${kind}.html\`, prospectPage({slug, name, kind, source}));
+    await writeFile(`${output}/${slug}/${kind}.html`, prospectPage({slug, name, kind, source}));
   }
 }
 
