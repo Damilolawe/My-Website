@@ -1,43 +1,2013 @@
 {
-  "generatedAt": "2026-11-06T22:17:03.331Z",
+  "generatedAt": "2026-11-06T22:42:01.764Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 168,
-  "issues": 4,
+  "issues": 334,
   "findings": [
     {
-      "site": "bem-books",
+      "site": "kappo-sono",
       "viewport": "iphone-13",
       "type": "visual",
-      "message": "clipped text: p BED-STUY / BOOKS + PROGRAMMING"
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/49 classes)"
+    },
+    {
+      "site": "otaku-haven",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/145 classes)"
+    },
+    {
+      "site": "shotsbyriq",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/101 classes)"
+    },
+    {
+      "site": "jay-millz-shot-em",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/99 classes)"
+    },
+    {
+      "site": "pace-sbdc",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/113 classes)"
+    },
+    {
+      "site": "susukino",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/80 classes)"
+    },
+    {
+      "site": "bao-dumpling",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/40 classes)"
+    },
+    {
+      "site": "mesa-bar",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/28 classes)"
+    },
+    {
+      "site": "casa-serra",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/28 classes)"
+    },
+    {
+      "site": "solerum",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/33 classes)"
+    },
+    {
+      "site": "jj-deli",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/26 classes)"
+    },
+    {
+      "site": "chong",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/39 classes)"
+    },
+    {
+      "site": "kora-bakery",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/11 classes)"
+    },
+    {
+      "site": "old-mill-cafe",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/12 classes)"
+    },
+    {
+      "site": "birdee",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/11 classes)"
+    },
+    {
+      "site": "cafe-pr",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/11 classes)"
+    },
+    {
+      "site": "latte-da",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/12 classes)"
+    },
+    {
+      "site": "studio-ephemera",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/15 classes)"
+    },
+    {
+      "site": "loove-labs",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/15 classes)"
     },
     {
       "site": "bem-books",
       "viewport": "iphone-13",
       "type": "visual",
-      "message": "clipped text: h1 A neighborhood space for ideas."
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/24 classes)"
     },
     {
-      "site": "bem-books",
+      "site": "one-two-one-cafe",
       "viewport": "iphone-13",
       "type": "visual",
-      "message": "clipped text: p BEM’s current focus is programming, conversation and co"
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/15 classes)"
+    },
+    {
+      "site": "chique-collective",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/15 classes)"
+    },
+    {
+      "site": "sadie-s-bakery",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "evelyn-bar-and-kitchen",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "aoko-matcha",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/24 classes)"
+    },
+    {
+      "site": "kyuramen-express",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "wolf-forest-cafe",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "kee-s-chocolates",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "route-66-smokehouse",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "al-aqusa-restaurant",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "bensonhurst-bagels-and-deli",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "grizzly-coffee-and-tea-house",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "guisados-maria",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "weng-s-garden",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "gloria",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/50 classes)"
+    },
+    {
+      "site": "isla-and-co",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "kings-co-imperial",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "blanca-s-bakery",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "brooklyn-improv",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "dumbo-oyster-bar",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/46 classes)"
+    },
+    {
+      "site": "sugar-pop-candy-bar-pinkberry",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "ssrp-ramen",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "good-taste",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "halal-street-eatz",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "herbie-s-burgers",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "kuttley-house",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "lima-wok-and-bowl",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "lucky-zhang-s-restaurant",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "sur-1st-cafe",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "marbre",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "anna-bella-pizza-cafe",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "kampos-taverna",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "bk-halal-grill",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "sweetness-usa",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "jannat-aden-restaurant",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "janet-s-pizza",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "brooklyn-billiards",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "east-wang",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "good-taste-restaurant-168",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "jalopy-theatre",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/34 classes)"
+    },
+    {
+      "site": "l-oranaise",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "surf-city-pizzeria-2",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "la-bagel-delight",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "senzu-juice-and-smoothies",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "shashlik-uz-n1",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "emerald-cafe",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "pies-n-thighs",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "rick-s-restaurant",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "wayne-and-sons",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "argo",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "cali-tajadas-bakery",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "kyan-cafe",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "guda",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "loco-cafe",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "luana-s-tavern",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "maki",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "mr-fire-bar-and-grill",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "turbine-cafe",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "leanly-ii-chinese-food",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "miss-bagel",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "fu-ying",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "rb-bakery-and-cafe",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "cafe-69-sports-bar",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "desi-zaika",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "el-puerto-de-mexico-restaurant",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "adda-kitchen",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "space-54",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "jamaica-fried-chicken",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "pa-nash-eurosoul",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "18-steps-dengdeng-noodles",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "kostantina-frozen-yogurt",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "notable",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "cloud-catering",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "magic-nutrition",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "ato-kitchens",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "my-life-nutrition",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "minitalia-pizzeria",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "baby-cafe",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "chianti-sports-bar-and-restaurant-sugar-and-cake",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "julieta-taberna",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "royal-canton-seafood-palace",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "wan-chong-shan-xia",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "wei-zhi-yuan",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "madame-sousou",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "om-wok",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "restaurante-la-plaza-de-tulcingo",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "oreas-gourmet-juice-bar",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "fresh-pizza-and-pasta",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "equis-pica-pollo-de-verdad",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "rey-tacos",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "jamaica-fry-chicken",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "smash-time-burger-co",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "your-choice-halal-chicken-and-pizza",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "cemitas-cholula-restaurant",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "socotra-restaurant",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "santinos-slices-and-italian-ices",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "orion-s",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "baker-studio",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/26 classes)"
+    },
+    {
+      "site": "uncorked-wines",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "below-sro",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "greens-goods-grill",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "pilates-addiction",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/26 classes)"
+    },
+    {
+      "site": "petaled",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/26 classes)"
+    },
+    {
+      "site": "house-of-amrut",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/26 classes)"
+    },
+    {
+      "site": "kitty-o-shea-s",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "barchino",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "hudson-golf",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "hashi-market",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "dubu-hana",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "dutch-s-express",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "vicoletto",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "cana-coffee-and-bakery",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "jane-s-matcha",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/24 classes)"
+    },
+    {
+      "site": "loved-ones-coffee",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/14 classes)"
+    },
+    {
+      "site": "worksbynet",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/17 classes)"
+    },
+    {
+      "site": "studio-shipley",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/12 classes)"
+    },
+    {
+      "site": "hanare-spa",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/11 classes)"
+    },
+    {
+      "site": "tiny-topiary",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/16 classes)"
+    },
+    {
+      "site": "tbili",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/16 classes)"
+    },
+    {
+      "site": "la-mestiza",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/15 classes)"
+    },
+    {
+      "site": "santuario-cafe",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/18 classes)"
+    },
+    {
+      "site": "le-loup-cafe",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/10 classes)"
+    },
+    {
+      "site": "duro-market",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/10 classes)"
+    },
+    {
+      "site": "the-block-coffee",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/15 classes)"
+    },
+    {
+      "site": "splendid-cafe",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/14 classes)"
+    },
+    {
+      "site": "cafe-aroma-y-sabor",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/15 classes)"
+    },
+    {
+      "site": "fiolicchia-bakery",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/12 classes)"
+    },
+    {
+      "site": "hairby-matty",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/10 classes)"
+    },
+    {
+      "site": "studio-and-story",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/10 classes)"
+    },
+    {
+      "site": "cultiva-cafe",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/14 classes)"
+    },
+    {
+      "site": "hots-coffee",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "nena-sweets-cakes",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "bier-cheese",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "rachels-handmade-cookies",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "dovetail-bakery",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "smor-carroll-gardens",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "caputo-bagels",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "swaines-bk",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "vibra-bronx",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "cafe-mia",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/18 classes)"
+    },
+    {
+      "site": "problem-baker-parkslope",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "atelier-artist",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "prema-fulton",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "three-coffee-halletts",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "kappo-sono",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/49 classes)"
+    },
+    {
+      "site": "otaku-haven",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/145 classes)"
+    },
+    {
+      "site": "shotsbyriq",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/101 classes)"
+    },
+    {
+      "site": "jay-millz-shot-em",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/99 classes)"
+    },
+    {
+      "site": "pace-sbdc",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/113 classes)"
+    },
+    {
+      "site": "susukino",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/80 classes)"
+    },
+    {
+      "site": "bao-dumpling",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/40 classes)"
+    },
+    {
+      "site": "mesa-bar",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/28 classes)"
+    },
+    {
+      "site": "casa-serra",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/28 classes)"
+    },
+    {
+      "site": "solerum",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/33 classes)"
+    },
+    {
+      "site": "jj-deli",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/26 classes)"
+    },
+    {
+      "site": "chong",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/39 classes)"
+    },
+    {
+      "site": "kora-bakery",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/11 classes)"
+    },
+    {
+      "site": "old-mill-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/12 classes)"
+    },
+    {
+      "site": "birdee",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/11 classes)"
+    },
+    {
+      "site": "cafe-pr",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/11 classes)"
+    },
+    {
+      "site": "latte-da",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/12 classes)"
+    },
+    {
+      "site": "studio-ephemera",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/15 classes)"
+    },
+    {
+      "site": "loove-labs",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/15 classes)"
     },
     {
       "site": "bem-books",
-      "viewport": "iphone-13",
-      "type": "horizontal-overflow",
-      "viewportWidth": 390,
-      "pageWidth": 394,
-      "suspects": [
-        "div.hero-copy",
-        "p.eyebrow",
-        "h1",
-        "p.lede",
-        "div.actions",
-        "div.hero-image",
-        "img"
-      ]
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/24 classes)"
+    },
+    {
+      "site": "one-two-one-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/15 classes)"
+    },
+    {
+      "site": "chique-collective",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/15 classes)"
+    },
+    {
+      "site": "sadie-s-bakery",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "evelyn-bar-and-kitchen",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "aoko-matcha",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/24 classes)"
+    },
+    {
+      "site": "kyuramen-express",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "wolf-forest-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "kee-s-chocolates",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "route-66-smokehouse",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "al-aqusa-restaurant",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "bensonhurst-bagels-and-deli",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "grizzly-coffee-and-tea-house",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "guisados-maria",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "weng-s-garden",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "gloria",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/50 classes)"
+    },
+    {
+      "site": "isla-and-co",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "kings-co-imperial",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "blanca-s-bakery",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "brooklyn-improv",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "dumbo-oyster-bar",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/46 classes)"
+    },
+    {
+      "site": "sugar-pop-candy-bar-pinkberry",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "ssrp-ramen",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "good-taste",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "halal-street-eatz",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "herbie-s-burgers",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "kuttley-house",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "lima-wok-and-bowl",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "lucky-zhang-s-restaurant",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "sur-1st-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "marbre",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "anna-bella-pizza-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "kampos-taverna",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "bk-halal-grill",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "sweetness-usa",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "jannat-aden-restaurant",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "janet-s-pizza",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "brooklyn-billiards",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "east-wang",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "good-taste-restaurant-168",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "jalopy-theatre",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/34 classes)"
+    },
+    {
+      "site": "l-oranaise",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "surf-city-pizzeria-2",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "la-bagel-delight",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "senzu-juice-and-smoothies",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "shashlik-uz-n1",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "emerald-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "pies-n-thighs",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "rick-s-restaurant",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "wayne-and-sons",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "argo",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "cali-tajadas-bakery",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "kyan-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "guda",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "loco-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "luana-s-tavern",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "maki",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "mr-fire-bar-and-grill",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "turbine-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "leanly-ii-chinese-food",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "miss-bagel",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "fu-ying",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "rb-bakery-and-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "cafe-69-sports-bar",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "desi-zaika",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "el-puerto-de-mexico-restaurant",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "adda-kitchen",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "space-54",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "jamaica-fried-chicken",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "pa-nash-eurosoul",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "18-steps-dengdeng-noodles",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "kostantina-frozen-yogurt",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "notable",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "cloud-catering",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "magic-nutrition",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "ato-kitchens",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "my-life-nutrition",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "minitalia-pizzeria",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "baby-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "chianti-sports-bar-and-restaurant-sugar-and-cake",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "julieta-taberna",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "royal-canton-seafood-palace",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "wan-chong-shan-xia",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "wei-zhi-yuan",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "madame-sousou",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "om-wok",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "restaurante-la-plaza-de-tulcingo",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "oreas-gourmet-juice-bar",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "fresh-pizza-and-pasta",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "equis-pica-pollo-de-verdad",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "rey-tacos",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "jamaica-fry-chicken",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "smash-time-burger-co",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "your-choice-halal-chicken-and-pizza",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "cemitas-cholula-restaurant",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "socotra-restaurant",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "santinos-slices-and-italian-ices",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "orion-s",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "baker-studio",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/26 classes)"
+    },
+    {
+      "site": "uncorked-wines",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "below-sro",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "greens-goods-grill",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "pilates-addiction",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/26 classes)"
+    },
+    {
+      "site": "petaled",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/26 classes)"
+    },
+    {
+      "site": "house-of-amrut",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/26 classes)"
+    },
+    {
+      "site": "kitty-o-shea-s",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "barchino",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "hudson-golf",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "hashi-market",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "dubu-hana",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "dutch-s-express",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "vicoletto",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "cana-coffee-and-bakery",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/48 classes)"
+    },
+    {
+      "site": "jane-s-matcha",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/24 classes)"
+    },
+    {
+      "site": "loved-ones-coffee",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/14 classes)"
+    },
+    {
+      "site": "worksbynet",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/17 classes)"
+    },
+    {
+      "site": "studio-shipley",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/12 classes)"
+    },
+    {
+      "site": "hanare-spa",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/11 classes)"
+    },
+    {
+      "site": "tiny-topiary",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/16 classes)"
+    },
+    {
+      "site": "tbili",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/16 classes)"
+    },
+    {
+      "site": "la-mestiza",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/15 classes)"
+    },
+    {
+      "site": "santuario-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/18 classes)"
+    },
+    {
+      "site": "le-loup-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/10 classes)"
+    },
+    {
+      "site": "duro-market",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/10 classes)"
+    },
+    {
+      "site": "the-block-coffee",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/15 classes)"
+    },
+    {
+      "site": "splendid-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/14 classes)"
+    },
+    {
+      "site": "cafe-aroma-y-sabor",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/15 classes)"
+    },
+    {
+      "site": "fiolicchia-bakery",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/12 classes)"
+    },
+    {
+      "site": "hairby-matty",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/10 classes)"
+    },
+    {
+      "site": "studio-and-story",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/10 classes)"
+    },
+    {
+      "site": "cultiva-cafe",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/14 classes)"
+    },
+    {
+      "site": "hots-coffee",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "nena-sweets-cakes",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "bier-cheese",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "rachels-handmade-cookies",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "dovetail-bakery",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "smor-carroll-gardens",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "caputo-bagels",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "swaines-bk",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "vibra-bronx",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "cafe-mia",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/18 classes)"
+    },
+    {
+      "site": "problem-baker-parkslope",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "atelier-artist",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "prema-fulton",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "three-coffee-halletts",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/13 classes)"
+    },
+    {
+      "site": "bao-dumpling",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/40 classes)"
+    },
+    {
+      "site": "mesa-bar",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/28 classes)"
+    },
+    {
+      "site": "casa-serra",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/28 classes)"
+    },
+    {
+      "site": "solerum",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/33 classes)"
+    },
+    {
+      "site": "jj-deli",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/26 classes)"
+    },
+    {
+      "site": "chong",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "unstyled page: stylesheet selectors do not match the authored layout classes (0/39 classes)"
     }
   ]
 }
