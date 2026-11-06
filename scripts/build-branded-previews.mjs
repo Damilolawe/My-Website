@@ -122,12 +122,12 @@ const escapePage = value => String(value ?? "")
   .replace(/&/g, "&amp;").replace(/</g, "&lt;")
   .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const cleanText = value => String(value ?? "").replace(/\s+/g, " ").trim();
-const sourceText = (html, tag) => [...html.matchAll(new RegExp("<" + tag + "\\\\b[^>]*>([\\\\s\\\\S]*?)<\\\\/" + tag + ">", "gi"))]
+const sourceText = (html, tag) => [...html.matchAll(new RegExp("<" + tag + "\\b[^>]*>([\\s\\S]*?)<\\/" + tag + ">", "gi"))]
   .map(match => cleanText(match[1].replace(/<[^>]+>/g, " ")))
   .filter(text => text.length > 18 && !/^independent design concept/i.test(text));
-const sourceImages = html => [...html.matchAll(/<img\\\\b[^>]*?src=["']([^"']+)["'][^>]*>/gi)]
+const sourceImages = html => [...html.matchAll(/<img\b[^>]*?src=["']([^"']+)["'][^>]*>/gi)]
   .map(match => match[1]).filter(Boolean);
-const sourceLinks = html => [...html.matchAll(/<a\\\\b[^>]*?href=["']([^"']+)["'][^>]*>([\\\\s\\\\S]*?)<\\\\/a>/gi)]
+const sourceLinks = html => [...html.matchAll(/<a\b[^>]*?href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)]
   .map(match => ({href: match[1], label: cleanText(match[2].replace(/<[^>]+>/g, " "))}))
   .filter(link => link.href && link.label && !link.href.startsWith("#") && !/^designed by awe concepts/i.test(link.label));
 const designSeed = slug => [...slug].reduce((hash, char) => (Math.imul(hash, 33) + char.charCodeAt(0)) >>> 0, 5381);
