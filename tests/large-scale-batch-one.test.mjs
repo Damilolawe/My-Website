@@ -43,9 +43,9 @@ test("researched Gloria and Café Mia pages are preserved in public preview outp
 });
 
 test("generated fallback pages reuse a site's authored brand tokens", async () => {
-  const css = await readFile("preview/adda-kitchen/styles.css", "utf8");
-  const page = await readFile("branded-previews/public/adda-kitchen/story.html", "utf8");
-  assert.match(css, /--accent:#d68d46/);
-  assert.match(page, /--accent:#d68d46/);
+  const css = await readFile("preview/dumbo-oyster-bar/styles.css", "utf8");
+  const page = await readFile("branded-previews/public/dumbo-oyster-bar/story.html", "utf8");
+  assert.match(css, /--accent:#9f522f/);
+  assert.match(page, /--accent:#9f522f/);
   assert.match(page, /--headline:/);
 });
