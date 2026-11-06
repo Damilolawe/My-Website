@@ -35,7 +35,8 @@ test("researched Gloria and Café Mia pages are preserved in public preview outp
     { slug: "baker-studio", marker: "Baker Studio", brand: "inner-hero" },
     { slug: "bem-books", marker: "BEM", brand: "inner-hero" },
     { slug: "jane-s-matcha", marker: "Jane", brand: "inner-hero" },
-    { slug: "aoko-matcha", marker: "Aokō", brand: "subhero" }
+    { slug: "aoko-matcha", marker: "Aokō", brand: "subhero" },
+    { slug: "isla-and-co", marker: "Isla", brand: "inner-hero" }
   ];
   for (const {slug, marker, brand} of cases) {
     for (const kind of ["story", "services", "journal", "visit"]) {
@@ -50,8 +51,8 @@ test("researched Gloria and Café Mia pages are preserved in public preview outp
 });
 
 test("generated fallback pages reuse a site's authored brand tokens", async () => {
-  const css = await readFile("preview/isla-and-co/styles.css", "utf8");
-  const page = await readFile("branded-previews/public/isla-and-co/story.html", "utf8");
+  const css = await readFile("preview/wolf-forest-cafe/styles.css", "utf8");
+  const page = await readFile("branded-previews/public/wolf-forest-cafe/story.html", "utf8");
   const accent = css.match(/--accent:([^;}]+)/)?.[1];
   assert.ok(accent, "Generated fallback must start from a branded source palette");
   assert.ok(page.includes("--accent:" + accent), "Fallback page must inherit the source accent");
@@ -139,4 +140,16 @@ test("BEM preview is grounded in Black food literature and accurately communicat
   assert.doesNotMatch(page, /A clearer front door|Designed around how people decide|Open business site OPEN/i);
   const script = await readFile("preview/bem-books/site.js", "utf8");
   assert.match(script, /aria-expanded/);
+});
+
+test("Isla's Williamsburg redesign has the moved Grand Street address and unique Australian café imagery", async () => {
+  const home = await readFile("preview/isla-and-co/index.html", "utf8");
+  const css = await readFile("preview/isla-and-co/styles.css", "utf8");
+  assert.match(home, /66 Grand Street/);
+  assert.match(home, /Australian café/);
+  assert.match(home, /espresso martini/i);
+  assert.doesNotMatch(home, /photo-1517248135467-4c7edcad34c4/);
+  assert.match(home, /photo-1719520670204-dbe1903a789f/);
+  assert.match(css, /\.hero h1 em/);
+  assert.match(css, /\.inner-hero/);
 });
