@@ -103,6 +103,27 @@ for (const [deviceName, config] of auditDevices) {
       }));
       const visualIssues = await page.evaluate(() => {
         const issues = [];
+        // Identify a fully disconnected design stylesheet: the CSS may load
+        // successfully while containing selectors from an unrelated template.
+        // Require substantial authored class coverage before failing the page.
+        const authoredClasses = new Set([...document.querySelectorAll('body *')].flatMap(el => [...el.classList || []]));
+        const styledClasses = new Set();
+        const inspectRules = rules => {
+          for (const rule of rules || []) {
+            if (rule.selectorText) {
+              for (const m of rule.selectorText.matchAll(/\\.([a-zA-Z_][\\w-]*)/g)) styledClasses.add(m[1]);
+            }
+            if (rule.cssRules) inspectRules(rule.cssRules);
+          }
+        };
+        for (const sheet of document.styleSheets) {
+          try { inspectRules(sheet.cssRules); } catch { /* cross-origin stylesheet; not available */ }
+        }
+        const authored = [...authoredClasses];
+        const styledCount = authored.filter(name => styledClasses.has(name)).length;
+        if (authored.length >= 10 && styledCount <= 1) {
+          issues.push('unstyled page: stylesheet selectors do not match the authored layout classes (' + styledCount + '/' + authored.length + ' classes)');
+        }
         for (const img of document.images) {
           const source = img.getAttribute('src');
           if (!source) continue;
