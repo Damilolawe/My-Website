@@ -136,7 +136,7 @@ const prospectPage = ({slug, name, kind, source, sourceCss = ''}) => {
   const hue = seed % 360;
   // Carry the business's EXISTING brand palette onto secondary pages, instead
   // of inventing a random unrelated hue for every route.
-  const cssVar = key => sourceCss.match(new RegExp('(?:^|[;{])\\s*--' + key + '\\s*:\\s*([^;}]+)', 'i'))?.[1]?.trim();
+  const cssVar = key => [...sourceCss.matchAll(new RegExp('(?:^|[;{])\\s*--' + key + '\\s*:\\s*([^;}]+)', 'gi'))].at(-1)?.[1]?.trim();
   const safeColor = value => /^(?:#[a-f0-9]{3,8}|(?:rgb|hsl)a?\([^<>]+\))$/i.test(value || '') ? value : null;
   const ink = safeColor(cssVar('ink')) || (seed % 2 ? '#181715' : '#f8f3e9');
   const paper = safeColor(cssVar('paper')) || (seed % 2 ? '#f8f3e9' : '#181715');
