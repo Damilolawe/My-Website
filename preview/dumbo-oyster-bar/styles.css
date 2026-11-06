@@ -1,4 +1,5 @@
 :root{--sea:#092a39;--deep:#062431;--foam:#eaf0e9;--sand:#f0e4ca;--coral:#c76b53;--sun:#f5b84f;--ink:#172c30}
+.oyster-site{color:var(--ink);background:var(--sand)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--sand);font:400 16px/1.6 "Trebuchet MS",Arial,sans-serif;overflow-x:clip}img{display:block;max-width:100%}a{color:inherit}button{font:inherit}a:focus-visible,button:focus-visible{outline:3px solid var(--sun);outline-offset:4px}
 .oyster-skip{position:absolute;left:-9999px;top:10px;z-index:99;background:var(--sun);color:var(--deep);padding:10px}.oyster-skip:focus{left:10px}
 .concept-note{background:var(--sea);color:var(--foam);text-align:center;padding:8px 5vw;text-transform:uppercase;font:800 10px/1.5 Arial,sans-serif;letter-spacing:.12em}.concept-note span{opacity:.75;margin-left:1em}
