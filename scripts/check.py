@@ -18,7 +18,14 @@ class Page(HTMLParser):
         for key in ['href','src']:
             if a.get(key):self.links.append(a[key])
 pages={}
+# Production checks only the production site itself. Preview concepts are
+# deployed and validated independently by tests/branded-previews.test.mjs and
+# the preview browser QA workflows. The production build retains a legacy
+# dist/preview directory, but its relative assets target the isolated host.
+# Do not misreport those preview-specific links as broken production paths.
 for path in sorted(root.rglob('*.html')):
+    if path.is_relative_to(root / 'preview'):
+        continue
     page=Page(path); page.feed(path.read_text());pages[path.resolve()]=page
 errors=[]
 # Firebase's static Hosting cannot accept Netlify Forms submissions. Require the

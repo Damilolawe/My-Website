@@ -21,3 +21,44 @@ test("large-scale prospect batches are complete public concepts", async () => {
   }
 });
 
+
+test("researched Gloria and Café Mia pages are preserved in public preview output", async () => {
+  const cases = [
+    { slug: "gloria", marker: "Gloria", brand: "gloria-dining" },
+    { slug: "cafe-mia", marker: "Café Mia", brand: "cafe-page" },
+    { slug: "om-wok", marker: "Om Wok", brand: "om-inner" },
+    { slug: "jalopy-theatre", marker: "Jalopy", brand: "detail-hero" },
+    { slug: "adda-kitchen", marker: "Adda Kitchen", brand: "adda-inner" },
+    { slug: "petaled", marker: "PETALED", brand: "detail-block" },
+    { slug: "pilates-addiction", marker: "Pilates Addiction", brand: "detail-band" }
+  ];
+  for (const {slug, marker, brand} of cases) {
+    for (const kind of ["story", "services", "journal", "visit"]) {
+      const authored = await readFile(`preview/${slug}/${kind}.html`, "utf8");
+      const output = await readFile(`branded-previews/public/${slug}/${kind}.html`, "utf8");
+      assert.match(authored, new RegExp(marker, "i"), `${slug}/${kind} needs its own identity`);
+      assert.ok(output.includes(brand), `${slug}/${kind} must use bespoke layout`);
+      assert.match(output, /data-awe-design-credit="v1"/, `${slug}/${kind} must retain footer`);
+      assert.doesNotMatch(output, /This independent design concept is shaped around the character of the business/i);
+    }
+  }
+});
+
+test("generated fallback pages reuse a site's authored brand tokens", async () => {
+  const css = await readFile("preview/dumbo-oyster-bar/styles.css", "utf8");
+  const page = await readFile("branded-previews/public/dumbo-oyster-bar/story.html", "utf8");
+  assert.match(css, /--accent:#9f522f/);
+  assert.match(page, /--accent:#9f522f/);
+  assert.match(page, /--headline:/);
+});
+
+test("PETALED and Pilates Addiction homepages depict their real disciplines, not flowers or meditation", async () => {
+  const petaled = await readFile("preview/petaled/index.html", "utf8");
+  const addiction = await readFile("preview/pilates-addiction/index.html", "utf8");
+  assert.match(petaled, /Springboard Pilates/i);
+  assert.match(petaled, /Kourtney Patterson/);
+  assert.doesNotMatch(petaled, /floral concept|FLOWERS IN FOCUS|photo-1457089328109/i);
+  assert.match(addiction, /November 8, 2026/);
+  assert.match(addiction, /Aurum/);
+  assert.doesNotMatch(addiction, /photo-1506126613408|WELLNESS IN FOCUS/i);
+});
