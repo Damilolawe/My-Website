@@ -31,6 +31,8 @@ test("researched Gloria and Café Mia pages are preserved in public preview outp
     { slug: "adda-kitchen", marker: "Adda Kitchen", brand: "adda-inner" },
     { slug: "petaled", marker: "PETALED", brand: "detail-block" },
     { slug: "pilates-addiction", marker: "Pilates Addiction", brand: "detail-band" },
+    { slug: "dumbo-oyster-bar", marker: "Dumbo Oyster Bar", brand: "oyster-inner-hero" },
+    { slug: "baker-studio", marker: "Baker Studio", brand: "inner-hero" },
     { slug: "jane-s-matcha", marker: "Jane", brand: "inner-hero" },
     { slug: "aoko-matcha", marker: "Aokō", brand: "subhero" }
   ];
@@ -94,4 +96,32 @@ test("Pilates Addiction and PETALED use different licensed photo collections", a
   const shared = imageIds(petaled).filter(x => imageIds(addiction).includes(x));
   assert.deepEqual(shared, [], "Different studios should not share the same stock photographs");
   assert.match(addiction, /photo-1717500251997-80b234166d00/);
+});
+
+test("Dumbo Oyster Bar's complete reworked layout has matching standalone CSS", async () => {
+  const html = await readFile("preview/dumbo-oyster-bar/index.html", "utf8");
+  const css = await readFile("preview/dumbo-oyster-bar/styles.css", "utf8");
+  const classes = ["oyster-site", "oyster-header", "oyster-nav", "oyster-cover", "oyster-photo-wrap", "oyster-story-grid", "oyster-inner-hero"];
+  for (const c of classes) {
+    assert.match(html + css, new RegExp(c), "Dumbo must expose " + c);
+    assert.ok(css.includes("." + c), "Critical CSS selector missing: " + c);
+  }
+  assert.doesNotMatch(css, /\.variant-11 \.hero/);
+});
+
+test("Baker Studio includes real Hoboken medical-and-wellness details, not a generic fitness template", async () => {
+  const html = await readFile("preview/baker-studio/index.html", "utf8");
+  const css = await readFile("preview/baker-studio/styles.css", "utf8");
+  assert.match(html, /1450 Garden Street/);
+  assert.match(html, /Baker Health/);
+  assert.match(html, /yoga, Pilates, meditation and fitness/i);
+  assert.ok(css.includes(".inner-hero"));
+  assert.ok(css.includes(".hero-img"));
+});
+
+test("browser QA catches an unrelated stylesheet despite successful CSS network loading", async () => {
+  const script = await readFile("scripts/qa-mobile-previews.mjs", "utf8");
+  assert.match(script, /unstyled page: stylesheet selectors do not match/);
+  assert.match(script, /styledCount <= 1/);
+  assert.match(script, /document\.styleSheets/);
 });
