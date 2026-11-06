@@ -1,1 +1,48 @@
 :root{--ink:#1c251f;--paper:#edf0e5;--green:#9eb68c;--orange:#cc7251}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,sans-serif}header{height:82px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #b8c3b2;position:sticky;top:0;background:#edf0e5ed;backdrop-filter:blur(12px);z-index:4}.logo{font:800 25px Georgia;letter-spacing:.04em;text-decoration:none}nav{display:flex;gap:28px}nav a{text-decoration:none;font-size:12px;text-transform:uppercase;letter-spacing:.12em}button{display:none}.hero{display:grid;grid-template-columns:1fr 1fr;min-height:740px}.hero-copy{padding:11vw 5vw;align-self:center}.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase}.hero h1,h2{font:700 clamp(58px,8.5vw,126px)/.86 Georgia;letter-spacing:-.07em;margin:24px 0}.hero h1 em{color:var(--orange);font-weight:400}.hero p:not(.eyebrow),.section p:last-child,.grid p{font:18px/1.7 Georgia;max-width:500px}.button{display:inline-block;background:var(--orange);color:#fff;padding:15px 20px;margin-top:20px;text-decoration:none;text-transform:uppercase;font-size:11px;letter-spacing:.12em}.hero-image{min-height:600px;overflow:hidden}.hero-image img{width:100%;height:100%;object-fit:cover}.section{padding:11vw 6vw}.green{background:var(--green)}.green h2{font-size:clamp(48px,8vw,110px)}.ticker{background:var(--ink);color:var(--paper);padding:15px 0;white-space:nowrap;overflow:hidden;letter-spacing:.2em;font-size:11px;animation:roll 20s linear infinite}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.grid article{border-top:2px solid var(--ink);padding-top:20px;min-height:180px}.grid h3{font:30px Georgia}.visit{padding:11vw 6vw;background:var(--orange);color:#fff}.visit h2{font-size:clamp(48px,7vw,100px)}.dark{background:var(--ink)}[data-reveal]{opacity:0;transform:translateY(22px);transition:.7s ease}.seen{opacity:1;transform:none}@keyframes roll{to{transform:translateX(-30%)}}@media(max-width:760px){header{height:68px;padding:0 6vw}button{display:grid;gap:5px;background:none;border:0}button span{width:24px;border-top:2px solid}nav{display:none;position:absolute;top:68px;left:0;right:0;background:var(--paper);padding:24px 6vw;flex-direction:column}.open{display:flex}.hero{grid-template-columns:1fr}.hero-copy,.section,.visit{padding:20vw 6vw}.hero-image{min-height:420px}.grid{grid-template-columns:1fr}.grid article{min-height:0}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}.ticker{animation:none}[data-reveal]{opacity:1;transform:none}}
+
+
+/* CAFE MIA — Bushwick matcha editorial design, also shared by authored pages */
+.cafe-mia{--ink:#1e3026;--paper:#f5f7ee;--green:#d6e8cd;--orange:#b15b77}
+.cafe-mia header{background:#f5f7eef5}
+.cafe-mia .logo{font:800 clamp(22px,2vw,31px)/1.1 Georgia,serif;letter-spacing:.025em}
+.cafe-mia .hero{min-height:690px}
+.cafe-mia .hero h1{font-size:clamp(60px,8vw,123px);line-height:1.015;letter-spacing:-.06em;overflow-wrap:normal}
+.cafe-mia .hero h1 em{color:var(--orange)}
+.cafe-mia .hero-image{background:#bcd7ba;position:relative;min-height:650px}
+.cafe-mia .hero-image img{display:block;height:100%;object-fit:cover;object-position:center 56%;filter:saturate(1.05)}
+.cafe-mia .hero-image:after{content:"BUSHWICK / MATCHA / EVERY DAY";position:absolute;bottom:25px;right:25px;background:#f5f7eee8;padding:12px 16px;font:700 10px Arial,sans-serif;letter-spacing:.15em}
+.cafe-mia .hero-copy{padding-top:clamp(70px,9vw,125px);padding-bottom:clamp(70px,9vw,125px)}
+.cafe-mia .text-cta{display:inline-flex;color:var(--ink);font:700 11px Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase;text-decoration:underline;text-underline-offset:6px;margin:24px 0 0 22px}
+.cafe-mia .green{background:#d6e8cd}
+.cafe-mia .green h2{line-height:1.04}
+.cafe-mia .ticker{animation:none;background:#1e3026;color:#f5f7ee;padding:16px 0}
+.cafe-mia .ticker-track{display:flex;align-items:center;width:max-content;animation:cafe-mia-loop 26s linear infinite;will-change:transform}
+.cafe-mia .ticker-track span{display:block;flex:none;white-space:nowrap;letter-spacing:.2em;padding-right:12px}
+@keyframes cafe-mia-loop{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.cafe-mia .visit{background:#b15b77}
+.cafe-mia .visit h2{line-height:1.05;letter-spacing:-.05em}
+.cafe-mia .visit-hours{font:400 clamp(16px,1.6vw,22px)/1.7 Georgia,serif;margin-top:30px}
+.cafe-mia .visit .text-cta{color:#fff}
+.cafe-page .editorial-hero{padding:clamp(70px,12vw,155px) 6vw;background:#1e3026;color:#f5f7ee}
+.cafe-page .editorial-hero h1{font:500 clamp(50px,9vw,122px)/1.02 Georgia,serif;letter-spacing:-.055em;max-width:15ch;margin:23px 0 24px}
+.cafe-page .editorial-hero p:not(.eyebrow){font:400 clamp(18px,2.1vw,26px)/1.6 Georgia,serif;max-width:35em}
+.cafe-page .content-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(25px,6vw,95px);align-items:center;padding:clamp(68px,9vw,135px) 6vw}
+.cafe-page .content-grid.reverse .content-art{order:-1}
+.cafe-page .content-grid h2{font:500 clamp(42px,5.5vw,82px)/1.05 Georgia,serif;letter-spacing:-.055em;max-width:12ch;margin:20px 0 28px}
+.cafe-page .content-grid p{font:400 clamp(16px,1.5vw,20px)/1.75 Georgia,serif;max-width:48ch}
+.cafe-page .content-art{aspect-ratio:4/5;overflow:hidden;background:#d6e8cd;border-radius:220px 220px 3px 3px}
+.cafe-page .content-art img{height:100%;width:100%;object-fit:cover}
+.cafe-page .content-panel{padding:clamp(60px,8vw,115px) 6vw;background:#d6e8cd}
+.cafe-page .content-panel h2{font:500 clamp(40px,6.2vw,88px)/1.07 Georgia,serif;letter-spacing:-.06em;max-width:15ch;margin:22px 0 36px}
+.cafe-page .content-items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,45px)}
+.cafe-page .content-items article{border-top:1px solid currentColor;padding:23px 0 32px}
+.cafe-page .content-items h3{font:500 clamp(24px,3vw,42px)/1.1 Georgia,serif;margin:14px 0}
+.cafe-page .content-items p{line-height:1.75}
+.cafe-page .content-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:28px}
+.cafe-page .content-actions a{display:inline-flex;padding:14px 20px;background:#b15b77;color:white;text-decoration:none;text-transform:uppercase;font-size:12px;letter-spacing:.07em}
+.cafe-page .content-actions a.secondary{background:#1e3026}
+.cafe-page .content-note{font-size:14px;opacity:.75;margin-top:30px;max-width:60ch}
+.cafe-page footer{background:#1e3026;color:#f5f7ee;padding:32px 6vw;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px}
+.cafe-page footer a{color:inherit;text-underline-offset:5px}
+@media(max-width:760px){.cafe-mia .hero{min-height:auto}.cafe-mia .hero h1{font-size:clamp(52px,12.5vw,84px);line-height:1.04}.cafe-mia .hero-image{min-height:390px;height:450px}.cafe-mia .hero-copy{padding:16vw 6vw}.cafe-mia .text-cta{margin:20px 0 0 15px}.cafe-page .content-grid,.cafe-page .content-items{grid-template-columns:1fr}.cafe-page .content-grid.reverse .content-art{order:0}.cafe-page .content-grid{padding:70px 6vw}.cafe-page .content-art{max-height:480px}.cafe-page .editorial-hero h1{font-size:clamp(52px,12vw,86px);overflow-wrap:anywhere}}
+@media(prefers-reduced-motion:reduce){.cafe-mia .ticker-track{animation:none!important}}
