@@ -54,3 +54,4 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1
 // Preview-only release trigger: editorial v2 and original-site link removal, 2026-11-08.
 
 // Preview-only release retry: allow independent booking and menu service links.
+// Preview-only deployment of Claude redesign checkpoint 63fee837 (no runtime changes).
