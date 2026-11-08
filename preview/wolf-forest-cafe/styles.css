@@ -119,7 +119,7 @@ body { padding-left: var(--rail); }
 
 /* Menu page */
 .menu-hero { background: var(--moss); color: var(--rice); padding: 80px clamp(24px, 5vw, 80px) 64px; position: relative; overflow: hidden; }
-.menu-hero h1 { font-size: clamp(48px, 8vw, 128px); color: var(--leaf); }
+.menu-hero h1 { font-size: clamp(48px, 8vw, 128px); color: var(--leaf); margin-top: 10px; }
 .menu-hero p { max-width: 640px; color: rgba(243,238,225,.82); font-size: 18px; margin: 18px 0 0; }
 .menu-index { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; padding: 0; list-style: none; }
 .menu-index a { display: inline-block; text-decoration: none; border: 1px solid rgba(168,198,134,.5); color: var(--rice); padding: 8px 16px; border-radius: 999px; font-weight: 600; font-size: 15px; }

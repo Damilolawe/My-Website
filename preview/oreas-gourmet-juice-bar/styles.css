@@ -120,7 +120,8 @@ h1, h2 { margin: 0; font-weight: 400; overflow-wrap: anywhere; }
 }
 @media (max-width: 900px) {
   .crates { grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: auto 300px 130px 130px; }
-  .t-name { grid-column: 1 / -1; grid-row: 1; gap: 40px; }
+  .t-name { grid-column: 1 / -1; grid-row: 1; }
+  .t-name h1 { margin: 34px 0 18px; }
   .t-melon { grid-column: 1 / 4; grid-row: 2 / 4; }
   .t-fruit { grid-column: 4 / 7; grid-row: 2; }
   .t-lime { grid-column: 4 / 7; grid-row: 3; }

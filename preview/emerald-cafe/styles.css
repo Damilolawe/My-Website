@@ -90,6 +90,7 @@ p{margin:0}
 .shifts.is-night .ledger,.shifts.is-night .ledger li{border-color:rgba(241,239,228,.2)}
 .shifts.is-night .ledger li span:first-child{color:var(--brass-soft)}
 .shifts.is-night h2 em{color:#d98a95}
+.shifts.is-night .shifts-head .eyebrow{color:var(--brass)}
 .shifts{transition:background-color .6s ease,color .6s ease}
 
 /* bakery */

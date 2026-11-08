@@ -171,7 +171,7 @@ h1 { margin-top: 48px; max-width: 62%; }
   .kicker { margin-left: 26px; }
   h1 { margin-top: 30px; }
   .h-big { text-shadow: 3px 3px 0 var(--marigold), 6px 6px 0 rgba(0, 0, 0, .35); }
-  .medallion { margin-top: -70px; width: min(250px, 66vw); }
+  .medallion { margin-top: -70px; width: min(240px, 58vw); }
   .ring text { font-size: 19px; }
   .snacks-head { grid-template-columns: 1fr; }
   .board { grid-template-columns: 1fr; }
