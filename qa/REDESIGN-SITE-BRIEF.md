@@ -85,6 +85,9 @@ build; do not add your own copy of it.
 - If you cannot find enough fitting photos, use fewer photos and stronger
   typography/CSS compositions rather than irrelevant images.
 - Write specific alt text.
+- Where photos are stock (or the business has not opened), add ONE discreet
+  footer line such as "Photos show the style of food, not the business's own
+  dishes." Never caption individual images as stock or illustrative.
 
 ## 4. Technical limits of the preview host (enforced by CSP)
 
@@ -114,6 +117,20 @@ build; do not add your own copy of it.
 - Keep `<meta name="robots" content="noindex,nofollow">`.
 
 ## 5. Build, inspect, fix, repeat
+
+Notes:
+- Keep scratch files in your own `<scratchpad>/<slug>/` folder only.
+- The coordinator may commit work-in-progress checkpoints while you work; that
+  is expected, keep going.
+- For ad-hoc browser scripts outside the repo, import Playwright by absolute
+  path (`/home/user/My-Website/node_modules/playwright/index.mjs`) and launch
+  with `executablePath: "/opt/pw-browsers/chromium"`.
+- Full-page mobile screenshots draw `position:fixed` bars (e.g. a sticky
+  call bar) about 844px down the page; that is a screenshot artefact, check
+  such bars with a viewport-only screenshot instead.
+- Many news sites cannot be fetched from this environment; search-result
+  summaries are acceptable sources when they quote the publication, but note
+  facts that rest on a single source.
 
 ```
 node scripts/build-one-preview.mjs <slug>

@@ -208,6 +208,10 @@ section h2 em { font-style: italic; color: var(--tomato); }
   .aboard-photos { grid-template-columns: minmax(0, 1fr); }
   .aboard-photos figure { height: auto; aspect-ratio: 4 / 3; }
   .log-list { grid-template-columns: minmax(0, 1fr); }
+  .log-list { row-gap: 28px; }
+  .log-list::before { display: block; left: 9px; right: auto; top: 6px; bottom: 6px; border-top: 0; border-left: 3px dotted var(--marine); }
+  .log-list li { padding: 0 0 0 40px; }
+  .log-list li::before { top: 3px; }
   .btn { width: 100%; }
   .awning { height: 24px; }
 }

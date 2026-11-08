@@ -24,6 +24,9 @@ const allowed = [
   "apps.apple.com", "play.google.com", "discord.gg",
   // independent press coverage
   "forbes.com", "secretnyc.co", "timeout.com", "eater.com", "nytimes.com", "qns.com", "queenspost.com", "gbnews24.com",
+  "hobokengirl.com", "destinationjerseycity.com", "jcfamilies.com", "brooklynpaper.com", "bkmag.com", "grubstreet.com",
+  "theinfatuation.com", "patch.com", "gothamist.com", "amny.com", "newyorker.com", "nypost.com", "brownstoner.com",
+  "untappedcities.com", "michelin.com", "guide.michelin.com", "bonappetit.com", "foodandwine.com", "thrillist.com",
 ];
 const domainIs = (host, suffix) => host === suffix || host.endsWith("." + suffix);
 

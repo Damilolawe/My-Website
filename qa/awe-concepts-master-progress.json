@@ -1,12 +1,12 @@
 {
- "updatedAt": "2026-11-08T21:53:32.917Z",
+ "updatedAt": "2026-11-08T22:13:59.104Z",
  "totals": {
   "sites": 168,
   "byStatus": {
-   "not-started": 168,
+   "not-started": 165,
    "in-progress": 0,
    "code-complete": 0,
-   "visually-verified": 0,
+   "visually-verified": 3,
    "deployed": 0,
    "client-ready": 0,
    "blocked": 0
@@ -44,9 +44,9 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:46:54.043Z",
-    "commit": "94ad4bf",
-    "issueCount": 1,
+    "checkedAt": "2026-11-08T21:59:01.217Z",
+    "commit": "ea5831a",
+    "issueCount": 0,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
@@ -74,8 +74,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:46:54.044Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T21:59:01.218Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -104,9 +104,9 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:46:54.044Z",
-    "commit": "94ad4bf",
-    "issueCount": 2,
+    "checkedAt": "2026-11-08T21:59:11.659Z",
+    "commit": "ea5831a",
+    "issueCount": 0,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
@@ -134,9 +134,9 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:46:54.045Z",
-    "commit": "94ad4bf",
-    "issueCount": 3,
+    "checkedAt": "2026-11-08T21:59:13.198Z",
+    "commit": "ea5831a",
+    "issueCount": 0,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
@@ -164,9 +164,9 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:00.970Z",
-    "commit": "94ad4bf",
-    "issueCount": 0,
+    "checkedAt": "2026-11-08T21:59:23.045Z",
+    "commit": "ea5831a",
+    "issueCount": 1,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
@@ -194,8 +194,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:01.298Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T21:59:24.317Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -224,9 +224,9 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:02.250Z",
-    "commit": "94ad4bf",
-    "issueCount": 0,
+    "checkedAt": "2026-11-08T21:59:33.024Z",
+    "commit": "ea5831a",
+    "issueCount": 1,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
@@ -254,8 +254,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:02.944Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T21:59:35.885Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -284,8 +284,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:05.939Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T21:59:41.080Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -314,8 +314,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:06.755Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T21:59:43.849Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -344,8 +344,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:07.313Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T21:59:47.492Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -374,8 +374,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:07.667Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T21:59:50.635Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -404,8 +404,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:09.411Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T21:59:53.386Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -434,8 +434,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:10.070Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T21:59:58.395Z",
+    "commit": "ea5831a",
     "issueCount": 2,
     "pages": 1
    },
@@ -464,8 +464,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:10.234Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T21:59:59.953Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -494,8 +494,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:12.459Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:05.378Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -524,8 +524,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:13.871Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:06.462Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -554,8 +554,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:13.974Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:11.712Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -584,8 +584,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:14.283Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:12.913Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -614,8 +614,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:16.012Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:18.009Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -644,8 +644,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:17.386Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:19.881Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -674,8 +674,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:17.638Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:24.584Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -704,8 +704,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:17.967Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:26.585Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -734,8 +734,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:19.486Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:31.332Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -764,8 +764,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:20.870Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:33.160Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -794,8 +794,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:21.448Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:38.034Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -824,8 +824,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:21.559Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:39.834Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -854,8 +854,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:23.296Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:45.044Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -884,8 +884,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:24.514Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:46.512Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -914,8 +914,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:25.281Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:51.408Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -944,8 +944,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:25.422Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:53.019Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -974,8 +974,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:26.879Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:57.796Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1004,8 +1004,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:28.279Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:00:59.480Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1034,8 +1034,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:28.679Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:01:04.202Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1064,8 +1064,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:28.980Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:01:05.741Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1094,8 +1094,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:30.447Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:01:10.678Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1124,8 +1124,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:31.818Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:01:12.228Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1154,8 +1154,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:32.340Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:01:17.156Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1184,8 +1184,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:32.576Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:01:18.762Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1214,8 +1214,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:33.914Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:01:23.514Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1244,8 +1244,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:35.456Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:01:25.259Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1274,8 +1274,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:35.826Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:01:29.560Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1304,8 +1304,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:36.463Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:01:31.646Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1334,9 +1334,9 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:37.412Z",
-    "commit": "94ad4bf",
-    "issueCount": 1,
+    "checkedAt": "2026-11-08T22:01:35.941Z",
+    "commit": "ea5831a",
+    "issueCount": 0,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
@@ -1364,9 +1364,9 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:39.164Z",
-    "commit": "94ad4bf",
-    "issueCount": 1,
+    "checkedAt": "2026-11-08T22:01:37.957Z",
+    "commit": "ea5831a",
+    "issueCount": 0,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
@@ -1394,9 +1394,9 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:39.445Z",
-    "commit": "94ad4bf",
-    "issueCount": 1,
+    "checkedAt": "2026-11-08T22:01:42.331Z",
+    "commit": "ea5831a",
+    "issueCount": 0,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
@@ -1424,9 +1424,9 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:40.012Z",
-    "commit": "94ad4bf",
-    "issueCount": 1,
+    "checkedAt": "2026-11-08T22:01:44.226Z",
+    "commit": "ea5831a",
+    "issueCount": 0,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
@@ -1435,33 +1435,70 @@
   },
   {
    "slug": "kora-bakery",
-   "name": "kora-bakery",
+   "name": "Kora",
    "url": "https://preview.aweconcepts.com/kora-bakery/",
    "sourceDirectory": "preview/kora-bakery/",
    "family": "prospect",
-   "status": "not-started",
-   "researchStatus": "not-started",
-   "verifiedBusinessInfo": {},
-   "sources": [],
-   "designDirection": "",
-   "pages": [
-    "index.html"
+   "status": "visually-verified",
+   "researchStatus": "verified",
+   "verifiedBusinessInfo": {
+    "address": "45-12 Greenpoint Avenue, Sunnyside, NY 11104",
+    "phone": "not found in public sources (omitted)",
+    "hours": "Mon-Tue closed; Wed-Fri 7:30am-4pm; Sat-Sun 9am-4pm (Yelp listing, Nov 2026; single source, site tells visitors to check Instagram)",
+    "instagram": "https://www.instagram.com/fromkora/",
+    "other": "Co-founders Kimberly Camara and Kevin Borja; named for Camara's grandmother Corazon; began 2020 in a Woodside apartment after both were laid off from hospitality jobs; commissary kitchens and Alewife Brewery pick-ups; ~10,000-person waitlist; Sunnyside shop opened March 2025 (soft opening sold out in hours); won inaugural Queens' Best Bakery competition (Queens Chamber of Commerce), July 2025. Menu items: Leche Flan ni Lola (heirloom recipe of founder's late grandmother), Ube Fried Brioche, ube custard-filled doughnut, Salted Egg Ube Babka, Apple Fritter, croissants, scallion pancake croissant, ube ice cream sandwich (summer). No prices shown (only launch-era prices found)."
+   },
+   "sources": [
+    "https://www.yelp.com/biz/kora-sunnyside",
+    "https://qns.com/2025/03/koras-sweet-debut-sunnyside/",
+    "https://qns.com/2025/07/kora-sunnyside-best-bakery-queens-chamber/",
+    "https://qns.com/2024/08/specialty-donuts-with-a-filipino-flair-to-open-store-in-sunnyside/",
+    "https://queenspost.com/koras-sweet-debut-sunnyside-bakery-with-filipino-inspired-donuts-opens-first-brick-and-mortar-location",
+    "https://www.rappler.com/life-and-style/food-drinks/kora-bakery-first-store-sunnyside-queens-new-york-filipino-donuts/",
+    "https://www.filipinoreporters.com/post/kora-the-filipino-doughnut-pop-up-with-a-10-000-person-waitlist-opens-permanent-bakery-in-sunnysid",
+    "https://www.timeout.com/newyork/restaurants/kora",
+    "https://www.tipster.io/nyc/drop/40678.html",
+    "https://kora-1.wheree.com/menu",
+    "https://secretnyc.co/kora-bakery-opening-sunnyside-queens/"
    ],
-   "modifiedFiles": [],
-   "problemsFound": [],
-   "fixesImplemented": [],
-   "desktopQA": "not-inspected",
-   "mobileQA": "not-inspected",
-   "functionalQA": "not-inspected",
+   "designDirection": "A pastry-box identity for a Filipino-American doughnut bakery with a cult following: Bricolage Grotesque (condensed, heavy) paired with Instrument Serif italics, on an ube-violet / leche-flan caramel / cream / cocoa palette with a pandan-green accent. The hero is a giant KORA wordmark whose O is a slowly spinning doughnut-ring photo (radial mask), with an at-a-glance fact column and a rotating 'Queens' Best Bakery 2025' sticker; below, a sticky arched photo beside a dashed 'shelf' of four signature bakes, a sticky-headed story timeline on cocoa (2020 apartment kitchen to 2025 award), and a flan-orange visit card plus hours table. The menu page is a three-column bordered pastry-case board. Motion: ring spin, badge spin, soft scroll reveals; all disabled under reduced motion. Primary CTA: see the case / hours and directions.",
+   "pages": [
+    "index.html",
+    "menu.html"
+   ],
+   "modifiedFiles": [
+    "preview/kora-bakery/index.html",
+    "preview/kora-bakery/menu.html",
+    "preview/kora-bakery/styles.css",
+    "preview/kora-bakery/site.js",
+    "preview/kora-bakery/site-record.json"
+   ],
+   "problemsFound": [
+    "Old hero used a croissant photo for a doughnut shop",
+    "Old page linked to fromkora.com (the business's own site)",
+    "Template skeleton, thin content"
+   ],
+   "fixesImplemented": [
+    "Rewrote from scratch with doughnut-only imagery, verified by contact sheet",
+    "Removed all links to the business website; Instagram and Yelp only",
+    "Added menu page with verified items (no prices), verified story timeline, hours and full address"
+   ],
+   "desktopQA": "passed (inspected 1440x900 full-page screenshots of all pages, cropped into sections)",
+   "mobileQA": "passed (inspected 390x844 full-page screenshots of all pages, cropped into sections; menu opens/closes via click, Enter and Escape with aria-expanded updating; also checked 320px)",
+   "functionalQA": "passed: qa-portfolio 0 issues; nav links and anchors resolve; outbound links limited to Instagram, Yelp, Google Maps; no horizontal overflow at 320/768/1024/1440/1920",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:40.707Z",
-    "commit": "94ad4bf",
-    "issueCount": 1,
+    "checkedAt": "2026-11-08T22:01:48.697Z",
+    "commit": "ea5831a",
+    "issueCount": 0,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
    "commit": null,
-   "outstandingIssues": []
+   "outstandingIssues": [
+    "Hours come from one listing (Yelp, Nov 2026); confirm with the owner before sharing",
+    "No phone number found publicly",
+    "Photos are stock doughnuts, not Kora's own bakes; swap in owner photography if supplied"
+   ]
   },
   {
    "slug": "old-mill-cafe",
@@ -1484,9 +1521,9 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:42.568Z",
-    "commit": "94ad4bf",
-    "issueCount": 1,
+    "checkedAt": "2026-11-08T22:01:50.630Z",
+    "commit": "ea5831a",
+    "issueCount": 0,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
@@ -1514,9 +1551,9 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:43.111Z",
-    "commit": "94ad4bf",
-    "issueCount": 1,
+    "checkedAt": "2026-11-08T22:01:54.973Z",
+    "commit": "ea5831a",
+    "issueCount": 0,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
@@ -1544,9 +1581,9 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:43.420Z",
-    "commit": "94ad4bf",
-    "issueCount": 1,
+    "checkedAt": "2026-11-08T22:01:56.959Z",
+    "commit": "ea5831a",
+    "issueCount": 0,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
@@ -1574,9 +1611,9 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:44.496Z",
-    "commit": "94ad4bf",
-    "issueCount": 1,
+    "checkedAt": "2026-11-08T22:02:01.423Z",
+    "commit": "ea5831a",
+    "issueCount": 0,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
@@ -1604,8 +1641,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:45.968Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:03.383Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1634,8 +1671,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:46.303Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:07.909Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1664,8 +1701,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:47.203Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:08.720Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1694,8 +1731,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:47.869Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:13.468Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1724,8 +1761,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:48.211Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:16.093Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1754,8 +1791,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:48.867Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:18.569Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1784,8 +1821,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:50.211Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:21.626Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1814,8 +1851,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:50.755Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:26.071Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1844,8 +1881,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:51.688Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:29.253Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1874,8 +1911,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:53.060Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:33.252Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1904,8 +1941,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:54.544Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:36.992Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1915,33 +1952,66 @@
   },
   {
    "slug": "route-66-smokehouse",
-   "name": "route-66-smokehouse",
+   "name": "Route 66 Smokehouse",
    "url": "https://preview.aweconcepts.com/route-66-smokehouse/",
    "sourceDirectory": "preview/route-66-smokehouse/",
    "family": "prospect",
-   "status": "not-started",
-   "researchStatus": "not-started",
-   "verifiedBusinessInfo": {},
-   "sources": [],
-   "designDirection": "",
-   "pages": [
-    "index.html"
+   "status": "visually-verified",
+   "researchStatus": "partial",
+   "verifiedBusinessInfo": {
+    "address": "79 Pearl Street, New York, NY 10004 (second entrance at 46 Stone Street; between Coenties Slip and Hanover Square)",
+    "phone": "(212) 943-1602",
+    "hours": "conflicting across sources (Stone Street district page: Mon-Wed 12pm-12am, Thu-Sat 12pm-2am, Sun 12pm-12am, kitchen closes 11pm; Yelp/others differ) - not shown; site says call ahead",
+    "instagram": "not found",
+    "other": "Bourbon, brew and barbecue on Stone Street; Texas-style brisket and St. Louis ribs plus Southern riffs such as fried quail and waffles (Time Out); menu items per Yelp/blogs: sliced brisket, brisket sandwich, brisket sliders, beef ribs, pulled pork, smoked chicken; meats smoked in a basement pit (Glenwood); three spaces: year-round outdoor beer garden, indoor dining room, upstairs game room and lounge; bookable rooms listed on Tagvenue: 66 Lounge, Bar Cove, The Corner Cabana, Upstairs Game Room & Lounge, Outdoor Beer Garden; patio hosts 100+ guests."
+   },
+   "sources": [
+    "https://www.timeout.com/newyork/restaurants/route-66-smokehouse",
+    "https://www.yelp.com/biz/route-66-smokehouse-new-york",
+    "https://www.stonestreetnyc.com/route66",
+    "https://www.glenwoodnyc.com/manhattan-living/route-66-bbq-restaurant-nyc/",
+    "https://www.biteofthebest.com/route-66-smokehouse-lower-manhattan-nyc/",
+    "https://www.tagvenue.com/us/venues/new-york/70113/route-66-smokehouse-2",
+    "https://www.tripadvisor.com/Restaurant_Review-g60763-d5967655-Reviews-or15-Route_66_Smokehouse-New_York_City_New_York.html",
+    "https://www.nyctourism.com/restaurants/route-66-smokehouse"
    ],
-   "modifiedFiles": [],
-   "problemsFound": [],
-   "fixesImplemented": [],
-   "desktopQA": "not-inspected",
-   "mobileQA": "not-inspected",
-   "functionalQA": "not-inspected",
+   "designDirection": "A night-highway roadhouse for a FiDi after-work crowd: Big Shoulders Display (tall industrial condensed) with Barlow body and IBM Plex Mono mile-marker labels, on asphalt black, sodium-lamp orange, shield cream, centerline yellow, exit-sign green and brick red. The hero is a full-bleed overhead barbecue tray with a dark directional shade, mile-marker tags and a stacked poster headline, while an animated dashed yellow road centerline runs down the right edge. Sections read as a drive: a black felt letterboard 'pit list' beside a ribs photo, three green highway exit signs for the beer garden / dining room / upstairs game room, a sodium-orange events band, and a 'Destination' exit sign with big map/call rows. The events page lists the five bookable rooms with outlined numerals. Mobile adds a sticky Call / Directions bar. Primary CTA: call.",
+   "pages": [
+    "index.html",
+    "events.html"
+   ],
+   "modifiedFiles": [
+    "preview/route-66-smokehouse/index.html",
+    "preview/route-66-smokehouse/events.html",
+    "preview/route-66-smokehouse/styles.css",
+    "preview/route-66-smokehouse/site.js",
+    "preview/route-66-smokehouse/site-record.json"
+   ],
+   "problemsFound": [
+    "Old hero title overflowed horizontally at 1440px",
+    "Generic template copy, burger photos for a barbecue house"
+   ],
+   "fixesImplemented": [
+    "New hero with clamp()-bounded type; verified no overflow from 320 to 1920px",
+    "Barbecue-specific imagery and a real menu list, rooms and events page from verified sources"
+   ],
+   "desktopQA": "passed (inspected 1440x900 full-page screenshots of all pages, cropped into sections)",
+   "mobileQA": "passed (inspected 390x844 full-page screenshots of all pages, cropped into sections; menu opens/closes via click, Enter and Escape with aria-expanded updating; also checked 320px)",
+   "functionalQA": "passed: qa-portfolio 0 issues; anchors and page links resolve; outbound links limited to Google Maps, Apple Maps, Yelp and tel:; no horizontal overflow at 320/768/1024/1440/1920",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:54.744Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:40.580Z",
+    "commit": "ea5831a",
     "issueCount": 2,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
    "commit": null,
-   "outstandingIssues": []
+   "outstandingIssues": [
+    "Hours omitted because sources conflict",
+    "The official site now appears branded 'Route 66 American Kitchen & Bar'; confirm the trading name with the owner",
+    "Room capacities other than the 100+ beer garden are unknown",
+    "No Instagram or ordering platform verified"
+   ]
   },
   {
    "slug": "al-aqusa-restaurant",
@@ -1964,8 +2034,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:56.163Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:45.072Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -1994,8 +2064,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:57.576Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:47.866Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2024,8 +2094,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:59.012Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:52.487Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2054,8 +2124,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:47:59.359Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:02:55.361Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2084,8 +2154,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:00.247Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:00.055Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2114,8 +2184,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:02.244Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:02.723Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2144,8 +2214,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:03.147Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:07.500Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2174,8 +2244,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:03.460Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:10.390Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2204,8 +2274,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:04.182Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:14.957Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2234,8 +2304,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:06.476Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:17.623Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2264,8 +2334,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:07.300Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:22.301Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2294,8 +2364,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:07.522Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:24.858Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2324,8 +2394,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:07.990Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:30.355Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2354,8 +2424,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:10.882Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:32.258Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2384,8 +2454,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:11.499Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:37.596Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2414,8 +2484,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:11.803Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:39.484Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2444,8 +2514,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:12.127Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:44.916Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2474,8 +2544,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:14.958Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:46.874Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2504,8 +2574,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:15.242Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:52.001Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2534,8 +2604,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:15.667Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:54.103Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2564,8 +2634,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:16.267Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:03:59.456Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2594,8 +2664,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:18.807Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:01.401Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2624,8 +2694,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:19.394Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:06.841Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2654,8 +2724,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:19.527Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:08.734Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2684,8 +2754,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:20.169Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:14.009Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2714,8 +2784,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:22.642Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:15.901Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2744,8 +2814,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:23.406Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:21.454Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2774,8 +2844,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:23.472Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:23.133Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2804,8 +2874,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:24.324Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:28.817Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2834,8 +2904,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:26.368Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:30.434Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2864,8 +2934,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:27.513Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:35.984Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2894,8 +2964,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:27.676Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:37.735Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2924,8 +2994,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:28.574Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:43.040Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2954,8 +3024,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:30.251Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:45.051Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -2984,8 +3054,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:31.428Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:50.200Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3014,8 +3084,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:31.888Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:52.166Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3044,8 +3114,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:32.485Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:57.763Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3074,8 +3144,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:33.845Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:04:59.848Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3104,8 +3174,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:35.548Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:04.942Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3134,8 +3204,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:36.140Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:07.044Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3164,8 +3234,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:36.796Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:12.322Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3194,8 +3264,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:37.931Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:14.105Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3224,8 +3294,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:39.827Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:19.581Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3254,8 +3324,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:39.934Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:21.373Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3284,8 +3354,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:40.763Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:26.782Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3314,8 +3384,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:41.883Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:28.600Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3344,8 +3414,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:44.067Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:34.048Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3374,8 +3444,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:44.074Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:36.062Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3404,8 +3474,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:44.782Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:41.335Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3434,8 +3504,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:46.094Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:43.229Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3464,8 +3534,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:47.931Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:48.663Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3494,8 +3564,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:48.496Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:50.696Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3524,8 +3594,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:48.763Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:56.267Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3554,8 +3624,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:50.278Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:05:57.980Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3584,8 +3654,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:51.896Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:03.658Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3614,8 +3684,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:52.507Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:05.343Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3644,8 +3714,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:53.084Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:10.850Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3674,8 +3744,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:54.139Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:12.733Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3704,8 +3774,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:55.590Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:18.606Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3734,8 +3804,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:56.205Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:20.099Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3764,8 +3834,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:56.943Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:25.947Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3794,8 +3864,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:57.924Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:27.297Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3824,8 +3894,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:48:59.758Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:33.423Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3854,8 +3924,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:00.131Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:34.885Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3884,8 +3954,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:01.009Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:40.953Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3914,8 +3984,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:02.324Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:42.549Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3944,8 +4014,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:03.963Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:48.532Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -3974,8 +4044,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:03.972Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:49.950Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4004,8 +4074,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:05.208Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:56.164Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4034,8 +4104,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:06.061Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:06:57.485Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4064,8 +4134,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:07.951Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:03.417Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4094,8 +4164,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:08.062Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:04.910Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4124,8 +4194,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:08.767Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:10.780Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4154,8 +4224,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:09.796Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:12.720Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4184,8 +4254,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:11.763Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:18.043Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4214,8 +4284,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:12.027Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:20.124Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4244,8 +4314,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:12.518Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:25.261Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4274,8 +4344,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:13.373Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:27.912Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4304,8 +4374,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:15.467Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:32.735Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4334,8 +4404,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:16.095Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:35.416Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4364,8 +4434,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:16.354Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:39.920Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4394,8 +4464,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:17.567Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:42.737Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4424,8 +4494,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:19.260Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:47.322Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4454,8 +4524,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:19.784Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:50.193Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4484,8 +4554,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:20.392Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:54.698Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4514,8 +4584,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:21.842Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:07:57.614Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4544,8 +4614,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:23.091Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:02.168Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4574,8 +4644,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:23.545Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:05.050Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4604,8 +4674,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:24.119Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:09.501Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4634,8 +4704,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:25.693Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:12.339Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4664,8 +4734,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:26.818Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:16.841Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4694,8 +4764,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:27.272Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:19.876Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4724,8 +4794,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:27.720Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:24.323Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4754,8 +4824,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:29.746Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:27.298Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4784,8 +4854,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:30.452Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:31.739Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4814,8 +4884,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:31.032Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:34.535Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4825,33 +4895,67 @@
   },
   {
    "slug": "barchino",
-   "name": "barchino",
+   "name": "Barchino",
    "url": "https://preview.aweconcepts.com/barchino/",
    "sourceDirectory": "preview/barchino/",
    "family": "prospect",
-   "status": "not-started",
-   "researchStatus": "not-started",
-   "verifiedBusinessInfo": {},
-   "sources": [],
-   "designDirection": "",
+   "status": "visually-verified",
+   "researchStatus": "partial",
+   "verifiedBusinessInfo": {
+    "address": "502 Washington Boulevard, Jersey City, NJ 07310 (Apple Maps, Yelp); NOTE the official site reportedly lists 506 Washington Blvd",
+    "phone": "(201) 479-8410 (official site, via search result)",
+    "hours": "not open yet - none",
+    "instagram": "https://www.instagram.com/barchinojc/",
+    "other": "Pre-opening pizza-focused sister restaurant to Battello, next door on the Newport waterfront; chef/partner Ryan DePersio (also Battello, Ember & Eagle, The Kitchen Step); 120 seats; casual and approachable, moderate prices; planned pizzas (crispy, artisan-style, fresh seasonal toppings), paninis, shared plates, salads, appetizers, wine; events space; reservations and private events 'opening soon'; originally targeted fall 2026, latest report (Hoboken Girl, Nov 2026) early December 2026. Email info@barchinojc.com."
+   },
+   "sources": [
+    "https://maps.apple.com/place?place-id=I211F64032AB45C46",
+    "https://www.yelp.com/biz/barchino-jersey-city",
+    "https://www.hobokengirl.com/battello-jersey-city-nj-barchino-pizza-restaurant/",
+    "https://www.hobokengirl.com/news-hoboken-jersey-city-november-1-2026/",
+    "https://www.destinationjerseycity.com/chef-ryan-depersio-opening-new-jersey-city-restaurant-barchino-this-fall/",
+    "https://jcfamilies.com/new-food-spots-to-check-out-in-jersey-city/",
+    "https://barchinojc.com/reserve",
+    "https://www.opentable.com/r/battello-jersey-city",
+    "https://njmonthly.com/articles/eat-drink/chef-ryan-depersio-nj-restaurant-scene/"
+   ],
+   "designDirection": "A Riviera boat-club announcement card for a pre-opening waterfront pizzeria (barchino is Italian for a little boat; its sister is Battello): Bodoni Moda high-contrast italics with Jost body, on marine navy, sail white, tomato red, sea glass, sand and basil. The hero hangs under a striped scalloped awning: a huge italic Barchino wordmark beside a bobbing porthole-framed margherita, over a notched boarding-pass strip (Port, Berth, Seats, Galley, Status). Below: planned menu categories as a column of CSS-drawn nautical signal flags with paired arch/rounded pizza photos, a navy 'crew' section with a facts manifest, a sand-colored opening log with a dotted route and a pulsing 'next' marker, and a sea-glass 'drop anchor' card with map buttons and contact rows. Single page because the restaurant has not published a menu yet. Primary CTA: follow on Instagram / directions.",
    "pages": [
     "index.html"
    ],
-   "modifiedFiles": [],
-   "problemsFound": [],
-   "fixesImplemented": [],
-   "desktopQA": "not-inspected",
-   "mobileQA": "not-inspected",
-   "functionalQA": "not-inspected",
+   "modifiedFiles": [
+    "preview/barchino/index.html",
+    "preview/barchino/styles.css",
+    "preview/barchino/site.js",
+    "preview/barchino/site-record.json"
+   ],
+   "problemsFound": [
+    "Old hero title clipped ('BARCHINC')",
+    "Old address string duplicated the city/ZIP",
+    "Template copy implied an open restaurant"
+   ],
+   "fixesImplemented": [
+    "Wordmark sized with clamp() per breakpoint; verified no clipping/overflow 320-1920px",
+    "Single clean full address; site framed as pre-opening with a sourced opening log",
+    "Footer notice that photos show the style of food, not Barchino's dishes"
+   ],
+   "desktopQA": "passed (inspected 1440x900 full-page screenshots of all pages, cropped into sections)",
+   "mobileQA": "passed (inspected 390x844 full-page screenshots of all pages, cropped into sections; menu opens/closes via click, Enter and Escape with aria-expanded updating; also checked 320px)",
+   "functionalQA": "passed: qa-portfolio 0 issues; anchors resolve; outbound links limited to Instagram, Google Maps, Apple Maps, tel: and mailto:; no horizontal overflow at 320/768/1024/1440/1920",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:31.570Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:38.937Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
    "deploymentStatus": "not-deployed-from-this-branch",
    "commit": null,
-   "outstandingIssues": []
+   "outstandingIssues": [
+    "Address conflict: 502 (Apple Maps, Yelp) vs 506 Washington Blvd (official site per search snippet); 502 used - confirm with owner",
+    "Opening date unconfirmed (fall 2026 vs early December 2026)",
+    "Phone/email come from a search-result summary of the official site; the site itself could not be fetched (network policy)",
+    "Press sources (hobokengirl.com, destinationjerseycity.com, jcfamilies.com) are not in the link allow-list, so they are named but not linked"
+   ]
   },
   {
    "slug": "hudson-golf",
@@ -4874,8 +4978,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:33.597Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:41.795Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4904,8 +5008,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:34.172Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:46.401Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4934,8 +5038,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:34.779Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:49.192Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4964,8 +5068,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:35.469Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:54.132Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -4994,8 +5098,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:37.592Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:08:56.659Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -5024,8 +5128,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:37.931Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:09:01.770Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
@@ -5054,8 +5158,8 @@
    "mobileQA": "not-inspected",
    "functionalQA": "not-inspected",
    "automatedQA": {
-    "checkedAt": "2026-11-08T21:49:38.532Z",
-    "commit": "94ad4bf",
+    "checkedAt": "2026-11-08T22:09:03.975Z",
+    "commit": "ea5831a",
     "issueCount": 0,
     "pages": 1
    },
