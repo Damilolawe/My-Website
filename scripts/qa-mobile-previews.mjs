@@ -140,7 +140,7 @@ for (const [deviceName, config] of auditDevices) {
           }
         }
         const addressNodes = [...document.querySelectorAll('address,.closing-location,.visit h2,.visit p,[class*="address"],[class*="location"]')];
-        const streetAddress = /\\b\\d{1,5}(?:-\\d{1,5})?[A-Z]?\\s+[A-Za-z0-9.'’\\- ]{2,60}\\b(?:Street|St|Avenue|Ave|Road|Rd|Boulevard|Blvd|Place|Pl|Lane|Ln|Drive|Dr|Court|Ct|Parkway|Pkwy|Way|Highway|Hwy|Broadway)(?:\\s+[A-Z])?\\b/i;
+        const streetAddress = /\\b\\d{1,5}(?:-\\d{1,5})?[A-Z]?\\s+[A-Za-z0-9.'’ -]{2,60}\\b(?:Street|St|Avenue|Ave|Road|Rd|Boulevard|Blvd|Place|Pl|Lane|Ln|Drive|Dr|Court|Ct|Parkway|Pkwy|Way|Highway|Hwy|Broadway)(?:\\s+[A-Z])?\\b/i;
         for (const node of addressNodes) {
           const text = (node.textContent || '').replace(/\\s+/g, ' ').trim();
           if (streetAddress.test(text) && !/\\b\\d{5}(?:-\\d{4})?\\b/.test(text)) {
