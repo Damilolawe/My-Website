@@ -87,18 +87,18 @@ async function checkPage(context, slug, file, view) {
     await page.evaluate(async () => {
       document.querySelectorAll("img").forEach(i => { i.loading = "eager"; });
       const step = innerHeight * 0.8;
-      for (let y = 0; y < document.documentElement.scrollHeight; y += step) { scrollTo(0, y); await new Promise(r => setTimeout(r, 60)); }
-      scrollTo(0, 0);
+      for (let y = 0; y < document.documentElement.scrollHeight; y += step) { scrollTo({ top: y, behavior: "instant" }); await new Promise(r => setTimeout(r, 160)); }
+      scrollTo({ top: 0, behavior: "instant" });
       await Promise.race([Promise.all([...document.images].map(i => i.decode().catch(() => null))), new Promise(r => setTimeout(r, 8000))]);
     });
-    await page.waitForTimeout(400);
+    await page.waitForTimeout(1600);
     const m = await page.evaluate(({ placeholderSrc, emojiSrc }) => {
       const issues = [];
       const vw = document.documentElement.clientWidth;
       const sw = document.documentElement.scrollWidth;
       if (sw > vw + 2) issues.push("horizontal overflow " + sw + "px > " + vw + "px");
       for (const img of document.images) {
-        if (img.complete && img.naturalWidth === 0 && getComputedStyle(img).display !== "none") issues.push("broken image " + (img.getAttribute("src") || "").slice(0, 120));
+        if ((img.getAttribute("src") || img.getAttribute("srcset")) && img.complete && img.naturalWidth === 0 && img.getClientRects().length) issues.push("broken image " + (img.getAttribute("src") || "").slice(0, 120));
         if (!img.hasAttribute("alt")) issues.push("image without alt " + (img.getAttribute("src") || "").slice(0, 80));
       }
       for (const a of document.querySelectorAll('a[href^="#"]')) {
@@ -116,6 +116,15 @@ async function checkPage(context, slug, file, view) {
         const r = el.getBoundingClientRect();
         if (r.width && (r.right > vw + 4 || r.left < -4)) issues.push("heading outside viewport: " + el.textContent.trim().slice(0, 50));
       }
+      // Content that stays invisible after a full scroll means a reveal animation never fired.
+      const hidden = [...document.querySelectorAll("section, article, figure, h2, h3, p")].filter(el => {
+        const r = el.getBoundingClientRect();
+        if (!(r.width > 40 && r.height > 20 && el.textContent.trim().length > 0)) return false;
+        let o = 1;
+        for (let n = el; n && n !== document.body; n = n.parentElement) o *= Number(getComputedStyle(n).opacity);
+        return o < 0.05;
+      });
+      if (hidden.length) issues.push("content still hidden after scrolling: " + hidden.length + " elements, e.g. " + hidden[0].textContent.trim().slice(0, 40));
       const text = document.body.innerText;
       const ph = text.match(new RegExp(placeholderSrc, "i"));
       if (ph) issues.push("placeholder text: " + ph[0]);
@@ -134,10 +143,11 @@ async function checkPage(context, slug, file, view) {
       // Find a visible menu toggle and confirm it reveals navigation links.
       const toggle = await page.$('[data-menu], button[aria-controls], .menu-toggle, .nav-toggle, button[aria-label*="menu" i], button[aria-label*="navigation" i]');
       if (toggle && await toggle.isVisible()) {
-        const before = await page.evaluate(() => [...document.querySelectorAll("header a, nav a")].filter(a => { const r = a.getBoundingClientRect(); return r.width > 0 && r.height > 0 && r.top < innerHeight; }).length);
+        const usableLinks = () => [...document.querySelectorAll("header a, nav a")].filter(a => { const r = a.getBoundingClientRect(); if (!(r.width > 0 && r.height > 0 && r.top >= 0 && r.top < innerHeight)) return false; const hit = document.elementFromPoint(Math.min(innerWidth - 1, r.left + r.width / 2), r.top + r.height / 2); return !!hit && (hit === a || a.contains(hit)); }).length;
+        const before = await page.evaluate(usableLinks);
         await toggle.click();
         await page.waitForTimeout(500);
-        const after = await page.evaluate(() => [...document.querySelectorAll("header a, nav a")].filter(a => { const r = a.getBoundingClientRect(); const cs = getComputedStyle(a); return r.width > 0 && r.height > 0 && r.top < innerHeight && cs.visibility !== "hidden" && Number(cs.opacity) > 0.1; }).length);
+        const after = await page.evaluate(usableLinks);
         rec.menu = { before, after };
         if (after <= before) rec.issues.push("mobile menu toggle did not reveal links");
         await toggle.click().catch(() => {});
