@@ -17,7 +17,7 @@ function isApprovedDestination(href) {
   if (host === "google.com" && url.pathname.startsWith("/maps")) return true;
   const social = ["instagram.com", "facebook.com", "tiktok.com", "youtube.com", "youtu.be", "threads.net", "linkedin.com", "x.com", "twitter.com", "pinterest.com", "yelp.com"];
   if (social.some(domain => domainIs(host, domain))) return true;
-  const booking = ["as.me", "acuityscheduling.com", "calendly.com", "resy.com", "opentable.com", "eventbrite.com", "exploretock.com"];
+  const booking = ["as.me", "acuityscheduling.com", "calendly.com", "resy.com", "opentable.com", "eventbrite.com", "exploretock.com", "nysbdc.ecenterdirect.com", "order.online", "ddsemenu.com"];
   if (booking.some(domain => domainIs(host, domain))) return true;
   return false;
 }
