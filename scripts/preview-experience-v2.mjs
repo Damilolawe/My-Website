@@ -1,4 +1,5 @@
 import { readFile } from "node:fs/promises";
+import { isAllowedOutbound } from "./preview-link-policy.mjs";
 
 const manifest = JSON.parse(await readFile("qa/111-prospect-revamp.json", "utf8"));
 const bySlug = new Map(manifest.sites.map((site, index) => [site.slug, { ...site, index }]));
@@ -7,20 +8,8 @@ const esc = value => String(value || "").replace(/&/g, "&amp;").replace(/</g, "&
 const stripTags = value => String(value || "").replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
 const domainIs = (hostname, suffix) => hostname === suffix || hostname.endsWith("." + suffix);
 
-function isApprovedDestination(href) {
-  if (!/^https?:\/\//i.test(href)) return true;
-  let url;
-  try { url = new URL(href.replace(/&amp;/g, "&")); } catch { return false; }
-  const host = url.hostname.toLowerCase().replace(/^(www|m)\./, "");
-  if (domainIs(host, "aweconcepts.com")) return true;
-  if (host === "maps.app.goo.gl" || host === "maps.google.com") return true;
-  if (host === "google.com" && url.pathname.startsWith("/maps")) return true;
-  const social = ["instagram.com", "facebook.com", "tiktok.com", "youtube.com", "youtu.be", "threads.net", "linkedin.com", "x.com", "twitter.com", "pinterest.com", "yelp.com"];
-  if (social.some(domain => domainIs(host, domain))) return true;
-  const booking = ["as.me", "acuityscheduling.com", "calendly.com", "resy.com", "opentable.com", "eventbrite.com", "exploretock.com", "nysbdc.ecenterdirect.com", "order.online", "ddsemenu.com"];
-  if (booking.some(domain => domainIs(host, domain))) return true;
-  return false;
-}
+// One shared allowlist: scripts/preview-link-policy.mjs.
+const isApprovedDestination = isAllowedOutbound;
 
 export function stripOriginalSiteLinks(html, pagePath = "") {
   const fallback = /id=["']details["']/.test(html) ? "#details"

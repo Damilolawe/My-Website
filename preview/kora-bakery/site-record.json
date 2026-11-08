@@ -1,0 +1,73 @@
+{
+  "slug": "kora-bakery",
+  "name": "Kora",
+  "status": "visually-verified",
+  "researchStatus": "verified",
+  "verifiedBusinessInfo": {
+    "address": "45-12 Greenpoint Avenue, Sunnyside, NY 11104",
+    "phone": "not found in public sources (omitted)",
+    "hours": "Mon-Tue closed; Wed-Fri 7:30am-4pm; Sat-Sun 9am-4pm (Yelp listing, Nov 2026; single source, site tells visitors to check Instagram)",
+    "instagram": "https://www.instagram.com/fromkora/",
+    "other": "Co-founders Kimberly Camara and Kevin Borja; named for Camara's grandmother Corazon; began 2020 in a Woodside apartment after both were laid off from hospitality jobs; commissary kitchens and Alewife Brewery pick-ups; ~10,000-person waitlist; Sunnyside shop opened March 2025 (soft opening sold out in hours); won inaugural Queens' Best Bakery competition (Queens Chamber of Commerce), July 2025. Menu items: Leche Flan ni Lola (heirloom recipe of founder's late grandmother), Ube Fried Brioche, ube custard-filled doughnut, Salted Egg Ube Babka, Apple Fritter, croissants, scallion pancake croissant, ube ice cream sandwich (summer). No prices shown (only launch-era prices found)."
+  },
+  "sources": [
+    "https://www.yelp.com/biz/kora-sunnyside",
+    "https://qns.com/2025/03/koras-sweet-debut-sunnyside/",
+    "https://qns.com/2025/07/kora-sunnyside-best-bakery-queens-chamber/",
+    "https://qns.com/2024/08/specialty-donuts-with-a-filipino-flair-to-open-store-in-sunnyside/",
+    "https://queenspost.com/koras-sweet-debut-sunnyside-bakery-with-filipino-inspired-donuts-opens-first-brick-and-mortar-location",
+    "https://www.rappler.com/life-and-style/food-drinks/kora-bakery-first-store-sunnyside-queens-new-york-filipino-donuts/",
+    "https://www.filipinoreporters.com/post/kora-the-filipino-doughnut-pop-up-with-a-10-000-person-waitlist-opens-permanent-bakery-in-sunnysid",
+    "https://www.timeout.com/newyork/restaurants/kora",
+    "https://www.tipster.io/nyc/drop/40678.html",
+    "https://kora-1.wheree.com/menu",
+    "https://secretnyc.co/kora-bakery-opening-sunnyside-queens/"
+  ],
+  "designDirection": "A pastry-box identity for a Filipino-American doughnut bakery with a cult following: Bricolage Grotesque (condensed, heavy) paired with Instrument Serif italics, on an ube-violet / leche-flan caramel / cream / cocoa palette with a pandan-green accent. The hero is a giant KORA wordmark whose O is a slowly spinning doughnut-ring photo (radial mask), with an at-a-glance fact column and a rotating 'Queens' Best Bakery 2025' sticker; below, a sticky arched photo beside a dashed 'shelf' of four signature bakes, a sticky-headed story timeline on cocoa (2020 apartment kitchen to 2025 award), and a flan-orange visit card plus hours table. The menu page is a three-column bordered pastry-case board. Motion: ring spin, badge spin, soft scroll reveals; all disabled under reduced motion. Primary CTA: see the case / hours and directions.",
+  "pages": [
+    "index.html",
+    "menu.html"
+  ],
+  "modifiedFiles": [
+    "preview/kora-bakery/index.html",
+    "preview/kora-bakery/menu.html",
+    "preview/kora-bakery/styles.css",
+    "preview/kora-bakery/site.js",
+    "preview/kora-bakery/site-record.json"
+  ],
+  "images": [
+    {
+      "url": "https://images.unsplash.com/photo-1527515545081-5db817172677",
+      "subject": "assorted glazed, sprinkled and sugared ring doughnuts (used inside the wordmark O)",
+      "license": "Unsplash License"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1612240498936-65f5101365d2",
+      "subject": "four doughnuts falling through a dusting of sugar on a dark background",
+      "license": "Unsplash License"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1514517220017-8ce97a34a7b6",
+      "subject": "stack of glazed ring doughnuts on a cream plate",
+      "license": "Unsplash License"
+    }
+  ],
+  "problemsFound": [
+    "Old hero used a croissant photo for a doughnut shop",
+    "Old page linked to fromkora.com (the business's own site)",
+    "Template skeleton, thin content"
+  ],
+  "fixesImplemented": [
+    "Rewrote from scratch with doughnut-only imagery, verified by contact sheet",
+    "Removed all links to the business website; Instagram and Yelp only",
+    "Added menu page with verified items (no prices), verified story timeline, hours and full address"
+  ],
+  "desktopQA": "passed (inspected 1440x900 full-page screenshots of all pages, cropped into sections)",
+  "mobileQA": "passed (inspected 390x844 full-page screenshots of all pages, cropped into sections; menu opens/closes via click, Enter and Escape with aria-expanded updating; also checked 320px)",
+  "functionalQA": "passed: qa-portfolio 0 issues; nav links and anchors resolve; outbound links limited to Instagram, Yelp, Google Maps; no horizontal overflow at 320/768/1024/1440/1920",
+  "outstandingIssues": [
+    "Hours come from one listing (Yelp, Nov 2026); confirm with the owner before sharing",
+    "No phone number found publicly",
+    "Photos are stock doughnuts, not Kora's own bakes; swap in owner photography if supplied"
+  ]
+}

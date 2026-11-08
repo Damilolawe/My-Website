@@ -1,0 +1,74 @@
+{
+  "slug": "route-66-smokehouse",
+  "name": "Route 66 Smokehouse",
+  "status": "visually-verified",
+  "researchStatus": "partial",
+  "verifiedBusinessInfo": {
+    "address": "79 Pearl Street, New York, NY 10004 (second entrance at 46 Stone Street; between Coenties Slip and Hanover Square)",
+    "phone": "(212) 943-1602",
+    "hours": "conflicting across sources (Stone Street district page: Mon-Wed 12pm-12am, Thu-Sat 12pm-2am, Sun 12pm-12am, kitchen closes 11pm; Yelp/others differ) - not shown; site says call ahead",
+    "instagram": "not found",
+    "other": "Bourbon, brew and barbecue on Stone Street; Texas-style brisket and St. Louis ribs plus Southern riffs such as fried quail and waffles (Time Out); menu items per Yelp/blogs: sliced brisket, brisket sandwich, brisket sliders, beef ribs, pulled pork, smoked chicken; meats smoked in a basement pit (Glenwood); three spaces: year-round outdoor beer garden, indoor dining room, upstairs game room and lounge; bookable rooms listed on Tagvenue: 66 Lounge, Bar Cove, The Corner Cabana, Upstairs Game Room & Lounge, Outdoor Beer Garden; patio hosts 100+ guests."
+  },
+  "sources": [
+    "https://www.timeout.com/newyork/restaurants/route-66-smokehouse",
+    "https://www.yelp.com/biz/route-66-smokehouse-new-york",
+    "https://www.stonestreetnyc.com/route66",
+    "https://www.glenwoodnyc.com/manhattan-living/route-66-bbq-restaurant-nyc/",
+    "https://www.biteofthebest.com/route-66-smokehouse-lower-manhattan-nyc/",
+    "https://www.tagvenue.com/us/venues/new-york/70113/route-66-smokehouse-2",
+    "https://www.tripadvisor.com/Restaurant_Review-g60763-d5967655-Reviews-or15-Route_66_Smokehouse-New_York_City_New_York.html",
+    "https://www.nyctourism.com/restaurants/route-66-smokehouse"
+  ],
+  "designDirection": "A night-highway roadhouse for a FiDi after-work crowd: Big Shoulders Display (tall industrial condensed) with Barlow body and IBM Plex Mono mile-marker labels, on asphalt black, sodium-lamp orange, shield cream, centerline yellow, exit-sign green and brick red. The hero is a full-bleed overhead barbecue tray with a dark directional shade, mile-marker tags and a stacked poster headline, while an animated dashed yellow road centerline runs down the right edge. Sections read as a drive: a black felt letterboard 'pit list' beside a ribs photo, three green highway exit signs for the beer garden / dining room / upstairs game room, a sodium-orange events band, and a 'Destination' exit sign with big map/call rows. The events page lists the five bookable rooms with outlined numerals. Mobile adds a sticky Call / Directions bar. Primary CTA: call.",
+  "pages": [
+    "index.html",
+    "events.html"
+  ],
+  "modifiedFiles": [
+    "preview/route-66-smokehouse/index.html",
+    "preview/route-66-smokehouse/events.html",
+    "preview/route-66-smokehouse/styles.css",
+    "preview/route-66-smokehouse/site.js",
+    "preview/route-66-smokehouse/site-record.json"
+  ],
+  "images": [
+    {
+      "url": "https://images.unsplash.com/photo-1560024818-2c6d122cfbe2",
+      "subject": "overhead barbecue tray: sliced brisket, ribs, baked beans, coleslaw, pickles, cornbread muffin",
+      "license": "Unsplash License"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd",
+      "subject": "charred glazed pork ribs on a wooden board",
+      "license": "Unsplash License"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1566633806327-68e152aaf26d",
+      "subject": "lager poured into a pint glass at a dim bar",
+      "license": "Unsplash License"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1544025162-d76694265947",
+      "subject": "rack of glazed barbecue ribs on a board with tomatoes, pickles, sauce and fries",
+      "license": "Unsplash License"
+    }
+  ],
+  "problemsFound": [
+    "Old hero title overflowed horizontally at 1440px",
+    "Generic template copy, burger photos for a barbecue house"
+  ],
+  "fixesImplemented": [
+    "New hero with clamp()-bounded type; verified no overflow from 320 to 1920px",
+    "Barbecue-specific imagery and a real menu list, rooms and events page from verified sources"
+  ],
+  "desktopQA": "passed (inspected 1440x900 full-page screenshots of all pages, cropped into sections)",
+  "mobileQA": "passed (inspected 390x844 full-page screenshots of all pages, cropped into sections; menu opens/closes via click, Enter and Escape with aria-expanded updating; also checked 320px)",
+  "functionalQA": "passed: qa-portfolio 0 issues; anchors and page links resolve; outbound links limited to Google Maps, Apple Maps, Yelp and tel:; no horizontal overflow at 320/768/1024/1440/1920",
+  "outstandingIssues": [
+    "Hours omitted because sources conflict",
+    "The official site now appears branded 'Route 66 American Kitchen & Bar'; confirm the trading name with the owner",
+    "Room capacities other than the 100+ beer garden are unknown",
+    "No Instagram or ordering platform verified"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "slug": "barchino",
+  "name": "Barchino",
+  "status": "visually-verified",
+  "researchStatus": "partial",
+  "verifiedBusinessInfo": {
+    "address": "502 Washington Boulevard, Jersey City, NJ 07310 (Apple Maps, Yelp); NOTE the official site reportedly lists 506 Washington Blvd",
+    "phone": "(201) 479-8410 (official site, via search result)",
+    "hours": "not open yet - none",
+    "instagram": "https://www.instagram.com/barchinojc/",
+    "other": "Pre-opening pizza-focused sister restaurant to Battello, next door on the Newport waterfront; chef/partner Ryan DePersio (also Battello, Ember & Eagle, The Kitchen Step); 120 seats; casual and approachable, moderate prices; planned pizzas (crispy, artisan-style, fresh seasonal toppings), paninis, shared plates, salads, appetizers, wine; events space; reservations and private events 'opening soon'; originally targeted fall 2026, latest report (Hoboken Girl, Nov 2026) early December 2026. Email info@barchinojc.com."
+  },
+  "sources": [
+    "https://maps.apple.com/place?place-id=I211F64032AB45C46",
+    "https://www.yelp.com/biz/barchino-jersey-city",
+    "https://www.hobokengirl.com/battello-jersey-city-nj-barchino-pizza-restaurant/",
+    "https://www.hobokengirl.com/news-hoboken-jersey-city-november-1-2026/",
+    "https://www.destinationjerseycity.com/chef-ryan-depersio-opening-new-jersey-city-restaurant-barchino-this-fall/",
+    "https://jcfamilies.com/new-food-spots-to-check-out-in-jersey-city/",
+    "https://barchinojc.com/reserve",
+    "https://www.opentable.com/r/battello-jersey-city",
+    "https://njmonthly.com/articles/eat-drink/chef-ryan-depersio-nj-restaurant-scene/"
+  ],
+  "designDirection": "A Riviera boat-club announcement card for a pre-opening waterfront pizzeria (barchino is Italian for a little boat; its sister is Battello): Bodoni Moda high-contrast italics with Jost body, on marine navy, sail white, tomato red, sea glass, sand and basil. The hero hangs under a striped scalloped awning: a huge italic Barchino wordmark beside a bobbing porthole-framed margherita, over a notched boarding-pass strip (Port, Berth, Seats, Galley, Status). Below: planned menu categories as a column of CSS-drawn nautical signal flags with paired arch/rounded pizza photos, a navy 'crew' section with a facts manifest, a sand-colored opening log with a dotted route and a pulsing 'next' marker, and a sea-glass 'drop anchor' card with map buttons and contact rows. Single page because the restaurant has not published a menu yet. Primary CTA: follow on Instagram / directions.",
+  "pages": [
+    "index.html"
+  ],
+  "modifiedFiles": [
+    "preview/barchino/index.html",
+    "preview/barchino/styles.css",
+    "preview/barchino/site.js",
+    "preview/barchino/site-record.json"
+  ],
+  "images": [
+    {
+      "url": "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca",
+      "subject": "blistered margherita pizza with mozzarella and basil",
+      "license": "Unsplash License"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5",
+      "subject": "thin crisp pizza with tomato and arugula, sliced on parchment over a blue table",
+      "license": "Unsplash License"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1555072956-7758afb20e8f",
+      "subject": "overhead table with a greens-and-mozzarella pizza, plates and white wine",
+      "license": "Unsplash License"
+    }
+  ],
+  "problemsFound": [
+    "Old hero title clipped ('BARCHINC')",
+    "Old address string duplicated the city/ZIP",
+    "Template copy implied an open restaurant"
+  ],
+  "fixesImplemented": [
+    "Wordmark sized with clamp() per breakpoint; verified no clipping/overflow 320-1920px",
+    "Single clean full address; site framed as pre-opening with a sourced opening log",
+    "Footer notice that photos show the style of food, not Barchino's dishes"
+  ],
+  "desktopQA": "passed (inspected 1440x900 full-page screenshots of all pages, cropped into sections)",
+  "mobileQA": "passed (inspected 390x844 full-page screenshots of all pages, cropped into sections; menu opens/closes via click, Enter and Escape with aria-expanded updating; also checked 320px)",
+  "functionalQA": "passed: qa-portfolio 0 issues; anchors resolve; outbound links limited to Instagram, Google Maps, Apple Maps, tel: and mailto:; no horizontal overflow at 320/768/1024/1440/1920",
+  "outstandingIssues": [
+    "Address conflict: 502 (Apple Maps, Yelp) vs 506 Washington Blvd (official site per search snippet); 502 used - confirm with owner",
+    "Opening date unconfirmed (fall 2026 vs early December 2026)",
+    "Phone/email come from a search-result summary of the official site; the site itself could not be fetched (network policy)",
+    "Press sources (hobokengirl.com, destinationjerseycity.com, jcfamilies.com) are not in the link allow-list, so they are named but not linked"
+  ]
+}
