@@ -52,3 +52,5 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1
 // Preview-only release trigger: distinct designs, 2026-11-08. No runtime change.
 
 // Preview-only release trigger: editorial v2 and original-site link removal, 2026-11-08.
+
+// Preview-only release retry: allow independent booking and menu service links.
