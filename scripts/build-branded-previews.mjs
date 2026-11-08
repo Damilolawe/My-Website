@@ -1,4 +1,5 @@
 import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { enhancePublishedHtml, getEnhancementStats } from "./preview-experience-v2.mjs";
 import { applyAweDesignCredit } from "../shared/brand-credit.mjs";
 import { KAPPO_PAGES, toEmbeddedKappoUrls } from "./rewrite-kappo-preview-urls.mjs";
 import { auditPreviewGlyphs } from "./validate-preview-icons.mjs";
@@ -257,11 +258,14 @@ async function standardizeAweCredits(directory) {
     if (entry.isDirectory()) await standardizeAweCredits(path);
     else if (entry.isFile() && entry.name.endsWith(".html")) {
       const html = await readFile(path, "utf8");
-      await writeFile(path, applyAweDesignCredit(stripLegacyAweCredits(html)));
+      await writeFile(path, applyAweDesignCredit(stripLegacyAweCredits(enhancePublishedHtml(html, path))));
     }
   }
 }
 await standardizeAweCredits(output);
+const enhancement = getEnhancementStats();
+console.log("Preview editorial upgrade and outgoing link policy:", enhancement);
+if (enhancement.upgradedProspects < 100) throw new Error("Expected all shared-format prospect pages to receive the editorial upgrade");
 console.log("Built branded public previews. Only explicitly allowlisted public concepts are included.");
 
 // batch-five-caputo-fix
