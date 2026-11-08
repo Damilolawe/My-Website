@@ -84,3 +84,4 @@ See the "Progress log" section below and the master progress file.
   168 sites recorded; shared fixes (mobile menu script, duplicate footer credit,
   favicon, manifest JSON, filler pages removed, press links preserved).
 - 2026-11-08: Wave 1 started: groups 0 (pilot: kora-bakery, route-66-smokehouse, barchino), 1, 2, 3.
+- 2026-11-08: Pilot group 0 reviewed and committed (kora-bakery, route-66-smokehouse, barchino: visually verified). Group 4 started.

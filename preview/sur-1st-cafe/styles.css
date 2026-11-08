@@ -74,7 +74,7 @@ h1, h2 { margin: 0; font-weight: 800; overflow-wrap: break-word; }
 .frame { margin: 0; position: relative; }
 .frame img { width: 100%; object-fit: cover; filter: grayscale(1) contrast(1.08); transition: filter .6s ease; }
 .frame:hover img { filter: none; }
-.frame::before { content: ""; position: absolute; inset: 0; background: var(--signal); mix-blend-mode: multiply; opacity: .35; pointer-events: none; z-index: 1; }
+.frame::before { content: ""; position: absolute; inset: 0 0 30px 0; background: var(--signal); mix-blend-mode: multiply; opacity: .35; pointer-events: none; z-index: 1; }
 .frame figcaption { font-family: var(--mono); font-size: 13px; margin-top: 10px; color: var(--concrete); }
 .f-a { grid-column: 1 / 6; }
 .f-a img { height: clamp(380px, 46vw, 640px); }
@@ -85,7 +85,8 @@ h1, h2 { margin: 0; font-weight: 800; overflow-wrap: break-word; }
 /* Find */
 .find { padding: clamp(48px, 7vw, 96px) var(--pad); }
 .find-body { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px; align-items: end; }
-.find-addr { margin: 0; font-stretch: 125%; font-weight: 800; font-size: clamp(36px, 5.6vw, 88px); line-height: .98; letter-spacing: -.03em; }
+.find-addr { margin: 0; font-stretch: 125%; font-weight: 800; font-size: clamp(40px, 6vw, 92px); line-height: .98; letter-spacing: -.03em; }
+.find-city { display: block; margin-top: 18px; font-family: var(--mono); font-weight: 400; font-size: clamp(15px, 1.3vw, 18px); letter-spacing: 0; color: var(--steel); }
 .find-links { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
 .find-links li { border-bottom: 2px solid var(--ink); }
 .find-links a { display: flex; justify-content: space-between; align-items: center; padding: 18px 4px; text-decoration: none; font-weight: 700; font-size: 20px; }
