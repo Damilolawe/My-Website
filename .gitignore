@@ -10,3 +10,5 @@ qa-tablet.html
 .netlify/
 
 supabase/.temp/
+artifacts/
+branded-previews/public/

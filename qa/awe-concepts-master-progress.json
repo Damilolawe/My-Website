@@ -1,0 +1,5067 @@
+{
+ "updatedAt": "2026-11-08T21:53:32.917Z",
+ "totals": {
+  "sites": 168,
+  "byStatus": {
+   "not-started": 168,
+   "in-progress": 0,
+   "code-complete": 0,
+   "visually-verified": 0,
+   "deployed": 0,
+   "client-ready": 0,
+   "blocked": 0
+  }
+ },
+ "unpublishedPreviewFolders": [],
+ "statusDefinitions": {
+  "not-started": "No individual redesign or inspection yet (shared fixes may still apply).",
+  "in-progress": "Being redesigned or repaired.",
+  "code-complete": "Individual redesign written; not yet visually inspected at both sizes.",
+  "visually-verified": "Desktop 1440x900 and mobile 390x844 screenshots inspected by eye, functional checks passed.",
+  "deployed": "Visually verified and confirmed live on preview.aweconcepts.com.",
+  "client-ready": "Deployed and every acceptance criterion met.",
+  "blocked": "Cannot proceed; see outstandingIssues."
+ },
+ "sites": [
+  {
+   "slug": "kappo-sono",
+   "name": "kappo-sono",
+   "url": "https://preview.aweconcepts.com/kappo-sono/",
+   "sourceDirectory": "preview/kappo-sono/",
+   "family": "bespoke-build",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:46:54.043Z",
+    "commit": "94ad4bf",
+    "issueCount": 1,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "otaku-haven",
+   "name": "otaku-haven",
+   "url": "https://preview.aweconcepts.com/otaku-haven/",
+   "sourceDirectory": "preview/otaku-haven/",
+   "family": "bespoke-build",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:46:54.044Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "shotsbyriq",
+   "name": "shotsbyriq",
+   "url": "https://preview.aweconcepts.com/shotsbyriq/",
+   "sourceDirectory": "preview/shotsbyriq/",
+   "family": "bespoke-build",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:46:54.044Z",
+    "commit": "94ad4bf",
+    "issueCount": 2,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "jay-millz-shot-em",
+   "name": "jay-millz-shot-em",
+   "url": "https://preview.aweconcepts.com/jay-millz-shot-em/",
+   "sourceDirectory": "preview/jay-millz-shot-em/",
+   "family": "bespoke-build",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:46:54.045Z",
+    "commit": "94ad4bf",
+    "issueCount": 3,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "pace-sbdc",
+   "name": "pace-sbdc",
+   "url": "https://preview.aweconcepts.com/pace-sbdc/",
+   "sourceDirectory": "preview/pace-sbdc/",
+   "family": "bespoke-build",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:00.970Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "susukino",
+   "name": "susukino",
+   "url": "https://preview.aweconcepts.com/susukino/",
+   "sourceDirectory": "preview/susukino/",
+   "family": "bespoke-build",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:01.298Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "bao-dumpling",
+   "name": "bao-dumpling",
+   "url": "https://preview.aweconcepts.com/bao-dumpling/",
+   "sourceDirectory": "preview/bao-dumpling/",
+   "family": "bespoke-build",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:02.250Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "mesa-bar",
+   "name": "mesa-bar",
+   "url": "https://preview.aweconcepts.com/mesa-bar/",
+   "sourceDirectory": "preview/mesa-bar/",
+   "family": "bespoke-build",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:02.944Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "casa-serra",
+   "name": "casa-serra",
+   "url": "https://preview.aweconcepts.com/casa-serra/",
+   "sourceDirectory": "preview/casa-serra/",
+   "family": "bespoke-build",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:05.939Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "solerum",
+   "name": "solerum",
+   "url": "https://preview.aweconcepts.com/solerum/",
+   "sourceDirectory": "preview/solerum/",
+   "family": "bespoke-build",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:06.755Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "jj-deli",
+   "name": "jj-deli",
+   "url": "https://preview.aweconcepts.com/jj-deli/",
+   "sourceDirectory": "preview/jj-deli/",
+   "family": "bespoke-build",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:07.313Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "chong",
+   "name": "chong",
+   "url": "https://preview.aweconcepts.com/chong/",
+   "sourceDirectory": "preview/chong/",
+   "family": "bespoke-build",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:07.667Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "tbili",
+   "name": "tbili",
+   "url": "https://preview.aweconcepts.com/tbili/",
+   "sourceDirectory": "preview/tbili/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:09.411Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "la-mestiza",
+   "name": "la-mestiza",
+   "url": "https://preview.aweconcepts.com/la-mestiza/",
+   "sourceDirectory": "preview/la-mestiza/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:10.070Z",
+    "commit": "94ad4bf",
+    "issueCount": 2,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "santuario-cafe",
+   "name": "santuario-cafe",
+   "url": "https://preview.aweconcepts.com/santuario-cafe/",
+   "sourceDirectory": "preview/santuario-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:10.234Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "le-loup-cafe",
+   "name": "le-loup-cafe",
+   "url": "https://preview.aweconcepts.com/le-loup-cafe/",
+   "sourceDirectory": "preview/le-loup-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:12.459Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "duro-market",
+   "name": "duro-market",
+   "url": "https://preview.aweconcepts.com/duro-market/",
+   "sourceDirectory": "preview/duro-market/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:13.871Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "the-block-coffee",
+   "name": "the-block-coffee",
+   "url": "https://preview.aweconcepts.com/the-block-coffee/",
+   "sourceDirectory": "preview/the-block-coffee/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:13.974Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "splendid-cafe",
+   "name": "splendid-cafe",
+   "url": "https://preview.aweconcepts.com/splendid-cafe/",
+   "sourceDirectory": "preview/splendid-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:14.283Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "cafe-aroma-y-sabor",
+   "name": "cafe-aroma-y-sabor",
+   "url": "https://preview.aweconcepts.com/cafe-aroma-y-sabor/",
+   "sourceDirectory": "preview/cafe-aroma-y-sabor/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:16.012Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "fiolicchia-bakery",
+   "name": "fiolicchia-bakery",
+   "url": "https://preview.aweconcepts.com/fiolicchia-bakery/",
+   "sourceDirectory": "preview/fiolicchia-bakery/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:17.386Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "hairby-matty",
+   "name": "hairby-matty",
+   "url": "https://preview.aweconcepts.com/hairby-matty/",
+   "sourceDirectory": "preview/hairby-matty/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:17.638Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "from-duo",
+   "name": "from-duo",
+   "url": "https://preview.aweconcepts.com/from-duo/",
+   "sourceDirectory": "preview/from-duo/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:17.967Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "studio-and-story",
+   "name": "studio-and-story",
+   "url": "https://preview.aweconcepts.com/studio-and-story/",
+   "sourceDirectory": "preview/studio-and-story/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:19.486Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "underscore-glasserie",
+   "name": "underscore-glasserie",
+   "url": "https://preview.aweconcepts.com/underscore-glasserie/",
+   "sourceDirectory": "preview/underscore-glasserie/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:20.870Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "atma-yoga",
+   "name": "atma-yoga",
+   "url": "https://preview.aweconcepts.com/atma-yoga/",
+   "sourceDirectory": "preview/atma-yoga/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:21.448Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "four-winds-games",
+   "name": "four-winds-games",
+   "url": "https://preview.aweconcepts.com/four-winds-games/",
+   "sourceDirectory": "preview/four-winds-games/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:21.559Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "cultiva-cafe",
+   "name": "cultiva-cafe",
+   "url": "https://preview.aweconcepts.com/cultiva-cafe/",
+   "sourceDirectory": "preview/cultiva-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:23.296Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "hots-coffee",
+   "name": "hots-coffee",
+   "url": "https://preview.aweconcepts.com/hots-coffee/",
+   "sourceDirectory": "preview/hots-coffee/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:24.514Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "nena-sweets-cakes",
+   "name": "nena-sweets-cakes",
+   "url": "https://preview.aweconcepts.com/nena-sweets-cakes/",
+   "sourceDirectory": "preview/nena-sweets-cakes/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:25.281Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "bier-cheese",
+   "name": "bier-cheese",
+   "url": "https://preview.aweconcepts.com/bier-cheese/",
+   "sourceDirectory": "preview/bier-cheese/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:25.422Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "rachels-handmade-cookies",
+   "name": "rachels-handmade-cookies",
+   "url": "https://preview.aweconcepts.com/rachels-handmade-cookies/",
+   "sourceDirectory": "preview/rachels-handmade-cookies/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:26.879Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "dovetail-bakery",
+   "name": "dovetail-bakery",
+   "url": "https://preview.aweconcepts.com/dovetail-bakery/",
+   "sourceDirectory": "preview/dovetail-bakery/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:28.279Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "smor-carroll-gardens",
+   "name": "smor-carroll-gardens",
+   "url": "https://preview.aweconcepts.com/smor-carroll-gardens/",
+   "sourceDirectory": "preview/smor-carroll-gardens/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:28.679Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "caputo-bagels",
+   "name": "caputo-bagels",
+   "url": "https://preview.aweconcepts.com/caputo-bagels/",
+   "sourceDirectory": "preview/caputo-bagels/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:28.980Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "swaines-bk",
+   "name": "swaines-bk",
+   "url": "https://preview.aweconcepts.com/swaines-bk/",
+   "sourceDirectory": "preview/swaines-bk/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:30.447Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "vibra-bronx",
+   "name": "vibra-bronx",
+   "url": "https://preview.aweconcepts.com/vibra-bronx/",
+   "sourceDirectory": "preview/vibra-bronx/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:31.818Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "cafe-mia",
+   "name": "cafe-mia",
+   "url": "https://preview.aweconcepts.com/cafe-mia/",
+   "sourceDirectory": "preview/cafe-mia/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:32.340Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "problem-baker-parkslope",
+   "name": "problem-baker-parkslope",
+   "url": "https://preview.aweconcepts.com/problem-baker-parkslope/",
+   "sourceDirectory": "preview/problem-baker-parkslope/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:32.576Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "atelier-artist",
+   "name": "atelier-artist",
+   "url": "https://preview.aweconcepts.com/atelier-artist/",
+   "sourceDirectory": "preview/atelier-artist/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:33.914Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "prema-fulton",
+   "name": "prema-fulton",
+   "url": "https://preview.aweconcepts.com/prema-fulton/",
+   "sourceDirectory": "preview/prema-fulton/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:35.456Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "three-coffee-halletts",
+   "name": "three-coffee-halletts",
+   "url": "https://preview.aweconcepts.com/three-coffee-halletts/",
+   "sourceDirectory": "preview/three-coffee-halletts/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:35.826Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "loved-ones-coffee",
+   "name": "loved-ones-coffee",
+   "url": "https://preview.aweconcepts.com/loved-ones-coffee/",
+   "sourceDirectory": "preview/loved-ones-coffee/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:36.463Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "worksbynet",
+   "name": "worksbynet",
+   "url": "https://preview.aweconcepts.com/worksbynet/",
+   "sourceDirectory": "preview/worksbynet/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:37.412Z",
+    "commit": "94ad4bf",
+    "issueCount": 1,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "studio-shipley",
+   "name": "studio-shipley",
+   "url": "https://preview.aweconcepts.com/studio-shipley/",
+   "sourceDirectory": "preview/studio-shipley/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:39.164Z",
+    "commit": "94ad4bf",
+    "issueCount": 1,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "hanare-spa",
+   "name": "hanare-spa",
+   "url": "https://preview.aweconcepts.com/hanare-spa/",
+   "sourceDirectory": "preview/hanare-spa/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:39.445Z",
+    "commit": "94ad4bf",
+    "issueCount": 1,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "tiny-topiary",
+   "name": "tiny-topiary",
+   "url": "https://preview.aweconcepts.com/tiny-topiary/",
+   "sourceDirectory": "preview/tiny-topiary/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:40.012Z",
+    "commit": "94ad4bf",
+    "issueCount": 1,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "kora-bakery",
+   "name": "kora-bakery",
+   "url": "https://preview.aweconcepts.com/kora-bakery/",
+   "sourceDirectory": "preview/kora-bakery/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:40.707Z",
+    "commit": "94ad4bf",
+    "issueCount": 1,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "old-mill-cafe",
+   "name": "old-mill-cafe",
+   "url": "https://preview.aweconcepts.com/old-mill-cafe/",
+   "sourceDirectory": "preview/old-mill-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:42.568Z",
+    "commit": "94ad4bf",
+    "issueCount": 1,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "birdee",
+   "name": "birdee",
+   "url": "https://preview.aweconcepts.com/birdee/",
+   "sourceDirectory": "preview/birdee/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:43.111Z",
+    "commit": "94ad4bf",
+    "issueCount": 1,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "cafe-pr",
+   "name": "cafe-pr",
+   "url": "https://preview.aweconcepts.com/cafe-pr/",
+   "sourceDirectory": "preview/cafe-pr/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:43.420Z",
+    "commit": "94ad4bf",
+    "issueCount": 1,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "latte-da",
+   "name": "latte-da",
+   "url": "https://preview.aweconcepts.com/latte-da/",
+   "sourceDirectory": "preview/latte-da/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:44.496Z",
+    "commit": "94ad4bf",
+    "issueCount": 1,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "studio-ephemera",
+   "name": "studio-ephemera",
+   "url": "https://preview.aweconcepts.com/studio-ephemera/",
+   "sourceDirectory": "preview/studio-ephemera/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:45.968Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "loove-labs",
+   "name": "loove-labs",
+   "url": "https://preview.aweconcepts.com/loove-labs/",
+   "sourceDirectory": "preview/loove-labs/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:46.303Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "bem-books",
+   "name": "bem-books",
+   "url": "https://preview.aweconcepts.com/bem-books/",
+   "sourceDirectory": "preview/bem-books/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:47.203Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "one-two-one-cafe",
+   "name": "one-two-one-cafe",
+   "url": "https://preview.aweconcepts.com/one-two-one-cafe/",
+   "sourceDirectory": "preview/one-two-one-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:47.869Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "chique-collective",
+   "name": "chique-collective",
+   "url": "https://preview.aweconcepts.com/chique-collective/",
+   "sourceDirectory": "preview/chique-collective/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:48.211Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "sadie-s-bakery",
+   "name": "sadie-s-bakery",
+   "url": "https://preview.aweconcepts.com/sadie-s-bakery/",
+   "sourceDirectory": "preview/sadie-s-bakery/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:48.867Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "evelyn-bar-and-kitchen",
+   "name": "evelyn-bar-and-kitchen",
+   "url": "https://preview.aweconcepts.com/evelyn-bar-and-kitchen/",
+   "sourceDirectory": "preview/evelyn-bar-and-kitchen/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:50.211Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "aoko-matcha",
+   "name": "aoko-matcha",
+   "url": "https://preview.aweconcepts.com/aoko-matcha/",
+   "sourceDirectory": "preview/aoko-matcha/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:50.755Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "kyuramen-express",
+   "name": "kyuramen-express",
+   "url": "https://preview.aweconcepts.com/kyuramen-express/",
+   "sourceDirectory": "preview/kyuramen-express/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:51.688Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "wolf-forest-cafe",
+   "name": "wolf-forest-cafe",
+   "url": "https://preview.aweconcepts.com/wolf-forest-cafe/",
+   "sourceDirectory": "preview/wolf-forest-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:53.060Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "kee-s-chocolates",
+   "name": "kee-s-chocolates",
+   "url": "https://preview.aweconcepts.com/kee-s-chocolates/",
+   "sourceDirectory": "preview/kee-s-chocolates/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:54.544Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "route-66-smokehouse",
+   "name": "route-66-smokehouse",
+   "url": "https://preview.aweconcepts.com/route-66-smokehouse/",
+   "sourceDirectory": "preview/route-66-smokehouse/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:54.744Z",
+    "commit": "94ad4bf",
+    "issueCount": 2,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "al-aqusa-restaurant",
+   "name": "al-aqusa-restaurant",
+   "url": "https://preview.aweconcepts.com/al-aqusa-restaurant/",
+   "sourceDirectory": "preview/al-aqusa-restaurant/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:56.163Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "bensonhurst-bagels-and-deli",
+   "name": "bensonhurst-bagels-and-deli",
+   "url": "https://preview.aweconcepts.com/bensonhurst-bagels-and-deli/",
+   "sourceDirectory": "preview/bensonhurst-bagels-and-deli/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:57.576Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "grizzly-coffee-and-tea-house",
+   "name": "grizzly-coffee-and-tea-house",
+   "url": "https://preview.aweconcepts.com/grizzly-coffee-and-tea-house/",
+   "sourceDirectory": "preview/grizzly-coffee-and-tea-house/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:59.012Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "guisados-maria",
+   "name": "guisados-maria",
+   "url": "https://preview.aweconcepts.com/guisados-maria/",
+   "sourceDirectory": "preview/guisados-maria/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:47:59.359Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "weng-s-garden",
+   "name": "weng-s-garden",
+   "url": "https://preview.aweconcepts.com/weng-s-garden/",
+   "sourceDirectory": "preview/weng-s-garden/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:00.247Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "gloria",
+   "name": "gloria",
+   "url": "https://preview.aweconcepts.com/gloria/",
+   "sourceDirectory": "preview/gloria/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:02.244Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "isla-and-co",
+   "name": "isla-and-co",
+   "url": "https://preview.aweconcepts.com/isla-and-co/",
+   "sourceDirectory": "preview/isla-and-co/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:03.147Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "kings-co-imperial",
+   "name": "kings-co-imperial",
+   "url": "https://preview.aweconcepts.com/kings-co-imperial/",
+   "sourceDirectory": "preview/kings-co-imperial/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:03.460Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "blanca-s-bakery",
+   "name": "blanca-s-bakery",
+   "url": "https://preview.aweconcepts.com/blanca-s-bakery/",
+   "sourceDirectory": "preview/blanca-s-bakery/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:04.182Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "brooklyn-improv",
+   "name": "brooklyn-improv",
+   "url": "https://preview.aweconcepts.com/brooklyn-improv/",
+   "sourceDirectory": "preview/brooklyn-improv/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:06.476Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "dumbo-oyster-bar",
+   "name": "dumbo-oyster-bar",
+   "url": "https://preview.aweconcepts.com/dumbo-oyster-bar/",
+   "sourceDirectory": "preview/dumbo-oyster-bar/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:07.300Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "sugar-pop-candy-bar-pinkberry",
+   "name": "sugar-pop-candy-bar-pinkberry",
+   "url": "https://preview.aweconcepts.com/sugar-pop-candy-bar-pinkberry/",
+   "sourceDirectory": "preview/sugar-pop-candy-bar-pinkberry/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:07.522Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "ssrp-ramen",
+   "name": "ssrp-ramen",
+   "url": "https://preview.aweconcepts.com/ssrp-ramen/",
+   "sourceDirectory": "preview/ssrp-ramen/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:07.990Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "good-taste",
+   "name": "good-taste",
+   "url": "https://preview.aweconcepts.com/good-taste/",
+   "sourceDirectory": "preview/good-taste/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:10.882Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "halal-street-eatz",
+   "name": "halal-street-eatz",
+   "url": "https://preview.aweconcepts.com/halal-street-eatz/",
+   "sourceDirectory": "preview/halal-street-eatz/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:11.499Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "herbie-s-burgers",
+   "name": "herbie-s-burgers",
+   "url": "https://preview.aweconcepts.com/herbie-s-burgers/",
+   "sourceDirectory": "preview/herbie-s-burgers/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:11.803Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "kuttley-house",
+   "name": "kuttley-house",
+   "url": "https://preview.aweconcepts.com/kuttley-house/",
+   "sourceDirectory": "preview/kuttley-house/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:12.127Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "lima-wok-and-bowl",
+   "name": "lima-wok-and-bowl",
+   "url": "https://preview.aweconcepts.com/lima-wok-and-bowl/",
+   "sourceDirectory": "preview/lima-wok-and-bowl/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:14.958Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "lucky-zhang-s-restaurant",
+   "name": "lucky-zhang-s-restaurant",
+   "url": "https://preview.aweconcepts.com/lucky-zhang-s-restaurant/",
+   "sourceDirectory": "preview/lucky-zhang-s-restaurant/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:15.242Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "sur-1st-cafe",
+   "name": "sur-1st-cafe",
+   "url": "https://preview.aweconcepts.com/sur-1st-cafe/",
+   "sourceDirectory": "preview/sur-1st-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:15.667Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "marbre",
+   "name": "marbre",
+   "url": "https://preview.aweconcepts.com/marbre/",
+   "sourceDirectory": "preview/marbre/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:16.267Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "anna-bella-pizza-cafe",
+   "name": "anna-bella-pizza-cafe",
+   "url": "https://preview.aweconcepts.com/anna-bella-pizza-cafe/",
+   "sourceDirectory": "preview/anna-bella-pizza-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:18.807Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "kampos-taverna",
+   "name": "kampos-taverna",
+   "url": "https://preview.aweconcepts.com/kampos-taverna/",
+   "sourceDirectory": "preview/kampos-taverna/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:19.394Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "bk-halal-grill",
+   "name": "bk-halal-grill",
+   "url": "https://preview.aweconcepts.com/bk-halal-grill/",
+   "sourceDirectory": "preview/bk-halal-grill/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:19.527Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "sweetness-usa",
+   "name": "sweetness-usa",
+   "url": "https://preview.aweconcepts.com/sweetness-usa/",
+   "sourceDirectory": "preview/sweetness-usa/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:20.169Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "jannat-aden-restaurant",
+   "name": "jannat-aden-restaurant",
+   "url": "https://preview.aweconcepts.com/jannat-aden-restaurant/",
+   "sourceDirectory": "preview/jannat-aden-restaurant/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:22.642Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "janet-s-pizza",
+   "name": "janet-s-pizza",
+   "url": "https://preview.aweconcepts.com/janet-s-pizza/",
+   "sourceDirectory": "preview/janet-s-pizza/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:23.406Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "brooklyn-billiards",
+   "name": "brooklyn-billiards",
+   "url": "https://preview.aweconcepts.com/brooklyn-billiards/",
+   "sourceDirectory": "preview/brooklyn-billiards/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:23.472Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "east-wang",
+   "name": "east-wang",
+   "url": "https://preview.aweconcepts.com/east-wang/",
+   "sourceDirectory": "preview/east-wang/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:24.324Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "good-taste-restaurant-168",
+   "name": "good-taste-restaurant-168",
+   "url": "https://preview.aweconcepts.com/good-taste-restaurant-168/",
+   "sourceDirectory": "preview/good-taste-restaurant-168/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:26.368Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "jalopy-theatre",
+   "name": "jalopy-theatre",
+   "url": "https://preview.aweconcepts.com/jalopy-theatre/",
+   "sourceDirectory": "preview/jalopy-theatre/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:27.513Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "l-oranaise",
+   "name": "l-oranaise",
+   "url": "https://preview.aweconcepts.com/l-oranaise/",
+   "sourceDirectory": "preview/l-oranaise/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:27.676Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "surf-city-pizzeria-2",
+   "name": "surf-city-pizzeria-2",
+   "url": "https://preview.aweconcepts.com/surf-city-pizzeria-2/",
+   "sourceDirectory": "preview/surf-city-pizzeria-2/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:28.574Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "la-bagel-delight",
+   "name": "la-bagel-delight",
+   "url": "https://preview.aweconcepts.com/la-bagel-delight/",
+   "sourceDirectory": "preview/la-bagel-delight/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:30.251Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "senzu-juice-and-smoothies",
+   "name": "senzu-juice-and-smoothies",
+   "url": "https://preview.aweconcepts.com/senzu-juice-and-smoothies/",
+   "sourceDirectory": "preview/senzu-juice-and-smoothies/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:31.428Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "shashlik-uz-n1",
+   "name": "shashlik-uz-n1",
+   "url": "https://preview.aweconcepts.com/shashlik-uz-n1/",
+   "sourceDirectory": "preview/shashlik-uz-n1/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:31.888Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "emerald-cafe",
+   "name": "emerald-cafe",
+   "url": "https://preview.aweconcepts.com/emerald-cafe/",
+   "sourceDirectory": "preview/emerald-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:32.485Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "pies-n-thighs",
+   "name": "pies-n-thighs",
+   "url": "https://preview.aweconcepts.com/pies-n-thighs/",
+   "sourceDirectory": "preview/pies-n-thighs/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:33.845Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "rick-s-restaurant",
+   "name": "rick-s-restaurant",
+   "url": "https://preview.aweconcepts.com/rick-s-restaurant/",
+   "sourceDirectory": "preview/rick-s-restaurant/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:35.548Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "wayne-and-sons",
+   "name": "wayne-and-sons",
+   "url": "https://preview.aweconcepts.com/wayne-and-sons/",
+   "sourceDirectory": "preview/wayne-and-sons/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:36.140Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "argo",
+   "name": "argo",
+   "url": "https://preview.aweconcepts.com/argo/",
+   "sourceDirectory": "preview/argo/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:36.796Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "cali-tajadas-bakery",
+   "name": "cali-tajadas-bakery",
+   "url": "https://preview.aweconcepts.com/cali-tajadas-bakery/",
+   "sourceDirectory": "preview/cali-tajadas-bakery/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:37.931Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "kyan-cafe",
+   "name": "kyan-cafe",
+   "url": "https://preview.aweconcepts.com/kyan-cafe/",
+   "sourceDirectory": "preview/kyan-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:39.827Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "guda",
+   "name": "guda",
+   "url": "https://preview.aweconcepts.com/guda/",
+   "sourceDirectory": "preview/guda/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:39.934Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "loco-cafe",
+   "name": "loco-cafe",
+   "url": "https://preview.aweconcepts.com/loco-cafe/",
+   "sourceDirectory": "preview/loco-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:40.763Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "luana-s-tavern",
+   "name": "luana-s-tavern",
+   "url": "https://preview.aweconcepts.com/luana-s-tavern/",
+   "sourceDirectory": "preview/luana-s-tavern/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:41.883Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "maki",
+   "name": "maki",
+   "url": "https://preview.aweconcepts.com/maki/",
+   "sourceDirectory": "preview/maki/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:44.067Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "mr-fire-bar-and-grill",
+   "name": "mr-fire-bar-and-grill",
+   "url": "https://preview.aweconcepts.com/mr-fire-bar-and-grill/",
+   "sourceDirectory": "preview/mr-fire-bar-and-grill/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:44.074Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "turbine-cafe",
+   "name": "turbine-cafe",
+   "url": "https://preview.aweconcepts.com/turbine-cafe/",
+   "sourceDirectory": "preview/turbine-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:44.782Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "leanly-ii-chinese-food",
+   "name": "leanly-ii-chinese-food",
+   "url": "https://preview.aweconcepts.com/leanly-ii-chinese-food/",
+   "sourceDirectory": "preview/leanly-ii-chinese-food/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:46.094Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "miss-bagel",
+   "name": "miss-bagel",
+   "url": "https://preview.aweconcepts.com/miss-bagel/",
+   "sourceDirectory": "preview/miss-bagel/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:47.931Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "fu-ying",
+   "name": "fu-ying",
+   "url": "https://preview.aweconcepts.com/fu-ying/",
+   "sourceDirectory": "preview/fu-ying/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:48.496Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "rb-bakery-and-cafe",
+   "name": "rb-bakery-and-cafe",
+   "url": "https://preview.aweconcepts.com/rb-bakery-and-cafe/",
+   "sourceDirectory": "preview/rb-bakery-and-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:48.763Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "cafe-69-sports-bar",
+   "name": "cafe-69-sports-bar",
+   "url": "https://preview.aweconcepts.com/cafe-69-sports-bar/",
+   "sourceDirectory": "preview/cafe-69-sports-bar/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:50.278Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "desi-zaika",
+   "name": "desi-zaika",
+   "url": "https://preview.aweconcepts.com/desi-zaika/",
+   "sourceDirectory": "preview/desi-zaika/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:51.896Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "el-puerto-de-mexico-restaurant",
+   "name": "el-puerto-de-mexico-restaurant",
+   "url": "https://preview.aweconcepts.com/el-puerto-de-mexico-restaurant/",
+   "sourceDirectory": "preview/el-puerto-de-mexico-restaurant/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:52.507Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "adda-kitchen",
+   "name": "adda-kitchen",
+   "url": "https://preview.aweconcepts.com/adda-kitchen/",
+   "sourceDirectory": "preview/adda-kitchen/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:53.084Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "space-54",
+   "name": "space-54",
+   "url": "https://preview.aweconcepts.com/space-54/",
+   "sourceDirectory": "preview/space-54/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:54.139Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "jamaica-fried-chicken",
+   "name": "jamaica-fried-chicken",
+   "url": "https://preview.aweconcepts.com/jamaica-fried-chicken/",
+   "sourceDirectory": "preview/jamaica-fried-chicken/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:55.590Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "pa-nash-eurosoul",
+   "name": "pa-nash-eurosoul",
+   "url": "https://preview.aweconcepts.com/pa-nash-eurosoul/",
+   "sourceDirectory": "preview/pa-nash-eurosoul/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:56.205Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "18-steps-dengdeng-noodles",
+   "name": "18-steps-dengdeng-noodles",
+   "url": "https://preview.aweconcepts.com/18-steps-dengdeng-noodles/",
+   "sourceDirectory": "preview/18-steps-dengdeng-noodles/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:56.943Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "kostantina-frozen-yogurt",
+   "name": "kostantina-frozen-yogurt",
+   "url": "https://preview.aweconcepts.com/kostantina-frozen-yogurt/",
+   "sourceDirectory": "preview/kostantina-frozen-yogurt/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:57.924Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "notable",
+   "name": "notable",
+   "url": "https://preview.aweconcepts.com/notable/",
+   "sourceDirectory": "preview/notable/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:48:59.758Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "cloud-catering",
+   "name": "cloud-catering",
+   "url": "https://preview.aweconcepts.com/cloud-catering/",
+   "sourceDirectory": "preview/cloud-catering/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:00.131Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "magic-nutrition",
+   "name": "magic-nutrition",
+   "url": "https://preview.aweconcepts.com/magic-nutrition/",
+   "sourceDirectory": "preview/magic-nutrition/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:01.009Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "ato-kitchens",
+   "name": "ato-kitchens",
+   "url": "https://preview.aweconcepts.com/ato-kitchens/",
+   "sourceDirectory": "preview/ato-kitchens/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:02.324Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "my-life-nutrition",
+   "name": "my-life-nutrition",
+   "url": "https://preview.aweconcepts.com/my-life-nutrition/",
+   "sourceDirectory": "preview/my-life-nutrition/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:03.963Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "minitalia-pizzeria",
+   "name": "minitalia-pizzeria",
+   "url": "https://preview.aweconcepts.com/minitalia-pizzeria/",
+   "sourceDirectory": "preview/minitalia-pizzeria/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:03.972Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "baby-cafe",
+   "name": "baby-cafe",
+   "url": "https://preview.aweconcepts.com/baby-cafe/",
+   "sourceDirectory": "preview/baby-cafe/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:05.208Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "chianti-sports-bar-and-restaurant-sugar-and-cake",
+   "name": "chianti-sports-bar-and-restaurant-sugar-and-cake",
+   "url": "https://preview.aweconcepts.com/chianti-sports-bar-and-restaurant-sugar-and-cake/",
+   "sourceDirectory": "preview/chianti-sports-bar-and-restaurant-sugar-and-cake/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:06.061Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "julieta-taberna",
+   "name": "julieta-taberna",
+   "url": "https://preview.aweconcepts.com/julieta-taberna/",
+   "sourceDirectory": "preview/julieta-taberna/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:07.951Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "royal-canton-seafood-palace",
+   "name": "royal-canton-seafood-palace",
+   "url": "https://preview.aweconcepts.com/royal-canton-seafood-palace/",
+   "sourceDirectory": "preview/royal-canton-seafood-palace/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:08.062Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "wan-chong-shan-xia",
+   "name": "wan-chong-shan-xia",
+   "url": "https://preview.aweconcepts.com/wan-chong-shan-xia/",
+   "sourceDirectory": "preview/wan-chong-shan-xia/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:08.767Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "wei-zhi-yuan",
+   "name": "wei-zhi-yuan",
+   "url": "https://preview.aweconcepts.com/wei-zhi-yuan/",
+   "sourceDirectory": "preview/wei-zhi-yuan/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:09.796Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "madame-sousou",
+   "name": "madame-sousou",
+   "url": "https://preview.aweconcepts.com/madame-sousou/",
+   "sourceDirectory": "preview/madame-sousou/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:11.763Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "om-wok",
+   "name": "om-wok",
+   "url": "https://preview.aweconcepts.com/om-wok/",
+   "sourceDirectory": "preview/om-wok/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:12.027Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "restaurante-la-plaza-de-tulcingo",
+   "name": "restaurante-la-plaza-de-tulcingo",
+   "url": "https://preview.aweconcepts.com/restaurante-la-plaza-de-tulcingo/",
+   "sourceDirectory": "preview/restaurante-la-plaza-de-tulcingo/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:12.518Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "oreas-gourmet-juice-bar",
+   "name": "oreas-gourmet-juice-bar",
+   "url": "https://preview.aweconcepts.com/oreas-gourmet-juice-bar/",
+   "sourceDirectory": "preview/oreas-gourmet-juice-bar/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:13.373Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "fresh-pizza-and-pasta",
+   "name": "fresh-pizza-and-pasta",
+   "url": "https://preview.aweconcepts.com/fresh-pizza-and-pasta/",
+   "sourceDirectory": "preview/fresh-pizza-and-pasta/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:15.467Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "equis-pica-pollo-de-verdad",
+   "name": "equis-pica-pollo-de-verdad",
+   "url": "https://preview.aweconcepts.com/equis-pica-pollo-de-verdad/",
+   "sourceDirectory": "preview/equis-pica-pollo-de-verdad/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:16.095Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "rey-tacos",
+   "name": "rey-tacos",
+   "url": "https://preview.aweconcepts.com/rey-tacos/",
+   "sourceDirectory": "preview/rey-tacos/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:16.354Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "jamaica-fry-chicken",
+   "name": "jamaica-fry-chicken",
+   "url": "https://preview.aweconcepts.com/jamaica-fry-chicken/",
+   "sourceDirectory": "preview/jamaica-fry-chicken/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:17.567Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "smash-time-burger-co",
+   "name": "smash-time-burger-co",
+   "url": "https://preview.aweconcepts.com/smash-time-burger-co/",
+   "sourceDirectory": "preview/smash-time-burger-co/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:19.260Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "your-choice-halal-chicken-and-pizza",
+   "name": "your-choice-halal-chicken-and-pizza",
+   "url": "https://preview.aweconcepts.com/your-choice-halal-chicken-and-pizza/",
+   "sourceDirectory": "preview/your-choice-halal-chicken-and-pizza/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:19.784Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "cemitas-cholula-restaurant",
+   "name": "cemitas-cholula-restaurant",
+   "url": "https://preview.aweconcepts.com/cemitas-cholula-restaurant/",
+   "sourceDirectory": "preview/cemitas-cholula-restaurant/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:20.392Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "socotra-restaurant",
+   "name": "socotra-restaurant",
+   "url": "https://preview.aweconcepts.com/socotra-restaurant/",
+   "sourceDirectory": "preview/socotra-restaurant/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:21.842Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "santinos-slices-and-italian-ices",
+   "name": "santinos-slices-and-italian-ices",
+   "url": "https://preview.aweconcepts.com/santinos-slices-and-italian-ices/",
+   "sourceDirectory": "preview/santinos-slices-and-italian-ices/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:23.091Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "orion-s",
+   "name": "orion-s",
+   "url": "https://preview.aweconcepts.com/orion-s/",
+   "sourceDirectory": "preview/orion-s/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:23.545Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "baker-studio",
+   "name": "baker-studio",
+   "url": "https://preview.aweconcepts.com/baker-studio/",
+   "sourceDirectory": "preview/baker-studio/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:24.119Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "uncorked-wines",
+   "name": "uncorked-wines",
+   "url": "https://preview.aweconcepts.com/uncorked-wines/",
+   "sourceDirectory": "preview/uncorked-wines/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:25.693Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "below-sro",
+   "name": "below-sro",
+   "url": "https://preview.aweconcepts.com/below-sro/",
+   "sourceDirectory": "preview/below-sro/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:26.818Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "greens-goods-grill",
+   "name": "greens-goods-grill",
+   "url": "https://preview.aweconcepts.com/greens-goods-grill/",
+   "sourceDirectory": "preview/greens-goods-grill/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:27.272Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "pilates-addiction",
+   "name": "pilates-addiction",
+   "url": "https://preview.aweconcepts.com/pilates-addiction/",
+   "sourceDirectory": "preview/pilates-addiction/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:27.720Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "petaled",
+   "name": "petaled",
+   "url": "https://preview.aweconcepts.com/petaled/",
+   "sourceDirectory": "preview/petaled/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:29.746Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "house-of-amrut",
+   "name": "house-of-amrut",
+   "url": "https://preview.aweconcepts.com/house-of-amrut/",
+   "sourceDirectory": "preview/house-of-amrut/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:30.452Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "kitty-o-shea-s",
+   "name": "kitty-o-shea-s",
+   "url": "https://preview.aweconcepts.com/kitty-o-shea-s/",
+   "sourceDirectory": "preview/kitty-o-shea-s/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:31.032Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "barchino",
+   "name": "barchino",
+   "url": "https://preview.aweconcepts.com/barchino/",
+   "sourceDirectory": "preview/barchino/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:31.570Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "hudson-golf",
+   "name": "hudson-golf",
+   "url": "https://preview.aweconcepts.com/hudson-golf/",
+   "sourceDirectory": "preview/hudson-golf/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:33.597Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "hashi-market",
+   "name": "hashi-market",
+   "url": "https://preview.aweconcepts.com/hashi-market/",
+   "sourceDirectory": "preview/hashi-market/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:34.172Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "dubu-hana",
+   "name": "dubu-hana",
+   "url": "https://preview.aweconcepts.com/dubu-hana/",
+   "sourceDirectory": "preview/dubu-hana/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:34.779Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "dutch-s-express",
+   "name": "dutch-s-express",
+   "url": "https://preview.aweconcepts.com/dutch-s-express/",
+   "sourceDirectory": "preview/dutch-s-express/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:35.469Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "vicoletto",
+   "name": "vicoletto",
+   "url": "https://preview.aweconcepts.com/vicoletto/",
+   "sourceDirectory": "preview/vicoletto/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:37.592Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "cana-coffee-and-bakery",
+   "name": "cana-coffee-and-bakery",
+   "url": "https://preview.aweconcepts.com/cana-coffee-and-bakery/",
+   "sourceDirectory": "preview/cana-coffee-and-bakery/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:37.931Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  },
+  {
+   "slug": "jane-s-matcha",
+   "name": "jane-s-matcha",
+   "url": "https://preview.aweconcepts.com/jane-s-matcha/",
+   "sourceDirectory": "preview/jane-s-matcha/",
+   "family": "prospect",
+   "status": "not-started",
+   "researchStatus": "not-started",
+   "verifiedBusinessInfo": {},
+   "sources": [],
+   "designDirection": "",
+   "pages": [
+    "index.html"
+   ],
+   "modifiedFiles": [],
+   "problemsFound": [],
+   "fixesImplemented": [],
+   "desktopQA": "not-inspected",
+   "mobileQA": "not-inspected",
+   "functionalQA": "not-inspected",
+   "automatedQA": {
+    "checkedAt": "2026-11-08T21:49:38.532Z",
+    "commit": "94ad4bf",
+    "issueCount": 0,
+    "pages": 1
+   },
+   "deploymentStatus": "not-deployed-from-this-branch",
+   "commit": null,
+   "outstandingIssues": []
+  }
+ ]
+}

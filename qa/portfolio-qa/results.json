@@ -1,0 +1,5733 @@
+{
+ "updatedAt": "2026-11-08T21:49:42.081Z",
+ "note": "Automated checks only. Visual sign-off is recorded in qa/awe-concepts-master-progress.json.",
+ "sites": {
+  "kora-bakery": {
+   "slug": "kora-bakery",
+   "checkedAt": "2026-11-08T21:47:40.707Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Kora Bakery | Sunnyside",
+     "height": 3170,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kora-bakery/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [
+      "mobile menu toggle did not reveal links"
+     ],
+     "title": "Kora Bakery | Sunnyside",
+     "height": 3070,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 1
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kora-bakery/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 1
+  },
+  "otaku-haven": {
+   "slug": "otaku-haven",
+   "checkedAt": "2026-11-08T21:46:54.044Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Otaku Haven — Enter Your Era | Independent Website Concept",
+     "height": 8898,
+     "images": 4,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/otaku-haven/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Otaku Haven — Enter Your Era | Independent Website Concept",
+     "height": 10491,
+     "images": 4,
+     "menu": {
+      "before": 1,
+      "after": 6
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/otaku-haven/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "kappo-sono": {
+   "slug": "kappo-sono",
+   "checkedAt": "2026-11-08T21:46:54.043Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Kappo Sono — A Kaiseki Journey · Awe Concepts Design Study",
+     "height": 6944,
+     "images": 5,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kappo-sono/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [
+      "mobile menu toggle did not reveal links"
+     ],
+     "title": "Kappo Sono — A Kaiseki Journey · Awe Concepts Design Study",
+     "height": 6878,
+     "images": 5,
+     "menu": {
+      "before": 7,
+      "after": 7
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kappo-sono/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 1
+  },
+  "jay-millz-shot-em": {
+   "slug": "jay-millz-shot-em",
+   "checkedAt": "2026-11-08T21:46:54.045Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [
+      "broken image ",
+      "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+     ],
+     "title": "Jay Millz Shot Em | Photography | Independent Website Concept",
+     "height": 7429,
+     "images": 10,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/jay-millz-shot-em/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [
+      "broken image "
+     ],
+     "title": "Jay Millz Shot Em | Photography | Independent Website Concept",
+     "height": 8005,
+     "images": 10,
+     "menu": {
+      "before": 1,
+      "after": 7
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/jay-millz-shot-em/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 3
+  },
+  "shotsbyriq": {
+   "slug": "shotsbyriq",
+   "checkedAt": "2026-11-08T21:46:54.044Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [
+      "broken image "
+     ],
+     "title": "SHOTSBYRIQ — Portrait & Editorial Photography | Independent Concept",
+     "height": 9342,
+     "images": 18,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/shotsbyriq/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [
+      "broken image "
+     ],
+     "title": "SHOTSBYRIQ — Portrait & Editorial Photography | Independent Concept",
+     "height": 9551,
+     "images": 18,
+     "menu": {
+      "before": 1,
+      "after": 7
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/shotsbyriq/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 2
+  },
+  "susukino": {
+   "slug": "susukino",
+   "checkedAt": "2026-11-08T21:47:01.298Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "SUSUKINO | Ramen, Sushi & Sake in FiDi — Independent Concept",
+     "height": 6266,
+     "images": 10,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/susukino/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "SUSUKINO | Ramen, Sushi & Sake in FiDi — Independent Concept",
+     "height": 6591,
+     "images": 10,
+     "menu": {
+      "before": 1,
+      "after": 7
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/susukino/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "bao-dumpling": {
+   "slug": "bao-dumpling",
+   "checkedAt": "2026-11-08T21:47:02.250Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Bao Dumpling | Wall Street",
+     "height": 4283,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/bao-dumpling/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Bao Dumpling | Wall Street",
+     "height": 5609,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/bao-dumpling/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "mesa-bar": {
+   "slug": "mesa-bar",
+   "checkedAt": "2026-11-08T21:47:02.944Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Mesa Bar | South Street Seaport",
+     "height": 4246,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/mesa-bar/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Mesa Bar | South Street Seaport",
+     "height": 4881,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/mesa-bar/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "pace-sbdc": {
+   "slug": "pace-sbdc",
+   "checkedAt": "2026-11-08T21:47:00.970Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Pace SBDC | Where Big Ideas Move Forward — Independent Redesign",
+     "height": 11114,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/pace-sbdc/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Pace SBDC | Where Big Ideas Move Forward — Independent Redesign",
+     "height": 15949,
+     "images": 2,
+     "menu": {
+      "before": 7,
+      "after": 14
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/pace-sbdc/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "casa-serra": {
+   "slug": "casa-serra",
+   "checkedAt": "2026-11-08T21:47:05.939Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Casa Serra | South Street Seaport",
+     "height": 3989,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/casa-serra/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Casa Serra | South Street Seaport",
+     "height": 4771,
+     "images": 2,
+     "menu": "no-toggle",
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/casa-serra/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "solerum": {
+   "slug": "solerum",
+   "checkedAt": "2026-11-08T21:47:06.755Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Solerum | Financial District",
+     "height": 4429,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/solerum/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Solerum | Financial District",
+     "height": 5517,
+     "images": 2,
+     "menu": "no-toggle",
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/solerum/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "jj-deli": {
+   "slug": "jj-deli",
+   "checkedAt": "2026-11-08T21:47:07.313Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "JJ Deli | FiDi",
+     "height": 3333,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/jj-deli/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "JJ Deli | FiDi",
+     "height": 4083,
+     "images": 1,
+     "menu": "no-toggle",
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/jj-deli/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "chong": {
+   "slug": "chong",
+   "checkedAt": "2026-11-08T21:47:07.667Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "CHONG | Thai Tea Matters",
+     "height": 5843,
+     "images": 7,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/chong/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "CHONG | Thai Tea Matters",
+     "height": 5499,
+     "images": 7,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/chong/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "tbili": {
+   "slug": "tbili",
+   "checkedAt": "2026-11-08T21:47:09.411Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Tbili | Georgian Cafe in Brooklyn",
+     "height": 3004,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/tbili/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Tbili | Georgian Cafe in Brooklyn",
+     "height": 3285,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/tbili/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "la-mestiza": {
+   "slug": "la-mestiza",
+   "checkedAt": "2026-11-08T21:47:10.070Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [
+      "placeholder text: subject to confirmation"
+     ],
+     "title": "La Mestiza | Fort Greene",
+     "height": 3170,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/la-mestiza/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [
+      "placeholder text: subject to confirmation"
+     ],
+     "title": "La Mestiza | Fort Greene",
+     "height": 2844,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/la-mestiza/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 2
+  },
+  "santuario-cafe": {
+   "slug": "santuario-cafe",
+   "checkedAt": "2026-11-08T21:47:10.234Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Santuario Cafe | Jackson Heights",
+     "height": 3004,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/santuario-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Santuario Cafe | Jackson Heights",
+     "height": 3294,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/santuario-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "le-loup-cafe": {
+   "slug": "le-loup-cafe",
+   "checkedAt": "2026-11-08T21:47:12.459Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Le Loup Cafe | Astoria",
+     "height": 2565,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/le-loup-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Le Loup Cafe | Astoria",
+     "height": 3072,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/le-loup-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "the-block-coffee": {
+   "slug": "the-block-coffee",
+   "checkedAt": "2026-11-08T21:47:13.974Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "The Block Coffee | Independent Concept",
+     "height": 2631,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/the-block-coffee/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "The Block Coffee | Independent Concept",
+     "height": 2743,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/the-block-coffee/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "duro-market": {
+   "slug": "duro-market",
+   "checkedAt": "2026-11-08T21:47:13.871Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Duro Market | Astoria",
+     "height": 2821,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/duro-market/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Duro Market | Astoria",
+     "height": 3078,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/duro-market/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "splendid-cafe": {
+   "slug": "splendid-cafe",
+   "checkedAt": "2026-11-08T21:47:14.283Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Splendid Cafe & Pastry | Independent Concept",
+     "height": 3056,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/splendid-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Splendid Cafe & Pastry | Independent Concept",
+     "height": 3561,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/splendid-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "cafe-aroma-y-sabor": {
+   "slug": "cafe-aroma-y-sabor",
+   "checkedAt": "2026-11-08T21:47:16.012Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Cafe Aroma y Sabor | Independent Concept",
+     "height": 3115,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cafe-aroma-y-sabor/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Cafe Aroma y Sabor | Independent Concept",
+     "height": 3175,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cafe-aroma-y-sabor/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "fiolicchia-bakery": {
+   "slug": "fiolicchia-bakery",
+   "checkedAt": "2026-11-08T21:47:17.386Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Fiolicchia Bakery NYC | Independent Concept",
+     "height": 3196,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/fiolicchia-bakery/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Fiolicchia Bakery NYC | Independent Concept",
+     "height": 3618,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/fiolicchia-bakery/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "hairby-matty": {
+   "slug": "hairby-matty",
+   "checkedAt": "2026-11-08T21:47:17.638Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Hair by Matty | Independent Concept",
+     "height": 3315,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/hairby-matty/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Hair by Matty | Independent Concept",
+     "height": 3444,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/hairby-matty/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "from-duo": {
+   "slug": "from-duo",
+   "checkedAt": "2026-11-08T21:47:17.967Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "From Duo | Independent Concept",
+     "height": 3423,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/from-duo/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "From Duo | Independent Concept",
+     "height": 2890,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/from-duo/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "studio-and-story": {
+   "slug": "studio-and-story",
+   "checkedAt": "2026-11-08T21:47:19.486Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Studio & Story | Independent Concept",
+     "height": 3132,
+     "images": 3,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/studio-and-story/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Studio & Story | Independent Concept",
+     "height": 3421,
+     "images": 3,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/studio-and-story/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "underscore-glasserie": {
+   "slug": "underscore-glasserie",
+   "checkedAt": "2026-11-08T21:47:20.870Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Underscore Glasserie | Independent Concept",
+     "height": 3279,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/underscore-glasserie/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Underscore Glasserie | Independent Concept",
+     "height": 3210,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/underscore-glasserie/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "atma-yoga": {
+   "slug": "atma-yoga",
+   "checkedAt": "2026-11-08T21:47:21.448Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Atma Yoga Collective | Independent Concept",
+     "height": 3090,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/atma-yoga/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Atma Yoga Collective | Independent Concept",
+     "height": 2797,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/atma-yoga/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "four-winds-games": {
+   "slug": "four-winds-games",
+   "checkedAt": "2026-11-08T21:47:21.559Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Four Winds Games | Independent Concept",
+     "height": 3029,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/four-winds-games/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Four Winds Games | Independent Concept",
+     "height": 3481,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/four-winds-games/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "cultiva-cafe": {
+   "slug": "cultiva-cafe",
+   "checkedAt": "2026-11-08T21:47:23.296Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Cultiva Cafe | Ridgewood",
+     "height": 2951,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cultiva-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Cultiva Cafe | Ridgewood",
+     "height": 3053,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cultiva-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "hots-coffee": {
+   "slug": "hots-coffee",
+   "checkedAt": "2026-11-08T21:47:24.514Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Hot's Coffee | Glendale",
+     "height": 3271,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/hots-coffee/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Hot's Coffee | Glendale",
+     "height": 3193,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/hots-coffee/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "nena-sweets-cakes": {
+   "slug": "nena-sweets-cakes",
+   "checkedAt": "2026-11-08T21:47:25.281Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Nena Sweets Cakes | Ridgewood",
+     "height": 3031,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/nena-sweets-cakes/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Nena Sweets Cakes | Ridgewood",
+     "height": 3350,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/nena-sweets-cakes/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "bier-cheese": {
+   "slug": "bier-cheese",
+   "checkedAt": "2026-11-08T21:47:25.422Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "The Bier & Cheese Collective | Astoria",
+     "height": 3309,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/bier-cheese/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "The Bier & Cheese Collective | Astoria",
+     "height": 3205,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/bier-cheese/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "rachels-handmade-cookies": {
+   "slug": "rachels-handmade-cookies",
+   "checkedAt": "2026-11-08T21:47:26.879Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Rachel's Handmade Cookies | Queens",
+     "height": 3155,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/rachels-handmade-cookies/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Rachel's Handmade Cookies | Queens",
+     "height": 3012,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/rachels-handmade-cookies/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "dovetail-bakery": {
+   "slug": "dovetail-bakery",
+   "checkedAt": "2026-11-08T21:47:28.279Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Dovetail Bakery | Astoria",
+     "height": 2898,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/dovetail-bakery/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Dovetail Bakery | Astoria",
+     "height": 2787,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/dovetail-bakery/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "smor-carroll-gardens": {
+   "slug": "smor-carroll-gardens",
+   "checkedAt": "2026-11-08T21:47:28.679Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Smør Bakery | Carroll Gardens",
+     "height": 3072,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/smor-carroll-gardens/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Smør Bakery | Carroll Gardens",
+     "height": 2797,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/smor-carroll-gardens/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "caputo-bagels": {
+   "slug": "caputo-bagels",
+   "checkedAt": "2026-11-08T21:47:28.980Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Caputo Bagels | Park Slope",
+     "height": 3067,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/caputo-bagels/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Caputo Bagels | Park Slope",
+     "height": 2910,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/caputo-bagels/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "swaines-bk": {
+   "slug": "swaines-bk",
+   "checkedAt": "2026-11-08T21:47:30.447Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Swaine's | Brooklyn",
+     "height": 3077,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/swaines-bk/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Swaine's | Brooklyn",
+     "height": 2797,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/swaines-bk/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "vibra-bronx": {
+   "slug": "vibra-bronx",
+   "checkedAt": "2026-11-08T21:47:31.818Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Vibra | Bronx",
+     "height": 2972,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/vibra-bronx/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Vibra | Bronx",
+     "height": 2847,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/vibra-bronx/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "cafe-mia": {
+   "slug": "cafe-mia",
+   "checkedAt": "2026-11-08T21:47:32.340Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Café Mia | Bushwick",
+     "height": 3426,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cafe-mia/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Café Mia | Bushwick",
+     "height": 3126,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cafe-mia/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "problem-baker-parkslope": {
+   "slug": "problem-baker-parkslope",
+   "checkedAt": "2026-11-08T21:47:32.576Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Problem Baker | Park Slope",
+     "height": 3064,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/problem-baker-parkslope/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Problem Baker | Park Slope",
+     "height": 2828,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/problem-baker-parkslope/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "atelier-artist": {
+   "slug": "atelier-artist",
+   "checkedAt": "2026-11-08T21:47:33.914Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Atelier Artist | Brooklyn",
+     "height": 2839,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/atelier-artist/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Atelier Artist | Brooklyn",
+     "height": 2756,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/atelier-artist/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "prema-fulton": {
+   "slug": "prema-fulton",
+   "checkedAt": "2026-11-08T21:47:35.456Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Prema | Brooklyn",
+     "height": 2823,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/prema-fulton/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Prema | Brooklyn",
+     "height": 2767,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/prema-fulton/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "three-coffee-halletts": {
+   "slug": "three-coffee-halletts",
+   "checkedAt": "2026-11-08T21:47:35.826Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": ":3Coffee | Halletts Point",
+     "height": 3033,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/three-coffee-halletts/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": ":3Coffee | Halletts Point",
+     "height": 2745,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/three-coffee-halletts/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "loved-ones-coffee": {
+   "slug": "loved-ones-coffee",
+   "checkedAt": "2026-11-08T21:47:36.463Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Loved Ones Coffee | Boerum Hill",
+     "height": 2827,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/loved-ones-coffee/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Loved Ones Coffee | Boerum Hill",
+     "height": 3103,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 4
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/loved-ones-coffee/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "worksbynet": {
+   "slug": "worksbynet",
+   "checkedAt": "2026-11-08T21:47:37.412Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "WorksbyNET | Bushwick Studio",
+     "height": 3333,
+     "images": 0,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/worksbynet/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [
+      "mobile menu toggle did not reveal links"
+     ],
+     "title": "WorksbyNET | Bushwick Studio",
+     "height": 3721,
+     "images": 0,
+     "menu": {
+      "before": 1,
+      "after": 1
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/worksbynet/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 1
+  },
+  "studio-shipley": {
+   "slug": "studio-shipley",
+   "checkedAt": "2026-11-08T21:47:39.164Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Studio Shipley | Brooklyn Pottery Studio",
+     "height": 3012,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/studio-shipley/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [
+      "mobile menu toggle did not reveal links"
+     ],
+     "title": "Studio Shipley | Brooklyn Pottery Studio",
+     "height": 3140,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 1
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/studio-shipley/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 1
+  },
+  "hanare-spa": {
+   "slug": "hanare-spa",
+   "checkedAt": "2026-11-08T21:47:39.445Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Hanare | Organic Japanese Spa",
+     "height": 2986,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/hanare-spa/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [
+      "mobile menu toggle did not reveal links"
+     ],
+     "title": "Hanare | Organic Japanese Spa",
+     "height": 3084,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 1
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/hanare-spa/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 1
+  },
+  "tiny-topiary": {
+   "slug": "tiny-topiary",
+   "checkedAt": "2026-11-08T21:47:40.012Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Tiny Topiary | Jersey City",
+     "height": 3322,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/tiny-topiary/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [
+      "mobile menu toggle did not reveal links"
+     ],
+     "title": "Tiny Topiary | Jersey City",
+     "height": 3576,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 1
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/tiny-topiary/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 1
+  },
+  "old-mill-cafe": {
+   "slug": "old-mill-cafe",
+   "checkedAt": "2026-11-08T21:47:42.568Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Old Mill Cafe | Bushwick",
+     "height": 3255,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/old-mill-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [
+      "mobile menu toggle did not reveal links"
+     ],
+     "title": "Old Mill Cafe | Bushwick",
+     "height": 3027,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 1
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/old-mill-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 1
+  },
+  "birdee": {
+   "slug": "birdee",
+   "checkedAt": "2026-11-08T21:47:43.111Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Birdee | Williamsburg Bakery",
+     "height": 3043,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/birdee/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [
+      "mobile menu toggle did not reveal links"
+     ],
+     "title": "Birdee | Williamsburg Bakery",
+     "height": 3024,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 1
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/birdee/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 1
+  },
+  "cafe-pr": {
+   "slug": "cafe-pr",
+   "checkedAt": "2026-11-08T21:47:43.420Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Café Pri | Middle Village",
+     "height": 3143,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cafe-pr/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [
+      "mobile menu toggle did not reveal links"
+     ],
+     "title": "Café Pri | Middle Village",
+     "height": 3146,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 1
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cafe-pr/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 1
+  },
+  "latte-da": {
+   "slug": "latte-da",
+   "checkedAt": "2026-11-08T21:47:44.496Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "latte da cafés | Bay Ridge",
+     "height": 3269,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/latte-da/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [
+      "mobile menu toggle did not reveal links"
+     ],
+     "title": "latte da cafés | Bay Ridge",
+     "height": 3069,
+     "images": 1,
+     "menu": {
+      "before": 1,
+      "after": 1
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/latte-da/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 1
+  },
+  "studio-ephemera": {
+   "slug": "studio-ephemera",
+   "checkedAt": "2026-11-08T21:47:45.968Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Studio Ephemera — Brooklyn Hair — Independent Website Concept",
+     "height": 2696,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/studio-ephemera/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Studio Ephemera — Brooklyn Hair — Independent Website Concept",
+     "height": 3042,
+     "images": 1,
+     "menu": "no-toggle",
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/studio-ephemera/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "loove-labs": {
+   "slug": "loove-labs",
+   "checkedAt": "2026-11-08T21:47:46.303Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "LOOVE Labs — Williamsburg — Independent Website Concept",
+     "height": 3131,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/loove-labs/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "LOOVE Labs — Williamsburg — Independent Website Concept",
+     "height": 2792,
+     "images": 1,
+     "menu": "no-toggle",
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/loove-labs/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "one-two-one-cafe": {
+   "slug": "one-two-one-cafe",
+   "checkedAt": "2026-11-08T21:47:47.869Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "OneTwoOne Cafe — Bed-Stuy — Independent Website Concept",
+     "height": 2596,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/one-two-one-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "OneTwoOne Cafe — Bed-Stuy — Independent Website Concept",
+     "height": 2618,
+     "images": 1,
+     "menu": "no-toggle",
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/one-two-one-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "chique-collective": {
+   "slug": "chique-collective",
+   "checkedAt": "2026-11-08T21:47:48.211Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Chique Collective — Hoboken + Jersey City — Independent Website Concept",
+     "height": 2648,
+     "images": 1,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/chique-collective/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Chique Collective — Hoboken + Jersey City — Independent Website Concept",
+     "height": 2869,
+     "images": 1,
+     "menu": "no-toggle",
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/chique-collective/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "bem-books": {
+   "slug": "bem-books",
+   "checkedAt": "2026-11-08T21:47:47.203Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "BEM | Food Is the Story — Independent Concept",
+     "height": 4338,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/bem-books/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "BEM | Food Is the Story — Independent Concept",
+     "height": 5155,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 6
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/bem-books/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "sadie-s-bakery": {
+   "slug": "sadie-s-bakery",
+   "checkedAt": "2026-11-08T21:47:48.867Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Sadie's Bakery | Independent Website Concept",
+     "height": 4970,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/sadie-s-bakery/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Sadie's Bakery | Independent Website Concept",
+     "height": 5132,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/sadie-s-bakery/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "evelyn-bar-and-kitchen": {
+   "slug": "evelyn-bar-and-kitchen",
+   "checkedAt": "2026-11-08T21:47:50.211Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Evelyn Bar & Kitchen | Independent Website Concept",
+     "height": 4803,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/evelyn-bar-and-kitchen/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Evelyn Bar & Kitchen | Independent Website Concept",
+     "height": 5010,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/evelyn-bar-and-kitchen/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "aoko-matcha": {
+   "slug": "aoko-matcha",
+   "checkedAt": "2026-11-08T21:47:50.755Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Aokō Matcha FiDi | Discover Your Shade — Design Study",
+     "height": 4100,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/aoko-matcha/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Aokō Matcha FiDi | Discover Your Shade — Design Study",
+     "height": 4969,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 6
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/aoko-matcha/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "kyuramen-express": {
+   "slug": "kyuramen-express",
+   "checkedAt": "2026-11-08T21:47:51.688Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Kyuramen Express | Independent Website Concept",
+     "height": 4805,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kyuramen-express/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Kyuramen Express | Independent Website Concept",
+     "height": 4939,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kyuramen-express/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "wolf-forest-cafe": {
+   "slug": "wolf-forest-cafe",
+   "checkedAt": "2026-11-08T21:47:53.060Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Wolf Forest Cafe | Independent Website Concept",
+     "height": 4920,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/wolf-forest-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Wolf Forest Cafe | Independent Website Concept",
+     "height": 5060,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/wolf-forest-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "kee-s-chocolates": {
+   "slug": "kee-s-chocolates",
+   "checkedAt": "2026-11-08T21:47:54.544Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Kee's Chocolates | Independent Website Concept",
+     "height": 5082,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kee-s-chocolates/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Kee's Chocolates | Independent Website Concept",
+     "height": 5251,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kee-s-chocolates/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "route-66-smokehouse": {
+   "slug": "route-66-smokehouse",
+   "checkedAt": "2026-11-08T21:47:54.744Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [
+      "horizontal overflow 1643px > 1440px",
+      "heading outside viewport: Route 66 Smokehouse"
+     ],
+     "title": "Route 66 Smokehouse | Independent Website Concept",
+     "height": 4542,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/route-66-smokehouse/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Route 66 Smokehouse | Independent Website Concept",
+     "height": 5129,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/route-66-smokehouse/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 2
+  },
+  "al-aqusa-restaurant": {
+   "slug": "al-aqusa-restaurant",
+   "checkedAt": "2026-11-08T21:47:56.163Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Al Aqusa Restaurant | Independent Website Concept",
+     "height": 4376,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/al-aqusa-restaurant/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Al Aqusa Restaurant | Independent Website Concept",
+     "height": 5081,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/al-aqusa-restaurant/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "bensonhurst-bagels-and-deli": {
+   "slug": "bensonhurst-bagels-and-deli",
+   "checkedAt": "2026-11-08T21:47:57.576Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Bensonhurst Bagels & Deli | Independent Website Concept",
+     "height": 5093,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/bensonhurst-bagels-and-deli/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Bensonhurst Bagels & Deli | Independent Website Concept",
+     "height": 5103,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/bensonhurst-bagels-and-deli/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "guisados-maria": {
+   "slug": "guisados-maria",
+   "checkedAt": "2026-11-08T21:47:59.359Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Guisados Maria | Independent Website Concept",
+     "height": 4436,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/guisados-maria/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Guisados Maria | Independent Website Concept",
+     "height": 4954,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/guisados-maria/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "grizzly-coffee-and-tea-house": {
+   "slug": "grizzly-coffee-and-tea-house",
+   "checkedAt": "2026-11-08T21:47:59.012Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Grizzly Coffee & Tea House | Independent Website Concept",
+     "height": 5474,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/grizzly-coffee-and-tea-house/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Grizzly Coffee & Tea House | Independent Website Concept",
+     "height": 5053,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/grizzly-coffee-and-tea-house/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "weng-s-garden": {
+   "slug": "weng-s-garden",
+   "checkedAt": "2026-11-08T21:48:00.247Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Weng's Garden | Independent Website Concept",
+     "height": 4624,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/weng-s-garden/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Weng's Garden | Independent Website Concept",
+     "height": 5041,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/weng-s-garden/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "gloria": {
+   "slug": "gloria",
+   "checkedAt": "2026-11-08T21:48:02.244Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Gloria | Independent Website Concept",
+     "height": 5855,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/gloria/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Gloria | Independent Website Concept",
+     "height": 5195,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 6
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/gloria/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "kings-co-imperial": {
+   "slug": "kings-co-imperial",
+   "checkedAt": "2026-11-08T21:48:03.460Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Kings Co. Imperial | Independent Website Concept",
+     "height": 4749,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kings-co-imperial/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Kings Co. Imperial | Independent Website Concept",
+     "height": 4498,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kings-co-imperial/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "isla-and-co": {
+   "slug": "isla-and-co",
+   "checkedAt": "2026-11-08T21:48:03.147Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Isla & Co. | Independent Website Concept",
+     "height": 5421,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/isla-and-co/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Isla & Co. | Independent Website Concept",
+     "height": 5047,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/isla-and-co/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "blanca-s-bakery": {
+   "slug": "blanca-s-bakery",
+   "checkedAt": "2026-11-08T21:48:04.182Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Blanca's Bakery | Independent Website Concept",
+     "height": 5071,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/blanca-s-bakery/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Blanca's Bakery | Independent Website Concept",
+     "height": 5041,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/blanca-s-bakery/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "brooklyn-improv": {
+   "slug": "brooklyn-improv",
+   "checkedAt": "2026-11-08T21:48:06.476Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Brooklyn Improv | Independent Website Concept",
+     "height": 4720,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/brooklyn-improv/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Brooklyn Improv | Independent Website Concept",
+     "height": 5068,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/brooklyn-improv/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "dumbo-oyster-bar": {
+   "slug": "dumbo-oyster-bar",
+   "checkedAt": "2026-11-08T21:48:07.300Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Dumbo Oyster Bar | Oysters Beneath the Bridge — Independent Concept",
+     "height": 5838,
+     "images": 3,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/dumbo-oyster-bar/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Dumbo Oyster Bar | Oysters Beneath the Bridge — Independent Concept",
+     "height": 6402,
+     "images": 3,
+     "menu": {
+      "before": 1,
+      "after": 6
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/dumbo-oyster-bar/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "sugar-pop-candy-bar-pinkberry": {
+   "slug": "sugar-pop-candy-bar-pinkberry",
+   "checkedAt": "2026-11-08T21:48:07.522Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Sugar Pop Candy Bar / Pinkberry | Independent Website Concept",
+     "height": 5023,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/sugar-pop-candy-bar-pinkberry/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Sugar Pop Candy Bar / Pinkberry | Independent Website Concept",
+     "height": 5123,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/sugar-pop-candy-bar-pinkberry/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "ssrp-ramen": {
+   "slug": "ssrp-ramen",
+   "checkedAt": "2026-11-08T21:48:07.990Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "SSRP Ramen | Independent Website Concept",
+     "height": 4534,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/ssrp-ramen/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "SSRP Ramen | Independent Website Concept",
+     "height": 4926,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/ssrp-ramen/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "good-taste": {
+   "slug": "good-taste",
+   "checkedAt": "2026-11-08T21:48:10.882Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Good Taste | Independent Website Concept",
+     "height": 5012,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/good-taste/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Good Taste | Independent Website Concept",
+     "height": 4938,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/good-taste/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "halal-street-eatz": {
+   "slug": "halal-street-eatz",
+   "checkedAt": "2026-11-08T21:48:11.499Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Halal Street Eatz | Independent Website Concept",
+     "height": 4633,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/halal-street-eatz/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Halal Street Eatz | Independent Website Concept",
+     "height": 5116,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/halal-street-eatz/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "herbie-s-burgers": {
+   "slug": "herbie-s-burgers",
+   "checkedAt": "2026-11-08T21:48:11.803Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Herbie's Burgers | Independent Website Concept",
+     "height": 4647,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/herbie-s-burgers/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Herbie's Burgers | Independent Website Concept",
+     "height": 5131,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/herbie-s-burgers/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "kuttley-house": {
+   "slug": "kuttley-house",
+   "checkedAt": "2026-11-08T21:48:12.127Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Kuttley House | Independent Website Concept",
+     "height": 4503,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kuttley-house/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Kuttley House | Independent Website Concept",
+     "height": 4551,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kuttley-house/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "lima-wok-and-bowl": {
+   "slug": "lima-wok-and-bowl",
+   "checkedAt": "2026-11-08T21:48:14.958Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Lima Wok & Bowl | Independent Website Concept",
+     "height": 4795,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/lima-wok-and-bowl/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Lima Wok & Bowl | Independent Website Concept",
+     "height": 5045,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/lima-wok-and-bowl/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "lucky-zhang-s-restaurant": {
+   "slug": "lucky-zhang-s-restaurant",
+   "checkedAt": "2026-11-08T21:48:15.242Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Lucky Zhang's Restaurant | Independent Website Concept",
+     "height": 5056,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/lucky-zhang-s-restaurant/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Lucky Zhang's Restaurant | Independent Website Concept",
+     "height": 4600,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/lucky-zhang-s-restaurant/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "sur-1st-cafe": {
+   "slug": "sur-1st-cafe",
+   "checkedAt": "2026-11-08T21:48:15.667Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Sur 1st Cafe | Independent Website Concept",
+     "height": 4493,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/sur-1st-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Sur 1st Cafe | Independent Website Concept",
+     "height": 4878,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/sur-1st-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "marbre": {
+   "slug": "marbre",
+   "checkedAt": "2026-11-08T21:48:16.267Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Marbre | Independent Website Concept",
+     "height": 4905,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/marbre/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Marbre | Independent Website Concept",
+     "height": 4947,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/marbre/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "anna-bella-pizza-cafe": {
+   "slug": "anna-bella-pizza-cafe",
+   "checkedAt": "2026-11-08T21:48:18.807Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Anna Bella Pizza Cafe | Independent Website Concept",
+     "height": 4946,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/anna-bella-pizza-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Anna Bella Pizza Cafe | Independent Website Concept",
+     "height": 5135,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/anna-bella-pizza-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "bk-halal-grill": {
+   "slug": "bk-halal-grill",
+   "checkedAt": "2026-11-08T21:48:19.527Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "BK Halal Grill | Independent Website Concept",
+     "height": 4571,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/bk-halal-grill/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "BK Halal Grill | Independent Website Concept",
+     "height": 4925,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/bk-halal-grill/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "kampos-taverna": {
+   "slug": "kampos-taverna",
+   "checkedAt": "2026-11-08T21:48:19.394Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Kampos Taverna | Independent Website Concept",
+     "height": 4606,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kampos-taverna/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Kampos Taverna | Independent Website Concept",
+     "height": 5153,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kampos-taverna/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "sweetness-usa": {
+   "slug": "sweetness-usa",
+   "checkedAt": "2026-11-08T21:48:20.169Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Sweetness USA | Independent Website Concept",
+     "height": 4835,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/sweetness-usa/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Sweetness USA | Independent Website Concept",
+     "height": 5274,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/sweetness-usa/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "jannat-aden-restaurant": {
+   "slug": "jannat-aden-restaurant",
+   "checkedAt": "2026-11-08T21:48:22.642Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Jannat Aden Restaurant | Independent Website Concept",
+     "height": 4483,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/jannat-aden-restaurant/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Jannat Aden Restaurant | Independent Website Concept",
+     "height": 4958,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/jannat-aden-restaurant/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "brooklyn-billiards": {
+   "slug": "brooklyn-billiards",
+   "checkedAt": "2026-11-08T21:48:23.472Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Brooklyn Billiards | Independent Website Concept",
+     "height": 4437,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/brooklyn-billiards/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Brooklyn Billiards | Independent Website Concept",
+     "height": 5239,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/brooklyn-billiards/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "janet-s-pizza": {
+   "slug": "janet-s-pizza",
+   "checkedAt": "2026-11-08T21:48:23.406Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Janet's Pizza | Independent Website Concept",
+     "height": 4558,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/janet-s-pizza/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Janet's Pizza | Independent Website Concept",
+     "height": 5210,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/janet-s-pizza/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "east-wang": {
+   "slug": "east-wang",
+   "checkedAt": "2026-11-08T21:48:24.324Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "East Wang | Independent Website Concept",
+     "height": 4984,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/east-wang/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "East Wang | Independent Website Concept",
+     "height": 5048,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/east-wang/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "good-taste-restaurant-168": {
+   "slug": "good-taste-restaurant-168",
+   "checkedAt": "2026-11-08T21:48:26.368Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Good Taste Restaurant 168 | Independent Website Concept",
+     "height": 4567,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/good-taste-restaurant-168/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Good Taste Restaurant 168 | Independent Website Concept",
+     "height": 5100,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/good-taste-restaurant-168/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "jalopy-theatre": {
+   "slug": "jalopy-theatre",
+   "checkedAt": "2026-11-08T21:48:27.513Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Jalopy Theatre & School of Music | Independent Design Concept",
+     "height": 3658,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/jalopy-theatre/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Jalopy Theatre & School of Music | Independent Design Concept",
+     "height": 4633,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 6
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/jalopy-theatre/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "l-oranaise": {
+   "slug": "l-oranaise",
+   "checkedAt": "2026-11-08T21:48:27.676Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "L'Oranaise | Independent Website Concept",
+     "height": 5171,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/l-oranaise/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "L'Oranaise | Independent Website Concept",
+     "height": 5012,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/l-oranaise/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "surf-city-pizzeria-2": {
+   "slug": "surf-city-pizzeria-2",
+   "checkedAt": "2026-11-08T21:48:28.574Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Surf City Pizzeria 2 | Independent Website Concept",
+     "height": 4341,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/surf-city-pizzeria-2/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Surf City Pizzeria 2 | Independent Website Concept",
+     "height": 5000,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/surf-city-pizzeria-2/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "la-bagel-delight": {
+   "slug": "la-bagel-delight",
+   "checkedAt": "2026-11-08T21:48:30.251Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "LA Bagel Delight | Independent Website Concept",
+     "height": 4397,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/la-bagel-delight/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "LA Bagel Delight | Independent Website Concept",
+     "height": 5065,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/la-bagel-delight/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "senzu-juice-and-smoothies": {
+   "slug": "senzu-juice-and-smoothies",
+   "checkedAt": "2026-11-08T21:48:31.428Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Senzu Juice & Smoothies | Independent Website Concept",
+     "height": 5497,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/senzu-juice-and-smoothies/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Senzu Juice & Smoothies | Independent Website Concept",
+     "height": 5181,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/senzu-juice-and-smoothies/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "shashlik-uz-n1": {
+   "slug": "shashlik-uz-n1",
+   "checkedAt": "2026-11-08T21:48:31.888Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Shashlik Uz N1 | Independent Website Concept",
+     "height": 5443,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/shashlik-uz-n1/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Shashlik Uz N1 | Independent Website Concept",
+     "height": 5031,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/shashlik-uz-n1/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "emerald-cafe": {
+   "slug": "emerald-cafe",
+   "checkedAt": "2026-11-08T21:48:32.485Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Emerald Cafe | Independent Website Concept",
+     "height": 4592,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/emerald-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Emerald Cafe | Independent Website Concept",
+     "height": 5025,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/emerald-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "pies-n-thighs": {
+   "slug": "pies-n-thighs",
+   "checkedAt": "2026-11-08T21:48:33.845Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Pies 'n' Thighs | Independent Website Concept",
+     "height": 4626,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/pies-n-thighs/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Pies 'n' Thighs | Independent Website Concept",
+     "height": 4548,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/pies-n-thighs/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "rick-s-restaurant": {
+   "slug": "rick-s-restaurant",
+   "checkedAt": "2026-11-08T21:48:35.548Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Rick's Restaurant | Independent Website Concept",
+     "height": 4588,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/rick-s-restaurant/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Rick's Restaurant | Independent Website Concept",
+     "height": 4961,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/rick-s-restaurant/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "wayne-and-sons": {
+   "slug": "wayne-and-sons",
+   "checkedAt": "2026-11-08T21:48:36.140Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Wayne & Sons | Independent Website Concept",
+     "height": 4652,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/wayne-and-sons/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Wayne & Sons | Independent Website Concept",
+     "height": 4676,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/wayne-and-sons/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "argo": {
+   "slug": "argo",
+   "checkedAt": "2026-11-08T21:48:36.796Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Argo | Independent Website Concept",
+     "height": 4884,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/argo/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Argo | Independent Website Concept",
+     "height": 5051,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/argo/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "cali-tajadas-bakery": {
+   "slug": "cali-tajadas-bakery",
+   "checkedAt": "2026-11-08T21:48:37.931Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Cali Tajadas Bakery | Independent Website Concept",
+     "height": 4836,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cali-tajadas-bakery/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Cali Tajadas Bakery | Independent Website Concept",
+     "height": 5343,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cali-tajadas-bakery/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "guda": {
+   "slug": "guda",
+   "checkedAt": "2026-11-08T21:48:39.934Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Guda | Independent Website Concept",
+     "height": 4374,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/guda/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Guda | Independent Website Concept",
+     "height": 4989,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/guda/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "kyan-cafe": {
+   "slug": "kyan-cafe",
+   "checkedAt": "2026-11-08T21:48:39.827Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Kyan Cafe | Independent Website Concept",
+     "height": 4950,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kyan-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Kyan Cafe | Independent Website Concept",
+     "height": 4826,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kyan-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "loco-cafe": {
+   "slug": "loco-cafe",
+   "checkedAt": "2026-11-08T21:48:40.763Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Loco Cafe | Independent Website Concept",
+     "height": 4767,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/loco-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Loco Cafe | Independent Website Concept",
+     "height": 5117,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/loco-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "luana-s-tavern": {
+   "slug": "luana-s-tavern",
+   "checkedAt": "2026-11-08T21:48:41.883Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Luana's Tavern | Independent Website Concept",
+     "height": 4921,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/luana-s-tavern/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Luana's Tavern | Independent Website Concept",
+     "height": 4828,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/luana-s-tavern/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "mr-fire-bar-and-grill": {
+   "slug": "mr-fire-bar-and-grill",
+   "checkedAt": "2026-11-08T21:48:44.074Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Mr. Fire Bar & Grill | Independent Website Concept",
+     "height": 4839,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/mr-fire-bar-and-grill/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Mr. Fire Bar & Grill | Independent Website Concept",
+     "height": 4929,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/mr-fire-bar-and-grill/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "maki": {
+   "slug": "maki",
+   "checkedAt": "2026-11-08T21:48:44.067Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Maki | Independent Website Concept",
+     "height": 4894,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/maki/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Maki | Independent Website Concept",
+     "height": 4856,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/maki/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "turbine-cafe": {
+   "slug": "turbine-cafe",
+   "checkedAt": "2026-11-08T21:48:44.782Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Turbine Cafe | Independent Website Concept",
+     "height": 4728,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/turbine-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Turbine Cafe | Independent Website Concept",
+     "height": 4984,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/turbine-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "leanly-ii-chinese-food": {
+   "slug": "leanly-ii-chinese-food",
+   "checkedAt": "2026-11-08T21:48:46.094Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Leanly II Chinese Food | Independent Website Concept",
+     "height": 5058,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/leanly-ii-chinese-food/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Leanly II Chinese Food | Independent Website Concept",
+     "height": 5133,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/leanly-ii-chinese-food/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "miss-bagel": {
+   "slug": "miss-bagel",
+   "checkedAt": "2026-11-08T21:48:47.931Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Miss Bagel | Independent Website Concept",
+     "height": 5299,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/miss-bagel/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Miss Bagel | Independent Website Concept",
+     "height": 5093,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/miss-bagel/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "fu-ying": {
+   "slug": "fu-ying",
+   "checkedAt": "2026-11-08T21:48:48.496Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Fu Ying | Independent Website Concept",
+     "height": 4848,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/fu-ying/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Fu Ying | Independent Website Concept",
+     "height": 4917,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/fu-ying/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "rb-bakery-and-cafe": {
+   "slug": "rb-bakery-and-cafe",
+   "checkedAt": "2026-11-08T21:48:48.763Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "RB Bakery & Cafe | Independent Website Concept",
+     "height": 4879,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/rb-bakery-and-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "RB Bakery & Cafe | Independent Website Concept",
+     "height": 4897,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/rb-bakery-and-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "cafe-69-sports-bar": {
+   "slug": "cafe-69-sports-bar",
+   "checkedAt": "2026-11-08T21:48:50.278Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Cafe 69 Sports Bar | Independent Website Concept",
+     "height": 5230,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cafe-69-sports-bar/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Cafe 69 Sports Bar | Independent Website Concept",
+     "height": 5080,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cafe-69-sports-bar/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "desi-zaika": {
+   "slug": "desi-zaika",
+   "checkedAt": "2026-11-08T21:48:51.896Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Desi Zaika | Independent Website Concept",
+     "height": 4603,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/desi-zaika/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Desi Zaika | Independent Website Concept",
+     "height": 4575,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/desi-zaika/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "el-puerto-de-mexico-restaurant": {
+   "slug": "el-puerto-de-mexico-restaurant",
+   "checkedAt": "2026-11-08T21:48:52.507Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "El Puerto de Mexico Restaurant | Independent Website Concept",
+     "height": 4429,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/el-puerto-de-mexico-restaurant/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "El Puerto de Mexico Restaurant | Independent Website Concept",
+     "height": 4970,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/el-puerto-de-mexico-restaurant/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "adda-kitchen": {
+   "slug": "adda-kitchen",
+   "checkedAt": "2026-11-08T21:48:53.084Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Adda Kitchen | Independent Website Concept",
+     "height": 5605,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/adda-kitchen/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Adda Kitchen | Independent Website Concept",
+     "height": 5137,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 6
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/adda-kitchen/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "space-54": {
+   "slug": "space-54",
+   "checkedAt": "2026-11-08T21:48:54.139Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Space 54 | Independent Website Concept",
+     "height": 4545,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/space-54/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Space 54 | Independent Website Concept",
+     "height": 4908,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/space-54/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "jamaica-fried-chicken": {
+   "slug": "jamaica-fried-chicken",
+   "checkedAt": "2026-11-08T21:48:55.590Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Jamaica Fried Chicken | Independent Website Concept",
+     "height": 4720,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/jamaica-fried-chicken/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Jamaica Fried Chicken | Independent Website Concept",
+     "height": 5168,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/jamaica-fried-chicken/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "pa-nash-eurosoul": {
+   "slug": "pa-nash-eurosoul",
+   "checkedAt": "2026-11-08T21:48:56.205Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Pa-Nash Eurosoul | Independent Website Concept",
+     "height": 4945,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/pa-nash-eurosoul/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Pa-Nash Eurosoul | Independent Website Concept",
+     "height": 5168,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/pa-nash-eurosoul/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "18-steps-dengdeng-noodles": {
+   "slug": "18-steps-dengdeng-noodles",
+   "checkedAt": "2026-11-08T21:48:56.943Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "18 Steps Dengdeng Noodles | Independent Website Concept",
+     "height": 4664,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/18-steps-dengdeng-noodles/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "18 Steps Dengdeng Noodles | Independent Website Concept",
+     "height": 4982,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/18-steps-dengdeng-noodles/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "kostantina-frozen-yogurt": {
+   "slug": "kostantina-frozen-yogurt",
+   "checkedAt": "2026-11-08T21:48:57.924Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Kostantina Frozen Yogurt | Independent Website Concept",
+     "height": 5293,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kostantina-frozen-yogurt/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Kostantina Frozen Yogurt | Independent Website Concept",
+     "height": 5205,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kostantina-frozen-yogurt/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "cloud-catering": {
+   "slug": "cloud-catering",
+   "checkedAt": "2026-11-08T21:49:00.131Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Cloud Catering | Independent Website Concept",
+     "height": 5206,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cloud-catering/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Cloud Catering | Independent Website Concept",
+     "height": 5087,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cloud-catering/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "notable": {
+   "slug": "notable",
+   "checkedAt": "2026-11-08T21:48:59.758Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Notable | Independent Website Concept",
+     "height": 4410,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/notable/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Notable | Independent Website Concept",
+     "height": 4834,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/notable/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "magic-nutrition": {
+   "slug": "magic-nutrition",
+   "checkedAt": "2026-11-08T21:49:01.009Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Magic Nutrition | Independent Website Concept",
+     "height": 4654,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/magic-nutrition/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Magic Nutrition | Independent Website Concept",
+     "height": 4914,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/magic-nutrition/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "ato-kitchens": {
+   "slug": "ato-kitchens",
+   "checkedAt": "2026-11-08T21:49:02.324Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Ato Kitchens | Independent Website Concept",
+     "height": 4921,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/ato-kitchens/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Ato Kitchens | Independent Website Concept",
+     "height": 5110,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/ato-kitchens/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "my-life-nutrition": {
+   "slug": "my-life-nutrition",
+   "checkedAt": "2026-11-08T21:49:03.963Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "My Life Nutrition | Independent Website Concept",
+     "height": 4813,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/my-life-nutrition/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "My Life Nutrition | Independent Website Concept",
+     "height": 5034,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/my-life-nutrition/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "minitalia-pizzeria": {
+   "slug": "minitalia-pizzeria",
+   "checkedAt": "2026-11-08T21:49:03.972Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Minitalia Pizzeria | Independent Website Concept",
+     "height": 4608,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/minitalia-pizzeria/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Minitalia Pizzeria | Independent Website Concept",
+     "height": 4954,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/minitalia-pizzeria/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "baby-cafe": {
+   "slug": "baby-cafe",
+   "checkedAt": "2026-11-08T21:49:05.208Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Baby Cafe | Independent Website Concept",
+     "height": 4456,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/baby-cafe/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Baby Cafe | Independent Website Concept",
+     "height": 4959,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/baby-cafe/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "chianti-sports-bar-and-restaurant-sugar-and-cake": {
+   "slug": "chianti-sports-bar-and-restaurant-sugar-and-cake",
+   "checkedAt": "2026-11-08T21:49:06.061Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Chianti Sports Bar & Restaurant / Sugar & Cake | Independent Website Concept",
+     "height": 4646,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/chianti-sports-bar-and-restaurant-sugar-and-cake/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Chianti Sports Bar & Restaurant / Sugar & Cake | Independent Website Concept",
+     "height": 5334,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/chianti-sports-bar-and-restaurant-sugar-and-cake/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "julieta-taberna": {
+   "slug": "julieta-taberna",
+   "checkedAt": "2026-11-08T21:49:07.951Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Julieta Taberna | Independent Website Concept",
+     "height": 4963,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/julieta-taberna/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Julieta Taberna | Independent Website Concept",
+     "height": 5125,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/julieta-taberna/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "royal-canton-seafood-palace": {
+   "slug": "royal-canton-seafood-palace",
+   "checkedAt": "2026-11-08T21:49:08.062Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Royal Canton Seafood Palace | Independent Website Concept",
+     "height": 5264,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/royal-canton-seafood-palace/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Royal Canton Seafood Palace | Independent Website Concept",
+     "height": 5162,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/royal-canton-seafood-palace/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "wan-chong-shan-xia": {
+   "slug": "wan-chong-shan-xia",
+   "checkedAt": "2026-11-08T21:49:08.767Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Wan Chong Shan Xia | Independent Website Concept",
+     "height": 4913,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/wan-chong-shan-xia/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Wan Chong Shan Xia | Independent Website Concept",
+     "height": 5008,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/wan-chong-shan-xia/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "wei-zhi-yuan": {
+   "slug": "wei-zhi-yuan",
+   "checkedAt": "2026-11-08T21:49:09.796Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Wei Zhi Yuan | Independent Website Concept",
+     "height": 4777,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/wei-zhi-yuan/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Wei Zhi Yuan | Independent Website Concept",
+     "height": 4924,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/wei-zhi-yuan/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "madame-sousou": {
+   "slug": "madame-sousou",
+   "checkedAt": "2026-11-08T21:49:11.763Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Madame Sousou | Independent Website Concept",
+     "height": 4922,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/madame-sousou/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Madame Sousou | Independent Website Concept",
+     "height": 5181,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/madame-sousou/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "om-wok": {
+   "slug": "om-wok",
+   "checkedAt": "2026-11-08T21:49:12.027Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Om Wok | Independent Website Concept",
+     "height": 5633,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/om-wok/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Om Wok | Independent Website Concept",
+     "height": 5502,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 6
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/om-wok/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "restaurante-la-plaza-de-tulcingo": {
+   "slug": "restaurante-la-plaza-de-tulcingo",
+   "checkedAt": "2026-11-08T21:49:12.518Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Restaurante La Plaza de Tulcingo | Independent Website Concept",
+     "height": 4667,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/restaurante-la-plaza-de-tulcingo/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Restaurante La Plaza de Tulcingo | Independent Website Concept",
+     "height": 4512,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/restaurante-la-plaza-de-tulcingo/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "oreas-gourmet-juice-bar": {
+   "slug": "oreas-gourmet-juice-bar",
+   "checkedAt": "2026-11-08T21:49:13.373Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Oreas Gourmet Juice Bar | Independent Website Concept",
+     "height": 4776,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/oreas-gourmet-juice-bar/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Oreas Gourmet Juice Bar | Independent Website Concept",
+     "height": 5185,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/oreas-gourmet-juice-bar/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "fresh-pizza-and-pasta": {
+   "slug": "fresh-pizza-and-pasta",
+   "checkedAt": "2026-11-08T21:49:15.467Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Fresh Pizza and Pasta | Independent Website Concept",
+     "height": 4679,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/fresh-pizza-and-pasta/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Fresh Pizza and Pasta | Independent Website Concept",
+     "height": 4554,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/fresh-pizza-and-pasta/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "equis-pica-pollo-de-verdad": {
+   "slug": "equis-pica-pollo-de-verdad",
+   "checkedAt": "2026-11-08T21:49:16.095Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Equis Pica Pollo de Verdad | Independent Website Concept",
+     "height": 4587,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/equis-pica-pollo-de-verdad/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Equis Pica Pollo de Verdad | Independent Website Concept",
+     "height": 5094,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/equis-pica-pollo-de-verdad/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "rey-tacos": {
+   "slug": "rey-tacos",
+   "checkedAt": "2026-11-08T21:49:16.354Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Rey Tacos | Independent Website Concept",
+     "height": 4138,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/rey-tacos/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Rey Tacos | Independent Website Concept",
+     "height": 4802,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/rey-tacos/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "jamaica-fry-chicken": {
+   "slug": "jamaica-fry-chicken",
+   "checkedAt": "2026-11-08T21:49:17.567Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Jamaica Fry Chicken | Independent Website Concept",
+     "height": 4851,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/jamaica-fry-chicken/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Jamaica Fry Chicken | Independent Website Concept",
+     "height": 4963,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/jamaica-fry-chicken/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "smash-time-burger-co": {
+   "slug": "smash-time-burger-co",
+   "checkedAt": "2026-11-08T21:49:19.260Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Smash Time Burger Co | Independent Website Concept",
+     "height": 4941,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/smash-time-burger-co/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Smash Time Burger Co | Independent Website Concept",
+     "height": 4690,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/smash-time-burger-co/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "your-choice-halal-chicken-and-pizza": {
+   "slug": "your-choice-halal-chicken-and-pizza",
+   "checkedAt": "2026-11-08T21:49:19.784Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Your Choice Halal Chicken & Pizza | Independent Website Concept",
+     "height": 4806,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/your-choice-halal-chicken-and-pizza/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Your Choice Halal Chicken & Pizza | Independent Website Concept",
+     "height": 5195,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/your-choice-halal-chicken-and-pizza/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "cemitas-cholula-restaurant": {
+   "slug": "cemitas-cholula-restaurant",
+   "checkedAt": "2026-11-08T21:49:20.392Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Cemitas Cholula Restaurant | Independent Website Concept",
+     "height": 4851,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cemitas-cholula-restaurant/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Cemitas Cholula Restaurant | Independent Website Concept",
+     "height": 4940,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cemitas-cholula-restaurant/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "socotra-restaurant": {
+   "slug": "socotra-restaurant",
+   "checkedAt": "2026-11-08T21:49:21.842Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Socotra Restaurant | Independent Website Concept",
+     "height": 4645,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/socotra-restaurant/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Socotra Restaurant | Independent Website Concept",
+     "height": 5005,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/socotra-restaurant/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "santinos-slices-and-italian-ices": {
+   "slug": "santinos-slices-and-italian-ices",
+   "checkedAt": "2026-11-08T21:49:23.091Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Santinos Slices and Italian Ices | Independent Website Concept",
+     "height": 4511,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/santinos-slices-and-italian-ices/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Santinos Slices and Italian Ices | Independent Website Concept",
+     "height": 4657,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/santinos-slices-and-italian-ices/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "orion-s": {
+   "slug": "orion-s",
+   "checkedAt": "2026-11-08T21:49:23.545Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Orion's | Independent Website Concept",
+     "height": 4470,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/orion-s/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Orion's | Independent Website Concept",
+     "height": 4795,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/orion-s/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "baker-studio": {
+   "slug": "baker-studio",
+   "checkedAt": "2026-11-08T21:49:24.119Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Baker Studio | Care for the Whole You — Independent Concept",
+     "height": 4111,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/baker-studio/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Baker Studio | Care for the Whole You — Independent Concept",
+     "height": 4854,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 6
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/baker-studio/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "uncorked-wines": {
+   "slug": "uncorked-wines",
+   "checkedAt": "2026-11-08T21:49:25.693Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Uncorked Wines | Independent Website Concept",
+     "height": 4651,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/uncorked-wines/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Uncorked Wines | Independent Website Concept",
+     "height": 4974,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/uncorked-wines/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "below-sro": {
+   "slug": "below-sro",
+   "checkedAt": "2026-11-08T21:49:26.818Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Below SRO | Independent Website Concept",
+     "height": 4648,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/below-sro/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Below SRO | Independent Website Concept",
+     "height": 4881,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/below-sro/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "greens-goods-grill": {
+   "slug": "greens-goods-grill",
+   "checkedAt": "2026-11-08T21:49:27.272Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Greens, Goods + Grill | Independent Website Concept",
+     "height": 4723,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/greens-goods-grill/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Greens, Goods + Grill | Independent Website Concept",
+     "height": 4878,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/greens-goods-grill/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "pilates-addiction": {
+   "slug": "pilates-addiction",
+   "checkedAt": "2026-11-08T21:49:27.720Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Pilates Addiction Hoboken | Stronger Starts Here — Concept",
+     "height": 3976,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/pilates-addiction/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Pilates Addiction Hoboken | Stronger Starts Here — Concept",
+     "height": 4866,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 6
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/pilates-addiction/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "petaled": {
+   "slug": "petaled",
+   "checkedAt": "2026-11-08T21:49:29.746Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "PETALED Fitness | Move. Grow. Repeat. — Independent Concept",
+     "height": 3728,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/petaled/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "PETALED Fitness | Move. Grow. Repeat. — Independent Concept",
+     "height": 4654,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 6
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/petaled/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "house-of-amrut": {
+   "slug": "house-of-amrut",
+   "checkedAt": "2026-11-08T21:49:30.452Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "House of Amrut | Beyond the Ordinary — Independent Concept",
+     "height": 3685,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/house-of-amrut/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "House of Amrut | Beyond the Ordinary — Independent Concept",
+     "height": 4809,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 6
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/house-of-amrut/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "kitty-o-shea-s": {
+   "slug": "kitty-o-shea-s",
+   "checkedAt": "2026-11-08T21:49:31.032Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Kitty O'Shea's | Independent Website Concept",
+     "height": 4760,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kitty-o-shea-s/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Kitty O'Shea's | Independent Website Concept",
+     "height": 5196,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/kitty-o-shea-s/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "barchino": {
+   "slug": "barchino",
+   "checkedAt": "2026-11-08T21:49:31.570Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Barchino | Independent Website Concept",
+     "height": 4912,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/barchino/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Barchino | Independent Website Concept",
+     "height": 4853,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/barchino/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "hudson-golf": {
+   "slug": "hudson-golf",
+   "checkedAt": "2026-11-08T21:49:33.597Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Hudson Golf | Independent Website Concept",
+     "height": 4536,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/hudson-golf/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Hudson Golf | Independent Website Concept",
+     "height": 4988,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/hudson-golf/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "hashi-market": {
+   "slug": "hashi-market",
+   "checkedAt": "2026-11-08T21:49:34.172Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Hashi Market | Independent Website Concept",
+     "height": 4739,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/hashi-market/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Hashi Market | Independent Website Concept",
+     "height": 5133,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/hashi-market/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "dubu-hana": {
+   "slug": "dubu-hana",
+   "checkedAt": "2026-11-08T21:49:34.779Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Dubu Hana | Independent Website Concept",
+     "height": 4747,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/dubu-hana/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Dubu Hana | Independent Website Concept",
+     "height": 4944,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/dubu-hana/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "dutch-s-express": {
+   "slug": "dutch-s-express",
+   "checkedAt": "2026-11-08T21:49:35.469Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Dutch's Express | Independent Website Concept",
+     "height": 5135,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/dutch-s-express/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Dutch's Express | Independent Website Concept",
+     "height": 5045,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/dutch-s-express/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "vicoletto": {
+   "slug": "vicoletto",
+   "checkedAt": "2026-11-08T21:49:37.592Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Vicoletto | Independent Website Concept",
+     "height": 4488,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/vicoletto/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Vicoletto | Independent Website Concept",
+     "height": 4848,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/vicoletto/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "cana-coffee-and-bakery": {
+   "slug": "cana-coffee-and-bakery",
+   "checkedAt": "2026-11-08T21:49:37.931Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Cana Coffee & Bakery | Independent Website Concept",
+     "height": 4762,
+     "images": 6,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cana-coffee-and-bakery/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Cana Coffee & Bakery | Independent Website Concept",
+     "height": 5162,
+     "images": 6,
+     "menu": {
+      "before": 1,
+      "after": 5
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/cana-coffee-and-bakery/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  },
+  "jane-s-matcha": {
+   "slug": "jane-s-matcha",
+   "checkedAt": "2026-11-08T21:49:38.532Z",
+   "commit": "94ad4bf",
+   "pages": [
+    "index.html"
+   ],
+   "static": [],
+   "views": [
+    {
+     "page": "index.html",
+     "view": "desktop",
+     "issues": [],
+     "title": "Jane's Matcha | A Place to Slow Down — Concept",
+     "height": 3758,
+     "images": 2,
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/jane-s-matcha/index-desktop.jpg"
+    },
+    {
+     "page": "index.html",
+     "view": "mobile",
+     "issues": [],
+     "title": "Jane's Matcha | A Place to Slow Down — Concept",
+     "height": 4436,
+     "images": 2,
+     "menu": {
+      "before": 1,
+      "after": 6
+     },
+     "screenshot": "artifacts/portfolio-qa/2026-11-08/jane-s-matcha/index-mobile.jpg"
+    }
+   ],
+   "automatedIssueCount": 0
+  }
+ }
+}

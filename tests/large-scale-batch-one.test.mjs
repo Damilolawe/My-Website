@@ -49,13 +49,16 @@ test("researched Gloria and Café Mia pages are preserved in public preview outp
   }
 });
 
-test("generated fallback pages reuse a site's authored brand tokens", async () => {
-  const css = await readFile("preview/isla-and-co/styles.css", "utf8");
-  const page = await readFile("branded-previews/public/isla-and-co/story.html", "utf8");
-  const accent = css.match(/--accent:([^;}]+)/)?.[1];
-  assert.ok(accent, "Generated fallback must start from a branded source palette");
-  assert.ok(page.includes("--accent:" + accent), "Fallback page must inherit the source accent");
-  assert.match(page, /--headline:/);
+test("no generic auto-generated filler pages are published", async () => {
+  const { readdir } = await import("node:fs/promises");
+  for (const slug of await readdir("branded-previews/public", { withFileTypes: true })) {
+    if (!slug.isDirectory()) continue;
+    for (const file of await readdir("branded-previews/public/" + slug.name)) {
+      if (!file.endsWith(".html")) continue;
+      const html = await readFile("branded-previews/public/" + slug.name + "/" + file, "utf8");
+      assert.doesNotMatch(html, /Notes from the concept|Representative image for the independent|remain subject to confirmation by the business owner/, slug.name + "/" + file);
+    }
+  }
 });
 
 test("PETALED and Pilates Addiction homepages depict their real disciplines, not flowers or meditation", async () => {
