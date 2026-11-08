@@ -1,8 +1,621 @@
 {
-  "generatedAt": "2026-11-08T10:32:48.858Z",
+  "generatedAt": "2026-11-08T11:21:37.599Z",
   "mode": "desktop",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 168,
-  "issues": 0,
-  "findings": []
+  "issues": 102,
+  "findings": [
+    {
+      "site": "kora-bakery",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "old-mill-cafe",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "birdee",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "cafe-pr",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "latte-da",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "studio-ephemera",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "bem-books",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "one-two-one-cafe",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "chique-collective",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "aoko-matcha",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "dumbo-oyster-bar",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "jalopy-theatre",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "baker-studio",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "pilates-addiction",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "petaled",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "house-of-amrut",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "jane-s-matcha",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "loved-ones-coffee",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "worksbynet",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "studio-shipley",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "hanare-spa",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "tiny-topiary",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "tbili",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "santuario-cafe",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "le-loup-cafe",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "duro-market",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "the-block-coffee",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "splendid-cafe",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "cafe-aroma-y-sabor",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "fiolicchia-bakery",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "hairby-matty",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "from-duo",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "studio-and-story",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "underscore-glasserie",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "atma-yoga",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "four-winds-games",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "cultiva-cafe",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "hots-coffee",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "nena-sweets-cakes",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "bier-cheese",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "rachels-handmade-cookies",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "dovetail-bakery",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "smor-carroll-gardens",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "caputo-bagels",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "swaines-bk",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "vibra-bronx",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "cafe-mia",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "problem-baker-parkslope",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "atelier-artist",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "prema-fulton",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "three-coffee-halletts",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "kora-bakery",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "old-mill-cafe",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "birdee",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "cafe-pr",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "latte-da",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "studio-ephemera",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "bem-books",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "one-two-one-cafe",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "chique-collective",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "aoko-matcha",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "dumbo-oyster-bar",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "jalopy-theatre",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "baker-studio",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "pilates-addiction",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "petaled",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "house-of-amrut",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "jane-s-matcha",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "loved-ones-coffee",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "worksbynet",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "studio-shipley",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "hanare-spa",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "tiny-topiary",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "tbili",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "santuario-cafe",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "le-loup-cafe",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "duro-market",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "the-block-coffee",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "splendid-cafe",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "cafe-aroma-y-sabor",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "fiolicchia-bakery",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "hairby-matty",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "from-duo",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "studio-and-story",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "underscore-glasserie",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "atma-yoga",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "four-winds-games",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "cultiva-cafe",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "hots-coffee",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "nena-sweets-cakes",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "bier-cheese",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "rachels-handmade-cookies",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "dovetail-bakery",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "smor-carroll-gardens",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "caputo-bagels",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "swaines-bk",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "vibra-bronx",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "cafe-mia",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "problem-baker-parkslope",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "atelier-artist",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "prema-fulton",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    },
+    {
+      "site": "three-coffee-halletts",
+      "viewport": "desktop-1920",
+      "type": "visual",
+      "message": "broken image: https://aweconcepts.com/favicon.svg"
+    }
+  ]
 }
