@@ -8,7 +8,7 @@
       "genre": "asian",
       "design": 4,
       "area": "Flushing",
-      "address": "40-09 Prince Street",
+      "address": "40-09 Prince Street, Flushing, NY 11354",
       "photos": [
         "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
@@ -21,7 +21,7 @@
       "genre": "restaurant",
       "design": 10,
       "area": "Jackson Heights",
-      "address": "37-11 73 Street",
+      "address": "37-11 73 Street, Jackson Heights, NY 11372",
       "photos": [
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
@@ -34,7 +34,7 @@
       "genre": "restaurant",
       "design": 4,
       "area": "Bay Ridge",
-      "address": "6917 5 Avenue",
+      "address": "6917 5 Avenue, Brooklyn, NY 11209",
       "photos": [
         "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
@@ -47,7 +47,7 @@
       "genre": "pizza",
       "design": 7,
       "area": "Bay Ridge",
-      "address": "7521 3 Avenue",
+      "address": "7521 3 Avenue, Brooklyn, NY 11209",
       "photos": [
         "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85",
@@ -73,7 +73,7 @@
       "genre": "restaurant",
       "design": 2,
       "area": "Gravesend",
-      "address": "1985 Coney Island Avenue",
+      "address": "1985 Coney Island Avenue, Brooklyn, NY 11223",
       "photos": [
         "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
@@ -86,7 +86,7 @@
       "genre": "restaurant",
       "design": 7,
       "area": "Long Island City",
-      "address": "48-18 Northern Boulevard",
+      "address": "48-18 Northern Boulevard, Long Island City, NY 11101",
       "photos": [
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
@@ -99,7 +99,7 @@
       "genre": "coffee",
       "design": 11,
       "area": "Jackson Heights",
-      "address": "74-23 37 Avenue",
+      "address": "74-23 37 Avenue, Jackson Heights, NY 11372",
       "photos": [
         "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85",
@@ -112,7 +112,7 @@
       "genre": "wellness",
       "design": 11,
       "area": "Hoboken",
-      "address": "1450 Garden Street",
+      "address": "1450 Garden Street, Hoboken, NJ 07030",
       "photos": [
         "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1600&q=85",
@@ -125,7 +125,7 @@
       "genre": "pizza",
       "design": 11,
       "area": "Jersey City Waterfront",
-      "address": "502 Washington Boulevard",
+      "address": "502 Washington Boulevard, Jersey City, NJ 07310",
       "photos": [
         "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85",
@@ -138,7 +138,7 @@
       "genre": "bar",
       "design": 11,
       "area": "Hoboken",
-      "address": "107 10th Street",
+      "address": "107 10th Street, Hoboken, NJ 07030",
       "photos": [
         "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
@@ -151,7 +151,7 @@
       "genre": "bakery",
       "design": 6,
       "area": "Bensonhurst",
-      "address": "8016 20 Avenue",
+      "address": "8016 20 Avenue, Brooklyn, NY 11214",
       "photos": [
         "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
@@ -164,7 +164,7 @@
       "genre": "burger",
       "design": 8,
       "area": "Fort Greene",
-      "address": "133 Park Avenue",
+      "address": "133 Park Avenue, Brooklyn, NY 11205",
       "photos": [
         "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=1600&q=85",
@@ -177,7 +177,7 @@
       "genre": "bakery",
       "design": 9,
       "area": "Bensonhurst",
-      "address": "1878 86 Street",
+      "address": "1878 86 Street, Brooklyn, NY 11214",
       "photos": [
         "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
@@ -190,7 +190,7 @@
       "genre": "entertainment",
       "design": 8,
       "area": "Bushwick",
-      "address": "339 Troutman Street",
+      "address": "339 Troutman Street, Brooklyn, NY 11237",
       "photos": [
         "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1600&q=85",
@@ -203,7 +203,7 @@
       "genre": "entertainment",
       "design": 3,
       "area": "Williamsburg",
-      "address": "64 North 9 Street",
+      "address": "64 North 9 Street, Brooklyn, NY 11249",
       "photos": [
         "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1600&q=85",
@@ -216,7 +216,7 @@
       "genre": "bar",
       "design": 2,
       "area": "Woodside",
-      "address": "40-04 69 Street",
+      "address": "40-04 69 Street, Woodside, NY 11377",
       "photos": [
         "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
@@ -229,7 +229,7 @@
       "genre": "bakery",
       "design": 10,
       "area": "Bay Ridge",
-      "address": "241 Bay Ridge Avenue",
+      "address": "241 Bay Ridge Avenue, Brooklyn, NY 11220",
       "photos": [
         "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
@@ -242,7 +242,7 @@
       "genre": "bakery",
       "design": 4,
       "area": "Hoboken",
-      "address": "254 9th Street",
+      "address": "254 9th Street, Hoboken, NJ 07030",
       "photos": [
         "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
@@ -255,7 +255,7 @@
       "genre": "mexican",
       "design": 6,
       "area": "Norwood",
-      "address": "679 Allerton Avenue",
+      "address": "679 Allerton Avenue, Bronx, NY 10467",
       "photos": [
         "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1600&q=85",
@@ -268,7 +268,7 @@
       "genre": "bar",
       "design": 9,
       "area": "Corona",
-      "address": "97-15 37 Avenue",
+      "address": "97-15 37 Avenue, Corona, NY 11368",
       "photos": [
         "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85",
@@ -281,7 +281,7 @@
       "genre": "restaurant",
       "design": 2,
       "area": "Sunnyside",
-      "address": "40-11 Skillman Avenue",
+      "address": "40-11 Skillman Avenue, Sunnyside, NY 11104",
       "photos": [
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
@@ -294,7 +294,7 @@
       "genre": "restaurant",
       "design": 7,
       "area": "Richmond Hill",
-      "address": "118-05 101 Avenue",
+      "address": "118-05 101 Avenue, Richmond Hill, NY 11419",
       "photos": [
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
@@ -307,7 +307,7 @@
       "genre": "asian",
       "design": 6,
       "area": "Jersey City",
-      "address": "8 Erie Street",
+      "address": "8 Erie Street, Jersey City, NJ 07302",
       "photos": [
         "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85",
@@ -320,7 +320,7 @@
       "genre": "restaurant",
       "design": 9,
       "area": "DUMBO",
-      "address": "7 Old Fulton Street",
+      "address": "7 Old Fulton Street, Brooklyn, NY 11201",
       "photos": [
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
@@ -333,7 +333,7 @@
       "genre": "retail",
       "design": 0,
       "area": "Jersey City",
-      "address": "270 Grand Street",
+      "address": "270 Grand Street, Jersey City, NJ 07302",
       "photos": [
         "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1481437156560-3205f6a55735?auto=format&fit=crop&w=1600&q=85",
@@ -346,7 +346,7 @@
       "genre": "asian",
       "design": 0,
       "area": "Bensonhurst",
-      "address": "7222 18 Avenue",
+      "address": "7222 18 Avenue, Brooklyn, NY 11204",
       "photos": [
         "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
@@ -359,7 +359,7 @@
       "genre": "mexican",
       "design": 0,
       "area": "Jamaica",
-      "address": "84-28 Jamaica Avenue",
+      "address": "84-28 Jamaica Avenue, Woodhaven, NY 11421",
       "photos": [
         "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1600&q=85",
@@ -372,7 +372,7 @@
       "genre": "coffee",
       "design": 7,
       "area": "Bushwick",
-      "address": "119 Saint Nicholas Avenue",
+      "address": "119 Saint Nicholas Avenue, Brooklyn, NY 11237",
       "photos": [
         "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
@@ -385,7 +385,7 @@
       "genre": "mexican",
       "design": 10,
       "area": "Concourse",
-      "address": "1708 MLK Jr Boulevard",
+      "address": "1708 MLK Jr Boulevard, Bronx, NY 10453",
       "photos": [
         "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1600&q=85",
@@ -411,7 +411,7 @@
       "genre": "pizza",
       "design": 10,
       "area": "Soundview",
-      "address": "801C Soundview Avenue",
+      "address": "801C Soundview Avenue, Bronx, NY 10473",
       "photos": [
         "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85",
@@ -424,7 +424,7 @@
       "genre": "asian",
       "design": 8,
       "area": "Forest Hills",
-      "address": "97-09 Queens Boulevard",
+      "address": "97-09 Queens Boulevard, Forest Hills, NY 11374",
       "photos": [
         "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85",
@@ -437,7 +437,7 @@
       "genre": "restaurant",
       "design": 11,
       "area": "Williamsburg",
-      "address": "544 Union Avenue",
+      "address": "544 Union Avenue, Brooklyn, NY 11211",
       "photos": [
         "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
@@ -450,7 +450,7 @@
       "genre": "asian",
       "design": 8,
       "area": "Crown Heights",
-      "address": "235 Kingston Avenue",
+      "address": "235 Kingston Avenue, Brooklyn, NY 11213",
       "photos": [
         "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85",
@@ -463,7 +463,7 @@
       "genre": "asian",
       "design": 6,
       "area": "Sunset Park",
-      "address": "775 50 Street",
+      "address": "775 50 Street, Brooklyn, NY 11220",
       "photos": [
         "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
@@ -476,7 +476,7 @@
       "genre": "restaurant",
       "design": 9,
       "area": "Hoboken",
-      "address": "603 Washington Street",
+      "address": "603 Washington Street, Hoboken, NJ 07030",
       "photos": [
         "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
@@ -489,7 +489,7 @@
       "genre": "coffee",
       "design": 1,
       "area": "Midwood",
-      "address": "992 Coney Island Avenue",
+      "address": "992 Coney Island Avenue, Brooklyn, NY 11230",
       "photos": [
         "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85",
@@ -502,7 +502,7 @@
       "genre": "restaurant",
       "design": 6,
       "area": "Brighton Beach",
-      "address": "2027 Emmons Avenue",
+      "address": "2027 Emmons Avenue, Brooklyn, NY 11235",
       "photos": [
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
@@ -515,7 +515,7 @@
       "genre": "mexican",
       "design": 7,
       "area": "Bushwick",
-      "address": "1077 Flushing Avenue",
+      "address": "1077 Flushing Avenue, Brooklyn, NY 11237",
       "photos": [
         "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1600&q=85",
@@ -528,7 +528,7 @@
       "genre": "burger",
       "design": 4,
       "area": "Flatbush",
-      "address": "214 Parkside Avenue",
+      "address": "214 Parkside Avenue, Brooklyn, NY 11226",
       "photos": [
         "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=85",
@@ -541,7 +541,7 @@
       "genre": "retail",
       "design": 7,
       "area": "Jersey City",
-      "address": "75 Park Lane South",
+      "address": "75 Park Lane South, Jersey City, NJ 07310",
       "photos": [
         "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1473186578172-c141e6798cf4?auto=format&fit=crop&w=1600&q=85",
@@ -554,7 +554,7 @@
       "genre": "burger",
       "design": 7,
       "area": "Greenpoint",
-      "address": "160 Huron Street",
+      "address": "160 Huron Street, Brooklyn, NY 11222",
       "photos": [
         "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=85",
@@ -567,7 +567,7 @@
       "genre": "bar",
       "design": 5,
       "area": "Jersey City",
-      "address": "136 Newark Avenue",
+      "address": "136 Newark Avenue, Jersey City, NJ 07302",
       "photos": [
         "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85",
@@ -580,7 +580,7 @@
       "genre": "entertainment",
       "design": 7,
       "area": "Jersey City",
-      "address": "130 Bay Street",
+      "address": "130 Bay Street, Jersey City, NJ 07302",
       "photos": [
         "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85",
@@ -593,7 +593,7 @@
       "genre": "restaurant",
       "design": 9,
       "area": "Williamsburg",
-      "address": "66 Grand Street",
+      "address": "66 Grand Street, Brooklyn, NY 11249",
       "photos": [
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
@@ -606,7 +606,7 @@
       "genre": "entertainment",
       "design": 2,
       "area": "Red Hook",
-      "address": "315 Columbia Street",
+      "address": "315 Columbia Street, Brooklyn, NY 11231",
       "photos": [
         "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1600&q=85",
@@ -619,7 +619,7 @@
       "genre": "burger",
       "design": 8,
       "area": "Jamaica",
-      "address": "176-27 137 Avenue",
+      "address": "176-27 137 Avenue, Jamaica, NY 11434",
       "photos": [
         "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=85",
@@ -632,7 +632,7 @@
       "genre": "burger",
       "design": 3,
       "area": "Norwood",
-      "address": "3716 White Plains Road",
+      "address": "3716 White Plains Road, Bronx, NY 10467",
       "photos": [
         "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=85",
@@ -645,7 +645,7 @@
       "genre": "matcha",
       "design": 10,
       "area": "Jersey City Heights",
-      "address": "93 Franklin Street",
+      "address": "93 Franklin Street, Jersey City, NJ 07307",
       "photos": [
         "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1542728928-1413d1894ed1?auto=format&fit=crop&w=1600&q=85",
@@ -658,7 +658,7 @@
       "genre": "pizza",
       "design": 6,
       "area": "Bay Ridge",
-      "address": "8619 4 Avenue",
+      "address": "8619 4 Avenue, Brooklyn, NY 11209",
       "photos": [
         "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85",
@@ -671,7 +671,7 @@
       "genre": "restaurant",
       "design": 0,
       "area": "Brighton Beach",
-      "address": "2620 Avenue Z",
+      "address": "2620 Avenue Z, Brooklyn, NY 11235",
       "photos": [
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
@@ -684,7 +684,7 @@
       "genre": "bar",
       "design": 5,
       "area": "Jackson Heights",
-      "address": "37-63 81 Street",
+      "address": "37-63 81 Street, Jackson Heights, NY 11372",
       "photos": [
         "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
@@ -697,7 +697,7 @@
       "genre": "restaurant",
       "design": 6,
       "area": "Bay Ridge",
-      "address": "8413 3 Avenue",
+      "address": "8413 3 Avenue, Brooklyn, NY 11209",
       "photos": [
         "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
@@ -723,7 +723,7 @@
       "genre": "asian",
       "design": 0,
       "area": "Park Slope",
-      "address": "357 3 Street",
+      "address": "357 3 Street, Brooklyn, NY 11215",
       "photos": [
         "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
@@ -736,7 +736,7 @@
       "genre": "bar",
       "design": 8,
       "area": "Jersey City Heights",
-      "address": "49 Beacon Avenue",
+      "address": "49 Beacon Avenue, Jersey City, NJ 07307",
       "photos": [
         "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85",
@@ -749,7 +749,7 @@
       "genre": "sweets",
       "design": 5,
       "area": "Forest Hills",
-      "address": "72-38 Austin Street",
+      "address": "72-38 Austin Street, Forest Hills, NY 11375",
       "photos": [
         "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=85",
@@ -762,7 +762,7 @@
       "genre": "coffee",
       "design": 0,
       "area": "Greenpoint",
-      "address": "216 Driggs Avenue",
+      "address": "216 Driggs Avenue, Brooklyn, NY 11222",
       "photos": [
         "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
@@ -775,7 +775,7 @@
       "genre": "coffee",
       "design": 0,
       "area": "Bay Ridge",
-      "address": "7603 5 Avenue",
+      "address": "7603 5 Avenue, Brooklyn, NY 11209",
       "photos": [
         "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85",
@@ -801,7 +801,7 @@
       "genre": "restaurant",
       "design": 0,
       "area": "Bay Ridge",
-      "address": "8101 5 Avenue",
+      "address": "8101 5 Avenue, Brooklyn, NY 11209",
       "photos": [
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
@@ -814,7 +814,7 @@
       "genre": "bakery",
       "design": 0,
       "area": "Park Slope",
-      "address": "106 7 Avenue",
+      "address": "106 7 Avenue, Brooklyn, NY 11215",
       "photos": [
         "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
@@ -827,7 +827,7 @@
       "genre": "asian",
       "design": 2,
       "area": "Coney Island",
-      "address": "2406 Mermaid Avenue",
+      "address": "2406 Mermaid Avenue, Brooklyn, NY 11224",
       "photos": [
         "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
@@ -840,7 +840,7 @@
       "genre": "asian",
       "design": 3,
       "area": "Greenpoint",
-      "address": "316 McGuinness Boulevard",
+      "address": "316 McGuinness Boulevard, Brooklyn, NY 11222",
       "photos": [
         "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
@@ -853,7 +853,7 @@
       "genre": "coffee",
       "design": 2,
       "area": "Greenpoint",
-      "address": "626 Manhattan Avenue",
+      "address": "626 Manhattan Avenue, Brooklyn, NY 11222",
       "photos": [
         "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
@@ -866,7 +866,7 @@
       "genre": "bar",
       "design": 7,
       "area": "Carroll Gardens",
-      "address": "449 Court Street",
+      "address": "449 Court Street, Brooklyn, NY 11231",
       "photos": [
         "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85",
@@ -879,7 +879,7 @@
       "genre": "asian",
       "design": 0,
       "area": "Sunset Park",
-      "address": "5622 8 Avenue",
+      "address": "5622 8 Avenue, Brooklyn, NY 11220",
       "photos": [
         "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
@@ -892,7 +892,7 @@
       "genre": "restaurant",
       "design": 9,
       "area": "Astoria",
-      "address": "31-05 33 Street",
+      "address": "31-05 33 Street, Astoria, NY 11106",
       "photos": [
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
@@ -905,7 +905,7 @@
       "genre": "wellness",
       "design": 11,
       "area": "Corona",
-      "address": "40-08 108 Street",
+      "address": "40-08 108 Street, Corona, NY 11368",
       "photos": [
         "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1600&q=85",
@@ -918,7 +918,7 @@
       "genre": "japanese",
       "design": 11,
       "area": "Bedford-Stuyvesant",
-      "address": "19 Bogart Street",
+      "address": "19 Bogart Street, Brooklyn, NY 11206",
       "photos": [
         "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1600&q=85",
@@ -931,7 +931,7 @@
       "genre": "bakery",
       "design": 6,
       "area": "Gowanus",
-      "address": "186 5 Avenue",
+      "address": "186 5 Avenue, Brooklyn, NY 11217",
       "photos": [
         "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
@@ -944,7 +944,7 @@
       "genre": "pizza",
       "design": 0,
       "area": "Ridgewood",
-      "address": "66-25 Fresh Pond Road",
+      "address": "66-25 Fresh Pond Road, Ridgewood, NY 11385",
       "photos": [
         "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85",
@@ -957,7 +957,7 @@
       "genre": "bakery",
       "design": 1,
       "area": "Bedford-Stuyvesant",
-      "address": "1351 Fulton Street",
+      "address": "1351 Fulton Street, Brooklyn, NY 11216",
       "photos": [
         "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
@@ -970,7 +970,7 @@
       "genre": "bar",
       "design": 4,
       "area": "East New York",
-      "address": "3175 Fulton Street",
+      "address": "3175 Fulton Street, Brooklyn, NY 11208",
       "photos": [
         "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1600&q=85",
@@ -983,7 +983,7 @@
       "genre": "wellness",
       "design": 9,
       "area": "Astoria",
-      "address": "45-07 30 Avenue",
+      "address": "45-07 30 Avenue, Astoria, NY 11103",
       "photos": [
         "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=85",
@@ -996,7 +996,7 @@
       "genre": "restaurant",
       "design": 6,
       "area": "Astoria",
-      "address": "25-11 30 Avenue",
+      "address": "25-11 30 Avenue, Astoria, NY 11102",
       "photos": [
         "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
@@ -1009,7 +1009,7 @@
       "genre": "asian",
       "design": 3,
       "area": "Astoria",
-      "address": "33-09 36 Avenue",
+      "address": "33-09 36 Avenue, Astoria, NY 11106",
       "photos": [
         "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
@@ -1022,7 +1022,7 @@
       "genre": "coffee",
       "design": 10,
       "area": "Concourse",
-      "address": "1091 Ogden Avenue",
+      "address": "1091 Ogden Avenue, Bronx, NY 10452",
       "photos": [
         "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=1600&q=85",
@@ -1035,7 +1035,7 @@
       "genre": "restaurant",
       "design": 8,
       "area": "Co-op City",
-      "address": "2260 Tillotson Avenue",
+      "address": "2260 Tillotson Avenue, Bronx, NY 10475",
       "photos": [
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
@@ -1048,7 +1048,7 @@
       "genre": "restaurant",
       "design": 8,
       "area": "Cambria Heights",
-      "address": "144-14 243 Street",
+      "address": "144-14 243 Street, Brooklyn, NY 11422",
       "photos": [
         "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
@@ -1061,7 +1061,7 @@
       "genre": "flowers",
       "design": 8,
       "area": "Jersey City Heights",
-      "address": "6 Bleecker Street",
+      "address": "6 Bleecker Street, Jersey City, NJ 07307",
       "photos": [
         "https://images.unsplash.com/photo-1457089328109-e5d9bd499191?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1487070183336-b863922373d4?auto=format&fit=crop&w=1600&q=85",
@@ -1074,7 +1074,7 @@
       "genre": "restaurant",
       "design": 5,
       "area": "Gowanus",
-      "address": "244 Flatbush Avenue",
+      "address": "244 Flatbush Avenue, Brooklyn, NY 11217",
       "photos": [
         "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1600&q=85",
@@ -1087,7 +1087,7 @@
       "genre": "wellness",
       "design": 11,
       "area": "Hoboken",
-      "address": "921 Madison Street",
+      "address": "921 Madison Street, Hoboken, NJ 07030",
       "photos": [
         "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1600&q=85",
@@ -1100,7 +1100,7 @@
       "genre": "bakery",
       "design": 8,
       "area": "Forest Hills",
-      "address": "96-16 Queens Boulevard",
+      "address": "96-16 Queens Boulevard, Forest Hills, NY 11374",
       "photos": [
         "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=85",
@@ -1113,7 +1113,7 @@
       "genre": "mexican",
       "design": 10,
       "area": "Concourse",
-      "address": "10 East Clarke Place",
+      "address": "10 East Clarke Place, Bronx, NY 10452",
       "photos": [
         "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1600&q=85",
@@ -1126,7 +1126,7 @@
       "genre": "mexican",
       "design": 8,
       "area": "Mott Haven",
-      "address": "626 Melrose Avenue",
+      "address": "626 Melrose Avenue, Bronx, NY 10455",
       "photos": [
         "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1600&q=85",
@@ -1139,7 +1139,7 @@
       "genre": "restaurant",
       "design": 8,
       "area": "Bedford-Stuyvesant",
-      "address": "1503 Fulton Street",
+      "address": "1503 Fulton Street, Brooklyn, NY 11216",
       "photos": [
         "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
@@ -1165,7 +1165,7 @@
       "genre": "asian",
       "design": 9,
       "area": "College Point",
-      "address": "20-07 127 Street",
+      "address": "20-07 127 Street, College Point, NY 11356",
       "photos": [
         "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
@@ -1191,7 +1191,7 @@
       "genre": "pizza",
       "design": 0,
       "area": "West Farms",
-      "address": "1671B Boston Road",
+      "address": "1671B Boston Road, Bronx, NY 10460",
       "photos": [
         "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=1600&q=85",
@@ -1204,7 +1204,7 @@
       "genre": "coffee",
       "design": 11,
       "area": "Gowanus",
-      "address": "529 Atlantic Avenue",
+      "address": "529 Atlantic Avenue, Brooklyn, NY 11217",
       "photos": [
         "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=1600&q=85",
@@ -1217,7 +1217,7 @@
       "genre": "restaurant",
       "design": 0,
       "area": "Kensington",
-      "address": "115 Ditmas Avenue",
+      "address": "115 Ditmas Avenue, Brooklyn, NY 11218",
       "photos": [
         "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
@@ -1230,7 +1230,7 @@
       "genre": "burger",
       "design": 0,
       "area": "Throgs Neck",
-      "address": "4007 East Tremont Avenue",
+      "address": "4007 East Tremont Avenue, Bronx, NY 10465",
       "photos": [
         "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1600&q=85",
@@ -1243,7 +1243,7 @@
       "genre": "restaurant",
       "design": 10,
       "area": "Morris Park",
-      "address": "711 Morris Park Avenue",
+      "address": "711 Morris Park Avenue, Bronx, NY 10462",
       "photos": [
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
@@ -1256,7 +1256,7 @@
       "genre": "entertainment",
       "design": 7,
       "area": "Maspeth",
-      "address": "54-20 Flushing Avenue",
+      "address": "54-20 Flushing Avenue, Maspeth, NY 11378",
       "photos": [
         "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1600&q=85",
@@ -1269,7 +1269,7 @@
       "genre": "japanese",
       "design": 9,
       "area": "Prospect Heights",
-      "address": "565 Vanderbilt Avenue",
+      "address": "565 Vanderbilt Avenue, Brooklyn, NY 11238",
       "photos": [
         "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=1600&q=85",
@@ -1282,7 +1282,7 @@
       "genre": "sweets",
       "design": 4,
       "area": "Gravesend",
-      "address": "512 Kings Highway",
+      "address": "512 Kings Highway, Brooklyn, NY 11223",
       "photos": [
         "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1600&q=85",
@@ -1295,7 +1295,7 @@
       "genre": "coffee",
       "design": 0,
       "area": "Williamsburg",
-      "address": "338 Wythe Avenue",
+      "address": "338 Wythe Avenue, Brooklyn, NY 11249",
       "photos": [
         "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=85",
@@ -1308,7 +1308,7 @@
       "genre": "pizza",
       "design": 1,
       "area": "Bensonhurst",
-      "address": "2301 65 Street",
+      "address": "2301 65 Street, Brooklyn, NY 11204",
       "photos": [
         "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=1600&q=85",
@@ -1321,7 +1321,7 @@
       "genre": "sweets",
       "design": 0,
       "area": "Midwood",
-      "address": "1095 Coney Island Avenue",
+      "address": "1095 Coney Island Avenue, Brooklyn, NY 11230",
       "photos": [
         "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85",
@@ -1334,7 +1334,7 @@
       "genre": "coffee",
       "design": 2,
       "area": "Park Slope",
-      "address": "322 3 Avenue",
+      "address": "322 3 Avenue, Brooklyn, NY 11215",
       "photos": [
         "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=85",
@@ -1347,7 +1347,7 @@
       "genre": "retail",
       "design": 11,
       "area": "Hoboken",
-      "address": "1450 Washington Street",
+      "address": "1450 Washington Street, Hoboken, NJ 07030",
       "photos": [
         "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1481437156560-3205f6a55735?auto=format&fit=crop&w=1600&q=85",
@@ -1360,7 +1360,7 @@
       "genre": "pizza",
       "design": 10,
       "area": "Jersey City",
-      "address": "357 7th Street",
+      "address": "357 7th Street, Jersey City, NJ 07302",
       "photos": [
         "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=85",
@@ -1373,7 +1373,7 @@
       "genre": "asian",
       "design": 1,
       "area": "Flushing",
-      "address": "133-47 Roosevelt Avenue",
+      "address": "133-47 Roosevelt Avenue, Flushing, NY 11354",
       "photos": [
         "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
@@ -1386,7 +1386,7 @@
       "genre": "restaurant",
       "design": 9,
       "area": "Williamsburg",
-      "address": "404 Wythe Avenue",
+      "address": "404 Wythe Avenue, Brooklyn, NY 11249",
       "photos": [
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=85",
@@ -1399,7 +1399,7 @@
       "genre": "asian",
       "design": 8,
       "area": "Flushing",
-      "address": "141-41 Northern Boulevard",
+      "address": "141-41 Northern Boulevard, Flushing, NY 11354",
       "photos": [
         "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=85",
@@ -1412,7 +1412,7 @@
       "genre": "asian",
       "design": 4,
       "area": "Bedford-Stuyvesant",
-      "address": "872 Hancock Street",
+      "address": "872 Hancock Street, Brooklyn, NY 11233",
       "photos": [
         "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=85",
@@ -1438,7 +1438,7 @@
       "genre": "restaurant",
       "design": 8,
       "area": "Parkchester",
-      "address": "1401 White Plains Road",
+      "address": "1401 White Plains Road, Bronx, NY 10462",
       "photos": [
         "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
         "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",

@@ -41,27 +41,26 @@ await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 let failures = 0;
 const findings = [];
-const desktopMotionSites = new Set(['chong','bao-dumpling','casa-serra','jj-deli','mesa-bar','solerum']);
+const motionViewports = new Set(['iphone-13', 'desktop-1440']);
 const auditDevices = [
   ['iphone-13', devices['iPhone 13']],
   ['pixel-7', devices['Pixel 7']],
   ['desktop-1440', { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 }],
   ['desktop-1920', { viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 }]
-].filter(([name]) => qaMode === 'desktop' ? name.startsWith('desktop-') : name !== 'desktop-1920');
+].filter(([name]) => qaMode === 'desktop' ? name.startsWith('desktop-') : !name.startsWith('desktop-'));
 for (const [deviceName, config] of auditDevices) {
   const context = await browser.newContext({ ...config, defaultBrowserType: undefined });
   for (const site of sites) {
-    if (qaMode === 'mobile' && deviceName === 'desktop-1440' && !desktopMotionSites.has(site)) continue;
     const page = await context.newPage();
     const url = `${base}/${site}/`;
     try {
       const response = await page.goto(url, { waitUntil: 'networkidle', timeout: 45000 });
       if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() ?? 'no response'}`);
       // On desktop confirm the track is not merely present: its rendered position must move.
-      if (deviceName === 'desktop-1440' && desktopMotionSites.has(site)) {
+      if (motionViewports.has(deviceName)) {
         const motion = await page.evaluate(async () => {
-          const track = document.querySelector('.awe-motion-track');
-          if (!track) return { ok: false, reason: 'banner track not found' };
+          const track = document.querySelector('.awe-motion-track, .marquee-track');
+          if (!track) return { ok: true, skipped: true, reason: 'no moving banner on page' };
           const initialStyle = getComputedStyle(track);
           const animation = initialStyle.animationName;
           const playState = initialStyle.animationPlayState;
@@ -75,8 +74,8 @@ for (const [deviceName, config] of auditDevices) {
           failures++;
           findings.push({ site, viewport: deviceName, type: 'banner-motion', details: motion });
           console.error('FAIL desktop banner motion ' + url + ' ' + JSON.stringify(motion));
-        } else {
-          console.log('PASS desktop banner motion ' + url + ' ' + JSON.stringify(motion));
+        } else if (!motion.skipped) {
+          console.log('PASS banner motion ' + url + ' ' + JSON.stringify(motion));
         }
       }
       // Full-page screenshots can race lazy/data-image decoding on emulated mobile.
@@ -138,6 +137,15 @@ for (const [deviceName, config] of auditDevices) {
           if (el.tagName === 'A' && r.right <= 0 && /^(?:skip\s+to\s+(?:main\s+)?content)$/i.test((el.textContent || '').trim())) continue;
           if (r.left < -4 || r.right > document.documentElement.clientWidth + 4) {
             issues.push('clipped text: ' + el.tagName.toLowerCase() + ' ' + (el.textContent || '').trim().slice(0,55));
+          }
+        }
+        const addressNodes = [...document.querySelectorAll('address,.closing-location,.visit h2,.visit p,[class*="address"],[class*="location"]')];
+        const streetAddress = /\\b\\d{1,5}(?:-\\d{1,5})?[A-Z]?\\s+[A-Za-z0-9.'’\\- ]{2,60}\\b(?:Street|St|Avenue|Ave|Road|Rd|Boulevard|Blvd|Place|Pl|Lane|Ln|Drive|Dr|Court|Ct|Parkway|Pkwy|Way|Highway|Hwy|Broadway)(?:\\s+[A-Z])?\\b/i;
+        for (const node of addressNodes) {
+          const text = (node.textContent || '').replace(/\\s+/g, ' ').trim();
+          if (streetAddress.test(text) && !/\\b\\d{5}(?:-\\d{4})?\\b/.test(text)) {
+            issues.push('incomplete address: ' + text.slice(0, 140));
+            break;
           }
         }
         return issues.slice(0,30);

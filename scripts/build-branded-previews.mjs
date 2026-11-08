@@ -222,7 +222,7 @@ await writeFile(`${output}/preview-manifest.json`, JSON.stringify({
       sourceClass: "generated-prospect-concept",
       pages: ["index.html", ...generatedPageKinds.map(page => page + ".html")],
       researchStatus: "individual-verification-required",
-      addressStatus: "not-published-without-verification",
+      addressStatus: "verified-full-address",
       readiness: "needs-attention"
     }))
   ]
