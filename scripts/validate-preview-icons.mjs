@@ -48,3 +48,5 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1
     console.log("Preview icon audit passed: no Unicode emoji, dingbats or decorative arrows.");
   }
 }
+
+// Preview-only release trigger: distinct designs, 2026-11-08. No runtime change.
