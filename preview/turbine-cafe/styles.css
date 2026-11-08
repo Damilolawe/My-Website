@@ -52,7 +52,7 @@ p{margin:0}
 .spec-row span{padding:10px 14px}
 .spec-row span:first-child{color:var(--signal);border-right:1px solid rgba(242,194,48,.25);text-transform:uppercase}
 .hero-title{position:relative;z-index:2;padding:0 clamp(16px,3vw,40px) clamp(20px,3vw,40px)}
-.ht-big{display:block;font-size:clamp(4.2rem,15.5vw,17rem);font-weight:900;font-stretch:125%;letter-spacing:-.035em;line-height:.8;text-transform:uppercase;margin-left:-.04em}
+.ht-big{display:block;font-size:clamp(2.6rem,calc((100vw - var(--rail)) * .128),16rem);font-weight:900;font-stretch:125%;letter-spacing:-.035em;line-height:.8;text-transform:uppercase;margin-left:-.04em}
 .ht-small{display:block;margin-top:clamp(14px,2vw,24px);font-family:var(--mono);font-weight:400;font-size:clamp(.82rem,1.2vw,1rem);text-transform:uppercase;letter-spacing:.06em;color:var(--signal);line-height:1.5}
 
 /* supply lines */
