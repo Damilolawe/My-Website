@@ -1,45 +1,8 @@
 {
-  "generatedAt": "2026-11-08T18:37:07.588Z",
+  "generatedAt": "2026-11-08T18:44:38.535Z",
   "mode": "desktop",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 168,
-  "issues": 6,
-  "findings": [
-    {
-      "site": "kora-bakery",
-      "viewport": "desktop-1440",
-      "type": "visual",
-      "message": "broken image: https://aweconcepts.com/favicon.svg"
-    },
-    {
-      "site": "old-mill-cafe",
-      "viewport": "desktop-1440",
-      "type": "visual",
-      "message": "broken image: https://aweconcepts.com/favicon.svg"
-    },
-    {
-      "site": "birdee",
-      "viewport": "desktop-1440",
-      "type": "visual",
-      "message": "broken image: https://aweconcepts.com/favicon.svg"
-    },
-    {
-      "site": "cafe-pr",
-      "viewport": "desktop-1440",
-      "type": "visual",
-      "message": "broken image: https://aweconcepts.com/favicon.svg"
-    },
-    {
-      "site": "latte-da",
-      "viewport": "desktop-1440",
-      "type": "visual",
-      "message": "broken image: https://aweconcepts.com/favicon.svg"
-    },
-    {
-      "site": "studio-ephemera",
-      "viewport": "desktop-1440",
-      "type": "visual",
-      "message": "broken image: https://aweconcepts.com/favicon.svg"
-    }
-  ]
+  "issues": 0,
+  "findings": []
 }
