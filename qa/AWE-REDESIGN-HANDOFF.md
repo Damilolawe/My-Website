@@ -53,6 +53,13 @@ The cloud environment `my-website` allows the image CDNs, Google Fonts,
 preview.aweconcepts.com and awe-concepts-previews.web.app. Node's fetch needs
 `NODE_USE_ENV_PROXY=1` there.
 
+## Work plan
+
+`qa/redesign-groups.json` splits all 168 sites into groups of up to four
+similar businesses. Each group is handed to one agent with the brief.
+A site is done only when its `preview/<slug>/site-record.json` says
+`visually-verified` and the coordinator has reviewed its screenshots.
+
 ## Done so far
 
 See the "Progress log" section below and the master progress file.
@@ -71,3 +78,4 @@ See the "Progress log" section below and the master progress file.
 - 2026-11-08: QA/build infrastructure committed; baseline homepage QA of all
   168 sites recorded; shared fixes (mobile menu script, duplicate footer credit,
   favicon, manifest JSON, filler pages removed, press links preserved).
+- 2026-11-08: Wave 1 started: groups 0 (pilot: kora-bakery, route-66-smokehouse, barchino), 1, 2, 3.
