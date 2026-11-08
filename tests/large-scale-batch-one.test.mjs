@@ -143,3 +143,31 @@ test("BEM preview is grounded in Black food literature and accurately communicat
   const script = await readFile("preview/bem-books/site.js", "utf8");
   assert.match(script, /aria-expanded/);
 });
+
+
+test("Route 66 Find Us and private-events pages resolve styles/scripts on slashless clean URLs", async () => {
+  const slug = "route-66-smokehouse";
+  for (const page of ["index.html", "events.html"]) {
+    const source = await readFile("preview/" + slug + "/" + page, "utf8");
+    const output = await readFile("branded-previews/public/" + slug + "/" + page, "utf8");
+    for (const html of [source, output]) {
+      const base = html.match(/<base\s+href="([^"]+)"/i)?.[1];
+      assert.equal(base, "/" + slug + "/", page + " needs a stable URL base");
+      const css = html.match(/<link\b[^>]*\bhref="([^"]*styles\.css[^"]*)"[^>]*>/i)?.[1];
+      const js = html.match(/<script\b[^>]*\bsrc="([^"]*site\.js[^"]*)"[^>]*>/i)?.[1];
+      assert.ok(css, page + " must link to its stylesheet");
+      assert.ok(js, page + " must load its behavior script");
+      for (const requestedUrl of [
+        "https://preview.aweconcepts.com/" + slug,
+        "https://preview.aweconcepts.com/" + slug + "/" + (page === "events.html" ? "events" : "index"),
+      ]) {
+        const documentBase = new URL(base, requestedUrl);
+        assert.equal(new URL(css, documentBase).pathname, "/" + slug + "/styles.css");
+        assert.equal(new URL(js, documentBase).pathname, "/" + slug + "/site.js");
+      }
+    }
+  }
+  const css = await readFile("branded-previews/public/" + slug + "/styles.css", "utf8");
+  assert.match(css, /body\s*\{/);
+  assert.match(css, /\.find\s*\{/);
+});
