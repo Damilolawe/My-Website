@@ -1,11 +1,11 @@
 {
- "updatedAt": "2026-11-08T21:58:49.081Z",
+ "updatedAt": "2026-11-08T22:09:11.084Z",
  "note": "Automated checks only. Visual sign-off is recorded in qa/awe-concepts-master-progress.json.",
  "sites": {
   "kora-bakery": {
    "slug": "kora-bakery",
-   "checkedAt": "2026-11-08T21:58:38.808Z",
-   "commit": "e871cee",
+   "checkedAt": "2026-11-08T22:01:48.697Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -38,8 +38,8 @@
   },
   "otaku-haven": {
    "slug": "otaku-haven",
-   "checkedAt": "2026-11-08T21:58:00.916Z",
-   "commit": "e871cee",
+   "checkedAt": "2026-11-08T21:59:01.218Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -72,8 +72,8 @@
   },
   "kappo-sono": {
    "slug": "kappo-sono",
-   "checkedAt": "2026-11-08T21:58:38.808Z",
-   "commit": "e871cee",
+   "checkedAt": "2026-11-08T21:59:01.217Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -106,8 +106,8 @@
   },
   "jay-millz-shot-em": {
    "slug": "jay-millz-shot-em",
-   "checkedAt": "2026-11-08T21:58:00.918Z",
-   "commit": "e871cee",
+   "checkedAt": "2026-11-08T21:59:13.198Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -140,8 +140,8 @@
   },
   "shotsbyriq": {
    "slug": "shotsbyriq",
-   "checkedAt": "2026-11-08T21:46:54.044Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T21:59:11.659Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -150,9 +150,7 @@
     {
      "page": "index.html",
      "view": "desktop",
-     "issues": [
-      "broken image "
-     ],
+     "issues": [],
      "title": "SHOTSBYRIQ — Portrait & Editorial Photography | Independent Concept",
      "height": 9342,
      "images": 18,
@@ -161,9 +159,7 @@
     {
      "page": "index.html",
      "view": "mobile",
-     "issues": [
-      "broken image "
-     ],
+     "issues": [],
      "title": "SHOTSBYRIQ — Portrait & Editorial Photography | Independent Concept",
      "height": 9551,
      "images": 18,
@@ -174,12 +170,12 @@
      "screenshot": "artifacts/portfolio-qa/2026-11-08/shotsbyriq/index-mobile.jpg"
     }
    ],
-   "automatedIssueCount": 2
+   "automatedIssueCount": 0
   },
   "susukino": {
    "slug": "susukino",
-   "checkedAt": "2026-11-08T21:58:00.918Z",
-   "commit": "e871cee",
+   "checkedAt": "2026-11-08T21:59:24.317Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -212,8 +208,8 @@
   },
   "bao-dumpling": {
    "slug": "bao-dumpling",
-   "checkedAt": "2026-11-08T21:47:02.250Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T21:59:33.024Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -231,7 +227,9 @@
     {
      "page": "index.html",
      "view": "mobile",
-     "issues": [],
+     "issues": [
+      "horizontal overflow 393px > 390px"
+     ],
      "title": "Bao Dumpling | Wall Street",
      "height": 5609,
      "images": 2,
@@ -242,12 +240,12 @@
      "screenshot": "artifacts/portfolio-qa/2026-11-08/bao-dumpling/index-mobile.jpg"
     }
    ],
-   "automatedIssueCount": 0
+   "automatedIssueCount": 1
   },
   "mesa-bar": {
    "slug": "mesa-bar",
-   "checkedAt": "2026-11-08T21:47:02.944Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T21:59:35.885Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -280,8 +278,8 @@
   },
   "pace-sbdc": {
    "slug": "pace-sbdc",
-   "checkedAt": "2026-11-08T21:47:00.970Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T21:59:23.045Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -299,23 +297,25 @@
     {
      "page": "index.html",
      "view": "mobile",
-     "issues": [],
+     "issues": [
+      "mobile menu toggle did not reveal links"
+     ],
      "title": "Pace SBDC | Where Big Ideas Move Forward — Independent Redesign",
      "height": 15949,
      "images": 2,
      "menu": {
       "before": 7,
-      "after": 14
+      "after": 7
      },
      "screenshot": "artifacts/portfolio-qa/2026-11-08/pace-sbdc/index-mobile.jpg"
     }
    ],
-   "automatedIssueCount": 0
+   "automatedIssueCount": 1
   },
   "casa-serra": {
    "slug": "casa-serra",
-   "checkedAt": "2026-11-08T21:47:05.939Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T21:59:41.080Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -345,8 +345,8 @@
   },
   "solerum": {
    "slug": "solerum",
-   "checkedAt": "2026-11-08T21:47:06.755Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T21:59:43.849Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -376,8 +376,8 @@
   },
   "jj-deli": {
    "slug": "jj-deli",
-   "checkedAt": "2026-11-08T21:47:07.313Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T21:59:47.492Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -407,8 +407,8 @@
   },
   "chong": {
    "slug": "chong",
-   "checkedAt": "2026-11-08T21:47:07.667Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T21:59:50.635Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -441,8 +441,8 @@
   },
   "tbili": {
    "slug": "tbili",
-   "checkedAt": "2026-11-08T21:47:09.411Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T21:59:53.386Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -453,7 +453,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Tbili | Georgian Cafe in Brooklyn",
-     "height": 3004,
+     "height": 2944,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/tbili/index-desktop.jpg"
     },
@@ -462,7 +462,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Tbili | Georgian Cafe in Brooklyn",
-     "height": 3285,
+     "height": 3225,
      "images": 1,
      "menu": {
       "before": 1,
@@ -475,8 +475,8 @@
   },
   "la-mestiza": {
    "slug": "la-mestiza",
-   "checkedAt": "2026-11-08T21:47:10.070Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T21:59:58.395Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -513,8 +513,8 @@
   },
   "santuario-cafe": {
    "slug": "santuario-cafe",
-   "checkedAt": "2026-11-08T21:47:10.234Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T21:59:59.953Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -525,7 +525,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Santuario Cafe | Jackson Heights",
-     "height": 3004,
+     "height": 2944,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/santuario-cafe/index-desktop.jpg"
     },
@@ -534,7 +534,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Santuario Cafe | Jackson Heights",
-     "height": 3294,
+     "height": 3234,
      "images": 1,
      "menu": {
       "before": 1,
@@ -547,8 +547,8 @@
   },
   "le-loup-cafe": {
    "slug": "le-loup-cafe",
-   "checkedAt": "2026-11-08T21:47:12.459Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:05.378Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -559,7 +559,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Le Loup Cafe | Astoria",
-     "height": 2565,
+     "height": 2505,
      "images": 2,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/le-loup-cafe/index-desktop.jpg"
     },
@@ -568,7 +568,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Le Loup Cafe | Astoria",
-     "height": 3072,
+     "height": 3012,
      "images": 2,
      "menu": {
       "before": 1,
@@ -581,8 +581,8 @@
   },
   "the-block-coffee": {
    "slug": "the-block-coffee",
-   "checkedAt": "2026-11-08T21:47:13.974Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:11.712Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -615,8 +615,8 @@
   },
   "duro-market": {
    "slug": "duro-market",
-   "checkedAt": "2026-11-08T21:47:13.871Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:06.462Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -627,7 +627,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Duro Market | Astoria",
-     "height": 2821,
+     "height": 2761,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/duro-market/index-desktop.jpg"
     },
@@ -636,7 +636,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Duro Market | Astoria",
-     "height": 3078,
+     "height": 3018,
      "images": 1,
      "menu": {
       "before": 1,
@@ -649,8 +649,8 @@
   },
   "splendid-cafe": {
    "slug": "splendid-cafe",
-   "checkedAt": "2026-11-08T21:47:14.283Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:12.913Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -683,8 +683,8 @@
   },
   "cafe-aroma-y-sabor": {
    "slug": "cafe-aroma-y-sabor",
-   "checkedAt": "2026-11-08T21:47:16.012Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:18.009Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -717,8 +717,8 @@
   },
   "fiolicchia-bakery": {
    "slug": "fiolicchia-bakery",
-   "checkedAt": "2026-11-08T21:47:17.386Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:19.881Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -751,8 +751,8 @@
   },
   "hairby-matty": {
    "slug": "hairby-matty",
-   "checkedAt": "2026-11-08T21:47:17.638Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:24.584Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -785,8 +785,8 @@
   },
   "from-duo": {
    "slug": "from-duo",
-   "checkedAt": "2026-11-08T21:47:17.967Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:26.585Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -819,8 +819,8 @@
   },
   "studio-and-story": {
    "slug": "studio-and-story",
-   "checkedAt": "2026-11-08T21:47:19.486Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:31.332Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -853,8 +853,8 @@
   },
   "underscore-glasserie": {
    "slug": "underscore-glasserie",
-   "checkedAt": "2026-11-08T21:47:20.870Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:33.160Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -887,8 +887,8 @@
   },
   "atma-yoga": {
    "slug": "atma-yoga",
-   "checkedAt": "2026-11-08T21:47:21.448Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:38.034Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -921,8 +921,8 @@
   },
   "four-winds-games": {
    "slug": "four-winds-games",
-   "checkedAt": "2026-11-08T21:47:21.559Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:39.834Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -955,8 +955,8 @@
   },
   "cultiva-cafe": {
    "slug": "cultiva-cafe",
-   "checkedAt": "2026-11-08T21:47:23.296Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:45.044Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -967,7 +967,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Cultiva Cafe | Ridgewood",
-     "height": 2951,
+     "height": 2891,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/cultiva-cafe/index-desktop.jpg"
     },
@@ -976,7 +976,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Cultiva Cafe | Ridgewood",
-     "height": 3053,
+     "height": 2993,
      "images": 1,
      "menu": {
       "before": 1,
@@ -989,8 +989,8 @@
   },
   "hots-coffee": {
    "slug": "hots-coffee",
-   "checkedAt": "2026-11-08T21:47:24.514Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:46.512Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1001,7 +1001,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Hot's Coffee | Glendale",
-     "height": 3271,
+     "height": 3211,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/hots-coffee/index-desktop.jpg"
     },
@@ -1010,7 +1010,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Hot's Coffee | Glendale",
-     "height": 3193,
+     "height": 3133,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1023,8 +1023,8 @@
   },
   "nena-sweets-cakes": {
    "slug": "nena-sweets-cakes",
-   "checkedAt": "2026-11-08T21:47:25.281Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:51.408Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1035,7 +1035,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Nena Sweets Cakes | Ridgewood",
-     "height": 3031,
+     "height": 2971,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/nena-sweets-cakes/index-desktop.jpg"
     },
@@ -1044,7 +1044,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Nena Sweets Cakes | Ridgewood",
-     "height": 3350,
+     "height": 3290,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1057,8 +1057,8 @@
   },
   "bier-cheese": {
    "slug": "bier-cheese",
-   "checkedAt": "2026-11-08T21:47:25.422Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:53.019Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1069,7 +1069,7 @@
      "view": "desktop",
      "issues": [],
      "title": "The Bier & Cheese Collective | Astoria",
-     "height": 3309,
+     "height": 3249,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/bier-cheese/index-desktop.jpg"
     },
@@ -1078,7 +1078,7 @@
      "view": "mobile",
      "issues": [],
      "title": "The Bier & Cheese Collective | Astoria",
-     "height": 3205,
+     "height": 3145,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1091,8 +1091,8 @@
   },
   "rachels-handmade-cookies": {
    "slug": "rachels-handmade-cookies",
-   "checkedAt": "2026-11-08T21:47:26.879Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:57.796Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1103,7 +1103,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Rachel's Handmade Cookies | Queens",
-     "height": 3155,
+     "height": 3095,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/rachels-handmade-cookies/index-desktop.jpg"
     },
@@ -1112,7 +1112,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Rachel's Handmade Cookies | Queens",
-     "height": 3012,
+     "height": 2952,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1125,8 +1125,8 @@
   },
   "dovetail-bakery": {
    "slug": "dovetail-bakery",
-   "checkedAt": "2026-11-08T21:47:28.279Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:00:59.480Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1137,7 +1137,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Dovetail Bakery | Astoria",
-     "height": 2898,
+     "height": 2838,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/dovetail-bakery/index-desktop.jpg"
     },
@@ -1146,7 +1146,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Dovetail Bakery | Astoria",
-     "height": 2787,
+     "height": 2727,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1159,8 +1159,8 @@
   },
   "smor-carroll-gardens": {
    "slug": "smor-carroll-gardens",
-   "checkedAt": "2026-11-08T21:47:28.679Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:04.202Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1171,7 +1171,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Smør Bakery | Carroll Gardens",
-     "height": 3072,
+     "height": 3012,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/smor-carroll-gardens/index-desktop.jpg"
     },
@@ -1180,7 +1180,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Smør Bakery | Carroll Gardens",
-     "height": 2797,
+     "height": 2737,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1193,8 +1193,8 @@
   },
   "caputo-bagels": {
    "slug": "caputo-bagels",
-   "checkedAt": "2026-11-08T21:47:28.980Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:05.741Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1205,7 +1205,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Caputo Bagels | Park Slope",
-     "height": 3067,
+     "height": 3007,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/caputo-bagels/index-desktop.jpg"
     },
@@ -1214,7 +1214,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Caputo Bagels | Park Slope",
-     "height": 2910,
+     "height": 2850,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1227,8 +1227,8 @@
   },
   "swaines-bk": {
    "slug": "swaines-bk",
-   "checkedAt": "2026-11-08T21:47:30.447Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:10.678Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1239,7 +1239,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Swaine's | Brooklyn",
-     "height": 3077,
+     "height": 3017,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/swaines-bk/index-desktop.jpg"
     },
@@ -1248,7 +1248,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Swaine's | Brooklyn",
-     "height": 2797,
+     "height": 2737,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1261,8 +1261,8 @@
   },
   "vibra-bronx": {
    "slug": "vibra-bronx",
-   "checkedAt": "2026-11-08T21:47:31.818Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:12.228Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1273,7 +1273,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Vibra | Bronx",
-     "height": 2972,
+     "height": 2912,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/vibra-bronx/index-desktop.jpg"
     },
@@ -1282,7 +1282,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Vibra | Bronx",
-     "height": 2847,
+     "height": 2787,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1295,8 +1295,8 @@
   },
   "cafe-mia": {
    "slug": "cafe-mia",
-   "checkedAt": "2026-11-08T21:47:32.340Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:17.156Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1307,7 +1307,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Café Mia | Bushwick",
-     "height": 3426,
+     "height": 3366,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/cafe-mia/index-desktop.jpg"
     },
@@ -1316,7 +1316,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Café Mia | Bushwick",
-     "height": 3126,
+     "height": 3066,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1329,8 +1329,8 @@
   },
   "problem-baker-parkslope": {
    "slug": "problem-baker-parkslope",
-   "checkedAt": "2026-11-08T21:47:32.576Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:18.762Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1341,7 +1341,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Problem Baker | Park Slope",
-     "height": 3064,
+     "height": 3004,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/problem-baker-parkslope/index-desktop.jpg"
     },
@@ -1350,7 +1350,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Problem Baker | Park Slope",
-     "height": 2828,
+     "height": 2768,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1363,8 +1363,8 @@
   },
   "atelier-artist": {
    "slug": "atelier-artist",
-   "checkedAt": "2026-11-08T21:47:33.914Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:23.514Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1375,7 +1375,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Atelier Artist | Brooklyn",
-     "height": 2839,
+     "height": 2779,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/atelier-artist/index-desktop.jpg"
     },
@@ -1384,7 +1384,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Atelier Artist | Brooklyn",
-     "height": 2756,
+     "height": 2696,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1397,8 +1397,8 @@
   },
   "prema-fulton": {
    "slug": "prema-fulton",
-   "checkedAt": "2026-11-08T21:47:35.456Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:25.259Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1409,7 +1409,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Prema | Brooklyn",
-     "height": 2823,
+     "height": 2763,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/prema-fulton/index-desktop.jpg"
     },
@@ -1418,7 +1418,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Prema | Brooklyn",
-     "height": 2767,
+     "height": 2707,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1431,8 +1431,8 @@
   },
   "three-coffee-halletts": {
    "slug": "three-coffee-halletts",
-   "checkedAt": "2026-11-08T21:47:35.826Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:29.560Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1443,7 +1443,7 @@
      "view": "desktop",
      "issues": [],
      "title": ":3Coffee | Halletts Point",
-     "height": 3033,
+     "height": 2973,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/three-coffee-halletts/index-desktop.jpg"
     },
@@ -1452,7 +1452,7 @@
      "view": "mobile",
      "issues": [],
      "title": ":3Coffee | Halletts Point",
-     "height": 2745,
+     "height": 2685,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1465,8 +1465,8 @@
   },
   "loved-ones-coffee": {
    "slug": "loved-ones-coffee",
-   "checkedAt": "2026-11-08T21:47:36.463Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:31.646Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1477,7 +1477,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Loved Ones Coffee | Boerum Hill",
-     "height": 2827,
+     "height": 2767,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/loved-ones-coffee/index-desktop.jpg"
     },
@@ -1486,7 +1486,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Loved Ones Coffee | Boerum Hill",
-     "height": 3103,
+     "height": 3043,
      "images": 1,
      "menu": {
       "before": 1,
@@ -1499,8 +1499,8 @@
   },
   "worksbynet": {
    "slug": "worksbynet",
-   "checkedAt": "2026-11-08T21:47:37.412Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:35.941Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1511,32 +1511,30 @@
      "view": "desktop",
      "issues": [],
      "title": "WorksbyNET | Bushwick Studio",
-     "height": 3333,
+     "height": 3273,
      "images": 0,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/worksbynet/index-desktop.jpg"
     },
     {
      "page": "index.html",
      "view": "mobile",
-     "issues": [
-      "mobile menu toggle did not reveal links"
-     ],
+     "issues": [],
      "title": "WorksbyNET | Bushwick Studio",
-     "height": 3721,
+     "height": 3661,
      "images": 0,
      "menu": {
       "before": 1,
-      "after": 1
+      "after": 4
      },
      "screenshot": "artifacts/portfolio-qa/2026-11-08/worksbynet/index-mobile.jpg"
     }
    ],
-   "automatedIssueCount": 1
+   "automatedIssueCount": 0
   },
   "studio-shipley": {
    "slug": "studio-shipley",
-   "checkedAt": "2026-11-08T21:47:39.164Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:37.957Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1547,32 +1545,30 @@
      "view": "desktop",
      "issues": [],
      "title": "Studio Shipley | Brooklyn Pottery Studio",
-     "height": 3012,
+     "height": 2952,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/studio-shipley/index-desktop.jpg"
     },
     {
      "page": "index.html",
      "view": "mobile",
-     "issues": [
-      "mobile menu toggle did not reveal links"
-     ],
+     "issues": [],
      "title": "Studio Shipley | Brooklyn Pottery Studio",
-     "height": 3140,
+     "height": 3080,
      "images": 1,
      "menu": {
       "before": 1,
-      "after": 1
+      "after": 4
      },
      "screenshot": "artifacts/portfolio-qa/2026-11-08/studio-shipley/index-mobile.jpg"
     }
    ],
-   "automatedIssueCount": 1
+   "automatedIssueCount": 0
   },
   "hanare-spa": {
    "slug": "hanare-spa",
-   "checkedAt": "2026-11-08T21:47:39.445Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:42.331Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1583,32 +1579,30 @@
      "view": "desktop",
      "issues": [],
      "title": "Hanare | Organic Japanese Spa",
-     "height": 2986,
+     "height": 2926,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/hanare-spa/index-desktop.jpg"
     },
     {
      "page": "index.html",
      "view": "mobile",
-     "issues": [
-      "mobile menu toggle did not reveal links"
-     ],
+     "issues": [],
      "title": "Hanare | Organic Japanese Spa",
-     "height": 3084,
+     "height": 3024,
      "images": 1,
      "menu": {
       "before": 1,
-      "after": 1
+      "after": 4
      },
      "screenshot": "artifacts/portfolio-qa/2026-11-08/hanare-spa/index-mobile.jpg"
     }
    ],
-   "automatedIssueCount": 1
+   "automatedIssueCount": 0
   },
   "tiny-topiary": {
    "slug": "tiny-topiary",
-   "checkedAt": "2026-11-08T21:47:40.012Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:44.226Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1619,32 +1613,30 @@
      "view": "desktop",
      "issues": [],
      "title": "Tiny Topiary | Jersey City",
-     "height": 3322,
+     "height": 3262,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/tiny-topiary/index-desktop.jpg"
     },
     {
      "page": "index.html",
      "view": "mobile",
-     "issues": [
-      "mobile menu toggle did not reveal links"
-     ],
+     "issues": [],
      "title": "Tiny Topiary | Jersey City",
-     "height": 3576,
+     "height": 3516,
      "images": 1,
      "menu": {
       "before": 1,
-      "after": 1
+      "after": 4
      },
      "screenshot": "artifacts/portfolio-qa/2026-11-08/tiny-topiary/index-mobile.jpg"
     }
    ],
-   "automatedIssueCount": 1
+   "automatedIssueCount": 0
   },
   "old-mill-cafe": {
    "slug": "old-mill-cafe",
-   "checkedAt": "2026-11-08T21:47:42.568Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:50.630Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1655,32 +1647,30 @@
      "view": "desktop",
      "issues": [],
      "title": "Old Mill Cafe | Bushwick",
-     "height": 3255,
+     "height": 3195,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/old-mill-cafe/index-desktop.jpg"
     },
     {
      "page": "index.html",
      "view": "mobile",
-     "issues": [
-      "mobile menu toggle did not reveal links"
-     ],
+     "issues": [],
      "title": "Old Mill Cafe | Bushwick",
-     "height": 3027,
+     "height": 2967,
      "images": 1,
      "menu": {
       "before": 1,
-      "after": 1
+      "after": 4
      },
      "screenshot": "artifacts/portfolio-qa/2026-11-08/old-mill-cafe/index-mobile.jpg"
     }
    ],
-   "automatedIssueCount": 1
+   "automatedIssueCount": 0
   },
   "birdee": {
    "slug": "birdee",
-   "checkedAt": "2026-11-08T21:58:38.808Z",
-   "commit": "e871cee",
+   "checkedAt": "2026-11-08T22:01:54.973Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1713,8 +1703,8 @@
   },
   "cafe-pr": {
    "slug": "cafe-pr",
-   "checkedAt": "2026-11-08T21:47:43.420Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:01:56.959Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1725,32 +1715,30 @@
      "view": "desktop",
      "issues": [],
      "title": "Café Pri | Middle Village",
-     "height": 3143,
+     "height": 3083,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/cafe-pr/index-desktop.jpg"
     },
     {
      "page": "index.html",
      "view": "mobile",
-     "issues": [
-      "mobile menu toggle did not reveal links"
-     ],
+     "issues": [],
      "title": "Café Pri | Middle Village",
-     "height": 3146,
+     "height": 3086,
      "images": 1,
      "menu": {
       "before": 1,
-      "after": 1
+      "after": 4
      },
      "screenshot": "artifacts/portfolio-qa/2026-11-08/cafe-pr/index-mobile.jpg"
     }
    ],
-   "automatedIssueCount": 1
+   "automatedIssueCount": 0
   },
   "latte-da": {
    "slug": "latte-da",
-   "checkedAt": "2026-11-08T21:47:44.496Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:01.423Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1761,32 +1749,30 @@
      "view": "desktop",
      "issues": [],
      "title": "latte da cafés | Bay Ridge",
-     "height": 3269,
+     "height": 3209,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/latte-da/index-desktop.jpg"
     },
     {
      "page": "index.html",
      "view": "mobile",
-     "issues": [
-      "mobile menu toggle did not reveal links"
-     ],
+     "issues": [],
      "title": "latte da cafés | Bay Ridge",
-     "height": 3069,
+     "height": 3009,
      "images": 1,
      "menu": {
       "before": 1,
-      "after": 1
+      "after": 4
      },
      "screenshot": "artifacts/portfolio-qa/2026-11-08/latte-da/index-mobile.jpg"
     }
    ],
-   "automatedIssueCount": 1
+   "automatedIssueCount": 0
   },
   "studio-ephemera": {
    "slug": "studio-ephemera",
-   "checkedAt": "2026-11-08T21:47:45.968Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:03.383Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1797,7 +1783,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Studio Ephemera — Brooklyn Hair — Independent Website Concept",
-     "height": 2696,
+     "height": 2636,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/studio-ephemera/index-desktop.jpg"
     },
@@ -1806,7 +1792,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Studio Ephemera — Brooklyn Hair — Independent Website Concept",
-     "height": 3042,
+     "height": 2982,
      "images": 1,
      "menu": "no-toggle",
      "screenshot": "artifacts/portfolio-qa/2026-11-08/studio-ephemera/index-mobile.jpg"
@@ -1816,8 +1802,8 @@
   },
   "loove-labs": {
    "slug": "loove-labs",
-   "checkedAt": "2026-11-08T21:47:46.303Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:07.909Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1847,8 +1833,8 @@
   },
   "one-two-one-cafe": {
    "slug": "one-two-one-cafe",
-   "checkedAt": "2026-11-08T21:47:47.869Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:13.468Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1859,7 +1845,7 @@
      "view": "desktop",
      "issues": [],
      "title": "OneTwoOne Cafe — Bed-Stuy — Independent Website Concept",
-     "height": 2596,
+     "height": 2536,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/one-two-one-cafe/index-desktop.jpg"
     },
@@ -1868,7 +1854,7 @@
      "view": "mobile",
      "issues": [],
      "title": "OneTwoOne Cafe — Bed-Stuy — Independent Website Concept",
-     "height": 2618,
+     "height": 2558,
      "images": 1,
      "menu": "no-toggle",
      "screenshot": "artifacts/portfolio-qa/2026-11-08/one-two-one-cafe/index-mobile.jpg"
@@ -1878,8 +1864,8 @@
   },
   "chique-collective": {
    "slug": "chique-collective",
-   "checkedAt": "2026-11-08T21:47:48.211Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:16.093Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1890,7 +1876,7 @@
      "view": "desktop",
      "issues": [],
      "title": "Chique Collective — Hoboken + Jersey City — Independent Website Concept",
-     "height": 2648,
+     "height": 2588,
      "images": 1,
      "screenshot": "artifacts/portfolio-qa/2026-11-08/chique-collective/index-desktop.jpg"
     },
@@ -1899,7 +1885,7 @@
      "view": "mobile",
      "issues": [],
      "title": "Chique Collective — Hoboken + Jersey City — Independent Website Concept",
-     "height": 2869,
+     "height": 2809,
      "images": 1,
      "menu": "no-toggle",
      "screenshot": "artifacts/portfolio-qa/2026-11-08/chique-collective/index-mobile.jpg"
@@ -1909,8 +1895,8 @@
   },
   "bem-books": {
    "slug": "bem-books",
-   "checkedAt": "2026-11-08T21:47:47.203Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:08.720Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1943,8 +1929,8 @@
   },
   "sadie-s-bakery": {
    "slug": "sadie-s-bakery",
-   "checkedAt": "2026-11-08T21:47:48.867Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:18.569Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -1977,8 +1963,8 @@
   },
   "evelyn-bar-and-kitchen": {
    "slug": "evelyn-bar-and-kitchen",
-   "checkedAt": "2026-11-08T21:47:50.211Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:21.626Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2011,8 +1997,8 @@
   },
   "aoko-matcha": {
    "slug": "aoko-matcha",
-   "checkedAt": "2026-11-08T21:47:50.755Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:26.071Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2045,8 +2031,8 @@
   },
   "kyuramen-express": {
    "slug": "kyuramen-express",
-   "checkedAt": "2026-11-08T21:47:51.688Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:29.253Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2079,8 +2065,8 @@
   },
   "wolf-forest-cafe": {
    "slug": "wolf-forest-cafe",
-   "checkedAt": "2026-11-08T21:47:53.060Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:33.252Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2113,8 +2099,8 @@
   },
   "kee-s-chocolates": {
    "slug": "kee-s-chocolates",
-   "checkedAt": "2026-11-08T21:47:54.544Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:36.992Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2147,8 +2133,8 @@
   },
   "route-66-smokehouse": {
    "slug": "route-66-smokehouse",
-   "checkedAt": "2026-11-08T21:47:54.744Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:40.580Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2184,8 +2170,8 @@
   },
   "al-aqusa-restaurant": {
    "slug": "al-aqusa-restaurant",
-   "checkedAt": "2026-11-08T21:47:56.163Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:45.072Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2218,8 +2204,8 @@
   },
   "bensonhurst-bagels-and-deli": {
    "slug": "bensonhurst-bagels-and-deli",
-   "checkedAt": "2026-11-08T21:47:57.576Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:47.866Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2252,8 +2238,8 @@
   },
   "guisados-maria": {
    "slug": "guisados-maria",
-   "checkedAt": "2026-11-08T21:47:59.359Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:55.361Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2286,8 +2272,8 @@
   },
   "grizzly-coffee-and-tea-house": {
    "slug": "grizzly-coffee-and-tea-house",
-   "checkedAt": "2026-11-08T21:47:59.012Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:02:52.487Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2320,8 +2306,8 @@
   },
   "weng-s-garden": {
    "slug": "weng-s-garden",
-   "checkedAt": "2026-11-08T21:48:00.247Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:00.055Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2354,8 +2340,8 @@
   },
   "gloria": {
    "slug": "gloria",
-   "checkedAt": "2026-11-08T21:48:02.244Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:02.723Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2388,8 +2374,8 @@
   },
   "kings-co-imperial": {
    "slug": "kings-co-imperial",
-   "checkedAt": "2026-11-08T21:48:03.460Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:10.390Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2422,8 +2408,8 @@
   },
   "isla-and-co": {
    "slug": "isla-and-co",
-   "checkedAt": "2026-11-08T21:48:03.147Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:07.500Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2456,8 +2442,8 @@
   },
   "blanca-s-bakery": {
    "slug": "blanca-s-bakery",
-   "checkedAt": "2026-11-08T21:48:04.182Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:14.957Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2490,8 +2476,8 @@
   },
   "brooklyn-improv": {
    "slug": "brooklyn-improv",
-   "checkedAt": "2026-11-08T21:48:06.476Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:17.623Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2524,8 +2510,8 @@
   },
   "dumbo-oyster-bar": {
    "slug": "dumbo-oyster-bar",
-   "checkedAt": "2026-11-08T21:48:07.300Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:22.301Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2558,8 +2544,8 @@
   },
   "sugar-pop-candy-bar-pinkberry": {
    "slug": "sugar-pop-candy-bar-pinkberry",
-   "checkedAt": "2026-11-08T21:48:07.522Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:24.858Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2592,8 +2578,8 @@
   },
   "ssrp-ramen": {
    "slug": "ssrp-ramen",
-   "checkedAt": "2026-11-08T21:48:07.990Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:30.355Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2626,8 +2612,8 @@
   },
   "good-taste": {
    "slug": "good-taste",
-   "checkedAt": "2026-11-08T21:48:10.882Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:32.258Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2660,8 +2646,8 @@
   },
   "halal-street-eatz": {
    "slug": "halal-street-eatz",
-   "checkedAt": "2026-11-08T21:48:11.499Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:37.596Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2694,8 +2680,8 @@
   },
   "herbie-s-burgers": {
    "slug": "herbie-s-burgers",
-   "checkedAt": "2026-11-08T21:48:11.803Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:39.484Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2728,8 +2714,8 @@
   },
   "kuttley-house": {
    "slug": "kuttley-house",
-   "checkedAt": "2026-11-08T21:48:12.127Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:44.916Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2762,8 +2748,8 @@
   },
   "lima-wok-and-bowl": {
    "slug": "lima-wok-and-bowl",
-   "checkedAt": "2026-11-08T21:48:14.958Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:46.874Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2796,8 +2782,8 @@
   },
   "lucky-zhang-s-restaurant": {
    "slug": "lucky-zhang-s-restaurant",
-   "checkedAt": "2026-11-08T21:48:15.242Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:52.001Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2830,8 +2816,8 @@
   },
   "sur-1st-cafe": {
    "slug": "sur-1st-cafe",
-   "checkedAt": "2026-11-08T21:48:15.667Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:54.103Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2864,8 +2850,8 @@
   },
   "marbre": {
    "slug": "marbre",
-   "checkedAt": "2026-11-08T21:48:16.267Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:03:59.456Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2898,8 +2884,8 @@
   },
   "anna-bella-pizza-cafe": {
    "slug": "anna-bella-pizza-cafe",
-   "checkedAt": "2026-11-08T21:48:18.807Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:01.401Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2932,8 +2918,8 @@
   },
   "bk-halal-grill": {
    "slug": "bk-halal-grill",
-   "checkedAt": "2026-11-08T21:48:19.527Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:08.734Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -2966,8 +2952,8 @@
   },
   "kampos-taverna": {
    "slug": "kampos-taverna",
-   "checkedAt": "2026-11-08T21:48:19.394Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:06.841Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3000,8 +2986,8 @@
   },
   "sweetness-usa": {
    "slug": "sweetness-usa",
-   "checkedAt": "2026-11-08T21:48:20.169Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:14.009Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3034,8 +3020,8 @@
   },
   "jannat-aden-restaurant": {
    "slug": "jannat-aden-restaurant",
-   "checkedAt": "2026-11-08T21:48:22.642Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:15.901Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3068,8 +3054,8 @@
   },
   "brooklyn-billiards": {
    "slug": "brooklyn-billiards",
-   "checkedAt": "2026-11-08T21:48:23.472Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:23.133Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3102,8 +3088,8 @@
   },
   "janet-s-pizza": {
    "slug": "janet-s-pizza",
-   "checkedAt": "2026-11-08T21:48:23.406Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:21.454Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3136,8 +3122,8 @@
   },
   "east-wang": {
    "slug": "east-wang",
-   "checkedAt": "2026-11-08T21:48:24.324Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:28.817Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3170,8 +3156,8 @@
   },
   "good-taste-restaurant-168": {
    "slug": "good-taste-restaurant-168",
-   "checkedAt": "2026-11-08T21:48:26.368Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:30.434Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3204,8 +3190,8 @@
   },
   "jalopy-theatre": {
    "slug": "jalopy-theatre",
-   "checkedAt": "2026-11-08T21:48:27.513Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:35.984Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3238,8 +3224,8 @@
   },
   "l-oranaise": {
    "slug": "l-oranaise",
-   "checkedAt": "2026-11-08T21:48:27.676Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:37.735Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3272,8 +3258,8 @@
   },
   "surf-city-pizzeria-2": {
    "slug": "surf-city-pizzeria-2",
-   "checkedAt": "2026-11-08T21:48:28.574Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:43.040Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3306,8 +3292,8 @@
   },
   "la-bagel-delight": {
    "slug": "la-bagel-delight",
-   "checkedAt": "2026-11-08T21:48:30.251Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:45.051Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3340,8 +3326,8 @@
   },
   "senzu-juice-and-smoothies": {
    "slug": "senzu-juice-and-smoothies",
-   "checkedAt": "2026-11-08T21:48:31.428Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:50.200Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3374,8 +3360,8 @@
   },
   "shashlik-uz-n1": {
    "slug": "shashlik-uz-n1",
-   "checkedAt": "2026-11-08T21:48:31.888Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:52.166Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3408,8 +3394,8 @@
   },
   "emerald-cafe": {
    "slug": "emerald-cafe",
-   "checkedAt": "2026-11-08T21:48:32.485Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:57.763Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3442,8 +3428,8 @@
   },
   "pies-n-thighs": {
    "slug": "pies-n-thighs",
-   "checkedAt": "2026-11-08T21:48:33.845Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:04:59.848Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3476,8 +3462,8 @@
   },
   "rick-s-restaurant": {
    "slug": "rick-s-restaurant",
-   "checkedAt": "2026-11-08T21:48:35.548Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:04.942Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3510,8 +3496,8 @@
   },
   "wayne-and-sons": {
    "slug": "wayne-and-sons",
-   "checkedAt": "2026-11-08T21:48:36.140Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:07.044Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3544,8 +3530,8 @@
   },
   "argo": {
    "slug": "argo",
-   "checkedAt": "2026-11-08T21:48:36.796Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:12.322Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3578,8 +3564,8 @@
   },
   "cali-tajadas-bakery": {
    "slug": "cali-tajadas-bakery",
-   "checkedAt": "2026-11-08T21:48:37.931Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:14.105Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3612,8 +3598,8 @@
   },
   "guda": {
    "slug": "guda",
-   "checkedAt": "2026-11-08T21:48:39.934Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:21.373Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3646,8 +3632,8 @@
   },
   "kyan-cafe": {
    "slug": "kyan-cafe",
-   "checkedAt": "2026-11-08T21:48:39.827Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:19.581Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3680,8 +3666,8 @@
   },
   "loco-cafe": {
    "slug": "loco-cafe",
-   "checkedAt": "2026-11-08T21:48:40.763Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:26.782Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3714,8 +3700,8 @@
   },
   "luana-s-tavern": {
    "slug": "luana-s-tavern",
-   "checkedAt": "2026-11-08T21:48:41.883Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:28.600Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3748,8 +3734,8 @@
   },
   "mr-fire-bar-and-grill": {
    "slug": "mr-fire-bar-and-grill",
-   "checkedAt": "2026-11-08T21:48:44.074Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:36.062Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3782,8 +3768,8 @@
   },
   "maki": {
    "slug": "maki",
-   "checkedAt": "2026-11-08T21:48:44.067Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:34.048Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3816,8 +3802,8 @@
   },
   "turbine-cafe": {
    "slug": "turbine-cafe",
-   "checkedAt": "2026-11-08T21:48:44.782Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:41.335Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3850,8 +3836,8 @@
   },
   "leanly-ii-chinese-food": {
    "slug": "leanly-ii-chinese-food",
-   "checkedAt": "2026-11-08T21:48:46.094Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:43.229Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3884,8 +3870,8 @@
   },
   "miss-bagel": {
    "slug": "miss-bagel",
-   "checkedAt": "2026-11-08T21:48:47.931Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:48.663Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3918,8 +3904,8 @@
   },
   "fu-ying": {
    "slug": "fu-ying",
-   "checkedAt": "2026-11-08T21:48:48.496Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:50.696Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3952,8 +3938,8 @@
   },
   "rb-bakery-and-cafe": {
    "slug": "rb-bakery-and-cafe",
-   "checkedAt": "2026-11-08T21:48:48.763Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:56.267Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -3986,8 +3972,8 @@
   },
   "cafe-69-sports-bar": {
    "slug": "cafe-69-sports-bar",
-   "checkedAt": "2026-11-08T21:48:50.278Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:05:57.980Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4020,8 +4006,8 @@
   },
   "desi-zaika": {
    "slug": "desi-zaika",
-   "checkedAt": "2026-11-08T21:48:51.896Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:03.658Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4054,8 +4040,8 @@
   },
   "el-puerto-de-mexico-restaurant": {
    "slug": "el-puerto-de-mexico-restaurant",
-   "checkedAt": "2026-11-08T21:48:52.507Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:05.343Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4088,8 +4074,8 @@
   },
   "adda-kitchen": {
    "slug": "adda-kitchen",
-   "checkedAt": "2026-11-08T21:48:53.084Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:10.850Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4122,8 +4108,8 @@
   },
   "space-54": {
    "slug": "space-54",
-   "checkedAt": "2026-11-08T21:48:54.139Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:12.733Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4156,8 +4142,8 @@
   },
   "jamaica-fried-chicken": {
    "slug": "jamaica-fried-chicken",
-   "checkedAt": "2026-11-08T21:48:55.590Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:18.606Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4190,8 +4176,8 @@
   },
   "pa-nash-eurosoul": {
    "slug": "pa-nash-eurosoul",
-   "checkedAt": "2026-11-08T21:48:56.205Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:20.099Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4224,8 +4210,8 @@
   },
   "18-steps-dengdeng-noodles": {
    "slug": "18-steps-dengdeng-noodles",
-   "checkedAt": "2026-11-08T21:48:56.943Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:25.947Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4258,8 +4244,8 @@
   },
   "kostantina-frozen-yogurt": {
    "slug": "kostantina-frozen-yogurt",
-   "checkedAt": "2026-11-08T21:48:57.924Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:27.297Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4292,8 +4278,8 @@
   },
   "cloud-catering": {
    "slug": "cloud-catering",
-   "checkedAt": "2026-11-08T21:49:00.131Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:34.885Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4326,8 +4312,8 @@
   },
   "notable": {
    "slug": "notable",
-   "checkedAt": "2026-11-08T21:48:59.758Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:33.423Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4360,8 +4346,8 @@
   },
   "magic-nutrition": {
    "slug": "magic-nutrition",
-   "checkedAt": "2026-11-08T21:49:01.009Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:40.953Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4394,8 +4380,8 @@
   },
   "ato-kitchens": {
    "slug": "ato-kitchens",
-   "checkedAt": "2026-11-08T21:49:02.324Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:42.549Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4428,8 +4414,8 @@
   },
   "my-life-nutrition": {
    "slug": "my-life-nutrition",
-   "checkedAt": "2026-11-08T21:49:03.963Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:48.532Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4462,8 +4448,8 @@
   },
   "minitalia-pizzeria": {
    "slug": "minitalia-pizzeria",
-   "checkedAt": "2026-11-08T21:49:03.972Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:49.950Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4496,8 +4482,8 @@
   },
   "baby-cafe": {
    "slug": "baby-cafe",
-   "checkedAt": "2026-11-08T21:49:05.208Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:56.164Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4530,8 +4516,8 @@
   },
   "chianti-sports-bar-and-restaurant-sugar-and-cake": {
    "slug": "chianti-sports-bar-and-restaurant-sugar-and-cake",
-   "checkedAt": "2026-11-08T21:49:06.061Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:06:57.485Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4564,8 +4550,8 @@
   },
   "julieta-taberna": {
    "slug": "julieta-taberna",
-   "checkedAt": "2026-11-08T21:49:07.951Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:03.417Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4598,8 +4584,8 @@
   },
   "royal-canton-seafood-palace": {
    "slug": "royal-canton-seafood-palace",
-   "checkedAt": "2026-11-08T21:49:08.062Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:04.910Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4632,8 +4618,8 @@
   },
   "wan-chong-shan-xia": {
    "slug": "wan-chong-shan-xia",
-   "checkedAt": "2026-11-08T21:49:08.767Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:10.780Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4666,8 +4652,8 @@
   },
   "wei-zhi-yuan": {
    "slug": "wei-zhi-yuan",
-   "checkedAt": "2026-11-08T21:49:09.796Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:12.720Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4700,8 +4686,8 @@
   },
   "madame-sousou": {
    "slug": "madame-sousou",
-   "checkedAt": "2026-11-08T21:49:11.763Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:18.043Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4734,8 +4720,8 @@
   },
   "om-wok": {
    "slug": "om-wok",
-   "checkedAt": "2026-11-08T21:49:12.027Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:20.124Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4768,8 +4754,8 @@
   },
   "restaurante-la-plaza-de-tulcingo": {
    "slug": "restaurante-la-plaza-de-tulcingo",
-   "checkedAt": "2026-11-08T21:49:12.518Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:25.261Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4802,8 +4788,8 @@
   },
   "oreas-gourmet-juice-bar": {
    "slug": "oreas-gourmet-juice-bar",
-   "checkedAt": "2026-11-08T21:49:13.373Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:27.912Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4836,8 +4822,8 @@
   },
   "fresh-pizza-and-pasta": {
    "slug": "fresh-pizza-and-pasta",
-   "checkedAt": "2026-11-08T21:49:15.467Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:32.735Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4870,8 +4856,8 @@
   },
   "equis-pica-pollo-de-verdad": {
    "slug": "equis-pica-pollo-de-verdad",
-   "checkedAt": "2026-11-08T21:49:16.095Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:35.416Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4904,8 +4890,8 @@
   },
   "rey-tacos": {
    "slug": "rey-tacos",
-   "checkedAt": "2026-11-08T21:49:16.354Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:39.920Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4938,8 +4924,8 @@
   },
   "jamaica-fry-chicken": {
    "slug": "jamaica-fry-chicken",
-   "checkedAt": "2026-11-08T21:49:17.567Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:42.737Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -4972,8 +4958,8 @@
   },
   "smash-time-burger-co": {
    "slug": "smash-time-burger-co",
-   "checkedAt": "2026-11-08T21:49:19.260Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:47.322Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5006,8 +4992,8 @@
   },
   "your-choice-halal-chicken-and-pizza": {
    "slug": "your-choice-halal-chicken-and-pizza",
-   "checkedAt": "2026-11-08T21:49:19.784Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:50.193Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5040,8 +5026,8 @@
   },
   "cemitas-cholula-restaurant": {
    "slug": "cemitas-cholula-restaurant",
-   "checkedAt": "2026-11-08T21:49:20.392Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:54.698Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5074,8 +5060,8 @@
   },
   "socotra-restaurant": {
    "slug": "socotra-restaurant",
-   "checkedAt": "2026-11-08T21:49:21.842Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:07:57.614Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5108,8 +5094,8 @@
   },
   "santinos-slices-and-italian-ices": {
    "slug": "santinos-slices-and-italian-ices",
-   "checkedAt": "2026-11-08T21:49:23.091Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:02.168Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5142,8 +5128,8 @@
   },
   "orion-s": {
    "slug": "orion-s",
-   "checkedAt": "2026-11-08T21:49:23.545Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:05.050Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5176,8 +5162,8 @@
   },
   "baker-studio": {
    "slug": "baker-studio",
-   "checkedAt": "2026-11-08T21:49:24.119Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:09.501Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5210,8 +5196,8 @@
   },
   "uncorked-wines": {
    "slug": "uncorked-wines",
-   "checkedAt": "2026-11-08T21:49:25.693Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:12.339Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5244,8 +5230,8 @@
   },
   "below-sro": {
    "slug": "below-sro",
-   "checkedAt": "2026-11-08T21:49:26.818Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:16.841Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5278,8 +5264,8 @@
   },
   "greens-goods-grill": {
    "slug": "greens-goods-grill",
-   "checkedAt": "2026-11-08T21:49:27.272Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:19.876Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5312,8 +5298,8 @@
   },
   "pilates-addiction": {
    "slug": "pilates-addiction",
-   "checkedAt": "2026-11-08T21:49:27.720Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:24.323Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5346,8 +5332,8 @@
   },
   "petaled": {
    "slug": "petaled",
-   "checkedAt": "2026-11-08T21:49:29.746Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:27.298Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5380,8 +5366,8 @@
   },
   "house-of-amrut": {
    "slug": "house-of-amrut",
-   "checkedAt": "2026-11-08T21:49:30.452Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:31.739Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5414,8 +5400,8 @@
   },
   "kitty-o-shea-s": {
    "slug": "kitty-o-shea-s",
-   "checkedAt": "2026-11-08T21:49:31.032Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:34.535Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5448,8 +5434,8 @@
   },
   "barchino": {
    "slug": "barchino",
-   "checkedAt": "2026-11-08T21:49:31.570Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:38.937Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5482,8 +5468,8 @@
   },
   "hudson-golf": {
    "slug": "hudson-golf",
-   "checkedAt": "2026-11-08T21:49:33.597Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:41.795Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5516,8 +5502,8 @@
   },
   "hashi-market": {
    "slug": "hashi-market",
-   "checkedAt": "2026-11-08T21:49:34.172Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:46.401Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5550,8 +5536,8 @@
   },
   "dubu-hana": {
    "slug": "dubu-hana",
-   "checkedAt": "2026-11-08T21:49:34.779Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:49.192Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5584,8 +5570,8 @@
   },
   "dutch-s-express": {
    "slug": "dutch-s-express",
-   "checkedAt": "2026-11-08T21:49:35.469Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:54.132Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5618,8 +5604,8 @@
   },
   "vicoletto": {
    "slug": "vicoletto",
-   "checkedAt": "2026-11-08T21:49:37.592Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:08:56.659Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5652,8 +5638,8 @@
   },
   "cana-coffee-and-bakery": {
    "slug": "cana-coffee-and-bakery",
-   "checkedAt": "2026-11-08T21:49:37.931Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:09:01.770Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],
@@ -5686,8 +5672,8 @@
   },
   "jane-s-matcha": {
    "slug": "jane-s-matcha",
-   "checkedAt": "2026-11-08T21:49:38.532Z",
-   "commit": "94ad4bf",
+   "checkedAt": "2026-11-08T22:09:03.975Z",
+   "commit": "ea5831a",
    "pages": [
     "index.html"
    ],

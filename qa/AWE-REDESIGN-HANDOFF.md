@@ -73,6 +73,11 @@ See the "Progress log" section below and the master progress file.
   environment; photos are found via web search (Pexels IDs), the repo's existing
   Unsplash pool, and visual verification of each candidate.
 
+- Corrected baseline (all 168 homepages) automated flags: bao-dumpling mobile
+  overflow, pace-sbdc mobile menu, la-mestiza placeholder line,
+  route-66-smokehouse desktop overflow. Everything else passes automated
+  checks; the main remaining problem is design sameness, judged visually.
+
 ## Progress log
 
 - 2026-11-08: QA/build infrastructure committed; baseline homepage QA of all
