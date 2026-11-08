@@ -1,33 +1,8 @@
 {
-  "generatedAt": "2026-11-08T18:37:29.699Z",
+  "generatedAt": "2026-11-08T18:46:03.194Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 168,
-  "issues": 4,
-  "findings": [
-    {
-      "site": "kora-bakery",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "broken image: https://aweconcepts.com/favicon.svg"
-    },
-    {
-      "site": "old-mill-cafe",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "broken image: https://aweconcepts.com/favicon.svg"
-    },
-    {
-      "site": "birdee",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "broken image: https://aweconcepts.com/favicon.svg"
-    },
-    {
-      "site": "cafe-pr",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "broken image: https://aweconcepts.com/favicon.svg"
-    }
-  ]
+  "issues": 0,
+  "findings": []
 }
