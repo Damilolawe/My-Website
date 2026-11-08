@@ -111,7 +111,7 @@ for (const [deviceName, config] of auditDevices) {
         const inspectRules = rules => {
           for (const rule of rules || []) {
             if (rule.selectorText) {
-              for (const m of rule.selectorText.matchAll(/\\.([a-zA-Z_][\\w-]*)/g)) styledClasses.add(m[1]);
+              for (const m of rule.selectorText.matchAll(/\.([a-zA-Z_][\w-]*)/g)) styledClasses.add(m[1]);
             }
             if (rule.cssRules) inspectRules(rule.cssRules);
           }
