@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Independent website concept for From Duo, a matcha specialty house preparing to open on 12th Street in Hoboken, New Jersey.">
+<meta name="description" content="Independent website concept for From Duo, a matcha specialty house on 12th Street in Hoboken, New Jersey.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#3f5a3a">
 <title>From Duo | Matcha Specialty House, Hoboken</title>
@@ -14,13 +14,13 @@
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body id="top">
-<header class="bar">
-  <a class="logo" href="#top" aria-label="From Duo home">From&nbsp;Duo</a>
+<header class="bar" data-header>
+  <a class="logo" href="./index.html" aria-label="From Duo home">From&nbsp;Duo</a>
   <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
   <nav data-nav aria-label="Primary">
-    <a href="#name">The name</a>
-    <a href="#menu">Menu direction</a>
-    <a href="#visit">Visit</a>
+    <a href="./index.html" aria-current="page">Home</a>
+    <a href="./menu.html">Menu</a>
+    <a href="./visit.html">Visit</a>
     <a href="https://www.instagram.com/fromduo/" target="_blank" rel="noopener">Instagram</a>
   </nav>
 </header>
@@ -30,45 +30,60 @@
     <div class="split-copy">
       <p class="eye">Matcha specialty house &middot; Hoboken</p>
       <h1>Made to be<br><em>shared.</em></h1>
-      <p class="lede">Matcha, hojicha, coffee and baked goods from a specialty house built by two co-founders &mdash; opening on 12th Street.</p>
-      <a class="pill" href="#visit">Follow the opening</a>
+      <p class="lede">Matcha, hojicha, coffee and baked goods from a specialty house built by two co-founders &mdash; now pouring on 12th Street.</p>
+      <a class="pill" href="./menu.html">See the menu</a>
     </div>
-    <div class="split-img"><img src="https://images.unsplash.com/photo-1753009712810-3f72c3f72548?auto=format&fit=crop&w=1300&q=84" alt="Hand-whisked green matcha in a bowl"><span class="tag">Soft opening updates via official social</span></div>
+    <div class="split-img" data-parallax="0.06"><img src="https://images.unsplash.com/photo-1753009712810-3f72c3f72548?auto=format&fit=crop&w=1300&q=84" alt="Hand-whisked green matcha in a bowl"><span class="tag">Hand-whisked, bowl by bowl</span></div>
   </section>
 
   <section id="name" class="name-band">
     <div class="name-inner">
-      <p class="eye light">01 &mdash; The name</p>
-      <h2>From two people, for a whole neighborhood.</h2>
-      <p>Previously announced as Duo Donuts + Matcha, the business introduced its new name, From Duo, as the concept grew beyond donuts into a wider tea-and-coffee ritual.</p>
+      <p class="eye light" data-reveal>01 &mdash; The name</p>
+      <h2 data-reveal>From two people, for a whole neighborhood.</h2>
+      <p data-reveal>Previously announced as Duo Donuts + Matcha, the business grew beyond donuts into a wider tea-and-coffee ritual and introduced its new name: From Duo. Two founders, one counter, a neighborhood worth of regulars.</p>
     </div>
   </section>
 
   <section id="menu" class="menu-split">
-    <div class="menu-img"><img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1200&q=84" alt="Tea service in a modern cafe"></div>
+    <div class="menu-img" data-parallax="0.05"><img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1200&q=84" alt="Tea service in a modern cafe"></div>
     <div class="menu-copy">
       <p class="eye">02 &mdash; The direction</p>
       <h2>A wider tea ritual.</h2>
-      <ul class="menu-list">
-        <li>Matcha specialty drinks</li>
-        <li>Hojicha and teas</li>
-        <li>Coffee</li>
-        <li>Assorted baked goods</li>
+      <ul class="menu-list" data-reveal-group>
+        <li>Matcha, ceremonial and iced</li>
+        <li>Hojicha and roasted teas</li>
+        <li>Espresso and filter coffee</li>
+        <li>Baked goods, daily</li>
       </ul>
-      <small>Final menu and pricing should be confirmed through From Duo&rsquo;s official channels.</small>
+      <small>A fuller look is on the menu page &mdash; items and prices shown are illustrative samples.</small>
     </div>
   </section>
 
-  <section id="visit" class="visit-split">
-    <div class="visit-copy">
-      <p class="eye light">03 &mdash; Visit</p>
-      <h2>The doors are getting closer.</h2>
-      <p class="addr">205 12th Street, Hoboken, NJ 07030</p>
-      <p>Public reporting placed the soft opening near the end of October 2026. Follow the official account for the confirmed opening date, hours and menu.</p>
-      <a class="pill light" href="https://www.instagram.com/fromduo/" target="_blank" rel="noopener">Get official updates</a>
-    </div>
+  <section class="teasers" data-reveal-group aria-label="Explore">
+    <a class="teaser" href="./menu.html">
+      <h3>The Menu</h3>
+      <p>Ceremonial matcha, hojicha, coffee and the bakery case.</p>
+      <span class="go">Browse the menu</span>
+    </a>
+    <a class="teaser" href="./visit.html">
+      <h3>Visit</h3>
+      <p>205 12th Street. Hours, the room and good things to know.</p>
+      <span class="go">Plan a visit</span>
+    </a>
+  </section>
+
+  <section class="cta">
+    <h2>Come share a bowl.</h2>
+    <p>On 12th Street in Hoboken, two founders are whisking matcha the slow way. Pull up and stay a while.</p>
+    <a class="pill" href="./visit.html">Find the counter</a>
   </section>
 </main>
+
+<footer class="site-foot">
+  <p class="f-logo">From Duo</p>
+  <nav aria-label="Footer"><a href="./index.html">Home</a><a href="./menu.html">Menu</a><a href="./visit.html">Visit</a><a href="https://www.instagram.com/fromduo/" target="_blank" rel="noopener">Instagram</a></nav>
+  <p class="fine">Independent, unofficial design concept. Menu items, prices and hours shown are illustrative samples.</p>
+</footer>
 
 <script src="./site.js"></script>
 </body>
