@@ -6,7 +6,7 @@
     "existingRedesignTarget": 19,
     "newProspectTarget": 52,
     "totalTarget": 71,
-    "existingRedesignsComplete": 10,
+    "existingRedesignsComplete": 11,
     "newProspectsPublished": 0,
     "prospectsDisqualified": 0,
     "replacementsResearched": 0
@@ -206,12 +206,15 @@
       "sourceGroup": "existing-19",
       "researchStatus": "legitimate-prior-research-on-file",
       "websiteVerification": "no-independent-website (prior finding; recheck before outreach)",
-      "designDirection": "",
-      "filesChanged": [],
-      "developmentStatus": "pending-redesign",
-      "desktopQA": "not-started",
-      "mobileQA": "not-started",
-      "functionalTesting": "not-started",
+      "designDirection": "Refined Italian editorial bakery: Cormorant Garamond + Inter + Space Mono specs, wine/sage/milk, focaccia hero, giant 48h fermentation stat, bakes grid with verified published prices ($12-18, from $75, from $85), order-window schedule. Prices from official order page (verified).",
+      "filesChanged": [
+        "preview/fiolicchia-bakery/index.html",
+        "preview/fiolicchia-bakery/styles.css"
+      ],
+      "developmentStatus": "redesign-complete",
+      "desktopQA": "pass 1440x900 (0 overflow, img loads, 0 errors)",
+      "mobileQA": "pass 390x844 (0 overflow)",
+      "functionalTesting": "bakesy.shop order page + IG links present",
       "deploymentStatus": "live (current 19-site publication)",
       "outstandingIssues": []
     },
