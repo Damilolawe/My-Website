@@ -14,56 +14,71 @@
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body id="top">
-<header class="hb">
-  <a class="logo" href="#top" aria-label="Salep home">Salep</a>
+<header class="hb" data-header>
+  <a class="logo" href="./index.html" aria-label="Salep home">Salep</a>
   <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
   <nav data-nav aria-label="Primary">
-    <a href="#scoop">The scoop</a>
-    <a href="#story">Our story</a>
-    <a href="#visit">Visit</a>
+    <a href="./index.html" aria-current="page">Home</a>
+    <a href="./menu.html">The Counter</a>
+    <a href="./story.html">Our Story</a>
+    <a href="./visit.html">Visit</a>
   </nav>
 </header>
 
 <main>
-  <section class="lookbook" aria-label="Salep">
-    <div class="lb-title">
-      <p class="eye">Turkish ice cream &middot; Ronkonkoma</p>
-      <h1>The stretchy, scoopable <span>real thing.</span></h1>
-      <p class="sub">Authentic Turkish ice cream &mdash; plus homemade American flavors, soft serve and Italian ice.</p>
-      <a class="pill" href="#scoop">See the counter</a>
-    </div>
-    <figure class="lb-img a"><img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=1000&q=84" alt="A cone of stretchy Turkish ice cream held up against a bright background" loading="eager"></figure>
-    <figure class="lb-img b"><img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&w=800&q=82" alt="Decorated ice cream cones with fresh toppings" loading="eager"></figure>
-    <figure class="lb-img c"><img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=800&q=82" alt="Scoops of freshly made ice cream in a tub" loading="lazy"></figure>
-    <figure class="lb-img d"><img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800&q=82" alt="A bright, fresh fruit smoothie" loading="lazy"></figure>
-  </section>
-
-  <section id="scoop" class="scoop">
-    <p class="eye center">01 / The scoop</p>
-    <ul class="counter">
-      <li data-reveal><h2>Turkish ice cream</h2><p>The signature: dense, chewy dondurma, scooped and served the traditional way.</p></li>
-      <li data-reveal><h2>20+ homemade flavors</h2><p>More than twenty American-style hard ice cream flavors, made in house.</p></li>
-      <li data-reveal><h2>Soft serve &amp; Italian ice</h2><p>Classic soft serve and Italian ice for the hot Long Island afternoons.</p></li>
-      <li data-reveal><h2>Hot salep &amp; drinks</h2><p>Traditional hot salep, coffee, smoothies and other specialty beverages.</p></li>
-    </ul>
-    <p class="scoop-note">Salep is a powder milled from the bulbs of wild orchids &mdash; the secret behind Turkish ice cream&rsquo;s famous stretch.</p>
-  </section>
-
-  <section id="story" class="story">
-    <div class="story-copy">
-      <p class="eye light">02 / Our story</p>
-      <h2>A second act, served cold.</h2>
-      <p>After thirteen years with the U.S. Department of the Treasury, founder Gulden Durdu opened Salep to bring authentic Turkish ice cream to New York &mdash; a scoop shop built on tradition and made for the neighborhood.</p>
+  <section class="wrap" aria-label="Salep">
+    <div class="lookbook">
+      <div class="lb-title" data-reveal>
+        <p class="eye">Turkish ice cream &middot; Ronkonkoma</p>
+        <h1>The stretchy, scoopable <span>real thing.</span></h1>
+        <p class="sub">Authentic Turkish dondurma, 20+ homemade flavors, soft serve, Italian ice and a cup of hot salep &mdash; on Johnson Avenue.</p>
+        <a class="pill" href="./menu.html">See the counter</a>
+      </div>
+      <figure class="lb-img a" data-lightbox><img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=1000&q=84" alt="A cone of stretchy Turkish ice cream held up against a bright background" loading="eager"></figure>
+      <figure class="lb-img b" data-lightbox><img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&w=800&q=82" alt="Decorated ice cream cones with fresh toppings" loading="eager"></figure>
+      <figure class="lb-img c" data-lightbox><img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=800&q=82" alt="Scoops of freshly made ice cream in a tub" loading="lazy"></figure>
+      <figure class="lb-img d" data-lightbox><img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800&q=82" alt="A bright, fresh fruit smoothie" loading="lazy"></figure>
     </div>
   </section>
 
-  <section id="visit" class="visit">
-    <p class="eye center amber">03 / Visit</p>
-    <h2 class="visit-h">920 Johnson Avenue<br>Ronkonkoma, NY</h2>
-    <p class="visit-p">Come by for a cone the traditional way, a cup of hot salep, or a scoop of something homemade.</p>
-    <a class="pill cream" href="https://www.google.com/maps/search/?api=1&query=Salep+920+Johnson+Avenue+Ronkonkoma+NY" target="_blank" rel="noopener">Get directions</a>
+  <section class="wrap stats" data-reveal-group>
+    <div class="stat"><div class="n"><span data-count="20">20</span><span class="plus">+</span></div><div class="l">Homemade flavors</div></div>
+    <div class="stat"><div class="n"><span data-count="1">1</span></div><div class="l">Centuries-old tradition</div></div>
+    <div class="stat"><div class="n"><span data-count="4">4</span></div><div class="l">Ways to cool down</div></div>
+  </section>
+
+  <section class="band cream2">
+    <div class="wrap center">
+      <p class="eye center">What makes it stretch</p>
+      <h2 style="font-size:clamp(32px,5vw,62px);color:var(--red);margin:14px 0 20px" data-reveal>Dondurma, done the traditional way.</h2>
+      <p class="lead-measure" data-reveal>Salep is thick, chewy and famously stretchy &mdash; thanks to salep, a fine powder milled from the bulbs of wild orchids, and a long, patient churn. It is scooped and served the old way, with a little showmanship at the counter.</p>
+    </div>
+  </section>
+
+  <section class="wrap teasers" data-reveal-group>
+    <a class="teaser t1" href="./menu.html"><h3>The Counter</h3><p>Turkish ice cream, homemade flavors, soft serve, Italian ice and hot salep.</p><span class="go">Browse the menu</span></a>
+    <a class="teaser t2" href="./story.html"><h3>Our Story</h3><p>From the U.S. Treasury to a Ronkonkoma scoop shop &mdash; Gulden Durdu&rsquo;s second act.</p><span class="go">Read the story</span></a>
+    <a class="teaser t3" href="./visit.html"><h3>Visit</h3><p>920 Johnson Avenue. Find hours, directions and what to expect.</p><span class="go">Plan a visit</span></a>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2 data-reveal>Come stretch your afternoon.</h2>
+      <p data-reveal>A cone the traditional way, a cup of hot salep, or a scoop of something homemade.</p>
+      <a class="pill cream" href="./visit.html">Find us in Ronkonkoma</a>
+    </div>
   </section>
 </main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p class="f-logo">Salep</p>
+      <nav aria-label="Footer"><a href="./index.html">Home</a><a href="./menu.html">The Counter</a><a href="./story.html">Our Story</a><a href="./visit.html">Visit</a></nav>
+    </div>
+    <p style="max-width:34ch;font-size:13px;color:color-mix(in srgb,var(--cream) 60%,transparent)">Independent, unofficial design concept. Menu items, prices and hours shown are illustrative samples.</p>
+  </div>
+</footer>
 
 <script src="./site.js"></script>
 </body>

@@ -76,3 +76,10 @@ Re-architecture status:
   run via authorized `workflow_dispatch` on the work branch (isolated preview host only).
 - Target-52 is a goal, not a mandate to fabricate: reaching it needs live Instagram/Google Maps verification
   (not reliably accessible here). Only verified, website-less businesses are published.
+
+
+## ACTIVE WORK — multipage/depth/animation expansion (in progress)
+**User follow-up:** make previews more in-depth, animated, captivating, multipage and content-filled. **User granted permission to use fabricated/illustrative content** (kept real anchors accurate: addresses, neighborhoods, known specialties; discreet "illustrative concept" footer note added; no defamatory/harmful fakes).
+- Enhanced shared engine `preview/prospect-shared/site.js`: staggered reveals, header scroll-state, hero parallax ([data-parallax]), count-up ([data-count]), active-nav, and an injected lightbox ([data-lightbox]). Backward-compatible + webdriver/reduced-motion fallbacks.
+- **DONE:** `salep-ronkonkoma` is now a 4-page site (Home/The Counter/Our Story/Visit) with full illustrative menu, prices, flavor grid, stats count-up, lightbox galleries, FAQ, cross-page nav + footer. QA: 4 pages x desktop+mobile, 0 overflow/0 errors.
+- **TODO:** propagate multipage + depth + animation to the other content-rich sites (fiolicchia, cafe-pr, santuario, mesa/casa/solerum, cafe-wands, duro, tiny-topiary, hots-coffee, aroma, from-duo, bao, cultiva, le-loup, fira, tbili, worksbynet, rachels, jay-millz, shotsbyriq). Then rebuild/CI/deploy + verify live.
