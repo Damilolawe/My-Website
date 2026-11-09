@@ -6,7 +6,7 @@
     "existingRedesignTarget": 19,
     "newProspectTarget": 52,
     "totalTarget": 71,
-    "existingRedesignsComplete": 0,
+    "existingRedesignsComplete": 1,
     "newProspectsPublished": 0,
     "prospectsDisqualified": 0,
     "replacementsResearched": 0
@@ -114,12 +114,15 @@
       "sourceGroup": "existing-19",
       "researchStatus": "legitimate-prior-research-on-file",
       "websiteVerification": "no-independent-website (prior finding; recheck before outreach)",
-      "designDirection": "",
-      "filesChanged": [],
-      "developmentStatus": "pending-redesign",
-      "desktopQA": "not-started",
-      "mobileQA": "not-started",
-      "functionalTesting": "not-started",
+      "designDirection": "Warm Georgian editorial: Fraunces display + Inter, wine/ochre/cream palette, supra-table narrative, dish grid, Georgian-script color block, gallery, visit card. Factual content only (no prices/hours).",
+      "filesChanged": [
+        "preview/tbili/index.html",
+        "preview/tbili/styles.css"
+      ],
+      "developmentStatus": "redesign-complete",
+      "desktopQA": "pass 1440x900 (no overflow, 4 imgs load, 0 console errors)",
+      "mobileQA": "pass 390x844 (no overflow, hamburger nav, stacked layout)",
+      "functionalTesting": "IG + Google Maps links present; nav anchors in-page",
       "deploymentStatus": "live (current 19-site publication)",
       "outstandingIssues": []
     },
