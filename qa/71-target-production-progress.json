@@ -6,7 +6,7 @@
     "existingRedesignTarget": 19,
     "newProspectTarget": 52,
     "totalTarget": 71,
-    "existingRedesignsComplete": 7,
+    "existingRedesignsComplete": 8,
     "newProspectsPublished": 0,
     "prospectsDisqualified": 0,
     "replacementsResearched": 0
@@ -221,14 +221,19 @@
       "sourceGroup": "existing-19",
       "researchStatus": "legitimate-prior-research-on-file",
       "websiteVerification": "no-independent-website (prior finding; recheck before outreach)",
-      "designDirection": "",
-      "filesChanged": [],
-      "developmentStatus": "pending-redesign",
-      "desktopQA": "not-started",
-      "mobileQA": "not-started",
-      "functionalTesting": "not-started",
+      "designDirection": "Serene matcha launch: Instrument Serif + Inter, matcha-green/cream/clay, multiply-blend whisked-matcha hero, italic ribbon, name story (renamed from Duo Donuts + Matcha), menu-direction list. Pre-opening; defers menu/pricing to official channels.",
+      "filesChanged": [
+        "preview/from-duo/index.html",
+        "preview/from-duo/styles.css"
+      ],
+      "developmentStatus": "redesign-complete",
+      "desktopQA": "pass 1440x900 (0 overflow, imgs load, 0 errors)",
+      "mobileQA": "pass 390x844 (0 overflow)",
+      "functionalTesting": "IG @fromduo link present",
       "deploymentStatus": "live (current 19-site publication)",
-      "outstandingIssues": []
+      "outstandingIssues": [
+        "Menu-direction stock tea photo shows an incidental tea-brand tag (ambient, not presented as From Duo product)"
+      ]
     },
     {
       "name": "Cultiva Cafe",
