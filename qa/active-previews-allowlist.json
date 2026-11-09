@@ -22,6 +22,9 @@
     { "slug": "rachels-handmade-cookies", "name": "Rachel's Handmade Cookies", "group": "existing-19" },
     { "slug": "worksbynet", "name": "WorksbyNET", "group": "existing-19" },
     { "slug": "tiny-topiary", "name": "Tiny Topiary", "group": "existing-19" },
-    { "slug": "cafe-pr", "name": "Café Pri Middle Village", "group": "existing-19" }
+    { "slug": "cafe-pr", "name": "Café Pri Middle Village", "group": "existing-19" },
+    { "slug": "cafe-wands", "name": "Café Wands", "group": "new-prospect", "verifiedAt": "2026-11-09", "verification": "Real; The Infatuation confirms 215 Union St Carroll Gardens, from a Chez Fifi co-owner; no independent website found. Recheck website/IG before outreach." },
+    { "slug": "salep-ronkonkoma", "name": "Salep (Turkish Ice Cream)", "group": "new-prospect", "verifiedAt": "2026-11-09", "verification": "Real; Greater Long Island confirms 920 Johnson Ave Ronkonkoma, owner Gulden Durdu, Turkish ice cream + American flavors + Italian ice + hot salep; no independent website found. Recheck before outreach." },
+    { "slug": "fira-frozen-yogurt", "name": "Fira Greek Frozen Yogurt", "group": "new-prospect", "verifiedAt": "2026-11-09", "verification": "Real/pre-opening; Greenpointers (Jul 2026) confirms Greek frozen yogurt at 294 Bedford Ave Williamsburg, name from Santorini capital; no independent website found. Recheck opening/website before outreach." }
   ]
 }

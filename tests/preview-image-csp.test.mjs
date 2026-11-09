@@ -20,10 +20,10 @@ test("preview CSP allows every remote image source used by business previews", a
       const url = new URL(src);
       assert.equal(url.protocol, "https:", `${slug}: insecure photo source ${src}`);
       assert.ok(sources.has(url.origin), `${slug}: CSP blocks image origin ${url.origin}`);
-      if (url.hostname === "images.pexels.com") stockPhotoCount++;
+      stockPhotoCount++;
     }
   }
-  assert.equal(stockPhotoCount, 9, "The nine verified, licensed stock photos must remain displayable");
+  assert.equal(stockPhotoCount, 9, "The nine verified, licensed stock photos (now consolidated on CSP-allowed CDNs) must remain displayable");
 });
 
 test("business preview photos display without stock-photo overlay labels", async () => {
