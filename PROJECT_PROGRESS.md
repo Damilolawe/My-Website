@@ -67,6 +67,12 @@ Re-architecture status:
    (`workflow_dispatch` on the work branch) and verify the live manifest/renders. Do NOT deploy just to checkpoint.
 3. Keep `PROJECT_PROGRESS.md` + `SITE_STATUS.json` current at each checkpoint; commit + push.
 
+
+### Multipage progress (deployed + verified live, run 42642811698)
+- DONE (multipage, animated, content-filled, QA desktop+mobile, LIVE): salep-ronkonkoma (4pp), fiolicchia-bakery (3pp), cafe-pr (3pp), santuario-cafe (3pp), hots-coffee (3pp).
+- TODO (still single-page; expand next): duro-market, cafe-aroma-y-sabor, tiny-topiary, cafe-wands, from-duo, tbili, worksbynet, rachels-handmade-cookies, le-loup-cafe, fira-frozen-yogurt, cultiva-cafe, mesa-bar, casa-serra, solerum, bao-dumpling, jay-millz-shot-em, shotsbyriq.
+- **LEARNINGS:** (1) The preview host uses cleanUrls:true in branded-previews/firebase.json — pages serve at extensionless URLs (/menu). Keep internal page links as ./menu.html (they 301 to /menu live, and serve directly in local qa-shot which has no cleanUrls). (2) **MUST git push after each commit** — workflow_dispatch builds the REMOTE branch state; unpushed commits deploy stale. (3) Sub-pages are copied wholesale by the build and auto-included by the exact-file test; no batchOneSlugs change needed for extra pages of an existing slug.
+
 ## Key decisions & discoveries
 - The live preview CSP (`branded-previews/firebase.json`) allows BOTH pexels and unsplash, so earlier
   "CSP fix" image swaps were lateral, not bug fixes (noted; test de-brittled). Keep consolidating on unsplash.
