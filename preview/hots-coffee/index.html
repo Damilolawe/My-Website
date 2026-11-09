@@ -14,13 +14,13 @@
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body id="top">
-<header class="topbar">
-  <a class="logo" href="#top" aria-label="Hot's Coffee home">HOT&rsquo;S</a>
+<header class="topbar" data-header>
+  <a class="logo" href="./index.html" aria-label="Hot's Coffee home">HOT&rsquo;S</a>
   <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
   <nav data-nav aria-label="Primary">
-    <a href="#counter">The counter</a>
-    <a href="#visit">Visit</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=61-26B+Cooper+Avenue+Queens+NY+11385" target="_blank" rel="noopener">Directions</a>
+    <a href="./index.html" aria-current="page">Home</a>
+    <a href="./menu.html">The Counter</a>
+    <a href="./visit.html">Visit</a>
   </nav>
 </header>
 
@@ -31,10 +31,10 @@
     <p class="addr-line">61-26B Cooper Avenue <i></i> Glendale, Queens</p>
     <h1 class="mega">Good<br>coffee<br>hits <mark>different.</mark></h1>
     <p class="blurb">A sharp, friendly neighborhood coffee shop for the Glendale corner that needed a place to linger.</p>
-    <a class="poster-cta" href="#counter">See the counter</a>
+    <a class="poster-cta" href="./menu.html">See the counter</a>
   </section>
 
-  <section id="counter" class="slabs">
+  <section class="slabs">
     <article class="slab s1" data-reveal><span class="no">01</span><h2>Pour overs</h2><p>Bright, focused coffee for the morning commute &mdash; made one cup at a time.</p></article>
     <article class="slab s2" data-reveal><span class="no">02</span><h2>Cold brews</h2><p>Smooth, slow-steeped and served over ice for the warm walk home.</p></article>
     <article class="slab s3" data-reveal><span class="no">03</span><h2>Comfort bites</h2><p>Simple cafe food with a little heat and a lot of care.</p></article>
@@ -42,20 +42,42 @@
   </section>
 
   <section class="why">
-    <figure class="why-img"><img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=1200&q=84" alt="A barista pouring a fresh coffee" loading="lazy"></figure>
+    <figure class="why-img" data-lightbox><img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=1200&q=84" alt="A barista pouring a fresh coffee" loading="lazy"></figure>
     <div class="why-copy" data-reveal>
       <p class="mono-eye">A new corner</p>
       <h2 class="why-h">Made for the first cup <mark>&amp;</mark> the last conversation.</h2>
-      <p>Hot&rsquo;s Coffee was reported in a 2026 pre-opening inspection and local neighborhood coverage. This design study gives the shop an identity as direct and welcoming as its name &mdash; specific drinks, prices and hours are left to the business.</p>
+      <p>Hot&rsquo;s Coffee was reported in a 2026 pre-opening inspection and local neighborhood coverage. This design study gives the shop an identity as direct and welcoming as its name.</p>
     </div>
   </section>
 
-  <section id="visit" class="visit">
-    <p class="mono-eye light">Find us</p>
-    <h2 class="visit-h">61-26B Cooper Avenue<br>Queens, NY 11385</h2>
-    <a class="poster-cta light" href="https://www.google.com/maps/search/?api=1&query=61-26B+Cooper+Avenue+Queens+NY+11385" target="_blank" rel="noopener">Open in maps</a>
+  <section class="block">
+    <div class="wrap">
+      <p class="mono-eye center" style="display:block;text-align:center">Keep going</p>
+      <div class="teasers" data-reveal-group>
+        <a class="teaser t1" href="./menu.html"><h3>The Counter</h3><p>Pour overs, cold brews, espresso drinks and comfort bites.</p></a>
+        <a class="teaser t2" href="./visit.html"><h3>Visit</h3><p>61-26B Cooper Avenue. Hours, directions and the corner.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block mustard-band center">
+    <div class="wrap">
+      <h2 data-reveal>Pull up a stool.</h2>
+      <p class="lede-m" data-reveal>A good cup on Cooper Avenue, every day of the week.</p>
+      <p style="margin-top:26px"><a class="pill" href="./visit.html">Find the corner</a></p>
+    </div>
   </section>
 </main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p class="f-logo">HOT&rsquo;S</p>
+      <nav aria-label="Footer"><a href="./index.html">Home</a><a href="./menu.html">The Counter</a><a href="./visit.html">Visit</a></nav>
+    </div>
+    <p class="fine">Independent, unofficial design concept. Menu items, prices and hours shown are illustrative samples.</p>
+  </div>
+</footer>
 
 <script src="./site.js"></script>
 </body>
