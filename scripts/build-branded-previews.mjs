@@ -50,12 +50,10 @@ for (const slug of batchOneSlugs) {
 }
 await cp("favicon.ico", `${output}/favicon.ico`);
 await cp("favicon.svg", `${output}/favicon.svg`);
-for (const asset of ["index.html", "styles.css", "site.js"]) {
-  await cp(`preview/bao-dumpling/${asset}`, `${publicBao}/${asset}`);
-  await cp(`preview/mesa-bar/${asset}`, `${publicMesa}/${asset}`);
-  await cp(`preview/casa-serra/${asset}`, `${publicCasa}/${asset}`);
-  await cp(`preview/solerum/${asset}`, `${publicSolerum}/${asset}`);
-  await cp(`preview/jj-deli/${asset}`, `${publicJjDeli}/${asset}`);
+// Recovered Seaport/FiDi concepts: copy each full folder (every page + assets),
+// excluding source notes, so multipage sub-pages and local assets ship too.
+for (const [src, dest] of [["bao-dumpling", publicBao], ["mesa-bar", publicMesa], ["casa-serra", publicCasa], ["solerum", publicSolerum], ["jj-deli", publicJjDeli]]) {
+  await cp(`preview/${src}`, dest, { recursive: true, filter: source => !/\.(?:md|json|mjs)$/i.test(source) });
 }
 await mkdir(`${publicBao}/assets`, { recursive: true });
 // All Bao photography now uses licensed, unbranded stock sources; never republish competitors’ promotional photography.
