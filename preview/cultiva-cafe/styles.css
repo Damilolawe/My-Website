@@ -138,3 +138,58 @@ em { font-family: var(--serif); font-weight: 400; }
   .facts div { grid-template-columns: 1fr; gap: 2px; }
   .btn { flex: 1 1 100%; }
 }
+
+/* ============ Multipage expansion (home / menu / visit) ============ */
+#links a[aria-current="page"]{background-size:100% 2px;font-weight:700}
+
+/* Sub-page masthead */
+.pmast{padding:clamp(48px,7vw,96px) var(--gut) clamp(24px,3vw,40px);background:var(--linen);}
+.pmast .eyebrow{margin-bottom:18px}
+.pmast h1{font-weight:800;font-size:clamp(46px,8vw,120px);line-height:.9;letter-spacing:-.05em}
+.pmast h1 em{color:var(--cherry);letter-spacing:-.02em}
+.pmast .sub{margin:22px 0 0;max-width:46ch;font-size:clamp(17px,2vw,20px);color:var(--muted)}
+
+/* Teaser packets (home) */
+.teasers{padding:clamp(64px,8vw,120px) var(--gut);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px)}
+.tcard{position:relative;display:block;text-decoration:none;background:var(--linen);border:2px solid var(--soil);padding:30px clamp(22px,3vw,38px) 34px;box-shadow:10px 10px 0 var(--sprout);transition:box-shadow .25s,transform .25s}
+.tcard:nth-child(2){box-shadow:10px 10px 0 var(--terracotta)}
+.tcard:hover{transform:translate(-2px,-2px);box-shadow:14px 14px 0 var(--sprout)}
+.tcard:nth-child(2):hover{box-shadow:14px 14px 0 var(--terracotta)}
+.tcard .eyebrow{margin-bottom:14px}
+.tcard h3{font-weight:800;font-size:clamp(30px,3.6vw,48px);letter-spacing:-.04em;line-height:1;margin-bottom:12px}
+.tcard p{margin:0;color:var(--muted);max-width:32ch}
+.tcard .go{display:inline-flex;align-items:center;gap:10px;margin-top:20px;font-weight:700}
+.tcard .go::after{content:"";width:9px;height:9px;border-right:2px solid var(--cherry);border-bottom:2px solid var(--cherry);transform:rotate(-45deg)}
+
+/* Menu cards */
+.menu-wrap{padding:clamp(56px,7vw,110px) var(--gut);display:grid;gap:clamp(28px,4vw,48px)}
+.mcard{background:var(--linen);border:2px solid var(--soil);padding:clamp(24px,3vw,40px) clamp(22px,3vw,40px) clamp(14px,2vw,26px);box-shadow:10px 10px 0 var(--linen-2)}
+.mcard.leaf{box-shadow:10px 10px 0 var(--sprout)}
+.mcard.cherry{box-shadow:10px 10px 0 var(--terracotta)}
+.mcard h2{font-weight:800;font-size:clamp(30px,4vw,56px);letter-spacing:-.04em;line-height:1;margin:10px 0 22px}
+.mrow{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:10px 18px;padding:16px 0;border-bottom:1px dashed rgba(47,36,29,.4)}
+.mrow:last-child{border-bottom:0}
+.mrow h3{font-weight:700;font-size:20px;letter-spacing:-.01em}
+.mrow .pr{font-family:var(--serif);font-style:italic;font-size:21px;color:var(--cherry)}
+.mrow .d{grid-column:1/2;margin:4px 0 0;color:var(--muted);font-size:14.5px}
+.mnote{margin:4px var(--gut) 0;font-size:13.5px;color:var(--muted);font-family:var(--serif);font-style:italic}
+
+/* Hours + FAQ (visit) */
+.vgrid{padding:clamp(56px,7vw,110px) var(--gut);display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,72px);align-items:start}
+.vgrid h2{font-weight:800;font-size:clamp(30px,4vw,52px);letter-spacing:-.04em;margin:0 0 22px}
+.hours{list-style:none;margin:0;padding:8px 26px;background:var(--linen);border:2px solid var(--soil);box-shadow:10px 10px 0 var(--sprout)}
+.hours div{display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px dashed rgba(47,36,29,.4)}
+.hours div:last-child{border-bottom:0}
+.hours dt{font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:13px;color:var(--muted);padding-top:3px}
+.hours dd{margin:0;font-family:var(--serif);font-style:italic;font-size:21px;color:var(--cherry)}
+.faq details{border-bottom:1px dashed rgba(47,36,29,.4)}
+.faq details:first-child{border-top:1px dashed rgba(47,36,29,.4)}
+.faq summary{cursor:pointer;list-style:none;padding:18px 0;font-weight:700;font-size:19px;letter-spacing:-.01em;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";width:11px;height:11px;border-right:2px solid var(--sprout-dark);border-bottom:2px solid var(--sprout-dark);transform:rotate(45deg);transition:transform .25s;flex:none}
+.faq details[open] summary::after{transform:rotate(-135deg)}
+.faq p{margin:0 0 16px;color:var(--muted);max-width:52ch}
+
+@media(max-width:960px){
+  .teasers,.vgrid{grid-template-columns:1fr}
+}
