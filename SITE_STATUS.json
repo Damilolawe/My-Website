@@ -25,7 +25,7 @@
       "knownProblems": [
         "Lower sections use scroll-progress animation (reveal for real users; appear dim in static full-page capture)"
       ],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "already-distinct",
       "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -45,7 +45,7 @@
       "knownProblems": [
         "Lower sections use scroll-progress animation (reveal for real users; appear dim in static full-page capture)"
       ],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "already-distinct",
       "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -63,7 +63,7 @@
       "mobileQA": "pass 390x844 (0 overflow)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "differentiated (distinct banner treatment; already-distinct hero)",
       "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
       "nextRequiredAction": "None outstanding; banner differentiated, hero already distinct."
@@ -81,7 +81,7 @@
       "mobileQA": "pass 390x844 (0 overflow)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "differentiated (distinct banner treatment; already-distinct hero)",
       "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
       "nextRequiredAction": "None outstanding; banner differentiated, hero already distinct."
@@ -99,7 +99,7 @@
       "mobileQA": "pass 390x844 (0 overflow)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "differentiated (distinct banner treatment; already-distinct hero)",
       "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
       "nextRequiredAction": "None outstanding; banner differentiated, hero already distinct."
@@ -117,7 +117,7 @@
       "mobileQA": "pass 390x844 (0 overflow)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "differentiated (distinct banner treatment; already-distinct hero)",
       "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
       "nextRequiredAction": "None outstanding; banner differentiated, hero already distinct."
@@ -135,7 +135,7 @@
       "mobileQA": "pass 390x844 (no overflow, hamburger nav, stacked layout)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "done",
       "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -153,7 +153,7 @@
       "mobileQA": "pass 390x844 (0 overflow after sun constraint)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "done",
       "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -173,7 +173,7 @@
       "knownProblems": [
         "Hero stock bakery photo shows European price tags (ambient, not presented as Le Loup menu) - acceptable"
       ],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "already-distinct",
       "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -191,7 +191,7 @@
       "mobileQA": "pass 390x844 (0 overflow)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "already-distinct",
       "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -209,7 +209,7 @@
       "mobileQA": "pass 390x844 (0 overflow)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "done",
       "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -227,7 +227,7 @@
       "mobileQA": "pass 390x844 (0 overflow)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "done",
       "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -247,7 +247,7 @@
       "knownProblems": [
         "Menu-direction stock tea photo shows an incidental tea-brand tag (ambient, not presented as From Duo product)"
       ],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "done",
       "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -265,7 +265,7 @@
       "mobileQA": "pass 390x844 (0 overflow)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "already-distinct",
       "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -283,7 +283,7 @@
       "mobileQA": "pass 390x844 (hamburger nav, stacked cards, no overflow)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "done",
       "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -301,7 +301,7 @@
       "mobileQA": "pass 390x844 (0 overflow)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "done",
       "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -319,7 +319,7 @@
       "mobileQA": "pass 390x844 (0 overflow; fixed hero-art shrink-to-fit bug)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "done",
       "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -337,7 +337,7 @@
       "mobileQA": "pass 390x844 (0 overflow)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "done",
       "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -355,7 +355,7 @@
       "mobileQA": "pass 390x844 (0 overflow)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "done",
       "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -373,7 +373,7 @@
       "mobileQA": "pass 390x844 (0 overflow)",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "done",
       "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -391,7 +391,7 @@
       "mobileQA": "pass",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "done",
       "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
@@ -409,7 +409,7 @@
       "mobileQA": "pass",
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
-      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
+      "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42598841702 (re-architecture redeploy; earlier 42568492754))",
       "rearchitectureStatus": "done",
       "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
       "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
