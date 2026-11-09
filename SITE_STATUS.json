@@ -6,8 +6,8 @@
     "original19Published": 19,
     "new52Published": 3,
     "disqualified": 49,
-    "rearchitectDone": 8,
-    "rearchitectTodo": 9
+    "rearchitectDone": 12,
+    "rearchitectTodo": 5
   },
   "activeSites": [
     {
@@ -222,15 +222,15 @@
       "repoLocation": "preview/fiolicchia-bakery/",
       "noExistingWebsite": "prior finding: no independent website (recheck before outreach)",
       "researchStatus": "legitimate-prior-research-on-file",
-      "designDevStatus": "built (ON OLD SHARED SKELETON — re-architecture pending)",
+      "designDevStatus": "re-architected (distinct layout)",
       "desktopQA": "pass 1440x900 (0 overflow, img loads, 0 errors)",
       "mobileQA": "pass 390x844 (0 overflow)",
-      "screenshotVerified": "pending re-architecture",
+      "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
       "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
-      "rearchitectureStatus": "todo",
-      "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
-      "nextRequiredAction": "Re-architect into: vertical numbered timeline (verified content only), QA desktop+mobile, commit."
+      "rearchitectureStatus": "done",
+      "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
+      "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
     },
     {
       "id": "from-duo",
@@ -296,15 +296,15 @@
       "repoLocation": "preview/rachels-handmade-cookies/",
       "noExistingWebsite": "prior finding: no independent website (recheck before outreach)",
       "researchStatus": "legitimate-prior-research-on-file",
-      "designDevStatus": "built (ON OLD SHARED SKELETON — re-architecture pending)",
+      "designDevStatus": "re-architected (distinct layout)",
       "desktopQA": "pass 1440x900 (0 overflow, 2 imgs load, all reveals shown, 0 errors)",
       "mobileQA": "pass 390x844 (0 overflow)",
-      "screenshotVerified": "pending re-architecture",
+      "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
       "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
-      "rearchitectureStatus": "todo",
-      "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
-      "nextRequiredAction": "Re-architect into: scrapbook collage (verified content only), QA desktop+mobile, commit."
+      "rearchitectureStatus": "done",
+      "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
+      "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
     },
     {
       "id": "worksbynet",
@@ -332,15 +332,15 @@
       "repoLocation": "preview/tiny-topiary/",
       "noExistingWebsite": "prior finding: no independent website (recheck before outreach)",
       "researchStatus": "legitimate-prior-research-on-file",
-      "designDevStatus": "built (ON OLD SHARED SKELETON — re-architecture pending)",
+      "designDevStatus": "re-architected (distinct layout)",
       "desktopQA": "pass 1440x900 (0 overflow, imgs load, 0 errors)",
       "mobileQA": "pass 390x844 (0 overflow)",
-      "screenshotVerified": "pending re-architecture",
+      "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
       "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
-      "rearchitectureStatus": "todo",
-      "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
-      "nextRequiredAction": "Re-architect into: fixed left sidebar nav (verified content only), QA desktop+mobile, commit."
+      "rearchitectureStatus": "done",
+      "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
+      "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
     },
     {
       "id": "cafe-pr",
@@ -386,15 +386,15 @@
       "repoLocation": "preview/salep-ronkonkoma/",
       "noExistingWebsite": "Real; Greater Long Island confirms 920 Johnson Ave Ronkonkoma, owner Gulden Durdu, Turkish ice cream + American flavors + Italian ice + hot salep; no independent website found. Recheck before outreach.",
       "researchStatus": "verified (Greater Long Island)",
-      "designDevStatus": "built (ON OLD SHARED SKELETON — re-architecture pending)",
+      "designDevStatus": "re-architected (distinct layout)",
       "desktopQA": "pass",
       "mobileQA": "pass",
-      "screenshotVerified": "pending re-architecture",
+      "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
       "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
-      "rearchitectureStatus": "todo",
-      "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
-      "nextRequiredAction": "Re-architect into: lookbook gallery-first (verified content only), QA desktop+mobile, commit."
+      "rearchitectureStatus": "done",
+      "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
+      "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
     },
     {
       "id": "fira-frozen-yogurt",

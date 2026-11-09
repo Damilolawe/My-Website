@@ -14,71 +14,55 @@
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body id="top">
-<header>
+<header class="hb">
   <a class="logo" href="#top" aria-label="Tiny Topiary home">
     <svg class="leaf" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 22V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M12 13c0-5 3.5-8 8.5-8 0 5-3.5 8-8.5 8z" fill="#8ea67b"/><path d="M12 16c0-4-3-6-7-6 0 4 3 6 7 6z" fill="#8ea67b" opacity=".65"/></svg>
     <span>Tiny Topiary</span>
   </a>
+  <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
   <nav data-nav aria-label="Primary">
     <a href="#story">Our room</a>
     <a href="#table">Slow food</a>
     <a href="#visit">Visit</a>
   </nav>
-  <a class="header-cta" href="#visit">Find us</a>
-  <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
 </header>
 
 <main>
-  <section class="hero">
-    <div class="hero-copy" data-reveal>
-      <p class="eyebrow">Bergen Hill <span class="dot"></span> Jersey City</p>
+  <section class="band hero">
+    <figure class="band-img"><img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=1300&q=84" alt="A lush raised garden bed of herbs and greens" loading="eager"></figure>
+    <div class="band-copy green">
+      <p class="eye">Bergen Hill, Jersey City</p>
       <h1>Good food.<br><em>Small wonder.</em></h1>
-      <p class="sub">A community-driven cafe and bakery built around slow food, warm hospitality and the everyday magic of a neighborhood room.</p>
-      <a class="button" href="#visit">Find Tiny Topiary</a>
+      <p class="lede">A community-driven cafe and bakery built around slow food, warm hospitality and the everyday magic of a neighborhood room.</p>
+      <a class="btn" href="#visit">Find Tiny Topiary</a>
     </div>
-    <figure class="hero-fig" data-reveal>
-      <img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=1100&q=84" alt="A lush raised garden bed of herbs and greens" loading="eager">
-    </figure>
   </section>
 
-  <section id="story" class="story">
-    <div class="story-copy" data-reveal>
-      <p class="eyebrow">01 / The reason</p>
+  <section id="story" class="band reverse">
+    <figure class="band-img"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1300&q=84" alt="Fresh-baked bread and pastries on a cafe table" loading="lazy"></figure>
+    <div class="band-copy cream">
+      <p class="eye terra">01 / The reason</p>
       <h2>A love letter to the block.</h2>
       <p>Tiny Topiary was created by Jason Kratochvil and Lynne Burke as a welcoming, inclusive space in Jersey City&rsquo;s Bergen Hill neighborhood &mdash; a place for slow food, thoughtful details and the kind of community that grows over time.</p>
     </div>
-    <figure class="story-fig" data-reveal>
-      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=82" alt="Fresh-baked bread and pastries on a cafe table" loading="lazy">
-    </figure>
   </section>
 
-  <section id="table" class="table">
-    <p class="eyebrow center light" data-reveal>02 / The table</p>
-    <div class="table-grid">
-      <article data-reveal>
-        <span class="orb one" aria-hidden="true"></span>
-        <h3>Bakery mornings</h3>
-        <p>Fresh-baked comfort, made for an unhurried start to the day.</p>
-      </article>
-      <article data-reveal>
-        <span class="orb two" aria-hidden="true"></span>
-        <h3>Slow food</h3>
-        <p>Simple, considered plates that make room for conversation.</p>
-      </article>
-      <article data-reveal>
-        <span class="orb three" aria-hidden="true"></span>
-        <h3>Community hours</h3>
-        <p>A neighborhood room open seven days a week.</p>
-      </article>
+  <section id="table" class="table-band">
+    <p class="eye butter center">02 / The table</p>
+    <div class="table-list">
+      <article data-reveal><span class="orb one" aria-hidden="true"></span><h3>Bakery mornings</h3><p>Fresh-baked comfort, made for an unhurried start to the day.</p></article>
+      <article data-reveal><span class="orb two" aria-hidden="true"></span><h3>Slow food</h3><p>Simple, considered plates that make room for conversation.</p></article>
+      <article data-reveal><span class="orb three" aria-hidden="true"></span><h3>Community hours</h3><p>A neighborhood room open seven days a week.</p></article>
     </div>
   </section>
 
-  <section id="visit" class="visit">
-    <div class="visit-copy" data-reveal>
-      <p class="eyebrow">03 / Come in</p>
+  <section id="visit" class="band">
+    <figure class="band-img"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1300&q=84" alt="A warm, plant-filled neighborhood cafe interior" loading="lazy"></figure>
+    <div class="band-copy butter-bg">
+      <p class="eye green-eye">03 / Come in</p>
       <h2>163 Monticello Avenue<br>Jersey City, NJ 07304</h2>
       <p>A short, friendly walk into Bergen Hill. Open seven days a week.</p>
-      <a class="button dark" href="https://www.google.com/maps/search/?api=1&query=163+Monticello+Avenue+Jersey+City+NJ+07304" target="_blank" rel="noopener">Get directions</a>
+      <a class="btn terra-btn" href="https://www.google.com/maps/search/?api=1&query=163+Monticello+Avenue+Jersey+City+NJ+07304" target="_blank" rel="noopener">Get directions</a>
     </div>
   </section>
 </main>

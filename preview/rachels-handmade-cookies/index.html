@@ -14,68 +14,51 @@
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body id="top">
-<header>
+<header class="hb">
   <a class="logo" href="#top" aria-label="Rachel's Handmade Cookies home">Rachel&rsquo;s</a>
+  <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
   <nav data-nav aria-label="Primary">
     <a href="#bake">The bake</a>
-    <a href="#orders">Bring a box</a>
+    <a href="#gift">Bring a box</a>
     <a href="#visit">Visit</a>
   </nav>
-  <a class="header-cta" href="#visit">Find the bakery</a>
-  <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="hero-copy" data-reveal>
-      <p class="eyebrow">Rosedale <span class="dot"></span> Queens</p>
+<main class="board">
+  <section class="hero-collage">
+    <div class="hero-words">
+      <p class="eye">Rosedale, Queens</p>
       <h1>Made by hand.<br><em>Made to share.</em></h1>
       <p class="sub">A warm, straightforward home for handmade cookies, gifting and the small celebrations that deserve something sweet.</p>
-      <a class="button" href="#orders">Bring a box</a>
+      <a class="btn" href="#gift">Bring a box</a>
     </div>
-    <figure class="hero-fig" data-reveal>
-      <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=1100&q=84" alt="Fresh chocolate chunk cookies cooling on parchment" loading="eager">
-      <span class="badge" aria-hidden="true">Baked<br>by hand</span>
-    </figure>
+    <figure class="snap snap-a"><img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=760&q=82" alt="Fresh chocolate chunk cookies cooling on parchment" loading="eager"><figcaption>fresh from the oven</figcaption></figure>
+    <figure class="snap snap-b"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=620&q=82" alt="A bowl of homemade chocolate chip cookies" loading="eager"><figcaption>a box to share</figcaption></figure>
+    <span class="sticker" aria-hidden="true">baked<br>by hand</span>
   </section>
 
-  <section id="bake" class="bake">
-    <div class="bake-copy" data-reveal>
-      <p class="eyebrow">01 / The bake</p>
-      <h2>Every batch starts with a real kitchen.</h2>
-      <p>Rachel&rsquo;s Handmade Cookies appeared in 2026 Queens opening coverage at 241-20 South Conduit Avenue, Rosedale. This concept keeps the story focused on handmade baking and a direct way to get in touch.</p>
+  <section id="bake" class="note-row">
+    <div class="note note-cream" data-reveal>
+      <p class="kicker">The bake</p>
+      <p>Rachel&rsquo;s Handmade Cookies appeared in 2026 Queens opening coverage at 241-20 South Conduit Avenue, Rosedale. Every batch starts with a real kitchen &mdash; this concept keeps the story focused on handmade baking and a direct way to get in touch.</p>
     </div>
-    <figure class="bake-fig" data-reveal>
-      <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=900&q=82" alt="A bowl of homemade chocolate chip cookies" loading="lazy">
-    </figure>
   </section>
 
-  <div class="stripe" aria-hidden="true"><div class="stripe-track"><span>Chocolate chip</span><i></i><span>Gift boxes</span><i></i><span>Baked by hand</span><i></i><span>Chocolate chip</span><i></i><span>Gift boxes</span><i></i><span>Baked by hand</span><i></i></div></div>
-
-  <section id="orders" class="orders">
-    <p class="eyebrow center" data-reveal>02 / Bring a box</p>
-    <div class="order-grid">
-      <article class="card pink" data-reveal>
-        <h3>For the table</h3>
-        <p>Cookies for birthdays, dinners and the last-minute host gift.</p>
-      </article>
-      <article class="card butter" data-reveal>
-        <h3>For the office</h3>
-        <p>A simple way to make a team afternoon feel considered.</p>
-      </article>
-      <article class="card cocoa" data-reveal>
-        <h3>For the craving</h3>
-        <p>A fresh, handmade batch, just because the day called for it.</p>
-      </article>
+  <section id="gift" class="gifts">
+    <p class="eye center">Bring a box</p>
+    <div class="gift-scatter">
+      <article class="note note-pink t-l" data-reveal><h3>For the table</h3><p>Cookies for birthdays, dinners and the last-minute host gift.</p></article>
+      <article class="note note-butter t-r" data-reveal><h3>For the office</h3><p>A simple way to make a team afternoon feel considered.</p></article>
+      <article class="note note-cocoa t-l2" data-reveal><h3>For the craving</h3><p>A fresh, handmade batch, just because the day called for it.</p></article>
     </div>
   </section>
 
   <section id="visit" class="visit">
-    <div class="visit-copy" data-reveal>
-      <p class="eyebrow light">03 / Visit</p>
+    <div class="visit-card" data-reveal>
+      <p class="eye">Visit</p>
       <h2>241-20 South Conduit Avenue<br>Rosedale, Queens, NY 11422</h2>
       <p>Come by for a box, or reach out about a custom order for your next celebration.</p>
-      <a class="button cream" href="https://www.google.com/maps/search/?api=1&query=241-20+South+Conduit+Avenue+Queens+NY+11422" target="_blank" rel="noopener">Get directions</a>
+      <a class="btn cocoa" href="https://www.google.com/maps/search/?api=1&query=241-20+South+Conduit+Avenue+Queens+NY+11422" target="_blank" rel="noopener">Get directions</a>
     </div>
   </section>
 </main>
