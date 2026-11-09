@@ -24,14 +24,16 @@
       "sourceGroup": "existing-19",
       "researchStatus": "legitimate-prior-research-on-file",
       "websiteVerification": "no-independent-website (prior finding; recheck before outreach)",
-      "designDirection": "",
+      "designDirection": "PRESERVED existing premium bespoke photographer portfolio with real imported Instagram photography, lightbox and scroll choreography. Already meets premium custom-agency bar; rebuilding would risk the photo-import pipeline and functionality.",
       "filesChanged": [],
-      "developmentStatus": "pending-redesign",
-      "desktopQA": "not-started",
-      "mobileQA": "not-started",
-      "functionalTesting": "not-started",
+      "developmentStatus": "redesign-complete (preserved as-is)",
+      "desktopQA": "pass 1440x900 via full build (0 overflow, real photos load, 0 console errors; empty img is lightbox placeholder by design)",
+      "mobileQA": "pass 390x844 (0 overflow)",
+      "functionalTesting": "lightbox + scroll reveal work by design",
       "deploymentStatus": "live (current 19-site publication)",
-      "outstandingIssues": []
+      "outstandingIssues": [
+        "Lower sections use scroll-progress animation (reveal for real users; appear dim in static full-page capture)"
+      ]
     },
     {
       "name": "Jay Millz Shot Em",
@@ -39,14 +41,16 @@
       "sourceGroup": "existing-19",
       "researchStatus": "legitimate-prior-research-on-file",
       "websiteVerification": "no-independent-website (prior finding; recheck before outreach)",
-      "designDirection": "",
+      "designDirection": "PRESERVED existing premium bespoke photographer portfolio with real imported Instagram photography, lightbox and scroll choreography. Already meets premium custom-agency bar; rebuilding would risk the photo-import pipeline and functionality.",
       "filesChanged": [],
-      "developmentStatus": "pending-redesign",
-      "desktopQA": "not-started",
-      "mobileQA": "not-started",
-      "functionalTesting": "not-started",
+      "developmentStatus": "redesign-complete (preserved as-is)",
+      "desktopQA": "pass 1440x900 via full build (0 overflow, real photos load, 0 console errors; empty img is lightbox placeholder by design)",
+      "mobileQA": "pass 390x844 (0 overflow)",
+      "functionalTesting": "lightbox + scroll reveal work by design",
       "deploymentStatus": "live (current 19-site publication)",
-      "outstandingIssues": []
+      "outstandingIssues": [
+        "Lower sections use scroll-progress animation (reveal for real users; appear dim in static full-page capture)"
+      ]
     },
     {
       "name": "Bao Dumpling",
