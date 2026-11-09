@@ -6,7 +6,7 @@
     "existingRedesignTarget": 19,
     "newProspectTarget": 52,
     "totalTarget": 71,
-    "existingRedesignsComplete": 2,
+    "existingRedesignsComplete": 3,
     "newProspectsPublished": 0,
     "prospectsDisqualified": 0,
     "replacementsResearched": 0
@@ -132,12 +132,15 @@
       "sourceGroup": "existing-19",
       "researchStatus": "legitimate-prior-research-on-file",
       "websiteVerification": "no-independent-website (prior finding; recheck before outreach)",
-      "designDirection": "",
-      "filesChanged": [],
-      "developmentStatus": "pending-redesign",
-      "desktopQA": "not-started",
-      "mobileQA": "not-started",
-      "functionalTesting": "not-started",
+      "designDirection": "Vibrant Colombian/tropical: DM Serif Display, emerald/coral/panela-amber/cream, arched hero image with sun motif, arch-topped flavor cards (Guava/Panela/Colombia), plates gallery, green visit band. Factual (Lion's Head beans, guava matcha, panela latte, empanadas; no prices/hours).",
+      "filesChanged": [
+        "preview/santuario-cafe/index.html",
+        "preview/santuario-cafe/styles.css"
+      ],
+      "developmentStatus": "redesign-complete",
+      "desktopQA": "pass 1440x900 (0 overflow, imgs load, 0 errors)",
+      "mobileQA": "pass 390x844 (0 overflow after sun constraint)",
+      "functionalTesting": "tel: + Google Maps links present; in-page nav",
       "deploymentStatus": "live (current 19-site publication)",
       "outstandingIssues": []
     },
