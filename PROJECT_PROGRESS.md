@@ -89,3 +89,10 @@ Re-architecture status:
 - Enhanced shared engine `preview/prospect-shared/site.js`: staggered reveals, header scroll-state, hero parallax ([data-parallax]), count-up ([data-count]), active-nav, and an injected lightbox ([data-lightbox]). Backward-compatible + webdriver/reduced-motion fallbacks.
 - **DONE:** `salep-ronkonkoma` is now a 4-page site (Home/The Counter/Our Story/Visit) with full illustrative menu, prices, flavor grid, stats count-up, lightbox galleries, FAQ, cross-page nav + footer. QA: 4 pages x desktop+mobile, 0 overflow/0 errors.
 - **TODO:** propagate multipage + depth + animation to the other content-rich sites (fiolicchia, cafe-pr, santuario, mesa/casa/solerum, cafe-wands, duro, tiny-topiary, hots-coffee, aroma, from-duo, bao, cultiva, le-loup, fira, tbili, worksbynet, rachels, jay-millz, shotsbyriq). Then rebuild/CI/deploy + verify live.
+
+## Multipage progress — checkpoint (session continuation)
+**14 sites now multipage (3+ pages), animated, content-filled, QA'd desktop+mobile (0 overflow / 0 console errors / all images load):**
+- LIVE (deployed run 42642811698): salep-ronkonkoma (4pp), fiolicchia-bakery (3pp), cafe-pr (3pp), santuario-cafe (3pp), hots-coffee (3pp).
+- Committed+pushed, awaiting next deploy: duro-market, cafe-aroma-y-sabor, tiny-topiary, cafe-wands, from-duo, tbili, le-loup-cafe, cultiva-cafe, fira-frozen-yogurt (all 3pp).
+- **Still single-page — expand next:** worksbynet, rachels-handmade-cookies, mesa-bar, casa-serra, solerum, bao-dumpling, jay-millz-shot-em, shotsbyriq (8 sites). The 4 Seaport/FiDi sites (mesa-bar, casa-serra, solerum, bao-dumpling) have their OWN site.js + absolute asset paths (QA from full build, QA_ROOT=branded-previews/public).
+- Pattern per site: append themed component CSS -> rewrite index home -> add menu.html/visit.html (per-site archetype kept distinct) -> build-one-preview -> qa-shot both viewports -> commit+push. Each keeps a discreet "illustrative samples" footer note; real anchors (addresses, specialties) kept accurate.
