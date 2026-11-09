@@ -1,8 +1,8 @@
 const links = [...document.querySelectorAll('a[href^="#"]')];
 links.forEach((link) => link.addEventListener("click", () => document.body.classList.remove("nav-open")));
 
-if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  const elements = document.querySelectorAll(".story > *, .atmosphere-copy > *, .details > *, .visit > *");
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && !navigator.webdriver) {
+  const elements = document.querySelectorAll(".story > *, .atmosphere-copy > *, .details > *, .visit > *, .mcol > *, .vcol > *");
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
