@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Independent website concept for Fira, a Greek frozen yogurt shop arriving on Bedford Avenue in Williamsburg, Brooklyn.">
+<meta name="description" content="Independent website concept for Fira, a Greek frozen yogurt shop on Bedford Avenue in Williamsburg, Brooklyn.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#1b6aa5">
 <title>Fira | Greek Frozen Yogurt, Williamsburg</title>
@@ -17,21 +17,25 @@
 <main>
   <section class="poster">
     <div class="poster-top">
-      <a class="logo" href="#top" aria-label="Fira home">Fira</a>
-      <span class="status">Opening soon &middot; Bedford Ave</span>
+      <a class="logo" href="./index.html" aria-label="Fira home">Fira</a>
+      <nav data-nav aria-label="Primary">
+        <a href="./index.html" aria-current="page">Home</a>
+        <a href="./menu.html">Menu</a>
+        <a href="./visit.html">Visit</a>
+      </nav>
     </div>
 
     <div class="poster-core">
       <p class="greek" aria-hidden="true">&#934;&#951;&#961;&#940;</p>
       <h1>A little<br>Santorini on<br>Bedford Ave.</h1>
-      <p class="tagline">Greek frozen yogurt, arriving in Williamsburg.</p>
+      <p class="tagline">Greek frozen yogurt, scooped fresh in Williamsburg.</p>
     </div>
 
     <ul class="facts-row">
       <li><span>Concept</span><strong>Greek frozen yogurt</strong></li>
       <li><span>Address</span><strong>294 Bedford Avenue</strong></li>
       <li><span>Neighborhood</span><strong>Williamsburg, Brooklyn</strong></li>
-      <li><span>Status</span><strong>Opening soon</strong></li>
+      <li><span>Hours</span><strong>Noon &ndash; late</strong></li>
     </ul>
   </section>
 
@@ -40,9 +44,20 @@
     <div class="story-copy" data-reveal>
       <p class="eye">The name</p>
       <h2>Named for the top of the island.</h2>
-      <p>Fira takes its name from the capital of Santorini &mdash; the white-and-blue town perched above the Aegean. A fitting name for a bright, cooling corner built around Greek frozen yogurt.</p>
-      <p class="muted">Flavors, toppings, hours and the opening date belong here once Fira shares them. This concept keeps to what is public so far.</p>
+      <p>Fira takes its name from the capital of Santorini &mdash; the white-and-blue town perched above the Aegean. A fitting name for a bright, cooling corner built around thick, tangy Greek frozen yogurt.</p>
+      <p>Spin it plain with honey and walnuts, or pile it high with fruit, syrups and crunch. Every cup is made to order.</p>
     </div>
+  </section>
+
+  <section class="teasers" aria-label="Explore">
+    <a class="teaser" href="./menu.html" data-reveal>
+      <img src="https://images.unsplash.com/photo-1488900128323-21503983a07e?auto=format&fit=crop&w=1100&q=84" alt="A cup of frozen yogurt topped with fresh berries">
+      <span class="tc"><h3>The Menu</h3><p>Flavors, a toppings bar and Greek treats.</p><span class="go">Browse the menu</span></span>
+    </a>
+    <a class="teaser" href="./visit.html" data-reveal>
+      <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=1100&q=84" alt="A bright, sunny street corner">
+      <span class="tc"><h3>Visit</h3><p>294 Bedford Avenue. Hours and good things to know.</p><span class="go">Plan a visit</span></span>
+    </a>
   </section>
 
   <section class="visit">
@@ -51,6 +66,12 @@
     <a class="pill" href="https://www.google.com/maps/search/?api=1&query=294+Bedford+Avenue+Williamsburg+Brooklyn+NY" target="_blank" rel="noopener">Get directions</a>
   </section>
 </main>
+
+<footer class="site-foot">
+  <p class="f-logo">Fira</p>
+  <nav aria-label="Footer"><a href="./index.html">Home</a><a href="./menu.html">Menu</a><a href="./visit.html">Visit</a></nav>
+  <p class="fine">Independent, unofficial design concept. Flavors, prices and hours shown are illustrative samples.</p>
+</footer>
 
 <script src="./site.js"></script>
 </body>
