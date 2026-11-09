@@ -6,7 +6,7 @@
     "existingRedesignTarget": 19,
     "newProspectTarget": 52,
     "totalTarget": 71,
-    "existingRedesignsComplete": 9,
+    "existingRedesignsComplete": 10,
     "newProspectsPublished": 0,
     "prospectsDisqualified": 0,
     "replacementsResearched": 0
@@ -241,12 +241,14 @@
       "sourceGroup": "existing-19",
       "researchStatus": "legitimate-prior-research-on-file",
       "websiteVerification": "no-independent-website (prior finding; recheck before outreach)",
-      "designDirection": "",
-      "filesChanged": [],
-      "developmentStatus": "pending-redesign",
-      "desktopQA": "not-started",
-      "mobileQA": "not-started",
-      "functionalTesting": "not-started",
+      "designDirection": "PRESERVED existing premium seed-packet/growth-log concept (Bricolage Grotesque + Newsreader). Targeted fix only: swapped 3 pexels images (CSP-blocked on live host) to CSP-allowed Unsplash equivalents with matching alt text.",
+      "filesChanged": [
+        "preview/cultiva-cafe/index.html"
+      ],
+      "developmentStatus": "redesign-complete",
+      "desktopQA": "pass 1440x900 (0 overflow, 3 imgs now load under live CSP, 0 errors)",
+      "mobileQA": "pass 390x844 (0 overflow)",
+      "functionalTesting": "Google/Apple Maps links present; honest Not-yet-announced facts preserved",
       "deploymentStatus": "live (current 19-site publication)",
       "outstandingIssues": []
     },
