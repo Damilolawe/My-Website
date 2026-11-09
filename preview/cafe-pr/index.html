@@ -14,80 +14,60 @@
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body id="top">
-<header>
-  <a class="logo" href="#top" aria-label="Cafe Pri home">Café&nbsp;Pri</a>
-  <nav data-nav aria-label="Primary">
-    <a href="#table">At the table</a>
-    <a href="#story">Our story</a>
-    <a href="#visit">Visit</a>
-  </nav>
-  <a class="header-cta" href="https://www.instagram.com/cafe.pri/" target="_blank" rel="noopener">Instagram</a>
-  <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
-</header>
+<div class="layout">
+  <aside class="side">
+    <div class="side-top">
+      <a class="logo" href="#top" aria-label="Cafe Pri home">Café&nbsp;Pri</a>
+      <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
+    </div>
+    <p class="side-tag">Filipino-American flavor &amp; coffee on Metropolitan Avenue.</p>
+    <nav data-nav aria-label="Primary">
+      <a href="#table">At the table</a>
+      <a href="#story">Our story</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <dl class="side-meta">
+      <div><dt>Where</dt><dd>64-28 Metropolitan Avenue<br>Middle Village, NY 11379</dd></div>
+      <div><dt>Find</dt><dd><a href="https://www.instagram.com/cafe.pri/" target="_blank" rel="noopener">@cafe.pri</a></dd></div>
+      <div><dt>Concept</dt><dd>Independent, unofficial study</dd></div>
+    </dl>
+  </aside>
 
-<main>
-  <section class="hero">
-    <div class="hero-copy" data-reveal>
-      <p class="eyebrow">Middle Village <span class="dot"></span> Queens</p>
+  <main class="content">
+    <section class="intro">
+      <p class="eye">Middle Village, Queens</p>
       <h1>Comfort,<br><em>with a twist.</em></h1>
-      <p class="sub">Filipino-American flavor, neighborhood hospitality and coffee worth crossing the street for &mdash; now on Metropolitan Avenue in Middle Village.</p>
-      <div class="hero-actions">
-        <a class="button" href="#table">See the table</a>
-        <a class="button ghost" href="#visit">Visit us</a>
-      </div>
-    </div>
-    <figure class="hero-fig" data-reveal>
-      <img src="https://images.unsplash.com/photo-1511081692775-05d0f180a065?auto=format&fit=crop&w=1100&q=84" alt="A warm cup of coffee on a cafe table" loading="eager">
-    </figure>
-  </section>
+      <p class="standfirst">Filipino-American flavor, neighborhood hospitality and coffee worth crossing the street for &mdash; now on Metropolitan Avenue in Middle Village.</p>
+    </section>
 
-  <section id="table" class="table">
-    <div class="table-head" data-reveal>
-      <p class="eyebrow light">01 &mdash; On the table</p>
-      <h2>A few things worth<br>coming hungry for.</h2>
-    </div>
-    <div class="dishes">
-      <article data-reveal>
-        <span class="meal">Breakfast</span>
-        <h3>Tapsilog</h3>
-        <p>A Filipino morning staple of marinated beef, garlic rice and egg &mdash; right beside familiar cafe favorites.</p>
-      </article>
-      <article data-reveal>
-        <span class="meal">Lunch</span>
-        <h3>Pork sisig</h3>
-        <p>Comforting, savory and sizzling &mdash; made for settling in through a full afternoon.</p>
-      </article>
-      <article data-reveal>
-        <span class="meal">Coffee</span>
-        <h3>Dalgona</h3>
-        <p>The whipped coffee favorite, with a little drama in every cup.</p>
-      </article>
-    </div>
-    <p class="table-note" data-reveal>Concept note: dishes reflect verified public coverage of Café Pri. The full menu, prices and hours live with the business.</p>
-  </section>
+    <section id="table" class="carte">
+      <p class="rule-h"><span>01</span>At the table</p>
+      <ol class="dishes">
+        <li data-reveal><p class="meal">Breakfast</p><h2>Tapsilog</h2><p class="d">Marinated beef, garlic rice and egg &mdash; a Filipino morning staple beside familiar cafe favorites.</p></li>
+        <li data-reveal><p class="meal">Lunch</p><h2>Pork sisig</h2><p class="d">Comforting, savory and sizzling, made for settling in through a full afternoon.</p></li>
+        <li data-reveal><p class="meal">Coffee</p><h2>Dalgona</h2><p class="d">The whipped coffee favorite, with a little drama in every cup.</p></li>
+      </ol>
+      <p class="note">Dishes reflect verified public coverage of Café Pri. The full menu, prices and hours live with the cafe.</p>
+    </section>
 
-  <section id="story" class="story">
-    <figure class="story-fig" data-reveal>
-      <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=82" alt="A cozy neighborhood cafe interior" loading="lazy">
-    </figure>
-    <div class="story-copy" data-reveal>
-      <p class="eyebrow">02 &mdash; A family table</p>
-      <h2>Brooklyn warmth,<br>Queens chapter.</h2>
+    <section id="story" class="story">
+      <p class="rule-h"><span>02</span>Our story</p>
+      <figure class="story-img"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=84" alt="A cozy neighborhood cafe interior" loading="lazy"></figure>
+      <h2 class="story-h">Brooklyn warmth, Queens chapter.</h2>
       <p>Pauline Coronado and her husband Ryan brought Café Pri&rsquo;s comforting coffee and Filipino-American fusion cooking from Brooklyn to Middle Village in 2025 &mdash; a neighborhood table rooted in family and hospitality.</p>
-    </div>
-  </section>
+    </section>
 
-  <section id="visit" class="visit">
-    <div class="visit-copy" data-reveal>
-      <p class="eyebrow light">03 &mdash; Come hungry</p>
-      <h2>64-28 Metropolitan Avenue<br>Middle Village, NY 11379</h2>
-      <div class="visit-actions">
-        <a class="button cream" href="https://www.google.com/maps/search/?api=1&query=64-28+Metropolitan+Avenue+Middle+Village+NY+11379" target="_blank" rel="noopener">Directions</a>
-        <a class="button ghost light" href="https://www.instagram.com/cafe.pri/" target="_blank" rel="noopener">Follow @cafe.pri</a>
+    <section id="visit" class="visit">
+      <p class="rule-h"><span>03</span>Come hungry</p>
+      <h2 class="visit-h">64-28 Metropolitan Avenue</h2>
+      <p class="addr">Middle Village, NY 11379</p>
+      <div class="visit-links">
+        <a class="link" href="https://www.google.com/maps/search/?api=1&query=64-28+Metropolitan+Avenue+Middle+Village+NY+11379" target="_blank" rel="noopener">Directions</a>
+        <a class="link" href="https://www.instagram.com/cafe.pri/" target="_blank" rel="noopener">Follow @cafe.pri</a>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
+</div>
 
 <script src="./site.js"></script>
 </body>

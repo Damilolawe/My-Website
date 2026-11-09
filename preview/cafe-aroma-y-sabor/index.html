@@ -10,71 +10,61 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body id="top">
-<header>
+<header class="hb">
   <a class="logo" href="#top" aria-label="Cafe Aroma y Sabor home">Aroma<span>y</span>Sabor</a>
+  <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
   <nav data-nav aria-label="Primary">
     <a href="#welcome">Welcome</a>
     <a href="#day">The day</a>
     <a href="#visit">Visit</a>
+    <a href="tel:+13478575607">Call</a>
   </nav>
-  <a class="header-cta" href="tel:+13478575607">Call the cafe</a>
-  <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
 </header>
 
 <main>
-  <section class="hero">
-    <figure class="hero-fig">
-      <img src="https://images.unsplash.com/photo-1511081692775-05d0f180a065?auto=format&fit=crop&w=1500&q=82" alt="Coffee served at a welcoming neighborhood cafe" loading="eager">
-      <span class="sun" aria-hidden="true"></span>
-    </figure>
-    <div class="hero-copy" data-reveal>
-      <p class="loc">912 Fourth Avenue <span class="dot"></span> Sunset Park</p>
-      <h1>Your neighborhood <span>coffee stop.</span></h1>
+  <section class="cover">
+    <div class="cover-bg" aria-hidden="true"><img src="https://images.unsplash.com/photo-1511081692775-05d0f180a065?auto=format&fit=crop&w=1900&q=84" alt=""></div>
+    <div class="cover-copy">
+      <p class="loc">912 Fourth Avenue &middot; Sunset Park</p>
+      <h1>Your neighborhood<br><span>coffee stop.</span></h1>
       <p class="sub">A newly opened independent coffee shop one minute from the 36 Street station &mdash; aroma in the cup, sabor in the moment.</p>
-      <div class="hero-actions">
-        <a class="button" href="tel:+13478575607">Call the cafe</a>
-        <a class="button ghost" href="#visit">Come by today</a>
+      <a class="btn" href="#welcome">Come by today</a>
+    </div>
+  </section>
+
+  <section id="welcome" class="skew skew-terra">
+    <div class="skew-inner">
+      <p class="eye">A new corner cafe</p>
+      <h2>Aroma in the cup.<br>Sabor in the moment.</h2>
+      <p class="lead">Cafe Aroma y Sabor is a newly operating independent coffee shop one minute from the 36 Street subway station. The menu has not yet been independently verified, so this concept keeps the focus on the neighborhood, the address and a direct way to call.</p>
+    </div>
+  </section>
+
+  <section id="day" class="skew skew-teal">
+    <div class="skew-inner day-grid">
+      <div class="day-card">
+        <span class="no">01</span><h3>Morning</h3><p>A direct, friendly stop on the way to the train.</p>
+      </div>
+      <figure class="day-photo"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=82" alt="Fresh coffee in a ceramic cup" loading="lazy"></figure>
+      <div class="day-card">
+        <span class="no">02</span><h3>Afternoon</h3><p>A neighborhood pause close to home.</p>
       </div>
     </div>
   </section>
 
-  <div class="ribbon" aria-hidden="true"><div class="ribbon-track"><span>Cafe</span><i></i><span>Coffee</span><i></i><span>Community</span><i></i><span>Sunset Park</span><i></i><span>Cafe</span><i></i><span>Coffee</span><i></i><span>Community</span><i></i><span>Sunset Park</span><i></i></div></div>
-
-  <section id="welcome" class="welcome">
-    <p class="kicker" data-reveal>A new corner cafe</p>
-    <h2 data-reveal>Aroma in the cup.<br>Sabor in the moment.</h2>
-    <p class="lead" data-reveal>Cafe Aroma y Sabor is a newly operating independent coffee shop one minute from the 36 Street subway station. The menu has not yet been independently verified, so this concept keeps the focus where it belongs: the neighborhood, the address and a direct way to call.</p>
-  </section>
-
-  <section id="day" class="day">
-    <article class="tile terra" data-reveal>
-      <span class="no">01</span>
-      <h3>Morning</h3>
-      <p>A direct, friendly stop on the way to the train.</p>
-    </article>
-    <figure class="tile photo" data-reveal>
-      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=82" alt="Fresh coffee in a ceramic cup" loading="lazy">
-    </figure>
-    <article class="tile teal" data-reveal>
-      <span class="no">02</span>
-      <h3>Afternoon</h3>
-      <p>A neighborhood pause close to home.</p>
-    </article>
-  </section>
-
-  <section id="visit" class="visit">
-    <div class="visit-copy" data-reveal>
-      <p class="kicker light">Find us in Sunset Park</p>
-      <h2>912 4th Avenue<br>Brooklyn, NY 11232</h2>
+  <section id="visit" class="skew skew-marigold last">
+    <div class="skew-inner">
+      <p class="eye dark">Find us in Sunset Park</p>
+      <h2 class="visit-h">912 4th Avenue<br>Brooklyn, NY 11232</h2>
       <div class="visit-actions">
-        <a class="button dark" href="tel:+13478575607">347-857-5607</a>
-        <a class="button ghost dark" href="https://www.google.com/maps/search/?api=1&query=912+4th+Avenue+Brooklyn+NY+11232" target="_blank" rel="noopener">Get directions</a>
+        <a class="btn dark" href="tel:+13478575607">347-857-5607</a>
+        <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=912+4th+Avenue+Brooklyn+NY+11232" target="_blank" rel="noopener">Get directions</a>
       </div>
-      <small>Call the cafe to confirm current hours and menu.</small>
+      <p class="fineprint">Call the cafe to confirm current hours and menu.</p>
     </div>
   </section>
 </main>

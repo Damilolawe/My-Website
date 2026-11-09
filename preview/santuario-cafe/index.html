@@ -10,77 +10,62 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body id="top">
-<header>
+<header class="ctr">
+  <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
   <a class="logo" href="#top" aria-label="Santuario Cafe home">Santuario</a>
   <nav data-nav aria-label="Primary">
-    <a href="#coffee">Coffee</a>
-    <a href="#roots">Flavors</a>
+    <a href="#cup">The cup</a>
+    <a href="#flavors">Flavors</a>
     <a href="#visit">Visit</a>
   </nav>
-  <a class="header-cta" href="tel:+13473370692">Call the cafe</a>
-  <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
 </header>
 
 <main>
-  <section class="hero">
-    <div class="hero-copy" data-reveal>
-      <p class="eyebrow">Jackson Heights <span class="dot"></span> Queens</p>
-      <h1>A quiet place<br>for <em>bold coffee.</em></h1>
-      <p class="sub">A neighborhood sanctuary for Colombian specialty coffee, matcha and pastries &mdash; a calm corner of 37th Avenue to slow down in.</p>
-      <div class="hero-actions">
-        <a class="button" href="tel:+13473370692">Call the cafe</a>
-        <a class="button ghost" href="#visit">Plan a visit</a>
-      </div>
+  <section class="hero-ctr">
+    <p class="eye">Jackson Heights, Queens <span class="dot"></span> since August 2026</p>
+    <h1>A quiet place<br>for <em>bold coffee.</em></h1>
+    <p class="lede">A neighborhood sanctuary for Colombian specialty coffee, matcha and pastries &mdash; a calm corner of 37th Avenue to slow down in.</p>
+    <div class="hero-actions">
+      <a class="pill" href="tel:+13473370692">Call the cafe</a>
+      <a class="pill ghost" href="#visit">Plan a visit</a>
     </div>
-    <figure class="hero-fig" data-reveal>
-      <span class="sun" aria-hidden="true"></span>
+    <figure class="arch hero-arch">
       <img src="https://images.unsplash.com/photo-1772141024300-76468f1ea34b?auto=format&fit=crop&w=1100&q=84" alt="Colombian coffee poured into a heritage cafe mug" loading="eager">
     </figure>
   </section>
 
-  <section id="coffee" class="coffee">
-    <p class="vertical" aria-hidden="true">Coffee with Colombian character</p>
-    <div class="coffee-copy" data-reveal>
-      <p class="eyebrow green">01 &mdash; The cup</p>
-      <h2>Specialty coffee, matcha and a little Colombian flair.</h2>
-      <p class="lead">Verified coverage highlights Colombian beans roasted by Lion&rsquo;s Head Coffee, matcha drinks layered with guava, lattes sweetened with panela, plus baked goods and empanadas from the counter.</p>
-    </div>
+  <section id="cup" class="cup-ctr">
+    <p class="eye green">The cup</p>
+    <h2>Specialty coffee, matcha<br>and a little Colombian flair.</h2>
+    <p class="measure">Verified coverage highlights Colombian beans roasted by Lion&rsquo;s Head Coffee, matcha drinks layered with guava, lattes sweetened with panela, plus baked goods and empanadas from the counter.</p>
   </section>
 
-  <section id="roots" class="roots">
-    <article class="card coral" data-reveal>
-      <b>Guava</b>
-      <span>Bright, tropical fruit notes in a signature matcha combination.</span>
+  <section id="flavors" class="flavors">
+    <article class="flavor" data-reveal>
+      <figure class="arch sm"><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=700&q=82" alt="A latte with delicate latte art"></figure>
+      <h3>Guava</h3><p>Bright, tropical fruit notes in a signature matcha combination.</p>
     </article>
-    <article class="card amber" data-reveal>
-      <b>Panela</b>
-      <span>Unrefined Colombian cane sugar lends a warm, molasses sweetness to the latte.</span>
+    <article class="flavor" data-reveal>
+      <figure class="arch sm"><img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=700&q=82" alt="Freshly baked pastries on a counter"></figure>
+      <h3>Panela</h3><p>Unrefined Colombian cane sugar lends a warm, molasses sweetness to the latte.</p>
     </article>
-    <article class="card green" data-reveal>
-      <b>Colombia</b>
-      <span>A neighborhood cafe grounded in coffee culture and heritage.</span>
+    <article class="flavor" data-reveal>
+      <figure class="arch sm"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=82" alt="A warm cup of coffee on a cafe table"></figure>
+      <h3>Colombia</h3><p>A neighborhood cafe grounded in coffee culture and heritage.</p>
     </article>
   </section>
 
-  <section class="plates" aria-label="From the counter">
-    <figure data-reveal><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=800&q=82" alt="A latte with delicate latte art" loading="lazy"></figure>
-    <figure data-reveal><img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=800&q=82" alt="Freshly baked pastries on a counter" loading="lazy"></figure>
-    <figure data-reveal><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=82" alt="A warm cup of coffee on a cafe table" loading="lazy"></figure>
-  </section>
-
-  <section id="visit" class="visit">
-    <div class="visit-copy" data-reveal>
-      <p class="eyebrow green">02 &mdash; Visit</p>
-      <h2>81-17 37th Avenue<br>Jackson Heights, NY 11372</h2>
-      <p>Open in Jackson Heights since August 2026. Come in for a panela latte and stay for the quiet.</p>
-      <div class="visit-actions">
-        <a class="button" href="https://www.google.com/maps/search/?api=1&query=Santuario%20Cafe%2081-17%2037th%20Avenue%20Jackson%20Heights%20NY%2011372" target="_blank" rel="noopener">Directions</a>
-        <a class="button ghost dark" href="tel:+13473370692">(347) 337-0692</a>
-      </div>
+  <section id="visit" class="visit-ctr">
+    <p class="eye amber">Visit</p>
+    <h2>81-17 37th Avenue<br>Jackson Heights, NY 11372</h2>
+    <p class="measure">Open in Jackson Heights since August 2026. Come in for a panela latte and stay for the quiet.</p>
+    <div class="hero-actions">
+      <a class="pill" href="https://www.google.com/maps/search/?api=1&query=Santuario%20Cafe%2081-17%2037th%20Avenue%20Jackson%20Heights%20NY%2011372" target="_blank" rel="noopener">Directions</a>
+      <a class="pill ghost" href="tel:+13473370692">(347) 337-0692</a>
     </div>
   </section>
 </main>
