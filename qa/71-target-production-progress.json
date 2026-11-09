@@ -6,7 +6,7 @@
     "existingRedesignTarget": 19,
     "newProspectTarget": 52,
     "totalTarget": 71,
-    "existingRedesignsComplete": 3,
+    "existingRedesignsComplete": 4,
     "newProspectsPublished": 0,
     "prospectsDisqualified": 0,
     "replacementsResearched": 0
@@ -150,14 +150,19 @@
       "sourceGroup": "existing-19",
       "researchStatus": "legitimate-prior-research-on-file",
       "websiteVerification": "no-independent-website (prior finding; recheck before outreach)",
-      "designDirection": "",
-      "filesChanged": [],
-      "developmentStatus": "pending-redesign",
-      "desktopQA": "not-started",
-      "mobileQA": "not-started",
-      "functionalTesting": "not-started",
+      "designDirection": "Monochrome French editorial teaser: Space Grotesk + Newsreader italic, paper/ink/cobalt, grayscale-to-color hover photos, issue-01 marker, cobalt band, facts grid. Deliberately lean (no menu invented per verified constraint).",
+      "filesChanged": [
+        "preview/le-loup-cafe/index.html",
+        "preview/le-loup-cafe/styles.css"
+      ],
+      "developmentStatus": "redesign-complete",
+      "desktopQA": "pass 1440x900 (0 overflow, imgs load, 0 errors)",
+      "mobileQA": "pass 390x844 (0 overflow)",
+      "functionalTesting": "Google Maps directions link present; in-page nav",
       "deploymentStatus": "live (current 19-site publication)",
-      "outstandingIssues": []
+      "outstandingIssues": [
+        "Hero stock bakery photo shows European price tags (ambient, not presented as Le Loup menu) - acceptable"
+      ]
     },
     {
       "name": "Duro Market",
