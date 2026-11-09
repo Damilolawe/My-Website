@@ -30,6 +30,7 @@ SCRIPT=r"""() => {
   headline:headline?.textContent.trim(),headlineCount:$('h1').length,
   sections:$('main section').length,cardCount:$('.card').length,
   hasMain:!!main,hasViewport:!!document.querySelector('meta[name="viewport"]'),
+  typographyGuard:!!document.querySelector('style[data-awe-typography="readability"]'),
   contrast:[getComputedStyle(document.body).color,getComputedStyle(document.body).backgroundColor],
   brokenNav:badAnchor,clipped,hasScript:$('script').length>0,
   headingStyle:h?{font:h.fontFamily,letterSpacing:h.letterSpacing,lineHeight:h.lineHeight}:null
@@ -54,6 +55,7 @@ def main():
      if info["brokenNav"]:failures.append("broken-page-anchor")
      if not info["headline"] or info["headlineCount"]!=1:failures.append("headline")
      if not info["hasMain"] or not info["hasViewport"]:failures.append("structure")
+     if not info["typographyGuard"]:failures.append("typography-guard")
      if info["hasScript"] or errors:failures.append("unsafe-script-error")
      if info["sections"]<2:failures.append("missing-sections")
      if mode in ("mobile390","desktop") or failures:
@@ -70,6 +72,7 @@ def main():
       issues=[]
       if not resp or resp.status!=200:issues.append("page-http")
       if not info["hasMain"] or not info["headline"]:issues.append("page-structure")
+      if not info["typographyGuard"]:issues.append("page-typography-guard")
       if info["pageWidth"]>393 or info["clipped"]:issues.append("page-overflow")
       # Test a visitor-operable menu; do not count hidden desktop duplicates.
       if page.locator(".design-mobile, .fn-mobile-menu").count():
