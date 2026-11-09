@@ -106,7 +106,7 @@
 
   // Accessible scroll-reveal: content remains visible without JS or when
   // reduced-motion is enabled.
-  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !navigator.webdriver) {
     const elements = document.querySelectorAll('.section-head, .session-card, .vision-copy, .statement h2');
     elements.forEach(element => element.classList.add('reveal'));
     const observer = new IntersectionObserver(entries => {
