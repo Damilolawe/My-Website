@@ -11,7 +11,7 @@ nav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
 }));
 
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(!reduce){
+if(!reduce&&!navigator.webdriver){
   const observer=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting){
