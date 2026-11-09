@@ -3,3 +3,9 @@
 @media(max-width:900px){.site-header{grid-template-columns:1fr auto}.site-header nav{display:none}.hero{min-height:720px}.currents{grid-template-columns:1fr}.manifesto{grid-template-columns:1fr}.pattern{min-height:480px}.facts{grid-template-columns:1fr}.facts>div,.facts>div+div{padding:35px 0;border-right:0;border-bottom:1px solid var(--line)}.visit{grid-template-columns:1fr}footer{grid-template-columns:1fr}footer p:last-child{text-align:left}}
 @media(max-width:560px){.concept-note{font-size:8px}.site-header{height:72px;padding:0 20px}.header-link{font-size:10px}.hero{min-height:670px}.hero-copy{padding:90px 24px 150px}.hero h1{font-size:66px}.hero-copy>p:not(.eyebrow){font-size:16px}.sun{right:-15%;top:8%;opacity:.7}.currents,.known,.visit{padding:85px 24px}.current-list article{grid-template-columns:36px 1fr}.current-list article p{grid-column:2}.pattern{padding:30px;gap:10px;min-height:390px}.manifesto-copy{padding:85px 24px}.manifesto h2{font-size:47px}.facts{margin-top:50px}.visit-card{padding:28px}.address{font-size:30px}footer{padding:40px 24px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Distinct banner treatment: bold oversized statement band */
+body .awe-motion-banner{padding:24px 0}
+body .awe-motion-track{animation-duration:20s}
+body .awe-motion-unit span{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(22px,2.8vw,40px);letter-spacing:0}
+body .awe-motion-unit i{width:9px;height:9px}

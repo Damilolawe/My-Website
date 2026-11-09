@@ -3,3 +3,9 @@
 @media(max-width:850px){nav{display:none}.hero{grid-template-columns:1fr}.hero-copy{padding:78px 28px}.conservatory{min-height:560px}.story{grid-template-columns:40px 1fr}.story-copy{grid-column:2}.atmosphere{grid-template-columns:1fr}.light-panel{min-height:520px}.detail-grid{grid-template-columns:1fr}.detail-grid article,.detail-grid article+article{padding:35px 0;border-right:0;border-bottom:1px solid var(--line)}.visit{grid-template-columns:1fr}.address-card{padding:30px}footer{grid-template-columns:1fr}footer p:last-child{text-align:left}}
 @media(max-width:520px){.concept-note{font-size:8px}.site-header{height:72px;padding:0 20px}.hero{min-height:0}h1{font-size:62px}.intro{font-size:16px}.conservatory{padding:55px 20px 0;min-height:480px}.arch{height:440px}.sun{width:110px;height:110px;right:30px}.leaf{height:170px;width:45px}.story,.details,.visit{padding:85px 24px}.story{grid-template-columns:1fr}.section-number{display:none}.story-copy{grid-column:auto;padding-top:0}.atmosphere-copy{padding:85px 24px}.light-panel{padding:40px 24px;min-height:430px}.details>h2{margin-bottom:45px}.detail-grid h3{margin-top:32px}.address-card{font-size:16px}footer{padding:40px 24px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Distinct banner treatment: static, elegant, centered (no scroll) */
+body .awe-motion-track{animation:none;width:100%;justify-content:center}
+body .awe-motion-unit:nth-child(2){display:none}
+body .awe-motion-unit{min-width:0;gap:clamp(16px,2.6vw,42px)}
+body .awe-motion-unit span{font-family:"Italiana",serif;font-weight:400;font-size:clamp(14px,1.5vw,19px);letter-spacing:.24em;text-transform:uppercase}

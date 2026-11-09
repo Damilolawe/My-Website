@@ -27,8 +27,13 @@ and verified live. Archived (non-selected) sources stay in GitHub but must not b
 - **Deployment verified live** earlier via `branded-previews.yml` run 42568492754 (success): manifest 22,
   index 22 cards, new/redesigned pages 200, archived pages 404, live render of `/tbili/` + `/cafe-wands/` clean.
 
-## ACTIVE WORK (in progress — resume here)
+## ACTIVE WORK — COMPLETE (re-architecture for visual uniqueness)
 **User follow-up:** "The preview sites are all too similar — make each individually visually unique."
+**STATUS: done.** All 13 freshly-authored previews re-architected into distinct layout archetypes
+(see list below, all committed + QA'd desktop+mobile, 0 overflow/0 errors), and the Seaport set's
+one shared element (the scrolling motion banner) was differentiated per site (mesa scrolling,
+casa static-elegant, solerum bold Fraunces, bao thin ticker). Full CI suite: 56 pass. Next:
+redeploy via workflow + verify live.
 Root cause: the 13 freshly-authored sites reused one skeleton (sticky top-nav → split hero image-right →
 word marquee → card grid → colored visit band → fade-up reveals). Fix = give each a genuinely different
 **compositional archetype** (nav, hero, section rhythm, motion), not a re-skin.

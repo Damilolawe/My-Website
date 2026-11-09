@@ -7,7 +7,7 @@
     "new52Published": 3,
     "disqualified": 49,
     "rearchitectDone": 13,
-    "rearchitectTodo": 4
+    "rearchitectTodo": 0
   },
   "activeSites": [
     {
@@ -64,9 +64,9 @@
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
       "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
-      "rearchitectureStatus": "todo-low-priority (shared motion banner)",
+      "rearchitectureStatus": "differentiated (distinct banner treatment; already-distinct hero)",
       "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
-      "nextRequiredAction": "Differentiate from the other Seaport/FiDi sites (vary/remove shared marquee + hero)."
+      "nextRequiredAction": "None outstanding; banner differentiated, hero already distinct."
     },
     {
       "id": "mesa-bar",
@@ -82,9 +82,9 @@
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
       "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
-      "rearchitectureStatus": "todo-low-priority (shared motion banner)",
+      "rearchitectureStatus": "differentiated (distinct banner treatment; already-distinct hero)",
       "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
-      "nextRequiredAction": "Differentiate from the other Seaport/FiDi sites (vary/remove shared marquee + hero)."
+      "nextRequiredAction": "None outstanding; banner differentiated, hero already distinct."
     },
     {
       "id": "casa-serra",
@@ -100,9 +100,9 @@
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
       "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
-      "rearchitectureStatus": "todo-low-priority (shared motion banner)",
+      "rearchitectureStatus": "differentiated (distinct banner treatment; already-distinct hero)",
       "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
-      "nextRequiredAction": "Differentiate from the other Seaport/FiDi sites (vary/remove shared marquee + hero)."
+      "nextRequiredAction": "None outstanding; banner differentiated, hero already distinct."
     },
     {
       "id": "solerum",
@@ -118,9 +118,9 @@
       "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
       "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
-      "rearchitectureStatus": "todo-low-priority (shared motion banner)",
+      "rearchitectureStatus": "differentiated (distinct banner treatment; already-distinct hero)",
       "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
-      "nextRequiredAction": "Differentiate from the other Seaport/FiDi sites (vary/remove shared marquee + hero)."
+      "nextRequiredAction": "None outstanding; banner differentiated, hero already distinct."
     },
     {
       "id": "tbili",
