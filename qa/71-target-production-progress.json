@@ -6,7 +6,7 @@
     "existingRedesignTarget": 19,
     "newProspectTarget": 52,
     "totalTarget": 71,
-    "existingRedesignsComplete": 11,
+    "existingRedesignsComplete": 12,
     "newProspectsPublished": 0,
     "prospectsDisqualified": 0,
     "replacementsResearched": 0
@@ -279,12 +279,16 @@
       "sourceGroup": "existing-19",
       "researchStatus": "legitimate-prior-research-on-file",
       "websiteVerification": "no-independent-website (prior finding; recheck before outreach)",
-      "designDirection": "",
-      "filesChanged": [],
-      "developmentStatus": "pending-redesign",
-      "desktopQA": "not-started",
-      "mobileQA": "not-started",
-      "functionalTesting": "not-started",
+      "designDirection": "Warm friendly cookie brand: Fredoka rounded display + Inter, cocoa/berry/pink/butter/cream, cookie hero with baked-by-hand badge, gift-box color cards. Dropped weak generic DoorDash homepage link. Switched to robust shared site.js (reveals work for reduced-motion/headless).",
+      "filesChanged": [
+        "preview/rachels-handmade-cookies/index.html",
+        "preview/rachels-handmade-cookies/styles.css",
+        "preview/rachels-handmade-cookies/site.js (removed)"
+      ],
+      "developmentStatus": "redesign-complete",
+      "desktopQA": "pass 1440x900 (0 overflow, 2 imgs load, all reveals shown, 0 errors)",
+      "mobileQA": "pass 390x844 (0 overflow)",
+      "functionalTesting": "Google Maps directions link present; removed generic doordash link",
       "deploymentStatus": "live (current 19-site publication)",
       "outstandingIssues": []
     },
