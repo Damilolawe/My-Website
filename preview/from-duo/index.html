@@ -14,47 +14,40 @@
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body id="top">
-<header>
+<header class="bar">
   <a class="logo" href="#top" aria-label="From Duo home">From&nbsp;Duo</a>
+  <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
   <nav data-nav aria-label="Primary">
-    <a href="#story">The name</a>
+    <a href="#name">The name</a>
     <a href="#menu">Menu direction</a>
     <a href="#visit">Visit</a>
+    <a href="https://www.instagram.com/fromduo/" target="_blank" rel="noopener">Instagram</a>
   </nav>
-  <a class="header-cta" href="https://www.instagram.com/fromduo/" target="_blank" rel="noopener">Instagram</a>
-  <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
 </header>
 
 <main>
-  <section class="hero">
-    <div class="hero-copy" data-reveal>
-      <p class="eyebrow">Matcha specialty house <span class="dot"></span> Hoboken</p>
+  <section class="split" aria-label="From Duo">
+    <div class="split-copy">
+      <p class="eye">Matcha specialty house &middot; Hoboken</p>
       <h1>Made to be<br><em>shared.</em></h1>
-      <p class="sub">Matcha, hojicha, coffee and baked goods from a specialty house built by two co-founders &mdash; opening on 12th Street.</p>
-      <a class="button" href="#visit">Follow the opening</a>
+      <p class="lede">Matcha, hojicha, coffee and baked goods from a specialty house built by two co-founders &mdash; opening on 12th Street.</p>
+      <a class="pill" href="#visit">Follow the opening</a>
     </div>
-    <figure class="hero-fig" data-reveal>
-      <img src="https://images.unsplash.com/photo-1753009712810-3f72c3f72548?auto=format&fit=crop&w=1100&q=84" alt="Hand-whisked green matcha in a bowl" loading="eager">
-      <figcaption>Soft opening updates via official social</figcaption>
-    </figure>
+    <div class="split-img"><img src="https://images.unsplash.com/photo-1753009712810-3f72c3f72548?auto=format&fit=crop&w=1300&q=84" alt="Hand-whisked green matcha in a bowl"><span class="tag">Soft opening updates via official social</span></div>
   </section>
 
-  <div class="ribbon" aria-hidden="true"><div class="ribbon-track"><span>Matcha</span><i></i><span>Hojicha</span><i></i><span>Tea</span><i></i><span>Coffee</span><i></i><span>Baked goods</span><i></i><span>Matcha</span><i></i><span>Hojicha</span><i></i><span>Tea</span><i></i><span>Coffee</span><i></i><span>Baked goods</span><i></i></div></div>
-
-  <section id="story" class="story">
-    <p class="side" aria-hidden="true">01 / The name</p>
-    <div data-reveal>
-      <h2>From two people.<br>For a whole neighborhood.</h2>
+  <section id="name" class="name-band">
+    <div class="name-inner">
+      <p class="eye light">01 &mdash; The name</p>
+      <h2>From two people, for a whole neighborhood.</h2>
       <p>Previously announced as Duo Donuts + Matcha, the business introduced its new name, From Duo, as the concept grew beyond donuts into a wider tea-and-coffee ritual.</p>
     </div>
   </section>
 
-  <section id="menu" class="menu">
-    <figure class="menu-fig" data-reveal>
-      <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1000&q=84" alt="Tea service in a modern cafe" loading="lazy">
-    </figure>
-    <div class="menu-copy" data-reveal>
-      <p class="eyebrow">02 / The direction</p>
+  <section id="menu" class="menu-split">
+    <div class="menu-img"><img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1200&q=84" alt="Tea service in a modern cafe"></div>
+    <div class="menu-copy">
+      <p class="eye">02 &mdash; The direction</p>
       <h2>A wider tea ritual.</h2>
       <ul class="menu-list">
         <li>Matcha specialty drinks</li>
@@ -66,12 +59,13 @@
     </div>
   </section>
 
-  <section id="visit" class="visit">
-    <div data-reveal>
-      <p class="eyebrow light">205 12th Street / Hoboken, NJ 07030</p>
+  <section id="visit" class="visit-split">
+    <div class="visit-copy">
+      <p class="eye light">03 &mdash; Visit</p>
       <h2>The doors are getting closer.</h2>
+      <p class="addr">205 12th Street, Hoboken, NJ 07030</p>
       <p>Public reporting placed the soft opening near the end of October 2026. Follow the official account for the confirmed opening date, hours and menu.</p>
-      <a class="button light" href="https://www.instagram.com/fromduo/" target="_blank" rel="noopener">Get official updates</a>
+      <a class="pill light" href="https://www.instagram.com/fromduo/" target="_blank" rel="noopener">Get official updates</a>
     </div>
   </section>
 </main>

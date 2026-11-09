@@ -10,99 +10,63 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body id="top">
-<header>
+<header class="over">
   <a class="logo" href="#top" aria-label="Tbili home">Tbili</a>
-  <nav data-nav aria-label="Primary">
-    <a href="#table">The table</a>
-    <a href="#menu">From the oven</a>
-    <a href="#rhythm">Our rhythm</a>
-    <a href="#visit">Visit</a>
-  </nav>
-  <a class="header-cta" href="https://www.instagram.com/tbili_nyc/" target="_blank" rel="noopener">Instagram</a>
   <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
+  <nav data-nav aria-label="Primary">
+    <a href="#menu">Menu</a>
+    <a href="#supra">The supra</a>
+    <a href="#visit">Visit</a>
+    <a href="https://www.instagram.com/tbili_nyc/" target="_blank" rel="noopener">Instagram</a>
+  </nav>
 </header>
 
 <main>
-  <section class="hero">
-    <div class="hero-copy" data-reveal>
-      <p class="kicker">Georgian cafe <span class="dot"></span> Williamsburg, Brooklyn</p>
+  <section class="cinema" aria-label="Tbili">
+    <div class="cinema-bg" aria-hidden="true"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1900&q=84" alt=""></div>
+    <div class="cinema-copy">
+      <p class="kick">Georgian cafe &middot; 442 Lorimer Street, Brooklyn</p>
       <h1>Warm bread,<br><em>slow mornings.</em></h1>
-      <p class="intro">A homey Lorimer Street cafe built around the Georgian table &mdash; fresh shoti bread from the oven, cheese-filled khachapuri, and coffee made for staying a while.</p>
-      <div class="hero-actions">
-        <a class="button" href="#menu">See what&rsquo;s baking</a>
-        <a class="button ghost" href="#visit">Find us</a>
-      </div>
+      <p class="lede">Fresh shoti bread, cheese-filled khachapuri and coffee made for staying a while &mdash; a homey corner of the Williamsburg border.</p>
     </div>
-    <div class="hero-media" data-reveal>
-      <figure class="hero-fig">
-        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1400&q=82" alt="Rustic loaves of freshly baked bread cooling on a wooden surface" loading="eager">
-      </figure>
-      <div class="stamp" aria-hidden="true"><span>Brooklyn</span><strong>est. 2026</strong></div>
-    </div>
+    <a class="scroll-cue" href="#menu" aria-label="See the menu"><span></span>Menu</a>
   </section>
 
-  <div class="marquee" aria-hidden="true"><div class="track"><span>Khachapuri</span><span class="sep"></span><span>Shoti</span><span class="sep"></span><span>Coffee</span><span class="sep"></span><span>Pastries</span><span class="sep"></span><span>Ajapsandali</span><span class="sep"></span><span>Chikhirtma</span><span class="sep"></span><span>Khachapuri</span><span class="sep"></span><span>Shoti</span><span class="sep"></span><span>Coffee</span><span class="sep"></span><span>Pastries</span><span class="sep"></span><span>Ajapsandali</span><span class="sep"></span><span>Chikhirtma</span><span class="sep"></span></div></div>
-
-  <section id="table" class="intro-band">
-    <p class="section-no">01 &mdash; The table</p>
-    <h2 data-reveal>A cafe built around the Georgian <em>supra</em> &mdash; the shared table.</h2>
-    <p class="lead" data-reveal>In Georgia, hospitality is a craft. Tbili brings that warmth to the Williamsburg and East Williamsburg border: bread pulled fresh from the oven, dishes meant to be passed around, and a room made for lingering over coffee with a friend.</p>
+  <section id="menu" class="carte">
+    <div class="carte-head">
+      <p class="col-label">From the oven &amp; kitchen</p>
+      <h2>What&rsquo;s on the table.</h2>
+    </div>
+    <ol class="carte-list">
+      <li data-reveal><span class="nm">Shoti bread</span><span class="ds">The traditional canoe-shaped Georgian loaf, baked fresh and best torn warm by hand.</span></li>
+      <li data-reveal><span class="nm">Khachapuri</span><span class="ds">Cheese-filled bread &mdash; the heart of the Georgian table and the anchor of the daytime menu.</span></li>
+      <li data-reveal><span class="nm">Chikhirtma</span><span class="ds">A delicate, golden Georgian chicken soup; comfort in a bowl.</span></li>
+      <li data-reveal><span class="nm">Ajapsandali</span><span class="ds">A spiced eggplant and vegetable stew, slow-cooked and deeply savory.</span></li>
+      <li data-reveal><span class="nm">Pastries &amp; sandwiches</span><span class="ds">A rotating case to go with your morning or afternoon.</span></li>
+      <li data-reveal><span class="nm">Coffee</span><span class="ds">Espresso and drip, poured for the kind of conversation that runs long.</span></li>
+    </ol>
+    <p class="carte-note">Dishes reflect verified public coverage of Tbili. Prices and daily specials are intentionally left off this independent study.</p>
   </section>
 
-  <section id="menu" class="menu">
-    <div class="menu-head" data-reveal>
-      <p class="section-no light">02 &mdash; From the oven &amp; kitchen</p>
-      <h2>Baked today, served slow.</h2>
-    </div>
-    <ul class="dishes">
-      <li data-reveal><h3>Shoti bread</h3><p>The traditional canoe-shaped Georgian loaf, baked fresh and best torn warm by hand.</p></li>
-      <li data-reveal><h3>Khachapuri</h3><p>Cheese-filled bread, the heart of the Georgian table and the anchor of the daytime menu.</p></li>
-      <li data-reveal><h3>Chikhirtma</h3><p>A delicate, golden Georgian chicken soup &mdash; comfort in a bowl.</p></li>
-      <li data-reveal><h3>Ajapsandali</h3><p>A spiced eggplant and vegetable stew, slow-cooked and deeply savory.</p></li>
-      <li data-reveal><h3>Pastries &amp; sandwiches</h3><p>A rotating case of pastries and sandwiches to go with your morning or afternoon.</p></li>
-      <li data-reveal><h3>Coffee</h3><p>Espresso and drip, poured for the kind of conversation that runs long.</p></li>
-    </ul>
-    <p class="menu-note" data-reveal>Concept note: dishes reflect verified public coverage of Tbili. Prices and daily specials are intentionally left off this independent study.</p>
-  </section>
-
-  <section id="rhythm" class="split">
-    <div class="split-art" data-reveal aria-hidden="true">
-      <span class="script">&#4311;&#4305;&#4312;&#4314;&#4312;&#4321;&#4312;</span>
-      <span class="translit">Tbilisi</span>
-    </div>
-    <div class="split-copy" data-reveal>
-      <p class="section-no light">03 &mdash; Our rhythm</p>
-      <h2>New to Lorimer Street.</h2>
-      <p>Tbili opened in October 2026, a small neighborhood cafe named for the warmth at the center of Georgian cooking. Mornings start with bread and coffee; afternoons slow into soups, stews and a shared plate or two.</p>
-      <p class="muted">This concept keeps the story factual and leaves hours and unverified details to the business.</p>
-    </div>
-  </section>
-
-  <section class="gallery" aria-label="Scenes from the cafe">
-    <figure data-reveal><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="A cup of coffee with latte art on a cafe table" loading="lazy"></figure>
-    <figure data-reveal><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="A warmly set table with shared dishes" loading="lazy"></figure>
-    <figure data-reveal><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Interior of a cozy neighborhood cafe with seating" loading="lazy"></figure>
+  <section id="supra" class="supra">
+    <p class="script" aria-hidden="true">&#4311;&#4305;&#4312;&#4314;&#4312;&#4321;&#4312;</p>
+    <h2>Built around the <em>supra</em> &mdash;<br>the shared Georgian table.</h2>
+    <p>Tbili opened in October 2026 on the Williamsburg and East Williamsburg border. Mornings start with bread and coffee; afternoons slow into soups, stews and a plate or two meant to be passed around.</p>
   </section>
 
   <section id="visit" class="visit">
-    <div class="visit-copy" data-reveal>
-      <p class="section-no">04 &mdash; Visit</p>
+    <div class="visit-l">
+      <p class="col-label">Visit</p>
       <h2>442 Lorimer Street<br>Brooklyn, NY 11206</h2>
-      <p>On the Williamsburg and East Williamsburg border. Come by for bread and coffee, stay for the table.</p>
-      <div class="visit-actions">
-        <a class="button" href="https://www.google.com/maps/search/?api=1&query=Tbili%20442%20Lorimer%20Street%20Brooklyn%20NY%2011206" target="_blank" rel="noopener">Get directions</a>
-        <a class="button ghost" href="https://www.instagram.com/tbili_nyc/" target="_blank" rel="noopener">Follow @tbili_nyc</a>
-      </div>
+      <p>On the Williamsburg / East Williamsburg border.</p>
     </div>
-    <div class="visit-card" data-reveal aria-hidden="true">
-      <span class="vc-k">Neighborhood</span><span class="vc-v">Williamsburg / East Williamsburg</span>
-      <span class="vc-k">Cuisine</span><span class="vc-v">Georgian cafe &amp; bakery</span>
-      <span class="vc-k">Opened</span><span class="vc-v">October 2026</span>
-      <span class="vc-k">Best for</span><span class="vc-v">Bread, coffee, a shared table</span>
+    <div class="visit-r">
+      <a class="line-link" href="https://www.google.com/maps/search/?api=1&query=Tbili%20442%20Lorimer%20Street%20Brooklyn%20NY%2011206" target="_blank" rel="noopener">Get directions</a>
+      <a class="line-link" href="https://www.instagram.com/tbili_nyc/" target="_blank" rel="noopener">Follow @tbili_nyc</a>
     </div>
   </section>
 </main>
