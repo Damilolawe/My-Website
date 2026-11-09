@@ -6,8 +6,8 @@
     "original19Published": 19,
     "new52Published": 3,
     "disqualified": 49,
-    "rearchitectDone": 12,
-    "rearchitectTodo": 5
+    "rearchitectDone": 13,
+    "rearchitectTodo": 4
   },
   "activeSites": [
     {
@@ -314,15 +314,15 @@
       "repoLocation": "preview/worksbynet/",
       "noExistingWebsite": "prior finding: no independent website (recheck before outreach)",
       "researchStatus": "legitimate-prior-research-on-file",
-      "designDevStatus": "built (ON OLD SHARED SKELETON — re-architecture pending)",
+      "designDevStatus": "re-architected (distinct layout)",
       "desktopQA": "pass 1440x900 (0 overflow, 0 errors)",
       "mobileQA": "pass 390x844 (0 overflow; fixed hero-art shrink-to-fit bug)",
-      "screenshotVerified": "pending re-architecture",
+      "screenshotVerified": "yes (desktop+mobile inspected)",
       "knownProblems": [],
       "deploymentStatus": "live (on allowlist; 22-site deploy verified run 42568492754)",
-      "rearchitectureStatus": "todo",
-      "lastVerifiedAction": "redesigned/built + QA'd + deployed live",
-      "nextRequiredAction": "Re-architect into: gallery/material-grid hero (verified content only), QA desktop+mobile, commit."
+      "rearchitectureStatus": "done",
+      "lastVerifiedAction": "re-architected + QA'd + committed (c3e38a5)",
+      "nextRequiredAction": "None outstanding; re-verify website/IG before any outreach."
     },
     {
       "id": "tiny-topiary",

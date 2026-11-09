@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="An editorial studio concept for WorksbyNET, a Bushwick artist-run ceramics and photography practice by Nicholas Talamo.">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#121212">
+<meta name="theme-color" content="#141311">
 <title>WorksbyNET | Bushwick Artist Studio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,70 +13,56 @@
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body id="top">
-<header>
+<header class="hb">
   <a class="logo" href="#top" aria-label="WorksbyNET home">Works<span>by</span>NET</a>
+  <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
   <nav data-nav aria-label="Primary">
     <a href="#practice">Practice</a>
     <a href="#objects">Objects</a>
     <a href="#contact">Contact</a>
   </nav>
-  <a class="header-cta" href="https://www.instagram.com/worksbynet/" target="_blank" rel="noopener">Instagram</a>
-  <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
 </header>
 
 <main>
-  <section class="hero">
-    <div class="hero-copy" data-reveal>
-      <p class="eyebrow">Bushwick <span class="sep">/</span> Artist-run studio <span class="sep">/</span> Founded 2025</p>
+  <section class="wall" aria-label="WorksbyNET">
+    <div class="wall-title">
+      <p class="eye">Bushwick <span class="sep">/</span> Artist-run <span class="sep">/</span> Founded 2025</p>
       <h1>Useful objects.<br><em>Unquiet images.</em></h1>
       <p class="sub">A multidisciplinary practice by Nicholas Talamo &mdash; small-batch ceramic vessels, sculptural forms and limited photographic works.</p>
-      <div class="hero-actions">
-        <a class="button" href="#objects">See the work</a>
-        <a class="button ghost" href="https://www.instagram.com/worksbynet/" target="_blank" rel="noopener">Follow on Instagram</a>
-      </div>
+      <a class="btn" href="#objects">See the work</a>
     </div>
-    <div class="hero-art" aria-hidden="true">
-      <span class="swatch clay"></span>
-      <span class="swatch silver"></span>
-      <span class="swatch riso"></span>
-    </div>
+    <span class="swatch clay w1" aria-hidden="true"></span>
+    <span class="swatch silver w2" aria-hidden="true"></span>
+    <span class="swatch riso w3" aria-hidden="true"></span>
+    <span class="swatch ink w4" aria-hidden="true"><span class="ink-no">01</span></span>
+    <span class="swatch clay2 w5" aria-hidden="true"></span>
   </section>
 
   <section id="practice" class="practice">
-    <div class="practice-head" data-reveal>
-      <p class="eyebrow dark">01 / The practice</p>
-      <h2>Made slowly,<br>held onto.</h2>
-    </div>
-    <p class="practice-lead" data-reveal>WorksbyNET brings ceramics, digital and analog photography, graphic design and painting into one human-scale studio. Each piece is made in small batches, with material integrity and a direct, personal connection at the center.</p>
+    <p class="eye dark">The practice</p>
+    <h2>Made slowly, held onto.</h2>
+    <p class="practice-lead">WorksbyNET brings ceramics, digital and analog photography, graphic design and painting into one human-scale studio. Each piece is made in small batches, with material integrity and a direct, personal connection at the center.</p>
   </section>
 
   <section id="objects" class="objects">
-    <p class="eyebrow" data-reveal>02 / Selected directions</p>
-    <div class="object-grid">
-      <article data-reveal>
-        <div class="tile clay" aria-hidden="true"></div>
-        <h3>Home ceramics</h3>
-        <p>Functional vessels and sculptural objects for daily rituals.</p>
-      </article>
-      <article data-reveal>
-        <div class="tile silver" aria-hidden="true"></div>
-        <h3>Printed matter</h3>
-        <p>Limited photographic works with a tactile, analog point of view.</p>
-      </article>
-      <article data-reveal>
-        <div class="tile riso" aria-hidden="true"></div>
-        <h3>Commissions</h3>
-        <p>Small-batch work for collectors, spaces and thoughtful gifts.</p>
-      </article>
-    </div>
+    <article class="obj" data-reveal>
+      <div class="tile clay" aria-hidden="true"></div>
+      <div class="obj-copy"><p class="num">01 / Home ceramics</p><h3>Functional vessels and sculptural objects for daily rituals.</h3></div>
+    </article>
+    <article class="obj rev" data-reveal>
+      <div class="tile silver" aria-hidden="true"></div>
+      <div class="obj-copy"><p class="num">02 / Printed matter</p><h3>Limited photographic works with a tactile, analog point of view.</h3></div>
+    </article>
+    <article class="obj" data-reveal>
+      <div class="tile riso" aria-hidden="true"></div>
+      <div class="obj-copy"><p class="num">03 / Commissions</p><h3>Small-batch work for collectors, spaces and thoughtful gifts.</h3></div>
+    </article>
   </section>
 
   <section id="contact" class="contact">
-    <div data-reveal>
-      <p class="eyebrow light">03 / Start a conversation</p>
-      <h2>Bring a good idea<br>to the workbench.</h2>
-      <a class="button light" href="https://www.instagram.com/worksbynet/" target="_blank" rel="noopener">Instagram / inquiries</a>
-    </div>
+    <p class="eye light">Start a conversation</p>
+    <h2>Bring a good idea to the workbench.</h2>
+    <a class="btn light" href="https://www.instagram.com/worksbynet/" target="_blank" rel="noopener">Instagram / inquiries</a>
   </section>
 </main>
 
