@@ -15,12 +15,12 @@
 </head>
 <body id="top">
 <header class="hb">
-  <a class="logo" href="#top" aria-label="Rachel's Handmade Cookies home">Rachel&rsquo;s</a>
+  <a class="logo" href="./index.html" aria-label="Rachel's Handmade Cookies home">Rachel&rsquo;s</a>
   <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
   <nav data-nav aria-label="Primary">
-    <a href="#bake">The bake</a>
-    <a href="#gift">Bring a box</a>
-    <a href="#visit">Visit</a>
+    <a href="./index.html" aria-current="page">Home</a>
+    <a href="./menu.html">Cookies</a>
+    <a href="./visit.html">Visit</a>
   </nav>
 </header>
 
@@ -30,7 +30,7 @@
       <p class="eye">Rosedale, Queens</p>
       <h1>Made by hand.<br><em>Made to share.</em></h1>
       <p class="sub">A warm, straightforward home for handmade cookies, gifting and the small celebrations that deserve something sweet.</p>
-      <a class="btn" href="#gift">Bring a box</a>
+      <a class="btn" href="./menu.html">See the cookies</a>
     </div>
     <figure class="snap snap-a"><img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=760&q=82" alt="Fresh chocolate chunk cookies cooling on parchment" loading="eager"><figcaption>fresh from the oven</figcaption></figure>
     <figure class="snap snap-b"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=620&q=82" alt="A bowl of homemade chocolate chip cookies" loading="eager"><figcaption>a box to share</figcaption></figure>
@@ -40,7 +40,7 @@
   <section id="bake" class="note-row">
     <div class="note note-cream" data-reveal>
       <p class="kicker">The bake</p>
-      <p>Rachel&rsquo;s Handmade Cookies appeared in 2026 Queens opening coverage at 241-20 South Conduit Avenue, Rosedale. Every batch starts with a real kitchen &mdash; this concept keeps the story focused on handmade baking and a direct way to get in touch.</p>
+      <p>Rachel&rsquo;s Handmade Cookies bakes small batches by hand in Rosedale, Queens, at 241-20 South Conduit Avenue. Everything starts in a real kitchen &mdash; soft centers, crisp edges, and a box built for sharing.</p>
     </div>
   </section>
 
@@ -53,6 +53,21 @@
     </div>
   </section>
 
+  <section class="teasers" aria-label="Explore" data-reveal-group>
+    <a class="tnote a" href="./menu.html">
+      <p class="eye">The cookies</p>
+      <h3>What&rsquo;s baking</h3>
+      <p>Flavors, dozens and gift boxes.</p>
+      <span class="go">See the cookies</span>
+    </a>
+    <a class="tnote b" href="./visit.html">
+      <p class="eye">Visit &amp; orders</p>
+      <h3>Come by or order</h3>
+      <p>241-20 South Conduit Ave. Hours and custom orders.</p>
+      <span class="go">Plan a visit</span>
+    </a>
+  </section>
+
   <section id="visit" class="visit">
     <div class="visit-card" data-reveal>
       <p class="eye">Visit</p>
@@ -62,6 +77,12 @@
     </div>
   </section>
 </main>
+
+<footer class="site-foot">
+  <p class="f-logo">Rachel&rsquo;s</p>
+  <nav aria-label="Footer"><a href="./index.html">Home</a><a href="./menu.html">Cookies</a><a href="./visit.html">Visit</a></nav>
+  <p class="fine">Independent, unofficial design concept. Cookie flavors, prices and hours shown are illustrative samples.</p>
+</footer>
 
 <script src="./site.js"></script>
 </body>

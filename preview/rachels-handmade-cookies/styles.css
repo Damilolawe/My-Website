@@ -90,3 +90,83 @@ button[data-menu][aria-expanded="true"] span:last-child{transform:translateY(-8.
   .t-l[data-reveal].seen,.t-r[data-reveal].seen,.t-l2[data-reveal].seen{transform:none}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}[data-reveal]{opacity:1;transition:none}}
+
+/* ============ Multipage expansion (home / menu / visit) ============ */
+.hb nav[data-nav] a[aria-current="page"]{color:var(--berry);font-weight:600}
+
+/* Fresh reveal-group (independent of the rotation-aware base reveal) */
+[data-reveal-group]>*{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+[data-reveal-group].seen>*{opacity:1;transform:none}
+
+/* Sub-page masthead */
+.pmast{max-width:1120px;margin:0 auto;padding:clamp(44px,6vw,86px) clamp(20px,5vw,52px) clamp(20px,3vw,34px);text-align:center}
+.pmast .eye{display:inline-block;margin-bottom:14px}
+.pmast h1{font-size:clamp(44px,7vw,92px);line-height:1;color:var(--cocoa)}
+.pmast .sub{margin:20px auto 0;max-width:48ch}
+
+/* Menu: flavor note scatter + box price list */
+.menu-wrap{max-width:1120px;margin:0 auto;padding:clamp(36px,5vw,70px) clamp(20px,5vw,52px)}
+.flavors{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,34px);align-items:start}
+.fnote{border-radius:16px;padding:26px 26px 28px;box-shadow:0 16px 34px -20px rgba(58,42,32,.4);transition:transform .3s}
+.fnote:nth-child(3n+1){background:#fff;transform:rotate(-2deg)}
+.fnote:nth-child(3n+2){background:var(--pink);color:var(--cocoa);transform:rotate(1.5deg);margin-top:22px}
+.fnote:nth-child(3n+3){background:var(--butter);color:var(--cocoa);transform:rotate(-1deg);margin-top:10px}
+.fnote:hover{transform:rotate(0) translateY(-4px)}
+.fnote h3{font-size:clamp(21px,2.2vw,26px);margin-bottom:8px}
+.fnote p{margin:0;font-size:15px;line-height:1.5}
+.fnote .pr{display:inline-block;margin-top:14px;font-family:"Fredoka",sans-serif;font-weight:600;font-size:18px;color:var(--berry)}
+.fnote:nth-child(3n+2) .pr,.fnote:nth-child(3n+3) .pr{color:var(--cocoa)}
+
+.boxlist{max-width:680px;margin:clamp(44px,6vw,80px) auto 0;background:#fff;border-radius:18px;padding:12px clamp(24px,4vw,40px);box-shadow:0 20px 44px -24px rgba(58,42,32,.45);transform:rotate(-.6deg)}
+.boxlist h2{font-family:"Fredoka",sans-serif;text-align:center;font-size:clamp(24px,3vw,34px);color:var(--cocoa);margin:22px 0 10px}
+.brow{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:8px 16px;padding:16px 0;border-bottom:2px dotted color-mix(in srgb,var(--cocoa) 22%,transparent)}
+.brow:last-of-type{border-bottom:0}
+.brow h3{font-family:"Fredoka",sans-serif;font-weight:600;font-size:19px}
+.brow .pr{font-family:"Fredoka",sans-serif;font-weight:600;font-size:19px;color:var(--berry)}
+.brow .d{grid-column:1/2;margin:3px 0 0;font-size:14px;color:color-mix(in srgb,var(--ink) 62%,transparent)}
+.mnote{text-align:center;margin:26px 0 0;font-size:13px;font-style:italic;color:color-mix(in srgb,var(--ink) 55%,transparent)}
+
+/* Teaser notes (home) */
+.teasers{max-width:1120px;margin:0 auto;padding:clamp(20px,3vw,40px) clamp(20px,5vw,52px) clamp(40px,6vw,70px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px)}
+.tnote{display:block;text-decoration:none;border-radius:16px;padding:32px 30px 34px;box-shadow:0 16px 34px -20px rgba(58,42,32,.4);transition:transform .3s}
+.tnote.a{background:var(--cocoa);color:var(--cream);transform:rotate(-1.5deg)}
+.tnote.b{background:var(--pink);color:var(--cocoa);transform:rotate(1.5deg)}
+.tnote:hover{transform:rotate(0) translateY(-4px)}
+.tnote .eye{color:var(--butter)}
+.tnote.b .eye{color:var(--berry)}
+.tnote h3{font-size:clamp(26px,3vw,36px);margin:12px 0 8px}
+.tnote p{margin:0;font-size:15.5px}
+.tnote .go{display:inline-block;margin-top:16px;font-family:"Fredoka",sans-serif;font-weight:600}
+
+/* Hours + FAQ (visit) */
+.vgrid{max-width:1000px;margin:0 auto;padding:clamp(36px,5vw,70px) clamp(20px,5vw,52px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,56px);align-items:start}
+.vcard{background:#fff;border-radius:18px;padding:clamp(26px,3vw,38px);box-shadow:0 18px 40px -24px rgba(58,42,32,.4)}
+.vcard.tilt{transform:rotate(-1deg)}
+.vcard h2{font-family:"Fredoka",sans-serif;font-size:clamp(24px,2.8vw,32px);color:var(--cocoa);margin:0 0 18px}
+.hours{list-style:none;margin:0;padding:0}
+.hours div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:2px dotted color-mix(in srgb,var(--cocoa) 22%,transparent)}
+.hours div:last-child{border-bottom:0}
+.hours dt{font-weight:600}
+.hours dd{margin:0;font-family:"Fredoka",sans-serif;font-weight:600;font-size:19px;color:var(--berry)}
+.faq details{border-bottom:2px dotted color-mix(in srgb,var(--cocoa) 20%,transparent)}
+.faq details:last-child{border-bottom:0}
+.faq summary{cursor:pointer;list-style:none;padding:15px 0;font-family:"Fredoka",sans-serif;font-weight:600;font-size:18px;color:var(--cocoa);display:flex;justify-content:space-between;align-items:center;gap:14px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";width:11px;height:11px;border-right:2.5px solid var(--berry);border-bottom:2.5px solid var(--berry);transform:rotate(45deg);transition:transform .25s;flex:none}
+.faq details[open] summary::after{transform:rotate(-135deg)}
+.faq p{margin:0 0 14px;font-size:15px;color:color-mix(in srgb,var(--ink) 74%,transparent)}
+
+/* Footer */
+.site-foot{background:var(--cocoa);color:color-mix(in srgb,var(--cream) 82%,transparent);text-align:center;padding:clamp(48px,7vw,80px) clamp(20px,5vw,52px)}
+.site-foot .f-logo{font-family:"Fredoka",sans-serif;font-weight:700;font-size:30px;color:var(--cream);margin:0 0 16px}
+.site-foot nav{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.site-foot nav a{font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:color-mix(in srgb,var(--cream) 76%,transparent)}
+.site-foot nav a:hover{color:var(--butter)}
+.site-foot .fine{font-size:12px;color:color-mix(in srgb,var(--cream) 50%,transparent);max-width:56ch;margin:0 auto}
+
+@media(max-width:900px){
+  .flavors{grid-template-columns:1fr}
+  .fnote,.fnote:nth-child(3n+1),.fnote:nth-child(3n+2),.fnote:nth-child(3n+3){transform:none;margin-top:0}
+  .teasers,.vgrid{grid-template-columns:1fr}
+  .tnote.a,.tnote.b,.vcard.tilt,.boxlist{transform:none}
+}
