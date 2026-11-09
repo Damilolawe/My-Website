@@ -15,12 +15,12 @@
 </head>
 <body id="top">
 <header class="over">
-  <a class="logo" href="#top" aria-label="Tbili home">Tbili</a>
+  <a class="logo" href="./index.html" aria-label="Tbili home">Tbili</a>
   <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
   <nav data-nav aria-label="Primary">
-    <a href="#menu">Menu</a>
-    <a href="#supra">The supra</a>
-    <a href="#visit">Visit</a>
+    <a href="./index.html" aria-current="page">Home</a>
+    <a href="./menu.html">Menu</a>
+    <a href="./visit.html">Visit</a>
     <a href="https://www.instagram.com/tbili_nyc/" target="_blank" rel="noopener">Instagram</a>
   </nav>
 </header>
@@ -33,43 +33,46 @@
       <h1>Warm bread,<br><em>slow mornings.</em></h1>
       <p class="lede">Fresh shoti bread, cheese-filled khachapuri and coffee made for staying a while &mdash; a homey corner of the Williamsburg border.</p>
     </div>
-    <a class="scroll-cue" href="#menu" aria-label="See the menu"><span></span>Menu</a>
+    <a class="scroll-cue" href="#supra" aria-label="Read more"><span></span>More</a>
   </section>
 
-  <section id="menu" class="carte">
+  <section id="supra" class="supra">
+    <p class="script" aria-hidden="true">&#4311;&#4305;&#4312;&#4314;&#4312;&#4321;&#4312;</p>
+    <h2 data-reveal>Built around the <em>supra</em> &mdash;<br>the shared Georgian table.</h2>
+    <p data-reveal>Tbili opened in October 2026 on the Williamsburg and East Williamsburg border. Mornings start with bread and coffee; afternoons slow into soups, stews and a plate or two meant to be passed around.</p>
+  </section>
+
+  <section class="carte">
     <div class="carte-head">
       <p class="col-label">From the oven &amp; kitchen</p>
-      <h2>What&rsquo;s on the table.</h2>
+      <h2>A taste of the table.</h2>
     </div>
     <ol class="carte-list">
       <li data-reveal><span class="nm">Shoti bread</span><span class="ds">The traditional canoe-shaped Georgian loaf, baked fresh and best torn warm by hand.</span></li>
       <li data-reveal><span class="nm">Khachapuri</span><span class="ds">Cheese-filled bread &mdash; the heart of the Georgian table and the anchor of the daytime menu.</span></li>
       <li data-reveal><span class="nm">Chikhirtma</span><span class="ds">A delicate, golden Georgian chicken soup; comfort in a bowl.</span></li>
-      <li data-reveal><span class="nm">Ajapsandali</span><span class="ds">A spiced eggplant and vegetable stew, slow-cooked and deeply savory.</span></li>
-      <li data-reveal><span class="nm">Pastries &amp; sandwiches</span><span class="ds">A rotating case to go with your morning or afternoon.</span></li>
       <li data-reveal><span class="nm">Coffee</span><span class="ds">Espresso and drip, poured for the kind of conversation that runs long.</span></li>
     </ol>
-    <p class="carte-note">Dishes reflect verified public coverage of Tbili. Prices and daily specials are intentionally left off this independent study.</p>
+    <p class="carte-note">A fuller, illustrative menu lives on the menu page.</p>
   </section>
 
-  <section id="supra" class="supra">
-    <p class="script" aria-hidden="true">&#4311;&#4305;&#4312;&#4314;&#4312;&#4321;&#4312;</p>
-    <h2>Built around the <em>supra</em> &mdash;<br>the shared Georgian table.</h2>
-    <p>Tbili opened in October 2026 on the Williamsburg and East Williamsburg border. Mornings start with bread and coffee; afternoons slow into soups, stews and a plate or two meant to be passed around.</p>
-  </section>
-
-  <section id="visit" class="visit">
-    <div class="visit-l">
-      <p class="col-label">Visit</p>
-      <h2>442 Lorimer Street<br>Brooklyn, NY 11206</h2>
-      <p>On the Williamsburg / East Williamsburg border.</p>
-    </div>
-    <div class="visit-r">
-      <a class="line-link" href="https://www.google.com/maps/search/?api=1&query=Tbili%20442%20Lorimer%20Street%20Brooklyn%20NY%2011206" target="_blank" rel="noopener">Get directions</a>
-      <a class="line-link" href="https://www.instagram.com/tbili_nyc/" target="_blank" rel="noopener">Follow @tbili_nyc</a>
-    </div>
+  <section class="teasers" aria-label="Explore">
+    <a class="teaser" href="./menu.html" data-reveal>
+      <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=1100&q=84" alt="Golden cheese-filled khachapuri bread">
+      <span class="tc"><h3>The Menu</h3><p>Shoti, khachapuri, soups and stews, pastries and coffee.</p><span class="go">Browse the menu</span></span>
+    </a>
+    <a class="teaser" href="./visit.html" data-reveal>
+      <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1100&q=84" alt="A warm, inviting cafe interior">
+      <span class="tc"><h3>Visit</h3><p>442 Lorimer Street. Hours, the room and good things to know.</p><span class="go">Plan a visit</span></span>
+    </a>
   </section>
 </main>
+
+<footer class="site-foot">
+  <p class="f-logo">Tbili</p>
+  <nav aria-label="Footer"><a href="./index.html">Home</a><a href="./menu.html">Menu</a><a href="./visit.html">Visit</a><a href="https://www.instagram.com/tbili_nyc/" target="_blank" rel="noopener">Instagram</a></nav>
+  <p class="fine">Independent, unofficial design concept. Menu items, prices and hours shown are illustrative samples.</p>
+</footer>
 
 <script src="./site.js"></script>
 </body>
