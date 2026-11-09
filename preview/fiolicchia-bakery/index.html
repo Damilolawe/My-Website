@@ -14,13 +14,13 @@
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body id="top">
-<header class="hb">
-  <a class="logo" href="#top" aria-label="Fiolicchia Bakery home">Fiolicchia<small>Bakery NYC</small></a>
+<header class="hb" data-header>
+  <a class="logo" href="./index.html" aria-label="Fiolicchia Bakery home">Fiolicchia<small>Bakery NYC</small></a>
   <button data-menu aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
   <nav data-nav aria-label="Primary">
-    <a href="#process">Process</a>
-    <a href="#bakes">Bakes</a>
-    <a href="#order">Order</a>
+    <a href="./index.html" aria-current="page">Home</a>
+    <a href="./bakes.html">The Bakes</a>
+    <a href="./order.html">Order</a>
     <a href="https://www.instagram.com/fiolicchiabakerynyc/" target="_blank" rel="noopener">Instagram</a>
   </nav>
 </header>
@@ -30,62 +30,49 @@
     <p class="eye">Astoria micro-bakery</p>
     <h1>Two Italians.<br>One very <em>patient</em> dough.</h1>
     <p class="lede">Organic ingredients, Italian extra virgin olive oil and a 48-hour fermentation. Follow the loaf from pre-ferment to box.</p>
+    <a class="btn" href="./bakes.html">See the bakes</a>
   </section>
 
-  <section id="process" class="timeline">
+  <section class="timeline">
     <ol class="spine">
-      <li class="node" data-reveal>
-        <span class="dot"></span>
-        <p class="step">Step 01</p>
-        <h2>The biga</h2>
-        <p>Every focaccia begins with a biga &mdash; a stiff Italian pre-ferment that builds flavor long before the oven.</p>
-      </li>
-      <li class="node" data-reveal>
-        <span class="dot"></span>
-        <p class="step">Step 02</p>
-        <h2>80% hydration</h2>
-        <p>A high-hydration dough, built on organic ingredients and Italian extra virgin olive oil, for that open, tender crumb.</p>
-      </li>
-      <li class="node big" data-reveal>
-        <span class="dot"></span>
-        <p class="step">Step 03</p>
-        <div class="stat"><span class="num">48</span><span class="unit">hours of<br>fermentation</span></div>
-        <p>Slow is the whole point. Time does the work; the bakers just pay attention.</p>
-        <figure class="node-img"><img src="https://images.unsplash.com/photo-1767065886733-53d7e2d2005d?auto=format&fit=crop&w=1000&q=84" alt="Fresh focaccia with rosemary and sea salt" loading="lazy"></figure>
-      </li>
-      <li class="node" data-reveal>
-        <span class="dot"></span>
-        <p class="step">Step 04</p>
-        <h2>Baked &amp; boxed</h2>
-        <p>Pickup and local delivery in Astoria &mdash; Tuesday orders due Sunday at noon, Saturday orders due Thursday at noon.</p>
-      </li>
+      <li class="node" data-reveal><span class="dot"></span><p class="step">Step 01</p><h2>The biga</h2><p>Every focaccia begins with a biga &mdash; a stiff Italian pre-ferment that builds flavor long before the oven.</p></li>
+      <li class="node" data-reveal><span class="dot"></span><p class="step">Step 02</p><h2>80% hydration</h2><p>A high-hydration dough, built on organic ingredients and Italian extra virgin olive oil, for that open, tender crumb.</p></li>
+      <li class="node big" data-reveal><span class="dot"></span><p class="step">Step 03</p><div class="stat-inline"><span class="num" data-count="48">48</span><span class="unit">hours of<br>fermentation</span></div><p>Slow is the whole point. Time does the work; the bakers just pay attention.</p><figure class="node-img" data-lightbox><img src="https://images.unsplash.com/photo-1767065886733-53d7e2d2005d?auto=format&fit=crop&w=1000&q=84" alt="Fresh focaccia with rosemary and sea salt" loading="lazy"></figure></li>
+      <li class="node" data-reveal><span class="dot"></span><p class="step">Step 04</p><h2>Baked &amp; boxed</h2><p>Pickup and local delivery in Astoria &mdash; Tuesday orders due Sunday at noon, Saturday orders due Thursday at noon.</p></li>
     </ol>
   </section>
 
-  <section id="bakes" class="bakes">
-    <p class="eye light">What they make</p>
-    <h2 class="bakes-h">Focaccia, modern tarts and layered cakes.</h2>
-    <table class="menu">
-      <tbody>
-        <tr data-reveal><th scope="row">9-inch focaccia</th><td>Seasonal and classic flavors</td><td class="price">$12&ndash;$18</td></tr>
-        <tr data-reveal><th scope="row">7-inch cakes</th><td>Layered cakes to order</td><td class="price">from $75</td></tr>
-        <tr data-reveal><th scope="row">9-inch tarts</th><td>Modern, seasonal tarts</td><td class="price">from $85</td></tr>
-        <tr data-reveal><th scope="row">Events</th><td>Special batches for parties &amp; catering</td><td class="price">by request</td></tr>
-      </tbody>
-    </table>
-    <p class="menu-note">Prices reflect figures currently published on Fiolicchia&rsquo;s official order page and are set by the bakery.</p>
+  <section class="band milk2">
+    <div class="wrap center">
+      <p class="eye center">What they make</p>
+      <h2 style="font-size:clamp(32px,5vw,62px);color:var(--wine);margin:14px 0 20px" data-reveal>Focaccia, modern tarts<br>and layered cakes.</h2>
+      <p class="lead-measure" data-reveal>Three things, done with care. Seasonal focaccia from the oven, modern tarts built on buttery pastry, and layered celebration cakes to order.</p>
+    </div>
   </section>
 
-  <section id="order" class="order">
-    <p class="eye">Order window</p>
-    <h2>Pickup and local delivery in Astoria.</h2>
-    <p class="order-sub">Availability and pricing are governed by the official order page.</p>
-    <div class="order-actions">
-      <a class="btn" href="https://bakesy.shop/b/fiolicchia-bakery-nyc" target="_blank" rel="noopener">Official order page</a>
-      <a class="btn ghost" href="https://www.instagram.com/fiolicchiabakerynyc/" target="_blank" rel="noopener">See current bakes</a>
+  <section class="wrap teasers" data-reveal-group>
+    <a class="teaser t1" href="./bakes.html"><h3>The Bakes</h3><p>Focaccia flavors, modern tarts and layered cakes, with current pricing.</p><span class="go">See the menu</span></a>
+    <a class="teaser t2" href="./order.html"><h3>Order &amp; pickup</h3><p>The order window, pickup and local Astoria delivery, and a few FAQs.</p><span class="go">How to order</span></a>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2 data-reveal>Fresh from the oven.</h2>
+      <p data-reveal>Reserve your focaccia before the window closes.</p>
+      <a class="btn cream" href="./order.html">Place an order</a>
     </div>
   </section>
 </main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p class="f-logo">Fiolicchia</p>
+      <nav aria-label="Footer"><a href="./index.html">Home</a><a href="./bakes.html">The Bakes</a><a href="./order.html">Order</a></nav>
+    </div>
+    <p class="fine">Independent, unofficial design concept. Some menu items shown are illustrative samples; current pricing follows the official order page.</p>
+  </div>
+</footer>
 
 <script src="./site.js"></script>
 </body>
