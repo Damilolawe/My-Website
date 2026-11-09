@@ -6,7 +6,7 @@
     "existingRedesignTarget": 19,
     "newProspectTarget": 52,
     "totalTarget": 71,
-    "existingRedesignsComplete": 6,
+    "existingRedesignsComplete": 7,
     "newProspectsPublished": 0,
     "prospectsDisqualified": 0,
     "replacementsResearched": 0
@@ -314,12 +314,15 @@
       "sourceGroup": "existing-19",
       "researchStatus": "legitimate-prior-research-on-file",
       "websiteVerification": "no-independent-website (prior finding; recheck before outreach)",
-      "designDirection": "",
-      "filesChanged": [],
-      "developmentStatus": "pending-redesign",
-      "desktopQA": "not-started",
-      "mobileQA": "not-started",
-      "functionalTesting": "not-started",
+      "designDirection": "Warm family-table editorial: Spectral serif + Inter, teal/coral/butter/paper, named verified dish cards (Tapsilog/Pork sisig/Dalgona), owner story (Pauline & Ryan Coronado, Brooklyn->Middle Village 2025). No invented menu/prices.",
+      "filesChanged": [
+        "preview/cafe-pr/index.html",
+        "preview/cafe-pr/styles.css"
+      ],
+      "developmentStatus": "redesign-complete",
+      "desktopQA": "pass 1440x900 (0 overflow, imgs load, 0 errors)",
+      "mobileQA": "pass 390x844 (0 overflow)",
+      "functionalTesting": "IG @cafe.pri + Google Maps links present",
       "deploymentStatus": "live (current 19-site publication)",
       "outstandingIssues": []
     }
