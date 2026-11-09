@@ -6,7 +6,7 @@
     "existingRedesignTarget": 19,
     "newProspectTarget": 52,
     "totalTarget": 71,
-    "existingRedesignsComplete": 8,
+    "existingRedesignsComplete": 9,
     "newProspectsPublished": 0,
     "prospectsDisqualified": 0,
     "replacementsResearched": 0
@@ -289,12 +289,15 @@
       "sourceGroup": "existing-19",
       "researchStatus": "legitimate-prior-research-on-file",
       "websiteVerification": "no-independent-website (prior finding; recheck before outreach)",
-      "designDirection": "",
-      "filesChanged": [],
-      "developmentStatus": "pending-redesign",
-      "desktopQA": "not-started",
-      "mobileQA": "not-started",
-      "functionalTesting": "not-started",
+      "designDirection": "Type/material-forward art studio: Syne + Inter, paper/black/rust/ochre, abstract CSS material swatches (clay, silver-gelatin, riso) instead of risky photos, gallery object grid. Verified: artist-run 2025, Nicholas Talamo, ceramics/photography/commissions.",
+      "filesChanged": [
+        "preview/worksbynet/index.html",
+        "preview/worksbynet/styles.css"
+      ],
+      "developmentStatus": "redesign-complete",
+      "desktopQA": "pass 1440x900 (0 overflow, 0 errors)",
+      "mobileQA": "pass 390x844 (0 overflow; fixed hero-art shrink-to-fit bug)",
+      "functionalTesting": "IG @worksbynet link present; removed madeinnyc original-site link (link-policy)",
       "deploymentStatus": "live (current 19-site publication)",
       "outstandingIssues": []
     },
