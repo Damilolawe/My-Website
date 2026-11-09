@@ -63,7 +63,7 @@ async function main() {
     const { server, origin } = await serveDist();
     let browser;
     try {
-      const executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || (existsSync("/usr/bin/chromium") ? "/usr/bin/chromium" : undefined);
+      const executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || (existsSync("/opt/pw-browsers/chromium-1243/chrome-linux64/chrome") ? "/opt/pw-browsers/chromium-1243/chrome-linux64/chrome" : existsSync("/usr/bin/chromium") ? "/usr/bin/chromium" : undefined);
       browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
       let cursor = 0;
       const workers = Array.from({ length: Math.min(3, stale.length) }, async () => {
