@@ -53,8 +53,16 @@ import deepwater from "./designs/deepwater.mjs";
 import vento from "./designs/vento.mjs";
 import kites from "./designs/kites.mjs";
 import plates from "./designs/plates.mjs";
+import pricetag from "./designs/pricetag.mjs";
+import coinjar from "./designs/coinjar.mjs";
+import pocketarcade from "./designs/pocketarcade.mjs";
+import yarn from "./designs/yarn.mjs";
+import pegboard from "./designs/pegboard.mjs";
+import bistro from "./designs/bistro.mjs";
+import moonring from "./designs/moonring.mjs";
+import photostrip from "./designs/photostrip.mjs";
 
-const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub, greenhouse, stickies, notebook, wireframe, colonnade, cabinet, funnel, corkboard, envelope, pocket, channels, checkout, tablerows, oneline, edgemap, bezier, splitflap, fairway, indexcards, speedometer, voicewave, lens, desktop96, hub, handheld, crane, swipe, halftone, deepwater, vento, kites, plates];
+const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub, greenhouse, stickies, notebook, wireframe, colonnade, cabinet, funnel, corkboard, envelope, pocket, channels, checkout, tablerows, oneline, edgemap, bezier, splitflap, fairway, indexcards, speedometer, voicewave, lens, desktop96, hub, handheld, crane, swipe, halftone, deepwater, vento, kites, plates, pricetag, coinjar, pocketarcade, yarn, pegboard, bistro, moonring, photostrip];
 export const showpieceDesigns = Object.freeze(Object.fromEntries(DESIGNS.map(d => [d.id, d])));
 export const showpieceIds = Object.keys(showpieceDesigns);
 export const showpiecePages = ["home", "work", "features", "studio", "contact"];
