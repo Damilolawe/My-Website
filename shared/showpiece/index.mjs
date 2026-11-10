@@ -77,8 +77,16 @@ import pageturn from "./designs/pageturn.mjs";
 import longexposure from "./designs/longexposure.mjs";
 import neonsign from "./designs/neonsign.mjs";
 import staticnoise from "./designs/staticnoise.mjs";
+import paintroller from "./designs/paintroller.mjs";
+import machined from "./designs/machined.mjs";
+import transitmap from "./designs/transitmap.mjs";
+import phosphor from "./designs/phosphor.mjs";
+import gyroscope from "./designs/gyroscope.mjs";
+import curtaincall from "./designs/curtaincall.mjs";
+import screenplay from "./designs/screenplay.mjs";
+import compcard from "./designs/compcard.mjs";
 
-const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub, greenhouse, stickies, notebook, wireframe, colonnade, cabinet, funnel, corkboard, envelope, pocket, channels, checkout, tablerows, oneline, edgemap, bezier, splitflap, fairway, indexcards, speedometer, voicewave, lens, desktop96, hub, handheld, crane, swipe, halftone, deepwater, vento, kites, plates, pricetag, coinjar, pocketarcade, yarn, pegboard, bistro, moonring, photostrip, potterswheel, sugarhouse, zinecover, nightride, kapow, longtable, onair, livewire, ebike, courier, crossword, bookindex, pageturn, longexposure, neonsign, staticnoise];
+const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub, greenhouse, stickies, notebook, wireframe, colonnade, cabinet, funnel, corkboard, envelope, pocket, channels, checkout, tablerows, oneline, edgemap, bezier, splitflap, fairway, indexcards, speedometer, voicewave, lens, desktop96, hub, handheld, crane, swipe, halftone, deepwater, vento, kites, plates, pricetag, coinjar, pocketarcade, yarn, pegboard, bistro, moonring, photostrip, potterswheel, sugarhouse, zinecover, nightride, kapow, longtable, onair, livewire, ebike, courier, crossword, bookindex, pageturn, longexposure, neonsign, staticnoise, paintroller, machined, transitmap, phosphor, gyroscope, curtaincall, screenplay, compcard];
 export const showpieceDesigns = Object.freeze(Object.fromEntries(DESIGNS.map(d => [d.id, d])));
 export const showpieceIds = Object.keys(showpieceDesigns);
 export const showpiecePages = ["home", "work", "features", "studio", "contact"];
