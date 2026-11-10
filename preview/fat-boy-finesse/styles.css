@@ -45,20 +45,6 @@ h2 em{font:italic 400 1.02em/.9 var(--serif);text-transform:none;letter-spacing:
 .hero-lede{margin-top:26px;max-width:44ch;font-size:clamp(18px,1.5vw,21px);color:#cfcbc3}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 
-/* Creator portrait — editorial photography, not a product mockup */
-.creator-stage{position:relative;justify-self:center;width:min(100%,490px);padding:24px 24px 32px;isolation:isolate}
-.creator-stage:before{content:"";position:absolute;inset:48px 2px 4px 52px;z-index:-1;background:var(--red);border-radius:10px;transform:rotate(4deg)}
-.creator-photo{position:relative;aspect-ratio:4/5;overflow:hidden;background:#252528;border-radius:12px;box-shadow:0 28px 60px #000a;animation:creator-enter .8s cubic-bezier(.2,.85,.3,1) both}
-@keyframes creator-enter{from{opacity:0;transform:translateY(25px)}}
-.creator-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 38%;filter:grayscale(1) contrast(1.07);transition:filter .4s,transform .7s}
-.creator-photo:hover img{filter:grayscale(.25) contrast(1.04);transform:scale(1.04)}
-.creator-photo:after{content:"";position:absolute;inset:35% 0 0;pointer-events:none;background:linear-gradient(0deg,#0c0c0de6,transparent 75%)}
-.creator-photo-caption{position:absolute;z-index:1;left:24px;right:24px;bottom:24px;display:grid;gap:7px;color:#fff}
-.creator-photo-caption strong{font:400 clamp(31px,3.3vw,45px)/1 var(--display);letter-spacing:.025em}
-.creator-photo-caption span{font:800 11px var(--body);letter-spacing:.19em}
-.creator-photo-number{position:absolute;z-index:2;top:40px;right:39px;padding:8px 12px;background:#0c0c0dd9;color:#fff;font:800 11px var(--body);letter-spacing:.13em}
-@media(max-width:980px){.creator-stage{width:min(76%,475px);margin:0 auto}}
-@media(max-width:640px){.creator-stage{width:min(95%,435px);padding:16px 12px 28px}.creator-stage:before{inset:34px 0 5px 30px}.creator-photo-caption{left:18px;right:16px;bottom:18px}.creator-photo-caption strong{font-size:clamp(27px,7vw,42px)}.creator-photo-number{top:29px;right:26px}}
 /* ticker */
 .ticker{overflow:hidden;background:var(--red);border-block:1px solid var(--blood)}
 .ticker-track{display:flex;width:max-content;animation:tick 26s linear infinite}
@@ -276,7 +262,7 @@ section[id]{scroll-margin-top:100px}
 .youtube-probe iframe{width:220px;height:220px;border:0}
 @media(max-width:780px){.live-content{grid-template-columns:1fr}.live-foot{border-left:0;border-top:1px solid var(--line);align-items:stretch;gap:16px}.live-actions{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.live-set{border-radius:12px}.live-actions{grid-template-columns:1fr}.live-top strong{font-size:17px}.live-top span:last-child{font-size:11px}.live .section-head h2{font-size:clamp(49px,12vw,70px)}}
-@media(prefers-reduced-motion:reduce){.creator-photo{animation:none}.creator-photo img{transition:none}}
+
 
 
 /* Watch-room is the only automatically playing latest/live player. */
@@ -297,3 +283,28 @@ section[id]{scroll-margin-top:100px}
 .live-frame.player-failed .live-fallback{display:block}
 .live-top{justify-content:flex-start}
 .live-top #live-state{margin-left:auto}
+
+
+/* One video player in the hero, in place of the former portrait. */
+.hero-watch{position:relative;z-index:1;min-width:0;width:100%;max-width:860px;scroll-margin-top:110px}
+.hero-watch .live-set{margin:0;width:100%;max-width:none;border:1px solid #414042;box-shadow:0 22px 65px #0008}
+.hero-watch .live-top{min-height:50px;background:#1b1b1e}
+.hero-watch .live-top strong{letter-spacing:.04em}
+.hero-watch .live-frame{width:100%;aspect-ratio:16/9}
+.hero-watch .live-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.hero-watch .youtube-probe{position:absolute}
+.hero-watch .live-set.is-live .live-dot{background:var(--red);animation:pulse 2s ease-out infinite}
+@media(min-width:1050px){
+ .hero{grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:clamp(28px,4vw,68px)}
+ .hero h1{font-size:clamp(64px,7vw,118px)}
+ .hero-watch{justify-self:stretch}
+}
+@media(max-width:1049px){
+ .hero{grid-template-columns:minmax(0,1fr)}
+ .hero-watch{margin:12px auto 0;max-width:760px}
+}
+@media(max-width:640px){
+ .hero-watch{margin-top:10px}
+ .hero-watch .live-top{min-height:44px;padding:12px 14px}
+ .hero-watch .live-top strong{font-size:18px}
+}
