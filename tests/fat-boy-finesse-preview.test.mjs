@@ -6,7 +6,7 @@ const published="branded-previews/public/fat-boy-finesse/";
 const load=async path=>readFile(path,"utf8");
 
 test("Fat Boy Finesse creator concept uses original red, black, white identity and existing creator destinations",async()=>{
- const [html,css]=await Promise.all([load(prefix+"index.html"),load(prefix+"styles.css")]);
+ const [html,css,js]=await Promise.all([load(prefix+"index.html"),load(prefix+"styles.css"),load(prefix+"site.js")]);
  assert.match(html,/Walter Jennette/);
  assert.match(css,/--red:#e01b2f/);
  assert.match(css,/--black:#101010/);
