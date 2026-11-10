@@ -19,6 +19,7 @@ export default {
     ],
   },
   css: `
+.ln-mission img{grid-column:1/-1;width:100%;max-height:260px;object-fit:cover;margin-top:14px}
 @property --t{syntax:"<integer>";initial-value:10;inherits:false}
 .ln{--black:#000;--white:#f4f4f2;--flame:#ff6a1a;--grey:#8b8b88;background:var(--black);color:var(--white);font:400 17px/1.6 Barlow,system-ui,sans-serif}
 .ln header{position:absolute;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:22px clamp(18px,4vw,56px)}
@@ -59,9 +60,9 @@ export default {
   header: (k) => '<header><a class="brand" href="' + k.E(k.home) + '">' + k.E(k.c.name) + '</a><nav aria-label="Main">' + k.navHtml() + "</nav></header>",
   hero: (k) => '<section class="ln-hero" aria-labelledby="h"><div class="ln-stars" aria-hidden="true"></div><div class="ln-count" aria-hidden="true"></div><div class="ln-trail" aria-hidden="true"></div><div><h1 id="h">' + k.letters(k.c.headline) + "</h1><p>" + k.E(k.c.bio) + "</p>" + k.cta("Book a launch") + "</div></section>",
   intro: (k) => { const t = k.intro(); return '<section class="ln-intro" aria-labelledby="h"><div class="ln-stars" aria-hidden="true"></div><h1 id="h">' + k.letters(t.title) + "</h1><p>" + k.E(t.text) + "</p></section>"; },
-  work: (k) => '<section class="ln-log" id="work"><h2>Mission log</h2><div class="ln-missions">' + k.c.cards.slice(0, 6).map((x, i) => '<article class="ln-mission"><span class="t" aria-hidden="true">T+' + String((i + 1) * 3).padStart(2, "0") + "</span><h3>" + k.E(x.title) + "</h3><p>" + k.E(x.description) + "</p></article>").join("") + "</div></section>",
+  work: (k) => '<section class="ln-log" id="work"><h2>' + k.h("work", "Mission log") + '</h2><div class="ln-missions">' + k.c.cards.slice(0, 6).map((x, i) => '<article class="ln-mission"><span class="t" aria-hidden="true">T+' + String((i + 1) * 3).padStart(2, "0") + "</span><h3>" + k.E(x.title) + "</h3><p>" + k.E(x.description) + "</p>" + k.photo(i) + "</article>").join("") + "</div></section>",
   services: (k) => '<section class="ln-svc" id="services" aria-label="Services">' + k.c.services.slice(0, 3).map(s => "<article><h3>" + k.E(s.title) + "</h3><p>" + k.E(s.description || "") + "</p></article>").join("") + "</section>",
-  about: (k) => '<section class="ln-about" id="about"><h2>Flight crew</h2><p>' + k.E(k.c.bio) + "</p>" + (k.aboutItems.length ? "<dl>" + k.aboutItems.map(a => "<div><dt>" + k.E(a.title) + "</dt><dd>" + k.E(a.text) + "</dd></div>").join("") + "</dl>" : "") + "</section>",
-  contact: (k) => '<section class="ln-end" id="contact"><h2>Your payload. Our rocket.</h2>' + k.cta("Book a launch") + "</section>",
+  about: (k) => '<section class="ln-about" id="about"><h2>' + k.h("about", "Flight crew") + '</h2><p>' + k.E(k.c.bio) + "</p>" + (k.aboutItems.length ? "<dl>" + k.aboutItems.map(a => "<div><dt>" + k.E(a.title) + "</dt><dd>" + k.E(a.text) + "</dd></div>").join("") + "</dl>" : "") + "</section>",
+  contact: (k) => '<section class="ln-end" id="contact"><h2>' + k.h("contact", "Your payload. Our rocket.") + '</h2>' + k.cta("Book a launch") + "</section>",
   footer: (k) => "<footer><span>" + k.E(k.c.name) + '</span><a href="#main">Back to top</a></footer>',
 };

@@ -76,8 +76,10 @@ await rewriteKappoPreviewPages("dist/preview/kappo-sono");
 await mkdir("dist/templates", { recursive: true });
 const { templates, types, typeSlugs, sampleForTemplate } = await import("../shared/model.mjs");
 const { renderSite } = await import("../shared/render.mjs");
+const { applyAweDesignCredit } = await import("../shared/brand-credit.mjs");
 const {zipDesignFor,zipPages}=await import("../shared/zip-design-catalog.mjs");
-const {renderZipDesign}=await import("../shared/zip-design-render.mjs");
+const {renderShowpieceSite,isShowpieceMultipage}=await import("../shared/showpiece-site.mjs");
+const {showpiecePages}=await import("../shared/showpiece/index.mjs");
 const { writeFile } = await import("node:fs/promises");
 for (const t of templates) {
   const demo = sampleForTemplate(t.id);
@@ -94,9 +96,9 @@ for (const t of templates) {
     },
   };
   await writeFile(`dist/templates/${t.id}.html`, renderSite(config, { sample: true }));
-  if(zipDesignFor(t.id)?.multipage){
+  if(isShowpieceMultipage(t.id)){
     const folder="dist/templates/"+t.id;await mkdir(folder,{recursive:true});
-    for(const page of zipPages)await writeFile(folder+"/"+page+".html",renderZipDesign(config,{sample:true},page));
+    for(const page of showpiecePages)await writeFile(folder+"/"+page+".html",applyAweDesignCredit(renderShowpieceSite(config,{sample:true},page)));
   }
   // A separate, accessible still version lets the studio's Pause Motion control
   // disable motion inside sandboxed demos without weakening iframe isolation.

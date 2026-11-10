@@ -86,7 +86,7 @@ async function main() {
             return rect.width > 0 && rect.top + scrollY < 1800;
           }).every(image => image.complete && image.naturalWidth > 0), { timeout: 5000 }).catch(() => {});
           await page.evaluate(() => window.scrollTo(0, 0));
-          await page.addStyleTag({ content: ".sample-banner,.demo-banner,.arcade-demo,.fd-demo,.fe-demo,.fg-banner,.lm-banner,.trio-demo,.rw-demo-note{display:none!important}" });
+          await page.addStyleTag({ content: ".sample-banner,.demo-banner,.arcade-demo,.fd-demo,.fe-demo,.fg-banner,.lm-banner,.trio-demo,.rw-demo-note,body>.demo{display:none!important}" });
           await page.waitForTimeout(150);
           const screenshot = await page.screenshot({ type: "png", animations: "disabled", timeout: 30000 });
           const imagePath = join(assetsDir, `${template.id}.webp`);

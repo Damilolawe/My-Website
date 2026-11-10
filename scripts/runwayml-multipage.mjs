@@ -5,8 +5,8 @@
 // No customer/published-site flow is changed until the product supports it.
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { renderSite } from "../shared/render.mjs";
-import { sampleForTemplate } from "../shared/model.mjs";
+import { renderRunwayML } from "../shared/runwayml.mjs";
+import { sampleForTemplate, normalize } from "../shared/model.mjs";
 
 const ROUTE = "/experiments/runwayml-multipage/";
 const entries = [
@@ -73,7 +73,8 @@ const EXPERIMENT_CSS = [
 export async function buildRunwayMultipage(outDir="dist") {
   const root=path.join(outDir,"experiments","runwayml-multipage");
   await mkdir(root,{recursive:true});
-  const base=renderSite(sampleForTemplate("runwayml"),{sample:true});
+  // The experiment keeps the original RunwayML markup; the catalog now uses the showpiece design.
+  const base=renderRunwayML(normalize(sampleForTemplate("runwayml")),{sample:true});
   const css=getMatch(base,/<style>[\s\S]*?<\/style>/).replace("</style>",EXPERIMENT_CSS+"</style>");
   const header=getMatch(base,/<header class="rw-header">[\s\S]*?<\/header>/);
   const footer=getMatch(base,/<footer class="rw-footer">[\s\S]*?<\/footer>/);

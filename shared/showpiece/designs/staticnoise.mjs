@@ -55,9 +55,9 @@ export default {
 @media (prefers-reduced-motion:reduce){.sn-static{opacity:.05}}`,
   header: (k) => '<header><a class="brand" href="' + k.E(k.home) + '">' + k.E(k.c.name) + '</a><nav aria-label="Main">' + k.navHtml() + "</nav></header>",
   hero: (k) => '<section class="sn-hero" aria-labelledby="h"><span class="sn-static" aria-hidden="true"></span><span class="sn-bars" aria-hidden="true"></span><span class="sn-scan" aria-hidden="true"></span><span class="sn-label">' + k.E(k.c.heroLabel || "") + '</span><h1 id="h">' + k.letters(k.c.headline) + "</h1><p>" + k.E(k.c.bio) + "</p>" + k.cta("Say hello") + "</section>",
-  work: (k) => '<section class="sn-proj" id="work"><h2>Selected projects</h2><div class="sn-list">' + k.c.cards.map((x, i) => '<article class="sn-p"><small>CH ' + String(i + 1).padStart(2, "0") + "</small>" + k.photo(i) + "<h3>" + k.E(x.title) + "</h3><p>" + k.E(x.description) + "</p></article>").join("") + "</div></section>",
-  services: (k) => '<section class="sn-svc" id="services"><h2>What I do</h2><ul>' + k.c.services.slice(0, 3).map(s => "<li><h3>" + k.E(s.title) + "</h3><p>" + k.E(s.description || "") + "</p></li>").join("") + "</ul></section>",
-  about: (k) => '<section class="sn-about" id="about"><h2>About</h2><p>' + k.E(k.c.bio) + "</p>" + (k.aboutItems.length ? "<dl>" + k.aboutItems.map(a => "<dt>" + k.E(a.title) + "</dt><dd>" + k.E(a.text) + "</dd>").join("") + "</dl>" : "") + "</section>",
-  contact: (k) => '<section class="sn-end" id="contact"><h2>Loud ideas welcome.</h2>' + k.cta("Say hello") + "</section>",
+  work: (k) => '<section class="sn-proj" id="work"><h2>' + k.h("work", "Selected projects") + '</h2><div class="sn-list">' + k.c.cards.map((x, i) => '<article class="sn-p"><small>CH ' + String(i + 1).padStart(2, "0") + "</small>" + k.photo(i) + "<h3>" + k.E(x.title) + "</h3><p>" + k.E(x.description) + "</p></article>").join("") + "</div></section>",
+  services: (k) => '<section class="sn-svc" id="services"><h2>' + k.h("services", "What I do") + '</h2><ul>' + k.c.services.slice(0, 3).map(s => "<li><h3>" + k.E(s.title) + "</h3><p>" + k.E(s.description || "") + "</p></li>").join("") + "</ul></section>",
+  about: (k) => '<section class="sn-about" id="about"><h2>' + k.h("about", "About") + '</h2><p>' + k.E(k.c.bio) + "</p>" + (k.aboutItems.length ? "<dl>" + k.aboutItems.map(a => "<dt>" + k.E(a.title) + "</dt><dd>" + k.E(a.text) + "</dd>").join("") + "</dl>" : "") + "</section>",
+  contact: (k) => '<section class="sn-end" id="contact"><h2>' + k.h("contact", "Loud ideas welcome.") + '</h2>' + k.cta("Say hello") + "</section>",
   footer: (k) => "<footer><span>" + k.E(k.c.name) + '</span><a href="#main">Back to top</a></footer>',
 };

@@ -24,6 +24,7 @@ export default {
     ],
   },
   css: `
+.ax-lap img{grid-column:1/-1;width:100%;max-height:260px;object-fit:cover;margin-top:14px}
 @property --s{syntax:"<integer>";initial-value:0;inherits:false}@property --ms{syntax:"<integer>";initial-value:0;inherits:false}
 .ax{--asphalt:#17181c;--tarmac:#24262c;--white:#f3f4f6;--blue:#1c69d4;--navy:#0b2a5b;--red:#e3242b;--kerb:#f3f4f6;background:var(--asphalt);color:var(--white);font:400 17px/1.6 Saira,system-ui,sans-serif}
 .ax header{position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:20px clamp(18px,4vw,56px)}
@@ -66,9 +67,9 @@ export default {
   header: (k) => '<header><a class="brand" href="' + k.E(k.home) + '">' + k.E(k.c.name) + '</a><nav aria-label="Main">' + k.navHtml() + "</nav></header>",
   hero: (k) => '<section class="ax-hero" aria-labelledby="h"><div class="ax-livery" aria-hidden="true"><i></i><i></i><i></i></div><div class="ax-kerb" aria-hidden="true"></div><span class="ax-label">' + k.E(k.c.heroLabel || "") + '</span><h1 id="h">' + k.letters(k.c.headline) + '</h1><div class="ax-row"><div><p>' + k.E(k.c.bio) + "</p>" + k.cta("Book a track day") + '</div><div class="ax-timer" aria-hidden="true"><small>Best lap today</small><b></b><i></i></div></div></section>',
   intro: (k) => { const t = k.intro(); return '<section class="ax-intro" aria-labelledby="h"><div class="ax-livery" aria-hidden="true"><i></i><i></i><i></i></div><h1 id="h">' + k.letters(t.title) + "</h1><p>" + k.E(t.text) + "</p></section>"; },
-  work: (k) => '<section class="ax-laps" id="work"><h2>Lap log</h2>' + k.c.cards.map((x, i) => '<article class="ax-lap"><span class="pos" aria-hidden="true">P' + (i + 1) + "</span><h3>" + k.E(x.title) + "</h3><p>" + k.E(x.description) + '</p><div class="ax-sectors" aria-hidden="true"><i></i><i></i><i></i></div></article>').join("") + "</section>",
-  services: (k) => '<section class="ax-board" id="services"><h2>Choose your session</h2><ul>' + k.c.services.slice(0, 3).map(s => "<li><h3>" + k.E(s.title) + "</h3><p>" + k.E(s.description || "") + "</p></li>").join("") + "</ul></section>",
-  about: (k) => '<section class="ax-about" id="about"><h2>In the pit lane</h2><p>' + k.E(k.c.bio) + "</p>" + (k.aboutItems.length ? "<dl>" + k.aboutItems.map(a => "<dt>" + k.E(a.title) + "</dt><dd>" + k.E(a.text) + "</dd>").join("") + "</dl>" : "") + "</section>",
-  contact: (k) => '<section class="ax-end" id="contact"><h2>Lights out in five.</h2>' + k.cta("Book a track day") + "</section>",
+  work: (k) => '<section class="ax-laps" id="work"><h2>' + k.h("work", "Lap log") + '</h2>' + k.c.cards.map((x, i) => '<article class="ax-lap"><span class="pos" aria-hidden="true">P' + (i + 1) + "</span><h3>" + k.E(x.title) + "</h3><p>" + k.E(x.description) + '</p><div class="ax-sectors" aria-hidden="true"><i></i><i></i><i></i></div>' + k.photo(i) + '</article>').join("") + "</section>",
+  services: (k) => '<section class="ax-board" id="services"><h2>' + k.h("services", "Choose your session") + '</h2><ul>' + k.c.services.slice(0, 3).map(s => "<li><h3>" + k.E(s.title) + "</h3><p>" + k.E(s.description || "") + "</p></li>").join("") + "</ul></section>",
+  about: (k) => '<section class="ax-about" id="about"><h2>' + k.h("about", "In the pit lane") + '</h2><p>' + k.E(k.c.bio) + "</p>" + (k.aboutItems.length ? "<dl>" + k.aboutItems.map(a => "<dt>" + k.E(a.title) + "</dt><dd>" + k.E(a.text) + "</dd>").join("") + "</dl>" : "") + "</section>",
+  contact: (k) => '<section class="ax-end" id="contact"><h2>' + k.h("contact", "Lights out in five.") + '</h2>' + k.cta("Book a track day") + "</section>",
   footer: (k) => "<footer><span>" + k.E(k.c.name) + '</span><a href="#main">Back to top</a></footer>',
 };

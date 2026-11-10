@@ -19,6 +19,7 @@ export default {
     ],
   },
   css: `
+.nw-case img{grid-column:1/-1;width:100%;max-height:260px;object-fit:cover;margin-top:14px}
 .nw{--bg:#120a24;--panel:#1d1238;--lilac:#a28afe;--lime:#c6ff4d;--red:#ff4d6d;--text:#ece6ff;background:var(--bg);color:var(--text);font:400 17px/1.65 Syne,system-ui,sans-serif}
 .nw header{display:flex;justify-content:space-between;align-items:center;padding:22px clamp(18px,4vw,56px)}
 .nw .brand{font:800 20px/1 Syne;letter-spacing:-.02em;text-decoration:none;display:flex;gap:10px;align-items:center}.nw .brand:before{content:"";width:10px;height:10px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 0 var(--lime);animation:ping 2s infinite}
@@ -62,9 +63,9 @@ export default {
   header: (k) => '<header><a class="brand" href="' + k.E(k.home) + '">' + k.E(k.c.name) + '</a><nav aria-label="Main">' + k.navHtml() + "</nav></header>",
   hero: (k) => { const log = ['<li><span>ok</span> deploy 4f2a1c rolled out to 3 regions</li>', '<li><b>error</b> TypeError in checkout/total.js:118</li>', '<li><em>group</em> 214 events, 1 cause, assigned to payments</li>', '<li><span>ok</span> fix merged, error rate back to 0.02%</li>', '<li><em>trace</em> /search p95 2.1s, slow query in products.sql</li>', '<li><span>ok</span> index added, p95 now 240ms</li>', '<li><b>warn</b> job email-digest failed 3 times</li>', '<li><span>ok</span> retry policy updated, queue drained</li>'].join(""); return '<section class="nw-hero" aria-labelledby="h"><div class="nw-radar" aria-hidden="true"></div><div><h1 id="h"><span class="nw-glitch" data-text="' + k.E(k.c.headline) + '">' + k.E(k.c.headline) + "</span></h1><p>" + k.E(k.c.bio) + "</p>" + k.cta("Start monitoring") + '</div></section><div class="nw-term" aria-hidden="true"><div class="nw-term-top"><i></i><i></i><i></i>live events</div><div class="nw-log"><ol>' + log + log + "</ol></div></div>"; },
   intro: (k) => { const t = k.intro(); return '<section class="nw-intro" aria-labelledby="h"><div class="nw-radar" aria-hidden="true"></div><h1 id="h"><span class="nw-glitch" data-text="' + k.E(t.title) + '">' + k.E(t.title) + "</span></h1><p>" + k.E(t.text) + "</p></section>"; },
-  work: (k) => '<section class="nw-cases" id="work"><h2>Problems found before anyone noticed</h2><div class="nw-grid">' + k.c.cards.slice(0, 6).map(x => '<article class="nw-case"><span class="state">Resolved</span><h3>' + k.E(x.title) + "</h3><p>" + k.E(x.description) + "</p></article>").join("") + "</div></section>",
-  services: (k) => '<section class="nw-svc" id="services"><h2>What it watches</h2><ul>' + k.c.services.map(s => "<li><h3>" + k.E(s.title) + "</h3><p>" + k.E(s.description || "") + "</p></li>").join("") + "</ul></section>",
-  about: (k) => '<section class="nw-about" id="about"><h2>Who is on watch</h2><p>' + k.E(k.c.bio) + "</p>" + (k.aboutItems.length ? "<ol>" + k.aboutItems.map(a => "<li><span>" + k.E(a.title.toLowerCase()) + "</span> " + k.E(a.text) + "</li>").join("") + "</ol>" : "") + "</section>",
-  contact: (k) => '<section class="nw-end" id="contact"><h2>Sleep through the night.</h2>' + k.cta("Start monitoring") + "</section>",
+  work: (k) => '<section class="nw-cases" id="work"><h2>' + k.h("work", "Problems found before anyone noticed") + '</h2><div class="nw-grid">' + k.c.cards.slice(0, 6).map((x, i) => '<article class="nw-case"><span class="state">Resolved</span><h3>' + k.E(x.title) + "</h3><p>" + k.E(x.description) + "</p>" + k.photo(i) + "</article>").join("") + "</div></section>",
+  services: (k) => '<section class="nw-svc" id="services"><h2>' + k.h("services", "What it watches") + '</h2><ul>' + k.c.services.map(s => "<li><h3>" + k.E(s.title) + "</h3><p>" + k.E(s.description || "") + "</p></li>").join("") + "</ul></section>",
+  about: (k) => '<section class="nw-about" id="about"><h2>' + k.h("about", "Who is on watch") + '</h2><p>' + k.E(k.c.bio) + "</p>" + (k.aboutItems.length ? "<ol>" + k.aboutItems.map(a => "<li><span>" + k.E(a.title.toLowerCase()) + "</span> " + k.E(a.text) + "</li>").join("") + "</ol>" : "") + "</section>",
+  contact: (k) => '<section class="nw-end" id="contact"><h2>' + k.h("contact", "Sleep through the night.") + '</h2>' + k.cta("Start monitoring") + "</section>",
   footer: (k) => "<footer><span>" + k.E(k.c.name) + '</span><a href="#main">Back to top</a></footer>',
 };

@@ -1,5 +1,6 @@
 import { rows, rpc, patch, insert, id, env, fail } from "./backend.mjs";
 import { renderSite } from "../shared/render.mjs";
+import { SHOWPIECE_ENGINE, hasShowpiece } from "../shared/showpiece-site.mjs";
 import { validate } from "../shared/model.mjs";
 import { premiumStudyIds } from "../shared/premium-art-direction-35.mjs";
 import { verifyPublication } from "./verify-publication.mjs";
@@ -30,7 +31,8 @@ export async function saveDraft(order, input, actor = null) {
     p_order: order.id,
     p_expected: order.version,
     p_id: version,
-    p_input: data,
+    // Mark new versions so five-page re-rendering never changes older approved sites.
+    p_input: hasShowpiece(data.template) ? { ...data, engine: SHOWPIECE_ENGINE } : data,
     p_html: html,
     p_assets: data.content.photoIds,
     p_actor: actor,

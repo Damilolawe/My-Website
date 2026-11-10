@@ -8,6 +8,7 @@ import {zipDesignFor} from "./zip-design-catalog.mjs";
 import {renderZipDesign} from "./zip-design-render.mjs";
 import { applyTypographySafety } from "./typography-guard.mjs";
 import {exactGuideCSSFor} from "./exact-design-css.mjs";
+import {hasShowpiece,renderShowpieceSite} from "./showpiece-site.mjs";
 
 // Preserve authored CSS tokens (including quoted content, descendant selectors and
 // calc() spacing) while removing only comments/redundant whitespace. Afterhours'
@@ -71,6 +72,7 @@ export function compactInlineStyles(html, {preserve = []} = {}) {
 // customer media IDs, asset delivery, and approval workflows with all templates.
 export function renderSite(input, options = {}) {
   const normalized = normalize(input);
+  if(hasShowpiece(normalized.template))return applyAweDesignCredit(renderShowpieceSite(normalized,options));
   if(zipDesignFor(normalized.template))return applyAweDesignCredit(applyTypographySafety(renderZipDesign(normalized,options), normalized.template));
   const page = normalized.template === "folio"
     ? renderFolioEditorial(normalized, options)

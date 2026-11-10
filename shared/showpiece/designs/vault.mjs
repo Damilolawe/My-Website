@@ -24,6 +24,7 @@ export default {
     ],
   },
   css: `
+.vl-row img{grid-column:1/-1;width:100%;max-height:260px;object-fit:cover;margin-top:14px}
 .vl{--deep:#0b1712;--panel:#122219;--gold:#d6b45e;--pale:#efe7cf;--mint:#93d4bb;--fog:#a9bbb2;background:var(--deep);color:var(--pale);font:400 17px/1.7 "Red Hat Text",system-ui,sans-serif}
 .vl header{display:flex;justify-content:space-between;align-items:center;padding:24px clamp(18px,4vw,56px);border-bottom:1px solid #1f3328}
 .vl .brand{font:400 16px/1 Michroma,sans-serif;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--gold)}
@@ -61,9 +62,9 @@ export default {
   header: (k) => '<header><a class="brand" href="' + k.E(k.home) + '">' + k.E(k.c.name) + '</a><nav aria-label="Main">' + k.navHtml() + "</nav></header>",
   hero: (k) => '<section class="vl-hero" aria-labelledby="h"><div><h1 id="h">' + k.letters(k.c.headline) + "</h1><p>" + k.E(k.c.bio) + "</p>" + k.cta("Open a vault") + '</div><div class="vl-dial" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><b></b></div></section>',
   intro: (k) => { const t = k.intro(); return '<section class="vl-intro" aria-labelledby="h"><h1 id="h">' + k.letters(t.title) + "</h1><p>" + k.E(t.text) + "</p></section>"; },
-  work: (k) => '<section class="vl-hold" id="work"><h2>Layers of protection</h2><div class="vl-table">' + k.c.cards.map(x => '<article class="vl-row"><span class="vl-lock" aria-hidden="true"></span><h3>' + k.E(x.title) + "</h3><p>" + k.E(x.description) + '</p><span class="vl-bar" aria-hidden="true"></span></article>').join("") + "</div></section>",
-  services: (k) => '<section class="vl-plans" id="services"><h2>Custody plans</h2><ul>' + k.c.services.slice(0, 3).map(s => "<li><h3>" + k.E(s.title) + "</h3><p>" + k.E(s.description || "") + "</p></li>").join("") + "</ul></section>",
-  about: (k) => '<section class="vl-about" id="about"><h2>Behind the door</h2><p>' + k.E(k.c.bio) + "</p>" + (k.aboutItems.length ? "<dl>" + k.aboutItems.map(a => "<dt>" + k.E(a.title) + "</dt><dd>" + k.E(a.text) + "</dd>").join("") + "</dl>" : "") + "</section>",
-  contact: (k) => '<section class="vl-end" id="contact"><h2>Sleep well on it.</h2>' + k.cta("Speak to a specialist") + "</section>",
+  work: (k) => '<section class="vl-hold" id="work"><h2>' + k.h("work", "Layers of protection") + '</h2><div class="vl-table">' + k.c.cards.map((x, i) => '<article class="vl-row"><span class="vl-lock" aria-hidden="true"></span><h3>' + k.E(x.title) + "</h3><p>" + k.E(x.description) + '</p><span class="vl-bar" aria-hidden="true"></span>' + k.photo(i) + '</article>').join("") + "</div></section>",
+  services: (k) => '<section class="vl-plans" id="services"><h2>' + k.h("services", "Custody plans") + '</h2><ul>' + k.c.services.slice(0, 3).map(s => "<li><h3>" + k.E(s.title) + "</h3><p>" + k.E(s.description || "") + "</p></li>").join("") + "</ul></section>",
+  about: (k) => '<section class="vl-about" id="about"><h2>' + k.h("about", "Behind the door") + '</h2><p>' + k.E(k.c.bio) + "</p>" + (k.aboutItems.length ? "<dl>" + k.aboutItems.map(a => "<dt>" + k.E(a.title) + "</dt><dd>" + k.E(a.text) + "</dd>").join("") + "</dl>" : "") + "</section>",
+  contact: (k) => '<section class="vl-end" id="contact"><h2>' + k.h("contact", "Sleep well on it.") + '</h2>' + k.cta("Speak to a specialist") + "</section>",
   footer: (k) => "<footer><span>" + k.E(k.c.name) + '</span><a href="#main">Back to top</a></footer>',
 };

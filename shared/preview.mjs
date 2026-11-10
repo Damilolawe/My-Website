@@ -73,7 +73,7 @@ export async function fetchPublicTemplate(id, { still = false, signal, type } = 
 
 // Link routing for the public five-page Signature preview, never private drafts.
 export function studyPageFromLink(id,href,origin){
- if(!zipDesignFor(id)?.multipage || typeof href!=="string" || !href.startsWith("/templates/"))return null;
+ if(!(zipDesignFor(id)?.multipage||id==="runwaymulti") || typeof href!=="string" || !href.startsWith("/templates/"))return null;
  try{
   const base=new URL(origin),url=new URL(href,base);
   if(url.origin!==base.origin||url.search)return null;
@@ -86,7 +86,7 @@ export function studyPageFromLink(id,href,origin){
 
 // Public, strictly allowlisted five-page demonstrations; never load customer drafts.
 export async function fetchPublicStudyPage(id,page,{signal}={}){
- if(!zipDesignFor(id)?.multipage||!zipPages.includes(page))throw new Error("Unsupported study preview page.");
+ if(!(zipDesignFor(id)?.multipage||id==="runwaymulti")||!zipPages.includes(page))throw new Error("Unsupported study preview page.");
  const path="/templates/"+id+"/"+page+".html";
  const res=await fetch(path,{signal,mode:"same-origin",credentials:"same-origin",headers:{Accept:"text/html"}});
  if(!res.ok || !(res.headers.get("content-type")||"").toLowerCase().includes("text/html"))throw new Error("Study preview unavailable.");

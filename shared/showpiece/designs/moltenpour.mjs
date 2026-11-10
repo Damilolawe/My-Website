@@ -18,7 +18,7 @@ export default {
     ],
   },
   css: `
-.fy{--soot:#121110;--iron:#2a2725;--steel:#6b6863;--molten:#ff6a00;--glow:#ffc23a;--ash:#ece8e1;--rust:#a3471f;background:var(--soot);color:var(--ash);font:400 17px/1.65 "Public Sans",system-ui,sans-serif}
+.fy{overflow-x:clip;--soot:#121110;--iron:#2a2725;--steel:#6b6863;--molten:#ff6a00;--glow:#ffc23a;--ash:#ece8e1;--rust:#a3471f;background:var(--soot);color:var(--ash);font:400 17px/1.65 "Public Sans",system-ui,sans-serif}
 .fy header{display:flex;justify-content:space-between;align-items:center;padding:16px clamp(18px,4vw,56px);border-bottom:2px solid var(--iron)}
 .fy .brand{font:900 28px/1 "Big Shoulders Stencil Display";letter-spacing:.04em;text-transform:uppercase;text-decoration:none}
 .fy nav{display:flex;gap:clamp(14px,2.4vw,30px);font-weight:600}.fy nav a{text-decoration:none;color:#b8b3aa}.fy nav a:hover,.fy nav a[aria-current]{color:var(--molten)}
@@ -57,9 +57,9 @@ export default {
 @media(max-width:900px){.fy nav{gap:12px;font-size:14px}.fy-hero,.fy-list,.fy-cap ul,.fy-about{grid-template-columns:1fr}.fy-about dl{grid-column:auto}}`,
   header: (k) => '<header><a class="brand" href="' + k.E(k.home) + '">' + k.E(k.c.name) + '</a><nav aria-label="Main">' + k.navHtml() + "</nav></header>",
   hero: (k) => '<section class="fy-hero" aria-labelledby="h"><div><span class="fy-label">' + k.E(k.c.heroLabel || "") + '</span><h1 id="h">' + k.letters(k.c.headline) + "</h1><p>" + k.E(k.c.bio) + "</p>" + k.cta("Request a quote") + '</div><div class="fy-pour" aria-hidden="true"><span class="fy-ladle"></span><span class="fy-stream"></span><span class="fy-mould"></span><span class="fy-fill"></span><span class="fy-sparks">' + Array.from({ length: 14 }, (_, i) => { const a = (i / 14) * Math.PI - Math.PI; return '<i style="--x:' + Math.round(Math.cos(a) * (60 + (i % 4) * 25)) + "px;--y:" + Math.round(Math.sin(a) * (50 + (i % 3) * 30)) + "px;--t:" + (0.8 + (i % 4) * 0.25).toFixed(2) + "s;--d:-" + ((i * 0.17) % 1).toFixed(2) + 's"></i>'; }).join("") + "</span></div></section>",
-  work: (k) => '<section class="fy-proj" id="work"><h2>Recent work</h2><div class="fy-list">' + k.c.cards.map((x, i) => '<article class="fy-p"><small>Job ' + (214 + i * 17) + "</small>" + k.photo(i) + "<h3>" + k.E(x.title) + "</h3><p>" + k.E(x.description) + "</p></article>").join("") + "</div></section>",
-  services: (k) => '<section class="fy-cap" id="services"><h2>Capabilities</h2><ul>' + k.c.services.slice(0, 3).map(s => "<li><h3>" + k.E(s.title) + "</h3><p>" + k.E(s.description || "") + "</p></li>").join("") + "</ul></section>",
-  about: (k) => '<section class="fy-about" id="about"><h2>The works</h2><p>' + k.E(k.c.bio) + "</p>" + (k.aboutItems.length ? "<dl>" + k.aboutItems.map(a => "<dt>" + k.E(a.title) + "</dt><dd>" + k.E(a.text) + "</dd>").join("") + "</dl>" : "") + "</section>",
-  contact: (k) => '<section class="fy-end" id="contact"><h2>Strike while it is hot.</h2>' + k.cta("Request a quote") + "</section>",
+  work: (k) => '<section class="fy-proj" id="work"><h2>' + k.h("work", "Recent work") + '</h2><div class="fy-list">' + k.c.cards.map((x, i) => '<article class="fy-p"><small>Job ' + (214 + i * 17) + "</small>" + k.photo(i) + "<h3>" + k.E(x.title) + "</h3><p>" + k.E(x.description) + "</p></article>").join("") + "</div></section>",
+  services: (k) => '<section class="fy-cap" id="services"><h2>' + k.h("services", "Capabilities") + '</h2><ul>' + k.c.services.slice(0, 3).map(s => "<li><h3>" + k.E(s.title) + "</h3><p>" + k.E(s.description || "") + "</p></li>").join("") + "</ul></section>",
+  about: (k) => '<section class="fy-about" id="about"><h2>' + k.h("about", "The works") + '</h2><p>' + k.E(k.c.bio) + "</p>" + (k.aboutItems.length ? "<dl>" + k.aboutItems.map(a => "<dt>" + k.E(a.title) + "</dt><dd>" + k.E(a.text) + "</dd>").join("") + "</dl>" : "") + "</section>",
+  contact: (k) => '<section class="fy-end" id="contact"><h2>' + k.h("contact", "Strike while it is hot.") + '</h2>' + k.cta("Request a quote") + "</section>",
   footer: (k) => "<footer><span>" + k.E(k.c.name) + '</span><a href="#main">Back to top</a></footer>',
 };

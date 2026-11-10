@@ -68,7 +68,7 @@ function videoEmbed(url, title) {
 function escapeHTML(v) {
   return String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
-function renderMotionChapter(content) {
+export function renderMotionChapter(content) {
   if (!content || typeof content !== "object") return "";
   const videos = [];
   if (content.heroVideoUrl) videos.push({title:content.headline || "Feature film",url:content.heroVideoUrl});

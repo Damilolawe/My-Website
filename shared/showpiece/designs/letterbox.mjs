@@ -53,9 +53,9 @@ export default {
 @media (prefers-reduced-motion:reduce){.vs-slit{clip-path:none}}`,
   header: (k) => '<header><a class="brand" href="' + k.E(k.home) + '">' + k.E(k.c.name) + '</a><nav aria-label="Main">' + k.navHtml() + "</nav></header>",
   hero: (k) => '<section class="vs-hero" aria-labelledby="h"><span class="vs-slit" aria-hidden="true"></span><span class="vs-dust" aria-hidden="true"></span><span class="vs-label">' + k.E(k.c.heroLabel || "") + '</span><h1 id="h">' + k.letters(k.c.headline) + '</h1><div class="vs-meta"><p>' + k.E(k.c.bio) + "</p>" + k.cta("Contact") + '</div><span class="vs-tc" aria-hidden="true">2.39 : 1</span></section>',
-  work: (k) => '<section class="vs-films" id="work"><h2>Films</h2><div class="vs-list">' + k.c.cards.map((x, i) => '<article class="vs-f"><span>' + String(i + 1).padStart(2, "0") + "</span><h3>" + k.E(x.title) + "</h3><p>" + k.E(x.description) + "</p>" + k.photo(i) + "</article>").join("") + "</div></section>",
-  services: (k) => '<section class="vs-svc" id="services"><h2>Services</h2><ul>' + k.c.services.slice(0, 3).map(s => "<li><h3>" + k.E(s.title) + "</h3><p>" + k.E(s.description || "") + "</p></li>").join("") + "</ul></section>",
-  about: (k) => '<section class="vs-about" id="about"><h2>About</h2><p>' + k.E(k.c.bio) + "</p>" + (k.aboutItems.length ? "<dl>" + k.aboutItems.map(a => "<dt>" + k.E(a.title) + "</dt><dd>" + k.E(a.text) + "</dd>").join("") + "</dl>" : "") + "</section>",
-  contact: (k) => '<section class="vs-end" id="contact"><h2>Roll camera.</h2>' + k.cta("Contact") + "</section>",
+  work: (k) => '<section class="vs-films" id="work"><h2>' + k.h("work", "Films") + '</h2><div class="vs-list">' + k.c.cards.map((x, i) => '<article class="vs-f"><span>' + String(i + 1).padStart(2, "0") + "</span><h3>" + k.E(x.title) + "</h3><p>" + k.E(x.description) + "</p>" + k.photo(i) + "</article>").join("") + "</div></section>",
+  services: (k) => '<section class="vs-svc" id="services"><h2>' + k.h("services", "Services") + '</h2><ul>' + k.c.services.slice(0, 3).map(s => "<li><h3>" + k.E(s.title) + "</h3><p>" + k.E(s.description || "") + "</p></li>").join("") + "</ul></section>",
+  about: (k) => '<section class="vs-about" id="about"><h2>' + k.h("about", "About") + '</h2><p>' + k.E(k.c.bio) + "</p>" + (k.aboutItems.length ? "<dl>" + k.aboutItems.map(a => "<dt>" + k.E(a.title) + "</dt><dd>" + k.E(a.text) + "</dd>").join("") + "</dl>" : "") + "</section>",
+  contact: (k) => '<section class="vs-end" id="contact"><h2>' + k.h("contact", "Roll camera.") + '</h2>' + k.cta("Contact") + "</section>",
   footer: (k) => "<footer><span>" + k.E(k.c.name) + '</span><a href="#main">Back to top</a></footer>',
 };
