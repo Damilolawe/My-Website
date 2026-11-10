@@ -48,17 +48,14 @@
         <a class="btn btn-line" href="https://linktr.ee/waltjennette" target="_blank" rel="noopener noreferrer">Follow the journey <svg class="ui-arrow-up-right" aria-hidden="true"><use href="#arrow"/></svg></a>
       </div>
     </div>
-    <div class="bottle-stage">
-      <div class="mist" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      <div class="bottle">
-        <span class="bottle-cap" aria-hidden="true"></span>
-        <span class="bottle-neck" aria-hidden="true"></span>
-        <figure class="bottle-glass">
-          <img src="https://ugc.production.linktr.ee/d2032e85-e1a7-4ac0-a60d-acc1677c4eb4_A7400237-Edit-2.jpeg?io=true&amp;size=avatar-v3_0" alt="Walter Jennette, known as Fat Boy Finesse" width="500" height="500" fetchpriority="high">
-          <figcaption class="bottle-label"><span>Eau de</span><b>Finesse</b><small>Walter Jennette</small></figcaption>
-        </figure>
-      </div>
-      <p class="stamp" aria-hidden="true">The Fat Boy Family</p>
+    <div class="creator-stage">
+      <figure class="creator-photo">
+        <img src="https://ugc.production.linktr.ee/d2032e85-e1a7-4ac0-a60d-acc1677c4eb4_A7400237-Edit-2.jpeg?io=true&amp;size=avatar-v3_0" alt="Portrait of Walter Jennette, known as Fat Boy Finesse" width="500" height="500" fetchpriority="high">
+        <figcaption class="creator-photo-caption">
+          <strong>WALTER JENNETTE</strong><span>FAT BOY FINESSE</span>
+        </figcaption>
+      </figure>
+      <span class="creator-photo-number" aria-hidden="true">01 / THE VOICE</span>
     </div>
   </section>
 
@@ -68,22 +65,25 @@
 
   <section class="live" id="live" aria-labelledby="live-title">
     <div class="section-head" data-reveal>
-      <h2 id="live-title">The live<br><em>room.</em></h2>
-      <p>Pull up a seat. This player follows the Fat Boy Finesse YouTube channel, so the next broadcast has a place to play right here.</p>
+      <h2 id="live-title">Live when<br><em>he is.</em></h2>
+      <p>Watch the latest upload right here. When a public livestream is detected on YouTube, the player switches to the broadcast.</p>
     </div>
-    <div class="live-set" data-reveal>
-      <div class="live-top"><span class="live-dot" aria-hidden="true"></span><strong>THE LIVE ROOM</strong><span>Live channel player, not a live-status indicator</span></div>
-      <div class="live-frame" id="live-frame">
-        <iframe title="Fat Boy Finesse YouTube channel livestream player" src="https://www.youtube.com/embed/live_stream?channel=UC_-FXJoPsApGI_xV1SvRFNw&amp;rel=0&amp;playsinline=1" loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <div class="live-foot">
-        <p id="live-message" aria-live="polite">When a public stream is active, YouTube may play it here automatically. The player may be unavailable between broadcasts. Use the YouTube link for live chat and replays.</p>
-        <div class="live-actions">
-          <a class="btn btn-red" href="https://www.youtube.com/channel/UC_-FXJoPsApGI_xV1SvRFNw/live" target="_blank" rel="noopener noreferrer">Open the live page on YouTube <svg class="ui-arrow-up-right" aria-hidden="true"><use href="#arrow"/></svg></a>
-          <button type="button" class="btn btn-line refresh-live" id="refresh-live" aria-label="Check for a live stream again">Check for a stream</button>
+    <div class="live-set" id="live-set" data-reveal>
+      <div class="live-top"><span class="live-dot" aria-hidden="true"></span><strong>THE WATCH ROOM</strong><span id="live-state" role="status" aria-live="polite">LATEST UPLOAD</span></div>
+      <div class="live-content">
+        <div class="live-frame" id="live-frame">
+          <iframe id="live-player" title="Most recent Fat Boy Finesse video, or live broadcast when available" src="https://www.youtube.com/embed/videoseries?list=UU_-FXJoPsApGI_xV1SvRFNw&amp;index=0&amp;rel=0&amp;playsinline=1&amp;autoplay=1&amp;mute=1" loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="live-foot">
+          <p id="live-message" aria-live="polite">Showing the newest upload. If Walter starts a public livestream, the player switches when YouTube confirms it. Autoplay may require a tap on some browsers.</p>
+          <div class="live-actions">
+            <button type="button" class="btn btn-red refresh-live" id="refresh-live" aria-label="Check for a livestream">Check for live</button>
+            <a class="btn btn-line" href="https://www.youtube.com/channel/UC_-FXJoPsApGI_xV1SvRFNw/live" target="_blank" rel="noopener noreferrer">Open channel live <svg class="ui-arrow-up-right" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
         </div>
       </div>
     </div>
+    <div class="youtube-probe" id="live-probe-host" aria-hidden="true"></div>
   </section>
 
   <section class="about" id="about" aria-labelledby="about-title">
