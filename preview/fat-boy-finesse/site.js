@@ -20,19 +20,24 @@ if(watchRoom&&videoFrame&&probeHost&&streamStatus&&streamMessage&&checkButton){
  const recentUrl='https://www.youtube.com/embed/videoseries?list='+uploads+'&index=0&rel=0&playsinline=1&autoplay=1&mute=1&enablejsapi=1';
  const liveUrl='https://www.youtube.com/embed/live_stream?channel='+channel+'&rel=0&playsinline=1&autoplay=1&mute=1&enablejsapi=1';
  let activeMode='latest',checkNumber=0,probePlayer=null,checkTimeout=null,lastCheck=0;
- function setMode(mode){
+ function setMode(mode,liveVideoId){
   if(activeMode===mode)return;
   activeMode=mode;
   watchRoom.classList.toggle('is-live',mode==='live');
   if(mode==='live'){
-   if(videoPlayer){try{videoPlayer.destroy();}catch(error){}videoPlayer=null;videoPlayerReady=false;}
-   videoFrame.src=liveUrl;
+   if(videoPlayerReady&&videoPlayer&&liveVideoId){
+    try{videoPlayer.mute();videoPlayer.loadVideoById(liveVideoId);}catch(error){videoFrame.src=liveUrl;}
+   }else videoFrame.src=liveUrl;
    streamStatus.textContent='LIVE BROADCAST';
    streamMessage.textContent='Walter is broadcasting on YouTube. Watch here, or open his channel to join the live chat.';
   }else{
-   if(videoPlayer){try{videoPlayer.destroy();}catch(error){}videoPlayer=null;videoPlayerReady=false;}
-   videoFrame.src=recentUrl;
-   setupMainPlayer();
+   if(videoPlayerReady&&videoPlayer){
+    try{
+     videoPlayer.mute();
+     videoPlayer.loadPlaylist({listType:'playlist',list:uploads,index:0,startSeconds:0});
+     videoPlayer.playVideo();
+    }catch(error){videoFrame.src=recentUrl;}
+   }else videoFrame.src=recentUrl;
    streamStatus.textContent='LATEST UPLOAD';
    streamMessage.textContent='Playing the newest upload muted. This same player switches back to live when a broadcast is detected. Autoplay may require a tap.';
   }
@@ -42,11 +47,12 @@ if(watchRoom&&videoFrame&&probeHost&&streamStatus&&streamMessage&&checkButton){
   if(probePlayer){try{probePlayer.destroy();}catch(error){}probePlayer=null;}
   probeHost.replaceChildren();
  }
- function hasActualVideo(player){
+ function getLiveVideoId(player){
   try{
    const url=new URL(player.getVideoUrl());
-   return /^[A-Za-z0-9_-]{11}$/.test(url.searchParams.get('v')||'');
-  }catch(error){return false;}
+   const id=url.searchParams.get('v')||'';
+   return /^[A-Za-z0-9_-]{11}$/.test(id)?id:null;
+  }catch(error){return null;}
  }
  function checkForLive(){
   if(!window.YT||typeof window.YT.Player!=='function'){
@@ -73,13 +79,13 @@ if(watchRoom&&videoFrame&&probeHost&&streamStatus&&streamMessage&&checkButton){
   probe.src=src.toString();
   probeHost.append(probe);
   let finished=false;
-  function finish(isLive){
+  function finish(liveVideoId){
    if(finished||number!==checkNumber)return;
    finished=true;
    clearProbe();
    checkButton.disabled=false;
    checkButton.textContent='Check for live';
-   if(isLive)setMode('live');
+   if(liveVideoId)setMode('live',liveVideoId);
    else if(activeMode==='live')setMode('latest');
    else{
     streamStatus.textContent='LATEST UPLOAD';
@@ -90,9 +96,9 @@ if(watchRoom&&videoFrame&&probeHost&&streamStatus&&streamMessage&&checkButton){
   try{
    probePlayer=new window.YT.Player(probe,{
     events:{
-     onReady:event=>{if(hasActualVideo(event.target))finish(true);},
+     onReady:event=>{const id=getLiveVideoId(event.target);if(id)finish(id);},
      onStateChange:event=>{
-      if([1,2,3,5].includes(event.data)&&hasActualVideo(event.target))finish(true);
+      if([1,2,3,5].includes(event.data)){const id=getLiveVideoId(event.target);if(id)finish(id);}
      },
      onError:()=>finish(false)
     }
@@ -112,7 +118,7 @@ if(watchRoom&&videoFrame&&probeHost&&streamStatus&&streamMessage&&checkButton){
     events:{
      onReady:event=>{
       videoPlayerReady=true;
-      try{event.target.mute();event.target.playVideo();}catch(error){}
+      if(activeMode==='latest')try{event.target.mute();event.target.playVideo();}catch(error){}
      },
      onError:()=>{videoPlayerReady=false;}
     }
