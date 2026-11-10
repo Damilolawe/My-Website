@@ -12,3 +12,4 @@ qa-tablet.html
 supabase/.temp/
 artifacts/
 branded-previews/public/
+.firebase/
