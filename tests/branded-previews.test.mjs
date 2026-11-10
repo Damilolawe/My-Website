@@ -384,7 +384,7 @@ test("all deployed pages reference the current animation revision, not stale cac
   "shotsbyriq/index.html","jay-millz-shot-em/index.html"];
  for(const page of pages){
   const html=await read("public/"+page);
-  const expectedRevision=page.startsWith("fat-boy-finesse/") ? "revamp-20261110" : page.startsWith("otaku-haven/") ? "motion-20261105-stockfix3" : /^(?:shotsbyriq|jay-millz-shot-em)\//.test(page) ? "repair-20261104-1" : "motion-20261102";
+  const expectedRevision=page.startsWith("fat-boy-finesse/") ? "revamp-20261110b" : page.startsWith("otaku-haven/") ? "motion-20261105-stockfix3" : /^(?:shotsbyriq|jay-millz-shot-em)\//.test(page) ? "repair-20261104-1" : "motion-20261102";
   assert.ok(html.includes("styles.css?v="+expectedRevision),page+" stylesheet cache-bust");
   assert.ok(html.includes("site.js?v="+expectedRevision),page+" script cache-bust");
  }
