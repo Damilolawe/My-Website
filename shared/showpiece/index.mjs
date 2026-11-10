@@ -29,8 +29,16 @@ import colonnade from "./designs/colonnade.mjs";
 import cabinet from "./designs/cabinet.mjs";
 import funnel from "./designs/funnel.mjs";
 import corkboard from "./designs/corkboard.mjs";
+import envelope from "./designs/envelope.mjs";
+import pocket from "./designs/pocket.mjs";
+import channels from "./designs/channels.mjs";
+import checkout from "./designs/checkout.mjs";
+import tablerows from "./designs/tablerows.mjs";
+import oneline from "./designs/oneline.mjs";
+import edgemap from "./designs/edgemap.mjs";
+import bezier from "./designs/bezier.mjs";
 
-const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub, greenhouse, stickies, notebook, wireframe, colonnade, cabinet, funnel, corkboard];
+const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub, greenhouse, stickies, notebook, wireframe, colonnade, cabinet, funnel, corkboard, envelope, pocket, channels, checkout, tablerows, oneline, edgemap, bezier];
 export const showpieceDesigns = Object.freeze(Object.fromEntries(DESIGNS.map(d => [d.id, d])));
 export const showpieceIds = Object.keys(showpieceDesigns);
 export const showpiecePages = ["home", "work", "features", "studio", "contact"];
