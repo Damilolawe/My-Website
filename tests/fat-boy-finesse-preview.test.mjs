@@ -42,7 +42,8 @@ test("compact watch room defaults to recent uploads and checks verified live sta
  assert.match(html,/https:\/\/www\.youtube\.com\/embed\/[A-Za-z0-9_-]{11}\?/);
  assert.match(html,/id="live-probe-host"/);
  assert.match(html,/id="live-state"/);
- assert.doesNotMatch(html,/<h2 id="live-title">[\s\S]*?<\/h2>\s*<p>/);
+ const watchHeading=html.slice(html.indexOf('<h2 id="live-title">'),html.indexOf('<div class="live-set"'));
+ assert.doesNotMatch(watchHeading,/<p(?:\s|>)/);
  assert.doesNotMatch(html,/One player, two modes/);
  assert.doesNotMatch(html,/class="live-foot"/);
  assert.doesNotMatch(html,/id="live-message"/);
