@@ -1,57 +1,8 @@
 {
-  "generatedAt": "2026-11-10T05:22:33.508Z",
+  "generatedAt": "2026-11-10T05:25:50.665Z",
   "mode": "desktop",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 23,
-  "issues": 8,
-  "findings": [
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "desktop-1440",
-      "type": "visual",
-      "message": "broken image: https://imgproxy.fourthwall.dev/kznW_moU1K1wiLRL_ZpA-6zoL0UNQt5B3vEj_LAJUXE/rs:fill:192:192:0/bg:e32020/sm:1/enc/Y5e5TJUjJhTJVc7f/a-N4j5F8bWe1grbq/XFk_uIhW6IghhAHi/SbS68WCU5r1vDE0u/LNmHPOvq0RJsuQ22/MndaZ8_ySLqkLq1Z/cAL8WwAl12aimjgT/_zwHKK0bbrQ79wv9/4AFMcDX87zuWHSL8/lfuuji70TK78IY-d/YSfnlrc_hhvzSL63/KCymTR46GbpmwsK2.png"
-    },
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "desktop-1440",
-      "type": "visual",
-      "message": "broken image: https://imgproxy.fourthwall.dev/RXYn8_jnYo5fbLMsPzxNwgzxOwIn2PJqshtZwUERFoI/w:720/sm:1/enc/qsAzSEZyYC_o3wGL/9O_qs4OSqSxo_yQ6/FG9A1-XOa978Knmq/hmC8qWgG5YhKRJHB/PDwwaiDl-v6fKu1X/cufMmCdilaEZ0KoI/t6n7_BjShArXjOIb/bsJkv6S6Pstatawi/NmVtqSBjLwiKWaP0/E3SuU-Nqf4QKoNvp/pST1DBxGQ_zNSPzZ/iKxN16-0icmJbqoN/gI2UlOxbIPPSlGtw/6ikSfJufmGAYyKKc/NclKcMZH0Bs.jpg"
-    },
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "desktop-1440",
-      "type": "visual",
-      "message": "broken image: https://imgproxy.fourthwall.dev/VQYQ5ZpA8o4axMF_RpZV2QIXCRNLR9kYBUPbdyxcO_w/w:720/sm:1/enc/cboUbbaw_ZRrUuBq/HG8_zNFmgjtZ1MuT/CuVSalJYZLbt7fQ2/4kv6b7qNwiAnHHqq/HkuM2V-G1H1yrQUE/VnfPhOqTgbjFptfr/gYQwu1HBseGo5W0l/EnKDUJpuDDsqs5qx/onM9chhlQTbSCstR/KoT621gP_HvifxPQ/lIe3l0-Od6q32d94/I1PfT9hYzfA1P3oN/6YDF3lDK2kdSOejp/CCPDxmTkNErD4SH_/VuskS2-fShE.jpg"
-    },
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "desktop-1440",
-      "type": "visual",
-      "message": "broken image: https://imgproxy.fourthwall.dev/0pZVPtmykkxyGSxeG8Go6khXUY6ErQa-3JWwNMTnsVs/w:720/sm:1/enc/80nCBxbnYW-R38IN/BrvIVHgtf6U1_DM3/i89A_mc2O78DvCEO/TRxODjScwotMu_4u/ZiVatqrJKzbm3wWC/Na7H8Q7e2exbXQiS/n3zgpGMD3wNFJyYo/_rNxQw4P1UuVJIpT/wm1ECR5zcOz7zKOg/0MfZ5-PszdowGd36/a228rXBXAoJPR_q7/ka7IuZ6AWqJhLZWG/lG9uk5z5KBrjsMWh/jBrQv9h6w7spteWD/udzvaERS_w4.jpg"
-    },
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "desktop-1920",
-      "type": "visual",
-      "message": "broken image: https://imgproxy.fourthwall.dev/kznW_moU1K1wiLRL_ZpA-6zoL0UNQt5B3vEj_LAJUXE/rs:fill:192:192:0/bg:e32020/sm:1/enc/Y5e5TJUjJhTJVc7f/a-N4j5F8bWe1grbq/XFk_uIhW6IghhAHi/SbS68WCU5r1vDE0u/LNmHPOvq0RJsuQ22/MndaZ8_ySLqkLq1Z/cAL8WwAl12aimjgT/_zwHKK0bbrQ79wv9/4AFMcDX87zuWHSL8/lfuuji70TK78IY-d/YSfnlrc_hhvzSL63/KCymTR46GbpmwsK2.png"
-    },
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "desktop-1920",
-      "type": "visual",
-      "message": "broken image: https://imgproxy.fourthwall.dev/RXYn8_jnYo5fbLMsPzxNwgzxOwIn2PJqshtZwUERFoI/w:720/sm:1/enc/qsAzSEZyYC_o3wGL/9O_qs4OSqSxo_yQ6/FG9A1-XOa978Knmq/hmC8qWgG5YhKRJHB/PDwwaiDl-v6fKu1X/cufMmCdilaEZ0KoI/t6n7_BjShArXjOIb/bsJkv6S6Pstatawi/NmVtqSBjLwiKWaP0/E3SuU-Nqf4QKoNvp/pST1DBxGQ_zNSPzZ/iKxN16-0icmJbqoN/gI2UlOxbIPPSlGtw/6ikSfJufmGAYyKKc/NclKcMZH0Bs.jpg"
-    },
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "desktop-1920",
-      "type": "visual",
-      "message": "broken image: https://imgproxy.fourthwall.dev/VQYQ5ZpA8o4axMF_RpZV2QIXCRNLR9kYBUPbdyxcO_w/w:720/sm:1/enc/cboUbbaw_ZRrUuBq/HG8_zNFmgjtZ1MuT/CuVSalJYZLbt7fQ2/4kv6b7qNwiAnHHqq/HkuM2V-G1H1yrQUE/VnfPhOqTgbjFptfr/gYQwu1HBseGo5W0l/EnKDUJpuDDsqs5qx/onM9chhlQTbSCstR/KoT621gP_HvifxPQ/lIe3l0-Od6q32d94/I1PfT9hYzfA1P3oN/6YDF3lDK2kdSOejp/CCPDxmTkNErD4SH_/VuskS2-fShE.jpg"
-    },
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "desktop-1920",
-      "type": "visual",
-      "message": "broken image: https://imgproxy.fourthwall.dev/0pZVPtmykkxyGSxeG8Go6khXUY6ErQa-3JWwNMTnsVs/w:720/sm:1/enc/80nCBxbnYW-R38IN/BrvIVHgtf6U1_DM3/i89A_mc2O78DvCEO/TRxODjScwotMu_4u/ZiVatqrJKzbm3wWC/Na7H8Q7e2exbXQiS/n3zgpGMD3wNFJyYo/_rNxQw4P1UuVJIpT/wm1ECR5zcOz7zKOg/0MfZ5-PszdowGd36/a228rXBXAoJPR_q7/ka7IuZ6AWqJhLZWG/lG9uk5z5KBrjsMWh/jBrQv9h6w7spteWD/udzvaERS_w4.jpg"
-    }
-  ]
+  "issues": 0,
+  "findings": []
 }
