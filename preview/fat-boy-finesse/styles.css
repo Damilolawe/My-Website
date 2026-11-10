@@ -284,3 +284,16 @@ section[id]{scroll-margin-top:100px}
 .latest-copy{max-width:720px}
 .latest-copy p{max-width:66ch}
 .live-frame iframe{display:block}
+
+/* Video-first watch room: no right-hand copy, no two-column split. */
+.live-set{width:min(100%,820px)}
+.live-content{display:block}
+.live-frame{position:relative;width:100%;aspect-ratio:16/9;min-height:0}
+.live-frame iframe{display:block;width:100%;height:100%}
+.live-fallback{display:none;position:absolute;inset:0;overflow:hidden;text-decoration:none;color:#fff;background:#161616}
+.live-fallback img{width:100%;height:100%;object-fit:cover;filter:brightness(.48)}
+.live-fallback span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:max-content;max-width:88%;border:1px solid #ffffff55;border-radius:3px;padding:15px 20px;background:#e01b2fe8;font:800 14px var(--body);text-align:center;text-transform:uppercase;letter-spacing:.05em}
+.live-frame.player-failed iframe{visibility:hidden}
+.live-frame.player-failed .live-fallback{display:block}
+.live-top{justify-content:flex-start}
+.live-top #live-state{margin-left:auto}
