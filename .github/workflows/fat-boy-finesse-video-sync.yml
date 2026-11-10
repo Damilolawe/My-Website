@@ -1,0 +1,48 @@
+name: Sync Fat Boy Finesse latest video
+
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: fat-boy-finesse-latest-video-sync
+  cancel-in-progress: true
+
+jobs:
+  sync-latest-upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout website sources
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read official YouTube uploads feed
+        run: node scripts/sync-fat-boy-finesse-video.mjs
+      - name: Commit and deploy only when a newer upload is found
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- preview/fat-boy-finesse/index.html preview/fat-boy-finesse/site.js; then
+            echo "No newly published video; no commit or deployment necessary."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add preview/fat-boy-finesse/index.html preview/fat-boy-finesse/site.js
+          git commit -m 'Sync Fat Boy Finesse newest official YouTube upload'
+          git push origin HEAD:main
+          # GITHUB_TOKEN push events do not fire other workflows.
+          # The explicit workflow_dispatch request publishes the new video.
+          gh workflow run branded-previews.yml --ref main
