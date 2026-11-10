@@ -93,8 +93,16 @@ import watchface from "./designs/watchface.mjs";
 import moltenpour from "./designs/moltenpour.mjs";
 import blossom from "./designs/blossom.mjs";
 import ledgerbook from "./designs/ledgerbook.mjs";
+import broadcast from "./designs/broadcast.mjs";
+import cockpit from "./designs/cockpit.mjs";
+import sketchbook from "./designs/sketchbook.mjs";
+import keycaps from "./designs/keycaps.mjs";
+import safelight from "./designs/safelight.mjs";
+import marker from "./designs/marker.mjs";
+import liquidchrome from "./designs/liquidchrome.mjs";
+import letterbox from "./designs/letterbox.mjs";
 
-const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub, greenhouse, stickies, notebook, wireframe, colonnade, cabinet, funnel, corkboard, envelope, pocket, channels, checkout, tablerows, oneline, edgemap, bezier, splitflap, fairway, indexcards, speedometer, voicewave, lens, desktop96, hub, handheld, crane, swipe, halftone, deepwater, vento, kites, plates, pricetag, coinjar, pocketarcade, yarn, pegboard, bistro, moonring, photostrip, potterswheel, sugarhouse, zinecover, nightride, kapow, longtable, onair, livewire, ebike, courier, crossword, bookindex, pageturn, longexposure, neonsign, staticnoise, paintroller, machined, transitmap, phosphor, gyroscope, curtaincall, screenplay, compcard, filmstrip, dressform, gallerywall, wheatpaste, watchface, moltenpour, blossom, ledgerbook];
+const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub, greenhouse, stickies, notebook, wireframe, colonnade, cabinet, funnel, corkboard, envelope, pocket, channels, checkout, tablerows, oneline, edgemap, bezier, splitflap, fairway, indexcards, speedometer, voicewave, lens, desktop96, hub, handheld, crane, swipe, halftone, deepwater, vento, kites, plates, pricetag, coinjar, pocketarcade, yarn, pegboard, bistro, moonring, photostrip, potterswheel, sugarhouse, zinecover, nightride, kapow, longtable, onair, livewire, ebike, courier, crossword, bookindex, pageturn, longexposure, neonsign, staticnoise, paintroller, machined, transitmap, phosphor, gyroscope, curtaincall, screenplay, compcard, filmstrip, dressform, gallerywall, wheatpaste, watchface, moltenpour, blossom, ledgerbook, broadcast, cockpit, sketchbook, keycaps, safelight, marker, liquidchrome, letterbox];
 export const showpieceDesigns = Object.freeze(Object.fromEntries(DESIGNS.map(d => [d.id, d])));
 export const showpieceIds = Object.keys(showpieceDesigns);
 export const showpiecePages = ["home", "work", "features", "studio", "contact"];
