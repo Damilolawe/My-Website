@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
+import {createHash} from "node:crypto";
 const prefix="preview/fat-boy-finesse/";
 const published="branded-previews/public/fat-boy-finesse/";
 const load=async path=>readFile(path,"utf8");
@@ -16,8 +17,9 @@ test("Fat Boy Finesse creator concept uses original red, black, white identity a
  assert.match(html,/https:\/\/fat-boy-finesse-shop\.fourthwall\.com\/products\/fat-boy-finesse-logo-t-shirt|https:\/\/fat-boy-finesse-shop\.fourthwall\.com\/products\/extraitvert-t-shirt/);
  assert.match(html,/https:\/\/podcasts\.apple\.com\/us\/podcast\/the-take-notes-podcast/);
  assert.match(html,/data-reveal/);
- const panda=await readFile(prefix+"panda-logo.webp");
+ const panda=await readFile(prefix+"panda-logo-v2.webp");
  assert.equal(panda.subarray(0,4).toString(),"RIFF");
+ assert.equal(createHash("sha256").update(panda).digest("hex"),"c76f825ee6ff9d498e17f7036b0df47d67c57a4f4fac7ab467eb0937e044df74");
  assert.match(html,/<img class="panda-logo" src="\.\/panda-logo\.webp"/);
  assert.match(html,/<link rel="icon" type="image\/webp" href="\.\/panda-logo\.webp">/);
  assert.equal((html.match(/class="ticker-group"/g)||[]).length,2);
@@ -102,7 +104,8 @@ test("the live published concept includes the YouTube player and single canonica
  assert.match(html,/https:\/\/www\.youtube\.com\/embed\/[A-Za-z0-9_-]{11}\?/);
  assert.match(html,/THE WATCH ROOM/);
  assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
- const logo=await readFile(published+"panda-logo.webp");
+ const logo=await readFile(published+"panda-logo-v2.webp");
  assert.equal(logo.subarray(0,4).toString(),"RIFF");
+ assert.equal(createHash("sha256").update(logo).digest("hex"),"c76f825ee6ff9d498e17f7036b0df47d67c57a4f4fac7ab467eb0937e044df74");
  assert.equal((html.match(/data-awe-design-credit="v1"/g)||[]).length,1);
 });

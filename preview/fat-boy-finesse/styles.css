@@ -280,7 +280,7 @@ section[id]{scroll-margin-top:100px}
 
 /* Original panda artwork, cleaned and scaled for the site header. */
 .site-logo{display:inline-flex;align-items:center;gap:11px;min-width:0;flex-shrink:0}
-.panda-logo{display:block;width:auto;height:58px;max-width:none;object-fit:contain;flex:0 0 auto}
+.panda-logo{display:block;width:auto;height:42px;max-height:42px;max-width:none;object-fit:contain;object-position:center;flex:0 0 auto}
 .site-name{display:inline-block;white-space:nowrap;line-height:1.05;letter-spacing:.015em}
 /* Hero banner word spacing, scaling and visual balance across breakpoints. */
 .hero{min-height:calc(100svh - 88px)}
@@ -289,14 +289,14 @@ section[id]{scroll-margin-top:100px}
 .hero h1 .line{max-width:100%}
 .hero h1 .l4{font-size:.96em;letter-spacing:-.01em}
 @media(max-width:1100px){
- .panda-logo{height:54px}
+ .panda-logo{height:40px;max-height:40px}
  .site-header{min-height:78px}
 }
 @media(max-width:1049px){
  .hero h1{font-size:clamp(62px,8.6vw,104px)}
 }
 @media(max-width:640px){
- .panda-logo{height:47px}
+ .panda-logo{height:36px;max-height:36px}
  .site-logo{gap:8px}
  .site-name{font-size:clamp(18px,4.6vw,24px)}
  .hero h1{font-size:clamp(52px,14vw,84px);line-height:.95}
@@ -306,7 +306,10 @@ section[id]{scroll-margin-top:100px}
 }
 @media(max-width:375px){
  .site-logo{gap:6px}
- .panda-logo{height:43px}
+ .panda-logo{height:33px;max-height:33px}
  .site-name{font-size:17px}
  .hero h1{font-size:clamp(45px,13vw,58px)}
 }
+
+/* Header artwork uses a verified intact WebP; fit the mascot to the type baseline. */
+.site-logo .panda-logo{align-self:center;image-rendering:auto}
