@@ -69,8 +69,16 @@ import kapow from "./designs/kapow.mjs";
 import longtable from "./designs/longtable.mjs";
 import onair from "./designs/onair.mjs";
 import livewire from "./designs/livewire.mjs";
+import ebike from "./designs/ebike.mjs";
+import courier from "./designs/courier.mjs";
+import crossword from "./designs/crossword.mjs";
+import bookindex from "./designs/bookindex.mjs";
+import pageturn from "./designs/pageturn.mjs";
+import longexposure from "./designs/longexposure.mjs";
+import neonsign from "./designs/neonsign.mjs";
+import staticnoise from "./designs/staticnoise.mjs";
 
-const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub, greenhouse, stickies, notebook, wireframe, colonnade, cabinet, funnel, corkboard, envelope, pocket, channels, checkout, tablerows, oneline, edgemap, bezier, splitflap, fairway, indexcards, speedometer, voicewave, lens, desktop96, hub, handheld, crane, swipe, halftone, deepwater, vento, kites, plates, pricetag, coinjar, pocketarcade, yarn, pegboard, bistro, moonring, photostrip, potterswheel, sugarhouse, zinecover, nightride, kapow, longtable, onair, livewire];
+const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub, greenhouse, stickies, notebook, wireframe, colonnade, cabinet, funnel, corkboard, envelope, pocket, channels, checkout, tablerows, oneline, edgemap, bezier, splitflap, fairway, indexcards, speedometer, voicewave, lens, desktop96, hub, handheld, crane, swipe, halftone, deepwater, vento, kites, plates, pricetag, coinjar, pocketarcade, yarn, pegboard, bistro, moonring, photostrip, potterswheel, sugarhouse, zinecover, nightride, kapow, longtable, onair, livewire, ebike, courier, crossword, bookindex, pageturn, longexposure, neonsign, staticnoise];
 export const showpieceDesigns = Object.freeze(Object.fromEntries(DESIGNS.map(d => [d.id, d])));
 export const showpieceIds = Object.keys(showpieceDesigns);
 export const showpiecePages = ["home", "work", "features", "studio", "contact"];
