@@ -17,6 +17,11 @@ test("Fat Boy Finesse creator concept uses original red, black, white identity a
  assert.match(html,/https:\/\/fat-boy-finesse-shop\.fourthwall\.com\/products\/fat-boy-finesse-logo-t-shirt|https:\/\/fat-boy-finesse-shop\.fourthwall\.com\/products\/extraitvert-t-shirt/);
  assert.match(html,/https:\/\/podcasts\.apple\.com\/us\/podcast\/the-take-notes-podcast/);
  assert.match(html,/data-reveal/);
+ assert.match(html,/embed\/videoseries\?list=UU_-FXJoPsApGI_xV1SvRFNw/);
+ assert.match(html,/name="twitter:card"/);
+ assert.doesNotMatch(html,/<span class="brand-art">/);
+ assert.match(css,/@media\(max-width:1100px\)/);
+ assert.match(css,/@media\(max-width:640px\)/);
  assert.match(css,/@media\(max-width:640px\)/);
  assert.doesNotMatch(html+css,/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2600-\u27BF]/u);
 });
@@ -29,6 +34,8 @@ test("the livestream stays linked to the creator's actual YouTube channel, with 
  assert.match(html,/id="live-frame"/);
  assert.match(html,/id="refresh-live"/);
  assert.match(js,/refresh-live/);
+ assert.match(js,/visibilitychange/);
+ assert.match(js,/window.innerWidth>1100/);
  assert.match(js,/frame\.src=url\.toString\(\)/);
  assert.match(html,/may be unavailable between broadcasts/);
  assert.doesNotMatch(html,/LIVE NOW|CURRENTLY LIVE|STREAMING NOW/i);
