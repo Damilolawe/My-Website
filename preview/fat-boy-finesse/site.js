@@ -15,8 +15,7 @@ const watchRoom=document.getElementById('live-set');
 const videoFrame=document.getElementById('live-player');
 const liveFrame=document.getElementById('live-frame');
 const probeHost=document.getElementById('live-probe-host');
-const streamStatus=document.getElementById('live-state');
-if(watchRoom&&videoFrame&&liveFrame&&probeHost&&streamStatus){
+if(watchRoom&&videoFrame&&liveFrame&&probeHost){
  const channel='UC_-FXJoPsApGI_xV1SvRFNw';
  const directUrl=videoId=>'https://www.youtube.com/embed/'+videoId+'?rel=0&playsinline=1&autoplay=1&mute=1&enablejsapi=1';
  let currentMode='latest';
@@ -57,7 +56,6 @@ if(watchRoom&&videoFrame&&liveFrame&&probeHost&&streamStatus){
   const isLive=mode==='live';
   watchRoom.classList.toggle('is-live',isLive);
   liveFrame.classList.remove('player-failed');
-  streamStatus.textContent=isLive?'LIVE BROADCAST':'LATEST VIDEO';
   if(!isLive){consecutiveErrors=0;playLongFormAt(0);return;}
   const targetId=liveId;
   if(!targetId)return;
