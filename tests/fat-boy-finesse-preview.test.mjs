@@ -16,6 +16,15 @@ test("Fat Boy Finesse creator concept uses original red, black, white identity a
  assert.match(html,/https:\/\/fat-boy-finesse-shop\.fourthwall\.com\/products\/fat-boy-finesse-logo-t-shirt|https:\/\/fat-boy-finesse-shop\.fourthwall\.com\/products\/extraitvert-t-shirt/);
  assert.match(html,/https:\/\/podcasts\.apple\.com\/us\/podcast\/the-take-notes-podcast/);
  assert.match(html,/data-reveal/);
+ const panda=await readFile(prefix+"panda-logo.webp");
+ assert.equal(panda.subarray(0,4).toString(),"RIFF");
+ assert.match(html,/<img class="panda-logo" src="\.\/panda-logo\.webp"/);
+ assert.match(html,/<link rel="icon" type="image\/webp" href="\.\/panda-logo\.webp">/);
+ assert.equal((html.match(/class="ticker-group"/g)||[]).length,2);
+ assert.match(css,/fatboy-ticker-scroll/);
+ assert.doesNotMatch(html,/id="scent"|href="#scent"|class="pyramid"|for everybody\./i);
+ assert.doesNotMatch(css,/\.pyramid\{|\.flacon\{|\.scent-picks\{/);
+ assert.doesNotMatch(js,/const moods=/);
  assert.match(html,/https:\/\/www\.youtube\.com\/embed\/[A-Za-z0-9_-]{11}\?/);
  assert.match(html,/name="twitter:card"/);
  assert.doesNotMatch(html,/<span class="brand-art">/);
@@ -93,5 +102,7 @@ test("the live published concept includes the YouTube player and single canonica
  assert.match(html,/https:\/\/www\.youtube\.com\/embed\/[A-Za-z0-9_-]{11}\?/);
  assert.match(html,/THE WATCH ROOM/);
  assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
+ const logo=await readFile(published+"panda-logo.webp");
+ assert.equal(logo.subarray(0,4).toString(),"RIFF");
  assert.equal((html.match(/data-awe-design-credit="v1"/g)||[]).length,1);
 });
