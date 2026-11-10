@@ -36,6 +36,12 @@ export function isAllowedOutbound(href) {
   try { url = new URL(href.replace(/&amp;/g, "&")); } catch { return false; }
   const host = url.hostname.toLowerCase().replace(/^(www|m)\./, "");
   if (host === "google.com" && url.pathname.startsWith("/maps")) return true;
+  // Specific owner-requested Fat Boy Finesse concept uses its creator's existing
+  // merch and podcast platforms. No general business-website exemption is made.
+  if (host === "fat-boy-finesse-shop.fourthwall.com") return true;
+  if (host === "linktr.ee" && url.pathname.replace(/\/$/, "") === "/waltjennette") return true;
+  if (host === "podcasts.apple.com" && url.pathname.includes("/the-take-notes-podcast/id1804733952")) return true;
+  if (host === "creators.spotify.com" && url.pathname.startsWith("/pod/profile/fat-boy-finesse")) return true;
   return allowed.some(d => domainIs(host, d));
 }
 
