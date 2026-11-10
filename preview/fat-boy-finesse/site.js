@@ -12,24 +12,29 @@ const probeHost=document.getElementById('live-probe-host');
 const streamStatus=document.getElementById('live-state');
 const streamMessage=document.getElementById('live-message');
 const checkButton=document.getElementById('refresh-live');
+let videoPlayer=null;
+let videoPlayerReady=false;
 if(watchRoom&&videoFrame&&probeHost&&streamStatus&&streamMessage&&checkButton){
  const channel='UC_-FXJoPsApGI_xV1SvRFNw';
  const uploads='UU_-FXJoPsApGI_xV1SvRFNw';
- const recentUrl='https://www.youtube.com/embed/videoseries?list='+uploads+'&index=0&rel=0&playsinline=1&autoplay=1&mute=1';
- const liveUrl='https://www.youtube.com/embed/live_stream?channel='+channel+'&rel=0&playsinline=1&autoplay=1&mute=1';
+ const recentUrl='https://www.youtube.com/embed/videoseries?list='+uploads+'&index=0&rel=0&playsinline=1&autoplay=1&mute=1&enablejsapi=1';
+ const liveUrl='https://www.youtube.com/embed/live_stream?channel='+channel+'&rel=0&playsinline=1&autoplay=1&mute=1&enablejsapi=1';
  let activeMode='latest',checkNumber=0,probePlayer=null,checkTimeout=null,lastCheck=0;
  function setMode(mode){
   if(activeMode===mode)return;
   activeMode=mode;
   watchRoom.classList.toggle('is-live',mode==='live');
   if(mode==='live'){
+   if(videoPlayer){try{videoPlayer.destroy();}catch(error){}videoPlayer=null;videoPlayerReady=false;}
    videoFrame.src=liveUrl;
    streamStatus.textContent='LIVE BROADCAST';
    streamMessage.textContent='Walter is broadcasting on YouTube. Watch here, or open his channel to join the live chat.';
   }else{
+   if(videoPlayer){try{videoPlayer.destroy();}catch(error){}videoPlayer=null;videoPlayerReady=false;}
    videoFrame.src=recentUrl;
+   setupMainPlayer();
    streamStatus.textContent='LATEST UPLOAD';
-   streamMessage.textContent='Showing the newest public upload. The player switches back when YouTube confirms a livestream. Autoplay may require a tap.';
+   streamMessage.textContent='Playing the newest upload muted. This same player switches back to live when a broadcast is detected. Autoplay may require a tap.';
   }
  }
  function clearProbe(){
@@ -78,7 +83,7 @@ if(watchRoom&&videoFrame&&probeHost&&streamStatus&&streamMessage&&checkButton){
    else if(activeMode==='live')setMode('latest');
    else{
     streamStatus.textContent='LATEST UPLOAD';
-    streamMessage.textContent='Showing the newest public upload. No embeddable livestream was detected. The YouTube channel link is always available, and autoplay may require a tap.';
+    streamMessage.textContent='Playing the newest upload in this player. No livestream detected; videos start muted and browser autoplay restrictions may require a tap.';
    }
   }
   checkTimeout=setTimeout(()=>finish(false),11000);
@@ -99,9 +104,29 @@ if(watchRoom&&videoFrame&&probeHost&&streamStatus&&streamMessage&&checkButton){
   if(!document.hidden&&Date.now()-lastCheck>2*60*1000)checkForLive();
  });
  window.setInterval(()=>{if(!document.hidden)checkForLive();},2*60*1000);
- window.onYouTubeIframeAPIReady=checkForLive;
- if(window.YT&&typeof window.YT.Player==='function')checkForLive();
- else{
+ function setupMainPlayer(){
+  if(!window.YT||typeof window.YT.Player!=='function'||videoPlayer)return;
+  if(activeMode!=='latest')return;
+  try{
+   videoPlayer=new window.YT.Player(videoFrame,{
+    events:{
+     onReady:event=>{
+      videoPlayerReady=true;
+      try{event.target.mute();event.target.playVideo();}catch(error){}
+     },
+     onError:()=>{videoPlayerReady=false;}
+    }
+   });
+  }catch(error){videoPlayer=null;videoPlayerReady=false;}
+ }
+ window.onYouTubeIframeAPIReady=()=>{
+  setupMainPlayer();
+  checkForLive();
+ };
+ if(window.YT&&typeof window.YT.Player==='function'){
+  setupMainPlayer();
+  checkForLive();
+ }else{
   const script=document.createElement('script');
   script.src='https://www.youtube.com/iframe_api';
   script.async=true;
