@@ -21,8 +21,16 @@ import sunroom from "./designs/sunroom.mjs";
 import cardflip from "./designs/cardflip.mjs";
 import aurora from "./designs/aurora.mjs";
 import orbitclub from "./designs/orbitclub.mjs";
+import greenhouse from "./designs/greenhouse.mjs";
+import stickies from "./designs/stickies.mjs";
+import notebook from "./designs/notebook.mjs";
+import wireframe from "./designs/wireframe.mjs";
+import colonnade from "./designs/colonnade.mjs";
+import cabinet from "./designs/cabinet.mjs";
+import funnel from "./designs/funnel.mjs";
+import corkboard from "./designs/corkboard.mjs";
 
-const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub];
+const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub, greenhouse, stickies, notebook, wireframe, colonnade, cabinet, funnel, corkboard];
 export const showpieceDesigns = Object.freeze(Object.fromEntries(DESIGNS.map(d => [d.id, d])));
 export const showpieceIds = Object.keys(showpieceDesigns);
 export const showpiecePages = ["home", "work", "features", "studio", "contact"];
