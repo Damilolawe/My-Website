@@ -20,34 +20,41 @@ test("Fat Boy Finesse creator concept uses original red, black, white identity a
  assert.match(html,/embed\/videoseries\?list=UU_-FXJoPsApGI_xV1SvRFNw/);
  assert.match(html,/name="twitter:card"/);
  assert.doesNotMatch(html,/<span class="brand-art">/);
+ assert.match(html,/class="creator-stage"/);
+ assert.doesNotMatch(html,/class="bottle-stage"/);
  assert.match(css,/@media\(max-width:1100px\)/);
  assert.match(css,/@media\(max-width:640px\)/);
  assert.match(css,/@media\(max-width:640px\)/);
  assert.doesNotMatch(html+css,/[\u{1F000}-\u{1FAFF}\u2190-\u21FF\u2600-\u27BF]/u);
 });
 
-test("the livestream stays linked to the creator's actual YouTube channel, with explicit fallback and refresh",async()=>{
- const [html,js,config]=await Promise.all([load(prefix+"index.html"),load(prefix+"site.js"),load("branded-previews/firebase.json")]);
- const channel="UC_-FXJoPsApGI_xV1SvRFNw";
- assert.match(html,new RegExp('https://www.youtube.com/embed/live_stream\\?channel='+channel));
- assert.match(html,new RegExp('https://www.youtube.com/channel/'+channel+'/live'));
- assert.match(html,/id="live-frame"/);
- assert.match(html,/id="refresh-live"/);
- assert.match(js,/refresh-live/);
+test("compact watch room defaults to recent uploads and checks verified live state",async()=>{
+ const [html,js,css,config]=await Promise.all([
+  load(prefix+"index.html"),load(prefix+"site.js"),load(prefix+"styles.css"),load("branded-previews/firebase.json")
+ ]);
+ assert.match(html,/id="live-player"/);
+ assert.match(html,/embed\/videoseries\?list=UU_-FXJoPsApGI_xV1SvRFNw/);
+ assert.match(html,/id="live-probe-host"/);
+ assert.match(html,/id="live-state"/);
+ assert.match(html,/LATEST UPLOAD/);
+ assert.match(html,/youtube.com\/channel\/UC_-FXJoPsApGI_xV1SvRFNw\/live/);
+ assert.match(js,/youtube.com\/iframe_api/);
+ assert.match(js,/new window.YT.Player/);
+ assert.match(js,/hasActualVideo/);
+ assert.match(js,/setMode\('live'\)/);
+ assert.match(js,/setMode\('latest'\)/);
  assert.match(js,/visibilitychange/);
- assert.match(js,/window.innerWidth>1100/);
- assert.match(js,/frame\.src=url\.toString\(\)/);
- assert.match(html,/may be unavailable between broadcasts/);
+ assert.match(css,/\.live-set\{width:min\(100%,970px\)/);
  assert.doesNotMatch(html,/LIVE NOW|CURRENTLY LIVE|STREAMING NOW/i);
  const csp=JSON.parse(config).hosting.headers.flatMap(x=>x.headers).find(x=>x.key==="Content-Security-Policy")?.value||"";
- assert.match(csp,/frame-src https:\/\/www\.youtube\.com/);
- assert.match(csp,/https:\/\/imgproxy\.fourthwall\.dev/);
+ assert.match(csp,/script-src 'self' https:\/\/www.youtube.com/);
+ assert.match(csp,/frame-src https:\/\/www.youtube.com/);
 });
 
 test("the live published concept includes the YouTube player and single canonical Awe footer",async()=>{
  const html=await load(published+"index.html");
- assert.match(html,/live_stream\?channel=UC_-FXJoPsApGI_xV1SvRFNw/);
- assert.match(html,/THE LIVE ROOM/);
+ assert.match(html,/embed\/videoseries\?list=UU_-FXJoPsApGI_xV1SvRFNw/);
+ assert.match(html,/THE WATCH ROOM/);
  assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
  assert.equal((html.match(/data-awe-design-credit="v1"/g)||[]).length,1);
 });
