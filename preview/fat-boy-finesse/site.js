@@ -1,4 +1,42 @@
-const menu=document.getElementById('menu-toggle');const nav=document.getElementById('primary-nav');if(menu&&nav){const close=()=>{menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation');nav.classList.remove('open')};menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation');nav.classList.toggle('open',open)});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));window.addEventListener('resize',()=>{if(window.innerWidth>780)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()})}
-const reveal=document.querySelectorAll('[data-reveal]');if('IntersectionObserver'in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('seen');observer.unobserve(entry.target)}})},{threshold:.08,rootMargin:'0px 0px 50px 0px'});reveal.forEach(el=>observer.observe(el))}else{reveal.forEach(el=>el.classList.add('seen'))}
-const moods={daily:{count:'01 / EVERYDAY',title:'Easy to wear. Hard to forget.',text:'Fresh, versatile fragrances that feel right from the first spray. A solid place to start your scent journey.'},signature:{count:'02 / SIGNATURE',title:'Make it unmistakably yours.',text:'Memorable compositions with character and longevity. Discover something that feels personal, not just popular.'},bold:{count:'03 / BOLD',title:'Enter the room before you do.',text:'Statement-making scents, deeper notes, and an unapologetic presence. For days when subtle is not the plan.'}};
-const result=document.getElementById('scent-result');document.querySelectorAll('[data-scent]').forEach(button=>button.addEventListener('click',()=>{const entry=moods[button.dataset.scent];if(!entry||!result)return;document.querySelectorAll('[data-scent]').forEach(item=>{const active=item===button;item.classList.toggle('is-active',active);item.setAttribute('aria-pressed',String(active))});result.replaceChildren();const small=document.createElement('span');small.className='scent-num';small.textContent=entry.count;const heading=document.createElement('h3');heading.textContent=entry.title;const para=document.createElement('p');para.textContent=entry.text;result.append(small,heading,para)}));
+// Fat Boy Finesse — accessible, progressive-enhancement interactions.
+const navButton=document.getElementById("nav-toggle");
+const nav=document.getElementById("nav-items");
+function closeNav(){if(!navButton||!nav)return;navButton.setAttribute("aria-expanded","false");navButton.setAttribute("aria-label","Open menu");nav.classList.remove("open")}
+if(navButton&&nav){
+  navButton.addEventListener("click",()=>{
+    const open=navButton.getAttribute("aria-expanded")!=="true";
+    navButton.setAttribute("aria-expanded",String(open));
+    navButton.setAttribute("aria-label",open?"Close menu":"Open menu");
+    nav.classList.toggle("open",open);
+  });
+  nav.querySelectorAll("a").forEach(link=>link.addEventListener("click",closeNav));
+  document.addEventListener("keydown",event=>{if(event.key==="Escape")closeNav()});
+  document.addEventListener("click",event=>{if(!nav.contains(event.target)&&!navButton.contains(event.target))closeNav()});
+  window.addEventListener("resize",()=>{if(window.innerWidth>900)closeNav()});
+}
+const elements=document.querySelectorAll("[data-reveal]");
+if("IntersectionObserver" in window&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+  const observer=new IntersectionObserver(entries=>{
+    for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add("seen");observer.unobserve(entry.target)}
+  },{rootMargin:"0px 0px 80px 0px",threshold:.04});
+  elements.forEach(item=>observer.observe(item));
+}else elements.forEach(item=>item.classList.add("seen"));
+
+// This channel-linked embed follows a public livestream when supported by
+// YouTube. We never claim the channel is live from iframe-load success.
+// The direct YouTube /live fallback is always provided.
+const refresh=document.getElementById("refresh-live");
+const frame=document.querySelector("#live-frame iframe");
+if(refresh&&frame){
+  refresh.addEventListener("click",()=>{
+    const url=new URL("https://www.youtube.com/embed/live_stream");
+    url.searchParams.set("channel","UC_-FXJoPsApGI_xV1SvRFNw");
+    url.searchParams.set("rel","0");
+    url.searchParams.set("playsinline","1");
+    url.searchParams.set("reload",String(Date.now()));
+    frame.src=url.toString();
+    refresh.textContent="PLAYER REFRESHED";
+    refresh.setAttribute("aria-label","Live stream player refreshed");
+    refresh.blur();
+  });
+}
