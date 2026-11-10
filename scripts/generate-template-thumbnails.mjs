@@ -14,7 +14,7 @@ const htmlDir = join(root, "dist/templates");
 const assetsDir = join(root, "assets/catalog-thumbnails");
 const distAssetsDir = join(root, "dist/assets/catalog-thumbnails");
 const manifestPath = join(assetsDir, "manifest.json");
-const VERSION = "catalog-shot-v1:1280x1800:webp640x900";
+const VERSION = "catalog-shot-v2:1024x661:webp640x413";
 
 function templatePagePath(template) {
   return zipDesignFor(template.id)?.multipage
@@ -67,7 +67,7 @@ async function main() {
       browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
       let cursor = 0;
       const workers = Array.from({ length: Math.min(3, stale.length) }, async () => {
-        const page = await browser.newPage({ viewport: { width: 1280, height: 1800 }, deviceScaleFactor: 1, reducedMotion: "reduce" });
+        const page = await browser.newPage({ viewport: { width: 1024, height: 661 }, deviceScaleFactor: 1, reducedMotion: "reduce" });
         await page.emulateMedia({ reducedMotion: "reduce" });
         while (cursor < stale.length) {
           const template = stale[cursor++];
@@ -86,9 +86,11 @@ async function main() {
             return rect.width > 0 && rect.top + scrollY < 1800;
           }).every(image => image.complete && image.naturalWidth > 0), { timeout: 5000 }).catch(() => {});
           await page.evaluate(() => window.scrollTo(0, 0));
+          await page.addStyleTag({ content: ".sample-banner,.demo-banner,.arcade-demo,.fd-demo,.fe-demo,.fg-banner,.lm-banner,.trio-demo,.rw-demo-note{display:none!important}" });
+          await page.waitForTimeout(150);
           const screenshot = await page.screenshot({ type: "png", animations: "disabled", timeout: 30000 });
           const imagePath = join(assetsDir, `${template.id}.webp`);
-          await sharp(screenshot).resize({ width: 640 }).webp({ quality: 78, effort: 4 }).toFile(imagePath);
+          await sharp(screenshot).resize({ width: 640, height: 413, fit: "cover", position: "top" }).webp({ quality: 78, effort: 4 }).toFile(imagePath);
           console.log(`Captured ${template.id}`);
         }
         await page.close();

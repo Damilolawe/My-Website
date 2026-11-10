@@ -68,7 +68,7 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
       const thumb=document.createElement("span");thumb.className="worlds-choice-thumb";thumb.setAttribute("aria-hidden","true");
       const mini=document.createElement("img");mini.alt="";mini.loading="lazy";mini.decoding="async";
       mini.src="/assets/catalog-thumbnails/"+encodeURIComponent(item.id)+".webp";
-      mini.width=640;mini.height=900;
+      mini.width=640;mini.height=413;
       thumb.append(mini);
       button.append(count,thumb,copy,symbol);
       button.addEventListener("click",()=>choose(item.id,true));

@@ -86,12 +86,13 @@
 }
 .app-main .express-gallery .worlds-choice {
   display: grid;
-  grid-template-columns: 23px minmax(100px, 128px) minmax(0, 1fr) 17px;
-  gap: 9px;
+  grid-template-columns: 23px minmax(110px, 176px) minmax(0, 1fr) 17px;
+  gap: 12px;
   align-items: center;
   width: 100%;
   min-width: 0;
   min-height: 92px;
+  flex-shrink: 0;
   padding: 12px 8px;
   text-align: left;
 }
