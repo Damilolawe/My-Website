@@ -12,7 +12,7 @@ test("Express gallery uses lazy, faithful template previews without repeating ea
   assert.match(html, /step === 1 \? "is-gallery" : ""/);
   assert.match(css, /\.wizard\.is-gallery\s*\{/);
   assert.match(css, /\.wizard\.is-gallery\s*>\s*\.steps\s*\{/);
-  assert.match(css, /\.express-gallery \.worlds-choice\s*\{[\s\S]*?grid-template-columns:\s*23px minmax\(100px, 128px\) minmax\(0, 1fr\) 17px;/);
+  assert.match(css, /\.express-gallery \.worlds-choice\s*\{[\s\S]*?grid-template-columns:\s*23px minmax\(110px, 176px\) minmax\(0, 1fr\) 17px;/);
   assert.match(css, /\.worlds-choice-thumb\s*\{/);
   assert.match(css, /@media\(max-width: 700px\)/);
   assert.match(showcase, /button\.append\(count,thumb,copy,symbol\)/);
