@@ -46,8 +46,8 @@ test("compact watch room defaults to recent uploads and checks verified live sta
  assert.match(html,/youtube.com\/channel\/UC_-FXJoPsApGI_xV1SvRFNw\/live/);
  assert.match(js,/youtube.com\/iframe_api/);
  assert.match(js,/new window.YT.Player/);
- assert.match(js,/hasActualVideo/);
- assert.match(js,/setMode\('live'\)/);
+ assert.match(js,/getLiveVideoId/);
+ assert.match(js,/setMode\('live',liveVideoId\)/);
  assert.match(js,/setMode\('latest'\)/);
  assert.match(js,/visibilitychange/);
  assert.match(css,/\.live-set\{width:min\(100%,970px\)/);
