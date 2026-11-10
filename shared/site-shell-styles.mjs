@@ -175,5 +175,6 @@ export const shellCSS = `/* Twenty independent site shells — differentiated ma
  .shell-footer .shell-footer-index{font-size:9px}.shell-footer strong{line-height:1}
  .shell-mid-technical{padding-left:0;border:0}
 }
+.ref-topline{display:flex;justify-content:space-between;align-items:center;gap:16px;font:700 11px/1.5 var(--label-font);letter-spacing:.1em;text-transform:uppercase;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:6px}
 @media(prefers-reduced-motion:reduce){.shell-nav a{transition:none}}
 `;
