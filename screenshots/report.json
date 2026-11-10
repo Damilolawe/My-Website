@@ -1,8 +1,20 @@
 {
-  "generatedAt": "2026-11-09T05:48:22.640Z",
+  "generatedAt": "2026-11-10T03:09:23.037Z",
   "mode": "desktop",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 22,
-  "issues": 0,
-  "findings": []
+  "issues": 1,
+  "findings": [
+    {
+      "site": "casa-serra",
+      "viewport": "desktop-1440",
+      "type": "banner-motion",
+      "details": {
+        "ok": false,
+        "animation": "none",
+        "playState": "running",
+        "pixelsMoved": 0
+      }
+    }
+  ]
 }
