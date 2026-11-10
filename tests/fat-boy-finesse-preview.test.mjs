@@ -17,7 +17,7 @@ test("Fat Boy Finesse creator concept uses original red, black, white identity a
  assert.match(html,/https:\/\/fat-boy-finesse-shop\.fourthwall\.com\/products\/fat-boy-finesse-logo-t-shirt|https:\/\/fat-boy-finesse-shop\.fourthwall\.com\/products\/extraitvert-t-shirt/);
  assert.match(html,/https:\/\/podcasts\.apple\.com\/us\/podcast\/the-take-notes-podcast/);
  assert.match(html,/data-reveal/);
- assert.match(html,/youtube.com\/embed\/GO1myfRMo_o/);
+ assert.match(html,/https:\/\/www\.youtube\.com\/embed\/[A-Za-z0-9_-]{11}\?/);
  assert.match(html,/name="twitter:card"/);
  assert.doesNotMatch(html,/<span class="brand-art">/);
  assert.match(html,/class="creator-stage"/);
@@ -39,17 +39,32 @@ test("compact watch room defaults to recent uploads and checks verified live sta
  assert.doesNotMatch(html,/class="latest-player"/);
  assert.match(js,/new window.YT.Player\(videoFrame/);
  assert.match(js,/event.target.mute\(\);event.target.playVideo\(\)/);
- assert.match(html,/youtube.com\/embed\/GO1myfRMo_o/);
+ assert.match(html,/https:\/\/www\.youtube\.com\/embed\/[A-Za-z0-9_-]{11}\?/);
  assert.match(html,/id="live-probe-host"/);
  assert.match(html,/id="live-state"/);
+ assert.doesNotMatch(html,/<h2 id="live-title">[\s\S]*?<\/h2>\s*<p>/);
+ assert.doesNotMatch(html,/One player, two modes/);
  assert.doesNotMatch(html,/class="live-foot"/);
  assert.doesNotMatch(html,/id="live-message"/);
  assert.match(html,/id="latest-video-link"/);
  assert.match(html,/id="latest-video-thumbnail"/);
+ assert.doesNotMatch(html,/GO1myfRMo_o/);
  assert.match(js,/const latestVideoId=/);
  assert.match(html,/https:\/\/www\.youtube\.com\/embed\/[A-Za-z0-9_-]{11}\?/);
- assert.match(js,/const latestVideoId='GO1myfRMo_o'/);
- assert.match(html,/LATEST VIDEO/);
+ const ids=js.match(/const longFormVideoIds=(\[[^\]]+\]);/)?.[1];
+ assert.ok(ids,"The long-form video queue must be present.");
+ const longFormVideoIds=JSON.parse(ids);
+ assert.ok(longFormVideoIds.length>=2);
+ assert.equal(new Set(longFormVideoIds).size,longFormVideoIds.length);
+ assert.match(js,/const latestVideoId=longFormVideoIds\[0\]/);
+ assert.match(html,new RegExp("www.youtube.com/embed/"+longFormVideoIds[0]));
+ assert.match(js,/if\(event.data===0\)playNextLongForm\(\)/);
+ assert.match(js,/playLongFormAt\(longFormIndex\+1\)/);
+ const sync=await load("scripts/sync-fat-boy-finesse-video.mjs");
+ assert.match(sync,/playlist_id=UULF_/);
+ assert.doesNotMatch(sync,/playlist_id=UUSH_/);
+ assert.match(sync,/longFormVideoIds=entries.slice\(0,15\)/);
+ assert.match(html,/LATEST LONG-FORM/);
  assert.match(js,/UC_-FXJoPsApGI_xV1SvRFNw/);
  assert.match(js,/youtube.com\/embed\/live_stream/);
  assert.match(js,/youtube.com\/iframe_api/);
@@ -67,7 +82,7 @@ test("compact watch room defaults to recent uploads and checks verified live sta
 
 test("the live published concept includes the YouTube player and single canonical Awe footer",async()=>{
  const html=await load(published+"index.html");
- assert.match(html,/youtube.com\/embed\/GO1myfRMo_o/);
+ assert.match(html,/https:\/\/www\.youtube\.com\/embed\/[A-Za-z0-9_-]{11}\?/);
  assert.match(html,/THE WATCH ROOM/);
  assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
  assert.equal((html.match(/data-awe-design-credit="v1"/g)||[]).length,1);
