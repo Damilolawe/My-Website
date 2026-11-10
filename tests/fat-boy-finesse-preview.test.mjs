@@ -33,6 +33,12 @@ test("compact watch room defaults to recent uploads and checks verified live sta
   load(prefix+"index.html"),load(prefix+"site.js"),load(prefix+"styles.css"),load("branded-previews/firebase.json")
  ]);
  assert.match(html,/id="live-player"/);
+ assert.match(html,/loading="eager"/);
+ assert.match(html,/enablejsapi=1/);
+ assert.match(html,/One player, two modes/);
+ assert.doesNotMatch(html,/class="latest-player"/);
+ assert.match(js,/setupMainPlayer/);
+ assert.match(js,/event.target.mute\(\);event.target.playVideo\(\)/);
  assert.match(html,/embed\/videoseries\?list=UU_-FXJoPsApGI_xV1SvRFNw/);
  assert.match(html,/id="live-probe-host"/);
  assert.match(html,/id="live-state"/);
