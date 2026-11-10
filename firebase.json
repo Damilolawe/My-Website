@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "awe-digital",
     "public": "dist",
     "cleanUrls": true,
     "ignore": [
