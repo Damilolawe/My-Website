@@ -20,8 +20,8 @@ test("Fat Boy Finesse creator concept uses original red, black, white identity a
  const panda=await readFile(prefix+"panda-logo-v2.webp");
  assert.equal(panda.subarray(0,4).toString(),"RIFF");
  assert.equal(createHash("sha256").update(panda).digest("hex"),"c76f825ee6ff9d498e17f7036b0df47d67c57a4f4fac7ab467eb0937e044df74");
- assert.match(html,/<img class="panda-logo" src="\.\/panda-logo\.webp"/);
- assert.match(html,/<link rel="icon" type="image\/webp" href="\.\/panda-logo\.webp">/);
+ assert.match(html,/<img class="panda-logo" src="\.\/panda-logo-v2\.webp"/);
+ assert.match(html,/<link rel="icon" type="image\/webp" href="\.\/panda-logo-v2\.webp">/);
  assert.equal((html.match(/class="ticker-group"/g)||[]).length,2);
  assert.match(css,/fatboy-ticker-scroll/);
  assert.doesNotMatch(html,/id="scent"|href="#scent"|class="pyramid"|for everybody\./i);
