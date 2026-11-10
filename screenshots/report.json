@@ -1,67 +1,8 @@
 {
-  "generatedAt": "2026-11-10T05:26:06.968Z",
+  "generatedAt": "2026-11-10T17:58:52.974Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 23,
-  "issues": 6,
-  "findings": [
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: h2 NOGATEKEEPING."
-    },
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: p All fragrances welcomed here."
-    },
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: p Fat Boy Finesse is Walter Jennette's corner of the frag"
-    },
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: p No perfect-scent rules. No exclusive club. Just good co"
-    },
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "iphone-13",
-      "type": "horizontal-overflow",
-      "viewportWidth": 390,
-      "pageWidth": 456,
-      "suspects": [
-        "div.ticker-inner",
-        "b",
-        "b",
-        "b",
-        "b",
-        "b",
-        "b",
-        "div.about-heading"
-      ]
-    },
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "pixel-7",
-      "type": "horizontal-overflow",
-      "viewportWidth": 412,
-      "pageWidth": 466,
-      "suspects": [
-        "div.ticker-inner",
-        "b",
-        "b",
-        "b",
-        "b",
-        "b",
-        "b",
-        "span"
-      ]
-    }
-  ]
+  "issues": 0,
+  "findings": []
 }
