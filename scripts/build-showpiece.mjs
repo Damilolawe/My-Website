@@ -1,9 +1,21 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { sampleForTemplate } from "../shared/model.mjs";
-import { renderShowpiece, showpieceIds } from "../shared/showpiece.mjs";
+import { zipDesignFor } from "../shared/zip-design-catalog.mjs";
+import { renderShowpiece, showpieceIds, showpiecePages } from "../shared/showpiece/index.mjs";
 
 await mkdir("dist/showpiece", { recursive: true });
+let count = 0;
 for (const id of showpieceIds) {
-  await writeFile(`dist/showpiece/${id}.html`, renderShowpiece(id, sampleForTemplate(id), { sample: true }));
+  const v = sampleForTemplate(id);
+  if (zipDesignFor(id)?.multipage) {
+    await mkdir(`dist/showpiece/${id}`, { recursive: true });
+    for (const page of showpiecePages) {
+      await writeFile(`dist/showpiece/${id}/${page}.html`, renderShowpiece(id, v, { sample: true, multipage: true, page, href: p => `./${p}.html` }));
+      count++;
+    }
+  } else {
+    await writeFile(`dist/showpiece/${id}.html`, renderShowpiece(id, v, { sample: true }));
+    count++;
+  }
 }
-console.log(`Showpiece previews: ${showpieceIds.length}`);
+console.log(`Showpiece previews: ${showpieceIds.length} designs, ${count} pages`);
