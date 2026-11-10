@@ -1,5 +1,7 @@
 import { fetchPublicTemplate, fetchPublicStudyPage, previewMessage, studyPageFromLink } from "/shared/preview.mjs";
 import {zipDesignFor} from "/shared/zip-design-catalog.mjs";
+// Five-page designs, including RunwayML, open their linked showpiece pages.
+const isFivePage=id=>!!zipDesignFor(id)?.multipage||id==="runwaymulti";
 import { templates } from "/shared/model.mjs";
 export function mountExpressGallery(root,{items=templates,initial="afterhours",initialMobile=false,onSelect=()=>{},onModeChange=()=>{}}={}) {
   if(!root)return new AbortController();
@@ -16,7 +18,7 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
   // Template links are handled by this trusted parent. The srcdoc frame
   // is still script-free and cannot submit forms or execute template code.
   function wireStudyLinks(id,loadedVersion){
-    if(!zipDesignFor(id)?.multipage || loadedVersion!==version)return;
+    if(!isFivePage(id) || loadedVersion!==version)return;
     const doc=frame.contentDocument;
     if(!doc)return;
     doc.addEventListener("click",event=>{
@@ -52,7 +54,7 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
   else addEventListener("resize",syncFrame,{passive:true,signal:lifetime.signal});
   lifetime.signal.addEventListener("abort",()=>controller?.abort(),{once:true});
   const savedTemplates=new Map(items.map(x=>[x.id,x]));
-  function templatePath(id){return id==="runwaymulti"?"/experiments/runwayml-multipage/":items.some(t=>t.id===id&&t.multipage)?"/templates/"+id+"/home.html":"/templates/"+id+".html";}
+  function templatePath(id){return isFivePage(id)||items.some(t=>t.id===id&&t.multipage)?"/templates/"+id+"/home.html":"/templates/"+id+".html";}
   function populate(){
     const options=[...items];
     const fragment=document.createDocumentFragment();
@@ -98,7 +100,7 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
     if(notify)onSelect(id);
     controller?.abort();controller=new AbortController();
     rail.querySelectorAll("[data-world]").forEach(btn=>btn.setAttribute("aria-pressed",String(btn.dataset.world===id)));
-    full.href=zipDesignFor(id)?.multipage?"/templates/"+id+"/"+currentPage+".html":templatePath(id);screen.dataset.world=id;
+    full.href=isFivePage(id)?"/templates/"+id+"/"+currentPage+".html":templatePath(id);screen.dataset.world=id;
     loading.hidden=false;loadingName.textContent=item.name.toUpperCase();
     loading.setAttribute("aria-label","Loading "+item.name+" website preview");
     screen.setAttribute("aria-busy","true");
@@ -108,7 +110,7 @@ export function mountExpressGallery(root,{items=templates,initial="afterhours",i
     if(!previewReady)return;
     // Preserve the previous frame under the branded loading surface.
     try{
-      const html=zipDesignFor(id)?.multipage
+      const html=isFivePage(id)
         ?await fetchPublicStudyPage(id,currentPage,{signal:controller.signal})
         :await fetchPublicTemplate(id,{still,signal:controller.signal});
       if(controller.signal.aborted||mine!==version)return;
