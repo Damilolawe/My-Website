@@ -20,7 +20,13 @@ test("Fat Boy Finesse creator concept uses original red, black, white identity a
  assert.match(html,/https:\/\/www\.youtube\.com\/embed\/[A-Za-z0-9_-]{11}\?/);
  assert.match(html,/name="twitter:card"/);
  assert.doesNotMatch(html,/<span class="brand-art">/);
- assert.match(html,/class="creator-stage"/);
+ assert.match(html,/class="hero-watch"/);
+ assert.doesNotMatch(html,/class="creator-stage"/);
+ assert.equal((html.match(/id="live-player"/g)||[]).length,1);
+ assert.equal((html.match(/id="live"/g)||[]).length,1);
+ assert.ok(html.indexOf('id="live-player"')>html.indexOf('<section class="hero"'));
+ assert.ok(html.indexOf('id="live-player"')<html.indexOf('<div class="ticker"'));
+ assert.doesNotMatch(html,/<section class="live"/);
  assert.doesNotMatch(html,/class="bottle-stage"/);
  assert.match(css,/@media\(max-width:1100px\)/);
  assert.match(css,/@media\(max-width:640px\)/);
@@ -41,9 +47,11 @@ test("compact watch room defaults to recent uploads and checks verified live sta
  assert.match(js,/event.target.mute\(\);event.target.playVideo\(\)/);
  assert.match(html,/https:\/\/www\.youtube\.com\/embed\/[A-Za-z0-9_-]{11}\?/);
  assert.match(html,/id="live-probe-host"/);
- assert.match(html,/id="live-state"/);
- const watchHeading=html.slice(html.indexOf('<h2 id="live-title">'),html.indexOf('<div class="live-set"'));
- assert.doesNotMatch(watchHeading,/<p(?:\s|>)/);
+ assert.doesNotMatch(html,/id="live-state"/);
+ assert.doesNotMatch(html,/LATEST LONG-FORM/);
+ assert.doesNotMatch(js,/streamStatus/);
+ const heroWatch=html.slice(html.indexOf('<div class="hero-watch"'),html.indexOf('</section>',html.indexOf('<div class="hero-watch"')));
+ assert.doesNotMatch(heroWatch,/<p(?:\s|>)/);
  assert.doesNotMatch(html,/One player, two modes/);
  assert.doesNotMatch(html,/class="live-foot"/);
  assert.doesNotMatch(html,/id="live-message"/);
@@ -65,7 +73,7 @@ test("compact watch room defaults to recent uploads and checks verified live sta
  assert.match(sync,/playlist_id=UULF_/);
  assert.doesNotMatch(sync,/playlist_id=UUSH_/);
  assert.match(sync,/longFormVideoIds=entries.slice\(0,15\)/);
- assert.match(html,/LATEST LONG-FORM/);
+ assert.doesNotMatch(html,/LATEST LONG-FORM/);
  assert.match(js,/UC_-FXJoPsApGI_xV1SvRFNw/);
  assert.match(js,/youtube.com\/embed\/live_stream/);
  assert.match(js,/youtube.com\/iframe_api/);
