@@ -61,14 +61,23 @@ Thumbnails: `assets/catalog-thumbnails/{id}.webp`
 
 ### Phase 6 — Deployment
 - [x] Build passes (all 116 templates)
-- [ ] Firebase deployment
-- [ ] Live verification complete
+- [x] Firebase deployment (1,767 files to awe-digital.web.app)
+- [x] Live verification complete (all template pages returning 200)
+
+### Phase 7 — Deliverable Summary
+- [x] All 116 templates built and deployed
+- [x] 7 category art directions implemented (auto, editorial, fintech, code, product, commerce, studio)
+- [x] Scroll-triggered reveal animations on all 7 rendering pipelines
+- [x] Per-category typography via Google Fonts
+- [x] Per-category UI treatments (border-radius, button styles, card hover effects)
+- [x] Hero visibility fix with reduced-motion fallback
+- [x] Refero Original header spacing fix
+- [x] Visual QA completed (56 templates, desktop + mobile)
+- [x] Live at https://awe-digital.web.app
 
 ## Commits
 1. `5be7003` — Differentiate template library with animations, typography, and category art direction (122 files)
 2. `fc832cc` — Fix hero visibility and add scroll animations to all rendering pipelines
 3. `d40821f` — Fix ref-topline header spacing for Refero Original templates
-
-## Next Steps
-- Deploy to Firebase hosting
-- Live verification on production
+4. `3f8d389` — Update progress tracker
+5. `fe7129d` — Add site target to firebase.json for deployment
