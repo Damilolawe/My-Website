@@ -9,7 +9,8 @@ const result=document.getElementById('scent-result');const flacon=document.query
    A scheduled GitHub Action syncs this ID against YouTube's official RSS feed.
    YouTube IFrame API separately detects embeddable livestreams.
 */
-const latestVideoId='GO1myfRMo_o';
+const longFormVideoIds=["DJb4xBSUryc","oQbOUW6HLoQ","Gqj1NNd6qqY","3CDeenHTCBU","E_X7xLwTTME","fnMRdWTycmA","eLn6aAvyXnE","zG3AEsvUijw","9r_k_hC60ME","GGT05pQV6Hc","4OKWfCOf3mY","qacsB8AFiG8","auir4COP4pY","HGAVxS686q8","SAg1GlwR7iQ"];
+const latestVideoId=longFormVideoIds[0];
 const watchRoom=document.getElementById('live-set');
 const videoFrame=document.getElementById('live-player');
 const liveFrame=document.getElementById('live-frame');
@@ -19,11 +20,36 @@ if(watchRoom&&videoFrame&&liveFrame&&probeHost&&streamStatus){
  const channel='UC_-FXJoPsApGI_xV1SvRFNw';
  const directUrl=videoId=>'https://www.youtube.com/embed/'+videoId+'?rel=0&playsinline=1&autoplay=1&mute=1&enablejsapi=1';
  let currentMode='latest';
+ let longFormIndex=0,consecutiveErrors=0;
  let mainPlayer=null,mainReady=false,probePlayer=null,probeTimeout=null,checkSequence=0,lastCheck=0;
  const markFallback=()=>{
   liveFrame.classList.add('player-failed');
   const fallback=document.getElementById('latest-video-link');
   if(fallback)fallback.setAttribute('tabindex','0');
+ };
+ const updateFallback=videoId=>{
+  const link=document.getElementById('latest-video-link');
+  const poster=document.getElementById('latest-video-thumbnail');
+  if(link)link.href='https://www.youtube.com/watch?v='+videoId;
+  if(poster)poster.src='https://i.ytimg.com/vi/'+videoId+'/hqdefault.jpg';
+ };
+ const playLongFormAt=index=>{
+  if(currentMode!=='latest')return;
+  longFormIndex=((index%longFormVideoIds.length)+longFormVideoIds.length)%longFormVideoIds.length;
+  const id=longFormVideoIds[longFormIndex];
+  updateFallback(id);
+  liveFrame.classList.remove('player-failed');
+  if(mainReady&&mainPlayer){
+   try{
+    mainPlayer.loadVideoById(id);
+    mainPlayer.playVideo();
+    return;
+   }catch(error){}
+  }
+  videoFrame.src=directUrl(id);
+ };
+ const playNextLongForm=()=>{
+  if(currentMode==='latest')playLongFormAt(longFormIndex+1);
  };
  const setMode=(mode,liveId)=>{
   if(currentMode===mode)return;
@@ -32,7 +58,8 @@ if(watchRoom&&videoFrame&&liveFrame&&probeHost&&streamStatus){
   watchRoom.classList.toggle('is-live',isLive);
   liveFrame.classList.remove('player-failed');
   streamStatus.textContent=isLive?'LIVE BROADCAST':'LATEST VIDEO';
-  const targetId=isLive?liveId:latestVideoId;
+  if(!isLive){consecutiveErrors=0;playLongFormAt(0);return;}
+  const targetId=liveId;
   if(!targetId)return;
   if(mainReady&&mainPlayer){
    try{
@@ -79,15 +106,42 @@ if(watchRoom&&videoFrame&&liveFrame&&probeHost&&streamStatus){
   url.searchParams.set('enablejsapi','1');
   url.searchParams.set('origin',location.origin);
   url.searchParams.set('playsinline','1');
-  url.searchParams.set('autoplay','0');
+  url.searchParams.set('autoplay','1');
   url.searchParams.set('mute','1');
   probe.src=url.toString();
   probeHost.append(probe);
+  // A video ID alone is not proof of a livestream. Require playback
+  // with zero duration twice, or YouTube's explicit isLive flag.
+  let verifying=false;
+  const verifyLive=player=>{
+   if(verifying||finished)return;
+   const id=detectId(player);
+   if(!id)return;
+   let live=false;
+   try{
+    const state=player.getPlayerState();
+    const duration=Number(player.getDuration());
+    const data=player.getVideoData();
+    live=(data?.isLive===true)||(state===1&&duration===0);
+   }catch(error){return;}
+   if(!live)return;
+   verifying=true;
+   setTimeout(()=>{
+    verifying=false;
+    if(finished||sequence!==checkSequence)return;
+    try{
+     const stillPlaying=player.getPlayerState()===1;
+     const duration=Number(player.getDuration());
+     const explicitLive=player.getVideoData()?.isLive===true;
+     if(explicitLive||(stillPlaying&&duration===0))finish(id);
+    }catch(error){}
+   },1250);
+  };
   try{
    probePlayer=new window.YT.Player(probe,{
     events:{
-     onReady:event=>{const id=detectId(event.target);if(id)finish(id);},
-     onStateChange:event=>{if([1,2,3,5].includes(event.data)){const id=detectId(event.target);if(id)finish(id);}},
+     onReady:event=>{try{event.target.mute();event.target.playVideo();}catch(error){}verifyLive(event.target);},
+     onStateChange:event=>{if(event.data===1)verifyLive(event.target);},
      onError:()=>finish(null)
     }
    });
@@ -103,8 +157,15 @@ if(watchRoom&&videoFrame&&liveFrame&&probeHost&&streamStatus){
        mainReady=true;
        try{event.target.mute();event.target.playVideo();}catch(error){}
       },
+      onStateChange:event=>{
+       if(currentMode!=='latest')return;
+       if(event.data===0)playNextLongForm();
+       if(event.data===1)consecutiveErrors=0;
+      },
       onError:()=>{
-       if(currentMode==='live')setMode('latest');
+       if(currentMode==='live'){setMode('latest');return;}
+       consecutiveErrors+=1;
+       if(consecutiveErrors<longFormVideoIds.length)playNextLongForm();
        else markFallback();
       }
      }
