@@ -273,7 +273,14 @@ section[id]{scroll-margin-top:100px}
 .live-actions{display:grid;width:100%;gap:10px}
 .live-actions .btn{font-size:13px;padding:12px 16px;justify-content:center;text-align:center;line-height:1.4}
 .youtube-probe{position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
-.youtube-probe iframe{width:2px;height:2px;border:0}
+.youtube-probe iframe{width:220px;height:220px;border:0}
 @media(max-width:780px){.live-content{grid-template-columns:1fr}.live-foot{border-left:0;border-top:1px solid var(--line);align-items:stretch;gap:16px}.live-actions{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.live-set{border-radius:12px}.live-actions{grid-template-columns:1fr}.live-top strong{font-size:17px}.live-top span:last-child{font-size:11px}.live .section-head h2{font-size:clamp(49px,12vw,70px)}}
 @media(prefers-reduced-motion:reduce){.creator-photo{animation:none}.creator-photo img{transition:none}}
+
+
+/* Watch-room is the only automatically playing latest/live player. */
+.latest-feed{grid-template-columns:1fr}
+.latest-copy{max-width:720px}
+.latest-copy p{max-width:66ch}
+.live-frame iframe{display:block}
