@@ -1,20 +1,8 @@
 {
-  "generatedAt": "2026-11-10T03:15:37.846Z",
+  "generatedAt": "2026-11-10T03:18:53.427Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
-  "testedSites": 22,
-  "issues": 1,
-  "findings": [
-    {
-      "site": "casa-serra",
-      "viewport": "iphone-13",
-      "type": "banner-motion",
-      "details": {
-        "ok": false,
-        "animation": "none",
-        "playState": "running",
-        "pixelsMoved": 0
-      }
-    }
-  ]
+  "testedSites": 23,
+  "issues": 0,
+  "findings": []
 }
