@@ -1,30 +1,131 @@
 {
-  "description": "Single source of truth for which preview concepts are published to the live Firebase Hosting site (awe-concepts-previews). scripts/publish-selected-previews.mjs prunes the built output to EXACTLY the entries listed here with status \"active\". A slug must never be published merely because it appears in prospect research — it is added here only after individual business + no-existing-website verification. Archived source directories under preview/<slug>/ stay in GitHub but must never appear here.",
+  "description": "Approved live preview concepts for the separate Awe Concepts Firebase Hosting site. Existing 19 remain required; additionally approved new prospects and explicitly user-requested concepts may be listed. Never publish a prospect as no-website-found without verification.",
   "updatedAt": "2026-11-09",
-  "policy": "Only individually verified, no-independent-website-found concepts are published live. All other source directories remain archived in GitHub and excluded from live Hosting, the public index, the sitemap and the preview manifest.",
+  "policy": "Publish the 19 verified core concepts, individually verified additions and explicitly user-requested design concepts only. Other sources remain in GitHub; new concepts must never be misrepresented as businesses without existing sites.",
   "requiredCoreGroup": "existing-19",
   "active": [
-    { "slug": "shotsbyriq", "name": "SHOTSBYRIQ", "group": "existing-19" },
-    { "slug": "jay-millz-shot-em", "name": "Jay Millz Shot Em", "group": "existing-19" },
-    { "slug": "bao-dumpling", "name": "Bao Dumpling", "group": "existing-19" },
-    { "slug": "mesa-bar", "name": "Mesa Bar", "group": "existing-19" },
-    { "slug": "casa-serra", "name": "Casa Serra", "group": "existing-19" },
-    { "slug": "solerum", "name": "Solerum", "group": "existing-19" },
-    { "slug": "tbili", "name": "Tbili", "group": "existing-19" },
-    { "slug": "santuario-cafe", "name": "Santuario Cafe", "group": "existing-19" },
-    { "slug": "le-loup-cafe", "name": "Le Loup Cafe", "group": "existing-19" },
-    { "slug": "duro-market", "name": "Duro Market", "group": "existing-19" },
-    { "slug": "cafe-aroma-y-sabor", "name": "Cafe Aroma y Sabor", "group": "existing-19" },
-    { "slug": "fiolicchia-bakery", "name": "Fiolicchia Bakery NYC", "group": "existing-19" },
-    { "slug": "from-duo", "name": "From Duo", "group": "existing-19" },
-    { "slug": "cultiva-cafe", "name": "Cultiva Cafe", "group": "existing-19" },
-    { "slug": "hots-coffee", "name": "Hot's Coffee", "group": "existing-19" },
-    { "slug": "rachels-handmade-cookies", "name": "Rachel's Handmade Cookies", "group": "existing-19" },
-    { "slug": "worksbynet", "name": "WorksbyNET", "group": "existing-19" },
-    { "slug": "tiny-topiary", "name": "Tiny Topiary", "group": "existing-19" },
-    { "slug": "cafe-pr", "name": "Café Pri Middle Village", "group": "existing-19" },
-    { "slug": "cafe-wands", "name": "Café Wands", "group": "new-prospect", "verifiedAt": "2026-11-09", "verification": "Real; The Infatuation confirms 215 Union St Carroll Gardens, from a Chez Fifi co-owner; no independent website found. Recheck website/IG before outreach." },
-    { "slug": "salep-ronkonkoma", "name": "Salep (Turkish Ice Cream)", "group": "new-prospect", "verifiedAt": "2026-11-09", "verification": "Real; Greater Long Island confirms 920 Johnson Ave Ronkonkoma, owner Gulden Durdu, Turkish ice cream + American flavors + Italian ice + hot salep; no independent website found. Recheck before outreach." },
-    { "slug": "fira-frozen-yogurt", "name": "Fira Greek Frozen Yogurt", "group": "new-prospect", "verifiedAt": "2026-11-09", "verification": "Real/pre-opening; Greenpointers (Jul 2026) confirms Greek frozen yogurt at 294 Bedford Ave Williamsburg, name from Santorini capital; no independent website found. Recheck opening/website before outreach." }
+    {
+      "slug": "shotsbyriq",
+      "name": "SHOTSBYRIQ",
+      "group": "existing-19"
+    },
+    {
+      "slug": "jay-millz-shot-em",
+      "name": "Jay Millz Shot Em",
+      "group": "existing-19"
+    },
+    {
+      "slug": "bao-dumpling",
+      "name": "Bao Dumpling",
+      "group": "existing-19"
+    },
+    {
+      "slug": "mesa-bar",
+      "name": "Mesa Bar",
+      "group": "existing-19"
+    },
+    {
+      "slug": "casa-serra",
+      "name": "Casa Serra",
+      "group": "existing-19"
+    },
+    {
+      "slug": "solerum",
+      "name": "Solerum",
+      "group": "existing-19"
+    },
+    {
+      "slug": "tbili",
+      "name": "Tbili",
+      "group": "existing-19"
+    },
+    {
+      "slug": "santuario-cafe",
+      "name": "Santuario Cafe",
+      "group": "existing-19"
+    },
+    {
+      "slug": "le-loup-cafe",
+      "name": "Le Loup Cafe",
+      "group": "existing-19"
+    },
+    {
+      "slug": "duro-market",
+      "name": "Duro Market",
+      "group": "existing-19"
+    },
+    {
+      "slug": "cafe-aroma-y-sabor",
+      "name": "Cafe Aroma y Sabor",
+      "group": "existing-19"
+    },
+    {
+      "slug": "fiolicchia-bakery",
+      "name": "Fiolicchia Bakery NYC",
+      "group": "existing-19"
+    },
+    {
+      "slug": "from-duo",
+      "name": "From Duo",
+      "group": "existing-19"
+    },
+    {
+      "slug": "cultiva-cafe",
+      "name": "Cultiva Cafe",
+      "group": "existing-19"
+    },
+    {
+      "slug": "hots-coffee",
+      "name": "Hot's Coffee",
+      "group": "existing-19"
+    },
+    {
+      "slug": "rachels-handmade-cookies",
+      "name": "Rachel's Handmade Cookies",
+      "group": "existing-19"
+    },
+    {
+      "slug": "worksbynet",
+      "name": "WorksbyNET",
+      "group": "existing-19"
+    },
+    {
+      "slug": "tiny-topiary",
+      "name": "Tiny Topiary",
+      "group": "existing-19"
+    },
+    {
+      "slug": "cafe-pr",
+      "name": "Café Pri Middle Village",
+      "group": "existing-19"
+    },
+    {
+      "slug": "cafe-wands",
+      "name": "Café Wands",
+      "group": "new-prospect",
+      "verifiedAt": "2026-11-09",
+      "verification": "Real; The Infatuation confirms 215 Union St Carroll Gardens, from a Chez Fifi co-owner; no independent website found. Recheck website/IG before outreach."
+    },
+    {
+      "slug": "salep-ronkonkoma",
+      "name": "Salep (Turkish Ice Cream)",
+      "group": "new-prospect",
+      "verifiedAt": "2026-11-09",
+      "verification": "Real; Greater Long Island confirms 920 Johnson Ave Ronkonkoma, owner Gulden Durdu, Turkish ice cream + American flavors + Italian ice + hot salep; no independent website found. Recheck before outreach."
+    },
+    {
+      "slug": "fira-frozen-yogurt",
+      "name": "Fira Greek Frozen Yogurt",
+      "group": "new-prospect",
+      "verifiedAt": "2026-11-09",
+      "verification": "Real/pre-opening; Greenpointers (Jul 2026) confirms Greek frozen yogurt at 294 Bedford Ave Williamsburg, name from Santorini capital; no independent website found. Recheck opening/website before outreach."
+    },
+    {
+      "slug": "fat-boy-finesse",
+      "name": "Fat Boy Finesse",
+      "group": "owner-requested",
+      "requestedAt": "2026-11-09",
+      "verification": "Explicit user-directed independent website concept for the fragrance creator Walter Jennette. He already operates a merch storefront; do not label him as having no existing website."
+    }
   ]
 }
