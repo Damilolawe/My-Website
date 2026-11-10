@@ -66,6 +66,7 @@ on:
       - 'tests/preview-image-csp.test.mjs'
       - 'tests/otaku-haven-preview.test.mjs'
       - 'tests/preview-no-pictographs.test.mjs'
+      - 'tests/fat-boy-finesse-preview.test.mjs'
       - '.github/workflows/branded-previews.yml'
   workflow_dispatch:
 
@@ -102,7 +103,7 @@ jobs:
         run: node scripts/build-branded-previews.mjs
       - name: Validate navigation, public-only output and independent deployment target
         if: env.FIREBASE_READY == 'true'
-        run: node --test --test-concurrency=1 tests/active-previews-allowlist.test.mjs tests/branded-previews.test.mjs tests/preview-image-csp.test.mjs tests/kappo-sono-preview.test.mjs tests/otaku-haven-preview.test.mjs tests/preview-no-pictographs.test.mjs tests/susukino-preview.test.mjs tests/bao-dumpling-preview.test.mjs tests/mesa-bar-preview.test.mjs tests/casa-serra-preview.test.mjs tests/solerum-preview.test.mjs tests/jj-deli-preview.test.mjs tests/chong-preview.test.mjs tests/large-scale-batch-one.test.mjs tests/preview-original-link-policy.test.mjs
+        run: node --test --test-concurrency=1 tests/active-previews-allowlist.test.mjs tests/branded-previews.test.mjs tests/preview-image-csp.test.mjs tests/kappo-sono-preview.test.mjs tests/otaku-haven-preview.test.mjs tests/preview-no-pictographs.test.mjs tests/susukino-preview.test.mjs tests/bao-dumpling-preview.test.mjs tests/mesa-bar-preview.test.mjs tests/casa-serra-preview.test.mjs tests/solerum-preview.test.mjs tests/jj-deli-preview.test.mjs tests/chong-preview.test.mjs tests/large-scale-batch-one.test.mjs tests/preview-original-link-policy.test.mjs tests/fat-boy-finesse-preview.test.mjs
       - name: Restrict live Hosting to 19 selected prospects (archive others in GitHub)
         if: env.FIREBASE_READY == 'true'
         run: node scripts/publish-selected-previews.mjs
