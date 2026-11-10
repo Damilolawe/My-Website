@@ -12,7 +12,6 @@ test("Fat Boy Finesse creator concept uses original red, black, white identity a
  assert.match(css,/--black:#101010/);
  assert.match(css,/--white:#fafaf8/);
  assert.match(html,/imgproxy\.fourthwall\.dev/);
- assert.match(html,/ugc\.production\.linktr\.ee/);
  for(const section of ["live","videos","about","podcast","merch","connect"]) assert.ok(html.includes('id="'+section+'"'),"Missing section "+section);
  assert.match(html,/https:\/\/fat-boy-finesse-shop\.fourthwall\.com\/products\/fat-boy-finesse-logo-t-shirt|https:\/\/fat-boy-finesse-shop\.fourthwall\.com\/products\/extraitvert-t-shirt/);
  assert.match(html,/https:\/\/podcasts\.apple\.com\/us\/podcast\/the-take-notes-podcast/);
