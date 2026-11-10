@@ -20,3 +20,19 @@
 @media(max-width:780px){.site-header{height:74px}.site-logo{min-width:unset}.brand-art{width:48px;height:48px;flex-basis:48px}.brand-art img{width:240px;height:240px}.site-name{font-size:22px}.menu-toggle{display:block;margin-left:auto}.menu-toggle[aria-expanded=true] i:first-child{transform:translateY(4.5px) rotate(45deg)}.menu-toggle[aria-expanded=true] i:last-child{transform:translateY(-4.5px) rotate(-45deg)}.nav-links{display:none;position:absolute;left:0;right:0;top:74px;margin:0;background:#151515;padding:22px;flex-direction:column;align-items:stretch;gap:0;border-bottom:2px solid var(--red)}.nav-links.open{display:flex}.nav-links a{padding:13px 4px;border-bottom:1px solid #333;font-size:14px}.hero-inner{grid-template-columns:1fr;padding-top:65px;gap:8px}.hero h1{font-size:clamp(87px,15vw,140px)}.hero-visual{min-height:460px;max-width:610px;width:100%;justify-self:center}.hero-portrait{width:68%}.hero-sticker{right:7%;top:5%}.hero-vertical{left:5%}.scroll-hint{display:none}.hero-signature{margin-top:35px}.intro-layout,.scent-layout,.podcast-layout,.merch-layout{grid-template-columns:1fr}.scent-art{min-height:460px}.video-grid{grid-template-columns:1fr 1fr}.video-card:last-child{grid-column:1/-1;max-width:calc(50% - 10px)}.stats-strip>div+div{padding-left:20px}.merch-design{min-height:400px}}
 @media(max-width:540px){.hero-inner{padding:58px 20px 60px}.hero h1{font-size:clamp(72px,17vw,108px);line-height:.83}.eyebrow{font-size:9px}.hero-visual{min-height:340px}.hero-portrait{width:72%;box-shadow:12px 12px 0 var(--red)}.hero-sticker{width:85px;height:85px;font-size:17px;right:2%;top:5%}.hero-vertical,.hero-note{display:none}.actions{flex-direction:column;align-items:stretch}.actions .btn{width:100%}.section-shell{padding:69px 20px}.section-top{gap:10px;margin-bottom:30px}.kicker,.tiny-label{font-size:8px}.display-heading{font-size:clamp(55px,13vw,88px)}.stats-strip{margin-top:48px}.stats-strip>div{padding:20px 8px 0}.stats-strip>div+div{padding-left:10px}.stats-strip strong{font-size:clamp(37px,11vw,68px)}.stats-strip small{font-size:8px;letter-spacing:0}.video-grid{grid-template-columns:1fr}.video-card:last-child{grid-column:auto;max-width:none}.video-info h3{min-height:0}.section-heading-row{align-items:start;flex-direction:column}.scent-art{min-height:400px}.scent-bottle{scale:.78}.podcast-cover{max-width:360px}.merch-block{padding:28px 18px;box-shadow:12px 12px 0 #fff}.merch-block span,.merch-block strong{font-size:75px}.contact-inner h2{font-size:clamp(68px,17vw,110px)}.contact-email{font-size:14px}.social-list{gap:19px}.footer-top,.footer-bottom{flex-direction:column;align-items:flex-start}.footer-top{gap:10px}.marquee-track{font-size:23px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.marquee-track,.pulse,.scent-bottle{animation:none}*,*::before,*::after{transition:none!important}[data-reveal]{opacity:1;transform:none}}
+
+
+/* Small-screen typography QA: long condensed headlines must not clip. */
+@media(max-width:540px){
+  .hero h1{font-size:clamp(57px,14.5vw,88px);letter-spacing:-.01em;overflow-wrap:normal}
+  .display-heading{font-size:clamp(42px,10.3vw,77px);overflow-wrap:break-word}
+  .contact-inner h2{font-size:clamp(43px,12.5vw,89px);overflow-wrap:break-word}
+  .merch-block{max-width:calc(100% - 35px)}
+  .merch-block span,.merch-block strong{font-size:clamp(45px,12vw,72px)}
+  .hero-portrait img{object-position:center}
+}
+@media(max-width:350px){
+  .hero h1{font-size:56px}
+  .display-heading{font-size:42px}
+  .hero-sticker{right:0}
+}
