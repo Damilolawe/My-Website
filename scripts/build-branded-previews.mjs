@@ -103,7 +103,7 @@ for (const page of [
 ]) {
   const path = output + "/" + page;
   const html = await readFile(path, "utf8");
-  const revision = page.startsWith("otaku-haven/") ? otakuAnimationRevision : /^(?:shotsbyriq|jay-millz-shot-em|pace-sbdc|susukino)\//.test(page) ? repairRevision : animationRevision;
+  const revision = page.startsWith("fat-boy-finesse/") ? "revamp-20261110" : page.startsWith("otaku-haven/") ? otakuAnimationRevision : /^(?:shotsbyriq|jay-millz-shot-em|pace-sbdc|susukino)\//.test(page) ? repairRevision : animationRevision;
   const updated = html.replace(
     /(href|src)="((?:\.\/|\/(?:kappo-sono|otaku-haven|bao-dumpling|mesa-bar|casa-serra|solerum|jj-deli|shotsbyriq|jay-millz-shot-em|pace-sbdc|susukino|chong|loved-ones-coffee|worksbynet|studio-shipley|hanare-spa|tiny-topiary|kora-bakery|old-mill-cafe|birdee|cafe-pr|latte-da|fat-boy-finesse)\/)(?:styles\.css|site\.js))(?:\?[^"]*)?"/g,
     (_, attr, asset) => attr + '="' + asset + "?v=" + revision + '"'
