@@ -4,8 +4,8 @@ export const alternateCSS = `
 .hero-variant .hero-media:has(.experience-art){min-height:0}
 .atlas-hero{background:#e8f3ed;color:#162e29;padding:25px 30px 70px;min-height:780px}
 .atlas-top,.atlas-bottom{display:flex;justify-content:space-between;border-block:1px solid #163e3852;padding:15px 0}.atlas-top{margin-bottom:55px}
-.atlas-layout{display:grid;grid-template-columns:100px minmax(0,1.3fr) minmax(260px,.72fr);gap:24px;align-items:center;min-height:570px}
-.atlas-side{writing-mode:vertical-rl;transform:rotate(180deg);align-self:stretch;display:flex;justify-content:space-between}
+.atlas-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.72fr);gap:24px;align-items:center;min-height:570px}
+.atlas-side{display:none}
 .atlas-layout h1{font:880 clamp(68px,7.8vw,148px)/.91 system-ui,sans-serif;letter-spacing:-.095em}
 .atlas-visual{align-self:stretch;position:relative;border-left:4px solid #163e38;padding-left:15px}.atlas-visual .hero-media{height:89%;min-height:400px;border-radius:0}.atlas-caption{font:700 11px monospace;padding:17px;border-bottom:4px solid #163e38}.atlas-bottom{margin-top:25px}
 .atlas .section-head{grid-template-columns:1fr .7fr;border-bottom:2px solid;padding-bottom:20px}.atlas .work-grid{grid-template-columns:repeat(3,1fr)}
@@ -51,7 +51,7 @@ export const alternateCSS = `
 .portraiture-mosaic{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;opacity:.2}
 .portraiture-mosaic span{background:linear-gradient(130deg,#bd876f,#f5d6c4);border-radius:120px 120px 0 0}.portraiture-mosaic span:nth-child(even){transform:translateY(80px)}
 .portraiture-image{width:85%;height:660px;position:relative;justify-self:center}.portraiture-image .hero-media{height:100%;border-radius:220px 220px 0 0}
-.portraiture-seal{position:absolute;right:-30px;bottom:30px;padding:20px;background:#291c19;color:white;transform:rotate(90deg)}
+.portraiture-seal{display:none}
 .portraiture-copy h1{font:600 clamp(68px,8vw,145px)/.93 Georgia,serif;letter-spacing:-.07em}
 .portraiture .work-grid{grid-template-columns:repeat(3,1fr)}.portraiture .work-card{border-radius:130px 130px 0 0}
 .contactsheet-hero{background:#1f221e;color:#e8f1df;padding:25px 3vw 50px;min-height:85svh}
@@ -84,7 +84,7 @@ export const alternateCSS = `
 .brutalist-strap{background:#0c0c0d;color:#f8f8d7;padding:20px 0;text-align:center;font:900 clamp(14px,2vw,27px) system-ui;white-space:nowrap;transform:rotate(-1deg)}
 .brutalist-stage{min-height:730px;position:relative;display:grid;align-items:center;grid-template-columns:1.2fr .6fr;padding:90px 5vw}
 .brutalist-stage h1{font:1000 clamp(75px,12vw,215px)/.79 system-ui,sans-serif;letter-spacing:-.13em;text-transform:uppercase;text-shadow:8px 8px 0 #f8e85b;transform:rotate(-3deg)}
-.brutalist-stage .hero-copy{grid-column:1;z-index:4}.brutalist-icon{position:absolute;font-size:clamp(180px,28vw,600px);line-height:1;right:0;top:6%;transform:rotate(10deg);color:#ffde44}
+.brutalist-stage .hero-copy{grid-column:1;z-index:4}.brutalist-icon{display:none}
 .brutalist-art{width:75%;justify-self:end;transform:rotate(8deg);box-shadow:24px 25px #131417;z-index:2}.brutalist-art .hero-media{height:500px;min-height:500px;border:7px solid #101011;border-radius:0}
 .brutalist-tape{background:#161616;color:white;padding:23px 5vw;display:flex;justify-content:space-between}
 .brutalist .work-card{border:5px solid #111;border-radius:0;box-shadow:12px 12px 0 #ef4c58}
@@ -103,11 +103,11 @@ export const alternateCSS = `
 .foundry-layout{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;min-height:690px;gap:4vw}
 .foundry-copy h1{font:950 clamp(75px,10vw,180px)/.85 system-ui;letter-spacing:-.095em;text-transform:uppercase}
 .foundry-graphic{position:relative}.foundry-graphic .hero-media{min-height:620px;height:620px;border-radius:0;clip-path:polygon(0 0,100% 0,100% 85%,85% 100%,0 100%)}
-.foundry-badge{position:absolute;right:0;bottom:0;font:950 35px system-ui;background:#f0ae2f;color:#111;padding:25px;transform:rotate(-8deg)}
+.foundry-badge{display:none}
 .foundry .services-grid{grid-template-columns:repeat(3,1fr)}.foundry .service-card{background:#e8d6b4;border:2px solid #3d2e26;border-radius:0}
 .bloom-hero{min-height:86svh;background:#f2dfe4;color:#502d3b;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4vw;padding:100px 4vw;position:relative}
 .bloom-hero:before{content:"";position:absolute;inset:11% 3% 7%;border:3px dashed #b67d91;border-radius:43% 27% 45% 28%;pointer-events:none}
-.bloom-flower{position:absolute;top:5%;right:5%;font-size:clamp(110px,18vw,280px);line-height:1;color:#b6719d;transform:rotate(-18deg)}
+.bloom-flower{display:none}
 .bloom-label{position:absolute;top:30px;left:4vw}
 .bloom-stage{display:contents}.bloom-stage .hero-copy{grid-column:1;z-index:2}.bloom-stage h1{font:italic 600 clamp(70px,8vw,150px)/.96 Georgia,serif}
 .bloom-portrait{grid-column:2;width:90%;justify-self:end;transform:rotate(4deg)}
@@ -130,8 +130,6 @@ export const alternateCSS = `
 @media(prefers-reduced-motion:no-preference){
 .motion-expressive .terminal-caret{animation:terminal-blink 1s steps(1) infinite}
 .motion-expressive .orbit-visual{animation:orbit-hover 10s ease-in-out infinite alternate}
-.motion-expressive .bloom-flower{animation:bloom-sway 5s ease-in-out infinite alternate}
-.motion-expressive .brutalist-icon{animation:brutalist-jump 3s ease-in-out infinite alternate}
 .motion-expressive .contactsheet-grid i{animation:contact-develop 1.3s both;animation-delay:calc(var(--i,0) * 125ms)}
 .motion-expressive .script-direction{animation:monologue-type 1.3s .5s both steps(24)}
 .motion-expressive .atelier-numeral{animation:orbit-hover 9s ease-in-out infinite alternate}
@@ -139,7 +137,7 @@ export const alternateCSS = `
 .motion-expressive .portraiture-mosaic span{animation:contact-develop 2s both}
 }
 @media(max-width:900px){
-.atlas-layout{grid-template-columns:40px 1fr}.atlas-visual{grid-column:2;min-height:330px}.atlas-visual .hero-media{height:380px;min-height:380px}
+.atlas-layout{grid-template-columns:1fr}.atlas-visual{min-height:330px}.atlas-visual .hero-media{height:380px;min-height:380px}
 .orbit-hero,.portraiture-hero,.museum-hero,.foundry-layout,.bloom-hero,.ledger-main,.playbill-stage{grid-template-columns:1fr;min-height:0}
 .orbit-words{grid-column:1;grid-row:1}.orbit-visual{grid-column:1;grid-row:2;justify-self:center;width:65%;margin:45px 0}
 .playbill-image,.portraiture-image{height:400px;width:75%;margin:30px auto}
@@ -222,4 +220,3 @@ export const alternateCSS = `
 }
 
 `;
-

@@ -254,5 +254,17 @@ export const fullPageCSS = `/* TWENTY INDEPENDENT PAGE SYSTEMS — every chapter
 }
 @media(prefers-reduced-motion:reduce){.case-entry,.chapter-intro h2,.architect-story,.offer{animation:none!important}}
 .motion-none .case-entry,.motion-none .chapter-intro h2,.motion-none .architect-story,.motion-none .offer{animation:none!important}
+.chapter.chapter-about{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);column-gap:clamp(30px,6vw,110px);align-items:start}
+.chapter.chapter-about>.chapter-intro{display:block;margin:0}
+.chapter.chapter-about>.chapter-intro h2{font-size:clamp(38px,5vw,84px);margin:0}
+.chapter.chapter-about .architect-story p{font-size:clamp(21px,2.2vw,34px);line-height:1.34;letter-spacing:-.02em;max-width:32ch;margin:0}
+body.atlas .chapter-work .mode-research-index>.case-entry:nth-child(n),body.couture .chapter-work .mode-ref-couture>.case-entry:nth-child(n),body.index .chapter-work .mode-index-records>.case-entry:nth-child(n){grid-column:span 4;margin-top:0}
+body.highlighter .chapter-work .mode-ref-highlighter{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.terminal .chapter-work .mode-command-console{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.orbit .chapter-work .mode-space-mission>.case-entry:nth-child(n){grid-column:span 4;margin-top:0}
+body.playbill .chapter-work .mode-theatre-program>.case-entry:nth-child(3):last-child{grid-column:1/-1}
+body.playbill .mdsf-playbill .mdsf-poster-two small{display:block;font:700 12px/1.4 ui-monospace,monospace;letter-spacing:.14em;margin-bottom:16px}
+body.nocturne .art-ferrari-copy{display:none}
+body.monologue .chapter-work .mode-screenplay-scenes .case-entry h3{font-size:clamp(20px,1.9vw,30px);line-height:1.1;overflow-wrap:normal;word-break:normal;letter-spacing:-.02em}
+@media(max-width:860px){.chapter.chapter-about{display:block}body.orbit .chapter-work .mode-space-mission>.case-entry:nth-child(n){grid-column:1/-1}.chapter.chapter-about>.chapter-intro{margin-bottom:26px}body.atlas .chapter-work .mode-research-index>.case-entry:nth-child(n),body.couture .chapter-work .mode-ref-couture>.case-entry:nth-child(n),body.index .chapter-work .mode-index-records>.case-entry:nth-child(n){grid-column:1/-1}body.highlighter .chapter-work .mode-ref-highlighter{grid-template-columns:1fr}body.terminal .chapter-work .mode-command-console{grid-template-columns:1fr}}
 `;
-

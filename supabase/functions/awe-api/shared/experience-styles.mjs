@@ -24,9 +24,7 @@ export const experienceCSS = `
 .index-overline{position:absolute;top:20px;left:2vw}
 .index-hero h1{font:900 clamp(65px,8vw,150px)/.9 system-ui,sans-serif;letter-spacing:-.09em}
 .index-identity{position:relative;align-self:stretch;min-height:560px}
-.index-identity .hero-media{height:100%;min-height:560px;clip-path:polygon(0 0,100% 0,100% 87%,85% 100%,0 100%);border-radius:0}
-.identity-stamp{position:absolute;bottom:10px;left:-30px;background:var(--fg);color:var(--bg);padding:23px;width:min(310px,90%);box-shadow:12px 12px 0 var(--accent);display:grid;gap:8px}
-.identity-stamp strong{font-size:clamp(19px,2.5vw,37px);letter-spacing:-.06em}.identity-stamp>span:last-child{position:absolute;right:15px;top:8px;font-size:32px;color:var(--accent)}
+.index-identity .hero-media{height:100%;min-height:560px;border-radius:var(--radius)}
 .index .work-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.index .work-card:first-child{grid-column:span 2}.index .work-card:nth-child(2){transform:none}
 /* Magazine-like editorial */
 .folio-hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px;padding:25px 0 70px;min-height:90vh;align-items:start}
@@ -68,8 +66,6 @@ export const experienceCSS = `
 .signal-stage{display:grid;grid-template-columns:1fr .82fr;align-items:center;gap:0;min-height:700px;padding:55px 0 35px}
 .signal-stage .hero-copy{margin-right:-7vw}.signal-stage h1{font:950 clamp(70px,10vw,180px)/.87 system-ui,sans-serif;text-transform:uppercase;letter-spacing:-.105em;transform:rotate(-3deg);text-shadow:6px 7px 0 var(--secondary)}
 .signal-artwork{position:relative}.signal-artwork .hero-media{min-height:590px;transform:rotate(5deg);box-shadow:22px 22px 0 var(--fg)}
-.signal-sticker-a{position:absolute;right:-28px;top:-35px;width:145px;height:145px;border-radius:50%;background:var(--secondary);color:#111;display:grid;place-items:center;text-align:center;font:950 24px/.85 system-ui;transform:rotate(15deg);z-index:4}
-.signal-sticker-b{position:absolute;bottom:5%;left:-25px;font-size:130px;text-shadow:5px 5px var(--secondary);z-index:4}
 .signal-footer{padding:22px 0;border-block:5px solid var(--fg)}
 .signal .work-card:nth-child(even){transform:none}.signal .work-card{border:3px solid var(--fg);box-shadow:9px 9px 0 var(--fg)}
 /* Youthful, expressive */
@@ -77,10 +73,7 @@ export const experienceCSS = `
 .daylight-hero:before{content:"";position:absolute;inset:7% 0 12%;background:var(--secondary);border-radius:125px 35px 145px 32px;opacity:.72;z-index:-1;transform:rotate(-1deg)}
 .daylight-hero h1{font:950 clamp(60px,7.8vw,145px)/.96 system-ui;letter-spacing:-.095em}
 .daylight-photo{position:relative;transform:rotate(4deg)}.daylight-photo .hero-media{min-height:500px;border:10px solid var(--fg);border-radius:150px 24px 150px 24px;box-shadow:15px 20px 0 var(--accent)}
-.daylight-sun{position:absolute;z-index:3;top:0;right:4%;font-size:clamp(120px,18vw,260px);color:var(--accent);line-height:1;pointer-events:none}
-.daylight-badge{position:absolute;top:55px;left:25px;padding:10px 19px;border-radius:50px;background:var(--accent);color:#111}
-.daylight-hello{position:absolute;bottom:-37px;left:-30px;background:var(--fg);color:var(--bg);font:950 61px system-ui;padding:9px 20px;transform:rotate(-13deg);border-radius:34px}
-.daylight-footer{position:absolute;right:7%;bottom:28px}
+.daylight-footer{margin-top:20px;text-align:right}
 .daylight .work-grid{grid-template-columns:repeat(3,1fr)}.daylight .work-card:first-child{grid-column:span 2}.daylight .work-card:nth-child(2){transform:translateY(70px)}
 @keyframes awe-flow{to{transform:translateX(-50%)}}@keyframes awe-orbit{to{transform:rotate(360deg)}}@keyframes awe-hover{to{transform:translateY(-16px)}}@keyframes awe-chrome{from{opacity:.15;transform:translateY(45px)}to{opacity:1;transform:none}}@keyframes awe-image{from{transform:scale(1.13)}to{transform:scale(1)}}
 .motion-none *,.motion-none *:before,.motion-none *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -90,8 +83,6 @@ export const experienceCSS = `
 .motion-expressive .hero-variant .hero-media>img{animation:awe-image 1.55s both cubic-bezier(.22,1,.36,1)}
 .motion-expressive .art-orb{animation:awe-hover 8s ease-in-out infinite alternate}
 .motion-expressive .art-orbit{animation:awe-orbit 28s linear infinite}
-.motion-expressive .daylight-sun{animation:awe-orbit 45s linear infinite}
-.motion-expressive .signal-sticker-a{animation:awe-hover 5s ease-in-out infinite alternate}
 .motion-subtle .experience-track{animation-duration:65s}.motion-expressive .experience-track{animation-duration:24s}
 .motion-expressive .work-card:hover{transform:translateY(-10px);box-shadow:0 25px 75px #0003}
 @supports (animation-timeline:view()) {
@@ -110,8 +101,8 @@ export const experienceCSS = `
 .folio-hero{display:flex;flex-direction:column;gap:23px;min-height:0}.folio-words{margin-top:25px}.folio-words h1{font-size:clamp(63px,15vw,104px)}.folio-picture{align-self:flex-end;width:75%;margin:10px 0}.folio-picture .hero-media{height:320px;min-height:320px}.folio-masthead span:last-child{display:none}
 .still-hero{padding:50px 0 0;min-height:0}.still-stage{display:flex;flex-direction:column;gap:35px;min-height:0;margin:30px 0}.still-stage .hero-media{width:100%;min-height:380px;height:380px}.still-words{margin:0;align-self:stretch}.still-words h1{font-size:clamp(50px,13vw,100px)}.still-words .hero-copy{text-shadow:none}
 .afterhours-screen{min-height:80svh}.afterhours-words{padding:150px 0 110px}.afterhours-words h1{font-size:clamp(52px,14vw,110px)}.afterhours-frame,.afterhours-count{font-size:9px}
-.signal-stage{min-height:0}.signal-stage h1{font-size:clamp(60px,14vw,110px);text-shadow:3px 4px 0 var(--secondary)}.signal-artwork{margin:55px 20px}.signal-artwork .hero-media{min-height:350px;height:350px}.signal-sticker-a{width:105px;height:105px;font-size:18px;right:-14px}.signal-sticker-b{font-size:85px}
-.daylight-hero{padding:100px 0 75px}.daylight-hero h1{font-size:clamp(60px,13vw,106px)}.daylight-photo{width:85%;margin-top:35px}.daylight-photo .hero-media{min-height:340px;height:340px;border-width:6px}.daylight-sun{font-size:120px}.daylight-hello{font-size:36px;bottom:-15px;left:-12px}
+.signal-stage{min-height:0}.signal-stage h1{font-size:clamp(60px,14vw,110px);text-shadow:3px 4px 0 var(--secondary)}.signal-artwork{margin:55px 20px}.signal-artwork .hero-media{min-height:350px;height:350px}
+.daylight-hero{padding:100px 0 75px}.daylight-hero h1{font-size:clamp(60px,13vw,106px)}.daylight-photo{width:85%;margin-top:35px}.daylight-photo .hero-media{min-height:340px;height:340px;border-width:6px}
 .index .work-grid,.folio .work-grid,.still .work-grid,.afterhours .work-grid,.daylight .work-grid{grid-template-columns:1fr}
 .index .work-card:first-child,.folio .work-card,.folio .work-card:first-child,.folio .work-card:nth-child(2),.still .work-card,.still .work-card:first-child,.still .work-card:nth-child(2),.afterhours .work-card,.afterhours .work-card:first-child,.afterhours .work-card:nth-child(2),.daylight .work-card:first-child{grid-column:auto;margin:0}
 .daylight .work-card:nth-child(2){transform:none}}
@@ -134,4 +125,3 @@ export const experienceCSS = `
 @media(prefers-reduced-motion:reduce){.motion-expressive:before{animation:none!important;display:none}.motion-expressive .hero-variant .hero-actions{animation:none}}
 .motion-none:before{animation:none!important;display:none}
 `;
-

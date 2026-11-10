@@ -50,9 +50,7 @@ body.site .arch-hero .arch-copy h1{max-width:100%;overflow-wrap:normal;word-brea
 body.site .arch-hero .arch-copy p{line-height:1.5}
 body.site .arch-hero .arch-visual{position:relative;min-width:0;min-height:0}
 .arch-caption{display:block;font:600 10px/1.5 ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase}
-.arch-side{display:flex;flex-direction:column;gap:30px;align-self:stretch;border-right:1px solid var(--line);padding:15px;justify-content:space-between}
-.arch-side span{font:600 10px ui-monospace,monospace;letter-spacing:.12em;writing-mode:vertical-rl}
-.arch-side strong{font:800 clamp(33px,4vw,70px)/1 var(--display);opacity:.26}
+.arch-side{display:none}
 body.site.arch-hero-cinema .hero{display:block;min-height:80vh;padding:clamp(20px,3vw,50px) var(--g)}
 .arch-cinema{position:relative;min-height:clamp(570px,79vh,950px);display:grid;align-items:end;overflow:hidden;background:var(--surface)}
 .arch-cinema>.arch-visual{position:absolute;inset:0;height:100%;border-radius:0;opacity:.65}
@@ -67,7 +65,7 @@ body.site.arch-hero-folio .hero{display:flex;flex-direction:column;align-items:s
 .arch-folio-intro{display:grid;grid-template-columns:minmax(120px,.5fr) minmax(0,2fr);gap:30px;align-items:start}
 body.site.arch-hero-folio .hero>.arch-visual{height:clamp(300px,45vw,590px)}
 body.site.arch-hero-folio .arch-copy h1{font-family:Georgia,serif;font-weight:400;font-style:italic}
-body.site.arch-hero-exhibition .hero{display:grid;grid-template-columns:60px minmax(0,1.25fr) minmax(0,.8fr);gap:clamp(20px,3vw,55px);align-items:center}
+body.site.arch-hero-exhibition .hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.8fr);gap:clamp(20px,3vw,55px);align-items:center}
 body.site.arch-hero-exhibition .hero>.arch-visual{height:clamp(380px,48vw,710px)}
 body.site.arch-hero-billboard .hero{display:flex;flex-direction:column;align-items:stretch;gap:25px;text-align:center}
 body.site.arch-hero-billboard .arch-copy{max-width:1050px;margin:auto}
@@ -80,12 +78,12 @@ body.site.arch-hero-interface .hero{display:grid;grid-template-columns:minmax(0,
 .arch-interface-bar{padding:12px;display:flex;gap:6px;border-bottom:1px solid var(--line)}
 .arch-interface-bar span{height:6px;width:6px;background:var(--accent);border-radius:50%}
 .arch-interface-frame>.arch-visual{height:clamp(350px,45vw,640px);border-radius:0}
-body.site.arch-hero-sidepanel .hero{display:grid;grid-template-columns:65px minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(15px,3vw,60px)}
+body.site.arch-hero-sidepanel .hero{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(15px,3vw,60px)}
 body.site.arch-hero-collage .hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:start}
 .arch-collage-media{position:relative;padding:25px 25px 60px 0}
 .arch-collage-media>.arch-visual{height:clamp(410px,49vw,680px)}
 .arch-collage-note{position:absolute;right:0;bottom:0;padding:25px;background:var(--accent);color:var(--button);font:700 12px ui-monospace,monospace;letter-spacing:.12em}
-body.site.arch-hero-index .hero{display:grid;grid-template-columns:60px minmax(0,.65fr) minmax(0,1.3fr);gap:clamp(15px,4vw,75px)}
+body.site.arch-hero-index .hero{display:grid;grid-template-columns:minmax(0,.65fr) minmax(0,1.3fr);gap:clamp(15px,4vw,75px)}
 body.site.arch-hero-gallery .hero{display:flex;flex-direction:column;align-items:stretch;gap:36px}
 body.site.arch-hero-gallery .hero>.arch-visual{height:clamp(350px,60vw,800px)}
 body.site.arch-hero-gallery .hero>.arch-copy{max-width:780px;align-self:flex-end}
@@ -100,12 +98,13 @@ body.site.arch-hero-storyboard .hero{display:grid;grid-template-columns:minmax(0
 .arch-storyboard-scene{position:relative;border-top:7px solid var(--ink);border-bottom:7px solid var(--ink)}
 .arch-storyboard-scene>.arch-visual{height:clamp(380px,50vw,680px);border-radius:0}
 .arch-storyboard-scene>span{display:block;padding:13px 0;font:650 12px ui-monospace,monospace;letter-spacing:.14em}
-body.site.arch-hero-monument .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 48px;align-items:center}
+body.site.arch-hero-monument .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}
 body.site.arch-hero-monument .arch-copy h1{font-size:clamp(65px,9vw,155px);line-height:.89;text-transform:uppercase}
 body.site.arch-hero-overlap .hero{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);position:relative;min-height:75vh}
 body.site.arch-hero-overlap .hero>.arch-visual{grid-column:1/-1;grid-row:1;height:clamp(560px,70vh,850px)}
 body.site.arch-hero-overlap .hero>.arch-copy{grid-column:1/2;grid-row:1;background:var(--bg);padding:clamp(25px,3vw,65px);align-self:center;margin-left:clamp(10px,3vw,65px)}
 body.site.arch-hero-overlap .hero>.arch-caption{position:absolute;bottom:4%;right:var(--g)}
+body.site.arch-hero-float .pa-hero strong,body.site.arch-hero-float .pa-hero .pa-hero-kicker,body.site.arch-hero-float .pa-hero .pa-hero-footer,body.site.arch-hero-overlap .pa-hero strong,body.site.arch-hero-overlap .pa-hero .pa-hero-kicker,body.site.arch-hero-overlap .pa-hero .pa-hero-footer{left:auto;right:6%;text-align:right;max-width:52%}
 body.site.arch-hero-reverse .hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}
 body.site.arch-hero-split .hero{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr)}
 /* Nine independently composed project-gallery systems. */
@@ -141,8 +140,10 @@ body.site.arch-work-linear .cards>.card .artbox{grid-row:span 3;margin-bottom:0;
 body.site header.design-nav{min-width:0;position:relative}
 body.site.arch-nav-center header.design-nav{flex-direction:column;justify-content:center;gap:20px;text-align:center}
 body.site.arch-nav-center header.design-nav nav{justify-content:center}
-body.site.arch-nav-rail header.design-nav{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start}
-body.site.arch-nav-rail header.design-nav nav{flex-direction:column;align-items:flex-end;gap:8px}
+body.site.arch-nav-rail header.design-nav{display:flex;justify-content:space-between;align-items:center}
+body.site.arch-nav-rail header.design-nav nav{counter-reset:railnav;gap:clamp(14px,2.4vw,34px)}
+body.site.arch-nav-rail header.design-nav nav a{counter-increment:railnav}
+body.site.arch-nav-rail header.design-nav nav a::before{content:counter(railnav,decimal-leading-zero);margin-right:7px;font:600 10px ui-monospace,monospace;opacity:.55}
 body.site.arch-nav-boxed header.design-nav nav{border:1px solid var(--line);padding:14px 18px}
 body.site.arch-nav-compact header.design-nav{padding-block:16px;border-bottom-width:3px}
 body.site.arch-nav-compact header.design-nav nav a{font:700 11px ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase}
@@ -155,8 +156,7 @@ body.site.page-features .study-chapter{margin-top:clamp(30px,4vw,65px)}
 body.site.page-studio .about{min-height:45vh;align-items:center}
 @media(max-width:960px){
  body.site .arch-hero{min-height:0}
- body.site.arch-hero-exhibition .hero,body.site.arch-hero-sidepanel .hero,body.site.arch-hero-index .hero,body.site.arch-hero-monument .hero{grid-template-columns:1fr 1fr}
- body.site .arch-hero .arch-side{display:none}
+ body.site.arch-hero-exhibition .hero,body.site.arch-hero-sidepanel .hero,body.site.arch-hero-index .hero,body.site.arch-hero-monument .hero{grid-template-columns:1fr}
  body.site.arch-hero-storyboard .hero,body.site.arch-hero-interface .hero{grid-template-columns:1fr}
  body.site.arch-work-feature .cards,body.site.arch-work-stagger .cards,body.site.arch-work-editorial .cards,body.site.arch-work-bento .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
  body.site.arch-work-stagger .cards>.card,body.site.arch-work-editorial .cards>.card,body.site.arch-work-stagger .cards>.card:nth-child(2){grid-column:auto;margin-top:0}

@@ -451,7 +451,8 @@ export function sampleForTemplate(id,purpose){
     const source=uploadedDirection||freeDirection||originalDirection;
     preview.name=source.name||t.name;
     preview.headline=source.tag||t.tag;
-    const story=galleryStories[t.id]||sourceDemoStories[t.id];
+    const demo=sourceDemoStories[t.id];
+    const story=galleryStories[t.id]||(demo?[null,demo[0],demo[1]]:undefined);
     preview.heroLabel=story?.[0]||old?.heroLabel||t.name;
     preview.bio=story?.[1]||old?.bio||kit.bio;
     preview.cards=(story?.[2]||old?.projects?.map(p=>p.title)||kit.cards.map(p=>p.title)).map(title=>({

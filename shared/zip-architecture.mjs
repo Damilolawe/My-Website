@@ -104,6 +104,7 @@ body.site.arch-hero-overlap .hero{display:grid;grid-template-columns:minmax(0,.7
 body.site.arch-hero-overlap .hero>.arch-visual{grid-column:1/-1;grid-row:1;height:clamp(560px,70vh,850px)}
 body.site.arch-hero-overlap .hero>.arch-copy{grid-column:1/2;grid-row:1;background:var(--bg);padding:clamp(25px,3vw,65px);align-self:center;margin-left:clamp(10px,3vw,65px)}
 body.site.arch-hero-overlap .hero>.arch-caption{position:absolute;bottom:4%;right:var(--g)}
+body.site.arch-hero-float .pa-hero strong,body.site.arch-hero-float .pa-hero .pa-hero-kicker,body.site.arch-hero-float .pa-hero .pa-hero-footer,body.site.arch-hero-overlap .pa-hero strong,body.site.arch-hero-overlap .pa-hero .pa-hero-kicker,body.site.arch-hero-overlap .pa-hero .pa-hero-footer{left:auto;right:6%;text-align:right;max-width:52%}
 body.site.arch-hero-reverse .hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}
 body.site.arch-hero-split .hero{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr)}
 /* Nine independently composed project-gallery systems. */
@@ -139,8 +140,10 @@ body.site.arch-work-linear .cards>.card .artbox{grid-row:span 3;margin-bottom:0;
 body.site header.design-nav{min-width:0;position:relative}
 body.site.arch-nav-center header.design-nav{flex-direction:column;justify-content:center;gap:20px;text-align:center}
 body.site.arch-nav-center header.design-nav nav{justify-content:center}
-body.site.arch-nav-rail header.design-nav{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start}
-body.site.arch-nav-rail header.design-nav nav{flex-direction:column;align-items:flex-end;gap:8px}
+body.site.arch-nav-rail header.design-nav{display:flex;justify-content:space-between;align-items:center}
+body.site.arch-nav-rail header.design-nav nav{counter-reset:railnav;gap:clamp(14px,2.4vw,34px)}
+body.site.arch-nav-rail header.design-nav nav a{counter-increment:railnav}
+body.site.arch-nav-rail header.design-nav nav a::before{content:counter(railnav,decimal-leading-zero);margin-right:7px;font:600 10px ui-monospace,monospace;opacity:.55}
 body.site.arch-nav-boxed header.design-nav nav{border:1px solid var(--line);padding:14px 18px}
 body.site.arch-nav-compact header.design-nav{padding-block:16px;border-bottom-width:3px}
 body.site.arch-nav-compact header.design-nav nav a{font:700 11px ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase}
