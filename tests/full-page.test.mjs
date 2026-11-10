@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 import {templates,sample,sampleForTemplate,normalize} from "../shared/model.mjs";
 import {architectureMode} from "../shared/full-page-layouts.mjs";
 import {freeDesignFor} from "../shared/free-designmd.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 
 test("20 designs change entire page architecture, not just hero color",()=>{
   const modes=new Set(),workStructures=new Set();

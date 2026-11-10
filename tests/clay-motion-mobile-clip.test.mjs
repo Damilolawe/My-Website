@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {trioMotionCSS} from "../shared/voltagent-trio-motion.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 import {sampleForTemplate} from "../shared/model.mjs";
 test("animated Clay art clips to its own visual bounds instead of widening the mobile page",()=>{
  const css=trioMotionCSS("clay");

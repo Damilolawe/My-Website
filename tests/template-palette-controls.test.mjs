@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { templates, sampleForTemplate } from "../shared/model.mjs";
-import { renderSite } from "../shared/render.mjs";
+import { renderLegacySite as renderSite } from "../shared/render.mjs";
 import { paletteCSS, directionPaletteCSS, paletteTokens, paletteInline } from "../shared/theme-palette.mjs";
 import { uploadedDesignFor } from "../shared/uploaded-designs.mjs";
 import {freeDesignFor} from "../shared/free-designmd.mjs";

@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
 import {sampleForTemplate} from "../shared/model.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 import {renderZipDesign} from "../shared/zip-design-render.mjs";
 
 const flagships=[

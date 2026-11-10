@@ -4,7 +4,7 @@ import {readFile} from "node:fs/promises";
 import {createHash} from "node:crypto";
 import {exactGuideCSSFor} from "../shared/exact-design-css.mjs";
 import {sampleForTemplate} from "../shared/model.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 
 // Exact Git blob IDs of the user's 18 uploaded files. Fails if anyone silently edits or replaces a source.
 const sources = [["folio","kinfolk","ac42daa1c7f0054802684bbcba566322ba17a822"],["still","apple","b0568dcbc45c9a0d9023e92adfe8688f8f2ce923"],["afterhours","a24","9111a852f6672adf051a420b42a5476b89dd93a4"],["signal","spotify","3c0a37652b16c5bbf7f6e882e2beffb65bcf3888"],["orbit","linear","482ae059270268f7d39a1d837244f2686ed2d783"],["playbill","dice","7cc67ad55431f8effbd025ed0d5a6ac5f298f30f"],["monologue","letterboxd","2102114acc3a562067ded0ff630d2ccfacb53926"],["portraiture","vsco","bbd276f7b39da38be1de694910141f421d42413c"],["contactsheet","cosmos","49362489cf8886bcb4e28341a46d9ea5554c9ed1"],["foundry","teenage-engineering","9d360748054b4e68a28775c42b94b53de25c54fb"],["museum","figma","0436bb9134da4385e44541d17083790499fee594"],["brutalist","enter-gmbh","e9f0a11706222164671e25e98cee97c84f9ccae4"],["nocturne","ferrari","e48ea234a34039d7ded3333a65bede89371dd771"],["nightgrid","warp","cab773a548e54531bb665be59bb61d673c93df74"],["couture","adam-lippes","b326bc16b796670e71fa05a780b3843113980562"],["signaldeck","raycast","2fa4974617718fbfd1418f3ff00c020ee6a6f95d"],["obsidian","oryzo-ai","cb23454c799aaaa04f3406baf3ed7b5679d986a0"],["highlighter","ramp","fb8624eef2a67ea6f93698371e096ea7f2ac56c8"]];

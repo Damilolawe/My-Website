@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {templates,sampleForTemplate} from "../shared/model.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 import {readableOn,applyColorConsistency} from "../shared/color-consistency.mjs";
 
 test("every one of 42 template identities receives own contrast variables, including formerly protected designs",()=>{

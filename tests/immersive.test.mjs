@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { templates, sampleForTemplate } from "../shared/model.mjs";
-import { renderSite } from "../shared/render.mjs";
+import { renderLegacySite as renderSite } from "../shared/render.mjs";
 import {uploadedDesignFor} from "../shared/uploaded-designs.mjs";
 
 test("every customer template has a distinct, semantic hero composition and fictional demo identity",()=>{

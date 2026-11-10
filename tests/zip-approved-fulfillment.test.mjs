@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {sampleForTemplate} from "../shared/model.mjs";
 import {zipDesigns} from "../shared/zip-design-catalog.mjs";
 import {renderApprovedDesignPages,allowedApprovedPageNames,STUDY_PAGES} from "../shared/approved-pages.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 import {packageAllowsTemplate} from "../shared/tiers.mjs";
 const starter={id:"express",tier:"starter",delivery:"awe-hosted",pageCount:1,currency:"usd",amount:7500};
 const signature={id:"signature-multipage",tier:"signature",delivery:"awe-multipage",pageCount:5,currency:"usd",amount:15000};

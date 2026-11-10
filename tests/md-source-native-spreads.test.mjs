@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
 import {uploadedDesigns} from "../shared/uploaded-designs.mjs";
 import {sampleForTemplate} from "../shared/model.mjs";
-import {renderSite,compactInlineStyles} from "../shared/render.mjs";
+import {renderLegacySite as renderSite,compactInlineStyles} from "../shared/render.mjs";
 import {mdSourceFeature,mdSourceFeatureCSS} from "../shared/md-source-feature.mjs";
 import {exactGuideCSSFor} from "../shared/exact-design-css.mjs";
 const parseFeature=html=>html.match(/<section class="md-source-feature mdsf-[^"]+"[\s\S]*?<\/section>/)?.[0];

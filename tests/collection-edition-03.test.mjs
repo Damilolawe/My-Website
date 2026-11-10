@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 import {templates,sampleForTemplate} from "../shared/model.mjs";
 import {sampleArtwork} from "../shared/photographic-direction.mjs";
 import {experienceInterlude} from "../shared/experiences.mjs";

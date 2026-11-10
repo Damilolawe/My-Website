@@ -4,7 +4,7 @@ import {readFile} from "node:fs/promises";
 import {zipDesigns,zipPages} from "../shared/zip-design-catalog.mjs";
 import {renderZipDesign} from "../shared/zip-design-render.mjs";
 import {sampleForTemplate} from "../shared/model.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 
 test("all 74 study demos use different artwork for projects and avoid the duplicated approach gallery",()=>{
  assert.equal(zipDesigns.length,74);

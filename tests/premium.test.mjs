@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { zipSync, strToU8 } from "fflate";
 import { normalize, sample, templates } from "../shared/model.mjs";
-import { renderSite } from "../shared/render.mjs";
+import { renderLegacySite as renderSite } from "../shared/render.mjs";
 import {freeDesignFor} from "../shared/free-designmd.mjs";
 import { previewResume, suggestionsFromText } from "../platform/resume.mjs";
 

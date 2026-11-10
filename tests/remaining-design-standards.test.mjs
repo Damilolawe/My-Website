@@ -4,7 +4,7 @@ import {readFile} from "node:fs/promises";
 import {templates,sampleForTemplate} from "../shared/model.mjs";
 import {zipDesigns,zipPages} from "../shared/zip-design-catalog.mjs";
 import {renderZipDesign} from "../shared/zip-design-render.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 import {templatePageCount} from "../shared/tiers.mjs";
 
 test("all 116 catalog entries retain their actual tier page count",()=>{

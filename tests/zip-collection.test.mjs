@@ -4,8 +4,10 @@ import {readFile} from "node:fs/promises";
 import {zipDesigns,zipPages,zipDesignFor} from "../shared/zip-design-catalog.mjs";
 import {renderZipDesign} from "../shared/zip-design-render.mjs";
 import {templates,sampleForTemplate} from "../shared/model.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 import {minimumTier,packageAllowsTemplate} from "../shared/tiers.mjs";
+import {renderShowpieceSite} from "../shared/showpiece-site.mjs";
+import {applyAweDesignCredit} from "../shared/brand-credit.mjs";
 const read=p=>readFile(new URL("../"+p,import.meta.url),"utf8");
 
 test("74 appended source-guided directions preserve original collection and split exactly 37/37",()=>{
@@ -45,12 +47,13 @@ test("New five-page previews contain five distinct linked and semantic pages",as
   for(const page of zipPages){
    const output=await read("dist/templates/"+t.id+"/"+page+".html");
    assert(output.includes("/templates/"+t.id+"/home.html"),t.id+"/"+page+": missing main nav");
-   assert(output.includes("/templates/"+t.id+"/contact.html"),t.id+"/"+page+": missing contact nav");
-   assert(output.includes('aria-current="page"'),t.id+"/"+page);
+   assert(output.includes("/templates/"+t.id+"/work.html"),t.id+"/"+page+": missing work nav");
+   if(page!=="home"&&page!=="contact")assert(output.includes('aria-current="page"'),t.id+"/"+page);
    assert(output.includes('<main id="main">'),t.id+"/"+page);
-   assert(output.includes('id="hero-title"'),t.id+"/"+page);
+   assert(/<h1[ >]/.test(output),t.id+"/"+page+": missing page heading");
+   assert(output.includes("FICTIONAL TEMPLATE DEMO"),t.id+"/"+page);
    assert(!output.includes("<script"),t.id+"/"+page);
-   assert.equal(output,renderZipDesign(v,{sample:true},page),t.id+"/"+page);
+   assert.equal(output,applyAweDesignCredit(renderShowpieceSite(v,{sample:true},page)),t.id+"/"+page);
    pages.push(output);
   }
   assert.equal(new Set(pages).size,5,t.id+": page content must differ");
@@ -118,7 +121,7 @@ test("Signature previews navigate with their own menu instead of duplicate page 
  assert(gallery.includes("studyPageFromLink(id,raw,window.location.origin)"));
  assert(gallery.includes("currentPage=page;"));
  assert(gallery.includes("fetchPublicStudyPage(id,currentPage"));
- assert(preview.includes("zipDesignFor(id)?.multipage||!zipPages.includes(page)"));
+ assert(preview.includes("(zipDesignFor(id)?.multipage||id===\"runwaymulti\")||!zipPages.includes(page)"));
  assert(order.includes('id="worlds-frame" title="Fictional website design demonstration" sandbox="allow-same-origin"'));
  assert(!order.includes('sandbox="allow-same-origin allow-scripts"'));
 });

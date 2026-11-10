@@ -5,7 +5,7 @@ import {architectureMap,architectureFor,architectureSignature,architecturalCSS} 
 import {zipDesigns,zipPages} from "../shared/zip-design-catalog.mjs";
 import {renderZipDesign} from "../shared/zip-design-render.mjs";
 import {sampleForTemplate} from "../shared/model.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 
 test("all 74 study designs have distinct source-authored layout compositions",()=>{
  assert.equal(zipDesigns.length,74);

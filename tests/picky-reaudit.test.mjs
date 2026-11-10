@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 import {sampleForTemplate,templates,types} from "../shared/model.mjs";
 import {premiumStudyIds} from "../shared/premium-art-direction-35.mjs";
 const read=p=>readFile(new URL("../"+p,import.meta.url),"utf8");

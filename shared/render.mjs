@@ -73,6 +73,13 @@ export function compactInlineStyles(html, {preserve = []} = {}) {
 export function renderSite(input, options = {}) {
   const normalized = normalize(input);
   if(hasShowpiece(normalized.template))return applyAweDesignCredit(renderShowpieceSite(normalized,options));
+  return renderLegacySite(normalized, options);
+}
+
+// The original per-template renderers. Still used for five-page versions saved
+// before the showpiece engine, and kept under test for that reason.
+export function renderLegacySite(input, options = {}) {
+  const normalized = normalize(input);
   if(zipDesignFor(normalized.template))return applyAweDesignCredit(applyTypographySafety(renderZipDesign(normalized,options), normalized.template));
   const page = normalized.template === "folio"
     ? renderFolioEditorial(normalized, options)

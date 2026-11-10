@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
 import {templates,sampleForTemplate} from "../shared/model.mjs";
 import {minimumTier,packageAllowsTemplate,templateFitsTier} from "../shared/tiers.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite,renderSite as renderCurrentSite} from "../shared/render.mjs";
 import {fetchPublicTemplate} from "../shared/preview.mjs";
 
 test("RunwayML single and multi have separate Starter and Signature identities",()=>{
@@ -28,10 +28,13 @@ test("Signature multipage gallery points to all five documents; original remains
    readFile("dist/templates/runwayml.html","utf8"),
    readFile("dist/templates/runwaymulti.html","utf8")
  ]);
- const expected=renderSite(sampleForTemplate("runwayml"),{sample:true});
+ const expected=renderCurrentSite(sampleForTemplate("runwayml"),{sample:true});
  assert.equal(original,expected);
- for(const path of ["research.html","work.html","studio.html","journal.html"])
-   assert(multi.includes("/experiments/runwayml-multipage/"+path),path);
+ // The catalog's five-page RunwayML preview links its own showpiece pages.
+ for(const path of ["work.html","features.html","studio.html"])
+   assert(multi.includes("/templates/runwaymulti/"+path),path);
+ for(const page of ["home","work","features","studio","contact"])
+   assert((await readFile("dist/templates/runwaymulti/"+page+".html","utf8")).includes('data-awe-engine="showpiece"'),page);
  for(const file of ["index.html","research.html","work.html","studio.html","journal.html"]){
    const html=await readFile("dist/experiments/runwayml-multipage/"+file,"utf8");
    assert(html.includes("rw-hero"));

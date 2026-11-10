@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { templates,sampleForTemplate } from "../shared/model.mjs";
-import { renderSite } from "../shared/render.mjs";
+import { renderLegacySite as renderSite } from "../shared/render.mjs";
 import { renderApprovedDesignPages } from "../shared/approved-pages.mjs";
 import { zipDesigns } from "../shared/zip-design-catalog.mjs";
 import { typographySafetyCSS, protectedTypographyTemplates } from "../shared/typography-guard.mjs";

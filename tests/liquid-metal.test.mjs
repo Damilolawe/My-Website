@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
 import {templates,sampleForTemplate} from "../shared/model.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 import {minimumTier,templateFitsTier} from "../shared/tiers.mjs";
 test("Liquid Metal source remains available, original and private",async()=>{
  const s=await readFile(new URL("../design-sources/liquid-metal/DESIGN.md",import.meta.url),"utf8");

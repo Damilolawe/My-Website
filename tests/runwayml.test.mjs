@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
 import {templates,sampleForTemplate} from "../shared/model.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 import {minimumTier,templateFitsTier} from "../shared/tiers.mjs";
 const purposes=["Student résumé","Professional portfolio","Actor / model","Creative portfolio","Personal brand","Small business"];
 test("RunwayML source is preserved and template registered once",async()=>{

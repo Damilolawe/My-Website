@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
 import {templates,sampleForTemplate} from "../shared/model.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 import {minimumTier,templateFitsTier} from "../shared/tiers.mjs";
 const ids=["nike","clay","ferrari"];
 test("Nike, Clay, Ferrari are three distinct appended Signature editions",()=>{
@@ -77,6 +77,6 @@ test("Production edge and Firebase renderers are byte identical",async()=>{
  for(const id of ids){
   const html=await readFile(new URL("../dist/templates/"+id+".html",import.meta.url),"utf8");
   assert(html.includes("FICTIONAL TEMPLATE DEMO"));
-  assert(html.includes("trio-"+id));
+  assert(html.includes('data-awe-engine="showpiece"'),id);
  }
 });

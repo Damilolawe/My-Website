@@ -1,4 +1,5 @@
-import { esc } from "../model.mjs";
+import { esc, templates } from "../model.mjs";
+import { ACCENTS } from "./accents.mjs";
 import { renderMotionChapter } from "../premium-art-direction-35.mjs";
 
 export const E = (s) => esc(s ?? "");
@@ -55,6 +56,16 @@ function extrasSection(c, sample) {
     (notes ? '<p class="awe-notes">' + E(notes) + "</p>" : "") +
     (projects ? '<div><h2>Projects</h2><ul class="awe-links">' + projects + "</ul></div>" : "") +
     (links ? '<div><h2>Elsewhere</h2><ul class="awe-links">' + links + "</ul></div>" : "") + "</section>";
+}
+
+// Swap the design's accent for the customer's chosen colour (customer sites only).
+function accentCSS(design, v, sample) {
+  const a = ACCENTS[design.id], hex = String(v?.design?.primary || "").toLowerCase();
+  const fallback = String(templates.find(t => t.id === design.id)?.color || "").toLowerCase();
+  if (sample || !a || !/^#[0-9a-f]{6}$/.test(hex) || hex === fallback) return "";
+  const [r, g, b] = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255).map(c => c <= .03928 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4);
+  const ink = .2126 * r + .7152 * g + .0722 * b > .4 ? "#111111" : "#ffffff";
+  return "." + design.root + "{" + a.v + ":" + hex + "}" + (a.cta ? "." + design.root + " .cta:not(.cta-muted){color:" + ink + "}" : "");
 }
 
 const ABOUT_KEYS = [["education", "Education"], ["experience", "Experience"], ["skills", "Skills"]];
@@ -119,7 +130,7 @@ export function renderShowpieceDesign(design, v, options = {}) {
   const body = '<div class="' + design.root + '">' + design.header(k) + '<main id="main">' + main + "</main>" + design.footer(k) + "</div>";
   const title = c.name + (page && page !== "home" ? " / " + (k.intro().title) : " / " + c.headline);
   const css = BASE_CSS + design.css;
-  const still = v?.design?.animation === "none" ? reducedMotionCSS(css) : "";
+  const still = (v?.design?.animation === "none" ? reducedMotionCSS(css) : "") + accentCSS(design, v, sample);
   return '<!doctype html><html lang="en" data-awe-engine="showpiece"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + E(title) + "</title>" +
     '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?' + design.fonts + '&display=swap">' +

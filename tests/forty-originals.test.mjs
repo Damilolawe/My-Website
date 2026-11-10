@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
 import {templates,sampleForTemplate,types} from "../shared/model.mjs";
 import {minimumTier,templateFitsTier} from "../shared/tiers.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 import {uploadedDesigns} from "../shared/uploaded-designs.mjs";
 import {originalDirections} from "../shared/refero-originals.mjs";
 

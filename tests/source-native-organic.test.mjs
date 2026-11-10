@@ -4,7 +4,7 @@ import {readFile} from "node:fs/promises";
 import {freeDesignTemplates} from "../shared/free-designmd.mjs";
 import {SOURCE_ARCHITECTURES,sourceNativeScene,sourceNativeCSS} from "../shared/free-designmd-native.mjs";
 import {sampleForTemplate} from "../shared/model.mjs";
-import {renderSite} from "../shared/render.mjs";
+import {renderLegacySite as renderSite} from "../shared/render.mjs";
 test("Ten MD guides now produce ten independent source-native page chapters",()=>{
  assert.equal(SOURCE_ARCHITECTURES.length,10);
  assert.equal(new Set(SOURCE_ARCHITECTURES).size,10);

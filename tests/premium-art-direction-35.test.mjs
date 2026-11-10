@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { templates, sampleForTemplate } from "../shared/model.mjs";
-import { renderSite } from "../shared/render.mjs";
+import { renderLegacySite as renderSite } from "../shared/render.mjs";
 import { premiumStudyIds, premiumStudyThemes } from "../shared/premium-art-direction-35.mjs";
 
 const preserved = ["folio","liquidmetal","runwayml","runwaymulti","nike","clay","ferrari"];

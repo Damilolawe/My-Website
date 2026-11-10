@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { sampleForTemplate } from "../shared/model.mjs";
-import { renderSite } from "../shared/render.mjs";
+import { renderLegacySite as renderSite } from "../shared/render.mjs";
 import { premiumStudyIds } from "../shared/premium-art-direction-35.mjs";
 import { uploadedDesignFor } from "../shared/uploaded-designs.mjs";
 
