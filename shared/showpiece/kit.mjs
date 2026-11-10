@@ -9,6 +9,7 @@ export const BASE_CSS = `*,*:before,*:after{box-sizing:border-box}html{-webkit-t
 .demo{position:relative;z-index:50;padding:7px 16px;text-align:center;font:600 12px/1.4 system-ui,sans-serif;letter-spacing:.02em;background:#000;color:#fff}
 .split{display:inline}.split .w{display:inline-block;white-space:nowrap}.split .ch{display:inline-block}
 [aria-current=page]{text-decoration:underline;text-underline-offset:6px}
+@media(max-width:640px){body>div>header{flex-wrap:wrap;row-gap:12px}body>div>header nav{flex-wrap:wrap;row-gap:6px}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}`;
 
 export const letters = (text) => {

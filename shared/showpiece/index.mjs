@@ -13,8 +13,16 @@ import letterpress from "./designs/letterpress.mjs";
 import dayplanner from "./designs/dayplanner.mjs";
 import vault from "./designs/vault.mjs";
 import kanban from "./designs/kanban.mjs";
+import editor from "./designs/editor.mjs";
+import canvas from "./designs/canvas.mjs";
+import blueprint from "./designs/blueprint.mjs";
+import chatline from "./designs/chatline.mjs";
+import sunroom from "./designs/sunroom.mjs";
+import cardflip from "./designs/cardflip.mjs";
+import aurora from "./designs/aurora.mjs";
+import orbitclub from "./designs/orbitclub.mjs";
 
-const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban];
+const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub];
 export const showpieceDesigns = Object.freeze(Object.fromEntries(DESIGNS.map(d => [d.id, d])));
 export const showpieceIds = Object.keys(showpieceDesigns);
 export const showpiecePages = ["home", "work", "features", "studio", "contact"];
