@@ -37,7 +37,7 @@ function contentFor(design, v, sample) {
 export function renderShowpieceDesign(design, v, options = {}) {
   const sample = !!options.sample;
   const c = contentFor(design, v, sample);
-  const sections = v?.design?.sections || ["about", "work", "services", "contact"];
+  const sections = sample ? ["about", "work", "services", "contact"] : (v?.design?.sections || ["about", "work", "services", "contact"]);
   const aboutItems = ABOUT_KEYS.filter(([key]) => sections.includes(key) && String(c[key] || "").trim()).map(([key, title]) => ({ key, title, text: String(c[key]).trim() }));
   const multipage = !!options.multipage;
   const page = multipage ? (options.page || "home") : null;

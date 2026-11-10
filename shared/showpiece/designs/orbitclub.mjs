@@ -42,7 +42,7 @@ export default {
 .cs-ring b:nth-child(1){left:50%;top:0;background:var(--pink)}.cs-ring b:nth-child(2){left:100%;top:50%;background:var(--sun);color:var(--ink)}.cs-ring b:nth-child(3){left:15%;top:85%;background:var(--lime);color:var(--ink)}
 .cs-core{position:absolute;inset:40%;border-radius:50%;background:var(--blue);display:grid;place-items:center;text-align:center;color:#fff;font:800 clamp(14px,1.4vw,18px)/1.1 Lexend;box-shadow:0 0 0 14px rgba(47,91,255,.15),0 0 0 28px rgba(47,91,255,.08);animation:cs-beat 2.4s ease-in-out infinite}
 @keyframes cs-beat{50%{box-shadow:0 0 0 22px rgba(47,91,255,.12),0 0 0 44px rgba(47,91,255,.04)}}
-.cs-intro{padding:clamp(40px,6vw,80px) clamp(18px,4vw,56px)}.cs-intro h1{font-size:clamp(56px,8vw,130px)}.cs-intro p{margin-top:18px;max-width:46ch}
+.cs-intro{padding:clamp(40px,6vw,80px) clamp(18px,4vw,56px)}.cs-intro h1{font-size:clamp(40px,8vw,130px);overflow-wrap:anywhere}.cs-intro p{margin-top:18px;max-width:46ch}
 .cs h2{font:900 clamp(44px,6.4vw,104px)/.9 Lexend;letter-spacing:-.06em;max-width:13ch}
 .cs-spaces{padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);background:#fff}
 .cs-rooms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:clamp(40px,6vw,70px)}
