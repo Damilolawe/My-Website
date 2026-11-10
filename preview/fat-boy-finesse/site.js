@@ -62,7 +62,7 @@ if(watchRoom&&videoFrame&&probeHost&&streamStatus&&streamMessage&&checkButton){
   src.searchParams.set('enablejsapi','1');
   src.searchParams.set('origin',location.origin);
   src.searchParams.set('playsinline','1');
-  src.searchParams.set('autoplay','1');
+  src.searchParams.set('autoplay','0');
   src.searchParams.set('mute','1');
   src.searchParams.set('rel','0');
   probe.src=src.toString();
