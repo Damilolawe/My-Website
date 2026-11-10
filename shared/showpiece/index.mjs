@@ -37,8 +37,16 @@ import tablerows from "./designs/tablerows.mjs";
 import oneline from "./designs/oneline.mjs";
 import edgemap from "./designs/edgemap.mjs";
 import bezier from "./designs/bezier.mjs";
+import splitflap from "./designs/splitflap.mjs";
+import fairway from "./designs/fairway.mjs";
+import indexcards from "./designs/indexcards.mjs";
+import speedometer from "./designs/speedometer.mjs";
+import voicewave from "./designs/voicewave.mjs";
+import lens from "./designs/lens.mjs";
+import desktop96 from "./designs/desktop96.mjs";
+import hub from "./designs/hub.mjs";
 
-const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub, greenhouse, stickies, notebook, wireframe, colonnade, cabinet, funnel, corkboard, envelope, pocket, channels, checkout, tablerows, oneline, edgemap, bezier];
+const DESIGNS = [altitude, stall, ticker, signal, storybook, launch, coachline, postcard, pitlane, roadtrip, letterpress, dayplanner, vault, kanban, editor, canvas, blueprint, chatline, sunroom, cardflip, aurora, orbitclub, greenhouse, stickies, notebook, wireframe, colonnade, cabinet, funnel, corkboard, envelope, pocket, channels, checkout, tablerows, oneline, edgemap, bezier, splitflap, fairway, indexcards, speedometer, voicewave, lens, desktop96, hub];
 export const showpieceDesigns = Object.freeze(Object.fromEntries(DESIGNS.map(d => [d.id, d])));
 export const showpieceIds = Object.keys(showpieceDesigns);
 export const showpiecePages = ["home", "work", "features", "studio", "contact"];
