@@ -7,7 +7,8 @@
 import {readFile, writeFile} from 'node:fs/promises';
 
 const channel='UC_-FXJoPsApGI_xV1SvRFNw';
-const feedUrl='https://www.youtube.com/feeds/videos.xml?channel_id='+channel;
+// UULF is YouTube's Videos-only playlist (not its Shorts playlist).
+const feedUrl='https://www.youtube.com/feeds/videos.xml?playlist_id=UULF_'+channel.slice(2);
 const response=await fetch(feedUrl,{
   signal:AbortSignal.timeout(20000),
   headers:{'user-agent':'AweConceptsFeedSync/1.0','accept':'application/atom+xml, application/xml;q=0.9'}
@@ -25,7 +26,9 @@ const entries=[...xml.matchAll(/<entry(?:\s[^>]*)?>([\s\S]*?)<\/entry>/g)]
   .filter(e=>e.videoId&&Number.isFinite(e.date))
   .sort((a,b)=>b.date-a.date);
 if(!entries.length)throw new Error('Official YouTube feed returned no valid public videos.');
-const latestVideoId=entries[0].videoId;
+const longFormVideoIds=entries.slice(0,15).map(entry=>entry.videoId);
+if(longFormVideoIds.length<2)throw new Error('Not enough long-form uploads found for continuous playback.');
+const latestVideoId=longFormVideoIds[0];
 
 const htmlPath='preview/fat-boy-finesse/index.html';
 const jsPath='preview/fat-boy-finesse/site.js';
@@ -42,11 +45,11 @@ html=replaceOne(html,/(id="latest-video-link" href="https:\/\/www\.youtube\.com\
   (_match,prefix)=>prefix+latestVideoId,'video fallback link');
 html=replaceOne(html,/(id="latest-video-thumbnail" src="https:\/\/i\.ytimg\.com\/vi\/)[A-Za-z0-9_-]{11}/,
   (_match,prefix)=>prefix+latestVideoId,'video fallback thumbnail');
-js=replaceOne(js,/(const latestVideoId=')[A-Za-z0-9_-]{11}(';)/,
-  (_match,prefix,suffix)=>prefix+latestVideoId+suffix,'JavaScript video ID');
+js=replaceOne(js,/const longFormVideoIds=\[[^\]]+\];/,
+  ()=> 'const longFormVideoIds='+JSON.stringify(longFormVideoIds)+';','long-form playlist queue');
 const beforeHtml=await readFile(htmlPath,'utf8');
 const beforeJs=await readFile(jsPath,'utf8');
 if(beforeHtml!==html)await writeFile(htmlPath,html,'utf8');
 if(beforeJs!==js)await writeFile(jsPath,js,'utf8');
-console.log('Latest Fat Boy Finesse video:',latestVideoId,'published:',entries[0].published,
+console.log('Latest long-form Fat Boy Finesse video:',latestVideoId,'queue size:',longFormVideoIds.length,'published:',entries[0].published,
   'changed:',beforeHtml!==html||beforeJs!==js);
