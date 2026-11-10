@@ -66,20 +66,17 @@
   <section class="live" id="live" aria-labelledby="live-title">
     <div class="section-head" data-reveal>
       <h2 id="live-title">Live when<br><em>he is.</em></h2>
-      <p>One player, two modes. The newest video starts automatically when Walter is offline, then switches to his livestream if he goes live.</p>
+      <p>The latest fragrance video, or his livestream when he is on air.</p>
     </div>
     <div class="live-set" id="live-set" data-reveal>
-      <div class="live-top"><span class="live-dot" aria-hidden="true"></span><strong>THE WATCH ROOM</strong><span id="live-state" role="status" aria-live="polite">LATEST UPLOAD</span></div>
+      <div class="live-top"><span class="live-dot" aria-hidden="true"></span><strong>THE WATCH ROOM</strong><span id="live-state" role="status" aria-live="polite">LATEST VIDEO</span></div>
       <div class="live-content">
-        <div class="live-frame" id="live-frame" aria-label="Automatically plays the newest upload when there is no livestream">
-          <iframe id="live-player" title="Most recent Fat Boy Finesse video, or live broadcast when available" src="https://www.youtube.com/embed/videoseries?list=UU_-FXJoPsApGI_xV1SvRFNw&amp;index=0&amp;rel=0&amp;playsinline=1&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1" loading="eager" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        <div class="live-foot">
-          <p id="live-message" aria-live="polite">Playing Walter’s newest upload automatically with sound muted. If YouTube detects a livestream, this same player switches to the live broadcast. Browser autoplay restrictions may require a tap.</p>
-          <div class="live-actions">
-            <button type="button" class="btn btn-red refresh-live" id="refresh-live" aria-label="Check for a livestream">Check for live</button>
-            <a class="btn btn-line" href="https://www.youtube.com/channel/UC_-FXJoPsApGI_xV1SvRFNw/live" target="_blank" rel="noopener noreferrer">Open channel live <svg class="ui-arrow-up-right" aria-hidden="true"><use href="#arrow"/></svg></a>
-          </div>
+        <div class="live-frame" id="live-frame">
+          <iframe id="live-player" title="Latest Fat Boy Finesse YouTube video, or livestream when available" src="https://www.youtube.com/embed/GO1myfRMo_o?rel=0&amp;playsinline=1&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1" loading="eager" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>
+          <a class="live-fallback" id="latest-video-link" href="https://www.youtube.com/watch?v=GO1myfRMo_o" target="_blank" rel="noopener noreferrer" aria-label="Watch the newest Fat Boy Finesse video on YouTube if the player cannot load">
+            <img id="latest-video-thumbnail" src="https://i.ytimg.com/vi/GO1myfRMo_o/hqdefault.jpg" alt="Thumbnail of the latest Fat Boy Finesse video" width="480" height="360">
+            <span>Watch the newest video on YouTube</span>
+          </a>
         </div>
       </div>
     </div>
