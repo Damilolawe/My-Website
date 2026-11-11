@@ -27,6 +27,11 @@ test("Fat Boy Finesse creator concept uses original red, black, white identity a
  assert.match(html,/<link rel="icon" type="image\/webp" href="\.\/panda-logo-v2\.webp">/);
  assert.equal((html.match(/class="ticker-group"/g)||[]).length,2);
  assert.match(css,/fatboy-ticker-scroll/);
+ assert.match(css,/var\(--ticker-distance,-50%\)/);
+ assert.match(js,/const fillTicker=\(\)=>\{/);
+ assert.match(js,/getBoundingClientRect\(\)\.width/);
+ assert.match(js,/tickerTrack\.scrollWidth<needed/);
+ assert.match(js,/document\.fonts\?\.ready/);
  assert.doesNotMatch(html,/id="scent"|href="#scent"|class="pyramid"|for everybody\./i);
  assert.doesNotMatch(css,/\.pyramid\{|\.flacon\{|\.scent-picks\{/);
  assert.doesNotMatch(js,/const moods=/);
