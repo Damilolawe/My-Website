@@ -27,6 +27,11 @@ const allowed = [
   "hobokengirl.com", "destinationjerseycity.com", "jcfamilies.com", "brooklynpaper.com", "bkmag.com", "grubstreet.com",
   "theinfatuation.com", "patch.com", "gothamist.com", "amny.com", "newyorker.com", "nypost.com", "brownstoner.com",
   "untappedcities.com", "michelin.com", "guide.michelin.com", "bonappetit.com", "foodandwine.com", "thrillist.com",
+  // streaming, music, video and creator-support platforms (performer/comedian concepts)
+  "spotify.com", "music.apple.com", "tidal.com", "soundcloud.com", "audiomack.com", "bandcamp.com",
+  "tubitv.com", "tubi.tv", "twitch.tv", "patreon.com", "cameo.com",
+  // independent merch / print-on-demand and live-comedy ticketing platforms
+  "creator-spring.com", "teespring.com", "bonfire.com", "etix.com", "ticketsauce.com", "seatgeek.com", "bandsintown.com",
 ];
 const domainIs = (host, suffix) => host === suffix || host.endsWith("." + suffix);
 
@@ -42,6 +47,20 @@ export function isAllowedOutbound(href) {
   if (host === "linktr.ee" && url.pathname.replace(/\/$/, "") === "/waltjennette") return true;
   if (host === "podcasts.apple.com" && url.pathname.includes("/the-take-notes-podcast/id1804733952")) return true;
   if (host === "creators.spotify.com" && url.pathname.startsWith("/pod/profile/fat-boy-finesse")) return true;
+  // Owner-requested independent performer concepts (preview/kevonstage, tony-baker,
+  // keenan-baker, tahir-moore, roxxy-haze, ice-mcgowan). Each is explicitly allowed
+  // to reference its own official domain, custom storefront, link hub and local
+  // comedy-venue ticketing pages. No general business-website exemption is implied.
+  const performerHosts = new Set([
+    "kevonstage.com", "kevonstage.myshopify.com",
+    "tonybakercomedy.com",
+    "keenanbaker.com",
+    "roxxyhaze.com", "roxxyhaze.square.site",
+    "micdropcomedychandler.com", "micdropcomedyplano.com", "micdropcomedysandiego.com",
+  ]);
+  if (performerHosts.has(host)) return true;
+  if (host === "linktr.ee" && ["/griefsucks", "/tahirmoore"].includes(url.pathname.replace(/\/$/, "").toLowerCase())) return true;
+  if (host === "iykyk.com" && url.pathname.replace(/\/$/, "").toLowerCase() === "/roxxyhaze") return true;
   return allowed.some(d => domainIs(host, d));
 }
 
