@@ -94,10 +94,11 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
 }
 
 .section {
-  padding: 80px 0;
+  padding: 52px 0;
+  scroll-margin-top: 76px;
 }
 @media (min-width: 768px) {
-  .section { padding: 120px 0; }
+  .section { padding: 72px 0; }
 }
 
 .section-label {
@@ -108,7 +109,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--terracotta);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .section-title {
@@ -117,7 +118,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
   font-weight: 700;
   line-height: 1.1;
   color: var(--text);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .section-subtitle {
@@ -449,10 +450,10 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
 
 .about-grid {
   display: grid;
-  gap: 48px;
+  gap: 32px;
 }
 @media (min-width: 900px) {
-  .about-grid { grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; }
+  .about-grid { grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; }
 }
 
 .about-images {
@@ -490,8 +491,8 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
 
 .about-values {
   display: flex;
-  gap: 32px;
-  margin-top: 32px;
+  gap: 24px;
+  margin-top: 24px;
   flex-wrap: wrap;
 }
 .value {
@@ -522,7 +523,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
    ======================================== */
 .marquee {
   background: var(--green-dark);
-  padding: 20px 0;
+  padding: 14px 0;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -549,7 +550,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
 
 .menu-header {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 28px;
 }
 .menu-header .section-subtitle {
   margin: 0 auto;
@@ -559,7 +560,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-bottom: 48px;
+  margin-bottom: 30px;
   flex-wrap: wrap;
 }
 .menu-tab {
@@ -649,7 +650,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
 
 .menu-note {
   text-align: center;
-  margin-top: 32px;
+  margin-top: 24px;
   font-size: 0.8rem;
   color: var(--text-light);
 }
@@ -662,7 +663,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
   overflow: hidden;
 }
 
-.gallery .container { margin-bottom: 40px; }
+.gallery .container { margin-bottom: 26px; }
 
 .gallery-grid {
   display: grid;
@@ -704,10 +705,10 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
 
 .events-grid {
   display: grid;
-  gap: 48px;
+  gap: 32px;
 }
 @media (min-width: 900px) {
-  .events-grid { grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+  .events-grid { grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: start; }
 }
 
 .events-lead {
@@ -808,10 +809,10 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
 
 .visit-grid {
   display: grid;
-  gap: 48px;
+  gap: 32px;
 }
 @media (min-width: 900px) {
-  .visit-grid { grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .visit-grid { grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
 }
 
 .visit-details {
@@ -927,12 +928,12 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
 .footer {
   background: var(--green-dark);
   color: var(--cream);
-  padding: 64px 0 32px;
+  padding: 48px 0 28px;
 }
 .footer-grid {
   display: grid;
-  gap: 40px;
-  margin-bottom: 48px;
+  gap: 32px;
+  margin-bottom: 32px;
 }
 @media (min-width: 768px) {
   .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; }
