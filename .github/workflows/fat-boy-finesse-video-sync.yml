@@ -32,6 +32,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Prepare YouTube long-form Videos tab fallback
+        run: |
+          python3 -m pip install --quiet --user yt-dlp
+          echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
       - name: Read official YouTube uploads feed
         run: node scripts/sync-fat-boy-finesse-video.mjs
       - name: Commit and deploy only when a newer upload is found
