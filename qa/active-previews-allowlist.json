@@ -133,6 +133,48 @@
       "group": "owner-requested",
       "requestedAt": "2026-11-11",
       "verification": "Explicit user-directed independent website concept for Casa Lalo café-bar at 1569 Lexington Ave, East Harlem. New business with Instagram @casa.lalo.nyc; no independent website found."
+    },
+    {
+      "slug": "kevonstage",
+      "name": "KevOnStage",
+      "group": "owner-requested",
+      "requestedAt": "2026-11-11",
+      "verification": "Explicit user-directed independent design concept for comedian/creator Kevin 'KevOnStage' Fredericks. Content sourced from his official site kevonstage.com; he has an existing website — do not label as no-website. Carries a visible 'independent design concept' notice."
+    },
+    {
+      "slug": "tony-baker",
+      "name": "Tony Baker",
+      "group": "owner-requested",
+      "requestedAt": "2026-11-11",
+      "verification": "Explicit user-directed independent design concept for comedian Tony Baker. Content sourced from his official site tonybakercomedy.com; he has an existing website — do not label as no-website. Carries a visible 'independent design concept' notice."
+    },
+    {
+      "slug": "keenan-baker",
+      "name": "Keenan Baker",
+      "group": "owner-requested",
+      "requestedAt": "2026-11-11",
+      "verification": "Explicit user-directed independent design concept for comedian/actor/writer Keenan Baker. Content sourced from his official site keenanbaker.com; he has an existing website — do not label as no-website. Carries a visible 'independent design concept' notice."
+    },
+    {
+      "slug": "tahir-moore",
+      "name": "Tahir Moore",
+      "group": "owner-requested",
+      "requestedAt": "2026-11-11",
+      "verification": "Explicit user-directed independent design concept for comedian/actor Tahir Moore. Content sourced from his official Linktree linktr.ee/Tahirmoore; he has an existing link hub — do not label as no-website. Carries a visible 'independent design concept' notice."
+    },
+    {
+      "slug": "roxxy-haze",
+      "name": "Roxxy Haze",
+      "group": "owner-requested",
+      "requestedAt": "2026-11-11",
+      "verification": "Explicit user-directed independent design concept for comedian/writer/actor Roxxy Haze. Content sourced from her official roxxyhaze.com / iykyk.com/roxxyhaze; she has an existing website — do not label as no-website. Carries a visible 'independent design concept' notice."
+    },
+    {
+      "slug": "ice-mcgowan",
+      "name": "Ice McGowan",
+      "group": "owner-requested",
+      "requestedAt": "2026-11-11",
+      "verification": "Explicit user-directed independent design concept for filmmaker/comedian Ice McGowan. Content supplied by the requester from his Instagram @ice.mcgowan and YouTube; he has existing social profiles — do not label as no-website. Carries a visible 'independent design concept' notice."
     }
   ]
 }
