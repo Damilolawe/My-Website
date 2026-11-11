@@ -6,6 +6,9 @@
  * used to update open pages without a refresh.
  */
 import {readFile, writeFile} from 'node:fs/promises';
+import {execFile} from 'node:child_process';
+import {promisify} from 'node:util';
+const execFileAsync=promisify(execFile);
 
 const channel='UC_-FXJoPsApGI_xV1SvRFNw';
 // UULF is YouTube's Videos-only playlist (not its Shorts playlist).
@@ -64,6 +67,20 @@ const fetchEntries=async()=>{
   }
   errors.push('YouTube Videos tab returned fewer than two video IDs.');
  }catch(error){errors.push(String(error.message));}
+ // Last resort: yt-dlp reads YouTube's Videos tab through the same browse
+ // API as YouTube's client, and doesn't mix in channel Shorts or livestream tabs.
+ try{
+  const {stdout}=await execFileAsync('yt-dlp',[
+   '--flat-playlist','--playlist-items','1:15','--print','%(id)s',
+   '--no-warnings','--skip-download',videosPage
+  ],{timeout:90000,maxBuffer:1024*1024});
+  const ids=stdout.trim().split(/\r?\n/).filter(id=>/^[A-Za-z0-9_-]{11}$/.test(id));
+  if(ids.length>=2){
+   console.warn('Using yt-dlp long-form Videos tab fallback.',errors.join(' | '));
+   return [...new Set(ids)].map(videoId=>({videoId,published:'videos-tab-yt-dlp',date:0}));
+  }
+  errors.push('yt-dlp did not return enough regular videos.');
+ }catch(error){errors.push('yt-dlp: '+String(error.message).slice(0,250));}
  throw new Error('Unable to refresh long-form queue; current deployed videos retained. '+errors.join(' | '));
 };
 const entries=await fetchEntries();
