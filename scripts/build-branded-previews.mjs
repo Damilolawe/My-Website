@@ -19,6 +19,12 @@ if (forbiddenIcons.length) throw new Error(
   forbiddenIcons.join("\\n")
 );
 const output = "branded-previews/public";
+// Cloudflare Pages cannot depend on expiring Instagram URLs or an unavailable
+// Firebase backup host. The original photo importer stays enabled everywhere
+// else and can be restored on Pages once verified local photo assets are committed.
+const useCloudflarePhotoFallbacks =
+  process.env.CF_PAGES === "1" || process.env.AWE_EMERGENCY_PREVIEWS === "1";
+
 const publicKappo = `${output}/kappo-sono`;
 const publicOtaku = `${output}/otaku-haven`;
 const publicBao = `${output}/bao-dumpling`;
@@ -80,10 +86,34 @@ await mkdir(`${output}/jay-millz-shot-em`, { recursive: true });
 for (const asset of ["index.html", "styles.css", "site.js"]) {
   await cp(`preview/jay-millz-shot-em/${asset}`, `${output}/jay-millz-shot-em/${asset}`);
 }
-await importJayMillzPhotos(output);
+if (useCloudflarePhotoFallbacks) {
+  // Keep the complete concept live, but never present an unrelated session
+  // image as Jay's verified personal Instagram About portrait.
+  const path = `${output}/jay-millz-shot-em/index.html`;
+  const html = await readFile(path, "utf8");
+  const portrait = /<img\\b(?=[^>]*\\bdata-about-portrait="personal")[^>]*>/;
+  if (!portrait.test(html))
+    throw new Error("Jay Millz About portrait marker changed; verify fallback before deploying");
+  await writeFile(path, html.replace(portrait,
+    '<div role="img" aria-label="Jay Millz personal portrait unavailable; see linked Instagram profile" style="min-height:420px;display:grid;place-items:center;padding:28px;background:#0b1324;color:#cbd5e1;text-align:center;font-weight:700;letter-spacing:.06em">PERSONAL PORTRAIT TEMPORARILY UNAVAILABLE</div>'
+  ));
+  console.warn("Cloudflare preview: Jay Millz personal portrait omitted until a verified local snapshot is available.");
+} else {
+  await importJayMillzPhotos(output);
+}
 await mkdir(`${output}/shotsbyriq`, { recursive: true });
 for (const asset of ["styles.css","site.js"]) await cp(`preview/shotsbyriq/${asset}`, `${output}/shotsbyriq/${asset}`);
-await importShotsByRiqPhotos(output);
+if (useCloudflarePhotoFallbacks) {
+  // Publish the original concept HTML without build-time Instagram downloads.
+  // Its existing image-error handling links to the photographer's profile.
+  let html = await readFile("preview/shotsbyriq/index.html", "utf8");
+  html = html.replaceAll("/preview/shotsbyriq/styles.css", "/shotsbyriq/styles.css")
+             .replaceAll("/preview/shotsbyriq/site.js", "/shotsbyriq/site.js");
+  await writeFile(`${output}/shotsbyriq/index.html`, html);
+  console.warn("Cloudflare preview: SHOTSBYRIQ uses original HTML with image-error fallbacks until local photos are available.");
+} else {
+  await importShotsByRiqPhotos(output);
+}
 // Public-only, seven-page Pace SBDC redesign concept.
 await buildPaceSbdc(`${output}/pace-sbdc`);
 await mkdir(`${output}/susukino`,{recursive:true});
