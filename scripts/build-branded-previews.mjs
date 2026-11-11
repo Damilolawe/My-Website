@@ -226,8 +226,12 @@ async function standardizeAweCredits(directory) {
 await standardizeAweCredits(output);
 const enhancement = getEnhancementStats();
 console.log("Preview editorial upgrade and outgoing link policy:", enhancement);
-// Casa Lalo — standalone client site, served at /casa-lalo/
+// Casa Lalo — standalone client site, served at /casa-lalo/.
+// Copied after the general standardization pass, so explicitly apply the
+// same branded logo + "Designed by Awe Concepts" footer as every other preview.
 await cp("casa-lalo", `${output}/casa-lalo`, { recursive: true });
+const casaLaloPage = `${output}/casa-lalo/index.html`;
+await writeFile(casaLaloPage, applyAweDesignCredit(await readFile(casaLaloPage, "utf8")));
 
 console.log("Built branded public previews. Only explicitly allowlisted public concepts are included.");
 
