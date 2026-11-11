@@ -46,6 +46,7 @@ const files = [
   "inquiry-received.html",
   "site-viewer.html",
   "site-viewer.js",
+  "casa-lalo",
 ];
 await rm("dist", { recursive: true, force: true });
 await mkdir("dist");
