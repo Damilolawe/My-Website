@@ -98,9 +98,12 @@ test("compact watch room defaults to recent uploads and checks verified live sta
  assert.match(js,/if\(event.data===0\)playNextLongForm\(\)/);
  assert.match(js,/playLongFormAt\(longFormIndex\+1\)/);
  const sync=await load("scripts/sync-fat-boy-finesse-video.mjs");
- assert.match(sync,/playlist_id=UULF_/);
+ assert.match(sync,/playlist_id=/);
+ assert.match(sync,/const playlist='UULF'\+channel\.slice\(2\)/);
  assert.doesNotMatch(sync,/playlist_id=UUSH_/);
  assert.match(sync,/longFormVideoIds=entries.slice\(0,15\)/);
+ assert.match(sync,/parseVideosTab/);
+ assert.match(sync,/fetchEntries/);
  assert.ok(sync.includes("const queuePath='preview/fat-boy-finesse/latest-videos.txt'"));
  assert.doesNotMatch(html,/LATEST LONG-FORM/);
  assert.match(js,/UC_-FXJoPsApGI_xV1SvRFNw/);
