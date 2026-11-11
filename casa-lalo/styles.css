@@ -168,13 +168,21 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
   display: flex;
   align-items: center;
 }
+/* The supplied Casa Lalo PNG sits independently in the top-left corner.
+   Slight opacity lets the original logo blend naturally into the header. */
 .nav-logo-img {
-  height: 44px;
+  display: block;
+  height: clamp(50px, 4.5vw, 64px);
   width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  opacity: 0.78;
   border-radius: 4px;
-  transition: height var(--transition);
+  transition: height var(--transition), opacity var(--transition);
 }
-.nav.scrolled .nav-logo-img { height: 38px; }
+.nav-logo:hover .nav-logo-img,
+.nav-logo:focus-visible .nav-logo-img { opacity: 1; }
+.nav.scrolled .nav-logo-img { height: 46px; opacity: 0.85; }
 
 .nav-links {
   display: none;
@@ -289,91 +297,64 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
 .hero-content {
   position: relative;
   z-index: 2;
-  text-align: center;
-  padding: 0 16px;
-}
-
-.hero-logo-frame {
-  margin: 0 auto 32px;
-  width: 220px;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: fadeInUp 1s ease-out;
-}
-@media (min-width: 768px) {
-  .hero-logo-frame { width: 280px; height: 280px; }
-}
-
-.hero-logo-border {
-  width: 100%;
-  height: 100%;
-  border: 2px solid var(--terracotta);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background: rgba(247, 243, 236, 0.06);
-  backdrop-filter: blur(2px);
-}
-.hero-logo-border::before {
-  content: '';
-  position: absolute;
-  inset: 6px;
-  border: 1px solid rgba(196, 98, 42, 0.35);
-  border-radius: 4px;
-}
-.hero-logo-border::after {
-  content: '';
-  position: absolute;
-  inset: -8px;
-  border: 1px solid rgba(196, 98, 42, 0.15);
-  border-radius: 12px;
-}
-
-.hero-logo-inner {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  padding: clamp(120px, 15vh, 168px) 20px clamp(84px, 10vh, 120px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Clear, centered typography replaces the framed box, leaving the
+   fixed navigation and "Our Story" link visually unobstructed. */
+.hero-wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 0 clamp(24px, 4vh, 42px);
+  text-align: center;
+  animation: fadeInUp 1s ease-out both;
 }
 .hero-logo-top {
   font-family: var(--font-accent);
-  font-size: 1.5rem;
+  font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 500;
   color: var(--terracotta-light);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-}
-@media (min-width: 768px) {
-  .hero-logo-top { font-size: 1.8rem; }
+  line-height: 1.1;
 }
 .hero-logo-main {
   font-family: var(--font-display);
-  font-size: 3.5rem;
+  font-size: clamp(5.1rem, 13.5vw, 11rem);
   font-weight: 800;
   color: #f7f3ec;
-  letter-spacing: 0.12em;
-  line-height: 1;
-}
-@media (min-width: 768px) {
-  .hero-logo-main { font-size: 4.5rem; }
+  letter-spacing: 0.055em;
+  line-height: 0.97;
+  max-width: 100%;
 }
 .hero-logo-divider {
-  width: 60px;
-  height: 1px;
+  width: clamp(70px, 9vw, 126px);
+  height: 2px;
   background: var(--terracotta);
-  margin: 6px 0;
+  margin: clamp(10px, 2vh, 18px) 0 12px;
 }
 .hero-logo-sub {
   font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--terracotta);
-  letter-spacing: 0.3em;
+  font-size: clamp(0.8rem, 1.4vw, 1rem);
+  font-weight: 600;
+  color: var(--terracotta-light);
+  letter-spacing: 0.28em;
   text-transform: uppercase;
+}
+@media (max-width: 520px) {
+  .hero-content { padding: 118px 16px 92px; }
+  .hero-wordmark { margin-bottom: 28px; }
+  .hero-logo-main { font-size: clamp(4.8rem, 21vw, 6.6rem); letter-spacing: 0.025em; }
 }
 
 .hero-tagline {
