@@ -59,16 +59,21 @@ for (const [deviceName, config] of auditDevices) {
       // On desktop confirm the track is not merely present: its rendered position must move.
       if (motionViewports.has(deviceName)) {
         const motion = await page.evaluate(async () => {
-          const track = document.querySelector('.awe-motion-track, .marquee-track');
+          const track = document.querySelector('.awe-motion-track, .marquee-track, .ticker-track');
           if (!track) return { ok: true, skipped: true, reason: 'no moving banner on page' };
           const initialStyle = getComputedStyle(track);
           const animation = initialStyle.animationName;
           const playState = initialStyle.animationPlayState;
+          const container = track.closest('.ticker');
+          const groups = [...track.children].filter(child => child.classList.contains('ticker-group'));
           const first = track.getBoundingClientRect().left;
           await new Promise(resolve => setTimeout(resolve, 550));
           const second = track.getBoundingClientRect().left;
           return { ok: animation !== 'none' && playState === 'running' && Math.abs(second - first) > 2,
-                   animation, playState, pixelsMoved: Math.round((second-first)*10)/10 };
+                   animation, playState, pixelsMoved: Math.round((second-first)*10)/10,
+                   tickerWidth: container?.clientWidth || null, trackWidth: track.scrollWidth,
+                   groupCount: groups.length, firstGroupWidth: groups[0]?.getBoundingClientRect().width || null,
+                   reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches };
         });
         if (!motion.ok) {
           failures++;
