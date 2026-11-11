@@ -1,0 +1,7 @@
+# Separate Cloudflare Worker for the main Awe Concepts website.
+# The preview Worker remains configured independently in wrangler.toml.
+name = "awe-concepts-main"
+compatibility_date = "2026-11-11"
+
+[assets]
+directory = "./dist"
