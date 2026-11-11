@@ -20,11 +20,11 @@ const loadText=async url=>{
 };
 const parseAtom=xml=>{
  if(!xml.includes(channel))throw new Error('Atom feed did not match the creator channel.');
- return [...xml.matchAll(/<entry(?:\\s[^>]*)?>([\\s\\S]*?)<\\/entry>/g)]
+ return [...xml.matchAll(/<entry(?:\s[^>]*)?>([\s\S]*?)<\/entry>/g)]
   .map(match=>{
    const entry=match[1];
-   const videoId=entry.match(/<yt:videoId>\\s*([A-Za-z0-9_-]{11})\\s*<\\/yt:videoId>/)?.[1];
-   const published=entry.match(/<published>([^<]+)<\\/published>/)?.[1];
+   const videoId=entry.match(/<yt:videoId>\s*([A-Za-z0-9_-]{11})\s*<\/yt:videoId>/)?.[1];
+   const published=entry.match(/<published>([^<]+)<\/published>/)?.[1];
    return {videoId,published,date:Date.parse(published||'')};
   })
   .filter(entry=>entry.videoId&&Number.isFinite(entry.date))
@@ -35,8 +35,8 @@ const parseAtom=xml=>{
 const parseVideosTab=html=>{
  const ids=[];
  const selectors=[
-  /"richItemRenderer":\\{"content":\\{"videoRenderer":\\{"videoId":"([A-Za-z0-9_-]{11})"/g,
-  /"videoRenderer":\\{"videoId":"([A-Za-z0-9_-]{11})"/g
+  /"richItemRenderer":\{"content":\{"videoRenderer":\{"videoId":"([A-Za-z0-9_-]{11})"/g,
+  /"videoRenderer":\{"videoId":"([A-Za-z0-9_-]{11})"/g
  ];
  for(const regex of selectors){
   for(const match of html.matchAll(regex)){
