@@ -46,6 +46,27 @@ async function serveDist() {
 async function main() {
   await mkdir(assetsDir, { recursive: true });
   await mkdir(distAssetsDir, { recursive: true });
+
+  // Cloudflare's build environment may not have Chromium installed.
+  // Preserve committed thumbnail images rather than fail or replace them
+  // with placeholders during an emergency hosting migration.
+  if (process.env.AWE_USE_COMMITTED_THUMBNAILS === "1") {
+    const missing = [];
+    for (const template of templates) {
+      try {
+        const filename = `${template.id}.webp`;
+        await writeFile(join(distAssetsDir, filename), await readFile(join(assetsDir, filename)));
+      } catch {
+        missing.push(template.id);
+      }
+    }
+    if (missing.length) {
+      throw new Error("Committed template thumbnails missing: " + missing.join(", "));
+    }
+    await writeFile(join(distAssetsDir, "manifest.json"), await readFile(manifestPath));
+    console.log("Cloudflare main build: using existing committed thumbnails for " + templates.length + " templates.");
+    return { total: templates.length, generated: 0, reused: templates.length };
+  }
   const previous = await readManifest();
   const current = {};
   const stale = [];
