@@ -30,6 +30,7 @@ const files = [
   "favicon.ico",
   "_headers",
   "robots.txt",
+  "sitemap.xml",
   "assets",
   "vendor",
   "demos",
