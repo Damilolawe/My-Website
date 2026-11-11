@@ -29,6 +29,34 @@ if(watchRoom&&videoFrame&&liveFrame&&probeHost){
   if(link)link.href='https://www.youtube.com/watch?v='+videoId;
   if(poster)poster.src='https://i.ytimg.com/vi/'+videoId+'/hqdefault.jpg';
  };
+ // A published text queue lets open tabs notice new long-form uploads without a refresh.
+ let syncingUploads=false,lastUploadCheck=0;
+ const syncNewUploads=async()=>{
+  if(document.hidden||syncingUploads)return;
+  syncingUploads=true;
+  lastUploadCheck=Date.now();
+  try{
+   const url=new URL('./latest-videos.txt',location.href);
+   url.searchParams.set('checked',String(Date.now()));
+   const response=await fetch(url.toString(),{cache:'no-store',signal:AbortSignal.timeout(10000)});
+   if(!response.ok)return;
+   const found=(await response.text()).trim().split(/\r?\n/).filter(Boolean);
+   if(found.length<2||found.length>15||found.some(id=>!/^[A-Za-z0-9_-]{11}$/.test(id))||new Set(found).size!==found.length)return;
+   const oldLatest=longFormVideoIds[0];
+   const playingId=longFormVideoIds[longFormIndex];
+   longFormVideoIds.splice(0,longFormVideoIds.length,...found);
+   if(found[0]!==oldLatest){
+    updateFallback(found[0]);
+    // A new upload replaces normal playback immediately, not a verified live stream.
+    if(currentMode==='latest')playLongFormAt(0);
+   }else{
+    const updatedIndex=longFormVideoIds.indexOf(playingId);
+    if(updatedIndex>=0)longFormIndex=updatedIndex;
+   }
+  }catch(error){
+   // Keep existing playback if the update check is temporarily unavailable.
+  }finally{syncingUploads=false;}
+ };
  const playLongFormAt=index=>{
   if(currentMode!=='latest')return;
   longFormIndex=((index%longFormVideoIds.length)+longFormVideoIds.length)%longFormVideoIds.length;
@@ -177,6 +205,15 @@ if(watchRoom&&videoFrame&&liveFrame&&probeHost){
   script.async=true;
   document.head.append(script);
  }
- document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-lastCheck>2*60*1000)checkLive();});
+ syncNewUploads();
+ document.addEventListener('visibilitychange',()=>{
+  if(!document.hidden){
+   syncNewUploads();
+   if(Date.now()-lastCheck>2*60*1000)checkLive();
+  }
+ });
+ window.addEventListener('focus',()=>{if(Date.now()-lastUploadCheck>10000)syncNewUploads();});
+ window.addEventListener('online',syncNewUploads);
  window.setInterval(()=>{if(!document.hidden)checkLive();},2*60*1000);
+ window.setInterval(()=>{if(!document.hidden)syncNewUploads();},60*1000);
 }
