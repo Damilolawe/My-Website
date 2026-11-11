@@ -84,6 +84,28 @@ for (const [deviceName, config] of auditDevices) {
           console.log('PASS banner motion ' + url + ' ' + JSON.stringify(motion));
         }
       }
+      // Fat Boy Finesse: Windows/macOS reduced-motion preferences must expose
+      // an accessible opt-in that restarts the marquee when clicked.
+      if(site==='fat-boy-finesse'&&motionViewports.has(deviceName)){
+        await page.emulateMedia({reducedMotion:'reduce'});
+        const toggle=page.locator('#ticker-motion-toggle');
+        const controlVisible=await toggle.isVisible();
+        if(controlVisible)await toggle.click();
+        const manualMotion=await page.evaluate(async()=>{
+          const track=document.querySelector('.ticker-track');
+          if(!track)return {ok:false,reason:'ticker not found'};
+          const first=track.getBoundingClientRect().left;
+          await new Promise(resolve=>setTimeout(resolve,550));
+          const second=track.getBoundingClientRect().left;
+          return {ok:Math.abs(second-first)>2,pixelsMoved:Math.round((second-first)*10)/10};
+        });
+        if(!controlVisible||!manualMotion.ok){
+          failures++;
+          findings.push({site,viewport:deviceName,type:'reduced-motion-banner',controlVisible,details:manualMotion});
+          console.error('FAIL reduced-motion banner '+url+' '+JSON.stringify({controlVisible,...manualMotion}));
+        }else console.log('PASS reduced-motion banner '+url+' '+JSON.stringify(manualMotion));
+        await page.emulateMedia({reducedMotion:'no-preference'});
+      }
       // Full-page screenshots can race lazy/data-image decoding on emulated mobile.
       // Eagerly decode every authored image before deciding that it is broken.
       await page.evaluate(async () => {
