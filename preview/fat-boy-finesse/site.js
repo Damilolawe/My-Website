@@ -1,6 +1,33 @@
 document.documentElement.classList.add('js');
 const menu=document.getElementById('menu-toggle');const nav=document.getElementById('primary-nav');if(menu&&nav){const close=()=>{menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation');nav.classList.remove('open')};menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation');nav.classList.toggle('open',open)});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));window.addEventListener('resize',()=>{if(window.innerWidth>1100)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()})}
 const reveal=document.querySelectorAll('[data-reveal]');if('IntersectionObserver'in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('seen');observer.unobserve(entry.target)}})},{threshold:.08,rootMargin:'0px 0px 50px 0px'});reveal.forEach(el=>observer.observe(el))}else{reveal.forEach(el=>el.classList.add('seen'))}
+/* The red scrolling banner needs enough repeated content to fill even very
+   wide desktop monitors. Animate by exactly one group's measured width,
+   so the repeat starts at the same position with no blank or visible jump. */
+const ticker=document.querySelector('.ticker');
+const tickerTrack=ticker?.querySelector('.ticker-track');
+if(ticker&&tickerTrack){
+ const firstGroup=tickerTrack.querySelector('.ticker-group');
+ if(firstGroup){
+  const fillTicker=()=>{
+   tickerTrack.querySelectorAll('.ticker-group').forEach((group,index)=>{if(index>0)group.remove();});
+   const groupWidth=firstGroup.getBoundingClientRect().width;
+   if(!(groupWidth>0))return;
+   // One full group must remain beyond the visible area during scrolling.
+   const needed=ticker.clientWidth+groupWidth;
+   while(tickerTrack.scrollWidth<needed&&tickerTrack.children.length<24){
+    const copy=firstGroup.cloneNode(true);
+    copy.setAttribute('aria-hidden','true');
+    tickerTrack.appendChild(copy);
+   }
+   tickerTrack.style.setProperty('--ticker-distance','-'+groupWidth+'px');
+   tickerTrack.style.setProperty('--ticker-duration',Math.max(14,groupWidth/60)+'s');
+  };
+  fillTicker();
+  window.addEventListener('resize',fillTicker,{passive:true});
+  if(document.fonts?.ready)document.fonts.ready.then(fillTicker).catch(()=>{});
+ }
+}
 /* The watch room always starts on the newest known *video ID*, never an
    uploads-playlist embed (which may render no player in browsers).
    A scheduled GitHub Action syncs this ID against YouTube's official RSS feed.
