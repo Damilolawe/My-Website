@@ -1,4 +1,5 @@
 import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import sharp from "sharp";
 import { enhancePublishedHtml, getEnhancementStats } from "./preview-experience-v2.mjs";
 import { applyAweDesignCredit } from "../shared/brand-credit.mjs";
 import { stripLegacyAweCredits } from "./preview-publish.mjs";
@@ -55,8 +56,22 @@ for (const slug of batchOneSlugs) {
   try { await readFile(`preview/${slug}/site.js`); }
   catch { await cp("preview/prospect-shared/site.js", `${output}/${slug}/site.js`); }
 }
-await cp("favicon.ico", `${output}/favicon.ico`);
+// Generate all preview favicon formats from the same current AWE Concepts
+// SVG as the main site. Never copy an outdated legacy favicon.ico.
 await cp("favicon.svg", `${output}/favicon.svg`);
+const previewBrandSvg = await readFile("favicon.svg");
+await writeFile(`${output}/favicon.png`, await sharp(previewBrandSvg).resize(192, 192).png().toBuffer());
+const previewIconPng = await sharp(previewBrandSvg).resize(48, 48).png().toBuffer();
+const previewIcoHeader = Buffer.alloc(22);
+previewIcoHeader.writeUInt16LE(1, 2);
+previewIcoHeader.writeUInt16LE(1, 4);
+previewIcoHeader[6] = 48;
+previewIcoHeader[7] = 48;
+previewIcoHeader.writeUInt16LE(1, 10);
+previewIcoHeader.writeUInt16LE(32, 12);
+previewIcoHeader.writeUInt32LE(previewIconPng.length, 14);
+previewIcoHeader.writeUInt32LE(22, 18);
+await writeFile(`${output}/favicon.ico`, Buffer.concat([previewIcoHeader, previewIconPng]));
 for (const asset of ["index.html", "styles.css", "site.js"]) {
   await cp(`preview/bao-dumpling/${asset}`, `${publicBao}/${asset}`);
   await cp(`preview/mesa-bar/${asset}`, `${publicMesa}/${asset}`);
