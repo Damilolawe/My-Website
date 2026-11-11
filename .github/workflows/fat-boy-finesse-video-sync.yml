@@ -1,6 +1,11 @@
 name: Sync Fat Boy Finesse latest video
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/sync-fat-boy-finesse-video.mjs'
+      - '.github/workflows/fat-boy-finesse-video-sync.yml'
   schedule:
     # Run off the hour: scheduled GitHub Actions can be delayed.
     - cron: '3-58/5 * * * *'
