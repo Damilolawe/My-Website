@@ -154,7 +154,7 @@ const sitePages = async slug => (await readdir(`${output}/${slug}`)).filter(f =>
 const manifestSlugs = [...new Set(batchOneSlugs)];
 const recoveredSlugs = new Set([
   "kappo-sono","otaku-haven","shotsbyriq","jay-millz-shot-em","pace-sbdc","susukino",
-  "bao-dumpling","mesa-bar","casa-serra","solerum","jj-deli","chong"
+  "bao-dumpling","mesa-bar","casa-serra","solerum","jj-deli","chong","casa-lalo"
 ]);
 await writeFile(`${output}/preview-manifest.json`, JSON.stringify({
   generatedAt: new Date().toISOString(),
