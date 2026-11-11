@@ -64,13 +64,14 @@ for (const [deviceName, config] of auditDevices) {
           const initialStyle = getComputedStyle(track);
           const animation = initialStyle.animationName;
           const playState = initialStyle.animationPlayState;
+          const webAnimation = track.getAnimations().some(animation => animation.playState === 'running');
           const container = track.closest('.ticker');
           const groups = [...track.children].filter(child => child.classList.contains('ticker-group'));
           const first = track.getBoundingClientRect().left;
           await new Promise(resolve => setTimeout(resolve, 550));
           const second = track.getBoundingClientRect().left;
-          return { ok: animation !== 'none' && playState === 'running' && Math.abs(second - first) > 2,
-                   animation, playState, pixelsMoved: Math.round((second-first)*10)/10,
+          return { ok: ((animation !== 'none' && playState === 'running') || webAnimation) && Math.abs(second - first) > 2,
+                   animation, playState, webAnimation, pixelsMoved: Math.round((second-first)*10)/10,
                    tickerWidth: container?.clientWidth || null, trackWidth: track.scrollWidth,
                    groupCount: groups.length, firstGroupWidth: groups[0]?.getBoundingClientRect().width || null,
                    reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches };
