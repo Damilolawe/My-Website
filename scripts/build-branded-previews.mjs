@@ -19,11 +19,12 @@ if (forbiddenIcons.length) throw new Error(
   forbiddenIcons.join("\\n")
 );
 const output = "branded-previews/public";
-// Cloudflare Pages cannot depend on expiring Instagram URLs or an unavailable
-// Firebase backup host. The original photo importer stays enabled everywhere
-// else and can be restored on Pages once verified local photo assets are committed.
+// Builds must never depend on expiring Instagram CDN URLs or an unavailable
+// Firebase backup. Use safe HTML fallbacks by default on every build platform.
+// Once verified local image assets are committed, the import step can be retired.
+// Remote import remains explicitly opt-in for a controlled recovery operation.
 const useCloudflarePhotoFallbacks =
-  process.env.CF_PAGES === "1" || process.env.AWE_EMERGENCY_PREVIEWS === "1";
+  process.env.AWE_FETCH_REMOTE_PREVIEW_PHOTOS !== "1";
 
 const publicKappo = `${output}/kappo-sono`;
 const publicOtaku = `${output}/otaku-haven`;
