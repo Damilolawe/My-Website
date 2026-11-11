@@ -43,13 +43,14 @@ h2 em{font:italic 400 1.02em/.9 var(--serif);text-transform:none;letter-spacing:
 .hero-lede{margin-top:26px;max-width:44ch;font-size:clamp(18px,1.5vw,21px);color:#cfcbc3}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 
-/* Seamless desktop/mobile banner: two identical tracks and a half-width travel. */
+/* Seamless banner: dynamically repeat the group across wide monitors and
+   move by exactly one group's width; the no-JS fallback remains two copies. */
 .ticker{position:relative;overflow:hidden;width:100%;background:var(--red);border-block:1px solid var(--blood)}
-.ticker-track{display:flex;align-items:center;width:max-content;animation:fatboy-ticker-scroll 26s linear infinite;will-change:transform}
+.ticker-track{display:flex;align-items:center;width:max-content;min-width:100%;animation:fatboy-ticker-scroll var(--ticker-duration,26s) linear infinite;will-change:transform}
 .ticker-group{display:flex;align-items:center;flex:0 0 auto;width:max-content}
 .ticker-group span{display:inline-flex;flex:0 0 auto;align-items:center;gap:24px;padding:16px 0 16px 32px;font:400 clamp(24px,2.6vw,36px)/1.06 var(--display);text-transform:uppercase;white-space:nowrap}
 .ticker-group span:after{content:"";flex:0 0 auto;width:11px;height:11px;border-radius:50%;background:var(--ink)}
-@keyframes fatboy-ticker-scroll{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@keyframes fatboy-ticker-scroll{from{transform:translate3d(0,0,0)}to{transform:translate3d(var(--ticker-distance,-50%),0,0)}}
 @media(prefers-reduced-motion:reduce){.ticker-track{animation:none;will-change:auto}}
 
 /* about */
