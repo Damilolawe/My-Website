@@ -88,7 +88,11 @@ for (const [deviceName, config] of auditDevices) {
       // an accessible opt-in that restarts the marquee when clicked.
       if(site==='fat-boy-finesse'&&motionViewports.has(deviceName)){
         await page.emulateMedia({reducedMotion:'reduce'});
+        // Reload to reproduce a real visitor whose OS has reduced motion enabled
+        // before opening the site; don't race the asynchronous media-query event.
+        await page.reload({waitUntil:'networkidle',timeout:45000});
         const toggle=page.locator('#ticker-motion-toggle');
+        await toggle.waitFor({state:'visible',timeout:3000}).catch(()=>undefined);
         const controlVisible=await toggle.isVisible();
         if(controlVisible)await toggle.click();
         const manualMotion=await page.evaluate(async()=>{
