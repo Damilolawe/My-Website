@@ -69,11 +69,21 @@ try {
   console.log("DESKTOP_MOTION_START",JSON.stringify(startup));
   if(!startup.gsap||!startup.scrollTrigger||startup.triggers<2||!startup.ready||startup.paused||startup.banner||startup.toggle)
     failures.push("Desktop motion is disabled or still has unwanted controls");
+  // The Living Studio replaces the obsolete hero showreel. Verify a real
+  // pointer hover visibly lifts its topmost card instead of testing hidden UI.
+  const studioHover=page.locator(".universe-card--athletic .universe-open");
+  await studioHover.hover({timeout:6000});
+  await page.waitForTimeout(700);
+  const cardHover=await page.locator(".universe-card--athletic").evaluate(el=>({
+    hovered:el.matches(":hover"),
+    zIndex:getComputedStyle(el).zIndex,
+    frameBorder:getComputedStyle(el.querySelector(".universe-card-frame")).borderTopColor,
+    snapshotTransform:getComputedStyle(el.querySelector(".universe-snapshot iframe")).transform
+  }));
+  console.log("LIVING_STUDIO_HOVER",JSON.stringify(cardHover));
+  if(!cardHover.hovered||cardHover.zIndex!=="30"||cardHover.frameBorder!=="rgb(228, 255, 112)")
+    failures.push("Living Studio card hover did not visibly lift and highlight");
   await page.mouse.move(2,2);
-  await page.waitForTimeout(7100);
-  let next=(await page.locator("#reel-index").textContent())?.trim();
-  if(next===startup.frame){await page.waitForTimeout(1500);next=(await page.locator("#reel-index").textContent())?.trim();}
-  if(next===startup.frame)failures.push("Desktop hero reel did not advance");
   const card=page.locator(".pricing-card.reveal").first();
   await card.evaluate(el=>window.scrollTo({top:el.getBoundingClientRect().top+scrollY-innerHeight*.33,behavior:"instant"}));
   await page.waitForTimeout(1150);
