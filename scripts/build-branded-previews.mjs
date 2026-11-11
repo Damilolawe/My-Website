@@ -91,7 +91,7 @@ if (useCloudflarePhotoFallbacks) {
   // image as Jay's verified personal Instagram About portrait.
   const path = `${output}/jay-millz-shot-em/index.html`;
   const html = await readFile(path, "utf8");
-  const portrait = /<img\\b(?=[^>]*\\bdata-about-portrait="personal")[^>]*>/;
+  const portrait = /<img\b(?=[^>]*\bdata-about-portrait="personal")[^>]*>/;
   if (!portrait.test(html))
     throw new Error("Jay Millz About portrait marker changed; verify fallback before deploying");
   await writeFile(path, html.replace(portrait,
