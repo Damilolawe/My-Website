@@ -9,24 +9,64 @@ import {readFile, writeFile} from 'node:fs/promises';
 
 const channel='UC_-FXJoPsApGI_xV1SvRFNw';
 // UULF is YouTube's Videos-only playlist (not its Shorts playlist).
-const feedUrl='https://www.youtube.com/feeds/videos.xml?playlist_id=UULF_'+channel.slice(2);
-const response=await fetch(feedUrl,{
-  signal:AbortSignal.timeout(20000),
-  headers:{'user-agent':'AweConceptsFeedSync/1.0','accept':'application/atom+xml, application/xml;q=0.9'}
-});
-if(!response.ok)throw new Error('Could not read official YouTube feed: HTTP '+response.status);
-const xml=await response.text();
-if(!xml.includes(channel))throw new Error('YouTube feed channel ID did not match expected creator.');
-const entries=[...xml.matchAll(/<entry(?:\s[^>]*)?>([\s\S]*?)<\/entry>/g)]
+const playlist='UULF'+channel.slice(2);
+const feedUrl='https://www.youtube.com/feeds/videos.xml?playlist_id='+playlist;
+const videosPage='https://www.youtube.com/@fatboyfinesse/videos';
+const requestHeaders={'user-agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36','accept-language':'en-US,en;q=0.9'};
+const loadText=async url=>{
+ const response=await fetch(url,{signal:AbortSignal.timeout(20000),headers:requestHeaders});
+ if(!response.ok)throw new Error(url+': HTTP '+response.status);
+ return response.text();
+};
+const parseAtom=xml=>{
+ if(!xml.includes(channel))throw new Error('Atom feed did not match the creator channel.');
+ return [...xml.matchAll(/<entry(?:\\s[^>]*)?>([\\s\\S]*?)<\\/entry>/g)]
   .map(match=>{
-    const entry=match[1];
-    const videoId=entry.match(/<yt:videoId>\s*([A-Za-z0-9_-]{11})\s*<\/yt:videoId>/)?.[1];
-    const published=entry.match(/<published>([^<]+)<\/published>/)?.[1];
-    return {videoId,published,date:Date.parse(published||'')};
+   const entry=match[1];
+   const videoId=entry.match(/<yt:videoId>\\s*([A-Za-z0-9_-]{11})\\s*<\\/yt:videoId>/)?.[1];
+   const published=entry.match(/<published>([^<]+)<\\/published>/)?.[1];
+   return {videoId,published,date:Date.parse(published||'')};
   })
-  .filter(e=>e.videoId&&Number.isFinite(e.date))
+  .filter(entry=>entry.videoId&&Number.isFinite(entry.date))
   .sort((a,b)=>b.date-a.date);
-if(!entries.length)throw new Error('Official YouTube feed returned no valid public videos.');
+};
+// When YouTube's unofficial long-form Atom feed intermittently returns 404/500,
+// use the creator's official Videos tab (not Shorts) as the fallback.
+const parseVideosTab=html=>{
+ const ids=[];
+ const selectors=[
+  /"richItemRenderer":\\{"content":\\{"videoRenderer":\\{"videoId":"([A-Za-z0-9_-]{11})"/g,
+  /"videoRenderer":\\{"videoId":"([A-Za-z0-9_-]{11})"/g
+ ];
+ for(const regex of selectors){
+  for(const match of html.matchAll(regex)){
+   if(!ids.includes(match[1]))ids.push(match[1]);
+   if(ids.length>=15)break;
+  }
+  if(ids.length>=2)break;
+ }
+ return ids.map(videoId=>({videoId,published:'videos-tab',date:0}));
+};
+const fetchEntries=async()=>{
+ const errors=[];
+ try{
+  const xml=await loadText(feedUrl);
+  const entries=parseAtom(xml);
+  if(entries.length>=2)return entries;
+  errors.push('Long-form Atom feed returned fewer than two videos.');
+ }catch(error){errors.push(String(error.message));}
+ try{
+  const html=await loadText(videosPage);
+  const entries=parseVideosTab(html);
+  if(entries.length>=2){
+   console.warn('YouTube long-form RSS unavailable; using official Videos tab.',errors.join(' | '));
+   return entries;
+  }
+  errors.push('YouTube Videos tab returned fewer than two video IDs.');
+ }catch(error){errors.push(String(error.message));}
+ throw new Error('Unable to refresh long-form queue; current deployed videos retained. '+errors.join(' | '));
+};
+const entries=await fetchEntries();
 const longFormVideoIds=entries.slice(0,15).map(entry=>entry.videoId);
 if(longFormVideoIds.length<2)throw new Error('Not enough long-form uploads found for continuous playback.');
 const latestVideoId=longFormVideoIds[0];
