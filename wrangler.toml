@@ -1,0 +1,8 @@
+# Cloudflare Worker for the branded public preview collection only.
+# This deploys the allowlisted static site output, not the Awe Concepts main site.
+# Build: node scripts/build-branded-previews.mjs && node scripts/publish-selected-previews.mjs
+name = "awe-concepts-previews"
+compatibility_date = "2026-11-11"
+
+[assets]
+directory = "./branded-previews/public"
