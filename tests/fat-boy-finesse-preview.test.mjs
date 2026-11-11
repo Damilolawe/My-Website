@@ -79,6 +79,16 @@ test("compact watch room defaults to recent uploads and checks verified live sta
  assert.ok(longFormVideoIds.length>=2);
  assert.equal(new Set(longFormVideoIds).size,longFormVideoIds.length);
  assert.match(js,/const latestVideoId=longFormVideoIds\[0\]/);
+ const currentQueue=(await load(prefix+"latest-videos.txt")).trim().split(/\r?\n/);
+ assert.deepEqual(currentQueue,longFormVideoIds);
+ assert.ok(js.includes("fetch(url.toString(),{cache:'no-store'"),"The open page must check for new uploads.");
+ assert.ok(js.includes("syncNewUploads();"),"The player must check for new uploads on page load.");
+ assert.ok(js.includes("window.setInterval(()=>{if(!document.hidden)syncNewUploads();},60*1000)"),"The player should check periodically.");
+ assert.ok(js.includes("if(currentMode==='latest')playLongFormAt(0)"),"A new upload should play automatically.");
+ const syncWorkflow=await load(".github/workflows/fat-boy-finesse-video-sync.yml");
+ assert.ok(syncWorkflow.includes("3-58/5 * * * *"),"Sync must run every five minutes.");
+ assert.ok(syncWorkflow.includes("git add preview/fat-boy-finesse/index.html preview/fat-boy-finesse/site.js preview/fat-boy-finesse/latest-videos.txt"));
+ assert.ok(html.indexOf('id="videos"')>html.indexOf('id="merch"'),"Watch section must follow merch.");
  assert.match(html,new RegExp("www.youtube.com/embed/"+longFormVideoIds[0]));
  assert.match(js,/if\(event.data===0\)playNextLongForm\(\)/);
  assert.match(js,/playLongFormAt\(longFormIndex\+1\)/);
@@ -86,6 +96,7 @@ test("compact watch room defaults to recent uploads and checks verified live sta
  assert.match(sync,/playlist_id=UULF_/);
  assert.doesNotMatch(sync,/playlist_id=UUSH_/);
  assert.match(sync,/longFormVideoIds=entries.slice\(0,15\)/);
+ assert.ok(sync.includes("const queuePath='preview/fat-boy-finesse/latest-videos.txt'"));
  assert.doesNotMatch(html,/LATEST LONG-FORM/);
  assert.match(js,/UC_-FXJoPsApGI_xV1SvRFNw/);
  assert.match(js,/youtube.com\/embed\/live_stream/);
