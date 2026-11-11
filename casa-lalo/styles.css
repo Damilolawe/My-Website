@@ -165,14 +165,16 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
 }
 
 .nav-logo {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--cream);
-  transition: color var(--transition);
+  display: flex;
+  align-items: center;
 }
-.nav.scrolled .nav-logo { color: var(--text); }
+.nav-logo-img {
+  height: 44px;
+  width: auto;
+  border-radius: 4px;
+  transition: height var(--transition);
+}
+.nav.scrolled .nav-logo-img { height: 38px; }
 
 .nav-links {
   display: none;
