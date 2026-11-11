@@ -2,7 +2,8 @@ name: Sync Fat Boy Finesse latest video
 
 on:
   schedule:
-    - cron: '17,47 * * * *'
+    # Run off the hour: scheduled GitHub Actions can be delayed.
+    - cron: '3-58/5 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -34,13 +35,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- preview/fat-boy-finesse/index.html preview/fat-boy-finesse/site.js; then
+          if git diff --quiet -- preview/fat-boy-finesse/index.html preview/fat-boy-finesse/site.js preview/fat-boy-finesse/latest-videos.txt; then
             echo "No newly published video; no commit or deployment necessary."
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add preview/fat-boy-finesse/index.html preview/fat-boy-finesse/site.js
+          git add preview/fat-boy-finesse/index.html preview/fat-boy-finesse/site.js preview/fat-boy-finesse/latest-videos.txt
           git commit -m 'Sync Fat Boy Finesse newest official YouTube upload'
           git push origin HEAD:main
           # GITHUB_TOKEN push events do not fire other workflows.
