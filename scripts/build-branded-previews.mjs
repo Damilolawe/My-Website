@@ -211,6 +211,9 @@ async function standardizeAweCredits(directory) {
 await standardizeAweCredits(output);
 const enhancement = getEnhancementStats();
 console.log("Preview editorial upgrade and outgoing link policy:", enhancement);
+// Casa Lalo — standalone client site, served at /casa-lalo/
+await cp("casa-lalo", `${output}/casa-lalo`, { recursive: true });
+
 console.log("Built branded public previews. Only explicitly allowlisted public concepts are included.");
 
 // batch-five-caputo-fix
