@@ -103,6 +103,8 @@ test("compact watch room defaults to recent uploads and checks verified live sta
  assert.doesNotMatch(sync,/playlist_id=UUSH_/);
  assert.match(sync,/longFormVideoIds=entries.slice\(0,15\)/);
  assert.match(sync,/parseVideosTab/);
+ assert.match(sync,/execFileAsync\('yt-dlp'/);
+ assert.match(sync,/--flat-playlist/);
  assert.match(sync,/fetchEntries/);
  assert.ok(sync.includes("const queuePath='preview/fat-boy-finesse/latest-videos.txt'"));
  assert.doesNotMatch(html,/LATEST LONG-FORM/);
