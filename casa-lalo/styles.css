@@ -250,10 +250,20 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
   background: var(--green-dark);
   overflow: hidden;
 }
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
     radial-gradient(ellipse at 20% 50%, rgba(200, 169, 110, 0.08) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 30%, rgba(26, 92, 58, 0.15) 0%, transparent 60%),
@@ -263,7 +273,8 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(15, 61, 38, 0.3) 0%, rgba(15, 61, 38, 0.6) 100%);
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(15, 61, 38, 0.65) 0%, rgba(15, 61, 38, 0.8) 100%);
 }
 
 .hero-content {
@@ -465,23 +476,14 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
   overflow: hidden;
 }
 
-.img-placeholder, .gallery-placeholder {
-  background: var(--brown-light);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  color: rgba(200, 169, 110, 0.4);
-  font-size: 0.75rem;
-  text-align: center;
-  padding: 24px;
+.about-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
-.img-placeholder svg, .gallery-placeholder svg { width: 100%; height: auto; }
-.gallery-placeholder { min-height: 100%; aspect-ratio: auto; }
-
-.about-img-1 .img-placeholder { aspect-ratio: 4/5; }
-.about-img-2 .img-placeholder { aspect-ratio: 5/4; }
+.about-img-1 { aspect-ratio: 4/5; }
+.about-img-2 { aspect-ratio: 5/4; }
 
 .about-text p {
   color: var(--text-muted);
@@ -691,25 +693,17 @@ button { border: none; background: none; cursor: pointer; font: inherit; color: 
   aspect-ratio: auto;
 }
 
-.gallery-placeholder {
-  background: var(--brown-light);
+.gallery-item img {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 24px;
-  color: rgba(200, 169, 110, 0.4);
-  font-size: 0.75rem;
-  text-align: center;
-  transition: background var(--transition);
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter var(--transition);
+  filter: brightness(0.9);
 }
-.gallery-item:hover .gallery-placeholder { background: var(--brown-mid); }
-
-.gallery-icon {
-  color: rgba(200, 169, 110, 0.3);
+.gallery-item:hover img {
+  transform: scale(1.05);
+  filter: brightness(1);
 }
 
 /* ========================================
