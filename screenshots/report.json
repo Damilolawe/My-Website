@@ -1,19 +1,8 @@
 {
-  "generatedAt": "2026-11-11T01:42:44.880Z",
+  "generatedAt": "2026-11-11T01:46:13.419Z",
   "mode": "desktop",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 23,
-  "issues": 1,
-  "findings": [
-    {
-      "site": "fat-boy-finesse",
-      "viewport": "desktop-1440",
-      "type": "reduced-motion-banner",
-      "controlVisible": false,
-      "details": {
-        "ok": false,
-        "pixelsMoved": 0
-      }
-    }
-  ]
+  "issues": 0,
+  "findings": []
 }
