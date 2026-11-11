@@ -13,3 +13,4 @@ supabase/.temp/
 artifacts/
 branded-previews/public/
 .firebase/
+.playwright-mcp/
