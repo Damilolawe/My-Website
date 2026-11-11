@@ -1,19 +1,43 @@
 document.documentElement.classList.add('js');
 const menu=document.getElementById('menu-toggle');const nav=document.getElementById('primary-nav');if(menu&&nav){const close=()=>{menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation');nav.classList.remove('open')};menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation');nav.classList.toggle('open',open)});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));window.addEventListener('resize',()=>{if(window.innerWidth>1100)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()})}
 const reveal=document.querySelectorAll('[data-reveal]');if('IntersectionObserver'in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('seen');observer.unobserve(entry.target)}})},{threshold:.08,rootMargin:'0px 0px 50px 0px'});reveal.forEach(el=>observer.observe(el))}else{reveal.forEach(el=>el.classList.add('seen'))}
-/* The red scrolling banner needs enough repeated content to fill even very
-   wide desktop monitors. Animate by exactly one group's measured width,
-   so the repeat starts at the same position with no blank or visible jump. */
+/* Keep the red marquee moving on desktop and mobile. When JavaScript is
+   available, the Web Animations API drives the motion; CSS is a fallback.
+   Respect reduced-motion preferences while allowing the visitor to opt in. */
 const ticker=document.querySelector('.ticker');
 const tickerTrack=ticker?.querySelector('.ticker-track');
 if(ticker&&tickerTrack){
  const firstGroup=tickerTrack.querySelector('.ticker-group');
+ const toggle=document.getElementById('ticker-motion-toggle');
+ const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+ let playDespiteReducedMotion=false;
+ let marqueeAnimation=null;
  if(firstGroup){
+  const updateTickerMotion=()=>{
+   if(marqueeAnimation){marqueeAnimation.cancel();marqueeAnimation=null;}
+   // JS-enhanced motion takes over from the CSS-only marquee.
+   tickerTrack.style.animation='none';
+   const width=firstGroup.getBoundingClientRect().width;
+   const duration=Math.max(14000,width/60*1000);
+   if(width>0&&(!reducedMotion.matches||playDespiteReducedMotion)&&typeof tickerTrack.animate==='function'){
+    marqueeAnimation=tickerTrack.animate(
+     [{transform:'translate3d(0,0,0)'},{transform:'translate3d(-'+width+'px,0,0)'}],
+     {duration,iterations:Infinity,easing:'linear'}
+    );
+   }else if(width>0&&!reducedMotion.matches){
+    // Old browsers without Web Animations can still use the CSS keyframes.
+    tickerTrack.style.animation='';
+   }
+   if(toggle){
+    toggle.hidden=!reducedMotion.matches;
+    toggle.textContent=playDespiteReducedMotion?'Pause banner':'Play banner';
+    toggle.setAttribute('aria-pressed',String(playDespiteReducedMotion));
+   }
+  };
   const fillTicker=()=>{
    tickerTrack.querySelectorAll('.ticker-group').forEach((group,index)=>{if(index>0)group.remove();});
    const groupWidth=firstGroup.getBoundingClientRect().width;
    if(!(groupWidth>0))return;
-   // One full group must remain beyond the visible area during scrolling.
    const needed=ticker.clientWidth+groupWidth;
    while(tickerTrack.scrollWidth<needed&&tickerTrack.children.length<24){
     const copy=firstGroup.cloneNode(true);
@@ -22,7 +46,18 @@ if(ticker&&tickerTrack){
    }
    tickerTrack.style.setProperty('--ticker-distance','-'+groupWidth+'px');
    tickerTrack.style.setProperty('--ticker-duration',Math.max(14,groupWidth/60)+'s');
+   updateTickerMotion();
   };
+  if(toggle)toggle.addEventListener('click',()=>{
+   playDespiteReducedMotion=!playDespiteReducedMotion;
+   updateTickerMotion();
+  });
+  const onMotionPreferenceChange=()=>{
+   playDespiteReducedMotion=false;
+   updateTickerMotion();
+  };
+  if(reducedMotion.addEventListener)reducedMotion.addEventListener('change',onMotionPreferenceChange);
+  else if(reducedMotion.addListener)reducedMotion.addListener(onMotionPreferenceChange);
   fillTicker();
   window.addEventListener('resize',fillTicker,{passive:true});
   if(document.fonts?.ready)document.fonts.ready.then(fillTicker).catch(()=>{});
