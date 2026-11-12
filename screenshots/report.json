@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-12T01:03:11.772Z",
+  "generatedAt": "2026-11-12T06:26:30.770Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 30,
-  "issues": 34,
+  "issues": 3,
   "findings": [
     {
       "site": "shotsbyriq",
@@ -12,207 +12,14 @@
       "message": "clipped text: a VIEW PHOTOGRAPHY ON INSTAGRAM"
     },
     {
-      "site": "kevonstage",
+      "site": "fat-boy-finesse",
       "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Tour"
-    },
-    {
-      "site": "kevonstage",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Watch"
-    },
-    {
-      "site": "kevonstage",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Studios"
-    },
-    {
-      "site": "kevonstage",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Shop"
-    },
-    {
-      "site": "kevonstage",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Book Kev"
-    },
-    {
-      "site": "tony-baker",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a About"
-    },
-    {
-      "site": "tony-baker",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Specials"
-    },
-    {
-      "site": "tony-baker",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Shows"
-    },
-    {
-      "site": "tony-baker",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Merch"
-    },
-    {
-      "site": "tony-baker",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Book Tony"
-    },
-    {
-      "site": "keenan-baker",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Biography"
-    },
-    {
-      "site": "keenan-baker",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Album"
-    },
-    {
-      "site": "keenan-baker",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Videos"
-    },
-    {
-      "site": "keenan-baker",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Press"
-    },
-    {
-      "site": "keenan-baker",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Contact"
-    },
-    {
-      "site": "tahir-moore",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a About"
-    },
-    {
-      "site": "tahir-moore",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Special"
-    },
-    {
-      "site": "tahir-moore",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Podcasts"
-    },
-    {
-      "site": "tahir-moore",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Live"
-    },
-    {
-      "site": "tahir-moore",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Merch"
-    },
-    {
-      "site": "tahir-moore",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a All Links"
-    },
-    {
-      "site": "roxxy-haze",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: button "
-    },
-    {
-      "site": "roxxy-haze",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a About"
-    },
-    {
-      "site": "roxxy-haze",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Book"
-    },
-    {
-      "site": "roxxy-haze",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Music"
-    },
-    {
-      "site": "roxxy-haze",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Watch"
-    },
-    {
-      "site": "roxxy-haze",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Connect"
-    },
-    {
-      "site": "roxxy-haze",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: p Comedian, writer, actor & pop culture polymath — Roxxy "
-    },
-    {
-      "site": "roxxy-haze",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: p From the mic to the manuscript, the stage to the stream"
-    },
-    {
-      "site": "roxxy-haze",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: p A lifelong anime and gaming obsessive, Roxxy pours that"
-    },
-    {
-      "site": "roxxy-haze",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: h3 The Many Hats"
-    },
-    {
-      "site": "roxxy-haze",
-      "viewport": "iphone-13",
-      "type": "horizontal-overflow",
-      "viewportWidth": 390,
-      "pageWidth": 1216,
-      "suspects": [
-        "button.nav-toggle",
-        "span",
-        "span",
-        "span",
-        "a",
-        "a",
-        "a",
-        "a"
-      ]
+      "type": "reduced-motion-banner",
+      "controlVisible": false,
+      "details": {
+        "ok": false,
+        "pixelsMoved": 0
+      }
     },
     {
       "site": "shotsbyriq",
