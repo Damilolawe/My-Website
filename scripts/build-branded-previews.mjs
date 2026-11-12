@@ -126,6 +126,14 @@ if (useCloudflarePhotoFallbacks) {
   html = html.replaceAll("/preview/shotsbyriq/styles.css", "/shotsbyriq/styles.css")
              .replaceAll("/preview/shotsbyriq/site.js", "/shotsbyriq/site.js");
   await writeFile(`${output}/shotsbyriq/index.html`, html);
+  const riqManifest=JSON.parse(await readFile("preview/shotsbyriq/instagram-sources.json","utf8"));
+  await writeFile(`${output}/shotsbyriq/import-status.json`,JSON.stringify({
+    mode:"live-verified-source-links",requested:riqManifest.images.length,
+    count:riqManifest.images.length,
+    assets:riqManifest.images.map(image=>({
+      id:image.id,post:image.post,imported:false,linked:true,source:"original-instagram-post"
+    }))
+  },null,2));
   console.warn("Cloudflare preview: SHOTSBYRIQ uses original HTML with image-error fallbacks until local photos are available.");
 } else {
   await importShotsByRiqPhotos(output);
