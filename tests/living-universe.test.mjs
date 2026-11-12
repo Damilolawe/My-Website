@@ -60,3 +60,15 @@ test("hero interactions offer accessible modal, mobile swiping and motion prefer
   assert(order.includes('templatesForTier(selectedTier).some'));
   assert(order.includes('setTemplate(requestedTemplate)'));
 });
+
+
+test("Living Studio is first-paint default with interactive hover feedback",async()=>{
+  const [home,css]=await Promise.all([read("index.html"),read("universe.css")]);
+  assert.match(css,/\.awe-universe\{display:flex;/,"Studio must not be gated on module load");
+  assert.match(css,/\.hero-art > \.awe-hero-showreel[\s\S]*?\{display:none!important\}/,
+    "Old showcase must not flash before scripts execute");
+  assert.match(css,/@media\(hover:hover\) and \(pointer:fine\)/);
+  assert.match(css,/\.universe-card:hover \.universe-card-frame/);
+  assert.match(css,/\.universe-card:hover \.universe-snapshot iframe/);
+  assert(home.includes("/universe.css?v=20261111-living-studio"));
+});

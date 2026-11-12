@@ -1,0 +1,49 @@
+{
+  "verified_at": "2026-11-11",
+  "assets": [
+    {
+      "file": "channel-avatar.webp",
+      "source_page": "https://www.youtube.com/@ice.mcgowan",
+      "source_url": "https://yt3.googleusercontent.com/m3_2R2PCgiroUJ9vnyBNcfnHBKw5mJhGZPw76uRyG78LNVTl0mExHkrcUxci55oVIBiPd_D4=s900-c-k-c0x00ffffff-no-rj",
+      "description": "Creator-published anime avatar, artwork rather than a photograph",
+      "dimensions": [
+        900,
+        900
+      ],
+      "usage": "Target-owned/distributor media identifying the same creator in an independent design concept; no claim of a general reuse license."
+    },
+    {
+      "file": "deadeye.webp",
+      "source_page": "https://www.youtube.com/watch?v=JyhGx3dxp1Q",
+      "source_url": "https://i.ytimg.com/vi/JyhGx3dxp1Q/maxresdefault.jpg",
+      "description": "Official creator film poster thumbnail",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "usage": "Target-owned/distributor media identifying the same creator in an independent design concept; no claim of a general reuse license."
+    },
+    {
+      "file": "raised-by-wolves.webp",
+      "source_page": "https://www.youtube.com/watch?v=wxydF8CU9Cs",
+      "source_url": "https://i.ytimg.com/vi/wxydF8CU9Cs/maxresdefault.jpg",
+      "description": "Official podcast episode thumbnail featuring Ice McGowan and his child",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "usage": "Target-owned/distributor media identifying the same creator in an independent design concept; no claim of a general reuse license."
+    },
+    {
+      "file": "on-stage.webp",
+      "source_page": "https://www.youtube.com/@ice.mcgowan",
+      "source_url": "https://i.ytimg.com/vi/sIdXD8mb90g/maxresdefault.jpg",
+      "description": "Creator-published MY FIRST TIME IN JAPAN! thumbnail showing Ice performing stand-up at The Nitecap",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "usage": "Target-owned media identifying the same creator in an independent design concept; no claim of a general reuse license."
+    }
+  ]
+}

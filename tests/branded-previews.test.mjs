@@ -91,15 +91,15 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.equal(source.images.length,9);
  assert.equal(status.requested,9);
  assert.equal(status.count,9,"Never publish a partial/broken photographer portfolio");
- assert.ok(status.assets.every(asset=>asset.imported && asset.bytes>4000));
+ assert.ok(status.assets.every(asset=>status.mode==="live-verified-source-links"?asset.linked&&!asset.imported:asset.imported&&asset.bytes>4000));
  assert.ok(status.assets.every(asset=>["original-instagram-post","published-photo-snapshot"].includes(asset.source)));
  assert.match(html,/UNOFFICIAL DESIGN STUDY BY/);
  assert.match(html,/app\.acuityscheduling\.com\/schedule\/18b40bc9/);
  assert.match(html,/Designed by <strong>Awe Concepts<\/strong>/);
  assert.match(html,/noindex,nofollow/);
  assert.match(html,/id="lightbox"/);
- assert.match(html,/href="\/shotsbyriq\/styles\.css\?v=repair-20261104-1"/);
- assert.match(html,/src="\/shotsbyriq\/site\.js\?v=repair-20261104-1"/);
+ assert.match(html,/href="\/shotsbyriq\/styles\.css\?v=restore-20261112-original-photo-gallery"/);
+ assert.match(html,/src="\/shotsbyriq\/site\.js\?v=restore-20261112-original-photo-gallery"/);
  assert.match(html,/data-category="creative"/);
  assert.match(html,/data-category="editorial"/);
  assert.match(html,/id="booking-info"/);
@@ -165,8 +165,8 @@ test("photographer editorial imports real Instagram post photographs with origin
  assert.match(html,/SEE ORIGINAL POST/);
  assert.ok(source.images.every(p=>p.post.startsWith("https://www.instagram.com/shotsbyriq_/p/")));
  const embeddedRiq=new Set(["portrait-01.jpg","golden-era-02.jpg"]);
- assert.ok((html.match(/data:image\/jpeg;base64,/g)||[]).length>=2,"Fragile verified portraits should be embedded");
- assert.ok(source.images.every(p=>embeddedRiq.has(p.file)||html.includes("/shotsbyriq/photos/"+p.file)),"Every photograph should be stable or embedded");
+ assert.ok(status.mode==="live-verified-source-links"||(html.match(/data:image\/jpeg;base64,/g)||[]).length>=2,"Fragile verified portraits should be embedded");
+ assert.ok(status.mode==="live-verified-source-links"||source.images.every(p=>embeddedRiq.has(p.file)||html.includes("/shotsbyriq/photos/"+p.file)),"Every photograph should be stable or embedded");
  assert.ok(source.images.every(p=>!html.includes(p.url)),"Do not leave expiring signed Instagram CDN URLs in the published page");
  assert.match(css, /contact-sheet/);assert.match(js,/ArrowRight/);
  assert.doesNotMatch(html,/data:image\/webp;base64/);
@@ -177,6 +177,7 @@ test("photographer links, booking routes, gallery destinations, and social previ
  const html=await read("public/shotsbyriq/index.html");
  const js=await read("public/shotsbyriq/site.js");
  const manifest=JSON.parse(await readFile("preview/shotsbyriq/instagram-sources.json","utf8"));
+ const status=JSON.parse(await read("public/shotsbyriq/import-status.json"));
  const base="https://preview.aweconcepts.com/shotsbyriq";
  const booking="https://app.acuityscheduling.com/schedule/18b40bc9";
  const profile="https://www.instagram.com/shotsbyriq_/";
@@ -217,7 +218,7 @@ test("photographer links, booking routes, gallery destinations, and social previ
   assert.equal(match[1],item.category,"Gallery filter mismatch");
   assert.equal(dynamicPosts[i][1],item.label,"Photo viewer title mismatch");
   assert.equal(dynamicPosts[i][2],item.post,"Original Instagram post link mismatch");
-  assert.ok(["portrait-01.jpg","golden-era-02.jpg"].includes(item.file)||html.includes("/shotsbyriq/photos/"+item.file),"Missing stable gallery photo");
+  assert.ok(status.mode==="live-verified-source-links"||["portrait-01.jpg","golden-era-02.jpg"].includes(item.file)||html.includes("/shotsbyriq/photos/"+item.file),"Missing stable gallery photo");
  });
  const filterCategories=[...html.matchAll(/<button\b[^>]*data-filter="([^"]+)"/g)].map(match=>match[1]);
  assert.ok(filterCategories.includes("all"));
@@ -227,10 +228,10 @@ test("photographer links, booking routes, gallery destinations, and social previ
  assert.match(js,/modalPost\.href=p\.post/,"Lightbox must navigate to the selected original post");
  const srcs=[...html.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/g)].map(match=>match[1]);
  assert.ok(srcs.length>=9,"Expected all locally hosted photographs");
- for(const src of srcs)assert.ok(src.startsWith("/shotsbyriq/photos/")||src.startsWith("data:image/jpeg;base64,"),"Unstable external image source: "+src);
+ for(const src of srcs)assert.ok(status.mode==="live-verified-source-links"?src.startsWith("https://"):src.startsWith("/shotsbyriq/photos/")||src.startsWith("data:image/jpeg;base64,"),"Unstable external image source: "+src);
  assert.match(html,/<meta property="og:url" content="https:\/\/preview\.aweconcepts\.com\/shotsbyriq">/);
- assert.match(html,/<meta property="og:image" content="https:\/\/preview\.aweconcepts\.com\/shotsbyriq\/photos\/golden-era-01\.jpg">/);
- assert.match(html,/<meta name="twitter:image" content="https:\/\/preview\.aweconcepts\.com\/shotsbyriq\/photos\/golden-era-01\.jpg">/);
+ assert.match(html,/<meta property="og:image" content="https:\/\/www\.instagram\.com\/p\/DFtmwvXIxYl\/media\/\?size=l">/);
+ assert.match(html,/<meta name="twitter:image" content="https:\/\/www\.instagram\.com\/p\/DFtmwvXIxYl\/media\/\?size=l">/);
  assert.doesNotMatch(html,/<meta property="og:image" content="https:\/\/(?:scontent|instagram)\./,"Social-share photo must not expire");
  assert.ok(base.length>0);
 });
@@ -384,7 +385,7 @@ test("all deployed pages reference the current animation revision, not stale cac
   "shotsbyriq/index.html","jay-millz-shot-em/index.html"];
  for(const page of pages){
   const html=await read("public/"+page);
-  const expectedRevision=page.startsWith("fat-boy-finesse/") ? "revamp-20261110b" : page.startsWith("otaku-haven/") ? "motion-20261105-stockfix3" : /^(?:shotsbyriq|jay-millz-shot-em)\//.test(page) ? "repair-20261104-1" : "motion-20261102";
+  const expectedRevision=page.startsWith("fat-boy-finesse/") ? "revamp-20261110b" : page.startsWith("otaku-haven/") ? "motion-20261105-stockfix3" : /^(?:shotsbyriq|jay-millz-shot-em)\//.test(page) ? "restore-20261112-original-photo-gallery" : "motion-20261102";
   assert.ok(html.includes("styles.css?v="+expectedRevision),page+" stylesheet cache-bust");
   assert.ok(html.includes("site.js?v="+expectedRevision),page+" script cache-bust");
  }

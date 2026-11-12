@@ -1,66 +1,53 @@
 document.documentElement.classList.add('js');
 const menu=document.getElementById('menu-toggle');const nav=document.getElementById('primary-nav');if(menu&&nav){const close=()=>{menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation');nav.classList.remove('open')};menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation');nav.classList.toggle('open',open)});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));window.addEventListener('resize',()=>{if(window.innerWidth>1100)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()})}
 const reveal=document.querySelectorAll('[data-reveal]');if('IntersectionObserver'in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('seen');observer.unobserve(entry.target)}})},{threshold:.08,rootMargin:'0px 0px 50px 0px'});reveal.forEach(el=>observer.observe(el))}else{reveal.forEach(el=>el.classList.add('seen'))}
-/* Keep the red marquee moving on desktop and mobile. When JavaScript is
-   available, the Web Animations API drives the motion; CSS is a fallback.
-   Respect reduced-motion preferences while allowing the visitor to opt in. */
+/* Two identical strips create a true continuous loop. Each strip is
+   longer than the viewport, so an empty red banner can never scroll into view.
+   ResizeObserver watches the banner's WIDTH (not mobile browser chrome
+   height changes), preventing animation restarts while people scroll. */
 const ticker=document.querySelector('.ticker');
 const tickerTrack=ticker?.querySelector('.ticker-track');
 if(ticker&&tickerTrack){
- const firstGroup=tickerTrack.querySelector('.ticker-group');
- const toggle=document.getElementById('ticker-motion-toggle');
- const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
- let playDespiteReducedMotion=false;
- let marqueeAnimation=null;
- if(firstGroup){
-  const updateTickerMotion=()=>{
-   if(marqueeAnimation){marqueeAnimation.cancel();marqueeAnimation=null;}
-   // JS-enhanced motion takes over from the CSS-only marquee.
-   tickerTrack.style.animation='none';
-   const width=firstGroup.getBoundingClientRect().width;
-   const duration=Math.max(14000,width/60*1000);
-   if(width>0&&(!reducedMotion.matches||playDespiteReducedMotion)&&typeof tickerTrack.animate==='function'){
-    marqueeAnimation=tickerTrack.animate(
-     [{transform:'translate3d(0,0,0)'},{transform:'translate3d(-'+width+'px,0,0)'}],
-     {duration,iterations:Infinity,easing:'linear'}
-    );
-   }else if(width>0&&!reducedMotion.matches){
-    // Old browsers without Web Animations can still use the CSS keyframes.
-    tickerTrack.style.animation='';
-   }
-   if(toggle){
-    toggle.hidden=!reducedMotion.matches;
-    toggle.textContent=playDespiteReducedMotion?'Pause banner':'Play banner';
-    toggle.setAttribute('aria-pressed',String(playDespiteReducedMotion));
-   }
-  };
+ const groups=[...tickerTrack.querySelectorAll(':scope > .ticker-group')];
+ const originals=groups[0]?[...groups[0].children].map(node=>node.cloneNode(true)):[];
+ if(groups.length===2&&originals.length){
+  let lastWidth=0,queued=false;
   const fillTicker=()=>{
-   tickerTrack.querySelectorAll('.ticker-group').forEach((group,index)=>{if(index>0)group.remove();});
-   const groupWidth=firstGroup.getBoundingClientRect().width;
-   if(!(groupWidth>0))return;
-   const needed=ticker.clientWidth+groupWidth;
-   while(tickerTrack.scrollWidth<needed&&tickerTrack.children.length<24){
-    const copy=firstGroup.cloneNode(true);
-    copy.setAttribute('aria-hidden','true');
-    tickerTrack.appendChild(copy);
+   const viewport=Math.ceil(ticker.getBoundingClientRect().width);
+   if(!viewport||(viewport===lastWidth&&tickerTrack.dataset.loopReady==='1'))return;
+   lastWidth=viewport;
+   const first=groups[0];
+   first.replaceChildren(...originals.map(node=>node.cloneNode(true)));
+   let repeats=1;
+   while(first.getBoundingClientRect().width<viewport+120&&repeats<24){
+    first.append(...originals.map(node=>node.cloneNode(true)));
+    repeats++;
    }
-   tickerTrack.style.setProperty('--ticker-distance','-'+groupWidth+'px');
-   tickerTrack.style.setProperty('--ticker-duration',Math.max(14,groupWidth/60)+'s');
-   updateTickerMotion();
+   // The second strip is an exact duplicate of the first, including widths.
+   groups[1].replaceChildren(...[...first.children].map(node=>node.cloneNode(true)));
+   const cycleWidth=first.getBoundingClientRect().width;
+   tickerTrack.style.setProperty('--ticker-duration',(cycleWidth/58).toFixed(2)+'s');
+   tickerTrack.dataset.loopReady='1';
   };
-  if(toggle)toggle.addEventListener('click',()=>{
-   playDespiteReducedMotion=!playDespiteReducedMotion;
-   updateTickerMotion();
-  });
-  const onMotionPreferenceChange=()=>{
-   playDespiteReducedMotion=false;
-   updateTickerMotion();
+  const schedule=()=>{
+   if(queued)return;
+   queued=true;
+   requestAnimationFrame(()=>{queued=false;fillTicker();});
   };
-  if(reducedMotion.addEventListener)reducedMotion.addEventListener('change',onMotionPreferenceChange);
-  else if(reducedMotion.addListener)reducedMotion.addListener(onMotionPreferenceChange);
   fillTicker();
-  window.addEventListener('resize',fillTicker,{passive:true});
-  if(document.fonts?.ready)document.fonts.ready.then(fillTicker).catch(()=>{});
+  if('ResizeObserver'in window){
+   const observer=new ResizeObserver(entries=>{
+    if(Math.abs(Math.ceil(entries[0].contentRect.width)-lastWidth)>1)schedule();
+   });
+   observer.observe(ticker);
+  }else{
+   window.addEventListener('resize',schedule,{passive:true});
+  }
+  // Recalculate once fonts settle so the two repeated strips stay identical.
+  if(document.fonts?.ready)document.fonts.ready.then(()=>{
+   lastWidth=0;
+   schedule();
+  }).catch(()=>{});
  }
 }
 /* The watch room always starts on the newest known *video ID*, never an
@@ -68,7 +55,7 @@ if(ticker&&tickerTrack){
    A scheduled GitHub Action syncs this ID against YouTube's official RSS feed.
    YouTube IFrame API separately detects embeddable livestreams.
 */
-const longFormVideoIds=["GO1myfRMo_o","nRVw1rba9S8","DJb4xBSUryc","oQbOUW6HLoQ","Gqj1NNd6qqY","3CDeenHTCBU","E_X7xLwTTME","fnMRdWTycmA","eLn6aAvyXnE","zG3AEsvUijw","9r_k_hC60ME","GGT05pQV6Hc","4OKWfCOf3mY","qacsB8AFiG8","auir4COP4pY"];
+const longFormVideoIds=["FatRLDgXjCc","DJb4xBSUryc","oQbOUW6HLoQ","Gqj1NNd6qqY","3CDeenHTCBU","E_X7xLwTTME","fnMRdWTycmA","eLn6aAvyXnE","zG3AEsvUijw","9r_k_hC60ME","GGT05pQV6Hc","4OKWfCOf3mY","qacsB8AFiG8","auir4COP4pY","HGAVxS686q8"];
 const latestVideoId=longFormVideoIds[0];
 const watchRoom=document.getElementById('live-set');
 const videoFrame=document.getElementById('live-player');

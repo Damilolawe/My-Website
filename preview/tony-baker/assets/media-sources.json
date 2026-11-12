@@ -1,0 +1,33 @@
+{
+  "sourcePage": "https://www.tonybakercomedy.com/",
+  "usage": "Target-owned promotional imagery in an independent concept for the same creator. Rights remain with original owners.",
+  "images": [
+    {
+      "slug": "tony-baker",
+      "file": "portrait.webp",
+      "source": "https://static.wixstatic.com/media/54eb23_4ad788b4f8344ecdb9dfc19825e66a55~mv2.png",
+      "size": [
+        1000,
+        1500
+      ]
+    },
+    {
+      "slug": "tony-baker",
+      "file": "stage.webp",
+      "source": "https://static.wixstatic.com/media/54eb23_aa788233d45c4da481f60115ddc37e41~mv2.jpg",
+      "size": [
+        1400,
+        933
+      ]
+    },
+    {
+      "slug": "tony-baker",
+      "file": "editorial.webp",
+      "source": "https://static.wixstatic.com/media/54eb23_5781670c611f48569322fb3e0355da05~mv2.jpg",
+      "size": [
+        998,
+        1500
+      ]
+    }
+  ]
+}

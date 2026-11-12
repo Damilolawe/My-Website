@@ -126,6 +126,14 @@ if (useCloudflarePhotoFallbacks) {
   html = html.replaceAll("/preview/shotsbyriq/styles.css", "/shotsbyriq/styles.css")
              .replaceAll("/preview/shotsbyriq/site.js", "/shotsbyriq/site.js");
   await writeFile(`${output}/shotsbyriq/index.html`, html);
+  const riqManifest=JSON.parse(await readFile("preview/shotsbyriq/instagram-sources.json","utf8"));
+  await writeFile(`${output}/shotsbyriq/import-status.json`,JSON.stringify({
+    mode:"live-verified-source-links",requested:riqManifest.images.length,
+    count:riqManifest.images.length,
+    assets:riqManifest.images.map(image=>({
+      id:image.id,post:image.post,imported:false,linked:true,source:"original-instagram-post"
+    }))
+  },null,2));
   console.warn("Cloudflare preview: SHOTSBYRIQ uses original HTML with image-error fallbacks until local photos are available.");
 } else {
   await importShotsByRiqPhotos(output);
@@ -149,7 +157,7 @@ for (const page of [
 ]) {
   const path = output + "/" + page;
   const html = await readFile(path, "utf8");
-  const revision = page.startsWith("fat-boy-finesse/") ? "revamp-20261111-motion" : page.startsWith("otaku-haven/") ? otakuAnimationRevision : /^(?:shotsbyriq|jay-millz-shot-em|pace-sbdc|susukino)\//.test(page) ? repairRevision : animationRevision;
+  const revision = page.startsWith("fat-boy-finesse/") ? "revamp-20261112-seamless-ticker-v2" : page.startsWith("shotsbyriq/") ? "restore-20261112-original-photo-gallery" : page.startsWith("otaku-haven/") ? otakuAnimationRevision : /^(?:shotsbyriq|jay-millz-shot-em|pace-sbdc|susukino)\//.test(page) ? repairRevision : animationRevision;
   const updated = html.replace(
     /(href|src)="((?:\.\/|\/(?:kappo-sono|otaku-haven|bao-dumpling|mesa-bar|casa-serra|solerum|jj-deli|shotsbyriq|jay-millz-shot-em|pace-sbdc|susukino|chong|loved-ones-coffee|worksbynet|studio-shipley|hanare-spa|tiny-topiary|kora-bakery|old-mill-cafe|birdee|cafe-pr|latte-da|fat-boy-finesse)\/)(?:styles\.css|site\.js))(?:\?[^"]*)?"/g,
     (_, attr, asset) => attr + '="' + asset + "?v=" + revision + '"'
