@@ -8,6 +8,14 @@ document.addEventListener('click',e=>{if(!menu.hidden&&!menu.contains(e.target)&
 const header=document.querySelector('.topbar');addEventListener('scroll',()=>header?.classList.toggle('is-scrolled',scrollY>25),{passive:true});
 const replaceBrokenPhoto=img=>{
  if(img.dataset.fallbackApplied)return;
+ // Signed Instagram CDN URLs rotate; retry the original post's media URL
+ // so the actual photo remains visible instead of disappearing.
+ const post=img.dataset.photoPost;
+ if(post&&!img.dataset.attemptedPostFallback&&/^[A-Za-z0-9_-]+$/.test(post)){
+  img.dataset.attemptedPostFallback='1';
+  img.src='https://www.instagram.com/p/'+post+'/media/?size=l';
+  return;
+ }
  img.dataset.fallbackApplied='1';
  const fallback=document.createElement('a');
  fallback.href='https://www.instagram.com/shotsbyriq_/';
@@ -20,7 +28,7 @@ const replaceBrokenPhoto=img=>{
 };
 document.querySelectorAll('img[src]').forEach(img=>{
  if(img.id==='lb-image')return;
- img.addEventListener('error',()=>replaceBrokenPhoto(img),{once:true});
+ img.addEventListener('error',()=>replaceBrokenPhoto(img));
  if(img.complete&&img.naturalWidth===0)replaceBrokenPhoto(img);
 });
 const tiles=[...document.querySelectorAll('.frame')],filters=[...document.querySelectorAll('[data-filter]')],sheet=document.querySelector('.contact-sheet'),count=document.querySelector('#archive-count');
