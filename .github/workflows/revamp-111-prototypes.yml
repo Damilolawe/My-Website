@@ -1,8 +1,10 @@
 name: Prototype visual review
 on:
+  pull_request:
+    branches: [main]
   workflow_dispatch:
   push:
-    branches: [awe-111-prototype-revamp]
+    branches: [prototype-redesign-review]
 permissions:
   contents: read
 jobs:
@@ -17,7 +19,12 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - name: Generate all 111 redesigns
-        run: node scripts/revamp-prospect-sites.mjs
+        run: |
+          if [ -f qa/111-prospect-revamp.json ]; then
+            node -e "const q=require('./qa/111-prospect-revamp.json'); if(q.count!==111)process.exit(1); console.log('Using 111 existing redesigns')"
+          else
+            node scripts/revamp-prospect-sites.mjs
+          fi
       - name: Build deployable previews
         run: node scripts/build-branded-previews.mjs
       - name: Run desktop and mobile visual checks
