@@ -1,8 +1,27 @@
 {
-  "generatedAt": "2026-11-11T01:46:39.052Z",
+  "generatedAt": "2026-11-11T23:59:03.487Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
-  "testedSites": 23,
-  "issues": 0,
-  "findings": []
+  "testedSites": 24,
+  "issues": 3,
+  "findings": [
+    {
+      "site": "shotsbyriq",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a VIEW PHOTOGRAPHY ON INSTAGRAM"
+    },
+    {
+      "site": "fat-boy-finesse",
+      "viewport": "iphone-13",
+      "type": "navigation-or-capture",
+      "message": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://preview.aweconcepts.com/fat-boy-finesse/\", waiting until \"networkidle\"\n"
+    },
+    {
+      "site": "shotsbyriq",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a VIEW PHOTOGRAPHY ON INSTAGRAM"
+    }
+  ]
 }
