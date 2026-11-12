@@ -36,10 +36,10 @@ test("Fat Boy Finesse creator concept uses original red, black, white identity a
  assert.match(js,/const fillTicker=\(\)=>\{/);
  assert.match(js,/getBoundingClientRect\(\)\.width/);
  assert.match(js,/first\.getBoundingClientRect\(\)\.width<viewport\+120/);
- assert.match(js,/document\\.fonts\\?\\.ready/);
- assert.match(js,/groups\\[1\\]\\.replaceChildren/);
+ assert.match(js,/document\.fonts\?\.ready/);
+ assert.match(js,/groups\[1\]\.replaceChildren/);
  assert.match(css,/width:max-content;min-width:0/);
- assert.doesNotMatch(js,/window\\.addEventListener\\('scroll'.*fillTicker/);
+ assert.doesNotMatch(js,/window\.addEventListener\('scroll'.*fillTicker/);
  assert.match(js,/new ResizeObserver\(entries=>/);
  assert.doesNotMatch(html,/id="scent"|href="#scent"|class="pyramid"|for everybody\./i);
  assert.doesNotMatch(css,/\.pyramid\{|\.flacon\{|\.scent-picks\{/);
