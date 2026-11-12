@@ -1,0 +1,27 @@
+{
+  "verified_at": "2026-11-11",
+  "assets": [
+    {
+      "file": "portrait.webp",
+      "source_page": "https://linktr.ee/Tahirmoore",
+      "source_url": "https://ugc.production.linktr.ee/0ec3f3f3-c025-4357-b18b-588a9ecad0b8_DSC00165.jpeg",
+      "description": "Creator-published official profile photograph",
+      "dimensions": [
+        1333,
+        1333
+      ],
+      "usage": "Target-owned/distributor media identifying the same creator in an independent design concept; no claim of a general reuse license."
+    },
+    {
+      "file": "aging-out.webp",
+      "source_page": "https://linktr.ee/Tahirmoore",
+      "source_url": "https://www.comedydynamics.com/wp-content/uploads/2025/07/TahirMoore_AgingOut_Premier_2000X3000-683x1024.jpg",
+      "description": "Official distributor special artwork linked from creator profile",
+      "dimensions": [
+        683,
+        1024
+      ],
+      "usage": "Target-owned/distributor media identifying the same creator in an independent design concept; no claim of a general reuse license."
+    }
+  ]
+}

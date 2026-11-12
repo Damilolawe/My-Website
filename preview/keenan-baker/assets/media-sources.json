@@ -1,0 +1,33 @@
+{
+  "sourcePage": "https://www.keenanbaker.com/",
+  "usage": "Target-owned promotional imagery in an independent concept for the same creator. Rights remain with original owners.",
+  "images": [
+    {
+      "slug": "keenan-baker",
+      "file": "merch.webp",
+      "source": "https://static.wixstatic.com/media/2ca2a8_dd381162864c486c98286486e8b39ec6~mv2.png",
+      "size": [
+        517,
+        483
+      ]
+    },
+    {
+      "slug": "keenan-baker",
+      "file": "stage.webp",
+      "source": "https://static.wixstatic.com/media/2ca2a8_b37682001c9b4624a4fd99860cb13796~mv2.jpg",
+      "size": [
+        1400,
+        1400
+      ]
+    },
+    {
+      "slug": "keenan-baker",
+      "file": "editorial.webp",
+      "source": "https://static.wixstatic.com/media/2ca2a8_7a733ea8c3354a5ea9097331fb5e8494~mv2.jpg",
+      "size": [
+        756,
+        1200
+      ]
+    }
+  ]
+}

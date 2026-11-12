@@ -1,0 +1,24 @@
+{
+  "sourcePage": "https://www.roxxyhaze.com/",
+  "usage": "Target-owned promotional imagery in an independent concept for the same creator. Rights remain with original owners.",
+  "images": [
+    {
+      "slug": "roxxy-haze",
+      "file": "portrait.webp",
+      "source": "https://static.wixstatic.com/media/c4a942_7061461b65b14dd9b926354e726bee75~mv2.jpg",
+      "size": [
+        1000,
+        1500
+      ]
+    },
+    {
+      "slug": "roxxy-haze",
+      "file": "editorial.webp",
+      "source": "https://static.wixstatic.com/media/c4a942_18c778cabd374ad99234dbb4b0ab2715~mv2.jpg",
+      "size": [
+        1000,
+        1500
+      ]
+    }
+  ]
+}
