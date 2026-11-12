@@ -346,6 +346,7 @@ try {
       authoredScenes:document.querySelectorAll(".art-scene").length,
       authoredChapters:document.querySelectorAll(".md-edition-break").length,
       contactSection:!!document.getElementById("contact"),
+      contactPageLink:!!document.querySelector('nav a[href$="/contact.html"]'),
       repetitiveElements:document.querySelectorAll(".experience-interlude,.md-edition-break,.contact-emblem,.contact-setup-note,.story-art,.story-opening,.chapter-num,.chapter-kicker").length,
       folioVerified:!!document.querySelector(".fe-cover") && document.querySelectorAll(".fe-project").length>=3 && !!document.querySelector(".fe-process")};
    });
@@ -385,6 +386,22 @@ try {
    if(premiumStudyIds.includes(id)){
      if(geometry.contactSection&&!geometry.contactLinks)
        failures.push("Narrow "+width+" "+id+": empty contact section must not render");
+   }else if(templatePageCount(id)===5 && id!=="runwaymulti"){
+     // Five-page designs keep contact on contact.html, not each homepage.
+     // Regress both discoverable navigation and the actual separate document.
+     if(!geometry.contactPageLink)
+       failures.push("Narrow "+width+" "+id+": missing link to contact page");
+     if(width===320){
+       const route=origin+"/templates/"+id+"/contact.html";
+       const response=await page.goto(route,{waitUntil:"domcontentloaded",timeout:25000});
+       const contact=await page.evaluate(()=>{
+         const el=document.querySelector("#contact.contact");
+         return {present:!!el,links:el?.querySelectorAll("a[href]").length||0,text:el?.textContent?.trim()||""};
+       });
+       if(response?.status()!==200||!contact.present||
+          (!contact.links&&!/add your own email|add a contact email|contact method|contact link|contact details will be added/i.test(contact.text)))
+         failures.push("Narrow "+width+" "+id+": five-page contact document missing or empty");
+     }
    }else if(!geometry.contactLinks&&!/add your own email|add a contact email|contact method|contact link|contact details will be added/i.test(geometry.contactText))
      failures.push("Narrow "+width+" "+id+": contact section offers no action or setup message");
   }
