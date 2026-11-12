@@ -1,33 +1,53 @@
 document.documentElement.classList.add('js');
 const menu=document.getElementById('menu-toggle');const nav=document.getElementById('primary-nav');if(menu&&nav){const close=()=>{menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation');nav.classList.remove('open')};menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation');nav.classList.toggle('open',open)});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));window.addEventListener('resize',()=>{if(window.innerWidth>1100)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()})}
 const reveal=document.querySelectorAll('[data-reveal]');if('IntersectionObserver'in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('seen');observer.unobserve(entry.target)}})},{threshold:.08,rootMargin:'0px 0px 50px 0px'});reveal.forEach(el=>observer.observe(el))}else{reveal.forEach(el=>el.classList.add('seen'))}
-/* Seamless, continually moving banner on desktop and mobile. Use a single
-   CSS-driven animation instead of competing with the Web Animations API. */
+/* Two identical strips create a true continuous loop. Each strip is
+   longer than the viewport, so an empty red banner can never scroll into view.
+   ResizeObserver watches the banner's WIDTH (not mobile browser chrome
+   height changes), preventing animation restarts while people scroll. */
 const ticker=document.querySelector('.ticker');
 const tickerTrack=ticker?.querySelector('.ticker-track');
 if(ticker&&tickerTrack){
- const firstGroup=tickerTrack.querySelector('.ticker-group');
- if(firstGroup){
+ const groups=[...tickerTrack.querySelectorAll(':scope > .ticker-group')];
+ const originals=groups[0]?[...groups[0].children].map(node=>node.cloneNode(true)):[];
+ if(groups.length===2&&originals.length){
+  let lastWidth=0,queued=false;
   const fillTicker=()=>{
-   tickerTrack.querySelectorAll('.ticker-group').forEach((group,index)=>{
-    if(index>0)group.remove();
-   });
-   const width=firstGroup.getBoundingClientRect().width;
-   if(!(width>0))return;
-   while(tickerTrack.scrollWidth<ticker.clientWidth+width&&tickerTrack.children.length<24){
-    const copy=firstGroup.cloneNode(true);
-    copy.setAttribute('aria-hidden','true');
-    tickerTrack.appendChild(copy);
+   const viewport=Math.ceil(ticker.getBoundingClientRect().width);
+   if(!viewport||(viewport===lastWidth&&tickerTrack.dataset.loopReady==='1'))return;
+   lastWidth=viewport;
+   const first=groups[0];
+   first.replaceChildren(...originals.map(node=>node.cloneNode(true)));
+   let repeats=1;
+   while(first.getBoundingClientRect().width<viewport+120&&repeats<24){
+    first.append(...originals.map(node=>node.cloneNode(true)));
+    repeats++;
    }
-   tickerTrack.style.animation='none';
-   tickerTrack.style.setProperty('--ticker-distance','-'+width+'px');
-   tickerTrack.style.setProperty('--ticker-duration',Math.max(18,width/54)+'s');
-   void tickerTrack.offsetWidth;
-   tickerTrack.style.removeProperty('animation');
+   // The second strip is an exact duplicate of the first, including widths.
+   groups[1].replaceChildren(...[...first.children].map(node=>node.cloneNode(true)));
+   const cycleWidth=first.getBoundingClientRect().width;
+   tickerTrack.style.setProperty('--ticker-duration',(cycleWidth/58).toFixed(2)+'s');
+   tickerTrack.dataset.loopReady='1';
+  };
+  const schedule=()=>{
+   if(queued)return;
+   queued=true;
+   requestAnimationFrame(()=>{queued=false;fillTicker();});
   };
   fillTicker();
-  window.addEventListener('resize',fillTicker,{passive:true});
-  if(document.fonts?.ready)document.fonts.ready.then(fillTicker).catch(()=>{});
+  if('ResizeObserver'in window){
+   const observer=new ResizeObserver(entries=>{
+    if(Math.abs(Math.ceil(entries[0].contentRect.width)-lastWidth)>1)schedule();
+   });
+   observer.observe(ticker);
+  }else{
+   window.addEventListener('resize',schedule,{passive:true});
+  }
+  // Recalculate once fonts settle so the two repeated strips stay identical.
+  if(document.fonts?.ready)document.fonts.ready.then(()=>{
+   lastWidth=0;
+   schedule();
+  }).catch(()=>{});
  }
 }
 /* The watch room always starts on the newest known *video ID*, never an
