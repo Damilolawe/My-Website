@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
+
 <nav id="nav">
   <a href="#top" class="brand"><span class="brand-star"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7z"/></svg></span>ROXXY&nbsp;HAZE</a>
   <button id="navToggle" class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -24,46 +26,49 @@
 </nav>
 
 <header id="top" class="hero">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-grid" aria-hidden="true"></div>
-  <div class="hero-inner container">
-    <p class="eyebrow">Comedian · Writer · Actor · Pop Culture Polymath</p>
+  <div class="hero-dots" aria-hidden="true"></div>
+  <div class="hero-collage container">
+    <span class="tape tape-a" aria-hidden="true"></span>
+    <span class="tape tape-b" aria-hidden="true"></span>
+    <span class="big-quote" aria-hidden="true">&ldquo;</span>
+
+    <p class="eyebrow sticker-strip">Comedian · Writer · Actor · Pop Culture Polymath</p>
+
     <h1 class="hero-title">
-      <span class="ht-line" data-text="ROXXY">ROXXY</span>
-      <span class="ht-line ht-haze" data-text="HAZE">HAZE</span>
+      <span class="ht-chunk ht-roxxy" data-text="ROXXY">ROXXY</span>
+      <span class="ht-chunk ht-haze" data-text="HAZE">HAZE</span>
     </h1>
-    <div class="hero-orbit" aria-hidden="true">
+
+    <div class="hero-scatter" aria-hidden="true">
       <i class="chip c1"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><circle cx="12" cy="12" r="9"/><path d="M8 14a5 5 0 0 0 8 0"/><path d="M9 9.5h.01M15 9.5h.01"/></svg> comedy</i>
       <i class="chip c2"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 6c-2-1.5-5-2-8-1.5v12c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-12c-3-.5-6 0-8 1.5z"/><path d="M12 6v12"/></svg> author</i>
       <i class="chip c3"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".9" fill="currentColor"/><circle cx="18" cy="13.5" r=".9" fill="currentColor"/></svg> gaming</i>
       <i class="chip c4"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="13.5" width="3.6" height="6" rx="1.6"/><rect x="17.4" y="13.5" width="3.6" height="6" rx="1.6"/></svg> music</i>
       <i class="chip c5"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M3 7c3-2.2 15-2.2 18 0"/><path d="M5 9.5h14"/><path d="M6.5 8v11M17.5 8v11"/></svg> anime</i>
     </div>
-    <p class="hero-sub">One mind, every medium. Stand-up, pages, pixels and playlists — <strong>pop culture, remixed</strong> by someone who lives inside all of it.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#book">Get "Half Famous" <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn-ghost" href="#music">Hear the Music</a>
+
+    <div class="hero-note card-torn">
+      <p class="hero-sub">One mind, every medium. Stand-up, pages, pixels and playlists — <strong>pop culture, remixed</strong> by someone who lives inside all of it.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#book">Get "Half Famous" <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#music">Hear the Music</a>
+      </div>
     </div>
   </div>
 </header>
 
-<div class="marquee" aria-hidden="true">
-  <div class="mq-track">
-    <span>COMEDIAN</span><em><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7z"/></svg></em><span>WRITER</span><em><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7z"/></svg></em><span>ACTOR</span><em><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7z"/></svg></em><span>POP CULTURE POLYMATH</span><em><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7z"/></svg></em><span>HALF FAMOUS</span><em><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7z"/></svg></em><span>ANIME NERD</span><em><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7z"/></svg></em>
-    <span>COMEDIAN</span><em><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7z"/></svg></em><span>WRITER</span><em><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7z"/></svg></em><span>ACTOR</span><em><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7z"/></svg></em><span>POP CULTURE POLYMATH</span><em><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7z"/></svg></em><span>HALF FAMOUS</span><em><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7z"/></svg></em><span>ANIME NERD</span><em><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7z"/></svg></em>
-  </div>
-</div>
-
-<section id="about" class="about">
+<section id="about" class="about collage-sec">
   <div class="container">
-    <div class="sec-head"><span class="tag">Who Is</span><h2>Roxxy Haze</h2></div>
+    <div class="sec-head"><span class="tag">Who Is</span><h2 class="wonk">Roxxy Haze</h2></div>
     <div class="about-grid">
-      <div class="about-copy">
+      <div class="about-copy card-paste tilt-l">
+        <span class="tape tape-c" aria-hidden="true"></span>
         <p class="lead">Comedian, writer, actor &amp; pop culture polymath — Roxxy Haze doesn't pick a lane, she builds the whole highway.</p>
         <p>From the mic to the manuscript, the stage to the stream, Roxxy moves fluently across comedy, writing, acting and music. It's all one language to her: <strong>the language of pop culture</strong>, spoken loud and spoken often.</p>
         <p>A lifelong anime and gaming obsessive, Roxxy pours that fandom straight into the work — whether she's cracking jokes, writing pages, dropping tracks, or going live for the chat. Half famous, fully committed.</p>
       </div>
-      <aside class="facets">
+      <aside class="facets card-paste tilt-r">
+        <span class="tape tape-d" aria-hidden="true"></span>
         <h3>The Many Hats</h3>
         <ul>
           <li><span class="fx-ic"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></span><b>Comedian</b><small>On the mic, cracking up rooms</small></li>
@@ -77,7 +82,7 @@
   </div>
 </section>
 
-<section id="book" class="book">
+<section id="book" class="book collage-sec">
   <div class="container book-inner">
     <div class="book-art" aria-hidden="true">
       <div class="book-cover">
@@ -86,10 +91,12 @@
         <span class="bc-author">Roxxy Haze</span>
         <span class="bc-shine"></span>
       </div>
+      <span class="sticker-burst" aria-hidden="true">OUT<br>NOW</span>
     </div>
-    <div class="book-copy">
+    <div class="book-copy card-paste tilt-r">
+      <span class="tape tape-c" aria-hidden="true"></span>
       <span class="tag light">The Book</span>
-      <h2>Half Famous</h2>
+      <h2 class="wonk">Half Famous</h2>
       <p>Roxxy's book is out now — grab the <strong>autographed hardcover</strong> straight from her shop, or pick it up on Amazon. Funny, honest and unmistakably Roxxy.</p>
       <div class="book-cta">
         <a class="btn btn-primary" href="https://roxxyhaze.square.site" target="_blank" rel="noopener">Autographed Hardcover</a>
@@ -100,12 +107,12 @@
   </div>
 </section>
 
-<section id="music" class="music">
+<section id="music" class="music collage-sec">
   <div class="container">
-    <div class="sec-head"><span class="tag">Listen</span><h2>Music</h2></div>
-    <div class="embed-spotify embed-lead"><iframe src="https://open.spotify.com/embed/album/3sxt7fMtvSrNO8YE1gdC7l" title="Roxxy Haze — latest album on Spotify" loading="lazy" width="100%" height="380" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+    <div class="sec-head"><span class="tag">Listen</span><h2 class="wonk">Music</h2></div>
+    <div class="embed-spotify embed-lead card-paste tilt-l"><iframe src="https://open.spotify.com/embed/album/3sxt7fMtvSrNO8YE1gdC7l" title="Roxxy Haze — latest album on Spotify" loading="lazy" width="100%" height="380" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
     <div class="music-grid">
-      <article class="mu-card mu-feature">
+      <article class="mu-card mu-feature card-paste tilt-r">
         <div class="mu-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <span class="mu-badge">New Album</span>
         <h3>On Spotify</h3>
@@ -115,13 +122,13 @@
           <a class="sp-link alt" href="https://open.spotify.com/artist/4Nr5lGdK7iDLqKDzscJRhf" target="_blank" rel="noopener">Artist Page <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></a>
         </div>
       </article>
-      <article class="mu-card">
+      <article class="mu-card card-paste tilt-l">
         <span class="mu-badge">Deep Cuts</span>
         <h3>SoundCloud</h3>
         <p>More tracks, experiments and loosies live over on SoundCloud.</p>
         <a class="sp-link" href="https://soundcloud.com/roxxyhaze" target="_blank" rel="noopener">Open SoundCloud <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></a>
       </article>
-      <article class="mu-card">
+      <article class="mu-card card-paste tilt-r">
         <span class="mu-badge">On Camera</span>
         <h3>YouTube</h3>
         <p>Videos, bits and more of the Roxxy Haze universe on YouTube.</p>
@@ -131,18 +138,19 @@
   </div>
 </section>
 
-<section id="stream" class="stream">
+<section id="stream" class="stream collage-sec">
   <div class="container stream-inner">
     <div class="stream-copy">
-      <span class="live-pill"><span class="live-dot"></span>LIVE ON TWITCH</span>
-      <h2>Come Hang<br>In the Chat</h2>
+      <span class="live-sticker"><span class="live-dot"></span>LIVE ON TWITCH</span>
+      <h2 class="wonk">Come Hang<br>In the Chat</h2>
       <p>Roxxy streams on Twitch — gaming, anime talk, and the usual chaos. Pull up, drop a message, stay a while.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="https://www.twitch.tv/roxxyhaze" target="_blank" rel="noopener">Watch on Twitch</a>
         <a class="btn btn-outline" href="https://www.youtube.com/roxxyhaze" target="_blank" rel="noopener">YouTube Channel</a>
       </div>
     </div>
-    <div class="stream-screen" aria-hidden="true">
+    <div class="stream-screen card-paste tilt-r" aria-hidden="true">
+      <span class="tape tape-d" aria-hidden="true"></span>
       <div class="scr-top"><span class="live-dot"></span>LIVE<span class="scr-view">4.2K watching</span></div>
       <div class="scr-body">
         <span class="scr-emoji"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".9" fill="currentColor"/><circle cx="18" cy="13.5" r=".9" fill="currentColor"/></svg></span>
@@ -157,19 +165,20 @@
   </div>
 </section>
 
-<section id="connect" class="connect">
+<section id="connect" class="connect collage-sec">
   <div class="container">
-    <div class="sec-head center"><span class="tag light">Say Hi</span><h2>Connect</h2></div>
+    <div class="sec-head center"><span class="tag light">Say Hi</span><h2 class="wonk">Connect</h2></div>
     <p class="connect-lead">Everywhere, all at once. Follow along, support the work, or just come say hey.</p>
     <div class="social-grid">
-      <a class="so-card" href="https://instagram.com/roxxyhaze" target="_blank" rel="noopener"><span class="so-ic"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 7l1.5-2h5L16 7"/></svg></span><b>Instagram</b></a>
-      <a class="so-card" href="https://x.com/roxxyhaze" target="_blank" rel="noopener"><span class="so-ic"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M6 6l12 12M18 6L6 18"/></svg></span><b>X / Twitter</b></a>
-      <a class="so-card" href="https://www.facebook.com/roxxyhaze" target="_blank" rel="noopener"><span class="so-ic"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M7 11v8H4v-8zM7 11l3.2-7C11.7 4 12.7 5 12.7 6.6V9H17a2 2 0 0 1 2 2.3l-1 6A2 2 0 0 1 16 19H7"/></svg></span><b>Facebook</b></a>
-      <a class="so-card" href="https://www.twitch.tv/roxxyhaze" target="_blank" rel="noopener"><span class="so-ic"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".9" fill="currentColor"/><circle cx="18" cy="13.5" r=".9" fill="currentColor"/></svg></span><b>Twitch</b></a>
-      <a class="so-card" href="https://www.youtube.com/roxxyhaze" target="_blank" rel="noopener"><span class="so-ic">▶</span><b>YouTube</b></a>
-      <a class="so-card" href="https://soundcloud.com/roxxyhaze" target="_blank" rel="noopener"><span class="so-ic"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="13.5" width="3.6" height="6" rx="1.6"/><rect x="17.4" y="13.5" width="3.6" height="6" rx="1.6"/></svg></span><b>SoundCloud</b></a>
+      <a class="so-card tilt-l" href="https://instagram.com/roxxyhaze" target="_blank" rel="noopener"><span class="so-ic"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 7l1.5-2h5L16 7"/></svg></span><b>Instagram</b></a>
+      <a class="so-card tilt-r" href="https://x.com/roxxyhaze" target="_blank" rel="noopener"><span class="so-ic"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M6 6l12 12M18 6L6 18"/></svg></span><b>X / Twitter</b></a>
+      <a class="so-card tilt-l" href="https://www.facebook.com/roxxyhaze" target="_blank" rel="noopener"><span class="so-ic"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M7 11v8H4v-8zM7 11l3.2-7C11.7 4 12.7 5 12.7 6.6V9H17a2 2 0 0 1 2 2.3l-1 6A2 2 0 0 1 16 19H7"/></svg></span><b>Facebook</b></a>
+      <a class="so-card tilt-r" href="https://www.twitch.tv/roxxyhaze" target="_blank" rel="noopener"><span class="so-ic"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".9" fill="currentColor"/><circle cx="18" cy="13.5" r=".9" fill="currentColor"/></svg></span><b>Twitch</b></a>
+      <a class="so-card tilt-l" href="https://www.youtube.com/roxxyhaze" target="_blank" rel="noopener"><span class="so-ic"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10 9.2l5 2.8-5 2.8z" fill="currentColor" stroke="none"/></svg></span><b>YouTube</b></a>
+      <a class="so-card tilt-r" href="https://soundcloud.com/roxxyhaze" target="_blank" rel="noopener"><span class="so-ic"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="13.5" width="3.6" height="6" rx="1.6"/><rect x="17.4" y="13.5" width="3.6" height="6" rx="1.6"/></svg></span><b>SoundCloud</b></a>
     </div>
-    <div class="patreon-bar">
+    <div class="patreon-bar card-paste tilt-l">
+      <span class="tape tape-c" aria-hidden="true"></span>
       <div class="pb-copy">
         <span class="tag">Support</span>
         <h3>Back Roxxy on Patreon</h3>

@@ -15,7 +15,7 @@
     a.addEventListener('click', function () { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); });
   });
 
-  var els = document.querySelectorAll('.sec-head,.about-grid,.special-grid,.shows-inner,.merch-grid,.book-inner');
+  var els = document.querySelectorAll('.sec-head,.about-grid,.special-grid,.shows-inner,.merch-grid,.book-inner,.sticker-wrap');
   els.forEach(function (el) { el.classList.add('reveal'); });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
@@ -29,10 +29,5 @@
       var t = document.querySelector(a.getAttribute('href'));
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
-  });
-
-  // Randomize equalizer bar heights a touch for life
-  document.querySelectorAll('.wave i').forEach(function (bar) {
-    bar.style.animationDelay = (Math.random() * 0.6).toFixed(2) + 's';
   });
 })();

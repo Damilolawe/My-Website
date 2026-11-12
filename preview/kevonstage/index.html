@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-<!-- NAV -->
+<!-- APP NAV -->
 <nav id="nav">
   <a href="#top" class="brand" aria-label="KevOnStage home">
     <span class="brand-mark">KOS</span>
@@ -27,36 +27,39 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<header id="top" class="hero">
-  <div class="hero-glow" aria-hidden="true"></div>
-  <div class="hero-grid" aria-hidden="true"></div>
-  <div class="hero-inner">
-    <p class="eyebrow">Kevin Fredericks presents</p>
-    <h1 class="hero-title">KEV<span>ON</span>STAGE</h1>
-    <div class="roles">
-      <span class="roles-static">I am an</span>
-      <span class="roles-rotator"><span class="roles-track">
-        <b>Actor.</b><b>Comedian.</b><b>Speaker.</b><b>Director.</b><b>Filmmaker.</b><b>Creator.</b><b>Mogul.</b>
-      </span></span>
+<!-- FEATURED BILLBOARD HERO -->
+<header id="top" class="billboard">
+  <div class="bb-bg" aria-hidden="true"></div>
+  <div class="container bb-inner">
+    <div class="bb-video">
+      <p class="embed-cap">
+        <span class="live-dot" aria-hidden="true"></span>
+        Latest on YouTube
+      </p>
+      <div class="embed-frame"><iframe src="https://www.youtube-nocookie.com/embed/QvMFdQ2ZJ3A" title="KevOnStage on YouTube" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
     </div>
-    <p class="hero-sub">One of the internet's most beloved comedians — turning millions of laughs into live tours, a studio, a streaming app and a full-blown comedy empire.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#tour">See Tour Dates</a>
-      <a class="btn btn-ghost" href="#watch">Watch Specials</a>
+    <div class="bb-meta">
+      <p class="eyebrow">Kevin Fredericks presents</p>
+      <h1 class="bb-title">KEV<span>ON</span>STAGE</h1>
+      <div class="roles">
+        <span class="roles-static">I am an</span>
+        <span class="roles-rotator"><span class="roles-track">
+          <b>Actor.</b><b>Comedian.</b><b>Speaker.</b><b>Director.</b><b>Filmmaker.</b><b>Creator.</b><b>Mogul.</b>
+        </span></span>
+      </div>
+      <p class="hero-sub">One of the internet's most beloved comedians — turning millions of laughs into live tours, a studio, a streaming app and a full-blown comedy empire.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#tour">
+          <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-.14em;display:inline-block"><path d="M8 5v14l11-7z"/></svg>
+          See Tour Dates
+        </a>
+        <a class="btn btn-ghost" href="#watch">Watch Specials</a>
+      </div>
     </div>
   </div>
 </header>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>STAND-UP</span><span class="dot">●</span><span>HERE'S THE THING</span><span class="dot">●</span><span>KEVONSTAGE STUDIOS</span><span class="dot">●</span><span>GRIEF SUCKS TOUR</span><span class="dot">●</span><span>BALD BROTHER</span><span class="dot">●</span><span>MASTERCLASS</span><span class="dot">●</span>
-    <span>STAND-UP</span><span class="dot">●</span><span>HERE'S THE THING</span><span class="dot">●</span><span>KEVONSTAGE STUDIOS</span><span class="dot">●</span><span>GRIEF SUCKS TOUR</span><span class="dot">●</span><span>BALD BROTHER</span><span class="dot">●</span><span>MASTERCLASS</span><span class="dot">●</span>
-  </div>
-</div>
-
-<!-- ABOUT -->
+<!-- PROFILE / ABOUT PANEL -->
 <section id="about" class="about">
   <div class="container about-grid">
     <div class="about-head">
@@ -78,65 +81,93 @@
   </div>
 </section>
 
-<!-- TOUR -->
+<!-- TOUR SPOTLIGHT + DATE ROW -->
 <section id="tour" class="tour">
   <div class="container">
-    <div class="section-head">
-      <span class="kicker light">02 — Live</span>
-      <h2 class="section-title">Grief Sucks <span>Tour</span></h2>
-      <p class="section-lead">A brand-new one-man show. Real talk, real laughs, live on stage.</p>
+    <div class="row-head">
+      <div>
+        <span class="kicker light">02 — Live</span>
+        <h2 class="section-title">Grief Sucks <span>Tour</span></h2>
+        <p class="section-lead">A brand-new one-man show. Real talk, real laughs, live on stage.</p>
+      </div>
     </div>
     <div class="tour-feature">
       <div class="tour-feature-art" aria-hidden="true"><span>GRIEF<br>SUCKS</span></div>
       <div class="tour-feature-body">
+        <span class="spotlight-tag">Now Touring</span>
         <h3>Grief Sucks: A One Man Show</h3>
         <p>KevOnStage's most personal hour yet — finding the funny in the hardest parts of life. Catch him in a city near you.</p>
         <a class="btn btn-primary" href="https://linktr.ee/GriefSucks" target="_blank" rel="noopener">Get Tickets &amp; Dates</a>
       </div>
     </div>
-    <ul class="date-list">
+  </div>
+  <div class="row-scroll" data-row>
+    <button class="row-ctrl prev" type="button" aria-label="Scroll left" data-dir="-1">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <ul class="date-list" data-track>
       <li><span class="dl-when">Live Dates</span><span class="dl-where">Clubs &amp; theaters nationwide</span><a class="dl-cta" href="https://linktr.ee/GriefSucks" target="_blank" rel="noopener">Tickets</a></li>
       <li><span class="dl-when">The Love Hour</span><span class="dl-where">Live podcast &amp; conference events</span><a class="dl-cta" href="#booking">Info</a></li>
       <li><span class="dl-when">Private &amp; Corporate</span><span class="dl-where">Host · Keynote · Headline</span><a class="dl-cta" href="#booking">Book</a></li>
     </ul>
+    <button class="row-ctrl next" type="button" aria-label="Scroll right" data-dir="1">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
   </div>
 </section>
 
-<!-- WATCH -->
-<section id="watch" class="watch">
+<!-- WATCH & LISTEN ROW -->
+<section id="watch" class="row">
   <div class="container">
-    <div class="section-head">
-      <span class="kicker">03 — Watch &amp; Listen</span>
-      <h2 class="section-title">Specials &amp; <span>Shows</span></h2>
+    <div class="row-head">
+      <div>
+        <span class="kicker">03 — Watch &amp; Listen</span>
+        <h2 class="section-title">Specials &amp; <span>Shows</span></h2>
+      </div>
     </div>
-    <p class="embed-cap">Latest on YouTube</p>
-    <div class="embed-frame"><iframe src="https://www.youtube-nocookie.com/embed/QvMFdQ2ZJ3A" title="KevOnStage on YouTube" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-    <div class="card-grid">
+  </div>
+  <div class="row-scroll" data-row>
+    <button class="row-ctrl prev" type="button" aria-label="Scroll left" data-dir="-1">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <div class="card-grid" data-track>
       <a class="media-card" href="https://tubitv.com/series/300018840/bald-brother-comedy" target="_blank" rel="noopener">
-        <div class="mc-badge">Streaming · Tubi</div>
-        <h3>Bald Brother</h3>
-        <p>The freestyle comedy show with Tony Baker — sold out theaters, now streaming free.</p>
-        <span class="mc-link">Watch now <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></span>
+        <div class="mc-poster poster-a" aria-hidden="true"><span>BALD<br>BROTHER</span></div>
+        <div class="mc-body">
+          <div class="mc-badge">Streaming · Tubi</div>
+          <h3>Bald Brother</h3>
+          <p>The freestyle comedy show with Tony Baker — sold out theaters, now streaming free.</p>
+          <span class="mc-link">Watch now <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></span>
+        </div>
       </a>
       <a class="media-card" href="#booking">
-        <div class="mc-badge">Podcast</div>
-        <h3>Here's The Thing</h3>
-        <p>KevOnStage's take on everything — pop culture, church, marriage and the internet.</p>
-        <span class="mc-link">Listen <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></span>
+        <div class="mc-poster poster-b" aria-hidden="true"><span>HERE'S<br>THE THING</span></div>
+        <div class="mc-body">
+          <div class="mc-badge">Podcast</div>
+          <h3>Here's The Thing</h3>
+          <p>KevOnStage's take on everything — pop culture, church, marriage and the internet.</p>
+          <span class="mc-link">Listen <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></span>
+        </div>
       </a>
       <a class="media-card" href="https://www.cameo.com/kevonstage" target="_blank" rel="noopener">
-        <div class="mc-badge">Personal</div>
-        <h3>Cameo</h3>
-        <p>Book a personalized video for a birthday, a roast or just a laugh.</p>
-        <span class="mc-link">Get a Cameo <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></span>
+        <div class="mc-poster poster-c" aria-hidden="true"><span>CAMEO</span></div>
+        <div class="mc-body">
+          <div class="mc-badge">Personal</div>
+          <h3>Cameo</h3>
+          <p>Book a personalized video for a birthday, a roast or just a laugh.</p>
+          <span class="mc-link">Get a Cameo <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></span>
+        </div>
       </a>
     </div>
+    <button class="row-ctrl next" type="button" aria-label="Scroll right" data-dir="1">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
   </div>
 </section>
 
-<!-- STUDIOS -->
+<!-- STUDIOS: COPY + CARD ROW -->
 <section id="studios" class="studios">
-  <div class="container studios-inner">
+  <div class="container">
     <div class="studios-copy">
       <span class="kicker light">04 — The Business</span>
       <h2 class="section-title">KevOnStage <span>Studios</span></h2>
@@ -146,16 +177,24 @@
         <a class="btn btn-ghost" href="#booking">Masterclass Info</a>
       </div>
     </div>
-    <div class="studios-cards">
+  </div>
+  <div class="row-scroll" data-row>
+    <button class="row-ctrl prev" type="button" aria-label="Scroll left" data-dir="-1">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <div class="studios-cards" data-track>
       <div class="scard"><b>Studios</b><span>Original streaming shows</span></div>
       <div class="scard"><b>Masterclass</b><span>Build your creator business</span></div>
       <div class="scard"><b>Patreon</b><span>Exclusive content &amp; community</span></div>
       <div class="scard"><b>Creator Conf.</b><span>Events for creators</span></div>
     </div>
+    <button class="row-ctrl next" type="button" aria-label="Scroll right" data-dir="1">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
   </div>
 </section>
 
-<!-- SHOP -->
+<!-- SHOP BAND -->
 <section id="shop" class="shop">
   <div class="container shop-inner">
     <div>

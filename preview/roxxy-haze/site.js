@@ -1,4 +1,4 @@
-// Roxxy Haze concept — interactions
+// Roxxy Haze zine concept — interactions
 (function () {
   var nav = document.getElementById('nav');
   var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 50); };
@@ -15,7 +15,7 @@
     a.addEventListener('click', function () { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); });
   });
 
-  var els = document.querySelectorAll('.sec-head,.about-grid,.book-inner,.music-grid,.stream-inner,.connect-lead,.social-grid,.patreon-bar,.hub-row');
+  var els = document.querySelectorAll('.sec-head,.about-copy,.facets,.book-art,.book-copy,.embed-lead,.mu-card,.stream-copy,.stream-screen,.connect-lead,.so-card,.patreon-bar,.hub-row');
   els.forEach(function (el) { el.classList.add('reveal'); });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {

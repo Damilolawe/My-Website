@@ -1,7 +1,7 @@
-// Tahir Moore concept — interactions
+// Tahir Moore concept — link-hub interactions
 (function () {
   var nav = document.getElementById('nav');
-  var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 50); };
+  var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 40); };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
@@ -15,12 +15,11 @@
     a.addEventListener('click', function () { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); });
   });
 
-  var els = document.querySelectorAll('.sec-head,.about-grid,.special-inner,.pod-grid,.tour,.listen-grid,.merch-grid,.connect-inner');
-  els.forEach(function (el) { el.classList.add('reveal'); });
+  var els = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     els.forEach(function (el) { io.observe(el); });
   } else { els.forEach(function (el) { el.classList.add('visible'); }); }
 
@@ -29,10 +28,5 @@
       var t = document.querySelector(a.getAttribute('href'));
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
-  });
-
-  // Nudge the listen equalizer bars so they don't move in lockstep
-  document.querySelectorAll('.listen-wave i').forEach(function (bar) {
-    bar.style.animationDuration = (0.9 + Math.random() * 0.6).toFixed(2) + 's';
   });
 })();

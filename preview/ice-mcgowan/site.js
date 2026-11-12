@@ -1,4 +1,4 @@
-// Ice McGowan concept — interactions
+// Ice McGowan concept — manga poster-panel interactions
 (function () {
   var nav = document.getElementById('nav');
   var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 50); };
@@ -15,7 +15,8 @@
     a.addEventListener('click', function () { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); });
   });
 
-  var els = document.querySelectorAll('.about-grid,.sec-head,.work-grid,.podcast-inner,.live-card,.connect-inner');
+  // Reveal panels as the reader moves down the page (vertical manga flow)
+  var els = document.querySelectorAll('.panel,.sec-head,.gutter-strip,.social-row');
   els.forEach(function (el) { el.classList.add('reveal'); });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
