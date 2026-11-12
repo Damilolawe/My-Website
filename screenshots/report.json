@@ -1,15 +1,25 @@
 {
-  "generatedAt": "2026-11-12T01:03:07.133Z",
+  "generatedAt": "2026-11-12T06:26:45.415Z",
   "mode": "desktop",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 30,
-  "issues": 2,
+  "issues": 3,
   "findings": [
     {
       "site": "shotsbyriq",
       "viewport": "desktop-1440",
       "type": "visual",
       "message": "clipped text: a VIEW PHOTOGRAPHY ON INSTAGRAM"
+    },
+    {
+      "site": "fat-boy-finesse",
+      "viewport": "desktop-1440",
+      "type": "reduced-motion-banner",
+      "controlVisible": false,
+      "details": {
+        "ok": false,
+        "pixelsMoved": 0
+      }
     },
     {
       "site": "shotsbyriq",
