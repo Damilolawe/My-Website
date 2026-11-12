@@ -55,7 +55,7 @@ if(ticker&&tickerTrack){
    A scheduled GitHub Action syncs this ID against YouTube's official RSS feed.
    YouTube IFrame API separately detects embeddable livestreams.
 */
-const longFormVideoIds=["GO1myfRMo_o","nRVw1rba9S8","DJb4xBSUryc","oQbOUW6HLoQ","Gqj1NNd6qqY","3CDeenHTCBU","E_X7xLwTTME","fnMRdWTycmA","eLn6aAvyXnE","zG3AEsvUijw","9r_k_hC60ME","GGT05pQV6Hc","4OKWfCOf3mY","qacsB8AFiG8","auir4COP4pY"];
+const longFormVideoIds=["FatRLDgXjCc","DJb4xBSUryc","oQbOUW6HLoQ","Gqj1NNd6qqY","3CDeenHTCBU","E_X7xLwTTME","fnMRdWTycmA","eLn6aAvyXnE","zG3AEsvUijw","9r_k_hC60ME","GGT05pQV6Hc","4OKWfCOf3mY","qacsB8AFiG8","auir4COP4pY","HGAVxS686q8"];
 const latestVideoId=longFormVideoIds[0];
 const watchRoom=document.getElementById('live-set');
 const videoFrame=document.getElementById('live-player');
