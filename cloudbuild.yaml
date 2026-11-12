@@ -1,0 +1,33 @@
+# Optional GitHub Actions replacement: build and publish to Firebase Hosting Classic.
+# Do not activate a trigger until Cloud Billing and a least-privilege Cloud
+# Build service account are reviewed and approved for the awe-digital project.
+# Configure a GitHub push trigger for main only; do not deploy pull requests.
+steps:
+  - id: build-test-and-stage
+    name: node:22-bookworm
+    entrypoint: bash
+    env:
+      - AWE_SITE_ORIGIN=https://aweconcepts.com
+    args:
+      - -c
+      - |
+        set -euo pipefail
+        python3 --version
+        npm ci
+        npm run build
+        npm run check
+        npm test
+        node scripts/materialize-approved-sites.mjs
+        npm run check
+        node scripts/hosting-audit.mjs
+        node scripts/smoke-production-cors.mjs
+  - id: deploy-firebase-hosting
+    name: us-docker.pkg.dev/firebase-cli/us/firebase
+    args:
+      - deploy
+      - --only=hosting
+      - --project=awe-digital
+      - --non-interactive
+options:
+  logging: CLOUD_LOGGING_ONLY
+timeout: 1200s
