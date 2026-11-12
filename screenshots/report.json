@@ -1,16 +1,10 @@
 {
-  "generatedAt": "2026-11-12T06:26:30.770Z",
+  "generatedAt": "2026-11-12T06:30:47.662Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 30,
-  "issues": 3,
+  "issues": 1,
   "findings": [
-    {
-      "site": "shotsbyriq",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a VIEW PHOTOGRAPHY ON INSTAGRAM"
-    },
     {
       "site": "fat-boy-finesse",
       "viewport": "iphone-13",
@@ -20,12 +14,6 @@
         "ok": false,
         "pixelsMoved": 0
       }
-    },
-    {
-      "site": "shotsbyriq",
-      "viewport": "pixel-7",
-      "type": "visual",
-      "message": "clipped text: a VIEW PHOTOGRAPHY ON INSTAGRAM"
     }
   ]
 }
