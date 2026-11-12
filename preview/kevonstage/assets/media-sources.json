@@ -1,0 +1,29 @@
+{
+  "sourcePage": "https://www.kevonstage.com/",
+  "usage": "Target-owned promotional imagery in an independent concept for the same creator. Rights remain with original owners.",
+  "images": [
+    {
+      "slug": "kevonstage",
+      "file": "tour-poster.webp",
+      "source": "https://static.wixstatic.com/media/a63a57_f5a4b5c4e47047d58147d9b623c3b919~mv2.jpg",
+      "size": [
+        1000,
+        1500
+      ]
+    },
+    {
+      "slug": "kevonstage",
+      "file": "merch.webp",
+      "source": "https://static.wixstatic.com/media/a63a57_8df6a15a476748c2931c3627b41c7f92~mv2.jpg",
+      "size": [
+        1400,
+        1400
+      ]
+    },
+    {
+      "file": "portrait.webp",
+      "source": "https://ugc.production.linktr.ee/eK2jIgVTRY2hgqPVwaYs_c629ce1d21a37b24cb8029c892e77d2a",
+      "sourcePage": "https://linktr.ee/kevonstage"
+    }
+  ]
+}

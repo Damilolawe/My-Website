@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ice McGowan — Filmmaker · Stand-Up · Anime Lover</title>
@@ -8,15 +11,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bungee:wght@400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="./styles.css" />
+<link rel="stylesheet" href="./styles.css?v=creator-media-20261112" />
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 <nav id="nav">
   <a href="#top" class="brand"><span class="brand-ice">ICE</span> McGOWAN</a>
-  <button id="navToggle" class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <button id="navToggle" class="nav-toggle" aria-label="Open navigation" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
   <div id="navLinks" class="nav-links">
     <a href="#about">About</a>
-    <a href="#work">Work</a>
+    <a href="#videos">Watch</a>
     <a href="#podcast">Podcast</a>
     <a href="#live">Live</a>
     <a href="#connect" class="nav-cta">Contact</a>
@@ -26,6 +30,7 @@
 <header id="top" class="hero">
   <div class="speedlines" aria-hidden="true"></div>
   <div class="hero-inner container">
+<div class="hero-copy">
     <p class="eyebrow">Filmmaker · Stand-Up Comedian · Anime Lover</p>
     <h1 class="hero-title">ICE<br><span>McGOWAN</span></h1>
     <p class="hero-catch">"You're the main character of your story!"</p>
@@ -34,18 +39,18 @@
       <a class="btn btn-ghost" href="#live">Catch a Show</a>
     </div>
   </div>
+<figure class="creator-portrait"><img src="./assets/on-stage.webp" alt="Ice McGowan performing Life in Japan at The Nitecap" width="1000" height="1250" fetchpriority="high" decoding="async"></figure>
+</div>
 </header>
 
 <div class="marquee" aria-hidden="true">
-  <div class="mq-track">
-    <span>STAND-UP</span><em>◆</em><span>FILMMAKING</span><em>◆</em><span>ANIME</span><em>◆</em><span>HOT TAKES</span><em>◆</em><span>PODCAST</span><em>◆</em><span>FITNESS</span><em>◆</em><span>FATHERHOOD</span><em>◆</em>
-    <span>STAND-UP</span><em>◆</em><span>FILMMAKING</span><em>◆</em><span>ANIME</span><em>◆</em><span>HOT TAKES</span><em>◆</em><span>PODCAST</span><em>◆</em><span>FITNESS</span><em>◆</em><span>FATHERHOOD</span><em>◆</em>
-  </div>
+  <div class="mq-track"><div class="motion-unit"><span>STAND-UP</span><span>FILMMAKING</span><span>ANIME</span><span>HOT TAKES</span><span>PODCAST</span><span>FITNESS</span><span>FATHERHOOD</span></div><div class="motion-unit"><span>STAND-UP</span><span>FILMMAKING</span><span>ANIME</span><span>HOT TAKES</span><span>PODCAST</span><span>FITNESS</span><span>FATHERHOOD</span></div></div>
 </div>
 
+<main id="main-content">
 <section id="about" class="about">
   <div class="container about-grid">
-    <div class="about-head">
+    <div class="about-head"><figure class="creator-photo"><img src="./assets/raised-by-wolves.webp" alt="Ice McGowan and his child in Raised By Wolves artwork" width="1200" height="900" loading="lazy" decoding="async"></figure>
       <span class="kicker">Who</span>
       <h2>The main<br>character.</h2>
     </div>
@@ -58,6 +63,8 @@
     </div>
   </div>
 </section>
+
+<section id="videos" class="media-section"><div class="container"><p class="kicker">Selected videos</p><h2 class="media-heading">Press play. Stay a while.</h2><p class="media-intro">A western short film and stand-up from The Nitecap.</p><div class="watch-grid"><article class="watch-card"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/JyhGx3dxp1Q?rel=0" title="DEADEYE" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="watch-copy"><h3>DEADEYE</h3><p>A western short film written and directed by Ice McGowan.</p><a href="https://www.youtube.com/watch?v=JyhGx3dxp1Q" target="_blank" rel="noopener">Watch on YouTube</a></div></article><article class="watch-card"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/sIdXD8mb90g?rel=0" title="My First Time in Japan" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="watch-copy"><h3>My First Time in Japan</h3><p>Ice brings his experiences in Japan to the stand-up stage.</p><a href="https://www.youtube.com/watch?v=sIdXD8mb90g" target="_blank" rel="noopener">Watch on YouTube</a></div></article></div></div></section>
 
 <section id="work" class="work">
   <div class="container">
@@ -96,7 +103,7 @@
       <h2>Raised By Wolves</h2>
       <p>Ice's podcast — fatherhood, anime, hot takes and the occasional "Orange Flame." Real conversations, real laughs, new episodes on YouTube.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="https://www.youtube.com/watch?v=wxydF8CU9Cs" target="_blank" rel="noopener">Latest Episode</a>
+        <a class="btn btn-primary" href="https://www.youtube.com/watch?v=wxydF8CU9Cs" target="_blank" rel="noopener">Featured Episode</a>
         <a class="btn btn-ghost" href="https://www.youtube.com/@RaisedByWolvesPodcast" target="_blank" rel="noopener">All Episodes</a>
       </div>
     </div>
@@ -115,7 +122,7 @@
       </div>
       <div class="live-right">
         <div class="flame-ico" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 2c1.2 3 .3 4.6-1 6.2-1.3 1.6-3 3.1-3 6A4 4 0 0 0 16 14c0-1.2-.5-2.1-1-2.8.3 1.5-.7 2.4-1.3 2.4.9-2.1.2-4.3-1.7-6C13 6 13.6 4 12 2z"/></svg></div>
-        <a class="btn btn-primary big" href="https://bonfirestories.ticketsauce.com/e/bonfire-stories-34" target="_blank" rel="noopener">Tickets &amp; Dates</a>
+        <a class="btn btn-primary big" href="https://www.instagram.com/ice.mcgowan/" target="_blank" rel="noopener">Show Updates</a>
       </div>
     </div>
   </div>
@@ -134,16 +141,17 @@
     </div>
   </div>
 </section>
+</main>
 
 <footer class="footer">
   <div class="container">
     <div class="footer-big">ICE McGOWAN</div>
     <p class="footer-links"><a href="#about">About</a> · <a href="#work">Work</a> · <a href="#podcast">Podcast</a> · <a href="#live">Live</a> · <a href="#connect">Contact</a></p>
     <p class="concept-note">Independent design concept by Awe Concepts. Not affiliated with, authorized by, or endorsed by Ice McGowan. Find him on <a href="https://www.instagram.com/ice.mcgowan/" target="_blank" rel="noopener">Instagram</a>.</p>
-    <p class="credit">Designed by <strong>Awe Concepts</strong></p>
+    <p class="credit">Designed by <a href="https://aweconcepts.com/" target="_blank" rel="noopener"><strong>Awe Concepts</strong></a></p>
   </div>
 </footer>
 
-<script src="./site.js"></script>
+<script src="./site.js?v=creator-media-20261112"></script>
 </body>
 </html>
