@@ -1,32 +1,137 @@
 {
   "creator": "Joshy Gonz",
-  "url": "https://joshygonz.com/music",
+  "source": "https://www.joshygonz.com/music",
+  "reelSource": "https://www.joshygonz.com/reel",
+  "visualsSource": "https://www.joshygonz.com/visuals",
   "gallery": [
     {
-      "title": "Artist portraits",
-      "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550523044681-6PA458167UE1DN9XJLDR/sza-portfolio.png"
+      "id": "kod",
+      "title": "KOD — Staples Center",
+      "kind": "Live performance",
+      "photos": [
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541881039478-54354I03JNJ91ULAS4FO/KOD_Staples01-70.jpg",
+          "caption": "Staples Center — frame 01",
+          "detail": "KOD, Staples Center"
+        },
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550521265488-NYFP83IKE4WA2C817FDN/KOD_Staples01-52.jpg",
+          "caption": "Staples Center — frame 02",
+          "detail": "KOD, Staples Center"
+        },
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541881071276-PVHN5HG63YV26K6UVPWM/KOD_Staples01-37.jpg",
+          "caption": "Staples Center — frame 03",
+          "detail": "KOD, Staples Center"
+        }
+      ]
     },
     {
-      "title": "Live shows",
-      "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541881039478-54354I03JNJ91ULAS4FO/KOD_Staples01-70.jpg"
+      "id": "wireless",
+      "title": "Wireless — Bas × Cole",
+      "kind": "Festival photography",
+      "photos": [
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541473675552-WPDLTJCGTFXV4JLJELWU/Wireless_BasxCole_18+%2884+of+106%29.jpg",
+          "caption": "Wireless — frame 01",
+          "detail": "Wireless, Bas x Cole"
+        },
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541880680889-LTL0H47I359N01AC6CX5/Wireless_BasxCole_18+%2892+of+106%29.jpg",
+          "caption": "Wireless — frame 02",
+          "detail": "Wireless, Bas x Cole"
+        }
+      ]
     },
     {
-      "title": "Editorial",
-      "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550521089333-9XJKNWYM3X124DXVJXSM/xvr-novo-01.18.19-17.jpg"
+      "id": "bas",
+      "title": "Bas — Live Sessions",
+      "kind": "Concert photography",
+      "photos": [
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541880622432-4HQ35GLQ0VRCEWKQCYHV/bas-pharcyde-12.jpg",
+          "caption": "Bas — live frame 01",
+          "detail": "Bas / Pharcyde"
+        },
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550520895225-HVK9KIRYWZ1J5JUKSK56/bas-observatory-117.jpg",
+          "caption": "Bas — live frame 02",
+          "detail": "Bas at the Observatory"
+        }
+      ]
     },
     {
-      "title": "Concert photography",
-      "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541880680889-LTL0H47I359N01AC6CX5/Wireless_BasxCole_18+%2892+of+106%29.jpg"
+      "id": "rolling",
+      "title": "Rolling Loud",
+      "kind": "Festival photography",
+      "photos": [
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550522981459-9E4TDX6OKI4E1PRNUWWF/RollingLoud12.14.18-5.jpg",
+          "caption": "Rolling Loud — frame 01",
+          "detail": "Rolling Loud"
+        }
+      ]
     },
     {
-      "title": "Backstage moments",
-      "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541880622432-4HQ35GLQ0VRCEWKQCYHV/bas-pharcyde-12.jpg"
+      "id": "novo",
+      "title": "XVR — Novo",
+      "kind": "Live performance",
+      "photos": [
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550521089333-9XJKNWYM3X124DXVJXSM/xvr-novo-01.18.19-17.jpg",
+          "caption": "Novo — frame 01",
+          "detail": "XVR / Novo"
+        }
+      ]
     },
     {
-      "title": "Festival energy",
-      "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550522981459-9E4TDX6OKI4E1PRNUWWF/RollingLoud12.14.18-5.jpg"
+      "id": "portrait",
+      "title": "Artist Portraits",
+      "kind": "Photography projects",
+      "photos": [
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550523044681-6PA458167UE1DN9XJLDR/sza-portfolio.png",
+          "caption": "SZA — portrait",
+          "detail": "SZA portfolio"
+        },
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550523256626-SNO3CV93BMN4C8AFGA3W/uzi.jpg",
+          "caption": "Uzi — portrait",
+          "detail": "Uzi portrait"
+        },
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550524368922-QU2VGX5JQ0ANZL9F4U21/Armani+%2815+of+15%29.jpg",
+          "caption": "Armani — portrait",
+          "detail": "Armani portrait"
+        }
+      ]
+    },
+    {
+      "id": "more",
+      "title": "Other Live Frames",
+      "kind": "Selected photography",
+      "photos": [
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541880900042-IUB9AUZTLL52HKOKKGB6/_DSC2056.jpg",
+          "caption": "Live frame 01",
+          "detail": "Selected live photography"
+        },
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541881787935-86OSGOBOOIG7LEJMOBWV/_DSC2790.jpg",
+          "caption": "Live frame 02",
+          "detail": "Selected live photography"
+        },
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550618324041-X1C24XSZCG6KBEG3I6SO/prob_nickgrant-1.jpg",
+          "caption": "Nick Grant — visual",
+          "detail": "Nick Grant project still"
+        }
+      ]
     }
   ],
-  "hero": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541473675552-WPDLTJCGTFXV4JLJELWU/Wireless_BasxCole_18+%2884+of+106%29.jpg",
-  "about": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550521265488-NYFP83IKE4WA2C817FDN/KOD_Staples01-52.jpg"
+  "podcast": {
+    "name": "Here's The Thing",
+    "youtube": "https://www.youtube.com/channel/UCKK0K-LoIJ_sS4C4GU5TWsQ",
+    "apple": "https://podcasts.apple.com/gb/podcast/heres-the-thing/id1446527874"
+  }
 }
