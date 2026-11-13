@@ -268,14 +268,24 @@ a{color:inherit;text-decoration:none}
 .credit{margin-top:12px;color:var(--ink-soft);font-size:14px}
 .credit strong{color:var(--pink);font-weight:800}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(30px);transition:.7s}
+/* REVEAL — signature "paste-on" settle: pieces drop in with an overshoot,
+   like being slapped onto the collage, then settle into their tilt. */
+.reveal{opacity:0;transform:translateY(36px) rotate(-3.5deg) scale(.95);
+  transition:transform .6s cubic-bezier(.34,1.56,.64,1),opacity .45s ease}
 .reveal.visible{opacity:1;transform:none}
-/* keep tilt after reveal for tilted cards */
-.reveal.tilt-l{transform:translateY(30px) rotate(-1.6deg)}
-.reveal.tilt-r{transform:translateY(30px) rotate(1.8deg)}
+/* keep tilt after reveal for tilted cards, exaggerate the incoming angle */
+.reveal.tilt-l{transform:translateY(36px) rotate(-7deg) scale(.95)}
+.reveal.tilt-r{transform:translateY(36px) rotate(8deg) scale(.95)}
 .reveal.tilt-l.visible{transform:rotate(-1.6deg)}
 .reveal.tilt-r.visible{transform:rotate(1.8deg)}
+
+/* sticker dog-ear peel on the connect cards */
+.so-card{position:relative}
+.so-card::after{content:"";position:absolute;top:0;right:0;width:0;height:0;
+  border-style:solid;border-width:0 0 20px 20px;
+  border-color:transparent transparent rgba(20,16,24,.28) transparent;
+  opacity:0;transition:opacity .2s,border-width .2s}
+.so-card:hover::after{opacity:1;border-width:0 0 26px 26px}
 
 /* RESPONSIVE */
 @media(max-width:980px){

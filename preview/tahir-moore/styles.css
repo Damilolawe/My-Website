@@ -1,8 +1,8 @@
 /* Tahir Moore — centered link-hub concept (elevated link-in-bio) */
 :root{
-  --bg:#0a0a0c;
-  --panel:#121216;
-  --panel-2:#17171d;
+  --bg:#070b06;
+  --panel:#0f150d;
+  --panel-2:#141b11;
   --lime:#c6f135;
   --lime-dim:#9bc021;
   --magenta:#ff2e93;
@@ -57,7 +57,7 @@ a{color:inherit;text-decoration:none}
 .profile-name .line{display:inline-block}
 .profile-name .glow{color:var(--lime);text-shadow:0 0 22px rgba(198,241,53,.55),0 0 2px rgba(198,241,53,.8);animation:flicker 5.5s infinite}
 @keyframes flicker{0%,18%,22%,25%,53%,57%,100%{opacity:1}20%,24%,55%{opacity:.72}}
-.profile-roles{font-family:var(--display);font-weight:700;font-size:clamp(16px,4.6vw,22px);height:1.4em;overflow:hidden;margin-top:12px}
+.profile-roles{font-family:var(--display);font-weight:700;font-size:clamp(15px,4vw,20px);color:var(--magenta);margin-top:12px;letter-spacing:.5px}
 .rotator{display:inline-flex;flex-direction:column;animation:roll 9s steps(1) infinite}
 .rotator b{height:1.4em;line-height:1.4em;color:var(--magenta)}
 @keyframes roll{0%,22%{transform:translateY(0)}25%,47%{transform:translateY(-1.4em)}50%,72%{transform:translateY(-2.8em)}75%,97%{transform:translateY(-4.2em)}100%{transform:translateY(0)}}
@@ -88,9 +88,14 @@ a{color:inherit;text-decoration:none}
 .embed-frame{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 16px 44px rgba(0,0,0,.5)}
 .embed-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
-/* LINK ROWS */
-.lrow{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:16px;background:var(--panel);border:1px solid var(--line);transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
-.lrow:hover{transform:translateY(-3px);border-color:var(--lime);background:var(--panel-2);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+/* LINK ROWS — magnetic: the row leans toward the cursor and a lime light
+   tracks the pointer (see site.js setting --mx/--my and the inline transform). */
+.lrow{position:relative;overflow:hidden;--mx:50%;--my:50%;display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:16px;background:var(--panel);border:1px solid var(--line);transition:transform .35s cubic-bezier(.22,.9,.3,1),border-color .2s,background .2s,box-shadow .2s}
+.lrow::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;z-index:0;
+  background:radial-gradient(150px circle at var(--mx) var(--my),rgba(198,241,53,.18),transparent 62%);transition:opacity .25s}
+.lrow>*{position:relative;z-index:1}
+.lrow:hover{border-color:var(--lime);background:var(--panel-2);box-shadow:0 16px 40px rgba(0,0,0,.45)}
+.lrow:hover::before{opacity:1}
 .lrow-ic{flex:0 0 auto;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:rgba(198,241,53,.1);color:var(--lime);transition:.2s}
 .lrow:hover .lrow-ic{background:var(--lime);color:#0a0a0c}
 .lrow-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}

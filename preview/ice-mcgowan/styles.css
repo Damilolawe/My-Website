@@ -218,8 +218,14 @@ a{color:inherit;text-decoration:none}
 .credit strong{color:var(--orange)}
 
 /* ---------- reveal ---------- */
-.reveal{opacity:0;transform:translateY(30px);transition:.7s}
+.reveal{opacity:0;transform:translateY(26px) scale(.97);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .45s ease}
 .reveal.visible{opacity:1;transform:none}
+/* signature: panels "stamp" onto the page as you read down — each scales in with
+   a slight overshoot while its hard ink shadow pops out, like a panel being inked. */
+.panel.reveal{opacity:0;box-shadow:0 0 0 var(--ink);transform:translateY(26px) scale(.93);
+  transition:transform .5s cubic-bezier(.34,1.4,.5,1),box-shadow .45s ease .05s,opacity .4s ease}
+.panel.reveal.visible{opacity:1;box-shadow:var(--off) var(--off) 0 var(--ink);transform:none}
 
 /* ---------- responsive ---------- */
 @media(max-width:1024px){

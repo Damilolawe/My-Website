@@ -3,225 +3,172 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KevOnStage — Comedian · Creator · Mogul</title>
-<meta name="description" content="Kevin 'KevOnStage' Fredericks — comedian, actor, director, filmmaker and content creator. Tour, specials, KevOnStage Studios, podcast, shop and booking." />
+<meta name="robots" content="noindex,nofollow">
+<title>KevOnStage — Comedy Network</title>
+<meta name="description" content="Kevin 'KevOnStage' Fredericks — comedian, actor, director and creator. One home for the tour, the shows, KevOnStage Studios, the podcast, merch and booking." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-<!-- APP NAV -->
+<div class="playhead" aria-hidden="true"><span id="playheadFill"></span></div>
+
 <nav id="nav">
   <a href="#top" class="brand" aria-label="KevOnStage home">
-    <span class="brand-mark">KOS</span>
+    <span class="brand-mark" aria-hidden="true">KOS</span>
     <span class="brand-word">KevOnStage</span>
   </a>
   <button id="navToggle" class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <div id="navLinks" class="nav-links">
-    <a href="#tour">Tour</a>
     <a href="#watch">Watch</a>
+    <a href="#tour">Live</a>
     <a href="#studios">Studios</a>
     <a href="#shop">Shop</a>
     <a href="#booking" class="nav-cta">Book Kev</a>
   </div>
 </nav>
 
-<!-- FEATURED BILLBOARD HERO -->
-<header id="top" class="billboard">
-  <div class="bb-bg" aria-hidden="true"></div>
-  <div class="container bb-inner">
-    <div class="bb-video">
-      <p class="embed-cap">
-        <span class="live-dot" aria-hidden="true"></span>
-        Latest on YouTube
-      </p>
-      <div class="embed-frame"><iframe src="https://www.youtube-nocookie.com/embed/QvMFdQ2ZJ3A" title="KevOnStage on YouTube" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-    </div>
-    <div class="bb-meta">
-      <p class="eyebrow">Kevin Fredericks presents</p>
-      <h1 class="bb-title">KEV<span>ON</span>STAGE</h1>
-      <div class="roles">
-        <span class="roles-static">I am an</span>
-        <span class="roles-rotator"><span class="roles-track">
-          <b>Actor.</b><b>Comedian.</b><b>Speaker.</b><b>Director.</b><b>Filmmaker.</b><b>Creator.</b><b>Mogul.</b>
-        </span></span>
-      </div>
-      <p class="hero-sub">One of the internet's most beloved comedians — turning millions of laughs into live tours, a studio, a streaming app and a full-blown comedy empire.</p>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="#tour">
-          <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-.14em;display:inline-block"><path d="M8 5v14l11-7z"/></svg>
-          See Tour Dates
+<header id="top" class="stage">
+  <div class="stage-grid container">
+    <div class="stage-copy">
+      <p class="now">On the network now</p>
+      <h1 class="wordmark" aria-label="KevOnStage">
+        <span class="wm-line"><span>K</span><span>E</span><span>V</span></span>
+        <span class="wm-line alt"><span>O</span><span>N</span></span>
+        <span class="wm-line"><span>S</span><span>T</span><span>A</span><span>G</span><span>E</span></span>
+      </h1>
+      <p class="stage-sub">One of the internet's most beloved comedians — the live tour, the shows, the studio and the podcast, all in one place.</p>
+      <div class="stage-cta">
+        <a class="btn btn-primary" href="#watch">
+          <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg>
+          Start Watching
         </a>
-        <a class="btn btn-ghost" href="#watch">Watch Specials</a>
+        <a class="btn btn-ghost" href="#tour">Tour Dates</a>
       </div>
     </div>
+    <figure class="stage-screen">
+      <div class="screen-bar"><span class="tally" aria-hidden="true"></span>Latest on YouTube</div>
+      <div class="screen-frame">
+        <div class="scanline" aria-hidden="true"></div>
+        <iframe src="https://www.youtube-nocookie.com/embed/QvMFdQ2ZJ3A" title="KevOnStage on YouTube" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </figure>
   </div>
 </header>
 
-<!-- PROFILE / ABOUT PANEL -->
-<section id="about" class="about">
-  <div class="container about-grid">
-    <div class="about-head">
-      <span class="kicker">01 — Who</span>
-      <h2>Kevin<br>Fredericks</h2>
-      <figure class="about-portrait">
-        <img src="assets/portrait.webp" alt="KevOnStage portrait" width="1400" height="1400" loading="lazy" decoding="async" />
-      </figure>
-      <div class="about-tags">
-        <span>Actor</span><span>Comedian</span><span>Speaker</span><span>Director</span><span>Filmmaker</span><span>Content Creator</span><span>Influencer</span>
-      </div>
-    </div>
-    <div class="about-body">
-      <p>KevOnStage built his name making the internet laugh — then built an entire business around it. From sold-out theaters and comedy clubs to a streaming app of his own, he's part comedian, part entrepreneur, part full-service comedy flywheel.</p>
-      <p>He headlined <strong>Bald Brother</strong> alongside Tony Baker (now streaming on Tubi), hosts the <strong>Here's The Thing</strong> podcast, teaches creators through his <strong>Masterclass</strong>, and runs <strong>KevOnStage Studios</strong> — a home for his own shows and a new generation of talent.</p>
-      <div class="stat-row">
-        <div class="stat"><b>M+</b><span>Followers across platforms</span></div>
-        <div class="stat"><b>7</b><span>Creative hats, worn daily</span></div>
-        <div class="stat"><b>1</b><span>Comedy empire &amp; counting</span></div>
-      </div>
+<div class="ribbon" aria-hidden="true">
+  <div class="ribbon-track">
+    <div class="ribbon-unit"><span>Bald Brother</span><i></i><span>Here's The Thing</span><i></i><span>Grief Sucks Tour</span><i></i><span>KevOnStage Studios</span><i></i><span>Masterclass</span><i></i><span>Cameo</span><i></i></div>
+    <div class="ribbon-unit"><span>Bald Brother</span><i></i><span>Here's The Thing</span><i></i><span>Grief Sucks Tour</span><i></i><span>KevOnStage Studios</span><i></i><span>Masterclass</span><i></i><span>Cameo</span><i></i></div>
+  </div>
+</div>
+
+<main>
+<section id="about" class="profile">
+  <div class="container profile-grid">
+    <figure class="profile-portrait">
+      <img src="assets/portrait.webp" alt="KevOnStage portrait" width="1400" height="1400" loading="lazy" decoding="async" />
+      <figcaption>Kevin Fredericks</figcaption>
+    </figure>
+    <div class="profile-body">
+      <span class="kicker">The short version</span>
+      <h2 class="h-serif">Built a career making the internet laugh — then built a business around it.</h2>
+      <p>From sold-out theaters and comedy clubs to a streaming app of his own, KevOnStage is part comedian, part entrepreneur, part full-service comedy flywheel.</p>
+      <p>He headlined <strong>Bald Brother</strong> with Tony Baker (now streaming on Tubi), hosts the <strong>Here's The Thing</strong> podcast, teaches creators through his <strong>Masterclass</strong>, and runs <strong>KevOnStage Studios</strong> — a home for his own shows and a new generation of talent.</p>
+      <ul class="role-list">
+        <li>Comedian</li><li>Actor</li><li>Director</li><li>Filmmaker</li><li>Speaker</li><li>Creator</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- TOUR SPOTLIGHT + DATE ROW -->
+<section id="watch" class="rail-section">
+  <div class="container rail-head">
+    <h2 class="rail-title">Watch &amp; Listen</h2>
+    <p class="rail-lead">Specials, shows and a personal shout-out or two.</p>
+  </div>
+  <div class="rail" data-row>
+    <button class="rail-ctrl prev" type="button" aria-label="Scroll left" data-dir="-1">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <div class="rail-track" data-track>
+      <a class="tile" href="https://tubitv.com/series/300018840/bald-brother-comedy" target="_blank" rel="noopener">
+        <div class="tile-poster p-1" aria-hidden="true"><span class="tile-kicker">Streaming · Tubi</span><span class="tile-name">Bald Brother</span></div>
+        <div class="tile-meta"><h3>Bald Brother</h3><p>The freestyle comedy show with Tony Baker — sold-out theaters, now streaming free.</p><span class="tile-go">Watch now</span></div>
+      </a>
+      <a class="tile" href="#booking">
+        <div class="tile-poster p-2" aria-hidden="true"><span class="tile-kicker">Podcast</span><span class="tile-name">Here's The Thing</span></div>
+        <div class="tile-meta"><h3>Here's The Thing</h3><p>Kev's take on everything — pop culture, church, marriage and the internet.</p><span class="tile-go">Listen</span></div>
+      </a>
+      <a class="tile" href="https://www.cameo.com/kevonstage" target="_blank" rel="noopener">
+        <div class="tile-poster p-3" aria-hidden="true"><span class="tile-kicker">Personal</span><span class="tile-name">Cameo</span></div>
+        <div class="tile-meta"><h3>Cameo</h3><p>Book a personalized video for a birthday, a roast, or just a laugh.</p><span class="tile-go">Get a Cameo</span></div>
+      </a>
+      <a class="tile" href="https://www.youtube.com/kevonstage" target="_blank" rel="noopener">
+        <div class="tile-poster p-4" aria-hidden="true"><span class="tile-kicker">YouTube</span><span class="tile-name">The Channel</span></div>
+        <div class="tile-meta"><h3>On YouTube</h3><p>New uploads every week — reactions, sketches and the comedy that started it all.</p><span class="tile-go">Subscribe</span></div>
+      </a>
+    </div>
+    <button class="rail-ctrl next" type="button" aria-label="Scroll right" data-dir="1">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</section>
+
 <section id="tour" class="tour">
-  <div class="container">
-    <div class="row-head">
-      <div>
-        <span class="kicker light">02 — Live</span>
-        <h2 class="section-title">Grief Sucks <span>Tour</span></h2>
-        <p class="section-lead">A brand-new one-man show. Real talk, real laughs, live on stage.</p>
+  <div class="container tour-inner">
+    <figure class="tour-poster">
+      <img src="assets/tour-poster.webp" alt="Grief Sucks tour poster — KevOnStage one man show" width="1000" height="1500" loading="lazy" decoding="async" />
+    </figure>
+    <div class="tour-copy">
+      <span class="kicker live">Now touring</span>
+      <h2 class="h-display">Grief Sucks<span class="thin">A one-man show</span></h2>
+      <p>Kev's most personal hour yet — finding the funny in the hardest parts of life. Real talk, real laughs, live on stage in a city near you.</p>
+      <a class="btn btn-primary" href="https://linktr.ee/GriefSucks" target="_blank" rel="noopener">Get Tickets &amp; Dates</a>
+      <div class="tour-notes">
+        <div><b>The Love Hour</b><span>Live podcast &amp; conference events</span></div>
+        <div><b>Private &amp; Corporate</b><span>Host · Keynote · Headline</span></div>
       </div>
     </div>
-    <div class="tour-feature">
-      <div class="tour-feature-art">
-        <img src="assets/tour-poster.webp" alt="Grief Sucks tour poster — KevOnStage one man show" width="1000" height="1500" loading="lazy" decoding="async" />
-      </div>
-      <div class="tour-feature-body">
-        <span class="spotlight-tag">Now Touring</span>
-        <h3>Grief Sucks: A One Man Show</h3>
-        <p>KevOnStage's most personal hour yet — finding the funny in the hardest parts of life. Catch him in a city near you.</p>
-        <a class="btn btn-primary" href="https://linktr.ee/GriefSucks" target="_blank" rel="noopener">Get Tickets &amp; Dates</a>
-      </div>
-    </div>
-  </div>
-  <div class="row-scroll" data-row>
-    <button class="row-ctrl prev" type="button" aria-label="Scroll left" data-dir="-1">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
-    </button>
-    <ul class="date-list" data-track>
-      <li><span class="dl-when">Live Dates</span><span class="dl-where">Clubs &amp; theaters nationwide</span><a class="dl-cta" href="https://linktr.ee/GriefSucks" target="_blank" rel="noopener">Tickets</a></li>
-      <li><span class="dl-when">The Love Hour</span><span class="dl-where">Live podcast &amp; conference events</span><a class="dl-cta" href="#booking">Info</a></li>
-      <li><span class="dl-when">Private &amp; Corporate</span><span class="dl-where">Host · Keynote · Headline</span><a class="dl-cta" href="#booking">Book</a></li>
-    </ul>
-    <button class="row-ctrl next" type="button" aria-label="Scroll right" data-dir="1">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
-    </button>
   </div>
 </section>
 
-<!-- WATCH & LISTEN ROW -->
-<section id="watch" class="row">
-  <div class="container">
-    <div class="row-head">
-      <div>
-        <span class="kicker">03 — Watch &amp; Listen</span>
-        <h2 class="section-title">Specials &amp; <span>Shows</span></h2>
-      </div>
-    </div>
-  </div>
-  <div class="row-scroll" data-row>
-    <button class="row-ctrl prev" type="button" aria-label="Scroll left" data-dir="-1">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
-    </button>
-    <div class="card-grid" data-track>
-      <a class="media-card" href="https://tubitv.com/series/300018840/bald-brother-comedy" target="_blank" rel="noopener">
-        <div class="mc-poster poster-a" aria-hidden="true"><span>BALD<br>BROTHER</span></div>
-        <div class="mc-body">
-          <div class="mc-badge">Streaming · Tubi</div>
-          <h3>Bald Brother</h3>
-          <p>The freestyle comedy show with Tony Baker — sold out theaters, now streaming free.</p>
-          <span class="mc-link">Watch now <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-      <a class="media-card" href="#booking">
-        <div class="mc-poster poster-b" aria-hidden="true"><span>HERE'S<br>THE THING</span></div>
-        <div class="mc-body">
-          <div class="mc-badge">Podcast</div>
-          <h3>Here's The Thing</h3>
-          <p>KevOnStage's take on everything — pop culture, church, marriage and the internet.</p>
-          <span class="mc-link">Listen <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-      <a class="media-card" href="https://www.cameo.com/kevonstage" target="_blank" rel="noopener">
-        <div class="mc-poster poster-c" aria-hidden="true"><span>CAMEO</span></div>
-        <div class="mc-body">
-          <div class="mc-badge">Personal</div>
-          <h3>Cameo</h3>
-          <p>Book a personalized video for a birthday, a roast or just a laugh.</p>
-          <span class="mc-link">Get a Cameo <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-    </div>
-    <button class="row-ctrl next" type="button" aria-label="Scroll right" data-dir="1">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
-    </button>
-  </div>
-</section>
-
-<!-- STUDIOS: COPY + CARD ROW -->
 <section id="studios" class="studios">
   <div class="container">
-    <div class="studios-copy">
-      <span class="kicker light">04 — The Business</span>
-      <h2 class="section-title">KevOnStage <span>Studios</span></h2>
-      <p class="section-lead">His own streaming home for original shows starring Kev and a crew of standout comedians — plus a Masterclass teaching creators how to build what he built.</p>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="https://www.patreon.com/kevonstagestudios" target="_blank" rel="noopener">Join on Patreon</a>
-        <a class="btn btn-ghost" href="#booking">Masterclass Info</a>
-      </div>
+    <div class="studios-head">
+      <span class="kicker">The business</span>
+      <h2 class="h-display">KevOnStage Studios</h2>
+      <p class="rail-lead">His own streaming home for original shows starring Kev and a crew of standout comedians — plus a Masterclass teaching creators how to build what he built.</p>
     </div>
-  </div>
-  <div class="row-scroll" data-row>
-    <button class="row-ctrl prev" type="button" aria-label="Scroll left" data-dir="-1">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
-    </button>
-    <div class="studios-cards" data-track>
-      <div class="scard"><b>Studios</b><span>Original streaming shows</span></div>
-      <div class="scard"><b>Masterclass</b><span>Build your creator business</span></div>
-      <div class="scard"><b>Patreon</b><span>Exclusive content &amp; community</span></div>
-      <div class="scard"><b>Creator Conf.</b><span>Events for creators</span></div>
+    <div class="studios-grid">
+      <div class="scard"><h3>Studios</h3><p>Original streaming shows and a stage for new talent.</p></div>
+      <div class="scard"><h3>Masterclass</h3><p>How to build a creator business, start to finish.</p></div>
+      <a class="scard linkcard" href="https://www.patreon.com/kevonstagestudios" target="_blank" rel="noopener"><h3>Patreon</h3><p>Exclusive content and the inner-circle community.</p><span class="tile-go">Join</span></a>
+      <div class="scard"><h3>Creator events</h3><p>Conferences and meetups for the next generation.</p></div>
     </div>
-    <button class="row-ctrl next" type="button" aria-label="Scroll right" data-dir="1">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
-    </button>
   </div>
 </section>
 
-<!-- SHOP BAND -->
 <section id="shop" class="shop">
   <div class="container shop-inner">
     <figure class="shop-art">
       <img src="assets/merch.webp" alt="Official KevOnStage merch" width="1400" height="1400" loading="lazy" decoding="async" />
     </figure>
     <div class="shop-copy">
-      <span class="kicker">05 — Merch</span>
-      <h2 class="section-title">The <span>Shop</span></h2>
-      <p class="section-lead">Tees, hoodies and inside jokes you can wear. Official KevOnStage merch.</p>
+      <span class="kicker">Merch</span>
+      <h2 class="h-display">Wear the punchline</h2>
+      <p>Tees, hoodies and inside jokes you can wear. Official KevOnStage gear.</p>
       <a class="btn btn-primary big" href="https://kevonstage.myshopify.com" target="_blank" rel="noopener">Shop Merch</a>
     </div>
   </div>
 </section>
 
-<!-- BOOKING / CONTACT -->
 <section id="booking" class="booking">
   <div class="container booking-inner">
-    <div class="section-head center">
-      <span class="kicker light">06 — Booking</span>
-      <h2 class="section-title">Book <span>KevOnStage</span></h2>
-      <p class="section-lead">Shows, hosting, keynotes, brand partnerships and appearances.</p>
-    </div>
+    <span class="kicker">Booking</span>
+    <h2 class="h-display">Book KevOnStage</h2>
+    <p>Shows, hosting, keynotes, brand partnerships and appearances.</p>
     <div class="social-row">
       <a href="https://www.instagram.com/kevonstage" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.youtube.com/kevonstage" target="_blank" rel="noopener">YouTube</a>
@@ -232,16 +179,16 @@
     <a class="btn btn-primary big" href="https://www.kevonstage.com/" target="_blank" rel="noopener">Official Booking</a>
   </div>
 </section>
+</main>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="container footer-inner">
     <div class="footer-brand">KEVONSTAGE</div>
     <p class="footer-links">
-      <a href="#tour">Tour</a> · <a href="#watch">Watch</a> · <a href="#studios">Studios</a> · <a href="#shop">Shop</a> · <a href="#booking">Booking</a>
+      <a href="#watch">Watch</a> · <a href="#tour">Live</a> · <a href="#studios">Studios</a> · <a href="#shop">Shop</a> · <a href="#booking">Booking</a>
     </p>
     <p class="concept-note">Independent design concept created by Awe Concepts. Not affiliated with, authorized by, or endorsed by KevOnStage. Official site: <a href="https://www.kevonstage.com/" target="_blank" rel="noopener">kevonstage.com</a></p>
-    <p class="credit">Designed by <strong>Awe Concepts</strong></p>
+    <p class="credit">Designed by <a href="https://aweconcepts.com/" target="_blank" rel="noopener"><strong>Awe Concepts</strong></a></p>
   </div>
 </footer>
 

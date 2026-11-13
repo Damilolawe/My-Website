@@ -1,5 +1,6 @@
 // Tahir Moore concept — link-hub interactions
 (function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var nav = document.getElementById('nav');
   var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 40); };
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -23,10 +24,27 @@
     els.forEach(function (el) { io.observe(el); });
   } else { els.forEach(function (el) { el.classList.add('visible'); }); }
 
+  // Signature: magnetic link rows — each row leans toward the cursor and a lime
+  // light tracks the pointer across it.
+  if (!reduce && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    document.querySelectorAll('.lrow').forEach(function (row) {
+      row.addEventListener('pointermove', function (e) {
+        var r = row.getBoundingClientRect();
+        var x = e.clientX - r.left, y = e.clientY - r.top;
+        row.style.setProperty('--mx', x + 'px');
+        row.style.setProperty('--my', y + 'px');
+        var dx = (x / r.width - 0.5) * 12;
+        var dy = (y / r.height - 0.5) * 6 - 3;
+        row.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px)';
+      });
+      row.addEventListener('pointerleave', function () { row.style.transform = ''; });
+    });
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var t = document.querySelector(a.getAttribute('href'));
-      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }
     });
   });
 })();
