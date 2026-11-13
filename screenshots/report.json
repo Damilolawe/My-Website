@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-13T18:46:24.139Z",
+  "generatedAt": "2026-11-13T18:53:42.150Z",
   "mode": "desktop",
   "baseUrl": "https://preview.aweconcepts.com",
-  "testedSites": 30,
+  "testedSites": 32,
   "issues": 1,
   "findings": [
     {
