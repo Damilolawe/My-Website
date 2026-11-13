@@ -12,6 +12,38 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="./styles.css" />
+
+<style id="awe-creator-photo-journal">
+.ac-photo-journal{--ac-gallery-bg:#14141a;--ac-gallery-text:#fff;--ac-gallery-accent:#e3bc8e;background:var(--ac-gallery-bg);color:var(--ac-gallery-text);position:relative;isolation:isolate;padding:clamp(64px,8vw,120px) max(22px,calc((100vw - 1200px)/2));font-family:inherit;overflow:hidden}
+.ac-photo-journal *{box-sizing:border-box}
+.ac-photo-journal .ac-gallery-head{max-width:780px;margin:0 0 clamp(28px,4vw,48px);position:relative;z-index:1}
+.ac-photo-journal .ac-gallery-kicker{display:block;font-size:.71rem;font-weight:750;letter-spacing:.19em;text-transform:uppercase;color:var(--ac-gallery-accent);margin-bottom:16px}
+.ac-photo-journal h2.ac-gallery-title{font-family:inherit;font-weight:800;font-size:clamp(2rem,5.2vw,4.4rem);line-height:1.05;letter-spacing:-.045em;color:inherit;margin:0 0 16px;text-wrap:balance}
+.ac-photo-journal .ac-gallery-subtitle{font-size:clamp(.94rem,1.35vw,1.12rem);line-height:1.65;max-width:590px;color:inherit;opacity:.76;margin:0}
+.ac-photo-journal .ac-photo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,24px);align-items:start}
+.ac-photo-journal .ac-photo-tile{margin:0;min-width:0;position:relative}
+.ac-photo-journal .ac-photo-frame{overflow:hidden;position:relative;background:rgba(128,128,128,.18);border-radius:6px;border:1px solid rgba(128,128,128,.2)}
+.ac-photo-journal .ac-photo-frame img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center;transition:transform .6s ease,filter .6s ease}
+.ac-photo-journal .ac-photo-tile:nth-child(2) .ac-photo-frame img{aspect-ratio:3/4}
+.ac-photo-journal .ac-photo-tile[data-fit="contain"] img{object-fit:contain;padding:9px}
+.ac-photo-journal .ac-photo-tile:hover img{transform:scale(1.035)}
+.ac-photo-journal figcaption{padding:15px 2px 0;display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:.86rem}
+.ac-photo-journal figcaption strong{font-size:clamp(.9rem,1.3vw,1.05rem);font-weight:700;color:inherit}
+.ac-photo-journal figcaption span{color:inherit;opacity:.58;font-size:.72rem;white-space:nowrap}
+.ac-photo-journal .ac-photo-tile:nth-child(2){margin-top:clamp(0px,3.3vw,50px)}
+.ac-photo-journal--kevonstage{--ac-gallery-bg:#1b1918;--ac-gallery-text:#fff5e9;--ac-gallery-accent:#dfae7c}
+.ac-photo-journal--tony{--ac-gallery-bg:#f0ece5;--ac-gallery-text:#17231f;--ac-gallery-accent:#b33b2f}
+.ac-photo-journal--keenan{--ac-gallery-bg:#25193d;--ac-gallery-text:#fff7fb;--ac-gallery-accent:#dda9ff}
+.ac-photo-journal--tahir{--ac-gallery-bg:#101a29;--ac-gallery-text:#eaf6ff;--ac-gallery-accent:#6bc9ed}
+.ac-photo-journal--roxxy{--ac-gallery-bg:#f6d4dc;--ac-gallery-text:#35182b;--ac-gallery-accent:#a51b67}
+.ac-photo-journal--ice{--ac-gallery-bg:#11151e;--ac-gallery-text:#f1f4fa;--ac-gallery-accent:#8ce1f0}
+.ac-photo-journal--roxxy .ac-photo-frame{border-radius:22px 22px 5px 5px}
+.ac-photo-journal--tony .ac-photo-frame{border-radius:2px}
+.ac-photo-journal--ice .ac-photo-frame{border-radius:0;clip-path:polygon(0 0,100% 0,100% 96%,96% 100%,0 100%)}
+@media(max-width:760px){.ac-photo-journal{padding:62px 20px}.ac-photo-journal .ac-photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.ac-photo-journal .ac-photo-tile:nth-child(2){margin-top:22px}.ac-photo-journal .ac-photo-tile:last-child{grid-column:1 / -1;max-width:75%;margin:0 auto}.ac-photo-journal figcaption{flex-wrap:wrap}}
+@media(max-width:420px){.ac-photo-journal .ac-photo-grid{grid-template-columns:1fr}.ac-photo-journal .ac-photo-tile,.ac-photo-journal .ac-photo-tile:last-child{grid-column:1;max-width:100%;margin:0}.ac-photo-journal .ac-photo-frame img,.ac-photo-journal .ac-photo-tile:nth-child(2) .ac-photo-frame img{aspect-ratio:4/3;object-position:center 27%}.ac-photo-journal .ac-photo-tile[data-fit="contain"] img{object-fit:contain}.ac-photo-journal .ac-photo-grid{gap:26px}}
+@media(prefers-reduced-motion:reduce){.ac-photo-journal .ac-photo-frame img{transition:none}.ac-photo-journal .ac-photo-tile:hover img{transform:none}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
@@ -82,6 +114,11 @@
 </section>
 
 <section id="videos" class="media-section"><div class="container"><p class="kicker">Selected videos</p><h2 class="media-heading">Straight from the stage.</h2><p class="media-intro">Stand-up and a look at the work behind the punchlines.</p><div class="watch-grid"><article class="watch-card"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/PjFxAxn5uek?rel=0" title="Women Love Married Men" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="watch-copy"><h3>Women Love Married Men</h3><p>Keenan Baker’s stand-up clip, featured on his official website.</p><a href="https://www.youtube.com/watch?v=PjFxAxn5uek" target="_blank" rel="noopener">Watch on YouTube</a></div></article><article class="watch-card"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/oOeqnlm4G9E?rel=0" title="Before The Punchline: Episode 1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="watch-copy"><h3>Before The Punchline: Episode 1</h3><p>An extended episode following Keenan’s comedy journey.</p><a href="https://www.youtube.com/watch?v=oOeqnlm4G9E" target="_blank" rel="noopener">Watch on YouTube</a></div></article></div></div></section>
+
+
+<section class="ac-photo-journal ac-photo-journal--keenan" aria-label="KEENAN BAKER / SNAPSHOTS"><div class="ac-gallery-head"><span class="ac-gallery-kicker">KEENAN BAKER / SNAPSHOTS</span><h2 class="ac-gallery-title">The face behind the stories.</h2><p class="ac-gallery-subtitle">Comedian, actor and storyteller — on the stage and in the frame.</p></div><div class="ac-photo-grid"><figure class="ac-photo-tile"><div class="ac-photo-frame"><img src="https://static.wixstatic.com/media/9290fc_54ad4b93b3f741d8b3a7153b320c06c2~mv2.jpg" alt="Keenan Baker raising an eyebrow against a colorful graffiti wall" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/editorial.webp'"></div><figcaption><strong>Unfiltered Keenan</strong><span>Portrait</span></figcaption></figure>
+<figure class="ac-photo-tile"><div class="ac-photo-frame"><img src="https://pbs.twimg.com/profile_images/1539157475718406144/hLQ94xTg_400x400.jpg" alt="Keenan Baker in a purple baseball cap against a red background" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/stage.webp'"></div><figcaption><strong>Off the stage</strong><span>Portrait</span></figcaption></figure>
+<figure class="ac-photo-tile"><div class="ac-photo-frame"><img src="assets/stage.webp" alt="Keenan Baker performing comedy on stage" loading="lazy" decoding="async"></div><figcaption><strong>At the mic</strong><span>Stand-up</span></figcaption></figure></div></section>
 
 <section id="press" class="press">
   <div class="container">

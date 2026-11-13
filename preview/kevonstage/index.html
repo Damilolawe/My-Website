@@ -10,6 +10,38 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="./styles.css" />
+
+<style id="awe-creator-photo-journal">
+.ac-photo-journal{--ac-gallery-bg:#14141a;--ac-gallery-text:#fff;--ac-gallery-accent:#e3bc8e;background:var(--ac-gallery-bg);color:var(--ac-gallery-text);position:relative;isolation:isolate;padding:clamp(64px,8vw,120px) max(22px,calc((100vw - 1200px)/2));font-family:inherit;overflow:hidden}
+.ac-photo-journal *{box-sizing:border-box}
+.ac-photo-journal .ac-gallery-head{max-width:780px;margin:0 0 clamp(28px,4vw,48px);position:relative;z-index:1}
+.ac-photo-journal .ac-gallery-kicker{display:block;font-size:.71rem;font-weight:750;letter-spacing:.19em;text-transform:uppercase;color:var(--ac-gallery-accent);margin-bottom:16px}
+.ac-photo-journal h2.ac-gallery-title{font-family:inherit;font-weight:800;font-size:clamp(2rem,5.2vw,4.4rem);line-height:1.05;letter-spacing:-.045em;color:inherit;margin:0 0 16px;text-wrap:balance}
+.ac-photo-journal .ac-gallery-subtitle{font-size:clamp(.94rem,1.35vw,1.12rem);line-height:1.65;max-width:590px;color:inherit;opacity:.76;margin:0}
+.ac-photo-journal .ac-photo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,24px);align-items:start}
+.ac-photo-journal .ac-photo-tile{margin:0;min-width:0;position:relative}
+.ac-photo-journal .ac-photo-frame{overflow:hidden;position:relative;background:rgba(128,128,128,.18);border-radius:6px;border:1px solid rgba(128,128,128,.2)}
+.ac-photo-journal .ac-photo-frame img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center;transition:transform .6s ease,filter .6s ease}
+.ac-photo-journal .ac-photo-tile:nth-child(2) .ac-photo-frame img{aspect-ratio:3/4}
+.ac-photo-journal .ac-photo-tile[data-fit="contain"] img{object-fit:contain;padding:9px}
+.ac-photo-journal .ac-photo-tile:hover img{transform:scale(1.035)}
+.ac-photo-journal figcaption{padding:15px 2px 0;display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:.86rem}
+.ac-photo-journal figcaption strong{font-size:clamp(.9rem,1.3vw,1.05rem);font-weight:700;color:inherit}
+.ac-photo-journal figcaption span{color:inherit;opacity:.58;font-size:.72rem;white-space:nowrap}
+.ac-photo-journal .ac-photo-tile:nth-child(2){margin-top:clamp(0px,3.3vw,50px)}
+.ac-photo-journal--kevonstage{--ac-gallery-bg:#1b1918;--ac-gallery-text:#fff5e9;--ac-gallery-accent:#dfae7c}
+.ac-photo-journal--tony{--ac-gallery-bg:#f0ece5;--ac-gallery-text:#17231f;--ac-gallery-accent:#b33b2f}
+.ac-photo-journal--keenan{--ac-gallery-bg:#25193d;--ac-gallery-text:#fff7fb;--ac-gallery-accent:#dda9ff}
+.ac-photo-journal--tahir{--ac-gallery-bg:#101a29;--ac-gallery-text:#eaf6ff;--ac-gallery-accent:#6bc9ed}
+.ac-photo-journal--roxxy{--ac-gallery-bg:#f6d4dc;--ac-gallery-text:#35182b;--ac-gallery-accent:#a51b67}
+.ac-photo-journal--ice{--ac-gallery-bg:#11151e;--ac-gallery-text:#f1f4fa;--ac-gallery-accent:#8ce1f0}
+.ac-photo-journal--roxxy .ac-photo-frame{border-radius:22px 22px 5px 5px}
+.ac-photo-journal--tony .ac-photo-frame{border-radius:2px}
+.ac-photo-journal--ice .ac-photo-frame{border-radius:0;clip-path:polygon(0 0,100% 0,100% 96%,96% 100%,0 100%)}
+@media(max-width:760px){.ac-photo-journal{padding:62px 20px}.ac-photo-journal .ac-photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.ac-photo-journal .ac-photo-tile:nth-child(2){margin-top:22px}.ac-photo-journal .ac-photo-tile:last-child{grid-column:1 / -1;max-width:75%;margin:0 auto}.ac-photo-journal figcaption{flex-wrap:wrap}}
+@media(max-width:420px){.ac-photo-journal .ac-photo-grid{grid-template-columns:1fr}.ac-photo-journal .ac-photo-tile,.ac-photo-journal .ac-photo-tile:last-child{grid-column:1;max-width:100%;margin:0}.ac-photo-journal .ac-photo-frame img,.ac-photo-journal .ac-photo-tile:nth-child(2) .ac-photo-frame img{aspect-ratio:4/3;object-position:center 27%}.ac-photo-journal .ac-photo-tile[data-fit="contain"] img{object-fit:contain}.ac-photo-journal .ac-photo-grid{gap:26px}}
+@media(prefers-reduced-motion:reduce){.ac-photo-journal .ac-photo-frame img{transition:none}.ac-photo-journal .ac-photo-tile:hover img{transform:none}}
+</style>
 </head>
 <body>
 <div class="playhead" aria-hidden="true"><span id="playheadFill"></span></div>
@@ -115,6 +147,11 @@
     </button>
   </div>
 </section>
+
+
+<section class="ac-photo-journal ac-photo-journal--kevonstage" aria-label="KEVONSTAGE / IN FOCUS"><div class="ac-gallery-head"><span class="ac-gallery-kicker">KEVONSTAGE / IN FOCUS</span><h2 class="ac-gallery-title">More than the mic.</h2><p class="ac-gallery-subtitle">Stand-up, storytelling and the creative world behind KevOnStage.</p></div><div class="ac-photo-grid"><figure class="ac-photo-tile"><div class="ac-photo-frame"><img src="https://i.ticketweb.com/i/00/07/90/28/31/Original.jpg?v=2" alt="KevOnStage smiling in a black jacket in a promotional portrait" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/portrait.webp'"></div><figcaption><strong>The comedian</strong><span>Portrait</span></figcaption></figure>
+<figure class="ac-photo-tile"><div class="ac-photo-frame"><img src="https://prodimage.images-bn.com/pimages/9780593735671_p4_v5_s600x595.jpg" alt="Kevin Fredericks in a tuxedo holding a small award on promotional art for Successful Failure" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/tour-poster.webp'"></div><figcaption><strong>Successful Failure</strong><span>The book</span></figcaption></figure>
+<figure class="ac-photo-tile"><div class="ac-photo-frame"><img src="assets/tour-poster.webp" alt="Grief Sucks one-man-show promotional poster featuring KevOnStage" loading="lazy" decoding="async"></div><figcaption><strong>Grief Sucks</strong><span>The one-man show</span></figcaption></figure></div></section>
 
 <section id="tour" class="tour">
   <div class="container tour-inner">
