@@ -30,11 +30,17 @@ test("allowlist is well-formed with unique, valid slugs and display names", asyn
   }
 });
 
+// casa-lalo is a recovered standalone concept committed at the repo root
+// (served at /casa-lalo/ and copied into the branded host from there), not
+// under preview/. Resolve its source accordingly.
+const ROOT_SOURCED = new Set(["casa-lalo"]);
+
 test("every active allowlist slug has a real source directory (no phantom publishes)", async () => {
   const a = await loadAllowlist();
   for (const e of a.active) {
-    const s = await stat("preview/" + e.slug).catch(() => null);
-    assert.ok(s && s.isDirectory(), "active slug has no preview/ source: " + e.slug);
+    const dir = ROOT_SOURCED.has(e.slug) ? e.slug : "preview/" + e.slug;
+    const s = await stat(dir).catch(() => null);
+    assert.ok(s && s.isDirectory(), "active slug has no source directory: " + e.slug + " (" + dir + ")");
   }
 });
 
