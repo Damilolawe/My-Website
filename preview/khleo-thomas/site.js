@@ -33,3 +33,6 @@
     });
   });
 })();
+
+// Use dedicated local cover artwork if any external official image is unavailable.
+(function(){function wire(){document.querySelectorAll('img[data-fallback]').forEach(function(img){function recover(){var src=img.getAttribute('data-fallback');if(!src)return;img.removeAttribute('data-fallback');img.alt='Khleo Thomas media artwork';img.src=src;}img.addEventListener('error',recover,{once:true});if(img.complete&&img.naturalWidth===0)recover();});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wire,{once:true});else wire();})();
