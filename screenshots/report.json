@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-13T21:21:05.483Z",
+  "generatedAt": "2026-11-13T21:52:50.779Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 32,
-  "issues": 27,
+  "issues": 21,
   "findings": [
     {
       "site": "fat-boy-finesse",
@@ -150,42 +150,6 @@
         "a",
         "a.nav-cta"
       ]
-    },
-    {
-      "site": "joshy-gonz",
-      "viewport": "pixel-7",
-      "type": "visual",
-      "message": "clipped text: button Wireless — Bas × Cole"
-    },
-    {
-      "site": "joshy-gonz",
-      "viewport": "pixel-7",
-      "type": "visual",
-      "message": "clipped text: button Bas — Live Sessions"
-    },
-    {
-      "site": "joshy-gonz",
-      "viewport": "pixel-7",
-      "type": "visual",
-      "message": "clipped text: button Rolling Loud"
-    },
-    {
-      "site": "joshy-gonz",
-      "viewport": "pixel-7",
-      "type": "visual",
-      "message": "clipped text: button XVR — Novo"
-    },
-    {
-      "site": "joshy-gonz",
-      "viewport": "pixel-7",
-      "type": "visual",
-      "message": "clipped text: button Artist Portraits"
-    },
-    {
-      "site": "joshy-gonz",
-      "viewport": "pixel-7",
-      "type": "visual",
-      "message": "clipped text: button Other Live Frames"
     }
   ]
 }
