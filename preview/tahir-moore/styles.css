@@ -185,3 +185,8 @@ a{color:inherit;text-decoration:none}
   .profile-cta .btn{flex:1;justify-content:center}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.001ms!important}}
+
+/* Distinct podcast covers inside each Listen/Podcast card */
+#podcasts .pod-related-image{display:block;width:100%;height:auto;max-height:175px;object-fit:contain;object-position:center;background:rgba(0,0,0,.16);padding:5px;border:1px solid var(--line);border-radius:11px;margin:12px 0 16px}
+#podcasts .pod-block:nth-of-type(2) .pod-related-image{max-height:150px}
+@media(max-width:600px){#podcasts .pod-related-image{max-height:150px}}
