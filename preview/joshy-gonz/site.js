@@ -75,6 +75,7 @@
  const lightboxImage=document.getElementById('lightboxImage');
  const photos=Array.from(document.querySelectorAll('[data-gallery-photo]'));
  const close=document.getElementById('lightboxClose');
+ if (!lightbox || !lightboxImage || !close || !status) return;
  let visible=photos, active=0, trigger=null;
  function setFilter(name) {
    blocks.forEach(block=>{
