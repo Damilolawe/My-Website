@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-13T03:43:40.087Z",
+  "generatedAt": "2026-11-13T11:41:47.467Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 30,
-  "issues": 1,
+  "issues": 69,
   "findings": [
     {
       "site": "fat-boy-finesse",
@@ -14,6 +14,414 @@
         "ok": false,
         "pixelsMoved": 0
       }
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Tour"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Watch"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Studios"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Shop"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Book Kev"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Info"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Book"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a HERE'STHE THING\n        \n          Podcast\n          He"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: h3 Here's The Thing"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: p KevOnStage's take on everything — pop culture, church, "
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a CAMEO\n        \n          Personal\n          Cameo\n     "
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: h3 Cameo"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: p Book a personalized video for a birthday, a roast or ju"
+    },
+    {
+      "site": "tony-baker",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a About"
+    },
+    {
+      "site": "tony-baker",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Specials"
+    },
+    {
+      "site": "tony-baker",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Shows"
+    },
+    {
+      "site": "tony-baker",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Merch"
+    },
+    {
+      "site": "tony-baker",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Book Tony"
+    },
+    {
+      "site": "tahir-moore",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a About"
+    },
+    {
+      "site": "tahir-moore",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Special"
+    },
+    {
+      "site": "tahir-moore",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Podcasts"
+    },
+    {
+      "site": "tahir-moore",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Live"
+    },
+    {
+      "site": "tahir-moore",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Merch"
+    },
+    {
+      "site": "tahir-moore",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a All Links"
+    },
+    {
+      "site": "roxxy-haze",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a About"
+    },
+    {
+      "site": "roxxy-haze",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Book"
+    },
+    {
+      "site": "roxxy-haze",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Music"
+    },
+    {
+      "site": "roxxy-haze",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Stream"
+    },
+    {
+      "site": "roxxy-haze",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Connect"
+    },
+    {
+      "site": "ice-mcgowan",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a About"
+    },
+    {
+      "site": "ice-mcgowan",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Work"
+    },
+    {
+      "site": "ice-mcgowan",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Podcast"
+    },
+    {
+      "site": "ice-mcgowan",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Live"
+    },
+    {
+      "site": "ice-mcgowan",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Contact"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Tour"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Watch"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Studios"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Shop"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Book Kev"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Info"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Book"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a HERE'STHE THING\n        \n          Podcast\n          He"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: h3 Here's The Thing"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: p KevOnStage's take on everything — pop culture, church, "
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a CAMEO\n        \n          Personal\n          Cameo\n     "
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: h3 Cameo"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: p Book a personalized video for a birthday, a roast or ju"
+    },
+    {
+      "site": "tony-baker",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a About"
+    },
+    {
+      "site": "tony-baker",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Specials"
+    },
+    {
+      "site": "tony-baker",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Shows"
+    },
+    {
+      "site": "tony-baker",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Merch"
+    },
+    {
+      "site": "tony-baker",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Book Tony"
+    },
+    {
+      "site": "tahir-moore",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a About"
+    },
+    {
+      "site": "tahir-moore",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Special"
+    },
+    {
+      "site": "tahir-moore",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Podcasts"
+    },
+    {
+      "site": "tahir-moore",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Live"
+    },
+    {
+      "site": "tahir-moore",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Merch"
+    },
+    {
+      "site": "tahir-moore",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a All Links"
+    },
+    {
+      "site": "roxxy-haze",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a About"
+    },
+    {
+      "site": "roxxy-haze",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Book"
+    },
+    {
+      "site": "roxxy-haze",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Music"
+    },
+    {
+      "site": "roxxy-haze",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Stream"
+    },
+    {
+      "site": "roxxy-haze",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Connect"
+    },
+    {
+      "site": "ice-mcgowan",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a About"
+    },
+    {
+      "site": "ice-mcgowan",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Work"
+    },
+    {
+      "site": "ice-mcgowan",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Podcast"
+    },
+    {
+      "site": "ice-mcgowan",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Live"
+    },
+    {
+      "site": "ice-mcgowan",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Contact"
     }
   ]
 }
