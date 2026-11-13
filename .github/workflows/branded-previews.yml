@@ -1,64 +1,31 @@
-name: Branded Awe Concepts public previews
+name: Branded Awe Concepts public previews (validate)
+
+# The live preview site (preview.aweconcepts.com) is served by Cloudflare,
+# which builds and deploys from main via its own Git integration. Firebase is
+# no longer the host, so this workflow no longer deploys anywhere — it builds
+# and validates the allowlisted public concepts so a broken preview, a missing
+# file, or an original-site link fails CI before it reaches main.
 
 on:
   push:
     branches: [main]
     paths:
       - 'preview/**'
-      - 'preview/kappo-sono/**'
-      - 'preview/otaku-haven/**'
-      - 'preview/shotsbyriq/**'
-      - 'preview/jay-millz-shot-em/**'
-      - 'preview/pace-sbdc/**'
-      - 'preview/susukino/**'
-      - 'preview/bao-dumpling/**'
-      - 'preview/mesa-bar/**'
-      - 'preview/casa-serra/**'
-      - 'preview/solerum/**'
-      - 'preview/jj-deli/**'
-      - 'preview/chong/**'
-      - 'preview/prospect-shared/**'
-      - 'preview/tbili/**'
-      - 'preview/la-mestiza/**'
-      - 'preview/santuario-cafe/**'
-      - 'preview/le-loup-cafe/**'
-      - 'preview/duro-market/**'
-      - 'preview/the-block-coffee/**'
-      - 'preview/splendid-cafe/**'
-      - 'preview/cafe-aroma-y-sabor/**'
-      - 'preview/fiolicchia-bakery/**'
-      - 'preview/hairby-matty/**'
-      - 'preview/from-duo/**'
-      - 'preview/studio-and-story/**'
-      - 'preview/underscore-glasserie/**'
-      - 'preview/atma-yoga/**'
-      - 'preview/four-winds-games/**'
-      - 'preview/loved-ones-coffee/**'
-      - 'preview/worksbynet/**'
-      - 'preview/studio-shipley/**'
-      - 'preview/hanare-spa/**'
-      - 'preview/tiny-topiary/**'
-      - 'preview/kora-bakery/**'
-      - 'preview/old-mill-cafe/**'
-      - 'preview/birdee/**'
-      - 'preview/cafe-pr/**'
-      - 'preview/latte-da/**'
-      - 'preview/cafe-wands/**'
-      - 'preview/salep-ronkonkoma/**'
-      - 'preview/fira-frozen-yogurt/**'
-      - 'preview/kevonstage/**'
-      - 'preview/tony-baker/**'
-      - 'preview/keenan-baker/**'
-      - 'preview/tahir-moore/**'
-      - 'preview/roxxy-haze/**'
-      - 'preview/ice-mcgowan/**'
+      - 'branded-previews/**'
       - 'qa/active-previews-allowlist.json'
-      - 'scripts/rewrite-kappo-preview-urls.mjs'
       - 'scripts/build-branded-previews.mjs'
       - 'scripts/publish-selected-previews.mjs'
-      - 'tests/active-previews-allowlist.test.mjs'
+      - 'scripts/rewrite-kappo-preview-urls.mjs'
       - 'scripts/validate-preview-icons.mjs'
       - 'scripts/import-shotsbyriq-photos.mjs'
+      - 'scripts/preview-link-policy.mjs'
+      - 'tests/active-previews-allowlist.test.mjs'
+      - 'tests/branded-previews.test.mjs'
+      - 'tests/preview-image-csp.test.mjs'
+      - 'tests/preview-no-pictographs.test.mjs'
+      - 'tests/preview-original-link-policy.test.mjs'
+      - 'tests/kappo-sono-preview.test.mjs'
+      - 'tests/otaku-haven-preview.test.mjs'
       - 'tests/susukino-preview.test.mjs'
       - 'tests/bao-dumpling-preview.test.mjs'
       - 'tests/mesa-bar-preview.test.mjs'
@@ -67,11 +34,6 @@ on:
       - 'tests/jj-deli-preview.test.mjs'
       - 'tests/chong-preview.test.mjs'
       - 'tests/large-scale-batch-one.test.mjs'
-      - 'branded-previews/**'
-      - 'tests/branded-previews.test.mjs'
-      - 'tests/preview-image-csp.test.mjs'
-      - 'tests/otaku-haven-preview.test.mjs'
-      - 'tests/preview-no-pictographs.test.mjs'
       - 'tests/fat-boy-finesse-preview.test.mjs'
       - '.github/workflows/branded-previews.yml'
   workflow_dispatch:
@@ -84,65 +46,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy-public-previews:
+  validate-public-previews:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    env:
-      FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
-      FIREBASE_READY: ${{ vars.FIREBASE_PROJECT_ID == 'awe-digital' && secrets.FIREBASE_SERVICE_ACCOUNT != '' }}
     steps:
-      - name: Require existing Firebase project and credentials
-        if: env.FIREBASE_READY != 'true'
-        run: |
-          echo "::error::Set FIREBASE_PROJECT_ID=awe-digital and FIREBASE_SERVICE_ACCOUNT in GitHub repository settings. No Firebase change was made."
-          exit 1
       - name: Checkout public preview sources
-        if: env.FIREBASE_READY == 'true'
         uses: actions/checkout@v4
       - name: Use Node 22
-        if: env.FIREBASE_READY == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
       - name: Install dependencies
-        if: env.FIREBASE_READY == 'true'
         run: npm ci
       - name: Build allowlisted public concepts
-        if: env.FIREBASE_READY == 'true'
         run: node scripts/build-branded-previews.mjs
-      - name: Validate navigation, public-only output and independent deployment target
-        if: env.FIREBASE_READY == 'true'
+      - name: Validate navigation, public-only output and link policy
         run: node --test --test-concurrency=1 tests/active-previews-allowlist.test.mjs tests/branded-previews.test.mjs tests/preview-image-csp.test.mjs tests/kappo-sono-preview.test.mjs tests/otaku-haven-preview.test.mjs tests/preview-no-pictographs.test.mjs tests/susukino-preview.test.mjs tests/bao-dumpling-preview.test.mjs tests/mesa-bar-preview.test.mjs tests/casa-serra-preview.test.mjs tests/solerum-preview.test.mjs tests/jj-deli-preview.test.mjs tests/chong-preview.test.mjs tests/large-scale-batch-one.test.mjs tests/preview-original-link-policy.test.mjs tests/fat-boy-finesse-preview.test.mjs
-      - name: Restrict live Hosting to 19 selected prospects (archive others in GitHub)
-        if: env.FIREBASE_READY == 'true'
+      - name: Assemble selected-prospect public bundle (allowlist invariants)
         run: node scripts/publish-selected-previews.mjs
-      - name: Authenticate existing Firebase deploy service account
-        if: env.FIREBASE_READY == 'true'
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-      - name: Provision isolated Hosting site if not already present
-        if: env.FIREBASE_READY == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm install --global firebase-tools@latest
-          if firebase hosting:sites:get awe-concepts-previews --project "$FIREBASE_PROJECT_ID" --non-interactive > /dev/null 2>&1; then
-            echo "Found existing Awe Concepts branded preview Hosting site."
-          else
-            echo "Creating secondary Hosting site. Production site is not changed."
-            firebase hosting:sites:create awe-concepts-previews --project "$FIREBASE_PROJECT_ID" --non-interactive
-          fi
-      - name: Publish ONLY branded public preview site to its live channel
-        if: env.FIREBASE_READY == 'true'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-          projectId: '${{ vars.FIREBASE_PROJECT_ID }}'
-          entryPoint: 'branded-previews'
-          target: 'previews'
-          channelId: live
-          disableComment: true
-
-# Manual preview deployment trigger: 2026-11-10 17:01 America/New_York
