@@ -91,7 +91,7 @@ a{color:inherit;text-decoration:none}
 .btn.big{padding:16px 34px;font-size:17px}
 
 /* ---------- COVER (page 01) ---------- */
-.cover{min-height:100vh;display:grid;align-content:center;gap:0;padding-top:120px}
+.cover{min-height:100vh;min-height:100svh;display:grid;align-content:center;gap:0;padding-top:120px}
 .panel-cover{padding:clamp(28px,6vw,64px);
   background:
     radial-gradient(60% 60% at 76% 16%,rgba(255,45,120,.4),transparent 62%),
@@ -101,7 +101,7 @@ a{color:inherit;text-decoration:none}
 .cover-inner{position:relative;z-index:1;max-width:900px}
 .eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:12px;font-weight:700;color:var(--ice);
   margin-bottom:16px;background:var(--ink);display:inline-block;padding:6px 12px;border:2px solid var(--ice)}
-.hero-title{font-family:var(--display);font-size:clamp(56px,15vw,184px);line-height:.86;letter-spacing:1px}
+.hero-title{font-family:var(--display);font-size:clamp(40px,13vw,184px);line-height:.86;letter-spacing:1px;word-break:break-word}
 .hero-title .ink{color:var(--white);text-shadow:
   6px 6px 0 var(--ink),-2px -2px 0 var(--ink)}
 .hero-title .charge{color:transparent;-webkit-text-stroke:3px var(--ink);
