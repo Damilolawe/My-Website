@@ -25,6 +25,15 @@
     els.forEach(function (el) { io.observe(el); });
   } else { els.forEach(function (el) { el.classList.add('visible'); }); }
 
+  // Stagger the panel stamp so a stack of cards inks in one after another
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.work-stack, .about-row, .work-spread, .pod-spread').forEach(function (group) {
+      [].slice.call(group.children).forEach(function (child, i) {
+        if (child.classList.contains('reveal')) child.style.transitionDelay = (i * 0.09).toFixed(2) + 's';
+      });
+    });
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var t = document.querySelector(a.getAttribute('href'));

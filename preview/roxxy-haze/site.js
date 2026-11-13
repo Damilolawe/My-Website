@@ -35,4 +35,15 @@
   document.querySelectorAll('.mu-wave i,.scr-wave i').forEach(function (bar) {
     bar.style.animationDelay = (Math.random() * 0.7).toFixed(2) + 's';
   });
+
+  // Stagger the paste-on settle across cards in a group so they land one by one
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    ['.social-grid', '.music-grid'].forEach(function (sel) {
+      var group = document.querySelector(sel);
+      if (!group) return;
+      [].slice.call(group.children).forEach(function (child, i) {
+        if (child.classList.contains('reveal')) child.style.transitionDelay = (i * 0.07).toFixed(2) + 's';
+      });
+    });
+  }
 })();

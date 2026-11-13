@@ -3,121 +3,134 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tony Baker Comedy — Official Concept</title>
-<meta name="description" content="Chicago-born stand-up comedian & actor Tony Baker — the viral voiceover king. Specials, shows, merch, ringtones and booking. Get in on this comedy!" />
+<meta name="robots" content="noindex,nofollow">
+<title>Tony Baker — Stand-Up · Voiceover</title>
+<meta name="description" content="Chicago-born stand-up comedian and actor Tony Baker — the viral voiceover king. Specials, live shows, the Bakerisms soundboard, merch, ringtones and booking." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
 <nav id="nav">
-  <a href="#top" class="brand"><span class="brand-dot"></span>TONY BAKER</a>
+  <a href="#top" class="brand" aria-label="Tony Baker home">
+    <span class="brand-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    Tony Baker
+  </a>
   <button id="navToggle" class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <div id="navLinks" class="nav-links">
     <a href="#about">About</a>
-    <a href="#specials">Specials</a>
+    <a href="#soundboard">Soundboard</a>
+    <a href="#watch">Watch</a>
     <a href="#shows">Shows</a>
-    <a href="#merch">Merch</a>
     <a href="#book" class="nav-cta">Book Tony</a>
   </div>
 </nav>
 
-<header id="top" class="hero">
-  <div class="hero-dots" aria-hidden="true"></div>
-  <div class="container">
-    <div class="splash">
-      <span class="splash-corner tl" aria-hidden="true"></span>
-      <span class="splash-corner br" aria-hidden="true"></span>
-      <div class="splash-text">
-        <p class="eyebrow">Chicago · Stand-Up · Actor · Viral Voiceover King</p>
-        <h1 class="hero-title">TONY<br><span>BAKER</span></h1>
-        <p class="hero-sub">Your favorite comedian's <strong>favorite comedian.</strong> Nearly a decade of making millions laugh — on stage, on screen, and all over your timeline.</p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#shows">Get In On This <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="#specials">Watch Specials</a>
-        </div>
+<header id="top" class="booth">
+  <div class="container booth-grid">
+    <div class="console">
+      <div class="status">
+        <span class="onair"><span class="onair-dot" aria-hidden="true"></span>On Air</span>
+        <span class="meta">Chicago — Stand-Up / Actor / Voiceover</span>
       </div>
-      <figure class="splash-photo">
-        <img src="assets/portrait.webp" alt="Studio portrait of stand-up comedian and actor Tony Baker" width="1000" height="1500" loading="lazy" decoding="async" />
-      </figure>
-      <div class="splash-burst" aria-hidden="true">
-        <span class="burst-shape"></span>
-        <span class="burst-text">HA!<br>HA!</span>
+      <h1 class="name">Tony<br>Baker</h1>
+      <p class="tagline">The viral voiceover king — and your favorite comedian's <strong>favorite comedian.</strong> Nearly a decade of making millions laugh on stage, on screen, and all over your timeline.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#soundboard">
+          <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg>
+          Hit the Soundboard
+        </a>
+        <a class="btn btn-ghost" href="#watch">Watch Specials</a>
       </div>
+      <div class="hero-wave" id="heroWave" aria-hidden="true"></div>
     </div>
+    <figure class="portrait">
+      <div class="portrait-frame">
+        <img src="assets/portrait.webp" alt="Studio portrait of stand-up comedian and actor Tony Baker" width="1000" height="1500" loading="lazy" decoding="async" />
+      </div>
+      <figcaption><span class="tc">REC</span> In the booth</figcaption>
+    </figure>
   </div>
 </header>
 
-<section class="bakerisms" aria-label="Bakerisms">
+<section id="soundboard" class="board">
   <div class="container">
-    <div class="sticker-wrap">
-      <span class="sticker s1">SKIBBITY PAPS</span>
-      <span class="sticker s2">CRAM</span>
-      <span class="sticker s3">LOOK AT WHO YA CAME TO SEE</span>
-      <span class="sticker s4">GET IN ON THIS</span>
-      <span class="sticker s5">FEEL EVERY PIECE</span>
+    <div class="board-head">
+      <span class="label">The Bakerisms</span>
+      <h2 class="h2">The Soundboard</h2>
+      <p class="lead">Tony's catchphrases became a movement of their own — fans can prove it by quoting a few. Run your cursor across the board.</p>
+    </div>
+    <div class="pads">
+      <div class="pad"><span class="pad-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="pad-text">Skibbity Paps</span><span class="pad-no">01</span></div>
+      <div class="pad"><span class="pad-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="pad-text">Cram</span><span class="pad-no">02</span></div>
+      <div class="pad wide"><span class="pad-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="pad-text">Look At Who Ya Came To See</span><span class="pad-no">03</span></div>
+      <div class="pad"><span class="pad-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="pad-text">Get In On This</span><span class="pad-no">04</span></div>
+      <div class="pad"><span class="pad-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="pad-text">Feel Every Piece</span><span class="pad-no">05</span></div>
     </div>
   </div>
 </section>
 
+<main>
 <section id="about" class="about">
-  <div class="container">
-    <div class="sec-head"><span class="tag">Who Is</span><h2>Tony Baker</h2></div>
-    <div class="about-grid">
-      <div class="about-copy">
-        <figure class="about-photo">
-          <img src="assets/editorial.webp" alt="Editorial photograph of comedian and actor Tony Baker" width="998" height="1500" loading="lazy" decoding="async" />
-        </figure>
-        <p class="lead">Chicago native, stand-up comedian and actor Tony Baker has been making people laugh for nearly a decade — blessing stages around the world with his own unique brand of humor and style.</p>
-        <p>Beyond the hottest comedy clubs in the country, Tony organically made millions laugh worldwide with his <strong>legendary viral voiceover videos</strong>. That comedic skill carried straight to the big screen and television.</p>
-        <p>Affectionately called "your favorite comedian's 'favorite comedian'," Tony's comedy has become a movement of its own — and his fans can prove it by quoting a few of his famous <strong>"Bakerisms."</strong> So go ahead: get in on this, and feel every piece of the laughter.</p>
-      </div>
-      <aside class="credits">
-        <h3>Credits</h3>
-        <ul>
-          <li><b>Last Comic Standing</b><span>NBC · Finalist, S8 &amp; S9</span></li>
-          <li><b>The Carmichael Show</b><span>NBC · Season 2</span></li>
-          <li><b>All DEF Comedy</b><span>HBO · Season 1</span></li>
-          <li><b>Laff Mobb's Laff Tracks</b><span>TruTV</span></li>
-          <li><b>Whiplash</b><span>Academy Award–nominated film</span></li>
-          <li><b>Scaredy Cat</b><span>Debut special · 2018</span></li>
-        </ul>
-      </aside>
+  <div class="container about-grid">
+    <div class="about-copy">
+      <span class="label">Who is</span>
+      <h2 class="h2">Tony Baker</h2>
+      <p class="first">Chicago native, stand-up comedian and actor Tony Baker has been making people laugh for nearly a decade — blessing stages around the world with his own brand of humor and style.</p>
+      <p>Beyond the hottest comedy clubs in the country, Tony organically made millions laugh worldwide with his <strong>legendary viral voiceover videos</strong>. That comedic skill carried straight to the big screen and television.</p>
+      <p>Affectionately called "your favorite comedian's favorite comedian," Tony's comedy has become a movement — and his fans can prove it by quoting a few of his famous Bakerisms. So go ahead: get in on this, and feel every piece of the laughter.</p>
     </div>
+    <aside class="log">
+      <div class="log-top"><span class="label">Session log</span><span class="tc">SELECT CREDITS</span></div>
+      <ol class="credits">
+        <li><span class="c-no">01</span><span class="c-body"><b>Last Comic Standing</b><span>NBC — Finalist, Seasons 8 &amp; 9</span></span></li>
+        <li><span class="c-no">02</span><span class="c-body"><b>The Carmichael Show</b><span>NBC — Season 2</span></span></li>
+        <li><span class="c-no">03</span><span class="c-body"><b>All DEF Comedy</b><span>HBO — Season 1</span></span></li>
+        <li><span class="c-no">04</span><span class="c-body"><b>Laff Mobb's Laff Tracks</b><span>TruTV</span></span></li>
+        <li><span class="c-no">05</span><span class="c-body"><b>Whiplash</b><span>Academy Award–nominated film</span></span></li>
+        <li><span class="c-no">06</span><span class="c-body"><b>Scaredy Cat</b><span>Debut stand-up special — 2018</span></span></li>
+      </ol>
+      <figure class="log-photo">
+        <img src="assets/editorial.webp" alt="Editorial photograph of comedian and actor Tony Baker" width="998" height="1500" loading="lazy" decoding="async" />
+      </figure>
+    </aside>
   </div>
 </section>
 
-<section id="specials" class="specials">
+<section id="watch" class="watch">
   <div class="container">
-    <div class="sec-head"><span class="tag">Watch</span><h2>Comedy Specials</h2></div>
-    <p class="embed-cap">Latest on YouTube</p>
-    <div class="embed-frame"><iframe src="https://www.youtube-nocookie.com/embed/fvMfnam0lec" title="Tony Baker on YouTube" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-    <div class="special-grid">
-      <article class="sp-card sp-feature">
-        <span class="sp-badge">Debut Special</span>
-        <h3>Scaredy Cat</h3>
-        <p>Tony's 2018 debut hour of stand-up — the special that put the whole world on notice.</p>
-        <a class="sp-link" href="https://www.youtube.com/TonyBakerComedy" target="_blank" rel="noopener">Watch on YouTube <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></a>
-      </article>
-      <article class="sp-card">
-        <span class="sp-badge">Streaming · Tubi</span>
-        <h3>Bald Brother</h3>
-        <p>The freestyle comedy show with KevOnStage — sold-out theaters, now streaming free.</p>
-        <a class="sp-link" href="https://tubitv.com/series/300018840/bald-brother-comedy" target="_blank" rel="noopener">Watch <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></a>
-      </article>
-      <article class="sp-card">
-        <span class="sp-badge">Showcase</span>
-        <h3>Tony Baker &amp; Friends</h3>
-        <p>Tony brings the funniest comedians in the game together for one unforgettable night.</p>
-        <a class="sp-link" href="#shows">See Dates <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></a>
-      </article>
-      <article class="sp-card">
-        <span class="sp-badge">Showcase</span>
-        <h3>Real Comedians</h3>
-        <p>No gimmicks, just funny. A showcase of the real ones doing real comedy.</p>
-        <a class="sp-link" href="#shows">See Dates <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M5 12h12.5"/><path d="M13 6l6 6-6 6"/></svg></a>
-      </article>
+    <div class="board-head">
+      <span class="label">On the monitor</span>
+      <h2 class="h2">Specials &amp; Shows</h2>
+    </div>
+    <div class="watch-grid">
+      <figure class="monitor">
+        <div class="monitor-bar"><span class="tc">NOW PLAYING</span><span class="meta">Latest on YouTube</span></div>
+        <div class="monitor-screen"><iframe src="https://www.youtube-nocookie.com/embed/fvMfnam0lec" title="Tony Baker on YouTube" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      </figure>
+      <ol class="tracklist">
+        <li class="track feature">
+          <span class="t-no">A1</span>
+          <div class="t-body"><h3>Scaredy Cat</h3><p>Tony's 2018 debut hour of stand-up — the special that put the whole world on notice.</p></div>
+          <a class="t-go" href="https://www.youtube.com/TonyBakerComedy" target="_blank" rel="noopener" aria-label="Watch Scaredy Cat on YouTube"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg></a>
+        </li>
+        <li class="track">
+          <span class="t-no">A2</span>
+          <div class="t-body"><h3>Bald Brother</h3><p>The freestyle comedy show with KevOnStage — sold-out theaters, now streaming free on Tubi.</p></div>
+          <a class="t-go" href="https://tubitv.com/series/300018840/bald-brother-comedy" target="_blank" rel="noopener" aria-label="Watch Bald Brother on Tubi"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg></a>
+        </li>
+        <li class="track">
+          <span class="t-no">A3</span>
+          <div class="t-body"><h3>Tony Baker &amp; Friends</h3><p>Tony brings the funniest comedians in the game together for one unforgettable night.</p></div>
+          <a class="t-go" href="#shows" aria-label="See show dates"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg></a>
+        </li>
+        <li class="track">
+          <span class="t-no">A4</span>
+          <div class="t-body"><h3>Real Comedians</h3><p>No gimmicks, just funny — a showcase of the real ones doing real comedy.</p></div>
+          <a class="t-go" href="#shows" aria-label="See show dates"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg></a>
+        </li>
+      </ol>
     </div>
   </div>
 </section>
@@ -125,34 +138,38 @@
 <section id="shows" class="shows">
   <div class="container shows-inner">
     <div class="shows-copy">
-      <span class="tag light">Live</span>
-      <h2>Catch Tony<br>On Tour</h2>
+      <span class="label">Live</span>
+      <h2 class="h2">Catch Tony on tour</h2>
       <p>Tony's out here hitting the hottest clubs and theaters in the country. Don't miss your chance to see the voiceover king live and in person.</p>
       <a class="btn btn-primary" href="https://www.tonybakercomedy.com/shows" target="_blank" rel="noopener">See All Shows &amp; Tickets</a>
     </div>
-    <div class="ticket" aria-hidden="true">
-      <div class="ticket-top"><span>TONY BAKER LIVE</span><span class="ticket-id">GET IN ON THIS</span></div>
-      <div class="ticket-big">ADMIT<br>ONE</div>
-      <div class="ticket-bottom"><span>Clubs &amp; Theaters</span><span>Worldwide</span></div>
+    <div class="deck" aria-hidden="true">
+      <div class="deck-row"><span class="tc">OUTPUT</span><span class="deck-vu"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+      <div class="deck-big">LIVE</div>
+      <div class="deck-row"><span>Clubs &amp; Theaters</span><span>Worldwide</span></div>
     </div>
   </div>
 </section>
 
 <section id="merch" class="merch">
   <div class="container">
-    <div class="sec-head"><span class="tag">Rep It</span><h2>Merch &amp; More</h2></div>
+    <div class="board-head"><span class="label">Rep it</span><h2 class="h2">Merch &amp; More</h2></div>
     <div class="merch-grid">
-      <a class="merch-card" href="https://www.tonybakercomedy.com/shop" target="_blank" rel="noopener">
-        <div class="merch-emoji"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M3 15h14a3 3 0 0 0 0-6h-3.5l-1-4C9 5 5 7 3 15z"/><path d="M3 15v1.5h14"/></svg></div><h3>Merchandise</h3><p>Official Tony Baker gear. Wear the Bakerisms.</p>
+      <a class="mcard" href="https://www.tonybakercomedy.com/shop" target="_blank" rel="noopener">
+        <span class="m-ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 15h14a3 3 0 0 0 0-6h-3.5l-1-4C9 5 5 7 3 15z"/><path d="M3 15v1.5h14"/></svg></span>
+        <h3>Merchandise</h3><p>Official Tony Baker gear. Wear the Bakerisms.</p>
       </a>
-      <a class="merch-card" href="https://www.tonybakercomedy.com/ringtones" target="_blank" rel="noopener">
-        <div class="merch-emoji"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M4 9v6h3l5 4V5L7 9H4z"/><path d="M16 9.5a4 4 0 0 1 0 5"/><path d="M18.5 7a7 7 0 0 1 0 10"/></svg></div><h3>Ringtones</h3><p>Put Tony's voiceovers right in your pocket.</p>
+      <a class="mcard" href="https://www.tonybakercomedy.com/ringtones" target="_blank" rel="noopener">
+        <span class="m-ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9v6h3l5 4V5L7 9H4z"/><path d="M16 9.5a4 4 0 0 1 0 5"/><path d="M18.5 7a7 7 0 0 1 0 10"/></svg></span>
+        <h3>Ringtones</h3><p>Put Tony's voiceovers right in your pocket.</p>
       </a>
-      <a class="merch-card" href="https://www.patreon.com/TonyBakerComedy" target="_blank" rel="noopener">
-        <div class="merch-emoji"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><path d="M12 3l2.6 5.6 6.1.6-4.6 4.1 1.3 6L12 16.9 6.6 19.3l1.3-6L3.3 9.2l6.1-.6z"/></svg></div><h3>Patreon</h3><p>Go behind the scenes and get exclusive content.</p>
+      <a class="mcard" href="https://www.patreon.com/TonyBakerComedy" target="_blank" rel="noopener">
+        <span class="m-ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l2.6 5.6 6.1.6-4.6 4.1 1.3 6L12 16.9 6.6 19.3l1.3-6L3.3 9.2l6.1-.6z"/></svg></span>
+        <h3>Patreon</h3><p>Go behind the scenes and get exclusive content.</p>
       </a>
-      <a class="merch-card" href="https://www.tonybakercomedy.com/trivia" target="_blank" rel="noopener">
-        <div class="merch-emoji"><svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.12em;display:inline-block"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></div><h3>Tony Baker Trivia</h3><p>Think you know Tony? Prove it.</p>
+      <a class="mcard" href="https://www.tonybakercomedy.com/trivia" target="_blank" rel="noopener">
+        <span class="m-ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></svg></span>
+        <h3>Tony Baker Trivia</h3><p>Think you know Tony? Prove it.</p>
       </a>
     </div>
   </div>
@@ -160,8 +177,8 @@
 
 <section id="book" class="book">
   <div class="container book-inner">
-    <span class="tag light">Booking &amp; Connect</span>
-    <h2>Book Tony Baker</h2>
+    <span class="label">Booking &amp; connect</span>
+    <h2 class="h2">Book Tony Baker</h2>
     <p>Comedy shows, hosting, appearances and brand partnerships. Let's get in on this.</p>
     <a class="btn btn-primary big" href="mailto:Info@TonyBakerComedy.com">Info@TonyBakerComedy.com</a>
     <div class="social-row">
@@ -172,11 +189,12 @@
     </div>
   </div>
 </section>
+</main>
 
 <footer class="footer">
   <div class="container">
-    <div class="footer-big">TONY BAKER</div>
-    <p class="footer-links"><a href="#about">About</a> · <a href="#specials">Specials</a> · <a href="#shows">Shows</a> · <a href="#merch">Merch</a> · <a href="#book">Book Tony</a></p>
+    <div class="footer-big">Tony Baker</div>
+    <p class="footer-links"><a href="#about">About</a> · <a href="#soundboard">Soundboard</a> · <a href="#watch">Watch</a> · <a href="#shows">Shows</a> · <a href="#book">Book Tony</a></p>
     <p class="concept-note">Independent design concept by Awe Concepts. Not affiliated with, authorized by, or endorsed by Tony Baker. Official site: <a href="https://www.tonybakercomedy.com/" target="_blank" rel="noopener">tonybakercomedy.com</a></p>
     <p class="credit">Designed by <strong>Awe Concepts</strong></p>
   </div>
