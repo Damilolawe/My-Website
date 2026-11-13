@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-13T11:41:47.467Z",
+  "generatedAt": "2026-11-13T12:10:57.168Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 30,
-  "issues": 69,
+  "issues": 73,
   "findings": [
     {
       "site": "fat-boy-finesse",
@@ -19,13 +19,13 @@
       "site": "kevonstage",
       "viewport": "iphone-13",
       "type": "visual",
-      "message": "clipped text: a Tour"
+      "message": "clipped text: a Watch"
     },
     {
       "site": "kevonstage",
       "viewport": "iphone-13",
       "type": "visual",
-      "message": "clipped text: a Watch"
+      "message": "clipped text: a Live"
     },
     {
       "site": "kevonstage",
@@ -49,19 +49,7 @@
       "site": "kevonstage",
       "viewport": "iphone-13",
       "type": "visual",
-      "message": "clipped text: a Info"
-    },
-    {
-      "site": "kevonstage",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Book"
-    },
-    {
-      "site": "kevonstage",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a HERE'STHE THING\n        \n          Podcast\n          He"
+      "message": "clipped text: a PodcastHere's The Thing\n        Here's The ThingKev's t"
     },
     {
       "site": "kevonstage",
@@ -73,13 +61,13 @@
       "site": "kevonstage",
       "viewport": "iphone-13",
       "type": "visual",
-      "message": "clipped text: p KevOnStage's take on everything — pop culture, church, "
+      "message": "clipped text: p Kev's take on everything — pop culture, church, marriag"
     },
     {
       "site": "kevonstage",
       "viewport": "iphone-13",
       "type": "visual",
-      "message": "clipped text: a CAMEO\n        \n          Personal\n          Cameo\n     "
+      "message": "clipped text: a PersonalCameo\n        CameoBook a personalized video fo"
     },
     {
       "site": "kevonstage",
@@ -91,7 +79,25 @@
       "site": "kevonstage",
       "viewport": "iphone-13",
       "type": "visual",
-      "message": "clipped text: p Book a personalized video for a birthday, a roast or ju"
+      "message": "clipped text: p Book a personalized video for a birthday, a roast, or j"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a YouTubeThe Channel\n        On YouTubeNew uploads every "
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: h3 On YouTube"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: p New uploads every week — reactions, sketches and the co"
     },
     {
       "site": "tony-baker",
@@ -103,19 +109,19 @@
       "site": "tony-baker",
       "viewport": "iphone-13",
       "type": "visual",
-      "message": "clipped text: a Specials"
+      "message": "clipped text: a Soundboard"
+    },
+    {
+      "site": "tony-baker",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a Watch"
     },
     {
       "site": "tony-baker",
       "viewport": "iphone-13",
       "type": "visual",
       "message": "clipped text: a Shows"
-    },
-    {
-      "site": "tony-baker",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: a Merch"
     },
     {
       "site": "tony-baker",
@@ -188,6 +194,20 @@
       "viewport": "iphone-13",
       "type": "visual",
       "message": "clipped text: a Connect"
+    },
+    {
+      "site": "roxxy-haze",
+      "viewport": "iphone-13",
+      "type": "horizontal-overflow",
+      "viewportWidth": 390,
+      "pageWidth": 404,
+      "suspects": [
+        "a",
+        "a",
+        "a",
+        "a",
+        "a.nav-cta"
+      ]
     },
     {
       "site": "ice-mcgowan",
@@ -223,13 +243,13 @@
       "site": "kevonstage",
       "viewport": "pixel-7",
       "type": "visual",
-      "message": "clipped text: a Tour"
+      "message": "clipped text: a Watch"
     },
     {
       "site": "kevonstage",
       "viewport": "pixel-7",
       "type": "visual",
-      "message": "clipped text: a Watch"
+      "message": "clipped text: a Live"
     },
     {
       "site": "kevonstage",
@@ -253,19 +273,7 @@
       "site": "kevonstage",
       "viewport": "pixel-7",
       "type": "visual",
-      "message": "clipped text: a Info"
-    },
-    {
-      "site": "kevonstage",
-      "viewport": "pixel-7",
-      "type": "visual",
-      "message": "clipped text: a Book"
-    },
-    {
-      "site": "kevonstage",
-      "viewport": "pixel-7",
-      "type": "visual",
-      "message": "clipped text: a HERE'STHE THING\n        \n          Podcast\n          He"
+      "message": "clipped text: a PodcastHere's The Thing\n        Here's The ThingKev's t"
     },
     {
       "site": "kevonstage",
@@ -277,13 +285,13 @@
       "site": "kevonstage",
       "viewport": "pixel-7",
       "type": "visual",
-      "message": "clipped text: p KevOnStage's take on everything — pop culture, church, "
+      "message": "clipped text: p Kev's take on everything — pop culture, church, marriag"
     },
     {
       "site": "kevonstage",
       "viewport": "pixel-7",
       "type": "visual",
-      "message": "clipped text: a CAMEO\n        \n          Personal\n          Cameo\n     "
+      "message": "clipped text: a PersonalCameo\n        CameoBook a personalized video fo"
     },
     {
       "site": "kevonstage",
@@ -295,7 +303,25 @@
       "site": "kevonstage",
       "viewport": "pixel-7",
       "type": "visual",
-      "message": "clipped text: p Book a personalized video for a birthday, a roast or ju"
+      "message": "clipped text: p Book a personalized video for a birthday, a roast, or j"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a YouTubeThe Channel\n        On YouTubeNew uploads every "
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: h3 On YouTube"
+    },
+    {
+      "site": "kevonstage",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: p New uploads every week — reactions, sketches and the co"
     },
     {
       "site": "tony-baker",
@@ -307,19 +333,19 @@
       "site": "tony-baker",
       "viewport": "pixel-7",
       "type": "visual",
-      "message": "clipped text: a Specials"
+      "message": "clipped text: a Soundboard"
+    },
+    {
+      "site": "tony-baker",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a Watch"
     },
     {
       "site": "tony-baker",
       "viewport": "pixel-7",
       "type": "visual",
       "message": "clipped text: a Shows"
-    },
-    {
-      "site": "tony-baker",
-      "viewport": "pixel-7",
-      "type": "visual",
-      "message": "clipped text: a Merch"
     },
     {
       "site": "tony-baker",
@@ -392,6 +418,20 @@
       "viewport": "pixel-7",
       "type": "visual",
       "message": "clipped text: a Connect"
+    },
+    {
+      "site": "roxxy-haze",
+      "viewport": "pixel-7",
+      "type": "horizontal-overflow",
+      "viewportWidth": 412,
+      "pageWidth": 424,
+      "suspects": [
+        "a",
+        "a",
+        "a",
+        "a",
+        "a.nav-cta"
+      ]
     },
     {
       "site": "ice-mcgowan",
