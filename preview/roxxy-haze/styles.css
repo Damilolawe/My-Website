@@ -147,6 +147,26 @@ a{color:inherit;text-decoration:none}
 .facets b{font-size:16px;font-family:var(--display);font-weight:800}
 .facets small{grid-column:2;font-size:13px;color:var(--ink-soft)}
 
+/* COLLAGE PHOTOS — pasted, taped, ink-bordered */
+.photo-paste{position:relative;display:block;margin:0;background:#fffdf7;border:3px solid var(--ink);
+  border-radius:3px;padding:8px 8px 11px;box-shadow:7px 8px 0 rgba(20,16,24,.85)}
+.photo-paste img{display:block;width:100%;height:auto;aspect-ratio:1000/1500;object-fit:cover;
+  border:1.6px solid var(--ink);border-radius:2px;background:var(--paper-2)}
+.photo-star{position:absolute;z-index:6;top:-14px;left:-14px;width:40px;height:40px;display:grid;place-items:center;
+  color:var(--pink);background:var(--yellow);border:2.5px solid var(--ink);border-radius:50%;
+  box-shadow:2px 2px 0 var(--ink);transform:rotate(-12deg)}
+.photo-star .ic{width:22px;height:22px}
+.tape-e{top:-14px;right:22px;transform:rotate(6deg);background:rgba(21,214,219,.55)}
+.tape-f{bottom:16px;left:-16px;transform:rotate(-9deg);background:rgba(255,62,165,.5)}
+
+/* portrait — featured in hero collage */
+.hero-photos{position:absolute;top:8%;right:1.5%;z-index:3;width:min(248px,25vw)}
+.pp-hero{transform:rotate(3deg)}
+
+/* editorial — pasted into the About section */
+.about > .container{position:relative}
+.pp-about{position:absolute;top:-4px;right:0;z-index:4;width:min(206px,20vw);transform:rotate(-3deg)}
+
 /* BOOK */
 .book-inner{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
 .book-art{position:relative;display:grid;place-items:center;perspective:1000px}
@@ -264,6 +284,8 @@ a{color:inherit;text-decoration:none}
   .book-art{order:-1}
   .social-grid{grid-template-columns:repeat(3,1fr)}
   .big-quote{font-size:clamp(120px,30vw,220px);right:-2%}
+  .hero-photos{position:static;right:auto;top:auto;width:min(230px,56vw);margin:28px auto 0;justify-self:center}
+  .pp-about{position:static;width:min(240px,62vw);margin:0 auto 36px;transform:rotate(-2.5deg)}
 }
 @media(max-width:900px){
   .nav-links{position:fixed;inset:0 0 0 auto;width:min(82vw,320px);flex-direction:column;justify-content:center;
