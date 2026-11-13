@@ -1,0 +1,32 @@
+{
+  "creator": "Joshy Gonz",
+  "url": "https://joshygonz.com/music",
+  "gallery": [
+    {
+      "title": "Artist portraits",
+      "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550523044681-6PA458167UE1DN9XJLDR/sza-portfolio.png"
+    },
+    {
+      "title": "Live shows",
+      "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541881039478-54354I03JNJ91ULAS4FO/KOD_Staples01-70.jpg"
+    },
+    {
+      "title": "Editorial",
+      "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550521089333-9XJKNWYM3X124DXVJXSM/xvr-novo-01.18.19-17.jpg"
+    },
+    {
+      "title": "Concert photography",
+      "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541880680889-LTL0H47I359N01AC6CX5/Wireless_BasxCole_18+%2892+of+106%29.jpg"
+    },
+    {
+      "title": "Backstage moments",
+      "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541880622432-4HQ35GLQ0VRCEWKQCYHV/bas-pharcyde-12.jpg"
+    },
+    {
+      "title": "Festival energy",
+      "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550522981459-9E4TDX6OKI4E1PRNUWWF/RollingLoud12.14.18-5.jpg"
+    }
+  ],
+  "hero": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541473675552-WPDLTJCGTFXV4JLJELWU/Wireless_BasxCole_18+%2884+of+106%29.jpg",
+  "about": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550521265488-NYFP83IKE4WA2C817FDN/KOD_Staples01-52.jpg"
+}
