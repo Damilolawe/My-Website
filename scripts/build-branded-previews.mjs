@@ -102,18 +102,18 @@ await mkdir(`${output}/jay-millz-shot-em`, { recursive: true });
 for (const asset of ["index.html", "styles.css", "site.js"]) {
   await cp(`preview/jay-millz-shot-em/${asset}`, `${output}/jay-millz-shot-em/${asset}`);
 }
+// Restored Jay Millz portfolio: keep the committed About portrait and gallery
+// (target-owned imagery from Jay's own booking page, attributed in the photo-
+// rights note) on the photo-free host rather than a placeholder, and record
+// provenance by linking the original Instagram posts without re-fetching media
+// (mirrors the SHOTSBYRIQ source-link approach). Only the opt-in remote build
+// re-imports fresh Instagram media.
 if (useCloudflarePhotoFallbacks) {
-  // Keep the complete concept live, but never present an unrelated session
-  // image as Jay's verified personal Instagram About portrait.
-  const path = `${output}/jay-millz-shot-em/index.html`;
-  const html = await readFile(path, "utf8");
-  const portrait = /<img\b(?=[^>]*\bdata-about-portrait="personal")[^>]*>/;
-  if (!portrait.test(html))
-    throw new Error("Jay Millz About portrait marker changed; verify fallback before deploying");
-  await writeFile(path, html.replace(portrait,
-    '<div role="img" aria-label="Jay Millz personal portrait unavailable; see linked Instagram profile" style="min-height:420px;display:grid;place-items:center;padding:28px;background:#0b1324;color:#cbd5e1;text-align:center;font-weight:700;letter-spacing:.06em">PERSONAL PORTRAIT TEMPORARILY UNAVAILABLE</div>'
-  ));
-  console.warn("Cloudflare preview: Jay Millz personal portrait omitted until a verified local snapshot is available.");
+  const jmManifest = JSON.parse(await readFile("preview/jay-millz-shot-em/instagram-sources.json", "utf8"));
+  await writeFile(`${output}/jay-millz-shot-em/import-status.json`, JSON.stringify({
+    mode: "live-verified-source-links", requested: jmManifest.images.length, count: jmManifest.images.length,
+    assets: jmManifest.images.map(image => ({ id: image.id, post: image.post, imported: false, linked: true, source: "original-instagram-post" })),
+  }, null, 2));
 } else {
   await importJayMillzPhotos(output);
 }
@@ -157,7 +157,7 @@ for (const page of [
 ]) {
   const path = output + "/" + page;
   const html = await readFile(path, "utf8");
-  const revision = page.startsWith("fat-boy-finesse/") ? "revamp-20261112-seamless-ticker-v2" : page.startsWith("shotsbyriq/") ? "restore-20261112-original-photo-gallery" : page.startsWith("otaku-haven/") ? otakuAnimationRevision : /^(?:shotsbyriq|jay-millz-shot-em|pace-sbdc|susukino)\//.test(page) ? repairRevision : animationRevision;
+  const revision = page.startsWith("fat-boy-finesse/") ? "revamp-20261112-seamless-ticker-v2" : (page.startsWith("shotsbyriq/") || page.startsWith("jay-millz-shot-em/")) ? "restore-20261112-original-photo-gallery" : page.startsWith("otaku-haven/") ? otakuAnimationRevision : /^(?:pace-sbdc|susukino)\//.test(page) ? repairRevision : animationRevision;
   const updated = html.replace(
     /(href|src)="((?:\.\/|\/(?:kappo-sono|otaku-haven|bao-dumpling|mesa-bar|casa-serra|solerum|jj-deli|shotsbyriq|jay-millz-shot-em|pace-sbdc|susukino|chong|loved-ones-coffee|worksbynet|studio-shipley|hanare-spa|tiny-topiary|kora-bakery|old-mill-cafe|birdee|cafe-pr|latte-da|fat-boy-finesse)\/)(?:styles\.css|site\.js))(?:\?[^"]*)?"/g,
     (_, attr, asset) => attr + '="' + asset + "?v=" + revision + '"'
