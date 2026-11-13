@@ -60,8 +60,6 @@ export function isAllowedOutbound(href) {
     "micdropcomedychandler.com", "micdropcomedyplano.com", "micdropcomedysandiego.com",
   ]);
   if (performerHosts.has(host)) return true;
-  // KevOnStage's Grief Sucks tour ticket hub (an independent tour link page, not his website).
-  if (host === "linktr.ee" && url.pathname.replace(/\/$/, "").toLowerCase() === "/griefsucks") return true;
   return allowed.some(d => domainIs(host, d));
 }
 
