@@ -17,11 +17,10 @@
   });
 
   // Reveal: gallery frames wipe up like a shutter; sections ease in, staggered like a contact sheet
-  var els = document.querySelectorAll('.sec-head,.frame,.gallery-note,.film-inner,.about-grid,.cause-card,.contact-inner');
+  var els = document.querySelectorAll('.sec-head,.gallery-frame,.gallery-note,.podcast-layout,.about-grid,.contact-inner');
   els.forEach(function (el) { el.classList.add('reveal'); });
   if (!reduce) {
-    var gallery = document.querySelector('.gallery');
-    if (gallery) [].slice.call(gallery.children).forEach(function (f, i) { f.style.transitionDelay = (i * 0.09).toFixed(2) + 's'; });
+    document.querySelectorAll('.event-gallery').forEach(function(gallery){ [].slice.call(gallery.children).forEach(function(f,i){ f.style.transitionDelay = (i*0.06).toFixed(2)+'s'; }); });
     var causes = document.querySelector('.cause-grid');
     if (causes) [].slice.call(causes.children).forEach(function (c, i) { c.style.transitionDelay = (i * 0.09).toFixed(2) + 's'; });
   }
@@ -65,3 +64,70 @@
 
 // Recover gracefully if the photographer's media CDN is unavailable.
 (function(){function wire(){document.querySelectorAll('img[data-fallback]').forEach(function(img){function swap(){var to=img.getAttribute('data-fallback');if(!to)return;img.removeAttribute('data-fallback');img.alt='Joshy Gonz photography preview';img.src=to;}img.addEventListener('error',swap,{once:true});if(img.complete&&img.naturalWidth===0)swap();});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wire,{once:true});else wire();})();
+
+
+/* Event-organized photography archive + keyboard-accessible cinematic viewer */
+(function () {
+ const filters=Array.from(document.querySelectorAll('[data-gallery-filter]'));
+ const blocks=Array.from(document.querySelectorAll('.event-block[data-event]'));
+ const status=document.getElementById('galleryStatus');
+ const lightbox=document.getElementById('photoLightbox');
+ const lightboxImage=document.getElementById('lightboxImage');
+ const photos=Array.from(document.querySelectorAll('[data-gallery-photo]'));
+ const close=document.getElementById('lightboxClose');
+ let visible=photos, active=0, trigger=null;
+ function setFilter(name) {
+   blocks.forEach(block=>{
+     block.hidden=name!=='all' && block.dataset.event!==name;
+     // A filtered-in section should not depend on an IntersectionObserver re-fire.
+     if(!block.hidden) block.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
+   });
+   filters.forEach(btn=>{
+     const selected=btn.dataset.galleryFilter===name;
+     btn.classList.toggle('active',selected);btn.setAttribute('aria-pressed',String(selected));
+   });
+   visible=photos.filter(p=>!p.closest('.event-block').hidden);
+   status.textContent=visible.length+' photograph'+(visible.length===1?'':'s')+' · '+(name==='all'?'7 stories':blocks.find(b=>b.dataset.event===name).querySelector('h3').textContent);
+ }
+ filters.forEach(btn=>btn.addEventListener('click',()=>setFilter(btn.dataset.galleryFilter)));
+ function show(index) {
+   if(!visible.length)return;
+   active=(index+visible.length)%visible.length;
+   const item=visible[active], img=item.querySelector('img');
+   lightboxImage.src=item.dataset.full;
+   lightboxImage.alt=img.alt;
+   document.getElementById('lightboxEvent').textContent=item.dataset.photoEvent;
+   document.getElementById('lightboxTitle').textContent=item.dataset.photoTitle;
+   document.getElementById('lightboxCounter').textContent=String(active+1).padStart(2,'0')+' / '+String(visible.length).padStart(2,'0');
+ }
+ photos.forEach(photo=>photo.addEventListener('click',()=>{
+   trigger=photo;
+   show(visible.indexOf(photo));
+   lightbox.hidden=false;
+   document.body.classList.add('lightbox-open');
+   close.focus();
+ }));
+ function dismiss() {
+   lightbox.hidden=true;
+   document.body.classList.remove('lightbox-open');
+   lightboxImage.removeAttribute('src');
+   if(trigger)trigger.focus();
+ }
+ close.addEventListener('click',dismiss);
+ document.getElementById('lightboxPrev').addEventListener('click',()=>show(active-1));
+ document.getElementById('lightboxNext').addEventListener('click',()=>show(active+1));
+ lightbox.addEventListener('click',e=>{if(e.target===lightbox)dismiss()});
+ window.addEventListener('keydown',e=>{
+   if(lightbox.hidden)return;
+   if(e.key==='Escape'){e.preventDefault();dismiss()}
+   else if(e.key==='ArrowLeft'){e.preventDefault();show(active-1)}
+   else if(e.key==='ArrowRight'){e.preventDefault();show(active+1)}
+   else if(e.key==='Tab'){
+     const targets=Array.from(lightbox.querySelectorAll('button'));
+     const first=targets[0],last=targets[targets.length-1];
+     if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+     else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+   }
+ });
+ setFilter('all');
+})();
