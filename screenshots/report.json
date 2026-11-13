@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-13T19:31:44.986Z",
+  "generatedAt": "2026-11-13T20:00:54.049Z",
   "mode": "desktop",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 32,
-  "issues": 2,
+  "issues": 1,
   "findings": [
     {
       "site": "fat-boy-finesse",
@@ -14,12 +14,6 @@
         "ok": false,
         "pixelsMoved": 0
       }
-    },
-    {
-      "site": "joshy-gonz",
-      "viewport": "desktop-1440",
-      "type": "navigation-or-capture",
-      "message": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://preview.aweconcepts.com/joshy-gonz/\", waiting until \"networkidle\"\n"
     }
   ]
 }
