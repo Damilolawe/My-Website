@@ -69,7 +69,7 @@
 // Creator photo fallback — local, CSP-safe replacement for unavailable external media.
 (function () {
   function wireCreatorPhotoFallbacks() {
-    document.querySelectorAll('.ac-photo-journal img[data-fallback]').forEach(function (img) {
+    document.querySelectorAll('img[data-fallback]').forEach(function (img) {
       function recover() {
         var local = img.getAttribute('data-fallback');
         if (!local) return;
