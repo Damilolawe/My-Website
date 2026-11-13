@@ -1,2 +1,2 @@
-Generated from 7128857ee93712d19f825f6297899112b57409a1 at 2026-11-13T17:13:44Z
+Generated from 2e73d0655a8a2cb0b6dc3d96602d8291427b2827 at 2026-11-13T17:17:26Z
 Modes: desktop-1440 and desktop-1920, JPEG full-page and viewport
