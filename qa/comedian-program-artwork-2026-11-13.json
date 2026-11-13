@@ -1,0 +1,40 @@
+{
+  "title": "Comedian-specific watch/listen media artwork",
+  "reviewed_at": "2026-11-13",
+  "notes": "Unofficial preview concepts; show/poster images remain the rights of their original publishers. For every externally hosted image, a previously committed local creator photo acts as a fallback.",
+  "pages": {
+    "kevonstage": [
+      "Bald Brothers — Tubi",
+      "Here's The Thing — Audioboom",
+      "Cameo — KevOnStage local portrait",
+      "YouTube — creator-published video thumbnail"
+    ],
+    "tony-baker": [
+      "Scaredy Cat — Amazon/Prime promotional poster",
+      "Bald Brothers — Tubi poster",
+      "Tony Baker & Friends — IMDb promotional art",
+      "Real Comedians of Social Media — TicketsWest poster"
+    ],
+    "keenan-baker": [
+      "I Might Need Therapy — creator Gumroad promotional artwork",
+      "Women Love Married Men — YouTube official thumbnail",
+      "Before The Punchline — YouTube official thumbnail"
+    ],
+    "tahir-moore": [
+      "Dam Internet You Scary — Audioboom art",
+      "Moore to the Story — previously sourced official creator portrait",
+      "SquADDCast — Audioboom official logo"
+    ],
+    "roxxy-haze": [
+      "Spotify — official creator portrait",
+      "SoundCloud — official editorial portrait",
+      "YouTube — official creator portrait"
+    ],
+    "ice-mcgowan": [
+      "DEADEYE — official YouTube thumbnail",
+      "Live Comedy — original saved on-stage photo",
+      "Anime and Hot Takes — official channel artwork",
+      "Bonfire Stories — saved on-stage photo"
+    ]
+  }
+}
