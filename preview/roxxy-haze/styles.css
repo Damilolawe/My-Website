@@ -323,3 +323,7 @@ a{color:inherit;text-decoration:none}
   .ht-chunk{font-size:clamp(54px,18vw,80px)}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.001ms!important}}
+
+/* Supporting official creator visuals for Spotify, SoundCloud and YouTube */
+#music .mu-related-image{display:block;width:100%;height:auto;aspect-ratio:16/10;max-height:175px;object-fit:cover;object-position:center 27%;margin:6px 0 16px;border:2px solid var(--ink);border-radius:6px;background:#eee}
+#music .mu-card{min-width:0}
