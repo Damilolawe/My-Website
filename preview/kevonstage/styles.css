@@ -235,3 +235,10 @@ strong{color:#fff;font-weight:600}
 #watch .tile-kicker,#watch .tile-name{position:relative;z-index:2;color:#fff;text-shadow:0 2px 12px #000}
 #watch .tile:hover .show-cover{transform:scale(1.05)}
 @media(prefers-reduced-motion:reduce){#watch .tile-poster .show-cover{transition:none}#watch .tile:hover .show-cover{transform:none}}
+
+/* Compact single footer: avoid the second oversized KevOnStage wordmark. */
+.footer{padding:34px 0 30px;text-align:center}
+.footer-inner{display:flex;flex-direction:column;align-items:center;gap:5px}
+.footer-links{margin:2px 0 8px}
+.footer .concept-note{margin:7px auto 0}
+.footer .credit{margin-top:11px}
