@@ -4,25 +4,24 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex,nofollow">
-<title>Joshy Gonz — Photographer</title>
-<meta name="description" content="Joshy Gonz photography archive: cinematic event galleries, portraits, and appearances on the Here's The Thing podcast. Independent design concept." />
+<title>Joshy Gonz — Photographer & Visual Storyteller</title>
+<meta name="description" content="Joshy Gonz photography and creative projects, plus Here's the Thing podcast." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="./styles.css" />
 </head>
-<body>
-<nav id="nav">
-  <a href="#top" class="brand" aria-label="Joshy Gonz home">Joshy&nbsp;Gonz</a>
-  <button id="navToggle" class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-  <div id="navLinks" class="nav-links">
-    <a href="#work">Photo Gallery</a>
-    <a href="#podcast">Podcast</a>
-    <a href="#about">About</a>
-    <a href="#contact" class="nav-cta">Contact</a>
-  </div>
-</nav>
-
+<body data-page="home">
+<nav id="nav" aria-label="Primary navigation">
+<a href="./" class="brand" aria-label="Joshy Gonz home">Joshy&nbsp;Gonz</a>
+<button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
+<div id="navLinks" class="nav-links">
+<a href="./" aria-current="page">Home</a>
+<a href="./gallery.html" >Gallery</a>
+<a href="./podcast.html" >Podcast</a>
+<a href="./about.html" >About</a>
+<a href="./about.html#contact" class="nav-cta">Contact</a>
+</div></nav>
 <header id="top" class="hero">
   <figure class="hero-media" data-parallax="0.16">
     <img class="hero-photo" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541473675552-WPDLTJCGTFXV4JLJELWU/Wireless_BasxCole_18+%2884+of+106%29.jpg" alt="Concert photo from Joshy Gonz's music portfolio" loading="eager" fetchpriority="high" decoding="async" width="800" height="1000" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
@@ -36,13 +35,12 @@
     <h1 class="hero-title"><span class="line"><b>Joshy</b></span><span class="line"><b>Gonz</b></span></h1>
     <p class="hero-sub hero-rise">Live music. Real moments. Stories told through stills — and conversations that go beyond the frame.</p>
     <div class="hero-cta hero-rise">
-      <a class="btn btn-light" href="#work">Explore the Gallery</a>
-      <a class="btn btn-line light" href="#podcast">Here\'s the Thing Podcast</a>
+      <a class="btn btn-light" href="./gallery.html">Explore the Gallery</a>
+      <a class="btn btn-line light" href="./podcast.html">Here's the Thing Podcast</a>
     </div>
   </div>
   <div class="scroll-cue" aria-hidden="true">Scroll</div>
 </header>
-
 <main>
 <section id="podcast" class="podcast">
  <div class="container podcast-layout">
@@ -52,7 +50,7 @@
      <h2 class="podcast-title">Here's<br><em>the Thing.</em></h2>
      <p class="podcast-text">The conversations are just as sharp as the photographs. Hear Joshy Gonz alongside KevOnStage and ThatChickAngel on <strong>Here's the Thing</strong> — candid takes, pop culture and a whole lot of personality.</p>
      <div class="podcast-actions"><a class="btn btn-light" href="https://www.youtube.com/channel/UCKK0K-LoIJ_sS4C4GU5TWsQ" target="_blank" rel="noopener">Watch on YouTube</a><a class="btn btn-line light" href="https://podcasts.apple.com/gb/podcast/heres-the-thing/id1446527874" target="_blank" rel="noopener">Listen on Apple Podcasts</a></div>
-     <div class="podcast-feature"><span class="podcast-feature-tag">FROM THE SHOW</span><a href="https://www.iheart.com/podcast/867-heres-the-thing-92027681/episode/soccer-director-calls-911-on-black-348614344/" target="_blank" rel="noopener"><strong>Joshy joins the conversation</strong><span>Explore an episode featuring Joshy, Kev and Angel</span></a></div>
+     <p class="podcast-internal"><a href="./podcast.html">Visit the full podcast page</a></p><div class="podcast-feature"><span class="podcast-feature-tag">FROM THE SHOW</span><a href="https://www.iheart.com/podcast/867-heres-the-thing-92027681/episode/soccer-director-calls-911-on-black-348614344/" target="_blank" rel="noopener"><strong>Joshy joins the conversation</strong><span>Explore an episode featuring Joshy, Kev and Angel</span></a></div>
    </div>
    <div class="podcast-art" aria-label="Here's the Thing editorial podcast feature">
       <div class="podcast-art-glow"></div><span class="podcast-art-stamp">01 / VOICES</span>
@@ -62,138 +60,20 @@
    </div>
  </div>
 </section>
-
-<section id="work" class="work">
- <div class="container gallery-intro">
-   <span class="kicker">The photographic archive</span>
-   <div class="gallery-intro-grid"><h2 class="big-serif">Every frame<br><em>tells a story.</em></h2><p>From the crush of a concert crowd to a moment held in portrait. Explore Joshy's published work, organized by event and project.</p></div>
-   <div class="event-filter-wrap"><div class="event-filters" role="group" aria-label="Filter photographs by event">
-   <button type="button" class="filter-btn active" data-gallery-filter="all" aria-pressed="true">All events <span>15</span></button>
-   <button type="button" class="filter-btn" data-gallery-filter="kod" aria-pressed="false">KOD — Staples Center</button>
-<button type="button" class="filter-btn" data-gallery-filter="wireless" aria-pressed="false">Wireless — Bas × Cole</button>
-<button type="button" class="filter-btn" data-gallery-filter="bas" aria-pressed="false">Bas — Live Sessions</button>
-<button type="button" class="filter-btn" data-gallery-filter="rolling" aria-pressed="false">Rolling Loud</button>
-<button type="button" class="filter-btn" data-gallery-filter="novo" aria-pressed="false">XVR — Novo</button>
-<button type="button" class="filter-btn" data-gallery-filter="portrait" aria-pressed="false">Artist Portraits</button>
-<button type="button" class="filter-btn" data-gallery-filter="more" aria-pressed="false">Other Live Frames</button></div></div>
-   <p class="gallery-status" id="galleryStatus" role="status" aria-live="polite">15 photographs across 7 stories</p>
- </div>
- <div class="container event-collections"><section class="event-block" data-event="kod" aria-labelledby="gallery-kod">
-  <div class="event-heading"><div><span class="event-index">STORY 01 / Live performance</span><h3 id="gallery-kod">KOD — Staples Center</h3></div><span class="event-count">03 photographs</span></div>
-  <div class="gallery event-gallery"><button type="button" class="frame gallery-frame lead" data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541881039478-54354I03JNJ91ULAS4FO/KOD_Staples01-70.jpg" data-photo-title="Staples Center — frame 01" data-photo-event="KOD — Staples Center" aria-label="View Staples Center — frame 01 full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541881039478-54354I03JNJ91ULAS4FO/KOD_Staples01-70.jpg" alt="KOD, Staples Center — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>Staples Center — frame 01</strong><small>KOD — Staples Center</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button>
-<button type="button" class="frame gallery-frame " data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550521265488-NYFP83IKE4WA2C817FDN/KOD_Staples01-52.jpg" data-photo-title="Staples Center — frame 02" data-photo-event="KOD — Staples Center" aria-label="View Staples Center — frame 02 full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550521265488-NYFP83IKE4WA2C817FDN/KOD_Staples01-52.jpg" alt="KOD, Staples Center — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>Staples Center — frame 02</strong><small>KOD — Staples Center</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button>
-<button type="button" class="frame gallery-frame " data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541881071276-PVHN5HG63YV26K6UVPWM/KOD_Staples01-37.jpg" data-photo-title="Staples Center — frame 03" data-photo-event="KOD — Staples Center" aria-label="View Staples Center — frame 03 full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541881071276-PVHN5HG63YV26K6UVPWM/KOD_Staples01-37.jpg" alt="KOD, Staples Center — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>Staples Center — frame 03</strong><small>KOD — Staples Center</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button></div>
-</section>
-<section class="event-block" data-event="wireless" aria-labelledby="gallery-wireless">
-  <div class="event-heading"><div><span class="event-index">STORY 02 / Festival photography</span><h3 id="gallery-wireless">Wireless — Bas × Cole</h3></div><span class="event-count">02 photographs</span></div>
-  <div class="gallery event-gallery"><button type="button" class="frame gallery-frame duo" data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541473675552-WPDLTJCGTFXV4JLJELWU/Wireless_BasxCole_18+%2884+of+106%29.jpg" data-photo-title="Wireless — frame 01" data-photo-event="Wireless — Bas × Cole" aria-label="View Wireless — frame 01 full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541473675552-WPDLTJCGTFXV4JLJELWU/Wireless_BasxCole_18+%2884+of+106%29.jpg" alt="Wireless, Bas x Cole — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>Wireless — frame 01</strong><small>Wireless — Bas × Cole</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button>
-<button type="button" class="frame gallery-frame duo" data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541880680889-LTL0H47I359N01AC6CX5/Wireless_BasxCole_18+%2892+of+106%29.jpg" data-photo-title="Wireless — frame 02" data-photo-event="Wireless — Bas × Cole" aria-label="View Wireless — frame 02 full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541880680889-LTL0H47I359N01AC6CX5/Wireless_BasxCole_18+%2892+of+106%29.jpg" alt="Wireless, Bas x Cole — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>Wireless — frame 02</strong><small>Wireless — Bas × Cole</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button></div>
-</section>
-<section class="event-block" data-event="bas" aria-labelledby="gallery-bas">
-  <div class="event-heading"><div><span class="event-index">STORY 03 / Concert photography</span><h3 id="gallery-bas">Bas — Live Sessions</h3></div><span class="event-count">02 photographs</span></div>
-  <div class="gallery event-gallery"><button type="button" class="frame gallery-frame duo" data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541880622432-4HQ35GLQ0VRCEWKQCYHV/bas-pharcyde-12.jpg" data-photo-title="Bas — live frame 01" data-photo-event="Bas — Live Sessions" aria-label="View Bas — live frame 01 full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541880622432-4HQ35GLQ0VRCEWKQCYHV/bas-pharcyde-12.jpg" alt="Bas / Pharcyde — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>Bas — live frame 01</strong><small>Bas — Live Sessions</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button>
-<button type="button" class="frame gallery-frame duo" data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550520895225-HVK9KIRYWZ1J5JUKSK56/bas-observatory-117.jpg" data-photo-title="Bas — live frame 02" data-photo-event="Bas — Live Sessions" aria-label="View Bas — live frame 02 full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550520895225-HVK9KIRYWZ1J5JUKSK56/bas-observatory-117.jpg" alt="Bas at the Observatory — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>Bas — live frame 02</strong><small>Bas — Live Sessions</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button></div>
-</section>
-<section class="event-block" data-event="rolling" aria-labelledby="gallery-rolling">
-  <div class="event-heading"><div><span class="event-index">STORY 04 / Festival photography</span><h3 id="gallery-rolling">Rolling Loud</h3></div><span class="event-count">01 photographs</span></div>
-  <div class="gallery event-gallery"><button type="button" class="frame gallery-frame solo" data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550522981459-9E4TDX6OKI4E1PRNUWWF/RollingLoud12.14.18-5.jpg" data-photo-title="Rolling Loud — frame 01" data-photo-event="Rolling Loud" aria-label="View Rolling Loud — frame 01 full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550522981459-9E4TDX6OKI4E1PRNUWWF/RollingLoud12.14.18-5.jpg" alt="Rolling Loud — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>Rolling Loud — frame 01</strong><small>Rolling Loud</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button></div>
-</section>
-<section class="event-block" data-event="novo" aria-labelledby="gallery-novo">
-  <div class="event-heading"><div><span class="event-index">STORY 05 / Live performance</span><h3 id="gallery-novo">XVR — Novo</h3></div><span class="event-count">01 photographs</span></div>
-  <div class="gallery event-gallery"><button type="button" class="frame gallery-frame solo" data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550521089333-9XJKNWYM3X124DXVJXSM/xvr-novo-01.18.19-17.jpg" data-photo-title="Novo — frame 01" data-photo-event="XVR — Novo" aria-label="View Novo — frame 01 full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550521089333-9XJKNWYM3X124DXVJXSM/xvr-novo-01.18.19-17.jpg" alt="XVR / Novo — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>Novo — frame 01</strong><small>XVR — Novo</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button></div>
-</section>
-<section class="event-block" data-event="portrait" aria-labelledby="gallery-portrait">
-  <div class="event-heading"><div><span class="event-index">STORY 06 / Photography projects</span><h3 id="gallery-portrait">Artist Portraits</h3></div><span class="event-count">03 photographs</span></div>
-  <div class="gallery event-gallery"><button type="button" class="frame gallery-frame lead" data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550523044681-6PA458167UE1DN9XJLDR/sza-portfolio.png" data-photo-title="SZA — portrait" data-photo-event="Artist Portraits" aria-label="View SZA — portrait full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550523044681-6PA458167UE1DN9XJLDR/sza-portfolio.png" alt="SZA portfolio — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>SZA — portrait</strong><small>Artist Portraits</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button>
-<button type="button" class="frame gallery-frame " data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550523256626-SNO3CV93BMN4C8AFGA3W/uzi.jpg" data-photo-title="Uzi — portrait" data-photo-event="Artist Portraits" aria-label="View Uzi — portrait full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550523256626-SNO3CV93BMN4C8AFGA3W/uzi.jpg" alt="Uzi portrait — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>Uzi — portrait</strong><small>Artist Portraits</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button>
-<button type="button" class="frame gallery-frame " data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550524368922-QU2VGX5JQ0ANZL9F4U21/Armani+%2815+of+15%29.jpg" data-photo-title="Armani — portrait" data-photo-event="Artist Portraits" aria-label="View Armani — portrait full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550524368922-QU2VGX5JQ0ANZL9F4U21/Armani+%2815+of+15%29.jpg" alt="Armani portrait — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>Armani — portrait</strong><small>Artist Portraits</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button></div>
-</section>
-<section class="event-block" data-event="more" aria-labelledby="gallery-more">
-  <div class="event-heading"><div><span class="event-index">STORY 07 / Selected photography</span><h3 id="gallery-more">Other Live Frames</h3></div><span class="event-count">03 photographs</span></div>
-  <div class="gallery event-gallery"><button type="button" class="frame gallery-frame lead" data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541880900042-IUB9AUZTLL52HKOKKGB6/_DSC2056.jpg" data-photo-title="Live frame 01" data-photo-event="Other Live Frames" aria-label="View Live frame 01 full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541880900042-IUB9AUZTLL52HKOKKGB6/_DSC2056.jpg" alt="Selected live photography — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>Live frame 01</strong><small>Other Live Frames</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button>
-<button type="button" class="frame gallery-frame " data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541881787935-86OSGOBOOIG7LEJMOBWV/_DSC2790.jpg" data-photo-title="Live frame 02" data-photo-event="Other Live Frames" aria-label="View Live frame 02 full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541881787935-86OSGOBOOIG7LEJMOBWV/_DSC2790.jpg" alt="Selected live photography — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>Live frame 02</strong><small>Other Live Frames</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button>
-<button type="button" class="frame gallery-frame " data-gallery-photo data-full="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550618324041-X1C24XSZCG6KBEG3I6SO/prob_nickgrant-1.jpg" data-photo-title="Nick Grant — visual" data-photo-event="Other Live Frames" aria-label="View Nick Grant — visual full screen">
-    <img class="portfolio-img" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550618324041-X1C24XSZCG6KBEG3I6SO/prob_nickgrant-1.jpg" alt="Nick Grant project still — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer">
-    <span class="frame-caption"><strong>Nick Grant — visual</strong><small>Other Live Frames</small></span><span class="frame-expand" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button></div>
-</section></div>
- <div class="container gallery-bottom"><span>01 / The archive</span><p>Photography sourced from Joshy Gonz's published portfolio. Select a frame to view it full screen.</p><a href="https://www.instagram.com/joshygonz/" target="_blank" rel="noopener">See more on Instagram</a></div>
-</section>
-<div class="photo-lightbox" id="photoLightbox" role="dialog" aria-modal="true" aria-label="Photography viewer" hidden>
- <div class="lightbox-top"><span class="lightbox-brand">JOSHY GONZ / THE ARCHIVE</span><button type="button" id="lightboxClose" class="lightbox-close" aria-label="Close gallery">Close ×</button></div>
- <div class="lightbox-stage"><button type="button" id="lightboxPrev" class="lightbox-arrow" aria-label="Previous photograph">Prev</button>
- <img id="lightboxImage" alt="" decoding="async"><button type="button" id="lightboxNext" class="lightbox-arrow" aria-label="Next photograph">Next</button></div>
- <div class="lightbox-bottom"><div><span id="lightboxEvent"></span><strong id="lightboxTitle"></strong></div><span id="lightboxCounter"></span></div>
-</div>
-
-<section id="about" class="about">
-  <div class="container about-grid">
-    <figure class="about-portrait" data-parallax="0.1"><img class="about-photo" src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550521265488-NYFP83IKE4WA2C817FDN/KOD_Staples01-52.jpg" alt="Concert photography from Joshy Gonz's official portfolio" loading="lazy" decoding="async" width="800" height="1000" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer"><figcaption class="about-label">Portfolio photograph</figcaption></figure>
-    <div class="about-copy">
-      <span class="kicker">About</span>
-      <h2 class="big-serif">Behind the lens.</h2>
-      <p>Joshy Gonz is a photographer and visual storyteller — chasing light, moments and the people in front of his lens, and turning them into images worth keeping.</p>
-      <p>From concert stages to intimate portraits, his images preserve the atmosphere of the moment. Beyond photography, Joshy brings the same point of view to conversations on <em>Here's the Thing</em>.</p>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="contact">
-  <div class="container contact-inner">
-    <span class="kicker">Let's work</span>
-    <h2 class="big-serif">Bookings &amp; collaborations</h2>
-    <p>Portraits, events, editorial, brand work and content — let's make something.</p>
-    <a class="btn btn-dark big" href="https://www.instagram.com/joshygonz/" target="_blank" rel="noopener">Reach out on Instagram</a>
-  </div>
-</section>
+<section class="home-gallery" id="selected-work"><div class="container">
+<div class="home-gallery-heading"><div><span class="kicker">Selected work / The archive</span><h2 class="big-serif">The moments<br><em>that stay.</em></h2></div><div><p>Live music, portraits and the moments worth revisiting. The full collection is now on its own gallery page, grouped by event.</p><a class="btn btn-dark" href="./gallery.html">Enter the gallery</a></div></div>
+<div class="home-gallery-grid"><a class="home-gallery-card" href="./gallery.html#gallery-kod" aria-label="Explore Live at Staples event photographs"><img src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541881039478-54354I03JNJ91ULAS4FO/KOD_Staples01-70.jpg" alt="Staples Center — frame 01 — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer"><span class="home-gallery-caption"><small>01 / PHOTOGRAPHY</small><strong>Live at Staples</strong></span></a>
+<a class="home-gallery-card" href="./gallery.html#gallery-wireless" aria-label="Explore Wireless event photographs"><img src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541473675552-WPDLTJCGTFXV4JLJELWU/Wireless_BasxCole_18+%2884+of+106%29.jpg" alt="Wireless — frame 01 — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer"><span class="home-gallery-caption"><small>02 / PHOTOGRAPHY</small><strong>Wireless</strong></span></a>
+<a class="home-gallery-card" href="./gallery.html#gallery-portrait" aria-label="Explore Portraits event photographs"><img src="https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550523044681-6PA458167UE1DN9XJLDR/sza-portfolio.png" alt="SZA — portrait — Joshy Gonz photography" loading="lazy" decoding="async" data-fallback="assets/photography-fallback.svg" referrerpolicy="no-referrer"><span class="home-gallery-caption"><small>03 / PHOTOGRAPHY</small><strong>Portraits</strong></span></a></div>
+<div class="home-gallery-end"><span>07 stories / 15 photographs</span><a href="./gallery.html">See all photographs</a></div>
+</div></section>
+<section class="home-about"><div class="container home-about-grid"><div><span class="kicker">Meet the photographer</span><h2 class="big-serif">Behind<br>the lens.</h2></div><div><p>From live performances to portraits, Joshy's visual work focuses on the energy and atmosphere of the moment.</p><a class="btn btn-line" href="./about.html">About Joshy</a></div></div></section>
+<section class="contact"><div class="container contact-inner"><span class="kicker">Bookings &amp; collaborations</span><h2 class="big-serif">Make something together.</h2><p>Live events, portraits and creative projects.</p><a class="btn btn-dark big" href="./about.html#contact">Get in touch</a></div></section>
 </main>
-
 <footer class="footer">
   <div class="container">
     <p class="footer-serif">Joshy Gonz</p>
-    <p class="footer-links"><a href="#work">Photo Gallery</a> · <a href="#podcast">Podcast</a> · <a href="#about">About</a> · <a href="#contact">Contact</a></p>
+    <p class="footer-links"><a href="./">Home</a> · <a href="./gallery.html">Gallery</a> · <a href="./podcast.html">Podcast</a> · <a href="./about.html">About</a> · <a href="./about.html#contact">Contact</a></p>
     <p class="concept-note">Independent design concept by Awe Concepts. Not affiliated with, authorized by, or endorsed by Joshy Gonz. Photography selected from his published portfolio.</p>
     <p class="credit">Designed by <a href="https://aweconcepts.com/" target="_blank" rel="noopener"><strong>Awe Concepts</strong></a></p>
   </div>
