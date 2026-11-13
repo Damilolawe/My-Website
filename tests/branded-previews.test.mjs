@@ -236,23 +236,34 @@ test("photographer links, booking routes, gallery destinations, and social previ
  assert.ok(base.length>0);
 });
 
-test("preview Firebase target is separate from production and not a private draft deployment", async () => {
- const production = JSON.parse(await readFile("firebase.json","utf8"));
- assert.equal(production.hosting.public,"dist");
- assert.equal(production.hosting.target,undefined);
- const config=JSON.parse(await read("firebase.json"));
- const rc=JSON.parse(await read(".firebaserc"));
- assert.equal(config.hosting.public,"public");
- assert.equal(config.hosting.target,"previews");
- assert.ok(config.hosting.redirects.some(rule=>rule.source==="/shotsbyriq/"&&rule.destination==="/shotsbyriq"&&rule.type===302));
- assert.equal(rc.projects.default,"awe-digital");
- assert.deepEqual(rc.targets["awe-digital"].hosting.previews,["awe-concepts-previews"]);
- assert.ok(config.hosting.headers[0].headers.some(h=>h.key==="X-Robots-Tag"&&h.value.includes("noindex")));
- const workflow=await readFile(".github/workflows/branded-previews.yml","utf8");
- assert.match(workflow,/target: 'previews'/);
- assert.match(workflow,/entryPoint: 'branded-previews'/);
- assert.match(workflow,/channelId: live/);
- assert.doesNotMatch(workflow,/npm run build/);
+test("Cloudflare preview publishing is isolated from the main website and private drafts", async () => {
+ const preview = await readFile("wrangler.toml","utf8");
+ const main = await readFile("wrangler-main.toml","utf8");
+ assert.match(preview,/name\s*=\s*"awe-concepts-previews"/);
+ assert.match(preview,/directory\s*=\s*"\.\/branded-previews\/public"/);
+ assert.match(main,/name\s*=\s*"awe-concepts-main"/);
+ assert.doesNotMatch(preview,/directory\s*=\s*"\.\/dist"/);
+ const config = JSON.parse(await read("firebase.json"));
+ assert.ok(config.hosting.headers[0].headers.some(h=>h.key==="X-Robots-Tag"&&h.value.includes("noindex")),"Legacy preview config still guards any Firebase fallback deployment");
+ const workflow = await readFile(".github/workflows/branded-previews.yml","utf8");
+ assert.match(workflow,/node scripts\/build-branded-previews\.mjs/);
+ assert.match(workflow,/node scripts\/publish-selected-previews\.mjs/);
+ assert.doesNotMatch(workflow,/action-hosting-deploy|channelId:\s*live/,"GitHub preview CI must not redeploy deprecated Firebase hosting");
+});
+test("preview landing keeps exactly eight creator studies separate from other concepts", async () => {
+ const landing = await read("public/index.html");
+ const first = landing.indexOf('id="creator-previews"');
+ const second = landing.indexOf('id="other-previews"');
+ assert.ok(first > -1 && second > first,"Both preview categories must be present and ordered");
+ const creators = landing.slice(first,second);
+ const expected = ["kevonstage","tony-baker","keenan-baker","tahir-moore","roxxy-haze","ice-mcgowan","khleo-thomas","joshy-gonz"];
+ const found = [...creators.matchAll(/href="\/([a-z0-9-]+)\/"[^>]*aria-label=/g)].map(m=>m[1]);
+ assert.deepEqual(found,expected,"Keep the eight creator cards together with their existing destinations");
+ const other = landing.slice(second);
+ assert.match(other,/href="\/kappo-sono\/"/);
+ assert.doesNotMatch(other,/href="\/kevonstage\/"/);
+ assert.match(landing,/\.creator-grid\{display:grid/);
+ assert.match(landing,/@media\(max-width:700px\)/);
 });
 
 
