@@ -32,6 +32,7 @@ const allowed = [
   "tubitv.com", "tubi.tv", "twitch.tv", "patreon.com", "cameo.com",
   // independent merch / print-on-demand and live-comedy ticketing platforms
   "creator-spring.com", "teespring.com", "bonfire.com", "etix.com", "ticketsauce.com", "seatgeek.com", "bandsintown.com",
+  "bigcartel.com", "partiful.com", "imdb.com",
 ];
 const domainIs = (host, suffix) => host === suffix || host.endsWith("." + suffix);
 
@@ -60,6 +61,10 @@ export function isAllowedOutbound(href) {
     "micdropcomedychandler.com", "micdropcomedyplano.com", "micdropcomedysandiego.com",
   ]);
   if (performerHosts.has(host)) return true;
+  // Owner-requested independent creator concepts (preview/khleo-thomas, joshy-gonz):
+  // a gaming-gear affiliate and a charity cause, neither on a general platform.
+  const creatorHosts = new Set(["logi.gg", "100holehike.org"]);
+  if (creatorHosts.has(host)) return true;
   return allowed.some(d => domainIs(host, d));
 }
 

@@ -175,6 +175,20 @@
       "group": "owner-requested",
       "requestedAt": "2026-11-11",
       "verification": "Explicit user-directed independent design concept for filmmaker/comedian Ice McGowan. Content supplied by the requester from his Instagram @ice.mcgowan and YouTube; he has existing social profiles — do not label as no-website. Carries a visible 'independent design concept' notice."
+    },
+    {
+      "slug": "khleo-thomas",
+      "name": "Khleo Thomas",
+      "group": "owner-requested",
+      "requestedAt": "2026-11-13",
+      "verification": "Explicit user-directed independent design concept for actor/rapper/streamer Khleo Thomas. Content from his public profile (IMDb, Twitch, YouTube) and the requester-supplied Instagram @khleothomas; he has existing sites/socials — do not label as no-website. Links only to independent third-party platforms; does not link to his official site. Carries a visible 'independent design concept' notice."
+    },
+    {
+      "slug": "joshy-gonz",
+      "name": "Joshy Gonz",
+      "group": "owner-requested",
+      "requestedAt": "2026-11-13",
+      "verification": "Explicit user-directed independent design concept for photographer Joshy Gonz. Content from the requester-supplied Instagram @joshygonz and his Linktree destinations; he has an existing website/link hub — do not label as no-website. Gallery frames are placeholders for his own photography (no third-party images used as his). Links only to independent third-party platforms; does not link to his official site. Carries a visible 'independent design concept' notice."
     }
   ]
 }
