@@ -64,3 +64,24 @@
     });
   });
 })();
+
+// Creator photo fallback — local, CSP-safe replacement for unavailable external media.
+(function () {
+  function wireCreatorPhotoFallbacks() {
+    document.querySelectorAll('.ac-photo-journal img[data-fallback]').forEach(function (img) {
+      function recover() {
+        var local = img.getAttribute('data-fallback');
+        if (!local) return;
+        img.removeAttribute('data-fallback');
+        img.src = local;
+      }
+      img.addEventListener('error', recover, { once: true });
+      if (img.complete && img.naturalWidth === 0) recover();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireCreatorPhotoFallbacks, { once: true });
+  } else {
+    wireCreatorPhotoFallbacks();
+  }
+})();
