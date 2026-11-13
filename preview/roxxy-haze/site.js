@@ -1,4 +1,4 @@
-// Roxxy Haze concept — interactions
+// Roxxy Haze zine concept — interactions
 (function () {
   var nav = document.getElementById('nav');
   var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 50); };
@@ -10,19 +10,12 @@
   toggle.addEventListener('click', function () {
     var open = links.classList.toggle('open');
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-    links.inert = !open && window.innerWidth <= 900;
   });
-  function syncMenu() { links.inert = window.innerWidth <= 900 && !links.classList.contains('open'); }
-  syncMenu();
-  window.addEventListener('resize', syncMenu);
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && links.classList.contains('open')) { links.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.setAttribute('aria-label','Open navigation'); syncMenu(); toggle.focus(); } });
   links.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label','Open navigation'); syncMenu(); });
+    a.addEventListener('click', function () { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); });
   });
 
-  var els = document.querySelectorAll('.sec-head,.about-grid,.book-inner,.music-grid,.stream-inner,.connect-lead,.social-grid,.patreon-bar,.hub-row');
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js-reveal');
+  var els = document.querySelectorAll('.sec-head,.about-copy,.facets,.book-art,.book-copy,.embed-lead,.mu-card,.stream-copy,.stream-screen,.connect-lead,.so-card,.patreon-bar,.hub-row');
   els.forEach(function (el) { el.classList.add('reveal'); });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
@@ -34,7 +27,7 @@
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var t = document.querySelector(a.getAttribute('href'));
-      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' }); }
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
 

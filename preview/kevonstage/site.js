@@ -1,29 +1,53 @@
-// KevOnStage concept — interactions
+// KevOnStage streaming concept — interactions
 (function () {
   var nav = document.getElementById('nav');
   var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 50); };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  // Mobile nav
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
   toggle.addEventListener('click', function () {
     var open = links.classList.toggle('open');
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-    links.inert = !open && window.innerWidth <= 900;
   });
-  function syncMenu() { links.inert = window.innerWidth <= 900 && !links.classList.contains('open'); }
-  syncMenu();
-  window.addEventListener('resize', syncMenu);
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && links.classList.contains('open')) { links.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.setAttribute('aria-label','Open navigation'); syncMenu(); toggle.focus(); } });
   links.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label','Open navigation'); syncMenu(); });
+    a.addEventListener('click', function () { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); });
+  });
+
+  // Horizontal content-row controls (Netflix/Tubi-style rows)
+  document.querySelectorAll('[data-row]').forEach(function (row) {
+    var track = row.querySelector('[data-track]');
+    if (!track) return;
+    var ctrls = row.querySelectorAll('.row-ctrl');
+    var step = function () {
+      var first = track.firstElementChild;
+      var w = first ? first.getBoundingClientRect().width : track.clientWidth * 0.8;
+      return (w + 20) * Math.max(1, Math.floor(track.clientWidth / (w + 20)) - 0 || 1);
+    };
+    var update = function () {
+      var max = track.scrollWidth - track.clientWidth - 2;
+      var scrollable = max > 2;
+      ctrls.forEach(function (b) {
+        var dir = parseInt(b.getAttribute('data-dir'), 10);
+        var hide = !scrollable || (dir < 0 && track.scrollLeft <= 2) || (dir > 0 && track.scrollLeft >= max);
+        b.hidden = hide;
+      });
+    };
+    ctrls.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var dir = parseInt(b.getAttribute('data-dir'), 10);
+        track.scrollBy({ left: dir * step(), behavior: 'smooth' });
+      });
+    });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
   });
 
   // Scroll reveal
-  var els = document.querySelectorAll('.about-grid,.section-head,.tour-feature,.date-list,.card-grid,.studios-inner,.shop-inner,.social-row');
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js-reveal');
+  var els = document.querySelectorAll('.bb-meta,.bb-video,.about-grid,.row-head,.tour-feature,.date-list,.card-grid,.studios-copy,.studios-cards,.shop-inner,.section-head,.social-row');
   els.forEach(function (el) { el.classList.add('reveal'); });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
@@ -38,7 +62,7 @@
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var t = document.querySelector(a.getAttribute('href'));
-      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' }); }
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
 
