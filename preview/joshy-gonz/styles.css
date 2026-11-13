@@ -307,3 +307,6 @@ body.lightbox-open{overflow:hidden}
 @media(max-width:920px){.podcast-layout{grid-template-columns:1fr}.podcast-art{min-height:450px;max-width:600px;width:100%;margin-inline:auto}.gallery-intro-grid{grid-template-columns:1fr}.event-gallery{grid-auto-rows:220px}}
 @media(max-width:640px){.work{padding:75px 0}.gallery-intro-grid .big-serif{font-size:clamp(51px,13vw,78px)}.event-heading{align-items:start}.event-count{font-size:10px}.event-gallery{grid-template-columns:1fr 1fr;grid-auto-rows:190px;gap:10px}.gallery-frame,.gallery-frame.lead,.gallery-frame.duo,.gallery-frame.solo{grid-column:span 2;grid-row:span 1}.gallery-frame.lead,.gallery-frame.solo{grid-row:span 2}.gallery-frame .frame-caption strong{font-size:25px}.gallery-bottom{flex-direction:column}.podcast-title{font-size:clamp(65px,15vw,100px)}.podcast-art{min-height:480px}.podcast-art-type strong{font-size:clamp(60px,14vw,90px)}.podcast-feature{grid-template-columns:1fr}.lightbox-stage{grid-template-columns:36px minmax(0,1fr) 36px;gap:3px}.lightbox-arrow{width:34px;height:34px}.lightbox-brand{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.podcast-disc,.podcast-bars i{animation:none!important}}
+
+/* Labeled arrow controls remain legible after icon audit. */
+.lightbox-arrow{font:600 11px var(--sans);letter-spacing:.01em}
