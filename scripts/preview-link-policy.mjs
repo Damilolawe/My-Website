@@ -49,19 +49,19 @@ export function isAllowedOutbound(href) {
   if (host === "podcasts.apple.com" && url.pathname.includes("/the-take-notes-podcast/id1804733952")) return true;
   if (host === "creators.spotify.com" && url.pathname.startsWith("/pod/profile/fat-boy-finesse")) return true;
   // Owner-requested independent performer concepts (preview/kevonstage, tony-baker,
-  // keenan-baker, tahir-moore, roxxy-haze, ice-mcgowan). Each is explicitly allowed
-  // to reference its own official domain, custom storefront, link hub and local
-  // comedy-venue ticketing pages. No general business-website exemption is implied.
+  // keenan-baker, tahir-moore, roxxy-haze, ice-mcgowan). Per the owner's request these
+  // concepts do NOT link to the performers' own official websites or personal link hubs
+  // (kevonstage.com, tonybakercomedy.com, keenanbaker.com, roxxyhaze.com,
+  // iykyk.com/roxxyhaze, linktr.ee/tahirmoore). Only independent storefronts and local
+  // comedy-venue ticketing pages are exempted here.
   const performerHosts = new Set([
-    "kevonstage.com", "kevonstage.myshopify.com", "kevonstage-social-media-master-class.teachable.com",
-    "tonybakercomedy.com", "tonybakerhaberdasheries.com",
-    "keenanbaker.com",
-    "roxxyhaze.com", "roxxyhaze.square.site",
+    "kevonstage.myshopify.com",
+    "roxxyhaze.square.site",
     "micdropcomedychandler.com", "micdropcomedyplano.com", "micdropcomedysandiego.com",
   ]);
   if (performerHosts.has(host)) return true;
-  if (host === "linktr.ee" && ["/griefsucks", "/tahirmoore"].includes(url.pathname.replace(/\/$/, "").toLowerCase())) return true;
-  if (host === "iykyk.com" && url.pathname.replace(/\/$/, "").toLowerCase() === "/roxxyhaze") return true;
+  // KevOnStage's Grief Sucks tour ticket hub (an independent tour link page, not his website).
+  if (host === "linktr.ee" && url.pathname.replace(/\/$/, "").toLowerCase() === "/griefsucks") return true;
   return allowed.some(d => domainIs(host, d));
 }
 
