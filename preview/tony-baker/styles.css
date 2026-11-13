@@ -216,3 +216,8 @@ strong{color:#fff;font-weight:600}
   .brand-wave i{height:60%}
   .deck-vu i{height:60%}
 }
+
+/* Artwork for individually listed specials and shows */
+#watch .track{align-items:center}
+#watch .track .show-cover{display:block;width:84px;height:84px;flex:0 0 84px;object-fit:cover;border-radius:7px;border:1px solid var(--line);background:var(--panel)}
+@media(max-width:440px){#watch .track{gap:9px;padding:12px 9px}#watch .track .show-cover{width:60px;height:68px;flex-basis:60px}#watch .t-body h3{font-size:15px}#watch .t-body p{font-size:12px}}
