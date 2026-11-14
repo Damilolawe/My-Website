@@ -7,6 +7,8 @@
 // has to be fixed in the site's source.
 const allowed = [
   "aweconcepts.com",
+  // Attribution licenses, independent links and community destinations
+  "commons.wikimedia.org", "creativecommons.org", "discord.com", "direct.me",
   // maps
   "maps.app.goo.gl", "goo.gl", "maps.google.com", "maps.apple.com",
   // social and review profiles
