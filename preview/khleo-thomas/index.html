@@ -8,158 +8,137 @@
 <meta name="description" content="Khleo Thomas — actor (Holes, Roll Bounce, Walking Tall), rapper and daily Twitch streamer. Acting, music, live gaming, the How To Nerd podcast, merch and booking." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
 <div class="scanlines" aria-hidden="true"></div>
 
-<nav id="nav">
-  <a href="#top" class="brand" aria-label="Khleo Thomas home"><span class="brand-p1" aria-hidden="true">P1</span> Khleo Thomas</a>
-  <button id="navToggle" class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-  <div id="navLinks" class="nav-links">
+<header id="site" class="site">
+  <a href="#top" class="brand" aria-label="Khleo Thomas home"><span class="p1" aria-hidden="true">P1</span>Khleo Thomas</a>
+  <button id="burger" class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <nav id="nav" class="nav">
     <a href="#about">About</a>
     <a href="#screen">Screen</a>
     <a href="#sound">Sound</a>
     <a href="#stream">Stream</a>
-    <a href="#connect" class="nav-cta">Connect</a>
-  </div>
-</nav>
+    <a href="#shop">Shop</a>
+    <a href="#connect" class="cta">Connect</a>
+  </nav>
+</header>
 
 <header id="top" class="hero">
-  <div class="hero-grid-bg" aria-hidden="true"></div>
-  <div class="container hero-inner">
-    <div class="hero-copy">
-    <p class="live"><span class="live-dot" aria-hidden="true"></span>Live most days on Twitch</p>
-    <h1 class="glitch" data-text="KHLEO THOMAS">KHLEO THOMAS</h1>
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-stage pad">
+    <div class="hud-row" aria-hidden="true"><span>Credit <b>01</b></span><span class="sep">/</span><span>P1 <b>Ready</b></span><span class="sep">/</span><span>Live <b>on Twitch</b></span></div>
+    <span class="badge"><span class="dot" aria-hidden="true"></span>Live most days on Twitch</span>
+    <h1 class="wordmark"><span class="ln glitch" data-text="KHLEO">KHLEO</span><span class="ln glitch" data-text="THOMAS">THOMAS</span></h1>
     <p class="roles">Actor <i aria-hidden="true">/</i> Rapper <i aria-hidden="true">/</i> Streamer</p>
-    <p class="hero-sub">From Hector "Zero" Zeroni in <strong>Holes</strong> to one of the most consistent faces in live streaming — Khleo plays, performs, and builds community every single day.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="https://www.twitch.tv/khleothomas" target="_blank" rel="noopener">
-        <svg class="ic" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4 3h16v11l-5 5h-4l-3 3H6v-3H4zm3 2v12h3v2l2-2h4l3-3V5zm5 2h2v5h-2zm5 0h2v5h-2z"/></svg>
-        Watch Live
-      </a>
-      <a class="btn btn-ghost" href="https://www.youtube.com/KhleoThomasTV" target="_blank" rel="noopener">Watch on YouTube</a>
+    <p class="lead">From Hector "Zero" Zeroni in <strong>Holes</strong> to one of the most consistent faces in live streaming — Khleo plays, performs, and builds community every single day.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://www.twitch.tv/khleothomas" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16v11l-5 5h-4l-3 3H6v-3H4zm3 2v12h3v2l2-2h4l3-3V5zm5 2h2v5h-2zm5 0h2v5h-2z"/></svg>Watch Live</a>
+      <a class="btn btn-ghost" href="https://www.youtube.com/KhleoThomasTV" target="_blank" rel="noopener">YouTube</a>
     </div>
-    </div>
-    <figure class="hero-media"><img class="hero-image" src="https://media.link.me/_resize/image/width=1092,height=1092,quality=90,format=webp/images/user-profile/2385668/tmp-1384-1770316511849.jpeg" alt="Khleo Thomas official profile portrait" width="640" height="480" loading="lazy" decoding="async" data-fallback="assets/khleo-media-fallback.svg" referrerpolicy="no-referrer"><figcaption>Actor · Creator · Streamer</figcaption></figure>
   </div>
+  <span class="scroll-hint" aria-hidden="true">Insert coin <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
 </header>
 
 <main>
-<section id="about" class="about">
-  <div class="container about-grid">
-    <div class="about-head">
-      <span class="kicker">Player bio</span>
-      <h2 class="h2">Three decades on screen.<br>Thousands of hours on stream.</h2>
+<section id="about" class="sec wrap pad">
+  <div class="bio">
+    <div class="reveal">
+      <span class="menu">01 — Player Bio</span>
+      <h2 style="margin-top:16px">Three decades on screen.<br>Thousands of hours on stream.</h2>
     </div>
-    <div class="about-body">
+    <div class="bio-body reveal">
       <p>Khaleed "Khleo" Thomas broke out as a child actor — unforgettable as <strong>Hector "Zero" Zeroni</strong> in <em>Holes</em> — and kept working across film and TV, from <em>Roll Bounce</em> to <em>Walking Tall</em> and beyond.</p>
       <p>Today he's a full-time creator: streaming games daily on Twitch, hosting the <strong>How To Nerd</strong> podcast, running the <strong>4Kontrollers</strong> gaming crew, making music, and building one of the warmest communities online.</p>
-      <ul class="stat-row">
+      <ul class="stats">
         <li><b>2003</b><span>Holes — "Zero"</span></li>
-        <li><b>2020</b><span>Went full-time on Twitch</span></li>
+        <li><b>2020</b><span>Full-time on Twitch</span></li>
         <li><b>Daily</b><span>Live for the community</span></li>
       </ul>
     </div>
   </div>
 </section>
 
-<section id="screen" class="panels">
-  <div class="container">
-    <div class="sec-head"><span class="kicker">On screen</span><h2 class="h2">The Acting Reel</h2></div>
-    <div class="card-grid">
-      <article class="card feature">
-        <span class="tag">Film · 2003</span>
-        <img class="screen-poster" src="https://media.themoviedb.org/t/p/w600_and_h900_face/o2Dm2mcE1qW8vT0bpsJO5OMBbqa.jpg" alt="Theatrical poster for Holes (2003)" width="640" height="480" loading="lazy" decoding="async" data-fallback="assets/khleo-media-fallback.svg" referrerpolicy="no-referrer"><h3>Holes</h3>
-        <p>Khleo's breakout as Hector "Zero" Zeroni opposite Shia LaBeouf — the role that made him a household name.</p>
-      </article>
-      <article class="card">
-        <span class="tag">Film · 2005</span>
-        <img class="screen-poster" src="https://www.impawards.com/2005/posters/roll_bounce.jpg" alt="Theatrical poster for Roll Bounce (2005)" width="640" height="480" loading="lazy" decoding="async" data-fallback="assets/khleo-media-fallback.svg" referrerpolicy="no-referrer"><h3>Roll Bounce</h3>
-        <p>The roller-rink coming-of-age classic, alongside Bow Wow.</p>
-      </article>
-      <article class="card">
-        <span class="tag">Film · 2004</span>
-        <img class="screen-poster" src="https://www.impawards.com/2004/posters/walking_tall.jpg" alt="Theatrical poster for Walking Tall (2004)" width="640" height="480" loading="lazy" decoding="async" data-fallback="assets/khleo-media-fallback.svg" referrerpolicy="no-referrer"><h3>Walking Tall</h3>
-        <p>Action opposite Dwayne Johnson.</p>
-      </article>
-      <article class="card">
-        <span class="tag">Screen · ongoing</span>
-        <img class="screen-poster" src="assets/khleo-screen-reel.svg" alt="Khleo Thomas film and television career graphic" width="640" height="480" loading="lazy" decoding="async"><h3>Film &amp; TV</h3>
-        <p>Decades of credits across features and television — the full list lives on his resume.</p>
-        <a class="card-go" href="https://www.imdb.com/name/nm1169490/" target="_blank" rel="noopener">View the full resume</a>
-      </article>
-    </div>
+<section id="screen" class="sec wrap pad">
+  <div class="sec-head reveal"><span class="menu">02 — On Screen</span><h2 style="margin-top:16px">The <span class="br">Acting</span> Reel</h2></div>
+  <div class="tiles reveal">
+    <article class="tile lvl">
+      <div class="body"><span class="tag">Film · Breakout</span><div class="yr">2003</div><h3>Holes</h3><p class="role">Hector "Zero" Zeroni</p><p>His breakout opposite Shia LaBeouf — the role that made him a household name.</p></div>
+    </article>
+    <article class="tile lvl">
+      <div class="body"><span class="tag">Film</span><div class="yr">2005</div><h3>Roll Bounce</h3><p class="role">With Bow Wow</p><p>The roller-rink coming-of-age classic.</p></div>
+    </article>
+    <article class="tile lvl">
+      <div class="body"><span class="tag">Film</span><div class="yr">2004</div><h3>Walking Tall</h3><p class="role">With Dwayne Johnson</p><p>Action alongside The Rock.</p></div>
+    </article>
+    <a class="tile lvl" href="https://www.imdb.com/name/nm1169490/" target="_blank" rel="noopener">
+      <div class="body"><span class="tag">Screen · ongoing</span><div class="yr">IMDb</div><h3>Film &amp; TV</h3><p class="role">Full filmography</p><p>Decades of credits across features and television.</p><span class="go">View full resume</span></div>
+    </a>
   </div>
 </section>
 
-<section id="sound" class="sound">
-  <div class="container sound-inner">
-    <div class="sound-copy">
-      <span class="kicker alt">On the mic</span>
-      <h2 class="h2">Music</h2>
+<section id="sound" class="sec wrap pad">
+  <div class="sound-inner">
+    <div class="sound-copy reveal">
+      <span class="menu">03 — On the Mic</span>
+      <h2>Music</h2>
       <p>Khleo's also a rapper with multiple EPs, who has shared stages on tour with <strong>Bow Wow, Snoop Dogg, Ice Cube, Sean Kingston</strong> and <strong>Chris Brown</strong>. The same storyteller from the screen, over the beat.</p>
-      <a class="btn btn-outline" href="https://www.youtube.com/KhleoThomasTV" target="_blank" rel="noopener">Hear it on YouTube</a>
+      <a class="btn btn-ghost" href="https://www.youtube.com/KhleoThomasTV" target="_blank" rel="noopener">Hear it on YouTube</a>
     </div>
-    <div class="eq" aria-hidden="true"><img class="music-video-art" src="https://i.ytimg.com/vi/59EupMWNOn0/hqdefault.jpg" alt="Still from 5 On It, an official Khleo Thomas music video" width="640" height="480" loading="lazy" decoding="async" data-fallback="assets/khleo-media-fallback.svg" referrerpolicy="no-referrer"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <figure class="sound-media reveal">
+      <div class="vid"><img src="https://i.ytimg.com/vi/59EupMWNOn0/hqdefault.jpg" alt="Still from an official Khleo Thomas music video" width="640" height="360" loading="lazy" decoding="async" data-fallback="assets/khleo-media-fallback.svg" referrerpolicy="no-referrer"></div>
+      <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </figure>
   </div>
 </section>
 
-<section id="stream" class="stream">
-  <div class="container">
-    <div class="sec-head"><span class="kicker">Press start</span><h2 class="h2">Live &amp; Gaming</h2></div>
-    <div class="card-grid">
-      <a class="card linkcard p-twitch" href="https://www.twitch.tv/khleothomas" target="_blank" rel="noopener">
-        <span class="card-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4 3h16v11l-5 5h-4l-3 3H6v-3H4zm3 2v12h3v2l2-2h4l3-3V5zm5 2h2v5h-2zm5 0h2v5h-2z"/></svg></span>
-        <img class="gaming-art" src="assets/khleo-stream-art.svg" alt="Khleo Thomas official livestream graphic" width="640" height="480" loading="lazy" decoding="async"><h3>Twitch</h3><p>Daily live streams — variety games, trivia and hanging with chat.</p><span class="card-go">Follow the stream</span>
-      </a>
-      <a class="card linkcard" href="https://www.youtube.com/@4Kontrollers" target="_blank" rel="noopener">
-        <span class="card-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 11h4M9 9v4"/><circle cx="16" cy="10" r="1"/><circle cx="18" cy="12.5" r="1"/><path d="M5 14a7 7 0 0 1 14 0v1a3 3 0 0 1-3 3c-1.5 0-2-1-4-1s-2.5 1-4 1a3 3 0 0 1-3-3z"/></svg></span>
-        <img class="gaming-art" src="https://geekvsfan.com/wp-content/uploads/2025/10/4Kontrollers.jpg" alt="Khleo Thomas with the 4Kontrollers gaming crew at LA Comic Con" width="640" height="480" loading="lazy" decoding="async" data-fallback="assets/khleo-media-fallback.svg" referrerpolicy="no-referrer"><h3>4Kontrollers</h3><p>His gaming crew's YouTube — co-op chaos and challenges.</p><span class="card-go">Watch the squad</span>
-      </a>
-      <a class="card linkcard" href="https://www.youtube.com/KhleoThomasTV" target="_blank" rel="noopener">
-        <span class="card-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/></svg></span>
-        <img class="gaming-art" src="https://cdn.direct.me/avatars/899324.png?1784525822" alt="Official How To Nerd podcast avatar" width="640" height="480" loading="lazy" decoding="async" data-fallback="assets/khleo-media-fallback.svg" referrerpolicy="no-referrer"><h3>How To Nerd</h3><p>His podcast — pop culture, gaming and everything in between.</p><span class="card-go">Listen on YouTube</span>
-      </a>
-      <a class="card linkcard" href="https://discord.gg/8BEw6H2" target="_blank" rel="noopener">
-        <span class="card-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7a13 13 0 0 1 10 0l2 10a15 15 0 0 1-4 2l-1-2a18 18 0 0 1-6 0l-1 2a15 15 0 0 1-4-2z"/><circle cx="9.5" cy="12" r="1"/><circle cx="14.5" cy="12" r="1"/></svg></span>
-        <img class="gaming-art" src="assets/khleo-community-art.svg" alt="Khleo Thomas community gaming graphic" width="640" height="480" loading="lazy" decoding="async"><h3>Discord</h3><p>The community server — pull up and say what's up.</p><span class="card-go">Join the Discord</span>
-      </a>
-    </div>
+<section id="stream" class="sec wrap pad">
+  <div class="sec-head reveal"><span class="menu">04 — Press Start</span><h2 style="margin-top:16px">Live &amp; <span class="br">Gaming</span></h2></div>
+  <figure class="feature reveal">
+    <div class="fimg"><img src="https://geekvsfan.com/wp-content/uploads/2025/10/4Kontrollers.jpg" alt="Khleo Thomas with the 4Kontrollers gaming crew at LA Comic Con" width="1280" height="549" loading="lazy" decoding="async" data-fallback="assets/khleo-media-fallback.svg" referrerpolicy="no-referrer"></div>
+    <span class="cnr tl" aria-hidden="true"></span><span class="cnr br" aria-hidden="true"></span>
+    <figcaption>4Kontrollers · LA Comic Con</figcaption>
+  </figure>
+  <div class="tiles reveal">
+    <a class="tile" href="https://www.twitch.tv/khleothomas" target="_blank" rel="noopener">
+      <div class="body"><span class="tag">Daily · Live</span><h3><svg class="i ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16v11l-5 5h-4l-3 3H6v-3H4zm3 2v12h3v2l2-2h4l3-3V5zm5 2h2v5h-2zm5 0h2v5h-2z"/></svg>Twitch</h3><p>Daily live streams — variety games, trivia and hanging with chat.</p><span class="go">Follow the stream</span></div>
+    </a>
+    <a class="tile" href="https://www.youtube.com/@4Kontrollers" target="_blank" rel="noopener">
+      <div class="body"><span class="tag">Crew · YouTube</span><h3>4Kontrollers</h3><p>His gaming crew's channel — co-op chaos and challenges.</p><span class="go">Watch the squad</span></div>
+    </a>
+    <a class="tile" href="https://www.youtube.com/KhleoThomasTV" target="_blank" rel="noopener">
+      <div class="body"><span class="tag">Podcast</span><h3>How To Nerd</h3><p>Pop culture, gaming and everything in between.</p><span class="go">Listen on YouTube</span></div>
+    </a>
+    <a class="tile" href="https://discord.gg/8BEw6H2" target="_blank" rel="noopener">
+      <div class="body"><span class="tag">Community</span><h3>Discord</h3><p>The community server — pull up and say what's up.</p><span class="go">Join the Discord</span></div>
+    </a>
   </div>
 </section>
 
-<section id="shop" class="shop">
-  <div class="container shop-inner">
-    <div class="shop-copy">
-      <span class="kicker alt">Gear up</span>
-      <h2 class="h2">Shop &amp; Gear</h2>
-      <p>Rep the brand and roll with the same gear he streams on.</p>
-    </div>
-    <div class="shop-cards">
-      <a class="card linkcard" href="https://slickliving.bigcartel.com" target="_blank" rel="noopener">
-        <span class="card-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></span>
-        <h3>Slick Living Clothing</h3><p>His official apparel line.</p><span class="card-go">Shop the drop</span>
-      </a>
-      <a class="card linkcard" href="https://logi.gg/KhleoThomas" target="_blank" rel="noopener">
-        <span class="card-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="3" width="14" height="18" rx="7"/><path d="M12 7v4"/></svg></span>
-        <h3>Logitech G</h3><p>His streaming gear — code <strong>SLICKLIVING</strong> for 10% off.</p><span class="card-go">Get the gear</span>
-      </a>
-      <a class="card linkcard" href="https://www.patreon.com/KhleoThomas" target="_blank" rel="noopener">
-        <span class="card-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="15" cy="9" r="5"/><rect x="4" y="4" width="2.6" height="16"/></svg></span>
-        <h3>Patreon</h3><p>Back the stream and get closer to the community.</p><span class="card-go">Support Khleo</span>
-      </a>
-    </div>
+<section id="shop" class="sec wrap pad">
+  <div class="sec-head reveal"><span class="menu">05 — Gear Up</span><h2 style="margin-top:16px">Shop &amp; <span class="br">Gear</span></h2></div>
+  <div class="tiles cols-3 reveal">
+    <a class="tile" href="https://slickliving.bigcartel.com" target="_blank" rel="noopener">
+      <div class="body"><span class="tag">Apparel</span><h3><svg class="i ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>Slick Living</h3><p>His official clothing line.</p><span class="go">Shop the drop</span></div>
+    </a>
+    <a class="tile" href="https://logi.gg/KhleoThomas" target="_blank" rel="noopener">
+      <div class="body"><span class="tag">Code SLICKLIVING · 10% off</span><h3><svg class="i ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="7"/><path d="M12 7v4"/></svg>Logitech G</h3><p>The streaming gear he actually plays on.</p><span class="go">Get the gear</span></div>
+    </a>
+    <a class="tile" href="https://www.patreon.com/KhleoThomas" target="_blank" rel="noopener">
+      <div class="body"><span class="tag">Membership</span><h3><svg class="i ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="15" cy="9" r="5"/><rect x="4" y="4" width="2.6" height="16"/></svg>Patreon</h3><p>Back the stream and get closer to the community.</p><span class="go">Support Khleo</span></div>
+    </a>
   </div>
 </section>
 
-<section id="connect" class="connect">
-  <div class="container connect-inner">
-    <span class="kicker">New game +</span>
-    <h2 class="h2">Connect &amp; Booking</h2>
+<section id="connect" class="sec connect wrap pad">
+  <div class="inner reveal">
+    <span class="menu">06 — New Game +</span>
+    <h2>Connect &amp; Booking</h2>
     <p>Appearances, hosting, partnerships and press — reach the team directly.</p>
-    <a class="btn btn-primary big" href="mailto:mgmt@khleothomas.com">mgmt@khleothomas.com</a>
+    <a class="btn btn-mag big" href="mailto:mgmt@khleothomas.com">mgmt@khleothomas.com</a>
     <div class="social-row">
       <a href="https://www.instagram.com/khleothomas/" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.twitch.tv/khleothomas" target="_blank" rel="noopener">Twitch</a>
@@ -171,11 +150,11 @@
 </main>
 
 <footer class="footer">
-  <div class="container">
-    <div class="footer-big">KHLEO THOMAS</div>
-    <p class="footer-links"><a href="#about">About</a> · <a href="#screen">Screen</a> · <a href="#sound">Sound</a> · <a href="#stream">Stream</a> · <a href="#connect">Connect</a></p>
-    <p class="concept-note">Independent design concept by Awe Concepts. Not affiliated with, authorized by, or endorsed by Khleo Thomas.</p>
-    <p class="credit">Designed by <a href="https://aweconcepts.com/" target="_blank" rel="noopener"><strong>Awe Concepts</strong></a></p>
+  <div class="wrap pad">
+    <div class="big" aria-hidden="true">KHLEO THOMAS</div>
+    <p class="flinks"><a href="#about">About</a> · <a href="#screen">Screen</a> · <a href="#sound">Sound</a> · <a href="#stream">Stream</a> · <a href="#shop">Shop</a> · <a href="#connect">Connect</a></p>
+    <p class="note">Independent design concept by Awe Concepts. Not affiliated with, authorized by, or endorsed by Khleo Thomas.</p>
+    <p class="credit">Designed by <a href="https://aweconcepts.com/" target="_blank" rel="noopener">Awe Concepts</a></p>
   </div>
 </footer>
 
