@@ -215,3 +215,8 @@ section[id]{scroll-margin-top:90px}
 #album .album-related-image{display:block;width:190px;max-width:55%;height:auto;aspect-ratio:1;object-fit:cover;border:2px solid rgba(255,255,255,.2);border-radius:5px;margin:16px 0 20px;box-shadow:0 12px 25px rgba(0,0,0,.15)}
 #videos .watch-related-image{display:block;width:100%;aspect-ratio:16/7;object-fit:cover;border-radius:5px;margin:13px 0;background:var(--paper)}
 @media(max-width:600px){#album .album-related-image{width:150px}}
+
+/* ---------- ELEVATION: image-hover parity ---------- */
+.creator-portrait img,.creator-photo img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.creator-portrait:hover img,.creator-photo:hover img{transform:scale(1.04)}
+@media(prefers-reduced-motion:reduce){.creator-portrait:hover img,.creator-photo:hover img{transform:none}}
