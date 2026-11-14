@@ -254,3 +254,20 @@ strong{color:#fff;font-weight:600}
 .footer-links{margin:2px 0 8px}
 .footer .concept-note{margin:7px auto 0}
 .footer .credit{margin-top:11px}
+
+/* ---------- PRO: cinematic branded video facade (no raw YouTube chrome) ---------- */
+.video-facade{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;border:0;cursor:pointer;background:#000;display:block;overflow:hidden}
+.video-poster{position:absolute;top:-7%;left:50%;transform:translateX(-50%);height:182%;width:auto;max-width:none;
+  filter:brightness(.82) saturate(.98);transition:filter .45s}
+.video-facade:hover .video-poster{filter:brightness(.92) saturate(1.02)}
+.video-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(75% 65% at 50% 40%,transparent 40%,rgba(9,9,14,.5)),linear-gradient(0deg,rgba(9,9,14,.88),transparent 58%)}
+.video-play-btn{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);z-index:2;display:grid;place-items:center;
+  width:76px;height:76px;border-radius:50%;background:var(--gold);color:var(--ink);box-shadow:0 14px 34px rgba(0,0,0,.5);
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),background .25s}
+.video-play-btn svg{margin-left:4px}
+.video-facade:hover .video-play-btn{transform:translate(-50%,-50%) scale(1.08);background:var(--gold-soft)}
+.video-cap{position:absolute;left:20px;bottom:18px;z-index:2;display:flex;flex-direction:column;gap:3px;text-align:left}
+.video-cap b{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.5px;font-size:20px;color:#fff}
+.video-cap span{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+@media(prefers-reduced-motion:reduce){.video-facade:hover .video-poster{transform:none}}
