@@ -83,7 +83,12 @@
       <div class="screen-bar"><span class="tally" aria-hidden="true"></span>Latest on YouTube</div>
       <div class="screen-frame">
         <div class="scanline" aria-hidden="true"></div>
-        <iframe src="https://www.youtube-nocookie.com/embed/QvMFdQ2ZJ3A" title="KevOnStage on YouTube" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <button class="video-facade" type="button" id="heroVideo" data-embed="https://www.youtube-nocookie.com/embed/QvMFdQ2ZJ3A?autoplay=1&amp;rel=0&amp;modestbranding=1" aria-label="Play the latest KevOnStage video">
+          <img class="video-poster" src="https://i.ytimg.com/vi/QvMFdQ2ZJ3A/maxresdefault.jpg" alt="Latest KevOnStage video" width="1280" height="720" loading="lazy" decoding="async" data-fallback="https://i.ytimg.com/vi/QvMFdQ2ZJ3A/hqdefault.jpg" referrerpolicy="no-referrer">
+          <span class="video-scrim" aria-hidden="true"></span>
+          <span class="video-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" focusable="false"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="video-cap"><b>Here's The Thing</b><span>Watch the latest episode</span></span>
+        </button>
       </div>
     </figure>
   </div>

@@ -57,6 +57,21 @@
     update();
   });
 
+  // Branded hero video: load the real player only on click (facade pattern)
+  var heroVideo = document.getElementById('heroVideo');
+  if (heroVideo) {
+    heroVideo.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = heroVideo.getAttribute('data-embed');
+      f.title = 'KevOnStage on YouTube';
+      f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      f.setAttribute('allowfullscreen', '');
+      f.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0';
+      heroVideo.replaceWith(f);
+    });
+  }
+
   // Quiet reveal-on-scroll (elevation) — kept off under reduced-motion
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reduce && 'IntersectionObserver' in window) {
