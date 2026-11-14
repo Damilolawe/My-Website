@@ -31,9 +31,6 @@
     } else { els.forEach(function (el) { el.classList.add('visible'); }); }
   }
 
-  // stagger the equalizer bars for a natural audio feel
-  document.querySelectorAll('.eq i').forEach(function (bar, i) { bar.style.animationDelay = (-(i % 7) * 0.13).toFixed(2) + 's'; });
-
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var id = a.getAttribute('href');
