@@ -209,3 +209,39 @@ img{display:block;max-width:100%}
   .reveal{opacity:1;transform:none}
   .shot .scap{opacity:1;transform:none}
 }
+/* Event-indexed Joshy Gonz photo archive */
+.archive{padding-top:clamp(22px,4vw,55px);padding-bottom:clamp(75px,11vw,140px)}
+.archive-overview{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.archive-overview p{font-family:var(--serif);font-weight:300;font-size:clamp(20px,3vw,32px);line-height:1.3;margin-top:7px}
+.archive .filters{display:flex;flex-wrap:wrap;gap:9px;padding:clamp(25px,4vw,45px) 0 22px;margin-top:0}
+.archive .filter{font-size:10px;letter-spacing:.08em;line-height:1.25;padding:10px 12px;border:1px solid var(--line);text-align:left}
+.archive .filter small{opacity:.5;margin-left:5px}
+.archive .filter:hover{color:var(--fg);background:var(--panel)}
+.archive .filter.active{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.archive-sections{display:flex;flex-direction:column;gap:clamp(55px,8vw,110px);padding-top:clamp(28px,5vw,55px)}
+.archive-collection[hidden]{display:none}
+.archive-heading{display:flex;justify-content:space-between;align-items:end;gap:20px;border-bottom:1px solid var(--line);padding-bottom:clamp(18px,3vw,30px);margin-bottom:clamp(18px,3vw,30px)}
+.archive-heading h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.5vw,60px);line-height:1.12;letter-spacing:-.01em;margin-top:12px}
+.archive-heading p{font-size:11px;letter-spacing:.08em;color:var(--muted);text-align:right;max-width:26ch}
+.archive-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(12px,2vw,26px)}
+.archive-photo{grid-column:span 6;aspect-ratio:4/5}
+.archive-photo:nth-child(3n+1){grid-column:span 7;aspect-ratio:3/2}
+.archive-photo:nth-child(3n+2){grid-column:span 5;aspect-ratio:4/5}
+.archive-photo:nth-child(3n):last-child{grid-column:span 12;aspect-ratio:21/9}
+.archive-photo:only-child{grid-column:1/-1;aspect-ratio:16/9;max-height:650px}
+.archive-photo:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.archive-photo:focus-visible .scap{opacity:1;transform:none}
+.archive-photo:focus-visible::after{opacity:1}
+.archive-photo .scap h3{font-size:clamp(16px,1.6vw,22px)}
+.lightbox .lb-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:54px;background:rgba(12,12,14,.75);border:1px solid var(--line-2);color:var(--fg);font-size:36px;cursor:pointer}
+.lightbox .lb-prev{left:clamp(6px,2vw,30px)}
+.lightbox .lb-next{right:clamp(6px,2vw,30px)}
+.lightbox img{max-width:86vw;max-height:82vh}
+@media(max-width:700px){
+ .archive-heading{align-items:flex-start;flex-direction:column}
+ .archive-heading p{text-align:left}
+ .archive-grid .archive-photo,.archive-grid .archive-photo:nth-child(3n+1),.archive-grid .archive-photo:nth-child(3n+2),.archive-grid .archive-photo:nth-child(3n):last-child,.archive-grid .archive-photo:only-child{grid-column:1/-1;aspect-ratio:4/3}
+ .archive-photo .scap,.archive-photo::after{opacity:1;transform:none}
+ .lightbox .lb-arrow{top:auto;bottom:20px;transform:none;width:42px;height:44px}
+ .lightbox img{max-width:96vw;max-height:75vh}
+}

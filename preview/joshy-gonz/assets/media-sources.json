@@ -6,7 +6,7 @@
   "gallery": [
     {
       "id": "kod",
-      "title": "KOD — Staples Center",
+      "title": "KOD Tour — Staples Center",
       "kind": "Live performance",
       "photos": [
         {
@@ -28,7 +28,7 @@
     },
     {
       "id": "wireless",
-      "title": "Wireless — Bas × Cole",
+      "title": "Wireless Festival — Bas × Cole",
       "kind": "Festival photography",
       "photos": [
         {
@@ -74,7 +74,7 @@
     },
     {
       "id": "novo",
-      "title": "XVR — Novo",
+      "title": "XVR — The Novo",
       "kind": "Live performance",
       "photos": [
         {
@@ -86,7 +86,7 @@
     },
     {
       "id": "portrait",
-      "title": "Artist Portraits",
+      "title": "Artist Portraits & Editorial",
       "kind": "Photography projects",
       "photos": [
         {
@@ -109,7 +109,7 @@
     {
       "id": "more",
       "title": "Other Live Frames",
-      "kind": "Selected photography",
+      "kind": "Concert photography",
       "photos": [
         {
           "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541880900042-IUB9AUZTLL52HKOKKGB6/_DSC2056.jpg",
@@ -120,6 +120,18 @@
           "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1541881787935-86OSGOBOOIG7LEJMOBWV/_DSC2790.jpg",
           "caption": "Live frame 02",
           "detail": "Selected live photography"
+        }
+      ]
+    },
+    {
+      "id": "visuals",
+      "title": "Visual Stories",
+      "kind": "Music and visual projects",
+      "photos": [
+        {
+          "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550618229472-6VFN6ZU0DTU5NQFGRUBZ/promo02_still.png",
+          "caption": "Visuals — dusk",
+          "detail": "Music visual still from Joshy Gonz's published portfolio"
         },
         {
           "src": "https://images.squarespace-cdn.com/content/v1/57c52becff7c5074da3bacc5/1550618324041-X1C24XSZCG6KBEG3I6SO/prob_nickgrant-1.jpg",
@@ -133,5 +145,6 @@
     "name": "Here's The Thing",
     "youtube": "https://www.youtube.com/channel/UCKK0K-LoIJ_sS4C4GU5TWsQ",
     "apple": "https://podcasts.apple.com/gb/podcast/heres-the-thing/id1446527874"
-  }
+  },
+  "updated": "2026-11-14"
 }
