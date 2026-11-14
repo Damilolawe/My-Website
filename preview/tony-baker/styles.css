@@ -221,3 +221,10 @@ strong{color:#fff;font-weight:600}
 #watch .track{align-items:center}
 #watch .track .show-cover{display:block;width:84px;height:84px;flex:0 0 84px;object-fit:cover;border-radius:7px;border:1px solid var(--line);background:var(--panel)}
 @media(max-width:440px){#watch .track{gap:9px;padding:12px 9px}#watch .track .show-cover{width:60px;height:68px;flex-basis:60px}#watch .t-body h3{font-size:15px}#watch .t-body p{font-size:12px}}
+
+/* ---------- ELEVATION: quiet reveal + image-hover parity ---------- */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.portrait-frame img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.portrait-frame:hover img{transform:scale(1.04)}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.portrait-frame:hover img{transform:none}}
