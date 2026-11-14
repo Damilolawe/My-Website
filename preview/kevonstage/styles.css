@@ -236,6 +236,18 @@ strong{color:#fff;font-weight:600}
 #watch .tile:hover .show-cover{transform:scale(1.05)}
 @media(prefers-reduced-motion:reduce){#watch .tile-poster .show-cover{transition:none}#watch .tile:hover .show-cover{transform:none}}
 
+/* ---------- ELEVATION: quiet reveal + image-hover parity ---------- */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.profile-portrait img,.tour-poster img,.shop-art img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.profile-portrait:hover img,.tour-poster:hover img,.shop-art:hover img{transform:scale(1.04)}
+.screen-frame{box-shadow:0 30px 70px rgba(0,0,0,.55),inset 0 0 0 1px rgba(228,180,59,.1)}
+.stage::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(130% 90% at 50% 0%,transparent 60%,rgba(5,5,9,.5))}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none}
+  .profile-portrait:hover img,.tour-poster:hover img,.shop-art:hover img{transform:none}
+}
+
 /* Compact single footer: avoid the second oversized KevOnStage wordmark. */
 .footer{padding:34px 0 30px;text-align:center}
 .footer-inner{display:flex;flex-direction:column;align-items:center;gap:5px}

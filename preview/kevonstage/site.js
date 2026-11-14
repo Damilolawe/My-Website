@@ -57,6 +57,17 @@
     update();
   });
 
+  // Quiet reveal-on-scroll (elevation) — kept off under reduced-motion
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window) {
+    var revealEls = document.querySelectorAll('.profile-grid,.rail-head,.ac-gallery-head,.ac-photo-tile,.tour-inner,.studios-head,.scard,.shop-inner,.booking-inner');
+    revealEls.forEach(function (el) { el.classList.add('reveal'); });
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); rio.unobserve(e.target); } });
+    }, { threshold: 0, rootMargin: '0px 0px -6% 0px' });
+    revealEls.forEach(function (el) { rio.observe(el); });
+  }
+
   // Smooth anchor scrolling
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
