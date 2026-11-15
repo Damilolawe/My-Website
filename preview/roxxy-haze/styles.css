@@ -321,10 +321,6 @@ a{color:inherit;text-decoration:none}
 .stream-zine-burst{position:absolute;z-index:3;top:2%;right:0;width:118px;height:118px;display:grid;place-items:center;
   border:3px solid var(--ink);border-radius:50%;transform:rotate(13deg);background:var(--yellow);color:var(--ink);
   text-align:center;font:900 19px/.95 var(--display);box-shadow:5px 6px 0 var(--ink)}
-.stream-zine-note{position:absolute;z-index:3;bottom:8%;left:-2%;background:var(--paper);border:3px solid var(--ink);
-  padding:18px 22px;transform:rotate(-7deg);box-shadow:5px 6px 0 var(--violet);
-  text-transform:uppercase;font:800 clamp(11px,1.2vw,14px)/1.65 var(--display)}
-.stream-zine-note span{color:#9b1670}
 .stream-zine-tape{position:absolute;top:5%;left:24%;z-index:4;width:90px;height:27px;
   background:rgba(255,210,31,.7);transform:rotate(-18deg);box-shadow:0 1px 2px #0004}
 .stream-zine-bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
@@ -347,7 +343,6 @@ a{color:inherit;text-decoration:none}
   .stream-arcade-wordmark strong{font-size:clamp(31px,10vw,53px)}
   .stream-zine-art{min-height:clamp(325px,97vw,460px)}
   .stream-zine-burst{width:82px;height:82px;font-size:12px;right:0;top:0}
-  .stream-zine-note{padding:10px 12px;left:0;bottom:2%;font-size:10px}
   .stream-zine-bottom{gap:9px 15px;font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){
