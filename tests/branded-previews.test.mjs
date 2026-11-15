@@ -618,3 +618,21 @@ test("All eight creator previews avoid stale claims and retain verified 2026 des
  assert.match(podcast,/September 7, 2026/);
  assert.match(pages["joshy-gonz"],/Joshy Gonz/);
 });
+
+test("creator preview outbound links survive publishing and known broken media stays fixed",async()=>{
+ const kev=await read("public/kevonstage/index.html");
+ const tony=await read("public/tony-baker/index.html");
+ const tahir=await read("public/tahir-moore/index.html");
+ const ice=await read("public/ice-mcgowan/index.html");
+ const khleo=await read("public/khleo-thomas/index.html");
+ const podcast=await read("public/joshy-gonz/film.html");
+ assert.ok(kev.includes('href="https://www.ticketmaster.com/kevonstage-tickets/artist/2705718"'),"KevOnStage ticket link was rewritten");
+ assert.ok(kev.includes('href="https://podcasts.apple.com/us/podcast/heres-the-thing/id1446527874"'),"KevOnStage podcast link was rewritten");
+ assert.ok(tony.includes('href="https://www.youtube.com/watch?v=0E0Cd1Hl9Uw"'),"Tony Baker licensed special video is missing");
+ assert.ok(tahir.includes("Tahir's debut stand-up special"),"Tahir debut runtime needs accuracy");
+ assert.ok(podcast.includes('href="https://podcasts.apple.com/us/podcast/heres-the-thing/id1446527874"'),"Joshy podcast link was rewritten");
+ assert.ok(podcast.includes("podcasts.apple.com/us/podcast/joshy-wedding-recap/"),"Joshy featured episode link was rewritten");
+ assert.ok(khleo.includes('href="https://afrotech.com/khleo-thomas-astro-gaming-partnership"'),"Khleo press attribution was rewritten");
+ assert.ok(ice.includes('class="ice-creator-poster"'),"Ice original poster is missing");
+ assert.ok(!ice.includes("channel-avatar.webp"),"Ice missing image has returned");
+});
