@@ -278,7 +278,22 @@ a{color:inherit;text-decoration:none}
 /* A second, different verified creator visual fills About without duplicating a card. */
 .about-creator-art{width:min(100%,230px);margin:22px 0 0;border:3px solid var(--ink);
   box-shadow:6px 6px 0 var(--orange);background:#10131b}
-.about-creator-art img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover}
+.ice-creator-poster{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:1;padding:14px;
+  background:radial-gradient(ellipse at 50% 52%,rgba(33,227,247,.32) 0,transparent 57%),linear-gradient(145deg,#171329 5%,#321438 49%,#070b1b 100%);color:var(--ice)}
+.ice-creator-poster::before{content:"";position:absolute;inset:-20%;z-index:-1;transform:rotate(-16deg);pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent 0 15px,rgba(255,255,255,.07) 16px 17px)}
+.ice-creator-poster::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.28;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.4) 45%,transparent 58%);animation:ice-creator-sheen 6s ease-in-out infinite}
+.ice-creator-halo{position:absolute;width:145px;height:145px;top:50%;left:50%;translate:-50% -50%;border:14px solid var(--orange);border-radius:50%;
+ box-shadow:0 0 28px rgba(255,119,36,.75),inset 0 0 28px rgba(255,119,36,.4);animation:ice-creator-pulse 3.3s ease-in-out infinite alternate}
+.ice-creator-top,.ice-creator-bottom{position:relative;z-index:3;font:800 10px/1.2 var(--display);letter-spacing:.06em}
+.ice-creator-bottom{color:#ffc978}
+.ice-creator-poster strong{position:relative;z-index:3;align-self:center;display:flex;flex-direction:column;align-items:center;transform:rotate(-7deg);
+  font:900 clamp(35px,5vw,53px)/.83 var(--display);letter-spacing:-.055em;color:#fff;text-shadow:4px 4px 0 var(--magenta),0 0 20px rgba(33,227,247,.5)}
+.ice-creator-poster strong span:last-child{color:var(--orange);text-shadow:3px 3px 0 var(--ink)}
+@keyframes ice-creator-pulse{from{scale:.92;opacity:.7}to{scale:1.1;opacity:1}}
+@keyframes ice-creator-sheen{0%,45%{transform:translateX(-120%)}75%,100%{transform:translateX(120%)}}
+@media(prefers-reduced-motion:reduce){.ice-creator-poster::after,.ice-creator-halo{animation:none}}
 .about-creator-art figcaption{padding:6px 8px;color:var(--ice);font:700 9px/1.4 var(--display);
   letter-spacing:.04em}
 @media(max-width:960px){
