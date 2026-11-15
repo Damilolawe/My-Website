@@ -590,3 +590,31 @@ test("Roxxy Twitch redesign survives the preview build and omits broken Amazon C
  assert.doesNotMatch(css,/stream-zine-note/,"The unused floating note styling should stay removed.");
  assert.match(html,/Autographed Hardcover/,"The verified signed-book store should remain accessible.");
 });
+
+
+test("All eight creator previews avoid stale claims and retain verified 2026 destinations", async () => {
+ const slugs=["kevonstage","tony-baker","keenan-baker","tahir-moore","roxxy-haze","ice-mcgowan","khleo-thomas","joshy-gonz"];
+ const pages=Object.fromEntries(await Promise.all(slugs.map(async slug=>[slug,await read("public/"+slug+"/index.html")])));
+ assert.match(pages.kevonstage,/Featured on YouTube/);
+ assert.doesNotMatch(pages.kevonstage,/Watch the latest episode|Latest on YouTube/);
+ assert.match(pages["tony-baker"],/More than a decade/);
+ assert.doesNotMatch(pages["tony-baker"],/Nearly a decade|Latest on YouTube/);
+ assert.match(pages["keenan-baker"],/Anybody Can Get It! \(2026\)/);
+ assert.match(pages["keenan-baker"],/9D8Y4tL1aLk/);
+ assert.match(pages["keenan-baker"],/instagram\.com\/keenanbaker\//);
+ assert.doesNotMatch(pages["keenan-baker"],/keenanbakercomedian\/|An hour of the sharp/);
+ assert.match(pages["tahir-moore"],/tubitv\.com\/movies\/100050122\/tahir-moore-aging-out/);
+ assert.doesNotMatch(pages["tahir-moore"],/fWKfCd6GfMb|three shows every week|Three Shows a Week/);
+ assert.match(pages["roxxy-haze"],/Music Spotlight/);
+ assert.doesNotMatch(pages["roxxy-haze"],/Roxxy's latest album|Latest Album|ROXXY HAZE \/ LOOKBOOK/);
+ assert.match(pages["ice-mcgowan"],/Featured Episode/);
+ assert.doesNotMatch(pages["ice-mcgowan"],/Sponsored by Netflix Is a Joke|Latest Episode/);
+ assert.match(pages["khleo-thomas"],/Streams on Twitch/);
+ assert.doesNotMatch(pages["khleo-thomas"],/Daily live streams|Live most days on Twitch|Daily · Live/);
+ const studio=await read("public/joshy-gonz/studio.html");
+ const podcast=await read("public/joshy-gonz/film.html");
+ assert.doesNotMatch(studio,/100 Hole Hike|yocnational2025|partiful\.com|vlog|Support the hike/);
+ assert.match(studio,/Here's The Thing/);
+ assert.match(podcast,/September 7, 2026/);
+ assert.match(pages["joshy-gonz"],/Joshy Gonz/);
+});
