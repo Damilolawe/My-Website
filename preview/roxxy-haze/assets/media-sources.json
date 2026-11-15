@@ -41,13 +41,14 @@
       "role": "Lookbook new portrait",
       "sourcePage": "https://boldjourney.com/meet-roxxy-haze/",
       "source": "https://cdn.boldjourney.com/wp-content/uploads/2025/01/c-1737659179771-1737659183848_roxxy_haze_472906889_1143425254009605_8781553601648038092_n.jpg"
-    },
+    }
+  ],
+  "visuals": [
     {
-      "role": "Twitch zine feature",
-      "sourcePage": "https://www.youtube.com/watch?v=HxCwEfpf_bk",
-      "source": "https://i.ytimg.com/vi/HxCwEfpf_bk/sddefault.jpg",
-      "fallback": "https://i.ytimg.com/vi/HxCwEfpf_bk/hqdefault.jpg",
-      "description": "Thumbnail from Roxxy Haze vs Maxx the Slayer | Arcade House: Dance Central, published by All Def Gaming. Shows an actual gaming appearance, not a Twitch livestream."
+      "role": "Twitch illustration",
+      "type": "Original CSS animation",
+      "source": "preview/roxxy-haze/styles.css",
+      "description": "Neon Roxxy Mode arcade poster built from CSS gradients, animated rings, sparkles and a CRT light-sweep; no person/photo reused."
     }
   ]
 }
