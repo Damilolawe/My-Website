@@ -143,8 +143,23 @@
   ],
   "podcast": {
     "name": "Here's The Thing",
+    "participants": [
+      "KevOnStage",
+      "That Chick Angel",
+      "Josh Gonzales (Joshy Gonz)"
+    ],
+    "description": "Comedy, pop culture and current-events discussion. Josh Gonzales is credited as a host on Apple Podcasts.",
     "youtube": "https://www.youtube.com/channel/UCKK0K-LoIJ_sS4C4GU5TWsQ",
-    "apple": "https://podcasts.apple.com/gb/podcast/heres-the-thing/id1446527874"
+    "apple": "https://podcasts.apple.com/us/podcast/heres-the-thing/id1446527874",
+    "featuredEpisode": {
+      "title": "JOSHY WEDDING RECAP",
+      "date": "2026-09-07",
+      "url": "https://podcasts.apple.com/us/podcast/joshy-wedding-recap/id1446527874?i=1000788281462"
+    },
+    "sources": [
+      "https://podcasts.apple.com/us/podcast/heres-the-thing/id1446527874",
+      "https://www.iheart.com/podcast/867-heres-the-thing-92027681/episode/joshy-wedding-recap-343333748/"
+    ]
   },
   "updated": "2026-11-14"
 }
