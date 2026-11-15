@@ -586,6 +586,7 @@ test("Roxxy Twitch redesign survives the preview build and omits broken Amazon C
  assert.doesNotMatch(html,/HxCwEfpf_bk|stream-zine-polaroid/,"The rejected Dance Central image must not be live.");
  assert.doesNotMatch(html,/Find it on Amazon|pick it up on Amazon/,"The Amazon CTA must remain removed.");
  assert.doesNotMatch(html,/stream-zine-note|cartoons \+ comedy|all in one chat/,"The rejected floating text note must not reappear.");
+ assert.doesNotMatch(html,/LOOKBOOK|ac-photo-journal|Many looks\. One Roxxy\./i,"The removed Roxxy lookbook must stay out of the published page.");
  assert.doesNotMatch(css,/stream-zine-note/,"The unused floating note styling should stay removed.");
  assert.match(html,/Autographed Hardcover/,"The verified signed-book store should remain accessible.");
 });
