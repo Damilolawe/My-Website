@@ -199,7 +199,7 @@ a{color:inherit;text-decoration:none}
 /* Desktop editorial layout: expand the original 600px link-hub into a full-width creator website. */
 @media (min-width: 960px) {
   .hub {
-    width: min(1200px, calc(100% - 72px));
+    width: min(1200px, calc(100% - clamp(72px, 9vw, 144px)));
     margin-inline: auto;
     padding: 132px 0 80px;
     display: grid;
@@ -211,14 +211,15 @@ a{color:inherit;text-decoration:none}
   .hub .hub-label { text-align: center; font-size: clamp(28px, 3vw, 42px); }
   .hub .profile {
     display: grid;
-    grid-template-columns: minmax(300px, .88fr) minmax(0, 1.12fr);
+    grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
     grid-template-rows: repeat(6, auto);
     align-content: center;
     align-items: start;
-    gap: 0 clamp(40px, 5vw, 80px);
+    gap: 0 clamp(28px, 3.5vw, 56px);
     text-align: center;
     min-height: 560px;
   }
+  .hub .profile > * { min-width: 0; }
   .profile .avatar {
     grid-column: 1;
     grid-row: 1 / 7;
@@ -231,7 +232,7 @@ a{color:inherit;text-decoration:none}
   }
   .profile .avatar img { border-radius: inherit; object-position: center 30%; }
   .profile .eyebrow { grid-column: 2; grid-row: 1; align-self: end; width: 100%; margin-bottom: 18px; }
-  .profile .profile-name { grid-column: 2; grid-row: 2; font-size: clamp(72px, 8.2vw, 120px); letter-spacing: -.06em; }
+  .profile .profile-name { grid-column: 2; grid-row: 2; min-width: 0; max-width: 100%; font-size: clamp(48px, 5.8vw, 84px); line-height: .98; letter-spacing: -.06em; overflow-wrap: normal; }
   .profile .profile-name .line { display: block; }
   .profile .profile-roles { grid-column: 2; grid-row: 3; font-size: clamp(16px, 1.7vw, 22px); margin-top: 22px; }
   .profile .profile-sub { grid-column: 2; grid-row: 4; max-width: 580px; margin-inline: auto; font-size: clamp(16px, 1.4vw, 18px); }
