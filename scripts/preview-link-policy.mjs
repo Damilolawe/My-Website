@@ -15,7 +15,7 @@ const allowed = [
   "instagram.com", "facebook.com", "tiktok.com", "youtube.com", "youtu.be", "threads.net",
   "linkedin.com", "x.com", "twitter.com", "pinterest.com", "yelp.com", "behance.net", "vimeo.com",
   // reservations, appointments, tickets
-  "resy.com", "opentable.com", "exploretock.com", "sevenrooms.com", "eventbrite.com", "dice.fm",
+  "resy.com", "opentable.com", "exploretock.com", "sevenrooms.com", "eventbrite.com", "dice.fm", "ticketmaster.com",
   "as.me", "acuityscheduling.com", "calendly.com", "vagaro.com", "booksy.com", "styleseat.com",
   "mindbodyonline.com", "momence.com", "glossgenius.com", "fresha.com", "book.squareup.com",
   "nysbdc.ecenterdirect.com",
