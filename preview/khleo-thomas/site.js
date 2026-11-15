@@ -41,5 +41,23 @@
   });
 })();
 
-// Recover gracefully if an external media host is unavailable.
-(function(){function wire(){document.querySelectorAll('img[data-fallback]').forEach(function(img){function swap(){var to=img.getAttribute('data-fallback');if(!to)return;img.removeAttribute('data-fallback');img.alt='Khleo Thomas preview graphic';img.src=to;}img.addEventListener('error',swap,{once:true});if(img.complete&&img.naturalWidth===0)swap();});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wire,{once:true});else wire();})();
+// If a remote photo cannot load, use the alternate real Khleo portrait.
+(function () {
+  function wirePhotoFallbacks() {
+    document.querySelectorAll('img[data-fallback]').forEach(function (img) {
+      function recover() {
+        var alternate = img.getAttribute('data-fallback');
+        if (!alternate || alternate === img.src) return;
+        img.removeAttribute('data-fallback');
+        img.src = alternate;
+      }
+      img.addEventListener('error', recover, { once: true });
+      if (img.complete && img.naturalWidth === 0) recover();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wirePhotoFallbacks, { once: true });
+  } else {
+    wirePhotoFallbacks();
+  }
+})();
