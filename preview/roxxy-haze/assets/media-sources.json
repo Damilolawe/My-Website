@@ -44,9 +44,10 @@
     },
     {
       "role": "Twitch zine feature",
-      "sourcePage": "https://boldjourney.com/meet-roxxy-haze/",
-      "source": "https://cdn.boldjourney.com/wp-content/uploads/2025/01/c-1737659179773-1737659183848_roxxy_haze_403599748_877949350557198_3924063550081827930_n.jpg",
-      "fallback": "https://cdn.boldjourney.com/wp-content/uploads/2025/01/c-1737659179772-1737659183848_roxxy_haze_356200497_801942068157927_5781695761938699588_n.jpg"
+      "sourcePage": "https://www.youtube.com/watch?v=HxCwEfpf_bk",
+      "source": "https://i.ytimg.com/vi/HxCwEfpf_bk/sddefault.jpg",
+      "fallback": "https://i.ytimg.com/vi/HxCwEfpf_bk/hqdefault.jpg",
+      "description": "Thumbnail from Roxxy Haze vs Maxx the Slayer | Arcade House: Dance Central, published by All Def Gaming. Shows an actual gaming appearance, not a Twitch livestream."
     }
   ]
 }
