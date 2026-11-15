@@ -41,6 +41,12 @@
       "role": "Lookbook new portrait",
       "sourcePage": "https://boldjourney.com/meet-roxxy-haze/",
       "source": "https://cdn.boldjourney.com/wp-content/uploads/2025/01/c-1737659179771-1737659183848_roxxy_haze_472906889_1143425254009605_8781553601648038092_n.jpg"
+    },
+    {
+      "role": "Twitch zine feature",
+      "sourcePage": "https://boldjourney.com/meet-roxxy-haze/",
+      "source": "https://cdn.boldjourney.com/wp-content/uploads/2025/01/c-1737659179773-1737659183848_roxxy_haze_403599748_877949350557198_3924063550081827930_n.jpg",
+      "fallback": "https://cdn.boldjourney.com/wp-content/uploads/2025/01/c-1737659179772-1737659183848_roxxy_haze_356200497_801942068157927_5781695761938699588_n.jpg"
     }
   ]
 }
