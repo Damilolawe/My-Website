@@ -574,3 +574,16 @@ test("Pace SBDC complete-site quality gate validates 50 pages, staff biographies
  assert.equal((eventPage.match(/class="event-row reveal"/g)||[]).length,6);
  assert.match(all.get("financing"),/href="\.\/"/,"Detail-page logo must take readers home");
 });
+
+
+test("Roxxy Twitch redesign survives the preview build and omits broken Amazon CTA", async () => {
+ const html=await read("public/roxxy-haze/index.html");
+ const css=await read("public/roxxy-haze/styles.css");
+ assert.match(html,/class="stream-arcade"/,"The new original Twitch art must be published.");
+ assert.match(html,/ROXXY<span>MODE<\/span>/,"Expected neon art wordmark was not built.");
+ assert.match(css,/\.stream-arcade-screen\{/,"The new Twitch animation CSS must be published.");
+ assert.match(css,/stream-ring-two/,"The CSS arcade effects must survive the build.");
+ assert.doesNotMatch(html,/HxCwEfpf_bk|stream-zine-polaroid/,"The rejected Dance Central image must not be live.");
+ assert.doesNotMatch(html,/Find it on Amazon|pick it up on Amazon/,"The Amazon CTA must remain removed.");
+ assert.match(html,/Autographed Hardcover/,"The verified signed-book store should remain accessible.");
+});
