@@ -104,33 +104,43 @@
     }, 3400);
   }
 
-  if (!reduce) {
-    // Mouse parallax on hero sky layers (uses `translate` so it composes with CSS transforms)
-    var hero = document.querySelector('.hero');
-    var layers = [].slice.call(document.querySelectorAll('.hero [data-depth]'));
-    if (hero && layers.length) {
-      hero.addEventListener('mousemove', function (e) {
-        var r = hero.getBoundingClientRect();
-        var cx = (e.clientX - r.left) / r.width - 0.5;
-        var cy = (e.clientY - r.top) / r.height - 0.5;
-        layers.forEach(function (l) {
-          var d = parseFloat(l.getAttribute('data-depth')) || 20;
-          l.style.translate = (-cx * d).toFixed(1) + 'px ' + (-cy * d).toFixed(1) + 'px';
-        });
-      });
-      hero.addEventListener('mouseleave', function () {
-        layers.forEach(function (l) { l.style.translate = '0px 0px'; });
-      });
-    }
+  // 3D hero diorama: the whole sky scene rotates in real 3D space.
+  // A rAF loop blends a gentle idle sway with the pointer target so it stays alive
+  // on touch devices too, then eases back to rest when the pointer leaves.
+  var scene = document.getElementById('scene');
+  var hero = document.querySelector('.hero');
+  if (scene && hero && !reduce) {
+    var tx = 0, ty = 0, cxCur = 0, cyCur = 0, over = false, t0 = performance.now();
+    hero.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'touch') return;
+      var r = hero.getBoundingClientRect();
+      tx = ((e.clientX - r.left) / r.width - 0.5);
+      ty = ((e.clientY - r.top) / r.height - 0.5);
+      over = true;
+    });
+    hero.addEventListener('pointerleave', function () { over = false; tx = 0; ty = 0; });
+    var loop = function (now) {
+      var idle = (now - t0) / 1000;
+      var ix = over ? 0 : Math.sin(idle * 0.5) * 0.22;
+      var iy = over ? 0 : Math.cos(idle * 0.38) * 0.12;
+      cxCur += ((tx + ix) - cxCur) * 0.06;
+      cyCur += ((ty + iy) - cyCur) * 0.06;
+      scene.style.transform = 'rotateX(' + (-cyCur * 12).toFixed(2) + 'deg) rotateY(' + (cxCur * 16).toFixed(2) + 'deg)';
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  }
 
-    // 3D tilt on video cards + featured facade
+  if (!reduce) {
+    // Real 3D tilt on video cards + featured facade (perspective comes from the
+    // container, so translateZ children — the play button — pop toward the viewer)
     document.querySelectorAll('.vcard, .feature-video').forEach(function (card) {
       card.addEventListener('pointermove', function (e) {
         if (e.pointerType === 'touch') return;
         var r = card.getBoundingClientRect();
         var px = (e.clientX - r.left) / r.width - 0.5;
         var py = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = 'perspective(820px) rotateY(' + (px * 7).toFixed(2) + 'deg) rotateX(' + (-py * 7).toFixed(2) + 'deg) translateY(-5px)';
+        card.style.transform = 'rotateY(' + (px * 9).toFixed(2) + 'deg) rotateX(' + (-py * 9).toFixed(2) + 'deg) translateZ(26px)';
       });
       card.addEventListener('pointerleave', function () { card.style.transform = ''; });
     });
