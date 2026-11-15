@@ -63,9 +63,10 @@ export function isAllowedOutbound(href) {
     "micdropcomedychandler.com", "micdropcomedyplano.com", "micdropcomedysandiego.com",
   ]);
   if (performerHosts.has(host)) return true;
-  // Owner-requested independent creator concepts (preview/khleo-thomas, joshy-gonz):
-  // a gaming-gear affiliate and a charity cause, neither on a general platform.
-  const creatorHosts = new Set(["logi.gg", "100holehike.org"]);
+  // Owner-requested independent creator concepts (preview/khleo-thomas, joshy-gonz,
+  // patrick-cloud): a gaming-gear affiliate, a charity cause, and Patrick Cloud's
+  // independent merch storefront (protectyourlight.com) — none on a general platform.
+  const creatorHosts = new Set(["logi.gg", "100holehike.org", "protectyourlight.com"]);
   if (creatorHosts.has(host)) return true;
   return allowed.some(d => domainIs(host, d));
 }
