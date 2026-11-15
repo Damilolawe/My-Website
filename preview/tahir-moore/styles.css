@@ -195,3 +195,111 @@ a{color:inherit;text-decoration:none}
 .avatar img,.feature-poster img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
 .avatar:hover img,.feature-poster:hover img{transform:scale(1.04)}
 @media(prefers-reduced-motion:reduce){.avatar:hover img,.feature-poster:hover img{transform:none}}
+
+/* Desktop editorial layout: expand the original 600px link-hub into a full-width creator website. */
+@media (min-width: 960px) {
+  .hub {
+    width: min(1200px, calc(100% - 72px));
+    padding: 132px 0 80px;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 30px;
+    row-gap: 76px;
+  }
+  .hub > * { grid-column: 1 / -1; min-width: 0; }
+  .hub .hub-label { text-align: left; font-size: clamp(28px, 3vw, 42px); }
+  .hub .profile {
+    display: grid;
+    grid-template-columns: minmax(300px, .88fr) minmax(0, 1.12fr);
+    grid-template-rows: repeat(6, auto);
+    align-content: center;
+    align-items: start;
+    gap: 0 clamp(40px, 5vw, 80px);
+    text-align: left;
+    min-height: 560px;
+  }
+  .profile .avatar {
+    grid-column: 1;
+    grid-row: 1 / 7;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    margin: 0;
+    border-radius: 28px;
+    box-shadow: 0 0 0 8px rgba(198,241,53,.07), 0 28px 70px rgba(0,0,0,.5);
+  }
+  .profile .avatar img { border-radius: inherit; object-position: center 30%; }
+  .profile .eyebrow { grid-column: 2; grid-row: 1; align-self: end; margin-bottom: 18px; }
+  .profile .profile-name { grid-column: 2; grid-row: 2; font-size: clamp(72px, 8.2vw, 120px); letter-spacing: -.06em; }
+  .profile .profile-name .line { display: block; }
+  .profile .profile-roles { grid-column: 2; grid-row: 3; font-size: clamp(16px, 1.7vw, 22px); margin-top: 22px; }
+  .profile .profile-sub { grid-column: 2; grid-row: 4; max-width: 580px; font-size: clamp(16px, 1.4vw, 18px); }
+  .profile .profile-cta { grid-column: 2; grid-row: 5; justify-content: flex-start; margin-top: 30px; }
+  .profile .profile-social { grid-column: 2; grid-row: 6; justify-content: flex-start; }
+  .hub > .video-block {
+    grid-column: 1 / 8;
+    align-self: stretch;
+    justify-content: center;
+    padding: clamp(22px, 3vw, 34px);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: linear-gradient(140deg, rgba(198,241,53,.07), transparent 65%), var(--panel);
+  }
+  .hub > #about { grid-column: 8 / -1; }
+  #about .about-copy { text-align: left; }
+  #about .facts { gap: 12px; }
+  .hub > #special { grid-column: 1 / -1; }
+  #special .feature-card {
+    display: grid;
+    grid-template-columns: minmax(240px, 360px) minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 16px clamp(36px, 6vw, 84px);
+    align-items: center;
+    text-align: left;
+    padding: clamp(30px, 4vw, 54px);
+  }
+  #special .feature-poster {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    width: 100%;
+    max-width: 360px;
+    margin: 0;
+  }
+  #special .feature-card h2 {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: clamp(64px, 8vw, 112px);
+  }
+  #special .feature-card p {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 17px;
+    max-width: 540px;
+    margin: 0;
+  }
+  #special .feature-links { grid-column: 2; grid-row: 3; max-width: 450px; width: 100%; }
+  .hub > #podcasts {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+  #podcasts > .hub-label { grid-column: 1 / -1; }
+  #podcasts .pod-block { min-width: 0; }
+  #podcasts .pod-related-image { max-height: 210px; }
+  .hub > .ac-photo-journal {
+    grid-column: 1 / -1;
+    padding: clamp(36px, 5vw, 70px);
+    border-radius: 26px;
+  }
+  .hub > #shows { grid-column: 1 / 6; }
+  .hub > #listen { grid-column: 6 / -1; }
+  .hub > #merch { grid-column: 1 / 8; }
+  .hub > #connect { grid-column: 8 / -1; align-self: start; }
+  #connect .hub-label { text-align: center; }
+  .hub > .footer { grid-column: 1 / -1; }
+}
+@media (min-width: 621px) and (max-width: 959px) {
+  .hub { width: min(800px, 92vw); }
+  .hub > .ac-photo-journal { padding: clamp(30px, 5vw, 54px); border-radius: 20px; }
+}
