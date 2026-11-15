@@ -42,29 +42,30 @@
     var T = 15000;             // full cycle, ms
     var m = null;
     function measure() {
-      var ir = inner.getBoundingClientRect();
-      var ls = letters.map(function (l) { var r = l.getBoundingClientRect(); return { l: r.left - ir.left, r: r.right - ir.left, t: r.top - ir.top, b: r.bottom - ir.top }; });
+      // offsetLeft/offsetTop/offsetWidth/offsetHeight are layout positions that
+      // IGNORE the letters' entrance transform, so the plane's path is correct
+      // from the very first frame (getBoundingClientRect would include the
+      // translate and make the plane start low, then snap).
+      var ls = letters.map(function (l) { return { l: l.offsetLeft, r: l.offsetLeft + l.offsetWidth, t: l.offsetTop, b: l.offsetTop + l.offsetHeight }; });
       var tops = ls.map(function (o) { return o.t; }), bots = ls.map(function (o) { return o.b; });
       var minT = Math.min.apply(null, tops), maxB = Math.max.apply(null, bots);
       var lineH = ls[0].b - ls[0].t;
+      var il = inner.getBoundingClientRect().left; // inner has no transform → stable
       var vw = window.innerWidth;
       m = {
         midY: (minT + maxB) / 2,
         wordLeft: ls[0].l,
         wordRight: ls[ls.length - 1].r,
-        offLeft: -ir.left - 120,
-        offRight: (vw - ir.left) + 120,
-        rightEdge: (vw - ir.left),
+        offLeft: -il - 120,
+        offRight: (vw - il) + 120,
+        rightEdge: (vw - il),
         multiline: (maxB - minT) > lineH * 1.5
       };
     }
-    measure();
     window.addEventListener('resize', measure, { passive: true });
-    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(measure); }
-    setTimeout(measure, 1600); // after the letter entrance settles
 
     var easeIO = function (t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; };
-    var start = performance.now();
+    var start = 0, started = false;
     plane.style.opacity = '0';
 
     function path(t) {
@@ -99,7 +100,22 @@
       }
       requestAnimationFrame(frame);
     }
-    requestAnimationFrame(frame);
+
+    // Start only once the web font has loaded, so the first measurement uses the
+    // real letter metrics and the plane never has to correct itself on load.
+    function begin() {
+      if (started) return;
+      started = true;
+      measure();
+      start = performance.now();
+      requestAnimationFrame(frame);
+    }
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(begin);
+      setTimeout(begin, 1200); // fallback if fonts.ready is slow
+    } else {
+      begin();
+    }
   })();
 
   // Featured video: load the real player only on click (facade)
