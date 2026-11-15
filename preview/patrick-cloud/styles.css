@@ -210,10 +210,10 @@ img{display:block;max-width:100%}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* paper plane across the sky */
-/* Real airplane. Its whole flight (fly in, weave through the letters, a smooth
-   loop-de-loop, fly off, repeat every 15s) is driven in site.js so it can pass
-   in front of and behind individual letters. It lives inside .hero-inner so it
-   shares the wordmark's stacking context. */
+/* Real airplane. Its whole flight (fly in, weave through the letters, fly off,
+   repeat every 15s) is driven in site.js so it can pass in front of and behind
+   individual letters. It lives inside .hero-inner so it shares the wordmark's
+   stacking context. */
 .sky-plane{position:absolute;top:0;left:0;width:64px;height:auto;z-index:6;transform-origin:50% 50%;pointer-events:none;
   filter:drop-shadow(0 8px 12px rgba(39,86,140,.28));will-change:transform,opacity}
 
