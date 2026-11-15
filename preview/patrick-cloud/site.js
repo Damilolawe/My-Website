@@ -69,31 +69,23 @@
 
     function path(t) {
       var midY = m.midY;
-      var R = Math.min(84, Math.max(44, m.rightEdge * 0.07));
       var weave = false, x, y, rot = 0, sc = 1, vis = true;
       if (m.multiline) {
-        // wrapped layout (narrow screens): fly in, smooth loop, fly off — no weave
-        var cxC = m.rightEdge / 2;
-        if (t < 2000) { var p = easeIO(t / 2000); x = m.offLeft + (cxC - m.offLeft) * p; y = midY; sc = 0.85 + 0.15 * p; }
-        else if (t < 6000) { var a = ((t - 2000) / 4000) * Math.PI * 2; x = cxC + R * Math.sin(a); y = (midY - R) + R * Math.cos(a); rot = -(t - 2000) / 4000 * 360; }
-        else if (t < 8500) { var p2 = easeIO((t - 6000) / 2500); x = cxC + (m.offRight - cxC) * p2; y = midY; rot = -360; sc = 1 - 0.15 * p2; }
+        // wrapped layout (narrow screens): one smooth straight pass, no weave
+        if (t < 9000) { var p = easeIO(t / 9000); x = m.offLeft + (m.offRight - m.offLeft) * p; y = midY; sc = 0.85 + 0.15 * Math.sin(p * Math.PI); }
         else { x = m.offRight; y = midY; vis = false; }
         return { x: x, y: y, rot: rot, sc: sc, vis: vis, weave: false };
       }
-      var loopX = Math.min(m.wordRight + 70, m.rightEdge - R - 24);
-      if (t < 1600) {                    // fly in to just before the first letter
-        var p = easeIO(t / 1600); x = m.offLeft + ((m.wordLeft - 46) - m.offLeft) * p; y = midY; sc = 0.85 + 0.15 * p;
-      } else if (t < 6600) {             // weave across the letters at their mid height
-        var pw = (t - 1600) / 5000, pe = easeIO(pw);
+      if (t < 1800) {                    // fly in to just before the first letter
+        var p = easeIO(t / 1800); x = m.offLeft + ((m.wordLeft - 46) - m.offLeft) * p; y = midY; sc = 0.85 + 0.15 * p;
+      } else if (t < 7600) {             // weave across the letters at their mid height
+        var pw = (t - 1800) / 5800, pe = easeIO(pw);
         x = (m.wordLeft - 46) + ((m.wordRight + 66) - (m.wordLeft - 46)) * pe;
         y = midY + Math.sin(pw * Math.PI * 3) * -6;
         rot = Math.sin(pw * Math.PI * 6) * 4;
         weave = true;
-      } else if (t < 10100) {            // smooth loop-de-loop
-        var pl = (t - 6600) / 3500, a2 = pl * Math.PI * 2;
-        x = loopX + R * Math.sin(a2); y = (midY - R) + R * Math.cos(a2); rot = -pl * 360;
-      } else if (t < 12100) {            // level out and fly off the right
-        var pf = easeIO((t - 10100) / 2000); x = loopX + (m.offRight - loopX) * pf; y = midY; rot = -360; sc = 1 - 0.15 * pf;
+      } else if (t < 10100) {            // fly off the right
+        var pf = easeIO((t - 7600) / 2500); x = (m.wordRight + 66) + (m.offRight - (m.wordRight + 66)) * pf; y = midY; sc = 1 - 0.15 * pf;
       } else { x = m.offRight; y = midY; vis = false; }
       return { x: x, y: y, rot: rot, sc: sc, vis: vis, weave: weave };
     }
