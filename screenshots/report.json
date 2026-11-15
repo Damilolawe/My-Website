@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T04:45:24.694Z",
+  "generatedAt": "2026-11-15T05:21:19.027Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 32,
@@ -148,7 +148,7 @@
       "viewport": "pixel-7",
       "type": "horizontal-overflow",
       "viewportWidth": 412,
-      "pageWidth": 424,
+      "pageWidth": 419,
       "suspects": [
         "a",
         "a",
