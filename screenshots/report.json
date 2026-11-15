@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-15T07:04:29.674Z",
+  "generatedAt": "2026-11-15T07:18:04.411Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 33,
-  "issues": 23,
+  "issues": 21,
   "findings": [
     {
       "site": "fat-boy-finesse",
@@ -84,12 +84,6 @@
       ]
     },
     {
-      "site": "ice-mcgowan",
-      "viewport": "iphone-13",
-      "type": "visual",
-      "message": "broken image: assets/channel-avatar.webp"
-    },
-    {
       "site": "kevonstage",
       "viewport": "pixel-7",
       "type": "visual",
@@ -156,12 +150,6 @@
         "a",
         "a.nav-cta"
       ]
-    },
-    {
-      "site": "ice-mcgowan",
-      "viewport": "pixel-7",
-      "type": "visual",
-      "message": "broken image: assets/channel-avatar.webp"
     }
   ]
 }
