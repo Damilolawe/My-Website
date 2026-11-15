@@ -189,6 +189,110 @@ img{display:block;max-width:100%}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .reveal.visible{opacity:1;transform:none}
 
+/* ===================================================================
+   FUN + MOTION
+   =================================================================== */
+/* sunrise scroll progress */
+.sky-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:90;pointer-events:none;
+  background:linear-gradient(90deg,rgba(47,143,230,.18),rgba(255,182,46,.18))}
+.sky-sun{position:absolute;top:50%;left:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;
+  background:radial-gradient(circle,#ffe6a6,#ffb62e 62%);box-shadow:0 0 0 4px rgba(255,182,46,.22),0 0 18px rgba(255,182,46,.7)}
+
+/* rotating sun rays */
+.hero .sun{overflow:visible}
+.sun-rays{position:absolute;inset:-26%;border-radius:50%;opacity:.75;animation:spin 64s linear infinite;
+  background:repeating-conic-gradient(from 0deg,rgba(255,216,128,.55) 0deg 3deg,rgba(255,216,128,0) 3deg 15deg);
+  -webkit-mask:radial-gradient(circle,transparent 42%,#000 46%,#000 68%,transparent 72%);
+          mask:radial-gradient(circle,transparent 42%,#000 46%,#000 68%,transparent 72%)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* paper plane across the sky */
+.sky-plane{position:absolute;top:0;left:0;width:34px;height:34px;z-index:2;opacity:.92;
+  filter:drop-shadow(0 7px 10px rgba(39,86,140,.25));animation:fly 24s linear infinite}
+@keyframes fly{
+  0%{transform:translate(-10vw,36vh) rotate(10deg)}
+  48%{transform:translate(52vw,10vh) rotate(-5deg)}
+  52%{transform:translate(56vw,11vh) rotate(-2deg)}
+  100%{transform:translate(118vw,30vh) rotate(8deg)}
+}
+
+/* springy headline entrance */
+.hero-title .w{display:inline-block;opacity:0;transform:translateY(42px) rotate(3deg);animation:rise .9s cubic-bezier(.2,.9,.25,1) forwards}
+.hero-title .w:nth-child(1){animation-delay:.08s}
+.hero-title .w:nth-child(2){animation-delay:.22s}
+@keyframes rise{60%{transform:translateY(-6px) rotate(-1deg)}100%{opacity:1;transform:none}}
+
+/* tagline sun/sky shimmer */
+.hero .tagline{background:linear-gradient(100deg,var(--blue-deep),var(--sun-deep) 45%,var(--blue-deep));
+  background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 7s linear infinite}
+@keyframes shimmer{to{background-position:220% center}}
+
+/* rotating-forecast chip */
+.forecast{display:inline-flex;align-items:center;gap:9px;margin-top:14px;font-size:14px;font-weight:600;color:var(--ink);
+  background:rgba(255,255,255,.66);padding:8px 16px;border-radius:40px;box-shadow:var(--shadow-sm)}
+.forecast .fc-label{color:var(--ink-soft)}
+.forecast .fc-text{color:var(--sun-deep);font-weight:700;transition:opacity .3s}
+.fc-ic{position:relative;width:18px;height:18px;flex:none}
+.fc-sun{position:absolute;inset:4px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 2px rgba(255,182,46,.3)}
+.fc-ic::before{content:"";position:absolute;inset:0;border-radius:50%;animation:spin 16s linear infinite;
+  background:repeating-conic-gradient(from 0deg,var(--sun) 0deg 14deg,transparent 14deg 45deg);
+  -webkit-mask:radial-gradient(circle,transparent 38%,#000 42%);mask:radial-gradient(circle,transparent 38%,#000 42%)}
+
+/* scroll cue */
+.scroll-cue{position:absolute;left:50%;bottom:30px;z-index:3;width:42px;height:42px;display:grid;place-items:center;
+  color:var(--blue-deep);background:rgba(255,255,255,.62);border-radius:50%;box-shadow:var(--shadow-sm);animation:bob 1.9s ease-in-out infinite}
+.scroll-cue svg{width:20px;height:20px}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* stat hover + tabular digits */
+.stat{transition:transform .25s,box-shadow .25s}
+.stat:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.stat b{font-variant-numeric:tabular-nums}
+
+/* 3D tilt base (JS drives rotation) */
+.vcard,.feature-video{will-change:transform}
+
+/* sheen sweep on sun buttons */
+.btn-sun{position:relative;overflow:hidden}
+.btn-sun::after{content:"";position:absolute;top:0;left:-130%;width:58%;height:100%;transform:skewX(-18deg);pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);animation:sheen 5s ease-in-out infinite}
+@keyframes sheen{0%,62%{left:-130%}82%,100%{left:130%}}
+
+/* shop: rotating rays + twinkling sparkles */
+.shop-wrap::before{content:"";position:absolute;top:-60%;left:50%;width:160%;height:200%;transform:translateX(-50%);pointer-events:none;opacity:.55;
+  background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.16) 0deg 5deg,transparent 5deg 26deg);animation:spin 90s linear infinite}
+.shop-wrap>*{position:relative;z-index:1}
+.sparkles i{position:absolute;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#fff,rgba(255,255,255,0));animation:twinkle 3.2s ease-in-out infinite}
+.sparkles i:nth-child(1){top:16%;left:11%;animation-delay:0s}
+.sparkles i:nth-child(2){top:70%;left:18%;animation-delay:.6s}
+.sparkles i:nth-child(3){top:26%;left:84%;animation-delay:1.1s}
+.sparkles i:nth-child(4){top:62%;left:78%;animation-delay:1.7s;width:7px;height:7px}
+.sparkles i:nth-child(5){top:12%;left:52%;animation-delay:2.2s;width:7px;height:7px}
+.sparkles i:nth-child(6){top:80%;left:46%;animation-delay:.9s}
+.sparkles i:nth-child(7){top:40%;left:30%;animation-delay:1.4s;width:6px;height:6px}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.5)}50%{opacity:1;transform:scale(1.25)}}
+
+/* back-to-top cloud */
+.to-top{position:fixed;right:22px;bottom:22px;z-index:70;width:56px;height:42px;border:0;cursor:pointer;background:#fff;border-radius:16px;
+  box-shadow:var(--shadow-sm);display:grid;place-items:center;opacity:0;transform:translateY(16px) scale(.9);pointer-events:none;
+  transition:opacity .3s,transform .3s}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+.to-top:hover{transform:translateY(-3px)}
+.to-top svg{width:36px;height:24px}
+
+/* staggered reveals */
+.stagger .reveal:nth-child(2){transition-delay:.09s}
+.stagger .reveal:nth-child(3){transition-delay:.18s}
+.social-row a{opacity:0;transform:translateY(12px);
+  transition:opacity .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .2s,color .2s}
+.social-row.visible a{opacity:1;transform:none}
+.social-row.visible a:nth-child(1){transition-delay:.02s}
+.social-row.visible a:nth-child(2){transition-delay:.08s}
+.social-row.visible a:nth-child(3){transition-delay:.14s}
+.social-row.visible a:nth-child(4){transition-delay:.2s}
+.social-row.visible a:nth-child(5){transition-delay:.26s}
+.social-row.visible a:nth-child(6){transition-delay:.32s}
+
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:900px){
   .nav-links{position:fixed;inset:0 0 0 auto;width:min(82vw,320px);height:100vh;height:100dvh;flex-direction:column;justify-content:center;align-items:flex-start;
@@ -208,4 +312,7 @@ img{display:block;max-width:100%}
   html{scroll-behavior:auto}
   *{animation:none!important;transition-duration:.001ms!important}
   .reveal{opacity:1;transform:none}
+  .hero-title .w,.social-row a{opacity:1!important;transform:none!important}
+  .hero .tagline{-webkit-text-fill-color:var(--blue-deep);color:var(--blue-deep)}
+  .sky-plane{display:none}
 }
