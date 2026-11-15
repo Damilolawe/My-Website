@@ -1,6 +1,6 @@
 {
   "sourcePage": "https://www.roxxyhaze.com/",
-  "usage": "Target-owned promotional imagery in an independent concept for the same creator. Rights remain with original owners.",
+  "usage": "Local creator portraits plus third-party book artwork and editorial images, for a public independent Roxxy Haze design concept. All underlying rights remain with their respective owners.",
   "images": [
     {
       "slug": "roxxy-haze",
@@ -19,6 +19,28 @@
         1000,
         1500
       ]
+    }
+  ],
+  "externalImages": [
+    {
+      "role": "Half Famous book cover",
+      "sourcePage": "https://www.goodreads.com/book/show/243686048-half-famous",
+      "source": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1762537415i/243686048.jpg"
+    },
+    {
+      "role": "Spotify card portrait",
+      "sourcePage": "https://boldjourney.com/meet-roxxy-haze/",
+      "source": "https://cdn.boldjourney.com/wp-content/uploads/2025/01/c-1737659152767-personal_1737659156844_1737659156844_roxxy_haze_471326498_1131207965231334_5496231388349855525_n.jpg"
+    },
+    {
+      "role": "YouTube card portrait",
+      "sourcePage": "https://www.thetruthinthisart.com/episodes/geek-culture-and-raucous-laughter-with-roxxy-haze-a-journey-through-pseudo-intellectualism-and-disney-fantasy",
+      "source": "https://img.transistorcdn.com/wydexmImwYzP8LIkScdZWy8crGnnjB7oeK5xcDsi8tM/rs:fill:0:0:1/w:800/h:800/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS9lcGlz/b2RlLzYwODM5Ni8x/NjI3NzMzNzI1LWFy/dHdvcmsuanBn.webp"
+    },
+    {
+      "role": "Lookbook new portrait",
+      "sourcePage": "https://boldjourney.com/meet-roxxy-haze/",
+      "source": "https://cdn.boldjourney.com/wp-content/uploads/2025/01/c-1737659179771-1737659183848_roxxy_haze_472906889_1143425254009605_8781553601648038092_n.jpg"
     }
   ]
 }
