@@ -15,7 +15,7 @@
     a.addEventListener('click', function () { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); });
   });
 
-  var els = document.querySelectorAll('.sec-head,.about-copy,.facets,.book-art,.book-copy,.embed-lead,.mu-card,.stream-copy,.stream-screen,.connect-lead,.so-card,.patreon-bar,.hub-row');
+  var els = document.querySelectorAll('.sec-head,.about-copy,.facets,.book-art,.book-copy,.embed-lead,.mu-card,.stream-zine-head,.stream-zine-art,.connect-lead,.so-card,.patreon-bar,.hub-row');
   els.forEach(function (el) { el.classList.add('reveal'); });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
@@ -32,7 +32,7 @@
   });
 
   // Randomize equalizer bar heights/timing for a little life
-  document.querySelectorAll('.mu-wave i,.scr-wave i').forEach(function (bar) {
+  document.querySelectorAll('.mu-wave i').forEach(function (bar) {
     bar.style.animationDelay = (Math.random() * 0.7).toFixed(2) + 's';
   });
 
