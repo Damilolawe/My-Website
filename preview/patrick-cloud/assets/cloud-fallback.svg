@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Cloud Village">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9fd0ff"/>
+      <stop offset="1" stop-color="#e9f5ff"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffe49b"/>
+      <stop offset="0.6" stop-color="#ffcf5c"/>
+      <stop offset="1" stop-color="#ffcf5c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#sky)"/>
+  <circle cx="486" cy="104" r="90" fill="url(#sun)"/>
+  <circle cx="486" cy="104" r="40" fill="#ffd36b"/>
+  <g fill="#ffffff">
+    <ellipse cx="200" cy="232" rx="118" ry="52"/>
+    <ellipse cx="300" cy="214" rx="86" ry="56"/>
+    <ellipse cx="128" cy="244" rx="70" ry="40"/>
+    <rect x="128" y="226" width="196" height="56" rx="28"/>
+    <ellipse cx="452" cy="276" rx="92" ry="40"/>
+    <ellipse cx="520" cy="268" rx="64" ry="44"/>
+  </g>
+</svg>
