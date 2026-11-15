@@ -297,8 +297,7 @@ a{color:inherit;text-decoration:none}
   .ac-photo-journal .ac-gallery-head { text-align: center; margin-inline: auto; }
   .hub > #shows { grid-column: 1 / 6; }
   .hub > #listen { grid-column: 6 / -1; }
-  .hub > #merch { grid-column: 1 / 8; }
-  .hub > #connect { grid-column: 8 / -1; align-self: start; }
+  .hub > #connect { grid-column: 1 / -1; justify-self: center; width: min(100%, 720px); }
   #connect .hub-label { text-align: center; }
   .hub > .footer { grid-column: 1 / -1; }
 }
