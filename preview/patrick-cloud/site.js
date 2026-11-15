@@ -20,9 +20,9 @@
   }
 
   // ---- Airplane: fly in from the left, weave through the letters (in front of
-  // and behind each, alternating), a smooth loop-de-loop, then fly off the right;
-  // the whole flight repeats every 15s. Driven here so it can re-order against
-  // individual letters, which CSS keyframes cannot do. ----
+  // and behind each, alternating), then fly off the right; the whole flight
+  // repeats every 15s. Driven here so it can re-order against individual
+  // letters, which CSS keyframes cannot do. ----
   (function () {
     var plane = document.querySelector('.sky-plane');
     var inner = document.querySelector('.hero-inner');
