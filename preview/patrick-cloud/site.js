@@ -19,6 +19,97 @@
     });
   }
 
+  // ---- Airplane: fly in from the left, weave through the letters (in front of
+  // and behind each, alternating), a smooth loop-de-loop, then fly off the right;
+  // the whole flight repeats every 15s. Driven here so it can re-order against
+  // individual letters, which CSS keyframes cannot do. ----
+  (function () {
+    var plane = document.querySelector('.sky-plane');
+    var inner = document.querySelector('.hero-inner');
+    var title = document.querySelector('.hero-title');
+    if (!plane || !inner || !title) return;
+    if (reduce) { plane.style.display = 'none'; return; }
+    var letters = [].slice.call(title.querySelectorAll('.l'));
+    if (!letters.length) { plane.style.display = 'none'; return; }
+
+    // Alternate which letters sit in front of (z7) vs behind (z5) the plane (z6 while weaving).
+    letters.forEach(function (l, i) {
+      l.style.zIndex = (i % 2 === 0) ? '7' : '5';
+      l.style.animationDelay = (0.05 + i * 0.035).toFixed(3) + 's';
+    });
+
+    var PW = 32, PH = 16;      // half the plane's rendered size (64x32)
+    var T = 15000;             // full cycle, ms
+    var m = null;
+    function measure() {
+      var ir = inner.getBoundingClientRect();
+      var ls = letters.map(function (l) { var r = l.getBoundingClientRect(); return { l: r.left - ir.left, r: r.right - ir.left, t: r.top - ir.top, b: r.bottom - ir.top }; });
+      var tops = ls.map(function (o) { return o.t; }), bots = ls.map(function (o) { return o.b; });
+      var minT = Math.min.apply(null, tops), maxB = Math.max.apply(null, bots);
+      var lineH = ls[0].b - ls[0].t;
+      var vw = window.innerWidth;
+      m = {
+        midY: (minT + maxB) / 2,
+        wordLeft: ls[0].l,
+        wordRight: ls[ls.length - 1].r,
+        offLeft: -ir.left - 120,
+        offRight: (vw - ir.left) + 120,
+        rightEdge: (vw - ir.left),
+        multiline: (maxB - minT) > lineH * 1.5
+      };
+    }
+    measure();
+    window.addEventListener('resize', measure, { passive: true });
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(measure); }
+    setTimeout(measure, 1600); // after the letter entrance settles
+
+    var easeIO = function (t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; };
+    var start = performance.now();
+    plane.style.opacity = '0';
+
+    function path(t) {
+      var midY = m.midY;
+      var R = Math.min(84, Math.max(44, m.rightEdge * 0.07));
+      var weave = false, x, y, rot = 0, sc = 1, vis = true;
+      if (m.multiline) {
+        // wrapped layout (narrow screens): fly in, smooth loop, fly off — no weave
+        var cxC = m.rightEdge / 2;
+        if (t < 2000) { var p = easeIO(t / 2000); x = m.offLeft + (cxC - m.offLeft) * p; y = midY; sc = 0.85 + 0.15 * p; }
+        else if (t < 6000) { var a = ((t - 2000) / 4000) * Math.PI * 2; x = cxC + R * Math.sin(a); y = (midY - R) + R * Math.cos(a); rot = -(t - 2000) / 4000 * 360; }
+        else if (t < 8500) { var p2 = easeIO((t - 6000) / 2500); x = cxC + (m.offRight - cxC) * p2; y = midY; rot = -360; sc = 1 - 0.15 * p2; }
+        else { x = m.offRight; y = midY; vis = false; }
+        return { x: x, y: y, rot: rot, sc: sc, vis: vis, weave: false };
+      }
+      var loopX = Math.min(m.wordRight + 70, m.rightEdge - R - 24);
+      if (t < 1600) {                    // fly in to just before the first letter
+        var p = easeIO(t / 1600); x = m.offLeft + ((m.wordLeft - 46) - m.offLeft) * p; y = midY; sc = 0.85 + 0.15 * p;
+      } else if (t < 6600) {             // weave across the letters at their mid height
+        var pw = (t - 1600) / 5000, pe = easeIO(pw);
+        x = (m.wordLeft - 46) + ((m.wordRight + 66) - (m.wordLeft - 46)) * pe;
+        y = midY + Math.sin(pw * Math.PI * 3) * -6;
+        rot = Math.sin(pw * Math.PI * 6) * 4;
+        weave = true;
+      } else if (t < 10100) {            // smooth loop-de-loop
+        var pl = (t - 6600) / 3500, a2 = pl * Math.PI * 2;
+        x = loopX + R * Math.sin(a2); y = (midY - R) + R * Math.cos(a2); rot = -pl * 360;
+      } else if (t < 12100) {            // level out and fly off the right
+        var pf = easeIO((t - 10100) / 2000); x = loopX + (m.offRight - loopX) * pf; y = midY; rot = -360; sc = 1 - 0.15 * pf;
+      } else { x = m.offRight; y = midY; vis = false; }
+      return { x: x, y: y, rot: rot, sc: sc, vis: vis, weave: weave };
+    }
+
+    function frame(now) {
+      if (m) {
+        var s = path((now - start) % T);
+        plane.style.transform = 'translate(' + (s.x - PW).toFixed(1) + 'px,' + (s.y - PH).toFixed(1) + 'px) rotate(' + s.rot.toFixed(1) + 'deg) scale(' + s.sc.toFixed(3) + ')';
+        plane.style.opacity = s.vis ? '1' : '0';
+        plane.style.zIndex = s.weave ? '6' : '10';
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+
   // Featured video: load the real player only on click (facade)
   var heroVideo = document.getElementById('heroVideo');
   if (heroVideo) {
