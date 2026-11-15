@@ -50,7 +50,7 @@
       var tops = ls.map(function (o) { return o.t; }), bots = ls.map(function (o) { return o.b; });
       var minT = Math.min.apply(null, tops), maxB = Math.max.apply(null, bots);
       var lineH = ls[0].b - ls[0].t;
-      var il = inner.getBoundingClientRect().left; // inner has no transform → stable
+      var il = inner.getBoundingClientRect().left; // inner has no transform, so this is stable
       var vw = window.innerWidth;
       m = {
         midY: (minT + maxB) / 2,
