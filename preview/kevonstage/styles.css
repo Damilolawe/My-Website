@@ -271,3 +271,9 @@ strong{color:#fff;font-weight:600}
 .video-cap b{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.5px;font-size:20px;color:#fff}
 .video-cap span{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
 @media(prefers-reduced-motion:reduce){.video-facade:hover .video-poster{transform:none}}
+
+/* Watch & Listen: preserve both podcast hosts' faces and frame Cameo's portrait. */
+#watch .tile-poster.p-2 .show-cover{object-position:50% 0%}
+#watch .tile-poster.p-3 .show-cover{object-position:50% 0%}
+#watch .tile:hover .tile-poster.p-2 .show-cover,
+#watch .tile:hover .tile-poster.p-3 .show-cover{transform:none}
