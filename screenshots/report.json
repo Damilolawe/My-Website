@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-15T04:16:03.256Z",
+  "generatedAt": "2026-11-15T04:19:18.123Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 32,
-  "issues": 23,
+  "issues": 21,
   "findings": [
     {
       "site": "fat-boy-finesse",
@@ -72,24 +72,15 @@
     {
       "site": "roxxy-haze",
       "viewport": "iphone-13",
-      "type": "visual",
-      "message": "clipped text: button "
-    },
-    {
-      "site": "roxxy-haze",
-      "viewport": "iphone-13",
       "type": "horizontal-overflow",
       "viewportWidth": 390,
-      "pageWidth": 816,
+      "pageWidth": 404,
       "suspects": [
-        "button.nav-toggle",
-        "span",
-        "span",
-        "span",
         "a",
         "a",
         "a",
-        "a"
+        "a",
+        "a.nav-cta"
       ]
     },
     {
@@ -149,24 +140,15 @@
     {
       "site": "roxxy-haze",
       "viewport": "pixel-7",
-      "type": "visual",
-      "message": "clipped text: button "
-    },
-    {
-      "site": "roxxy-haze",
-      "viewport": "pixel-7",
       "type": "horizontal-overflow",
       "viewportWidth": 412,
-      "pageWidth": 816,
+      "pageWidth": 424,
       "suspects": [
-        "button.nav-toggle",
-        "span",
-        "span",
-        "span",
         "a",
         "a",
         "a",
-        "a"
+        "a",
+        "a.nav-cta"
       ]
     }
   ]
