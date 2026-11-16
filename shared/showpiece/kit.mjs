@@ -1,5 +1,6 @@
 import { esc, templates } from "../model.mjs";
 import { ACCENTS } from "./accents.mjs";
+import { demoStockPhoto, DEMO_STOCK_CSS } from "./sample-stock.mjs";
 import { renderMotionChapter } from "../premium-art-direction-35.mjs";
 
 export const E = (s) => esc(s ?? "");
@@ -114,7 +115,7 @@ export function renderShowpieceDesign(design, v, options = {}) {
     cta: (label) => hasEmail ? '<a class="cta" href="mailto:' + E(c.publicEmail) + '">' + E(sample ? label : "Get in touch") + "</a>"
       : hasWork && !(multipage && page === "work") ? '<a class="cta" href="' + E(link("work")) + '">' + E(sample ? labels.work : c.ctaLabel || "See the work") + "</a>"
       : "",
-    photo: (i) => c.photoIds?.[i] ? '<img src="' + E((options.assetBase || "/api/assets/") + c.photoIds[i] + (options.assetSuffix || "")) + '" alt="" loading="' + (i === 0 ? "eager" : "lazy") + '">' : "",
+    photo: (i) => sample ? demoStockPhoto(design, i) : (c.photoIds?.[i] ? '<img src="' + E((options.assetBase || "/api/assets/") + c.photoIds[i] + (options.assetSuffix || "")) + '" alt="" loading="' + (i === 0 ? "eager" : "lazy") + '">' : ""),
     intro: () => {
       const t = sample ? (design.intros || {})[page] || {} : { title: NEUTRAL_INTROS[page] };
       return { title: t.title || labels[{ work: "work", features: "services", studio: "about", contact: "contact" }[page]] || c.name, text: t.text || (page === "studio" ? (c.heroLabel || c.headline) : page === "contact" ? "Tell us what you have in mind." : c.bio) };
@@ -129,7 +130,7 @@ export function renderShowpieceDesign(design, v, options = {}) {
   const main = blocks.map(b => { const html = order[b] ? order[b](k) : ""; return b === "contact" && !hasEmail ? html.replace('id="contact"', 'id="next"') : html; }).join("");
   const body = '<div class="' + design.root + '">' + design.header(k) + '<main id="main">' + main + "</main>" + design.footer(k) + "</div>";
   const title = c.name + (page && page !== "home" ? " / " + (k.intro().title) : " / " + c.headline);
-  const css = BASE_CSS + design.css;
+  const css = BASE_CSS + (sample ? DEMO_STOCK_CSS : "") + design.css;
   const still = (v?.design?.animation === "none" ? reducedMotionCSS(css) : "") + accentCSS(design, v, sample);
   return '<!doctype html><html lang="en" data-awe-engine="showpiece"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + E(title) + "</title>" +
     '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
