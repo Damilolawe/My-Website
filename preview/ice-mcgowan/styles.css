@@ -289,23 +289,44 @@ a{color:inherit;text-decoration:none}
 /* A second, different verified creator visual fills About without duplicating a card. */
 .about-creator-art{width:100%;margin:22px 0 0;border:3px solid var(--ink);
   box-shadow:6px 6px 0 var(--orange);background:#10131b}
-/* internals scale with the poster width (container units) so a full-width poster stays proportionate */
-.ice-creator-poster{container-type:inline-size;position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:16/10;padding:clamp(14px,3cqw,30px);
-  background:radial-gradient(ellipse at 50% 52%,rgba(33,227,247,.32) 0,transparent 57%),linear-gradient(145deg,#171329 5%,#321438 49%,#070b1b 100%);color:var(--ice)}
-.ice-creator-poster::before{content:"";position:absolute;inset:-20%;z-index:-1;transform:rotate(-16deg);pointer-events:none;
-  background:repeating-linear-gradient(0deg,transparent 0 15px,rgba(255,255,255,.07) 16px 17px)}
-.ice-creator-poster::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.28;
-  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.4) 45%,transparent 58%);animation:ice-creator-sheen 6s ease-in-out infinite}
-.ice-creator-halo{position:absolute;width:clamp(96px,32cqw,210px);height:clamp(96px,32cqw,210px);top:50%;left:50%;translate:-50% -50%;border:clamp(9px,3cqw,18px) solid var(--orange);border-radius:50%;
- box-shadow:0 0 28px rgba(255,119,36,.75),inset 0 0 28px rgba(255,119,36,.4);animation:ice-creator-pulse 3.3s ease-in-out infinite alternate}
-.ice-creator-top,.ice-creator-bottom{position:relative;z-index:3;font:800 clamp(9px,2.6cqw,15px)/1.2 var(--display);letter-spacing:.06em}
-.ice-creator-bottom{color:#ffc978}
-.ice-creator-poster strong{position:relative;z-index:3;align-self:center;display:flex;flex-direction:column;align-items:center;transform:rotate(-7deg);
-  font:900 clamp(32px,14cqw,88px)/.83 var(--display);letter-spacing:-.055em;color:#fff;text-shadow:4px 4px 0 var(--magenta),0 0 20px rgba(33,227,247,.5)}
-.ice-creator-poster strong span:last-child{color:var(--orange);text-shadow:3px 3px 0 var(--ink)}
-@keyframes ice-creator-pulse{from{scale:.92;opacity:.7}to{scale:1.1;opacity:1}}
-@keyframes ice-creator-sheen{0%,45%{transform:translateX(-120%)}75%,100%{transform:translateX(120%)}}
-@media(prefers-reduced-motion:reduce){.ice-creator-poster::after,.ice-creator-halo{animation:none}}
+/* A film clapperboard ties the About copy ("from the stage to the edit bay") to
+   Ice's actual lanes: stand-up, film, anime and the podcast. Internals scale with
+   the poster width (container units) so a full-width slate stays proportionate. */
+.ice-creator-poster{container-type:inline-size;position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;aspect-ratio:16/10;
+  background:linear-gradient(150deg,#141026 0%,#0a0d1e 60%,#070a18 100%);color:var(--ice)}
+/* faint focus-grid texture, like a viewfinder */
+.ice-creator-poster::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.6;
+  background:radial-gradient(circle at 1px 1px,rgba(90,209,255,.16) 1px,transparent 1.7px) 0 0/clamp(8px,2.4cqw,15px) clamp(8px,2.4cqw,15px)}
+/* a camera-light sheen passing across the slate */
+.ice-creator-poster::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;opacity:.22;
+  background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.5) 48%,transparent 60%);animation:ice-slate-sheen 6.5s ease-in-out infinite}
+/* hinged top clapper stick with diagonal stripes */
+.slate-clap{position:relative;z-index:2;display:flex;align-items:center;justify-content:flex-end;
+  height:30cqw;max-height:34%;padding:0 clamp(10px,3cqw,22px);background:var(--ink);
+  border-bottom:clamp(3px,.8cqw,5px) solid var(--orange)}
+.slate-sticks{position:absolute;inset:0;z-index:0;
+  background:repeating-linear-gradient(118deg,var(--ink) 0 clamp(13px,4cqw,28px),var(--ice) clamp(13px,4cqw,28px) clamp(26px,8cqw,56px))}
+.slate-rec{position:relative;z-index:1;display:inline-flex;align-items:center;gap:clamp(3px,1cqw,6px);
+  font:900 clamp(9px,2.6cqw,15px)/1 var(--display);letter-spacing:.12em;color:#fff;
+  background:var(--magenta);padding:clamp(3px,1cqw,6px) clamp(5px,1.6cqw,10px);box-shadow:3px 3px 0 var(--ink)}
+.slate-rec::before{content:"";width:clamp(5px,1.7cqw,9px);height:clamp(5px,1.7cqw,9px);border-radius:50%;
+  background:#fff;box-shadow:0 0 7px #fff;animation:ice-slate-blink 1.8s steps(1) infinite}
+/* slate rows: label + value, each lane on its own line */
+.slate-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;
+  gap:clamp(5px,1.6cqw,12px);padding:clamp(10px,3.4cqw,26px) clamp(12px,4cqw,30px)}
+.slate-row{display:flex;align-items:baseline;gap:clamp(8px,2.6cqw,18px);
+  border-bottom:2px solid rgba(90,209,255,.22);padding-bottom:clamp(4px,1.2cqw,9px)}
+.slate-row b{flex:0 0 auto;min-width:11cqw;color:var(--ice);opacity:.8;
+  font:800 clamp(8px,2.2cqw,13px)/1 var(--display);letter-spacing:.1em}
+.slate-row i{font-style:normal;color:#fff;font:900 clamp(13px,4.6cqw,30px)/1 var(--display);letter-spacing:-.02em;text-shadow:2px 2px 0 var(--ink)}
+.slate-row:nth-child(2) i{color:var(--orange)}
+.slate-row:nth-child(3) i{color:var(--ice)}
+.slate-foot{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(6px,2cqw,14px);margin-top:clamp(2px,1cqw,6px);
+  font:800 clamp(7px,2cqw,12px)/1.1 var(--display);letter-spacing:.08em;color:#ffc978}
+.slate-foot span:last-child{margin-left:auto;color:var(--ice)}
+@keyframes ice-slate-sheen{0%,45%{transform:translateX(-120%)}75%,100%{transform:translateX(120%)}}
+@keyframes ice-slate-blink{0%,55%{opacity:1}56%,100%{opacity:.25}}
+@media(prefers-reduced-motion:reduce){.ice-creator-poster::after,.slate-rec::before{animation:none}}
 .about-creator-art figcaption{padding:6px 8px;color:var(--ice);font:700 9px/1.4 var(--display);
   letter-spacing:.04em}
 @media(max-width:960px){
