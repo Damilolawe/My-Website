@@ -47,3 +47,18 @@ test("Signature previews only fetch validated public static pages",async()=>{
   assert.equal(requests,1);
  }finally {globalThis.fetch=original;}
 });
+
+test("edge-injected analytics scripts are stripped, not rejected, so previews still load",async()=>{
+ const original=globalThis.fetch;
+ // Cloudflare Web Analytics appends a module <script> to every served document.
+ const beacon='<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vabc"></script>';
+ globalThis.fetch=async()=>new Response(
+  '<!doctype html><html><body>FICTIONAL TEMPLATE DEMO Studio</body>'+beacon+'</html>',
+  {headers:{"content-type":"text/html"}});
+ try{
+  const html=await fetchPublicStudyPage("md-coinbase","studio");
+  assert(html.includes("FICTIONAL TEMPLATE DEMO"),"authored demo content is preserved");
+  assert(!/<script\b/i.test(html),"injected script must be stripped from the preview");
+  assert(!html.includes("cloudflareinsights"),"analytics beacon must not survive into the srcdoc");
+ }finally {globalThis.fetch=original;}
+});
