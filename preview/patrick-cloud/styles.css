@@ -458,7 +458,9 @@ button.forecast:active{transform:translateY(0) scale(.98)}
 .live-card:is(:hover,:focus-visible)::before{translate:145% 0}
 .live-card .ic{transition:transform .45s cubic-bezier(.2,1.3,.25,1)}
 .live-card:is(:hover,:focus-visible) .ic{transform:rotate(-9deg) scale(1.13)}
-.live-card .go::after{content:"→";font-size:18px;transition:translate .35s}
+.live-card .go::after{content:"";display:inline-block;width:8px;height:8px;border-top:2px solid currentColor;border-right:2px solid currentColor;rotate:45deg;margin-left:2px;transition:translate .35s}
+.forecast .fc-chevron{display:inline-flex;align-items:center;justify-content:center}
+.forecast .fc-chevron svg{display:block;width:17px;height:17px}
 .live-card:is(:hover,:focus-visible) .go::after{translate:6px 0}
 .live-main .sun-glow{animation:liveSunGlow 7s ease-in-out infinite}
 @keyframes liveSunGlow{0%,100%{transform:scale(1);opacity:.7}
