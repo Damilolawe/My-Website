@@ -129,7 +129,15 @@
       f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
       f.setAttribute('allowfullscreen', '');
       f.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0';
-      heroVideo.replaceWith(f);
+      // Keep the original 16:9 frame in the DOM: swapping the frame itself
+      // changes its intrinsic height and makes the player jump on click.
+      heroVideo.classList.add('is-playing');
+      heroVideo.style.transform = '';
+      heroVideo.removeAttribute('role');
+      heroVideo.removeAttribute('tabindex');
+      heroVideo.removeAttribute('aria-label');
+      heroVideo.replaceChildren(f);
+      f.focus();
     };
     heroVideo.addEventListener('click', play);
     heroVideo.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); } });
@@ -258,7 +266,8 @@
     // container, so translateZ children — the play button — pop toward the viewer)
     document.querySelectorAll('.vcard, .feature-video').forEach(function (card) {
       card.addEventListener('pointermove', function (e) {
-        if (e.pointerType === 'touch') return;
+        // Never rotate an active iframe. Its on-screen dimensions stay fixed.
+        if (card.classList.contains('is-playing') || e.pointerType === 'touch') return;
         var r = card.getBoundingClientRect();
         var px = (e.clientX - r.left) / r.width - 0.5;
         var py = (e.clientY - r.top) / r.height - 0.5;

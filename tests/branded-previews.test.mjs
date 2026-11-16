@@ -636,3 +636,33 @@ test("creator preview outbound links survive publishing and known broken media s
  assert.ok(ice.includes('class="ice-creator-poster"'),"Ice original poster is missing");
  assert.ok(!ice.includes("channel-avatar.webp"),"Ice missing image has returned");
 });
+
+test("creator player facades keep their aspect-ratio containers during playback",async()=>{
+ const pJs=await read("public/patrick-cloud/site.js");
+ const pCss=await read("public/patrick-cloud/styles.css");
+ const kJs=await read("public/kevonstage/site.js");
+ const kCss=await read("public/kevonstage/styles.css");
+ assert.match(pJs,/heroVideo\.replaceChildren\(f\)/);
+ assert.doesNotMatch(pJs,/heroVideo\.replaceWith\(f\)/);
+ assert.match(pJs,/card\.classList\.contains\('is-playing'\)/);
+ assert.match(pCss,/\.feature-video\{[^}]*aspect-ratio:16\/9/);
+ assert.match(pCss,/\.feature-video\.is-playing iframe\{[^}]*width:100%;height:100%/);
+ assert.match(kJs,/frame\.replaceChildren\(f\)/);
+ assert.match(kCss,/\.screen-frame\{[^}]*aspect-ratio:16\/9/);
+ assert.match(kCss,/\.screen-frame\.is-playing iframe\{[^}]*width:100%;height:100%/);
+ const otherPlayers=[
+  ["tony-baker",".monitor-screen"],
+  ["keenan-baker",".video-frame"],
+  ["tahir-moore",".embed-frame"],
+  ["ice-mcgowan",".embed-frame"],
+  ["fat-boy-finesse",".live-frame"],
+  ["joshy-gonz",".media16"]
+ ];
+ for (const [slug,selector] of otherPlayers) {
+  const css=await read("public/"+slug+"/styles.css");
+  assert.ok(css.includes(selector),slug+" lost its video container");
+  assert.match(css,/aspect-ratio\s*:\s*16\s*\/\s*9/,slug+" video frame lost its fixed 16:9 aspect");
+ }
+ const roxxy=await read("public/roxxy-haze/index.html");
+ assert.match(roxxy,/<iframe[^>]*height="380"/);
+});

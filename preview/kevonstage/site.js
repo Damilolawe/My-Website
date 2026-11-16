@@ -68,7 +68,13 @@
       f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
       f.setAttribute('allowfullscreen', '');
       f.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0';
-      heroVideo.replaceWith(f);
+      // The existing screen-frame owns the 16:9 ratio; keep it in place
+      // before and after playback, and replace only its inner facade.
+      var frame = heroVideo.parentElement;
+      if (!frame || !frame.classList.contains('screen-frame')) return;
+      frame.classList.add('is-playing');
+      frame.replaceChildren(f);
+      f.focus();
     });
   }
 
