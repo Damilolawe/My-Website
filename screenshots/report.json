@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-16T06:51:34.872Z",
+  "generatedAt": "2026-11-16T07:54:09.732Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 33,
-  "issues": 21,
+  "issues": 20,
   "findings": [
     {
       "site": "fat-boy-finesse",
@@ -68,20 +68,6 @@
       "viewport": "iphone-13",
       "type": "visual",
       "message": "clipped text: p Watch KevOnStage's reactions, sketches and the comedy t"
-    },
-    {
-      "site": "roxxy-haze",
-      "viewport": "iphone-13",
-      "type": "horizontal-overflow",
-      "viewportWidth": 390,
-      "pageWidth": 398,
-      "suspects": [
-        "a",
-        "a",
-        "a",
-        "a",
-        "a.nav-cta"
-      ]
     },
     {
       "site": "kevonstage",
