@@ -37,6 +37,7 @@ let step = 0,
   draftVersion = null,
   uploaded = [],
   theaterController = null;
+let designPreviewResizeObserver = null;
 let theaterPreferredMode = typeof window !== "undefined" && window.matchMedia("(max-width: 720px)").matches ? "mobile" : "desktop";
 // Only fictional data enters public previews. In-progress details are saved in this tab for refresh recovery.
 input.content = {
@@ -118,6 +119,8 @@ function select(label, name, options, value) {
 }
 function checkoutLabel() { return catalog.paymentMode === 'test' ? 'Continue to test checkout' : 'Continue to secure checkout'; }
 function draw() {
+  designPreviewResizeObserver?.disconnect();
+  designPreviewResizeObserver = null;
   theaterController?.abort();
   theaterController = null;
   app.innerHTML = `<div class="wizard ${step === 1 ? "is-gallery" : ""}"><ol class="steps">${labels.map((l, i) => `<li class="${i === step ? "active" : ""}" ${i === step ? 'aria-current="step"' : ""}>0${i + 1} / ${l}</li>`).join("")}</ol><div class="work-area"><span class="step-count">0${step + 1} / 05 — ${labels[step].toUpperCase()}</span><div id="step"></div><div class="actions"><button class="btn secondary" id="back" ${step === 0 || orderId ? "hidden" : ""}>←︎ Back</button><span id="checkout-feedback" class="checkout-feedback" role="status" aria-live="polite"></span><button class="btn acid" id="next">${step === 4 ? checkoutLabel() : step === 0 ? "Browse templates" : "Next step"} ↗︎</button></div></div></div>`;
@@ -210,11 +213,47 @@ function draw() {
       ? '<p class="muted">Arcade Night keeps the supplied Big Shoulders / JetBrains typography, dark appearance, broadcast layout and sharp corners. Colors, section order, navigation and motion remain editable.</p>' +
         '<input type="hidden" name="font" value="mono"><input type="hidden" name="appearance" value="dark"><input type="hidden" name="layout" value="stacked"><input type="hidden" name="heroAlignment" value="left"><input type="hidden" name="corners" value="sharp">'
       : `${select("Typography", "font", ["sans", "serif", "mono"], input.design.font)}${select("Appearance", "appearance", ["light", "dark"], input.design.appearance)}${select("Layout", "layout", ["stacked", "split"], input.design.layout)}${select("Hero alignment", "heroAlignment", ["left", "center", "right"], input.design.heroAlignment)}${select("Corner style", "corners", ["sharp", "soft", "round"], input.design.corners)}`;
-    el.innerHTML = `<h2>Give it your signature.</h2><div class="split"><form id="design" class="panel"><div class="field-row"><label class="field">Primary color<input name="primary" type="color" value="${input.design.primary}"></label><label class="field">Secondary color<input name="secondary" type="color" value="${input.design.secondary}"></label></div><p class="muted">Primary changes accents, buttons and selected hero highlights. Secondary influences backgrounds and interface surfaces. Photo imagery itself stays the same as you change colors; watch the preview adapt.</p>${fixedControls}${authoredFixedDesigns.has(input.template) ? '<p class="muted">Navigation styling and spacing follow the selected design.</p>' : select("Navigation", "navigation", ["full", "compact"], input.design.navigation)}${input.template === "liquidmetal" ? '<p class="muted">Motion follows the original Liquid Metal design.</p>' : select("Motion", "animation", ["none", "subtle", "expressive"], input.design.animation)}${authoredFixedDesigns.has(input.template) ? "" : select("Page spacing", "density", ["airy", "balanced", "compact"], input.design.density)}${fixedSections ? '<p class="muted">This design keeps its authored page and section structure. Personalize the content in the next step.</p>' : '<p class="field">Website sections</p><div class="checks">' + sections.map((s) => `<label><input type="checkbox" name="sections" value="${s}" ${input.design.sections.includes(s) ? "checked" : ""}> ${s}</label>`).join("") + '</div>'}${field("Anything else in mind?", "preferences", input.preferences, "textarea")}</form><div class="preview-shell"><div class="preview-top"><span>SAMPLE CONFIGURATION</span><div><button id="wide" aria-label="Desktop preview">DESKTOP</button><button id="narrow" aria-label="Mobile preview">MOBILE</button></div></div><iframe title="Fictional template configuration preview" sandbox=""></iframe><p class="muted">This is sample content. Your personalized site is reviewed privately before delivery.</p></div></div>`;
+    el.innerHTML = `<h2>Give it your signature.</h2><div class="split"><form id="design" class="panel"><div class="field-row"><label class="field">Primary color<input name="primary" type="color" value="${input.design.primary}"></label><label class="field">Secondary color<input name="secondary" type="color" value="${input.design.secondary}"></label></div><p class="muted">Primary changes accents, buttons and selected hero highlights. Secondary influences backgrounds and interface surfaces. Photo imagery itself stays the same as you change colors; watch the preview adapt.</p>${fixedControls}${authoredFixedDesigns.has(input.template) ? '<p class="muted">Navigation styling and spacing follow the selected design.</p>' : select("Navigation", "navigation", ["full", "compact"], input.design.navigation)}${input.template === "liquidmetal" ? '<p class="muted">Motion follows the original Liquid Metal design.</p>' : select("Motion", "animation", ["none", "subtle", "expressive"], input.design.animation)}${authoredFixedDesigns.has(input.template) ? "" : select("Page spacing", "density", ["airy", "balanced", "compact"], input.design.density)}${fixedSections ? '<p class="muted">This design keeps its authored page and section structure. Personalize the content in the next step.</p>' : '<p class="field">Website sections</p><div class="checks">' + sections.map((s) => `<label><input type="checkbox" name="sections" value="${s}" ${input.design.sections.includes(s) ? "checked" : ""}> ${s}</label>`).join("") + '</div>'}${field("Anything else in mind?", "preferences", input.preferences, "textarea")}</form><div class="preview-shell design-preview-shell" data-preview-device="desktop"><div class="preview-top"><span>LIVE TEMPLATE PREVIEW</span><div class="preview-device-actions" role="group" aria-label="Preview device"><button type="button" id="wide" aria-label="Desktop preview" aria-pressed="true">DESKTOP</button><button type="button" id="narrow" aria-label="Mobile preview" aria-pressed="false">MOBILE</button></div></div><div class="preview-device-stage"><iframe title="Fictional template configuration preview" sandbox=""></iframe></div><p class="muted">The preview reflects your selected colors and device size. Your personalized site is reviewed privately before delivery.</p></div></div>`;
     let previewGeneration = 0;
+    let updateQueued = false;
+    const shell = el.querySelector(".design-preview-shell");
+    const stage = shell.querySelector(".preview-device-stage");
+    const frame = stage.querySelector("iframe");
+    const wide = $("#wide"), narrow = $("#narrow");
+    // A 100%-wide iframe at a 360px viewport is NOT a desktop preview.
+    // Render desktop at 1200 CSS px, scaled to fit; phone at real CSS px.
+    const setPreviewDevice = mobile => {
+      shell.dataset.previewDevice = mobile ? "mobile" : "desktop";
+      wide.setAttribute("aria-pressed", String(!mobile));
+      narrow.setAttribute("aria-pressed", String(mobile));
+      const available = Math.max(1, stage.clientWidth);
+      if (mobile) {
+        const width = Math.min(390, available);
+        frame.style.width = width + "px";
+        frame.style.height = "780px";
+        frame.style.left = (available - width) / 2 + "px";
+        frame.style.transform = "none";
+        stage.style.height = "780px";
+      } else {
+        const documentWidth = 1200;
+        const scale = Math.min(1, available / documentWidth);
+        const height = Math.ceil(570 / scale);
+        frame.style.width = documentWidth + "px";
+        frame.style.height = height + "px";
+        frame.style.left = Math.max(0, (available - documentWidth * scale) / 2) + "px";
+        frame.style.transform = "scale(" + scale + ")";
+        stage.style.height = Math.round(height * scale) + "px";
+      }
+    };
+    wide.onclick = () => setPreviewDevice(false);
+    narrow.onclick = () => setPreviewDevice(true);
+    if ("ResizeObserver" in window) {
+      designPreviewResizeObserver = new ResizeObserver(() =>
+        setPreviewDevice(shell.dataset.previewDevice === "mobile"));
+      designPreviewResizeObserver.observe(stage);
+    }
     const update = async () => {
       const generation = ++previewGeneration;
-      const frame = $("iframe", el);
       const f = new FormData($("#design"));
       input.design = {
         ...input.design,
@@ -227,18 +266,23 @@ function draw() {
         const {renderSite} = await loadRenderer();
         if (!frame.isConnected || generation !== previewGeneration) return;
         frame.srcdoc = renderSite(
-          { ...sampleForTemplate(input.template,input.type), design: input.design },
-          { sample: true },
+          {...sampleForTemplate(input.template,input.type), design: input.design},
+          {sample:true},
         );
-      } catch { if(frame.isConnected)frame.srcdoc=previewMessage("Preview unavailable. Please try again."); }
+      } catch {
+        if (frame.isConnected && generation === previewGeneration)
+          frame.srcdoc = previewMessage("Preview unavailable. Please try again.");
+      }
     };
-    $("#design").oninput = update;
-    $("#wide").onclick = () => {
-      $("iframe", el).style.width = "100%";
+    // Throttle continuous dragging but immediately apply the final color change.
+    const scheduleUpdate = () => {
+      if (updateQueued) return;
+      updateQueued = true;
+      requestAnimationFrame(() => {updateQueued = false;update();});
     };
-    $("#narrow").onclick = () => {
-      $("iframe", el).style.width = "320px";
-    };
+    $("#design").oninput = scheduleUpdate;
+    $("#design").onchange = update;
+    setPreviewDevice(matchMedia("(max-width: 760px)").matches);
     update();
   }
   if (step === 3) {
