@@ -70,5 +70,15 @@ test("Living Studio is first-paint default with interactive hover feedback",asyn
   assert.match(css,/@media\(hover:hover\) and \(pointer:fine\)/);
   assert.match(css,/\.universe-card:hover \.universe-card-frame/);
   assert.match(css,/\.universe-card:hover \.universe-snapshot iframe/);
-  assert(home.includes("/universe.css?v=20261111-living-studio"));
+  assert(home.includes("/universe.css?v=20261116-flat-hover"));
+  assert.match(css,/\\.universe-field\\{[^}]*isolation:isolate\\}/,
+    "The interactive collage must render in a flat stacking plane");
+  assert(!css.includes("transform-style:preserve-3d"),"3D card stacking must not intersect");
+  assert(!css.includes("rotateX(") && !css.includes("rotateY("),
+    "Homepage cards should remain flat, even during hover");
+  assert.match(css,/\\.universe-card:hover,\\.universe-card:focus-within\\{[^}]*z-index:100/,
+    "Hovered and keyboard-focused cards must lift above the other cards");
+  const script=await read("universe.js");
+  assert(!script.includes('field.addEventListener("pointermove"'),
+    "Pointer parallax must not push cards across each other when hovered");
 });
