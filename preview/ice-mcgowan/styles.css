@@ -179,6 +179,12 @@ a{color:inherit;text-decoration:none}
 .embed-frame{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000;
   border:3px solid var(--ink)}
 .embed-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* Podcast: on the two-column desktop layout, let the video fill its panel so it
+   matches the height of the content card beside it (no empty space below it). */
+@media(min-width:1025px){
+  .pod-screen{display:flex}
+  .pod-screen .embed-frame{flex:1;aspect-ratio:auto}
+}
 
 /* ---------- LIVE splash (page 05) ---------- */
 .live-card{display:grid;grid-template-columns:1.5fr .5fr;gap:30px;align-items:center;
@@ -276,20 +282,21 @@ a{color:inherit;text-decoration:none}
 .cover-photo figcaption{padding:9px 12px;font:700 11px/1.4 var(--display);
   letter-spacing:.08em;background:var(--ink);color:var(--ice)}
 /* A second, different verified creator visual fills About without duplicating a card. */
-.about-creator-art{width:min(100%,230px);margin:22px 0 0;border:3px solid var(--ink);
+.about-creator-art{width:100%;margin:22px 0 0;border:3px solid var(--ink);
   box-shadow:6px 6px 0 var(--orange);background:#10131b}
-.ice-creator-poster{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:1;padding:14px;
+/* internals scale with the poster width (container units) so a full-width poster stays proportionate */
+.ice-creator-poster{container-type:inline-size;position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:16/10;padding:clamp(14px,3cqw,30px);
   background:radial-gradient(ellipse at 50% 52%,rgba(33,227,247,.32) 0,transparent 57%),linear-gradient(145deg,#171329 5%,#321438 49%,#070b1b 100%);color:var(--ice)}
 .ice-creator-poster::before{content:"";position:absolute;inset:-20%;z-index:-1;transform:rotate(-16deg);pointer-events:none;
   background:repeating-linear-gradient(0deg,transparent 0 15px,rgba(255,255,255,.07) 16px 17px)}
 .ice-creator-poster::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.28;
   background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.4) 45%,transparent 58%);animation:ice-creator-sheen 6s ease-in-out infinite}
-.ice-creator-halo{position:absolute;width:145px;height:145px;top:50%;left:50%;translate:-50% -50%;border:14px solid var(--orange);border-radius:50%;
+.ice-creator-halo{position:absolute;width:clamp(96px,32cqw,210px);height:clamp(96px,32cqw,210px);top:50%;left:50%;translate:-50% -50%;border:clamp(9px,3cqw,18px) solid var(--orange);border-radius:50%;
  box-shadow:0 0 28px rgba(255,119,36,.75),inset 0 0 28px rgba(255,119,36,.4);animation:ice-creator-pulse 3.3s ease-in-out infinite alternate}
-.ice-creator-top,.ice-creator-bottom{position:relative;z-index:3;font:800 10px/1.2 var(--display);letter-spacing:.06em}
+.ice-creator-top,.ice-creator-bottom{position:relative;z-index:3;font:800 clamp(9px,2.6cqw,15px)/1.2 var(--display);letter-spacing:.06em}
 .ice-creator-bottom{color:#ffc978}
 .ice-creator-poster strong{position:relative;z-index:3;align-self:center;display:flex;flex-direction:column;align-items:center;transform:rotate(-7deg);
-  font:900 clamp(35px,5vw,53px)/.83 var(--display);letter-spacing:-.055em;color:#fff;text-shadow:4px 4px 0 var(--magenta),0 0 20px rgba(33,227,247,.5)}
+  font:900 clamp(32px,14cqw,88px)/.83 var(--display);letter-spacing:-.055em;color:#fff;text-shadow:4px 4px 0 var(--magenta),0 0 20px rgba(33,227,247,.5)}
 .ice-creator-poster strong span:last-child{color:var(--orange);text-shadow:3px 3px 0 var(--ink)}
 @keyframes ice-creator-pulse{from{scale:.92;opacity:.7}to{scale:1.1;opacity:1}}
 @keyframes ice-creator-sheen{0%,45%{transform:translateX(-120%)}75%,100%{transform:translateX(120%)}}

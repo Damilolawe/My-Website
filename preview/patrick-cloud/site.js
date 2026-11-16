@@ -64,30 +64,26 @@
     }
     window.addEventListener('resize', measure, { passive: true });
 
-    var easeIO = function (t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; };
     var start = 0, started = false;
     plane.style.opacity = '0';
 
+    var TRAVEL = 10000; // ms to cross the whole screen at one constant speed
     function path(t) {
       var midY = m.midY;
       var weave = false, x, y, rot = 0, sc = 1, vis = true;
-      if (m.multiline) {
-        // wrapped layout (narrow screens): one smooth straight pass, no weave
-        if (t < 9000) { var p = easeIO(t / 9000); x = m.offLeft + (m.offRight - m.offLeft) * p; y = midY; sc = 0.85 + 0.15 * Math.sin(p * Math.PI); }
-        else { x = m.offRight; y = midY; vis = false; }
-        return { x: x, y: y, rot: rot, sc: sc, vis: vis, weave: false };
-      }
-      if (t < 1800) {                    // fly in to just before the first letter
-        var p = easeIO(t / 1800); x = m.offLeft + ((m.wordLeft - 46) - m.offLeft) * p; y = midY; sc = 0.85 + 0.15 * p;
-      } else if (t < 7600) {             // weave across the letters at their mid height
-        var pw = (t - 1800) / 5800, pe = easeIO(pw);
-        x = (m.wordLeft - 46) + ((m.wordRight + 66) - (m.wordLeft - 46)) * pe;
-        y = midY + Math.sin(pw * Math.PI * 3) * -6;
-        rot = Math.sin(pw * Math.PI * 6) * 4;
+      if (t >= TRAVEL) { return { x: m.offRight, y: midY, rot: 0, sc: 1, vis: false, weave: false }; }
+      // Constant horizontal speed the whole way: X is linear from off-left to off-right.
+      var p = t / TRAVEL;
+      x = m.offLeft + (m.offRight - m.offLeft) * p;
+      if (m.multiline) { return { x: x, y: midY, rot: 0, sc: 1, vis: true, weave: false }; }
+      // Weave (gentle bob + banking + behind/in-front z) only while over the word.
+      var wStart = m.wordLeft - 46, wEnd = m.wordRight + 66;
+      if (x > wStart && x < wEnd) {
+        var wp = (x - wStart) / (wEnd - wStart);
+        y = midY + Math.sin(wp * Math.PI * 3) * -6;
+        rot = Math.sin(wp * Math.PI * 6) * 4;
         weave = true;
-      } else if (t < 10100) {            // fly off the right
-        var pf = easeIO((t - 7600) / 2500); x = (m.wordRight + 66) + (m.offRight - (m.wordRight + 66)) * pf; y = midY; sc = 1 - 0.15 * pf;
-      } else { x = m.offRight; y = midY; vis = false; }
+      } else { y = midY; }
       return { x: x, y: y, rot: rot, sc: sc, vis: vis, weave: weave };
     }
 
