@@ -1,10 +1,16 @@
 {
-  "generatedAt": "2026-11-16T08:06:06.043Z",
+  "generatedAt": "2026-11-16T18:10:35.376Z",
   "mode": "mobile",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 33,
-  "issues": 20,
+  "issues": 22,
   "findings": [
+    {
+      "site": "shotsbyriq",
+      "viewport": "iphone-13",
+      "type": "visual",
+      "message": "clipped text: a VIEW PHOTOGRAPHY ON INSTAGRAM"
+    },
     {
       "site": "fat-boy-finesse",
       "viewport": "iphone-13",
@@ -68,6 +74,12 @@
       "viewport": "iphone-13",
       "type": "visual",
       "message": "clipped text: p Watch KevOnStage's reactions, sketches and the comedy t"
+    },
+    {
+      "site": "shotsbyriq",
+      "viewport": "pixel-7",
+      "type": "visual",
+      "message": "clipped text: a VIEW PHOTOGRAPHY ON INSTAGRAM"
     },
     {
       "site": "kevonstage",
