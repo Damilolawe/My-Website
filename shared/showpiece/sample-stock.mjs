@@ -68,7 +68,7 @@ const categoryById = Object.freeze({
   "md-bmw-m":"automotive","md-bugatti":"automotive","md-lamborghini":"automotive",
   "md-renault":"food","md-nintendo-2001":"gaming","md-playstation":"gaming",
   "md-dji":"landscape","md-airbnb":"interiors","md-shopify":"interiors",
-  "md-merc​ury":"business","md-nvidia":"tech","md-oura":"wellness",
+  "md-mercury":"business","md-nvidia":"tech","md-oura":"wellness",
   "md-pinterest":"photo","md-dell-1996":"tech","runwayml":"film",
   "runwaymulti":"film","contactsheet":"photo","portraiture":"photo",
   "atelier":"fashion","nocturne":"fashion","foundry":"craft","bloom":"flower",
@@ -76,7 +76,6 @@ const categoryById = Object.freeze({
   "museum":"gallery","still":"art","ledger":"business","terminal":"tech",
   "orbit":"tech","atlas":"architecture","brutalist":"art","daylight":"craft"
 });
-const normalized = value => String(value || "").toLowerCase();
 const chooseCategory = (design) => {
   if (categoryById[design.id]) return categoryById[design.id];
   const d = design.demo || {};
@@ -92,7 +91,7 @@ export function demoStockPhoto(design, index = 0) {
   const photos = bank[category] || bank.abstract;
   const photo = photos[((index % photos.length) + photos.length) % photos.length];
   const position = index % 3 === 1 ? "center 38%" : index % 3 === 2 ? "center 60%" : "center";
-  const descriptor = category === "abstract" ? "editorial artwork" : category.replace(/-/g," ") + " photography";
+  const descriptor = ({photo:"documentary",athlete:"sports",tech:"technology",cafe:"coffee",flower:"floral",food:"culinary",automotive:"automotive",abstract:"editorial"}[category] || category) + " photograph";
   return '<img class="awe-demo-stock" src="https://images.unsplash.com/'+photo+
     '?auto=format&amp;fit=crop&amp;w=1000&amp;q=78" alt="Illustrative '+descriptor+
     ' for a fictional website demo" loading="'+(index ? "lazy" : "eager")+
