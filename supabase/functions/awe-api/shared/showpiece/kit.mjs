@@ -15,6 +15,20 @@ export const BASE_CSS = `*,*:before,*:after{box-sizing:border-box}html{-webkit-t
 .awe-motion-chapter{padding:clamp(70px,9vw,130px) clamp(18px,4vw,56px)}.awe-motion-heading span{font-size:12px;letter-spacing:.2em;opacity:.7}.awe-motion-heading h2{margin-top:10px;font-size:clamp(36px,5vw,80px);line-height:1}.awe-motion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px;margin-top:clamp(28px,4vw,50px)}.awe-motion-frame iframe,.awe-motion-frame video{display:block;width:100%;aspect-ratio:16/9;border:0;background:#000}.awe-motion-entry figcaption{display:flex;gap:12px;align-items:baseline;margin-top:12px}.awe-motion-entry figcaption span{font-size:12px;letter-spacing:.14em;opacity:.7}
 .awe-extras{display:grid;gap:clamp(28px,4vw,50px);padding:clamp(60px,8vw,110px) clamp(18px,4vw,56px)}.awe-extras h2{font-size:clamp(26px,3vw,40px);margin-bottom:14px}.awe-quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px}.awe-quotes blockquote{margin:0;font-size:clamp(19px,1.8vw,24px);line-height:1.45}.awe-quotes figcaption{margin-top:10px;opacity:.75}.awe-notes{max-width:65ch;white-space:pre-line}.awe-links{display:flex;flex-wrap:wrap;gap:12px 24px}.awe-links a{text-underline-offset:4px;overflow-wrap:anywhere}
 [aria-current=page]{text-decoration:underline;text-underline-offset:6px}
+
+/* Small-screen guardrails shared by all authored showpieces. Preserve each
+   design's animations and artwork; only make navigation and text fit the phone. */
+@media(max-width:700px){
+  body>div:not(.demo),body>div:not(.demo)>main,
+  body>div:not(.demo)>main>section{min-width:0;max-width:100%}
+  body>div:not(.demo)>header{min-width:0;max-width:100%;flex-wrap:wrap;gap:12px}
+  body>div:not(.demo)>header nav{min-width:0;max-width:100%;flex-wrap:wrap;gap:8px 14px}
+  body>div:not(.demo)>header a{overflow-wrap:anywhere}
+  body>div:not(.demo)>main :is(h1,h2,h3){max-width:100%;overflow-wrap:anywhere}
+  body>div:not(.demo)>main :is(p,li){overflow-wrap:break-word}
+  body>div:not(.demo)>main :is(img,video,iframe,svg){max-width:100%}
+  body>div:not(.demo)>main :is([class*="-grid"],[class*="-list"]){min-width:0}
+}
 @media(max-width:640px){body>div>header{flex-wrap:wrap;row-gap:12px}body>div>header nav{flex-wrap:wrap;row-gap:6px}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}svg path{stroke-dashoffset:0!important}}`;
 
@@ -74,48 +88,57 @@ function paletteCSS(design, v) {
   const pickedSecondary = isHex(secondary) && secondary !== defaultSecondary;
   if (!pickedPrimary && !pickedSecondary) return "";
 
+  const rgb = value => [1, 3, 5].map(i => parseInt(value.slice(i, i + 2), 16));
+  const mix = (a, b, fraction) => "#" + rgb(a).map((v, i) =>
+    Math.round(v * (1 - fraction) + rgb(b)[i] * fraction).toString(16).padStart(2, "0")
+  ).join("");
+  const luminance = hex => rgb(hex).map(c => {
+    const v = c / 255;
+    return v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4;
+  }).reduce((n, v, i) => n + v * [.2126, .7152, .0722][i], 0);
+  const contrastInk = hex => luminance(hex) > .179 ? "#10131b" : "#ffffff";
+  const rootRule = design.css.match(new RegExp("\\." + design.root + "\\s*\\{([^}]*)\\}"))?.[1] || "";
+  const originalHex = token => rootRule.match(new RegExp(token + "\\s*:\\s*(#[0-9a-fA-F]{6})(?=[;\\s]|$)"))?.[1]?.toLowerCase();
+  const backgroundToken = rootRule.match(/background(?:-color)?\s*:\s*var\((--[\w-]+)\)/)?.[1];
+  const base = backgroundToken && originalHex(backgroundToken);
   const declarations = [];
-  const contrastInk = hex => {
-    const lum = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255)
-      .map(c => c <= .04045 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4)
-      .reduce((sum, value, i) => sum + value * [.2126, .7152, .0722][i], 0);
-    return lum > .179 ? "#111111" : "#ffffff";
-  };
-
-  if (pickedPrimary) {
-    // Most art-directed templates use a named accent variable. A few have no
-    // single accent, so customize their call-to-action without flattening art.
-    declarations.push(a ? a.v + ":" + primary : "--awe-custom-primary:" + primary);
-  }
-
   let extra = "";
-  if (pickedSecondary) {
-    // Tint real background and surface tokens rather than tinting an image,
-    // rewriting the source design, or coloring the text layer of an iframe.
-    const rootRule = design.css.match(new RegExp("\\." + design.root + "\\s*\\{([^}]*)\\}"))?.[1] || "";
-    const original = token => rootRule.match(new RegExp(token + "\\s*:\\s*(#[0-9a-fA-F]{6})(?=[;\\s]|$)"))?.[1];
-    const backgroundToken = rootRule.match(/background(?:-color)?\s*:\s*var\((--[\w-]+)\)/)?.[1];
-    const base = backgroundToken && original(backgroundToken);
-    if (base && backgroundToken !== a?.v) {
-      const fraction = contrastInk(base) === "#ffffff" ? 30 : 42;
-      declarations.push(backgroundToken + ":color-mix(in srgb," + secondary + " " + fraction + "%," + base + ")");
-    } else {
-      // Unusual palettes can paint their background without a variable.
-      // The fallback preserves that design's original gradient/photography.
-      extra += "." + design.root + "{background-color:color-mix(in srgb," + secondary + " 28%,transparent)}";
-    }
-    const panelToken = ["--panel", "--surface", "--g1", "--card"].find(
-      token => token !== backgroundToken && token !== a?.v && original(token)
-    );
-    if (panelToken) declarations.push(panelToken + ":color-mix(in srgb," + secondary + " 35%," + original(panelToken) + ")");
+
+  if (pickedPrimary) {
+    declarations.push("--awe-picked-primary:" + primary);
+    declarations.push("--awe-on-primary:" + contrastInk(primary));
+    // Retain template-specific accent art while guaranteeing a visible button
+    // and selected-navigation change on every design.
+    if (a?.v) declarations.push(a.v + ":" + primary);
+    extra += "." + design.root + " .cta:not(.cta-muted){background:" + primary +
+      "!important;color:" + contrastInk(primary) + "!important;border-color:" + primary + "!important}";
+    extra += "." + design.root + " nav a:is(:hover,:focus-visible,[aria-current]){color:" +
+      primary + "!important}";
   }
 
-  let result = declarations.length ? "." + design.root + "{" + declarations.join(";") + "}" : "";
-  if (pickedPrimary) {
-    if (a?.cta) result += "." + design.root + " .cta:not(.cta-muted){color:" + contrastInk(primary) + "}";
-    else if (!a) result += "." + design.root + " .cta:not(.cta-muted){background:var(--awe-custom-primary);color:" + contrastInk(primary) + "}";
+  if (pickedSecondary) {
+    declarations.push("--awe-picked-secondary:" + secondary);
+    // Keep the original light/dark text treatment while giving the selected
+    // surface a real, noticeable color treatment. No photos are modified.
+    const tint = base ? mix(base, secondary, .48) : secondary;
+    if (base && backgroundToken !== a?.v) {
+      declarations.push(backgroundToken + ":" + tint);
+    } else {
+      extra += "." + design.root + "{background-color:" + tint + "}";
+    }
+    const panelTokens = ["--panel", "--surface", "--g1", "--card", "--mist", "--paper", "--linen"];
+    for (const token of panelTokens) {
+      if (token !== backgroundToken && token !== a?.v && originalHex(token)) {
+        declarations.push(token + ":" + mix(originalHex(token), secondary, .34));
+        break;
+      }
+    }
+    // A visible secondary stripe on the navigation and closing page clarifies
+    // the choice even when the original hero uses a full-bleed image or gradient.
+    extra += "." + design.root + " header{border-bottom-color:" + secondary + "}";
+    extra += "." + design.root + " footer{border-top-color:" + secondary + "}";
   }
-  return result + extra;
+  return (declarations.length ? "." + design.root + "{" + declarations.join(";") + "}" : "") + extra;
 }
 
 const ABOUT_KEYS = [["education", "Education"], ["experience", "Experience"], ["skills", "Skills"]];
