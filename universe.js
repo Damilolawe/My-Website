@@ -80,38 +80,7 @@ import {fetchPublicTemplate,previewMessage} from "./shared/preview.mjs";
     else showInFrame(snapshot.dataset.preview,snapshot.querySelector("iframe"),()=>{snapshot.dataset.loaded="true";});
   }
 
-  let movePending=false,localX=0,localY=0;
-  const field=root.querySelector("#universe-field");
-  if(!compact.matches&&!reduce.matches&&field){
-    field.addEventListener("pointermove",event=>{
-      if(event.pointerType==="touch")return;
-      const rect=field.getBoundingClientRect();
-      localX=(event.clientX-rect.left)/Math.max(1,rect.width)-.5;
-      localY=(event.clientY-rect.top)/Math.max(1,rect.height)-.5;
-      if(movePending)return;
-      movePending=true;
-      requestAnimationFrame(()=>{
-        movePending=false;
-        cards.forEach((card,i)=>{
-          const depth=i%2===0?1:-1;
-          card.style.setProperty("--u-shift-x",(localX*depth*11).toFixed(1)+"px");
-          card.style.setProperty("--u-shift-y",(localY*depth*9).toFixed(1)+"px");
-          card.style.setProperty("--u-tilt-y",(localX*depth*2).toFixed(2)+"deg");
-          card.style.setProperty("--u-tilt-x",(-localY*depth*2).toFixed(2)+"deg");
-        });
-      });
-    },{passive:true});
-    field.addEventListener("pointerleave",()=>{
-      cards.forEach(card=>{
-        card.style.removeProperty("--u-shift-x");
-        card.style.removeProperty("--u-shift-y");
-        card.style.removeProperty("--u-tilt-y");
-        card.style.removeProperty("--u-tilt-x");
-      });
-    });
-  }
-
-  function transitionWorld(card,reverse=false){
+  // Keep the floating layout stable under the pointer. Rotated cards now use\n  // a flat 2D stack; hovering should only lift the selected card forward.\n\n  function transitionWorld(card,reverse=false){
     if(reduce.matches||typeof dialog.animate!=="function"||!card)return Promise.resolve();
     const panel=dialog.querySelector(".universe-dialog-shell");
     const origin=card.getBoundingClientRect(),target=panel.getBoundingClientRect();
