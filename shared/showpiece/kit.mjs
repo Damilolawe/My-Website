@@ -97,6 +97,17 @@ function paletteCSS(design, v) {
     return v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4;
   }).reduce((n, v, i) => n + v * [.2126, .7152, .0722][i], 0);
   const contrastInk = hex => luminance(hex) > .179 ? "#10131b" : "#ffffff";
+  const ratio = (a, b) => (Math.max(luminance(a), luminance(b)) + .05) /
+    (Math.min(luminance(a), luminance(b)) + .05);
+  const readableTint = (base, target, maxAmount) => {
+    // Keep original light/dark ink readable even for opposite-color choices.
+    const ink = contrastInk(base);
+    for (let amount = maxAmount; amount >= .08; amount -= .04) {
+      const candidate = mix(base, target, amount);
+      if (ratio(ink, candidate) >= 4.5) return candidate;
+    }
+    return base;
+  };
   const rootRule = design.css.match(new RegExp("\\." + design.root + "\\s*\\{([^}]*)\\}"))?.[1] || "";
   const originalHex = token => rootRule.match(new RegExp(token + "\\s*:\\s*(#[0-9a-fA-F]{6})(?=[;\\s]|$)"))?.[1]?.toLowerCase();
   const backgroundToken = rootRule.match(/background(?:-color)?\s*:\s*var\((--[\w-]+)\)/)?.[1];
@@ -109,7 +120,7 @@ function paletteCSS(design, v) {
     declarations.push("--awe-on-primary:" + contrastInk(primary));
     // Retain template-specific accent art while guaranteeing a visible button
     // and selected-navigation change on every design.
-    if (a?.v) declarations.push(a.v + ":" + primary);
+    if (a?.v && a.v !== backgroundToken && !["--paper", "--black", "--ink", "--white", "--mute"].includes(a.v)) declarations.push(a.v + ":" + primary);
     extra += "." + design.root + " .cta:not(.cta-muted){background:" + primary +
       "!important;color:" + contrastInk(primary) + "!important;border-color:" + primary + "!important}";
     extra += "." + design.root + " nav a:is(:hover,:focus-visible,[aria-current]){color:" +
@@ -120,7 +131,7 @@ function paletteCSS(design, v) {
     declarations.push("--awe-picked-secondary:" + secondary);
     // Keep the original light/dark text treatment while giving the selected
     // surface a real, noticeable color treatment. No photos are modified.
-    const tint = base ? mix(base, secondary, .48) : secondary;
+    const tint = base ? readableTint(base, secondary, .48) : secondary;
     if (base && backgroundToken !== a?.v) {
       declarations.push(backgroundToken + ":" + tint);
     } else {
@@ -129,14 +140,14 @@ function paletteCSS(design, v) {
     const panelTokens = ["--panel", "--surface", "--g1", "--card", "--mist", "--paper", "--linen"];
     for (const token of panelTokens) {
       if (token !== backgroundToken && token !== a?.v && originalHex(token)) {
-        declarations.push(token + ":" + mix(originalHex(token), secondary, .34));
+        declarations.push(token + ":" + readableTint(originalHex(token), secondary, .34));
         break;
       }
     }
     // A visible secondary stripe on the navigation and closing page clarifies
     // the choice even when the original hero uses a full-bleed image or gradient.
-    extra += "." + design.root + " header{border-bottom-color:" + secondary + "}";
-    extra += "." + design.root + " footer{border-top-color:" + secondary + "}";
+    extra += "." + design.root + " header{border-bottom:2px solid " + secondary + "}";
+    extra += "." + design.root + " footer{border-top:2px solid " + secondary + "}";
   }
   return (declarations.length ? "." + design.root + "{" + declarations.join(";") + "}" : "") + extra;
 }
