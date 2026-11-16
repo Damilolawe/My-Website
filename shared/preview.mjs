@@ -46,6 +46,9 @@ export async function fetchPublicTemplate(id, { still = false, signal, type } = 
   // Keep same-page section links inside the inert, script-disabled preview.
   if (typeof DOMParser === "undefined") return markup; // Node-based validation has no DOM.
   const document = new DOMParser().parseFromString(markup, "text/html");
+  // Drop any edge-injected analytics script (e.g. Cloudflare Web Analytics). The
+  // authored demo is script-free and the preview frame never runs scripts.
+  document.querySelectorAll("script").forEach((node) => node.remove());
   const canonical = new URL(path, location.origin);
   // Fragment links in srcdoc otherwise resolve against the marketing page URL.
   for (const anchor of document.querySelectorAll("a[href]")) {
@@ -84,6 +87,17 @@ export function studyPageFromLink(id,href,origin){
  }catch{return null;}
 }
 
+// Edge platforms (e.g. Cloudflare Web Analytics) can inject an analytics <script>
+// into every served document. The sandboxed srcdoc preview frame has no
+// allow-scripts, so nothing ever executes, but we still remove any <script> so the
+// preview stays provably inert regardless of what the edge appends to the response.
+export function stripScripts(markup){
+ return String(markup)
+  .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi,"")
+  .replace(/<script\b[^>]*>/gi,"")
+  .replace(/<\/script\s*>/gi,"");
+}
+
 // Public, strictly allowlisted five-page demonstrations; never load customer drafts.
 export async function fetchPublicStudyPage(id,page,{signal}={}){
  if(!(zipDesignFor(id)?.multipage||id==="runwaymulti")||!zipPages.includes(page))throw new Error("Unsupported study preview page.");
@@ -91,6 +105,7 @@ export async function fetchPublicStudyPage(id,page,{signal}={}){
  const res=await fetch(path,{signal,mode:"same-origin",credentials:"same-origin",headers:{Accept:"text/html"}});
  if(!res.ok || !(res.headers.get("content-type")||"").toLowerCase().includes("text/html"))throw new Error("Study preview unavailable.");
  const html=await res.text();
- if(html.length>300000||!/^\s*<!doctype html>/i.test(html)||!html.includes("FICTIONAL TEMPLATE DEMO")||/<script\b/i.test(html))throw new Error("Invalid public study preview.");
- return html;
+ if(html.length>300000||!/^\s*<!doctype html>/i.test(html)||!html.includes("FICTIONAL TEMPLATE DEMO"))throw new Error("Invalid public study preview.");
+ // Remove any edge-injected analytics script; the authored demo is itself script-free.
+ return stripScripts(html);
 }
