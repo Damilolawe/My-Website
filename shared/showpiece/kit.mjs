@@ -59,14 +59,63 @@ function extrasSection(c, sample) {
     (links ? '<div><h2>Elsewhere</h2><ul class="awe-links">' + links + "</ul></div>" : "") + "</section>";
 }
 
-// Swap the design's accent for the customer's chosen colour (customer sites only).
-function accentCSS(design, v, sample) {
-  const a = ACCENTS[design.id], hex = String(v?.design?.primary || "").toLowerCase();
-  const fallback = String(templates.find(t => t.id === design.id)?.color || "").toLowerCase();
-  if (sample || !a || !/^#[0-9a-f]{6}$/.test(hex) || hex === fallback) return "";
-  const [r, g, b] = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255).map(c => c <= .03928 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4);
-  const ink = .2126 * r + .7152 * g + .0722 * b > .4 ? "#111111" : "#ffffff";
-  return "." + design.root + "{" + a.v + ":" + hex + "}" + (a.cta ? "." + design.root + " .cta:not(.cta-muted){color:" + ink + "}" : "");
+// The wizard renders fictional content using sample:true. Palette selections must
+// still update that same live preview and, later, the customer's published site.
+// Public catalog previews remain unchanged because they use the default colors.
+function paletteCSS(design, v) {
+  const t = templates.find(t => t.id === design.id);
+  const a = ACCENTS[design.id];
+  const primary = String(v?.design?.primary || "").toLowerCase();
+  const secondary = String(v?.design?.secondary || "").toLowerCase();
+  const defaultPrimary = String(t?.color || "").toLowerCase();
+  const defaultSecondary = String(t?.surface || (design.id === "arcade" ? "#11120f" : "#ece9e0")).toLowerCase();
+  const isHex = hex => /^#[0-9a-f]{6}$/.test(hex);
+  const pickedPrimary = isHex(primary) && primary !== defaultPrimary;
+  const pickedSecondary = isHex(secondary) && secondary !== defaultSecondary;
+  if (!pickedPrimary && !pickedSecondary) return "";
+
+  const declarations = [];
+  const contrastInk = hex => {
+    const lum = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255)
+      .map(c => c <= .04045 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4)
+      .reduce((sum, value, i) => sum + value * [.2126, .7152, .0722][i], 0);
+    return lum > .179 ? "#111111" : "#ffffff";
+  };
+
+  if (pickedPrimary) {
+    // Most art-directed templates use a named accent variable. A few have no
+    // single accent, so customize their call-to-action without flattening art.
+    declarations.push(a ? a.v + ":" + primary : "--awe-custom-primary:" + primary);
+  }
+
+  let extra = "";
+  if (pickedSecondary) {
+    // Tint real background and surface tokens rather than tinting an image,
+    // rewriting the source design, or coloring the text layer of an iframe.
+    const rootRule = design.css.match(new RegExp("\\." + design.root + "\\s*\\{([^}]*)\\}"))?.[1] || "";
+    const original = token => rootRule.match(new RegExp(token + "\\s*:\\s*(#[0-9a-fA-F]{6})(?=[;\\s]|$)"))?.[1];
+    const backgroundToken = rootRule.match(/background(?:-color)?\s*:\s*var\((--[\w-]+)\)/)?.[1];
+    const base = backgroundToken && original(backgroundToken);
+    if (base && backgroundToken !== a?.v) {
+      const fraction = contrastInk(base) === "#ffffff" ? 30 : 42;
+      declarations.push(backgroundToken + ":color-mix(in srgb," + secondary + " " + fraction + "%," + base + ")");
+    } else {
+      // Unusual palettes can paint their background without a variable.
+      // The fallback preserves that design's original gradient/photography.
+      extra += "." + design.root + "{background-color:color-mix(in srgb," + secondary + " 28%,transparent)}";
+    }
+    const panelToken = ["--panel", "--surface", "--g1", "--card"].find(
+      token => token !== backgroundToken && token !== a?.v && original(token)
+    );
+    if (panelToken) declarations.push(panelToken + ":color-mix(in srgb," + secondary + " 35%," + original(panelToken) + ")");
+  }
+
+  let result = declarations.length ? "." + design.root + "{" + declarations.join(";") + "}" : "";
+  if (pickedPrimary) {
+    if (a?.cta) result += "." + design.root + " .cta:not(.cta-muted){color:" + contrastInk(primary) + "}";
+    else if (!a) result += "." + design.root + " .cta:not(.cta-muted){background:var(--awe-custom-primary);color:" + contrastInk(primary) + "}";
+  }
+  return result + extra;
 }
 
 const ABOUT_KEYS = [["education", "Education"], ["experience", "Experience"], ["skills", "Skills"]];
@@ -131,7 +180,7 @@ export function renderShowpieceDesign(design, v, options = {}) {
   const body = '<div class="' + design.root + '">' + design.header(k) + '<main id="main">' + main + "</main>" + design.footer(k) + "</div>";
   const title = c.name + (page && page !== "home" ? " / " + (k.intro().title) : " / " + c.headline);
   const css = BASE_CSS + (sample ? DEMO_STOCK_CSS : "") + design.css;
-  const still = (v?.design?.animation === "none" ? reducedMotionCSS(css) : "") + accentCSS(design, v, sample);
+  const still = (v?.design?.animation === "none" ? reducedMotionCSS(css) : "") + paletteCSS(design, v);
   return '<!doctype html><html lang="en" data-awe-engine="showpiece"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + E(title) + "</title>" +
     '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?' + design.fonts + '&display=swap">' +
