@@ -190,17 +190,40 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // Rotating Cloud Village forecast
+  // Forecast is now a small interactive piece of the Cloud Village world.
+  // Click/tap or press Enter/Space to change the weather; pause auto-cycling
+  // on hidden tabs and turn it off entirely for reduced-motion visitors.
   var fc = document.getElementById('fcText');
-  if (fc) {
+  var forecastButton = document.getElementById('forecastButton');
+  if (fc && forecastButton) {
     var msgs = ['100% good energy', 'highs of billions of views', 'a strong chance of dad jokes',
       'Planet Sandwich every Wednesday', 'scattered bars, clearing to laughs'];
-    var fi = 0;
-    setInterval(function () {
+    var fi = 0, changing = false;
+    function nextForecast() {
+      if (changing) return;
+      changing = true;
       fi = (fi + 1) % msgs.length;
-      fc.style.opacity = '0';
-      setTimeout(function () { fc.textContent = msgs[fi]; fc.style.opacity = '1'; }, 300);
-    }, 3400);
+      if (reduce) {
+        fc.textContent = msgs[fi];
+        changing = false;
+        return;
+      }
+      fc.classList.add('forecast-out');
+      forecastButton.classList.remove('forecast-pop');
+      void forecastButton.offsetWidth; // restart the little sun burst
+      forecastButton.classList.add('forecast-pop');
+      window.setTimeout(function () {
+        fc.textContent = msgs[fi];
+        fc.classList.remove('forecast-out');
+        changing = false;
+      }, 190);
+    }
+    forecastButton.addEventListener('click', nextForecast);
+    if (!reduce) {
+      window.setInterval(function () {
+        if (!document.hidden) nextForecast();
+      }, 5300);
+    }
   }
 
   // 3D hero diorama: the whole sky scene rotates in real 3D space.
