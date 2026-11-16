@@ -94,7 +94,10 @@ test("customer preview passes the live picker selections into the exact producti
   const code = await file("app/order.mjs");
   assert(code.includes('name="primary" type="color"'));
   assert(code.includes('name="secondary" type="color"'));
-  assert(code.includes('$("#design").oninput = update'));
+  assert(code.includes('$("#design").oninput = scheduleUpdate'));
+  assert(code.includes('$("#design").onchange = update'));
+  assert(code.includes('frame.srcdoc = renderSite('));
+  assert(code.includes('setPreviewDevice(matchMedia("(max-width: 760px)").matches)'));
   assert(code.includes('design: input.design'));
   assert(code.includes("Primary changes accents, buttons and selected hero highlights"));
   const production = await file("supabase/functions/awe-api/shared/premium.mjs");
