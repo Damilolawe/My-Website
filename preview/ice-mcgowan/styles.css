@@ -42,24 +42,6 @@ a{color:inherit;text-decoration:none}
     rgba(90,209,255,.14) 0 3px,transparent 3px 16px);inset:0}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ---------- anime flourishes (same palette) ---------- */
-/* kirakira sparkles — little 4-point stars that twinkle */
-.panel-cover>.sparks{position:absolute;inset:0;z-index:2;pointer-events:none}
-.sparks i{position:absolute;width:var(--s,18px);height:var(--s,18px);background:var(--c,#fff);
-  clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%);
-  filter:drop-shadow(0 0 6px var(--c,#fff));opacity:0;animation:spark 3.6s ease-in-out infinite}
-@keyframes spark{0%,100%{opacity:0;transform:scale(.35) rotate(0deg)}50%{opacity:.95;transform:scale(1) rotate(20deg)}}
-.sparks i:nth-child(1){top:15%;left:11%;--s:22px;--c:var(--ice);animation-delay:0s}
-.sparks i:nth-child(2){top:66%;left:7%;--s:14px;--c:var(--orange);animation-delay:.7s}
-.sparks i:nth-child(3){top:26%;left:43%;--s:12px;--c:#fff;animation-delay:1.4s}
-.sparks i:nth-child(4){top:74%;left:38%;--s:17px;--c:var(--magenta);animation-delay:2.1s}
-.sparks i:nth-child(5){top:40%;left:80%;--s:16px;--c:var(--ice);animation-delay:1s}
-.sparks i:nth-child(6){top:18%;left:88%;--s:20px;--c:#fff;animation-delay:2.6s}
-/* decorative katakana stamp — アニメ (anime) */
-.panel-cover>.jp-stamp{position:absolute;z-index:2;top:13%;left:46%;writing-mode:vertical-rl;pointer-events:none;
-  font-family:var(--display);font-size:clamp(20px,2.6vw,34px);letter-spacing:.14em;color:var(--ice);opacity:.4;
-  text-shadow:0 0 14px rgba(90,209,255,.55)}
-
 /* generic panel = thick ink frame + hard offset shadow */
 .panel{position:relative;background:var(--panel);
   border:var(--inkw) solid var(--ink);
@@ -161,7 +143,15 @@ a{color:inherit;text-decoration:none}
 .about-body p{color:var(--muted);font-size:18px}
 
 /* ---------- WORK (page 03): action spread ---------- */
-.work-spread{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(20px,3vw,34px);align-items:start}
+.work-spread{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(20px,3vw,34px);align-items:stretch}
+.work-left{display:flex;flex-direction:column;gap:clamp(16px,2.4vw,24px)}
+.work-left .panel-screen{flex:none}
+/* statement panel fills the space under the video so the two columns balance */
+.work-quote{flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:clamp(22px,3vw,40px);
+  background:linear-gradient(150deg,rgba(255,45,120,.16),rgba(90,209,255,.08)),var(--panel);
+  clip-path:polygon(0 0,100% 5%,100% 100%,0 95%)}
+.work-quote .wq-text{font-family:var(--display);font-size:clamp(20px,2.2vw,32px);line-height:1.08;text-shadow:3px 3px 0 var(--ink)}
+.work-quote .wq-text em{color:var(--orange);font-style:normal}
 .panel-screen{padding:14px;background:var(--ink)}
 .work-stack{display:flex;flex-direction:column;gap:clamp(16px,2.4vw,24px)}
 .work-card{padding:24px;display:flex;flex-direction:column}
@@ -325,7 +315,6 @@ a{color:inherit;text-decoration:none}
   .panel-cover{grid-template-columns:1fr;row-gap:24px}
   .panel-cover .hero-title{font-size:clamp(45px,10vw,105px)}
   .cover-photo{width:min(100%,680px);justify-self:center;transform:rotate(1deg)}
-  .panel-cover>.jp-stamp{display:none} /* no room beside the stacked hero */
 }
 @media(max-width:450px){
   .panel-cover .hero-title{font-size:clamp(39px,10.5vw,58px)}
