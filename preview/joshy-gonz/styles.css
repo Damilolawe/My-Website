@@ -200,6 +200,8 @@ img{display:block;max-width:100%}
   .cards{grid-template-columns:1fr}
 }
 @media(max-width:520px){
+  .sect-head{flex-direction:column;align-items:flex-start;gap:12px}
+  .sect-head .label{white-space:normal;line-height:1.5}
   .foot .frow{flex-direction:column}
   .foot .fmeta{text-align:left}
 }

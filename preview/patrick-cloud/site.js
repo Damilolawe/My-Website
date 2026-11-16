@@ -200,7 +200,7 @@
   var fc = document.getElementById('fcText');
   var forecastButton = document.getElementById('forecastButton');
   if (fc && forecastButton) {
-    var msgs = ['100% good energy', 'highs of billions of views', 'a strong chance of dad jokes',
+    var msgs = ['100% good energy', 'sunny with a chance of laughs', 'a strong chance of dad jokes',
       'Planet Sandwich every Wednesday', 'scattered bars, clearing to laughs'];
     var fi = 0, changing = false;
     function nextForecast() {
