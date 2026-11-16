@@ -174,3 +174,39 @@
   .app-main .express-gallery .worlds-choice-copy strong { font-size: 13px; }
   .app-main .express-gallery .worlds-choice-copy small { font-size: 9px; }
 }
+
+
+/* Small-screen Express gallery: a real phone viewport, no clipped controls,
+   and a scrollable selection list that does not bury the next action. */
+@media(max-width:700px){
+  .app-main .wizard.is-gallery,.app-main .wizard.is-gallery .work-area{min-width:0;max-width:100%}
+  .app-main .express-gallery{box-sizing:border-box;width:100%;max-width:100%;overflow:hidden}
+  .app-main .express-gallery .worlds-layout{display:flex;flex-direction:column;min-width:0;gap:16px}
+  .app-main .express-gallery .worlds-screen{order:0;box-sizing:border-box;width:100%;min-width:0;padding:8px}
+  .app-main .express-gallery .worlds-toolbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+  .app-main .express-gallery .worlds-device-actions{margin-left:auto}
+  .app-main .express-gallery .worlds-device-actions button{min-width:65px;min-height:40px}
+  .app-main .express-gallery .worlds-view{width:100%;min-width:0;overflow:hidden}
+  .app-main .express-gallery .worlds-screen.is-mobile .worlds-view{
+    display:flex!important;justify-content:center;align-items:flex-start;
+    min-height:0!important;max-width:100%;padding:12px 3px 16px;
+    height:auto!important
+  }
+  .app-main .express-gallery .worlds-screen.is-mobile .worlds-view iframe{
+    position:relative!important;max-width:100%!important;
+    width:min(390px,100%)!important;
+    height:clamp(500px,68dvh,720px)!important;min-height:0!important;
+    transform:none!important;margin:0 auto
+  }
+  .app-main .express-gallery .worlds-screen-footer{flex-wrap:wrap;gap:12px}
+  .app-main .express-gallery .worlds-rail{
+    order:1;width:100%;max-height:350px;overflow-y:auto;
+    overscroll-behavior-y:contain
+  }
+  .app-main .express-gallery .worlds-choice{min-width:0}
+}
+@media(max-width:380px){
+  .app-main .express-gallery .worlds-choice{grid-template-columns:16px minmax(72px,30%) minmax(0,1fr) 12px;gap:5px}
+  .app-main .express-gallery .worlds-choice-copy strong{font-size:13px}
+  .app-main .express-gallery .worlds-choice-copy small{font-size:9px}
+}
