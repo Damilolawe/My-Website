@@ -41,6 +41,35 @@
 @media(max-width:760px){.ac-photo-journal{padding:62px 20px}.ac-photo-journal .ac-photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.ac-photo-journal .ac-photo-tile:nth-child(2){margin-top:22px}.ac-photo-journal .ac-photo-tile:last-child{grid-column:1 / -1;max-width:75%;margin:0 auto}.ac-photo-journal figcaption{flex-wrap:wrap}}
 @media(max-width:420px){.ac-photo-journal .ac-photo-grid{grid-template-columns:1fr}.ac-photo-journal .ac-photo-tile,.ac-photo-journal .ac-photo-tile:last-child{grid-column:1;max-width:100%;margin:0}.ac-photo-journal .ac-photo-frame img,.ac-photo-journal .ac-photo-tile:nth-child(2) .ac-photo-frame img{aspect-ratio:4/3;object-position:center 27%}.ac-photo-journal .ac-photo-tile[data-fit="contain"] img{object-fit:contain}.ac-photo-journal .ac-photo-grid{gap:26px}}
 @media(prefers-reduced-motion:reduce){.ac-photo-journal .ac-photo-frame img{transition:none}.ac-photo-journal .ac-photo-tile:hover img{transform:none}}
+
+/* KevOnStage / series gallery — fully interactive poster cards */
+.ac-photo-journal--kevonstage .ac-gallery-head{max-width:830px}
+.ac-photo-journal--kevonstage .kos-shows-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(14px,2vw,25px);align-items:stretch}
+.ac-photo-journal--kevonstage .kos-show-card{display:flex;flex-direction:column;min-width:0;text-decoration:none;color:inherit;border:1px solid rgba(255,245,233,.12);background:#211f1f;border-radius:12px;overflow:hidden;position:relative;isolation:isolate;transition:transform .35s cubic-bezier(.2,.75,.25,1),box-shadow .35s,border-color .35s}
+.ac-photo-journal--kevonstage .kos-show-card:hover{transform:translateY(-7px);box-shadow:0 18px 40px rgba(0,0,0,.35);border-color:rgba(223,174,124,.8)}
+.ac-photo-journal--kevonstage .kos-show-card:focus-visible{outline:3px solid #efc78c;outline-offset:4px}
+.ac-photo-journal--kevonstage .kos-show-art{aspect-ratio:4/5;background:linear-gradient(145deg,#39312d,#101013);position:relative;overflow:hidden}
+.ac-photo-journal--kevonstage .kos-show-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .55s cubic-bezier(.2,.75,.25,1),filter .45s}
+.ac-photo-journal--kevonstage .kos-show-card:hover img,.ac-photo-journal--kevonstage .kos-show-card:focus-visible img{transform:scale(1.06);filter:brightness(.84)}
+.ac-photo-journal--kevonstage .kos-show-art::after{content:"";position:absolute;inset:30% 0 0;pointer-events:none;background:linear-gradient(transparent,rgba(0,0,0,.32))}
+.ac-photo-journal--kevonstage .kos-show-open{position:absolute;right:12px;bottom:12px;z-index:2;display:grid;place-items:center;font-size:23px;line-height:1;width:35px;height:35px;background:rgba(15,13,13,.86);border:1px solid rgba(255,255,255,.4);border-radius:50%;color:#fff;transition:background .25s,transform .25s}
+.ac-photo-journal--kevonstage .kos-show-card:hover .kos-show-open,.ac-photo-journal--kevonstage .kos-show-card:focus-visible .kos-show-open{background:#dfae7c;color:#15120f;transform:translate(2px,-2px)}
+.ac-photo-journal--kevonstage .kos-show-info{padding:17px 15px 20px;display:flex;flex-direction:column;flex:1;gap:8px;min-width:0}
+.ac-photo-journal--kevonstage .kos-show-type{font-size:.61rem;line-height:1.45;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:#dfae7c}
+.ac-photo-journal--kevonstage .kos-show-info h3{font-family:inherit;color:#fff5e9;font-size:clamp(.95rem,1.3vw,1.18rem);line-height:1.22;letter-spacing:-.025em;margin:0;overflow-wrap:break-word}
+.ac-photo-journal--kevonstage .kos-show-cta{margin-top:auto;padding-top:7px;color:#d1c8bb;font-size:.72rem;line-height:1.3}
+.ac-photo-journal--kevonstage .kos-show-cta span{display:inline-block;margin-left:3px;transition:transform .25s}
+.ac-photo-journal--kevonstage .kos-show-card:hover .kos-show-cta span{transform:translateX(4px)}
+.ac-photo-journal--kevonstage .kos-show-status{position:absolute;top:11px;left:10px;z-index:2;background:#dfae7c;color:#1c1611;padding:6px 9px;font-size:10px;font-weight:800;letter-spacing:.08em;border-radius:3px}
+.ac-photo-journal--kevonstage .is-upcoming img{filter:brightness(.4) saturate(.55)}
+.ac-photo-journal--kevonstage .is-upcoming:hover img{filter:brightness(.32) saturate(.55)}
+.ac-photo-journal--kevonstage .kos-airport-mark{position:absolute;left:16px;bottom:35px;z-index:2;color:white;font-family:var(--display,inherit);font-size:clamp(1.8rem,3.1vw,3rem);font-weight:800;line-height:.95;letter-spacing:-.035em;text-shadow:0 4px 20px #000}
+@media(max-width:1100px){.ac-photo-journal--kevonstage .kos-shows-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:800px){.ac-photo-journal--kevonstage .kos-shows-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}}
+@media(max-width:600px){.ac-photo-journal--kevonstage .kos-shows-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.ac-photo-journal--kevonstage .kos-show-info{padding:13px 11px 15px;gap:6px}.ac-photo-journal--kevonstage .kos-show-info h3{font-size:.99rem}.ac-photo-journal--kevonstage .kos-show-type{font-size:.58rem}.ac-photo-journal--kevonstage .kos-airport-mark{font-size:clamp(1.8rem,7vw,3rem)}}
+@media(max-width:350px){.ac-photo-journal--kevonstage .kos-shows-grid{grid-template-columns:1fr}.ac-photo-journal--kevonstage .kos-show-art{aspect-ratio:16/10}}
+@media(prefers-reduced-motion:reduce){.ac-photo-journal--kevonstage .kos-show-card,.ac-photo-journal--kevonstage .kos-show-art img,.ac-photo-journal--kevonstage .kos-show-open,.ac-photo-journal--kevonstage .kos-show-cta span{transition:none!important}.ac-photo-journal--kevonstage .kos-show-card:hover,.ac-photo-journal--kevonstage .kos-show-card:hover img{transform:none}}
+
 </style>
 </head>
 <body>
@@ -154,9 +183,91 @@
 </section>
 
 
-<section class="ac-photo-journal ac-photo-journal--kevonstage" aria-label="KEVONSTAGE / IN FOCUS"><div class="ac-gallery-head"><span class="ac-gallery-kicker">KEVONSTAGE / IN FOCUS</span><h2 class="ac-gallery-title">More than the mic.</h2><p class="ac-gallery-subtitle">Stand-up, storytelling and the creative world behind KevOnStage.</p></div><div class="ac-photo-grid"><figure class="ac-photo-tile"><div class="ac-photo-frame"><img src="https://i.ticketweb.com/i/00/07/90/28/31/Original.jpg?v=2" alt="KevOnStage smiling in a black jacket in a promotional portrait" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-fallback="assets/portrait.webp"></div><figcaption><strong>The comedian</strong><span>Portrait</span></figcaption></figure>
-<figure class="ac-photo-tile"><div class="ac-photo-frame"><img src="https://images.penguinrandomhouse.com/cover/9780593735671" alt="Kevin Fredericks in a tuxedo holding a small award on promotional art for Successful Failure" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-fallback="assets/tour-poster.webp"></div><figcaption><strong>Successful Failure</strong><span>The book</span></figcaption></figure>
-<figure class="ac-photo-tile"><div class="ac-photo-frame"><img src="https://static.wixstatic.com/media/a63a57_0f6b5c7270bb4a0d84f42a2d855085f9~mv2.jpeg/v1/fill/w_473,h_677,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SafeSpace_S02_KeyArt_B_Poster_JPEG.jpeg" alt="Official Safe Space season two promotional poster from KevOnStage's website" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-fallback="assets/safe-space-card.svg"></div><figcaption><strong>Safe Space</strong><span>Season 2 · 2026 on Tubi</span></figcaption></figure></div></section>
+<section class="ac-photo-journal ac-photo-journal--kevonstage" id="series" aria-labelledby="kos-shows-heading">
+  <div class="ac-gallery-head"><span class="ac-gallery-kicker">KEVONSTAGE / THE SHOWS</span><h2 class="ac-gallery-title" id="kos-shows-heading">Beyond the mic. On screen.</h2><p class="ac-gallery-subtitle">Scripted comedy, unscripted chaos, live laughs and real conversations. Choose a show and go straight to its viewing page.</p></div>
+  <div class="kos-shows-grid">
+    <a class="kos-show-card" href="https://www.paramountplus.com/shows/churchy/" target="_blank" rel="noopener noreferrer" aria-label="Churchy — Watch on Paramount+ (opens in new tab)">
+      <div class="kos-show-art">
+        <img src="https://public-assets-pressexpress.s3.amazonaws.com/assets/pages/images/2025/07/28/image_14456343221753717362672-vp7a38t6.jpg" alt="Churchy official BET+ series artwork" loading="lazy" decoding="async" data-fallback="assets/portrait.webp" referrerpolicy="no-referrer" />
+        
+        <span class="kos-show-open" aria-hidden="true">↗</span>
+      </div>
+      <div class="kos-show-info"><span class="kos-show-type">BET+ Original</span><h3>Churchy</h3><span class="kos-show-cta">Watch on Paramount+ <span aria-hidden="true">→</span></span></div>
+    </a>
+    <a class="kos-show-card" href="https://tubitv.com/series/300017551/safe-space" target="_blank" rel="noopener noreferrer" aria-label="Safe Space — Watch on Tubi (opens in new tab)">
+      <div class="kos-show-art">
+        <img src="https://static.wixstatic.com/media/a63a57_0f6b5c7270bb4a0d84f42a2d855085f9~mv2.jpeg/v1/fill/w_473,h_677,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SafeSpace_S02_KeyArt_B_Poster_JPEG.jpeg" alt="Safe Space season two official promotional poster" loading="lazy" decoding="async" data-fallback="assets/safe-space-card.svg" referrerpolicy="no-referrer" />
+        
+        <span class="kos-show-open" aria-hidden="true">↗</span>
+      </div>
+      <div class="kos-show-info"><span class="kos-show-type">Tubi Original · Season 2</span><h3>Safe Space</h3><span class="kos-show-cta">Watch on Tubi <span aria-hidden="true">→</span></span></div>
+    </a>
+    <a class="kos-show-card" href="https://www.bet.com/shows/the-hospital" target="_blank" rel="noopener noreferrer" aria-label="The Hospital — Watch on BET (opens in new tab)">
+      <div class="kos-show-art">
+        <img src="https://public-assets-pressexpress.s3.amazonaws.com/assets/pages/images/2025/08/27/image_540988538311756329206704-5yn7mny2.png" alt="The Hospital official BET promotional art featuring the cast" loading="lazy" decoding="async" data-fallback="assets/portrait.webp" referrerpolicy="no-referrer" />
+        
+        <span class="kos-show-open" aria-hidden="true">↗</span>
+      </div>
+      <div class="kos-show-info"><span class="kos-show-type">BET · Sketch Comedy</span><h3>The Hospital</h3><span class="kos-show-cta">Watch on BET <span aria-hidden="true">→</span></span></div>
+    </a>
+    <a class="kos-show-card is-upcoming" href="https://tubitv.com/series/300023451/the-airport" target="_blank" rel="noopener noreferrer" aria-label="The Airport — Preview on Tubi (opens in new tab)">
+      <div class="kos-show-art">
+        <img src="assets/portrait.webp" alt="KevOnStage promotional portrait for the upcoming series The Airport" loading="lazy" decoding="async" data-fallback="assets/portrait.webp" />
+        <span class="kos-show-status">COMING NOV 19</span><span class="kos-airport-mark" aria-hidden="true">THE<br>AIRPORT</span>
+        <span class="kos-show-open" aria-hidden="true">↗</span>
+      </div>
+      <div class="kos-show-info"><span class="kos-show-type">Tubi · Premieres Nov 19</span><h3>The Airport</h3><span class="kos-show-cta">Preview on Tubi <span aria-hidden="true">→</span></span></div>
+    </a>
+    <a class="kos-show-card" href="https://tubitv.com/series/300018840/bald-brothers-a-freestyle-comedy-show" target="_blank" rel="noopener noreferrer" aria-label="Bald Brothers — Watch on Tubi (opens in new tab)">
+      <div class="kos-show-art">
+        <img src="https://canvas-lb.tubitv.com/opts/Q-b-xufjPDjFFg%3D%3D/49114cf5-8551-44b0-9c51-def3fbf62fb7/CNcHEKgEOgUxLjEuOQ%3D%3D" alt="Bald Brothers freestyle comedy poster with KevOnStage and Tony Baker" loading="lazy" decoding="async" data-fallback="assets/portrait.webp" referrerpolicy="no-referrer" />
+        
+        <span class="kos-show-open" aria-hidden="true">↗</span>
+      </div>
+      <div class="kos-show-info"><span class="kos-show-type">Tubi · Freestyle Comedy</span><h3>Bald Brothers</h3><span class="kos-show-cta">Watch on Tubi <span aria-hidden="true">→</span></span></div>
+    </a>
+    <a class="kos-show-card" href="https://tubitv.com/series/300021242/here-s-the-thing-podcast" target="_blank" rel="noopener noreferrer" aria-label="Here's The Thing — Watch on Tubi (opens in new tab)">
+      <div class="kos-show-art">
+        <img src="https://audioboom.com/i/37669419/s%3D1400x1400/el%3D1/rt%3Dfill.jpg" alt="Here's The Thing podcast artwork featuring KevOnStage and That Chick Angel" loading="lazy" decoding="async" data-fallback="assets/heres-the-thing-card.svg" referrerpolicy="no-referrer" />
+        
+        <span class="kos-show-open" aria-hidden="true">↗</span>
+      </div>
+      <div class="kos-show-info"><span class="kos-show-type">Podcast · Comedy &amp; Culture</span><h3>Here's The Thing</h3><span class="kos-show-cta">Watch on Tubi <span aria-hidden="true">→</span></span></div>
+    </a>
+    <a class="kos-show-card" href="https://fuse.tv/shows/what-s-good/5acGxahy" target="_blank" rel="noopener noreferrer" aria-label="What's Good?! — Explore on Fuse+ (opens in new tab)">
+      <div class="kos-show-art">
+        <img src="https://assets-jpcust.jwpsrv.com/thumbnails/mfZySxkw-720.jpg" alt="What's Good?! Fuse series promotional artwork" loading="lazy" decoding="async" data-fallback="assets/portrait.webp" referrerpolicy="no-referrer" />
+        
+        <span class="kos-show-open" aria-hidden="true">↗</span>
+      </div>
+      <div class="kos-show-info"><span class="kos-show-type">Fuse+ · Food &amp; Culture</span><h3>What's Good?!</h3><span class="kos-show-cta">Explore on Fuse+ <span aria-hidden="true">→</span></span></div>
+    </a>
+    <a class="kos-show-card" href="https://fuse.tv/shows/that-s-cap/NUQpxIgw" target="_blank" rel="noopener noreferrer" aria-label="That's Cap — Explore on Fuse+ (opens in new tab)">
+      <div class="kos-show-art">
+        <img src="https://m.media-amazon.com/images/S/pv-target-images/d478decef6839fcd32aa687e59f12b02561740ae6a53d34c6811b2384c791414.jpg" alt="That's Cap game show artwork with KevOnStage at the podium" loading="lazy" decoding="async" data-fallback="assets/portrait.webp" referrerpolicy="no-referrer" />
+        
+        <span class="kos-show-open" aria-hidden="true">↗</span>
+      </div>
+      <div class="kos-show-info"><span class="kos-show-type">Fuse+ · Game Show</span><h3>That's Cap</h3><span class="kos-show-cta">Explore on Fuse+ <span aria-hidden="true">→</span></span></div>
+    </a>
+    <a class="kos-show-card" href="https://www.fuse.tv/shows/coming-to-the-stage/OCeaEU0w" target="_blank" rel="noopener noreferrer" aria-label="Coming To The Stage — Explore on Fuse+ (opens in new tab)">
+      <div class="kos-show-art">
+        <img src="https://m.media-amazon.com/images/S/pv-target-images/194818d12b5a30ac10caaf12a4e343697a0edb364026e9a4ad3c6eda91ba7a85.jpg" alt="Coming To The Stage promotional poster featuring KevOnStage" loading="lazy" decoding="async" data-fallback="assets/portrait.webp" referrerpolicy="no-referrer" />
+        
+        <span class="kos-show-open" aria-hidden="true">↗</span>
+      </div>
+      <div class="kos-show-info"><span class="kos-show-type">Fuse+ · Interviews</span><h3>Coming To The Stage</h3><span class="kos-show-cta">Explore on Fuse+ <span aria-hidden="true">→</span></span></div>
+    </a>
+    <a class="kos-show-card" href="https://www.primevideo.com/detail/Keep-Your-Distance-Vol-1/0K3JLPOFWGYZL4F6SMALU8UY7Z" target="_blank" rel="noopener noreferrer" aria-label="Keep Your Distance — Explore the special (opens in new tab)">
+      <div class="kos-show-art">
+        <img src="https://m.media-amazon.com/images/S/pv-target-images/49b4b601702aeb851741f0c37cc0ceaffe132ee012b08d6925267f7b9b9c712f.jpg" alt="Keep Your Distance Volume One comedy showcase poster" loading="lazy" decoding="async" data-fallback="assets/portrait.webp" referrerpolicy="no-referrer" />
+        
+        <span class="kos-show-open" aria-hidden="true">↗</span>
+      </div>
+      <div class="kos-show-info"><span class="kos-show-type">Comedy Showcase</span><h3>Keep Your Distance</h3><span class="kos-show-cta">Explore the special <span aria-hidden="true">→</span></span></div>
+    </a>
+  </div>
+</section>
 
 <section id="tour" class="tour">
   <div class="container tour-inner">
