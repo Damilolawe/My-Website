@@ -32,6 +32,8 @@ const allowed = [
   // streaming, music, video and creator-support platforms (performer/comedian concepts)
   "spotify.com", "music.apple.com", "podcasts.apple.com", "tidal.com", "soundcloud.com", "audiomack.com", "bandcamp.com",
   "tubitv.com", "tubi.tv", "twitch.tv", "patreon.com", "cameo.com",
+  // Official third-party streaming networks for creator show links
+  "paramountplus.com", "bet.com", "fuse.tv", "primevideo.com",
   // independent merch / print-on-demand and live-comedy ticketing platforms
   "creator-spring.com", "teespring.com", "bonfire.com", "etix.com", "ticketsauce.com", "seatgeek.com", "bandsintown.com",
   "bigcartel.com", "partiful.com", "imdb.com",
