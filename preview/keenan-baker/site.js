@@ -34,7 +34,7 @@
     var lines = document.querySelectorAll('.hero-title .line');
     requestAnimationFrame(function () {
       if (hero) hero.classList.add('in');
-      lines.forEach(function (ln, i) { setTimeout(function () { ln.classList.add('in'); }, 120 + i * 150); });
+      lines.forEach(function (ln, i) { setTimeout(function () { ln.classList.add('in'); }, 40 + i * 85); });
     });
   }
 

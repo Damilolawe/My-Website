@@ -81,8 +81,8 @@ strong{color:#fff;font-weight:600}
 .wm-line.alt{color:var(--gold)}
 .wordmark span{display:inline-block}
 /* Signature: signal-lock reveal on load */
-.wordmark span{opacity:0;transform:translateY(.18em);clip-path:inset(0 0 100% 0)}
-.sig-on .wordmark span{animation:lock .5s cubic-bezier(.2,.7,.2,1) forwards}
+.wordmark .wm-line>span{opacity:0;transform:translateY(.18em);clip-path:inset(0 0 100% 0)}
+.sig-on .wordmark .wm-line>span{animation:lock .42s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes lock{to{opacity:1;transform:none;clip-path:inset(0 0 -10% 0)}}
 .stage-sub{max-width:460px;color:var(--muted);font-size:clamp(15px,1.5vw,18px);margin:22px 0 0}
 .stage-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
@@ -223,7 +223,7 @@ strong{color:#fff;font-weight:600}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
-  .wordmark span{opacity:1;transform:none;clip-path:none}
+  .wordmark .wm-line>span{opacity:1;transform:none;clip-path:none}
   .scanline{display:none}
   .rail-track{scroll-behavior:auto}
 }

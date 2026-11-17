@@ -35,7 +35,7 @@
     // Alternate which letters sit in front of (z7) vs behind (z5) the plane (z6 while weaving).
     letters.forEach(function (l, i) {
       l.style.zIndex = (i % 2 === 0) ? '7' : '5';
-      l.style.animationDelay = (0.05 + i * 0.035).toFixed(3) + 's';
+      l.style.animationDelay = (0.02 + i * 0.018).toFixed(3) + 's';
     });
 
     var PW = 32, PH = 16;      // half the plane's rendered size (64x32)
@@ -201,7 +201,7 @@
   var forecastButton = document.getElementById('forecastButton');
   if (fc && forecastButton) {
     var msgs = ['100% good energy', 'sunny with a chance of laughs', 'a strong chance of dad jokes',
-      'Planet Sandwich every Wednesday', 'scattered bars, clearing to laughs'];
+      'a Planet Sandwich system rolling in', 'scattered bars, clearing to laughs'];
     var fi = 0, changing = false;
     function nextForecast() {
       if (changing) return;

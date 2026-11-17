@@ -227,6 +227,8 @@ if(watchRoom&&videoFrame&&liveFrame&&probeHost){
      events:{
       onReady:event=>{
        mainReady=true;
+       liveFrame.classList.add('is-ready');
+       liveFrame.classList.remove('player-failed');
        try{event.target.mute();event.target.playVideo();}catch(error){}
       },
       onStateChange:event=>{
@@ -255,6 +257,9 @@ if(watchRoom&&videoFrame&&liveFrame&&probeHost){
   document.head.append(script);
  }
  syncNewUploads();
+ // Safety net: if the player never signals ready (API blocked, offline), reveal the
+ // tap-through fallback so the Watch Room is never stuck behind an endless loader.
+ window.setTimeout(()=>{if(!mainReady&&currentMode!=='live')markFallback();},12000);
  document.addEventListener('visibilitychange',()=>{
   if(!document.hidden){
    syncNewUploads();
