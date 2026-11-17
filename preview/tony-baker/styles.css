@@ -93,24 +93,23 @@ strong{color:#fff;font-weight:600}
 /* ---------- SOUNDBOARD ---------- */
 .board{padding:clamp(54px,8vw,92px) 0;background:var(--panel);border-block:1px solid var(--line)}
 .board-head{margin-bottom:32px}
-.pads{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.pads{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;list-style:none;margin:0;padding:0}
+/* Editorial quote cards, not a playable soundboard: static, non-interactive.
+   The sound-wave is a fixed decorative motif nodding to Tony's voiceover work. */
 .pad{grid-column:span 2;position:relative;background:var(--panel-2);border:1px solid var(--line-2);border-radius:12px;
-  padding:22px 20px 18px;min-height:148px;display:flex;flex-direction:column;justify-content:space-between;
-  cursor:default;transition:border-color .2s,transform .2s,background .2s;overflow:hidden}
+  padding:22px 20px 18px;min-height:148px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
 .pad.wide{grid-column:span 3}
 .pad:nth-child(4){grid-column:span 3}
 .pad:nth-child(5){grid-column:span 3}
-.pad::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);opacity:.3;transition:opacity .2s}
-.pad:hover{border-color:var(--amber);transform:translateY(-3px);background:#2e2318}
-.pad:hover::before{opacity:1}
+.pad::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);opacity:.45}
 .pad-eq{display:flex;align-items:flex-end;gap:4px;height:38px}
-.pad-eq i{width:6px;height:16%;background:var(--muted);border-radius:2px;transform-origin:bottom;transition:background .2s}
-.pad:hover .pad-eq i{background:var(--amber);animation:eq 1s ease-in-out infinite}
-.pad:hover .pad-eq i:nth-child(2){animation-delay:.1s}
-.pad:hover .pad-eq i:nth-child(3){animation-delay:.22s}
-.pad:hover .pad-eq i:nth-child(4){animation-delay:.14s}
-.pad:hover .pad-eq i:nth-child(5){animation-delay:.3s}
-.pad:hover .pad-eq i:nth-child(6){animation-delay:.08s}
+.pad-eq i{width:6px;background:var(--amber);opacity:.5;border-radius:2px}
+.pad-eq i:nth-child(1){height:40%}
+.pad-eq i:nth-child(2){height:72%}
+.pad-eq i:nth-child(3){height:30%}
+.pad-eq i:nth-child(4){height:88%}
+.pad-eq i:nth-child(5){height:52%}
+.pad-eq i:nth-child(6){height:24%}
 .pad-text{font-weight:600;font-size:clamp(17px,1.7vw,21px);line-height:1.1;letter-spacing:-.01em}
 .pad-no{position:absolute;top:16px;right:16px;font-family:var(--mono);font-size:12px;color:var(--muted)}
 

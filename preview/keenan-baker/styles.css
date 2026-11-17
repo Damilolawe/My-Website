@@ -174,7 +174,7 @@ section[id]{scroll-margin-top:90px}
 
 /* SIGNATURE: masked line reveal (hero) + scroll-driven vinyl (set in site.js) */
 .js-anim .hero-title .line>span{transform:translateY(102%);opacity:0}
-.js-anim .hero-title .line.in>span{transform:none;opacity:1;transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .8s}
+.js-anim .hero-title .line.in>span{transform:none;opacity:1;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .5s}
 .js-anim .hero .eyebrow,.js-anim .hero .hero-sub,.js-anim .hero .hero-cta{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
 .js-anim .hero.in .eyebrow,.js-anim .hero.in .hero-sub,.js-anim .hero.in .hero-cta{opacity:1;transform:none}
 .js-anim .hero.in .eyebrow{transition-delay:.15s}

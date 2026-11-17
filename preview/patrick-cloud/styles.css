@@ -233,7 +233,7 @@ img{display:block;max-width:100%}
 .hero-title .l{display:inline-block;position:relative;color:#1c2a3c;text-shadow:
   1px 1px 0 #40628e,2px 2px 0 #3a5a83,3px 3px 0 #345278,4px 4px 0 #2e4a6d,
   5px 5px 0 #284262,6px 6px 0 #223a57,7px 8px 16px rgba(14,30,52,.42);
-  opacity:0;transform:translateY(42px) rotate(3deg);animation:rise .8s cubic-bezier(.2,.9,.25,1) forwards}
+  opacity:0;transform:translateY(42px) rotate(3deg);animation:rise .5s cubic-bezier(.2,.9,.25,1) forwards}
 @keyframes rise{60%{transform:translateY(-6px) rotate(-1deg)}100%{opacity:1;transform:none}}
 
 /* tagline sun/sky shimmer */

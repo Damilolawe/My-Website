@@ -25,9 +25,10 @@
   });
 
   // Signature: stagger the wordmark "signal lock", then arm the sequence
-  var letters = document.querySelectorAll('.wordmark span');
-  letters.forEach(function (s, i) { s.style.animationDelay = (0.12 + i * 0.05) + 's'; });
-  requestAnimationFrame(function () { document.body.classList.add('sig-on'); });
+  var letters = document.querySelectorAll('.wordmark .wm-line > span');
+  letters.forEach(function (s, i) { s.style.animationDelay = (i * 0.022).toFixed(3) + 's'; });
+  // Arm immediately so the name reads from the first paint, not after a blank beat.
+  document.body.classList.add('sig-on');
 
   // Horizontal content rails
   document.querySelectorAll('[data-row]').forEach(function (row) {
