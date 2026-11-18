@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 640" role="img" aria-label="Not My Best Moment with KevOnStage fallback artwork">
+<defs>
+<linearGradient id="nmbmg" x1="0" x2="1" y2="1"><stop stop-color="#1a0f15"/><stop offset="1" stop-color="#52142a"/></linearGradient>
+</defs>
+<rect width="480" height="640" fill="url(#nmbmg)"/>
+<rect x="32" y="32" width="416" height="576" rx="18" fill="none" stroke="#ff7a4e" stroke-width="4" opacity=".55"/>
+<!-- stylized microphone -->
+<g transform="translate(240 236)" fill="#ff7a4e" opacity=".92">
+  <rect x="-24" y="-88" width="48" height="96" rx="24"/>
+  <path d="M-48 -20 a48 48 0 0 0 96 0" fill="none" stroke="#ff7a4e" stroke-width="7" stroke-linecap="round"/>
+  <rect x="-4" y="30" width="8" height="42" rx="3"/>
+  <rect x="-30" y="66" width="60" height="7" rx="3"/>
+</g>
+<text x="56" y="156" font-family="Arial,sans-serif" font-size="18" letter-spacing="4" fill="#ff7a4e">IHEARTPODCASTS</text>
+<text x="56" y="432" font-family="Arial Black,Arial,sans-serif" font-size="54" font-weight="900" fill="#fff5e9">NOT MY</text>
+<text x="56" y="488" font-family="Arial Black,Arial,sans-serif" font-size="54" font-weight="900" fill="#fff5e9">BEST</text>
+<text x="56" y="544" font-family="Arial Black,Arial,sans-serif" font-size="54" font-weight="900" fill="#ff7a4e">MOMENT</text>
+<text x="56" y="586" font-family="Arial,sans-serif" font-size="18" letter-spacing="3" fill="#ffb9a0">WITH KEVONSTAGE</text>
+</svg>

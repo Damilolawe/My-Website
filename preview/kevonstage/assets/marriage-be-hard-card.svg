@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 640" role="img" aria-label="Marriage Be Hard book fallback artwork">
+<defs>
+<linearGradient id="mhg" x1="0" x2="1" y2="1"><stop stop-color="#16202b"/><stop offset="1" stop-color="#2b4255"/></linearGradient>
+</defs>
+<rect width="480" height="640" fill="url(#mhg)"/>
+<rect x="56" y="56" width="368" height="528" rx="10" fill="#fce6c7" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="56" y="56" width="18" height="528" fill="#c34f58"/>
+<text x="95" y="150" font-family="Arial,sans-serif" font-size="18" letter-spacing="4" fill="#9b3a44">KEVIN &amp; MELISSA FREDERICKS</text>
+<text x="95" y="320" font-family="Georgia,Times,serif" font-size="56" font-weight="900" fill="#1a1a1a">Marriage</text>
+<text x="95" y="384" font-family="Georgia,Times,serif" font-size="56" font-weight="900" fill="#c34f58" font-style="italic">Be Hard</text>
+<text x="95" y="430" font-family="Arial,sans-serif" font-size="16" letter-spacing="2" fill="#9b3a44">A LOVE STORY</text>
+<text x="95" y="560" font-family="Arial,sans-serif" font-size="14" letter-spacing="3" fill="#9b3a44">PENGUIN RANDOM HOUSE</text>
+</svg>
