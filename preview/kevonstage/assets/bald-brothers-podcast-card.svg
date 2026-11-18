@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 640" role="img" aria-label="The Bald Brothers Podcast cover artwork — KevOnStage and Tony Baker">
+<defs>
+<linearGradient id="bbg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b1715"/><stop offset=".6" stop-color="#2c211a"/><stop offset="1" stop-color="#4a3522"/></linearGradient>
+<radialGradient id="bbspot" cx=".5" cy=".3" r=".7"><stop stop-color="#e4b45a" stop-opacity=".22"/><stop offset="1" stop-color="#e4b45a" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="480" height="640" fill="url(#bbg)"/>
+<rect width="480" height="640" fill="url(#bbspot)"/>
+<rect x="32" y="32" width="416" height="576" rx="18" fill="none" stroke="#e4b45a" stroke-width="4" opacity=".55"/>
+<g transform="translate(240 268)" opacity=".92">
+  <circle cx="-54" cy="0" r="68" fill="#2b1f19" stroke="#e4b45a" stroke-width="3"/>
+  <circle cx="54" cy="0" r="68" fill="#2b1f19" stroke="#e4b45a" stroke-width="3"/>
+  <ellipse cx="-54" cy="-10" rx="52" ry="42" fill="#5b3b1f"/>
+  <ellipse cx="54" cy="-10" rx="52" ry="42" fill="#7a5230"/>
+</g>
+<text x="56" y="150" font-family="Arial,sans-serif" font-size="20" letter-spacing="5" fill="#e4b45a">KEVONSTAGE · TONY BAKER</text>
+<text x="56" y="450" font-family="Arial Black,Arial,sans-serif" font-size="64" font-weight="900" fill="#fff5e9">THE BALD</text>
+<text x="56" y="518" font-family="Arial Black,Arial,sans-serif" font-size="64" font-weight="900" fill="#fff5e9">BROTHERS</text>
+<text x="56" y="576" font-family="Arial,sans-serif" font-size="22" letter-spacing="4" fill="#e4b45a">PODCAST</text>
+</svg>

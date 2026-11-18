@@ -207,8 +207,11 @@ strong{color:#fff;font-weight:600}
 @media(max-width:960px){
   .stage-grid{grid-template-columns:1fr;gap:34px}
   .profile-grid{grid-template-columns:1fr;gap:30px}
-  .tour-inner{grid-template-columns:1fr}
-  .tour-poster{max-width:360px}
+  .tour-inner{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .tour-poster{max-width:360px;margin-inline:auto}
+  .tour-copy{max-width:520px}
+  .tour-copy p{margin-inline:auto}
+  .tour-notes{justify-content:center}
   .studios-grid{grid-template-columns:1fr 1fr}
   .rail-ctrl{display:none}
   .nav-links{position:fixed;top:0;right:0;bottom:0;left:auto;height:100vh;height:100dvh;width:min(80vw,320px);

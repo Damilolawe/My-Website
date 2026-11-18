@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 640" role="img" aria-label="What's Good?! Fuse series fallback artwork">
+<defs>
+<linearGradient id="wgg" x1="0" x2="1" y2="1"><stop stop-color="#0f1a1c"/><stop offset="1" stop-color="#1c4a3b"/></linearGradient>
+</defs>
+<rect width="480" height="640" fill="url(#wgg)"/>
+<rect x="32" y="32" width="416" height="576" rx="18" fill="none" stroke="#f5c84a" stroke-width="4" opacity=".55"/>
+<!-- plate silhouette -->
+<g transform="translate(240 270)">
+  <circle r="130" fill="#1c4a3b" stroke="#f5c84a" stroke-width="5"/>
+  <circle r="102" fill="none" stroke="#f5c84a" stroke-width="2" opacity=".55"/>
+  <circle r="48" fill="#f5c84a" opacity=".85"/>
+</g>
+<text x="56" y="150" font-family="Arial,sans-serif" font-size="20" letter-spacing="5" fill="#f5c84a">FUSE+ · FOOD &amp; CULTURE</text>
+<text x="56" y="450" font-family="Arial Black,Arial,sans-serif" font-size="78" font-weight="900" fill="#fff5e9">WHAT'S</text>
+<text x="56" y="528" font-family="Arial Black,Arial,sans-serif" font-size="78" font-weight="900" fill="#f5c84a">GOOD?!</text>
+<text x="56" y="580" font-family="Arial,sans-serif" font-size="20" letter-spacing="3" fill="#dcd4c3">WITH KEVONSTAGE</text>
+</svg>
