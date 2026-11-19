@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-19T04:11:53.521Z",
+  "generatedAt": "2026-11-19T04:14:44.795Z",
   "mode": "desktop",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 33,
-  "issues": 5,
+  "issues": 3,
   "findings": [
     {
       "site": "shotsbyriq",
@@ -20,18 +20,6 @@
         "ok": false,
         "pixelsMoved": 0
       }
-    },
-    {
-      "site": "shotsbyriq",
-      "viewport": "desktop-1920",
-      "type": "visual",
-      "message": "broken image: https://www.instagram.com/p/DeIK9C3FGhF/media/?size=l"
-    },
-    {
-      "site": "shotsbyriq",
-      "viewport": "desktop-1920",
-      "type": "visual",
-      "message": "broken image: https://www.instagram.com/p/DeIK9C3FGhF/media/?size=l"
     },
     {
       "site": "shotsbyriq",
