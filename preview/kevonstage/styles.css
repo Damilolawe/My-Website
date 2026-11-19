@@ -159,10 +159,6 @@ strong{color:#fff;font-weight:600}
 .tour-poster{border-radius:12px;overflow:hidden;border:1px solid var(--line-2);box-shadow:0 24px 60px rgba(0,0,0,.5);background:#0d0d14}
 .tour-poster img{width:100%;height:auto}
 .tour-copy p{color:var(--muted);font-size:17px;margin:14px 0 24px;max-width:52ch}
-.tour-notes{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
-.tour-notes>div{flex:1 1 200px;border-left:2px solid var(--gold);padding:4px 0 4px 14px}
-.tour-notes b{display:block;font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.5px;font-size:16px}
-.tour-notes span{color:var(--muted);font-size:14px}
 
 /* ---------- STUDIOS ---------- */
 .studios{padding:clamp(50px,8vw,96px) 0}
@@ -211,7 +207,6 @@ strong{color:#fff;font-weight:600}
   .tour-poster{max-width:360px;margin-inline:auto}
   .tour-copy{max-width:520px}
   .tour-copy p{margin-inline:auto}
-  .tour-notes{justify-content:center}
   .studios-grid{grid-template-columns:1fr 1fr}
   .rail-ctrl{display:none}
   .nav-links{position:fixed;top:0;right:0;bottom:0;left:auto;height:100vh;height:100dvh;width:min(80vw,320px);
