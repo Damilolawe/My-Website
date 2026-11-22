@@ -80,7 +80,10 @@ import {fetchPublicTemplate,previewMessage} from "./shared/preview.mjs";
     else showInFrame(snapshot.dataset.preview,snapshot.querySelector("iframe"),()=>{snapshot.dataset.loaded="true";});
   }
 
-  // Keep the floating layout stable under the pointer. Rotated cards now use\n  // a flat 2D stack; hovering should only lift the selected card forward.\n\n  function transitionWorld(card,reverse=false){
+  // Keep the floating layout stable under the pointer. Rotated cards now use
+  // a flat 2D stack; hovering should only lift the selected card forward.
+
+  function transitionWorld(card,reverse=false){
     if(reduce.matches||typeof dialog.animate!=="function"||!card)return Promise.resolve();
     const panel=dialog.querySelector(".universe-dialog-shell");
     const origin=card.getBoundingClientRect(),target=panel.getBoundingClientRect();
