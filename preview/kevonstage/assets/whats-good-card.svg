@@ -1,17 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 640" role="img" aria-label="What's Good?! Fuse series fallback artwork">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 640" role="img" aria-label="What's Good?! Fuse series artwork">
 <defs>
-<linearGradient id="wgg" x1="0" x2="1" y2="1"><stop stop-color="#0f1a1c"/><stop offset="1" stop-color="#1c4a3b"/></linearGradient>
+<linearGradient id="bg" x1="0" y1="0" x2=".3" y2="1"><stop stop-color="#0a1810"/><stop offset=".5" stop-color="#14362a"/><stop offset="1" stop-color="#0d1f17"/></linearGradient>
+<linearGradient id="glow" x1=".5" y1="0" x2=".5" y2="1"><stop stop-color="#f5c84a" stop-opacity=".35"/><stop offset="1" stop-color="#f5c84a" stop-opacity="0"/></linearGradient>
+<radialGradient id="spot" cx=".5" cy=".45" r=".55"><stop stop-color="#1c5a42" stop-opacity=".6"/><stop offset="1" stop-color="transparent"/></radialGradient>
+<filter id="blur"><feGaussianBlur stdDeviation="18"/></filter>
 </defs>
-<rect width="480" height="640" fill="url(#wgg)"/>
-<rect x="32" y="32" width="416" height="576" rx="18" fill="none" stroke="#f5c84a" stroke-width="4" opacity=".55"/>
-<!-- plate silhouette -->
-<g transform="translate(240 270)">
-  <circle r="130" fill="#1c4a3b" stroke="#f5c84a" stroke-width="5"/>
-  <circle r="102" fill="none" stroke="#f5c84a" stroke-width="2" opacity=".55"/>
-  <circle r="48" fill="#f5c84a" opacity=".85"/>
+<rect width="480" height="640" fill="url(#bg)"/>
+<rect width="480" height="640" fill="url(#spot)"/>
+<!-- decorative food-culture elements -->
+<g opacity=".12">
+  <circle cx="120" cy="180" r="80" fill="#f5c84a"/>
+  <circle cx="360" cy="260" r="60" fill="#f5c84a"/>
+  <circle cx="80" cy="400" r="45" fill="#e8a832"/>
+  <circle cx="400" cy="140" r="35" fill="#e8a832"/>
 </g>
-<text x="56" y="150" font-family="Arial,sans-serif" font-size="20" letter-spacing="5" fill="#f5c84a">FUSE+ · FOOD &amp; CULTURE</text>
-<text x="56" y="450" font-family="Arial Black,Arial,sans-serif" font-size="78" font-weight="900" fill="#fff5e9">WHAT'S</text>
-<text x="56" y="528" font-family="Arial Black,Arial,sans-serif" font-size="78" font-weight="900" fill="#f5c84a">GOOD?!</text>
-<text x="56" y="580" font-family="Arial,sans-serif" font-size="20" letter-spacing="3" fill="#dcd4c3">WITH KEVONSTAGE</text>
+<!-- plate motif -->
+<g transform="translate(240 265)">
+  <circle r="115" fill="none" stroke="#f5c84a" stroke-width="3" opacity=".25"/>
+  <circle r="95" fill="none" stroke="#f5c84a" stroke-width="1.5" opacity=".15"/>
+  <circle r="40" fill="#f5c84a" opacity=".12"/>
+  <!-- fork and knife cross -->
+  <g stroke="#f5c84a" stroke-width="2.5" stroke-linecap="round" opacity=".45">
+    <line x1="-35" y1="-55" x2="-35" y2="55"/>
+    <line x1="-35" y1="-55" x2="-45" y2="-35"/>
+    <line x1="-35" y1="-55" x2="-25" y2="-35"/>
+    <line x1="35" y1="-55" x2="35" y2="55"/>
+    <line x1="25" y1="-55" x2="25" y2="-25"/>
+    <line x1="45" y1="-55" x2="45" y2="-25"/>
+    <path d="M25-25 Q35-20 45-25" fill="none"/>
+  </g>
+</g>
+<!-- top label -->
+<text x="240" y="92" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="14" letter-spacing="6" fill="#f5c84a" opacity=".8">FUSE+ · FOOD &amp; CULTURE</text>
+<line x1="80" y1="108" x2="400" y2="108" stroke="#f5c84a" stroke-width="1" opacity=".2"/>
+<!-- title -->
+<text x="240" y="468" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-size="72" font-weight="900" fill="#fff5e9" letter-spacing="-1">WHAT'S</text>
+<text x="240" y="542" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-size="72" font-weight="900" fill="#f5c84a" letter-spacing="-1">GOOD?!</text>
+<!-- subtitle -->
+<text x="240" y="588" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="16" letter-spacing="4" fill="#c4b89a" opacity=".85">WITH KEVONSTAGE</text>
+<!-- bottom accent line -->
+<line x1="160" y1="604" x2="320" y2="604" stroke="#f5c84a" stroke-width="1.5" opacity=".3"/>
 </svg>

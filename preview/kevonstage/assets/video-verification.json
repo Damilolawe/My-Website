@@ -1,17 +1,24 @@
 {
-  "verified": "2026-11-11 America/New_York",
+  "verified": "2026-11-22 America/New_York",
+  "note": "Hero video is now auto-synced across 4 channels by scripts/sync-kevonstage-video.mjs",
+  "channels": [
+    {"id": "UC5Zc0EUB-km6in-55cK7k2g", "handle": "@KevOnStage"},
+    {"id": "UC_VyMH33jngaVysIivLKTlw", "handle": "@kevonstagestudios"},
+    {"id": "UCIcfJdhsYRHTm-H6G0VJCug", "handle": "@HTT_Show"},
+    {"id": "UC1DYqWSRDF1UhQns1KZPg3w", "handle": "@baldxbrothers"}
+  ],
   "videos": [
+    {
+      "id": "gXSEfxtOIhk",
+      "title": "Dr Pepper Turkey, Deviled Eggs & Thanksgiving Debate | Here's The Thing",
+      "status": "OK",
+      "channel": "@HTT_Show"
+    },
     {
       "id": "83JgNW6xQ0c",
       "title": "KevOnStage: Funny In Real Life | Full Comedy Special",
       "status": "OK",
-      "embeddable": true
-    },
-    {
-      "id": "UWzzPXHDhrE",
-      "title": "Chicago Thin Crust Pizza Taste Test",
-      "status": "OK",
-      "embeddable": true
+      "channel": "@KevOnStage"
     }
   ]
 }
