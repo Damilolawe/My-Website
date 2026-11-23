@@ -11,37 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="./styles.css" />
 
-<style id="awe-creator-photo-journal">
-.ac-photo-journal{--ac-gallery-bg:#14141a;--ac-gallery-text:#fff;--ac-gallery-accent:#e3bc8e;background:var(--ac-gallery-bg);color:var(--ac-gallery-text);position:relative;isolation:isolate;padding:clamp(64px,8vw,120px) max(22px,calc((100vw - 1200px)/2));font-family:inherit;overflow:hidden}
-.ac-photo-journal *{box-sizing:border-box}
-.ac-photo-journal .ac-gallery-head{max-width:780px;margin:0 0 clamp(28px,4vw,48px);position:relative;z-index:1}
-.ac-photo-journal .ac-gallery-kicker{display:block;font-size:.71rem;font-weight:750;letter-spacing:.19em;text-transform:uppercase;color:var(--ac-gallery-accent);margin-bottom:16px}
-.ac-photo-journal h2.ac-gallery-title{font-family:inherit;font-weight:800;font-size:clamp(2rem,5.2vw,4.4rem);line-height:1.05;letter-spacing:-.045em;color:inherit;margin:0 0 16px;text-wrap:balance}
-.ac-photo-journal .ac-gallery-subtitle{font-size:clamp(.94rem,1.35vw,1.12rem);line-height:1.65;max-width:590px;color:inherit;opacity:.76;margin:0}
-.ac-photo-journal .ac-photo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,24px);align-items:start}
-.ac-photo-journal .ac-photo-tile{margin:0;min-width:0;position:relative}
-.ac-photo-journal .ac-photo-frame{overflow:hidden;position:relative;background:rgba(128,128,128,.18);border-radius:6px;border:1px solid rgba(128,128,128,.2)}
-.ac-photo-journal .ac-photo-frame img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center;transition:transform .6s ease,filter .6s ease}
-.ac-photo-journal .ac-photo-tile:nth-child(2) .ac-photo-frame img{aspect-ratio:3/4}
-.ac-photo-journal .ac-photo-tile[data-fit="contain"] img{object-fit:contain;padding:9px}
-.ac-photo-journal .ac-photo-tile:hover img{transform:scale(1.035)}
-.ac-photo-journal figcaption{padding:15px 2px 0;display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:.86rem}
-.ac-photo-journal figcaption strong{font-size:clamp(.9rem,1.3vw,1.05rem);font-weight:700;color:inherit}
-.ac-photo-journal figcaption span{color:inherit;opacity:.58;font-size:.72rem;white-space:nowrap}
-.ac-photo-journal .ac-photo-tile:nth-child(2){margin-top:clamp(0px,3.3vw,50px)}
-.ac-photo-journal--kevonstage{--ac-gallery-bg:#1b1918;--ac-gallery-text:#fff5e9;--ac-gallery-accent:#dfae7c}
-.ac-photo-journal--tony{--ac-gallery-bg:#f0ece5;--ac-gallery-text:#17231f;--ac-gallery-accent:#b33b2f}
-.ac-photo-journal--keenan{--ac-gallery-bg:#25193d;--ac-gallery-text:#fff7fb;--ac-gallery-accent:#dda9ff}
-.ac-photo-journal--tahir{--ac-gallery-bg:#101a29;--ac-gallery-text:#eaf6ff;--ac-gallery-accent:#6bc9ed}
-.ac-photo-journal--roxxy{--ac-gallery-bg:#f6d4dc;--ac-gallery-text:#35182b;--ac-gallery-accent:#a51b67}
-.ac-photo-journal--ice{--ac-gallery-bg:#11151e;--ac-gallery-text:#f1f4fa;--ac-gallery-accent:#8ce1f0}
-.ac-photo-journal--roxxy .ac-photo-frame{border-radius:22px 22px 5px 5px}
-.ac-photo-journal--tony .ac-photo-frame{border-radius:2px}
-.ac-photo-journal--ice .ac-photo-frame{border-radius:0;clip-path:polygon(0 0,100% 0,100% 96%,96% 100%,0 100%)}
-@media(max-width:760px){.ac-photo-journal{padding:62px 20px}.ac-photo-journal .ac-photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.ac-photo-journal .ac-photo-tile:nth-child(2){margin-top:22px}.ac-photo-journal .ac-photo-tile:last-child{grid-column:1 / -1;max-width:75%;margin:0 auto}.ac-photo-journal figcaption{flex-wrap:wrap}}
-@media(max-width:420px){.ac-photo-journal .ac-photo-grid{grid-template-columns:1fr}.ac-photo-journal .ac-photo-tile,.ac-photo-journal .ac-photo-tile:last-child{grid-column:1;max-width:100%;margin:0}.ac-photo-journal .ac-photo-frame img,.ac-photo-journal .ac-photo-tile:nth-child(2) .ac-photo-frame img{aspect-ratio:4/3;object-position:center 27%}.ac-photo-journal .ac-photo-tile[data-fit="contain"] img{object-fit:contain}.ac-photo-journal .ac-photo-grid{gap:26px}}
-@media(prefers-reduced-motion:reduce){.ac-photo-journal .ac-photo-frame img{transition:none}.ac-photo-journal .ac-photo-tile:hover img{transform:none}}
-</style>
 </head>
 <body>
 <nav id="nav">
@@ -52,7 +21,6 @@
   <button id="navToggle" class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <div id="navLinks" class="nav-links">
     <a href="#about">About</a>
-    <a href="#soundboard">Bakerisms</a>
     <a href="#watch">Watch</a>
     <a href="#shows">Shows</a>
     <a href="#book" class="nav-cta">Book Tony</a>
@@ -69,10 +37,8 @@
       <h1 class="name">Tony<br>Baker</h1>
       <p class="tagline">The viral voiceover king — and your favorite comedian's <strong>favorite comedian.</strong> More than a decade of making millions laugh on stage, on screen, and all over your timeline.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#soundboard">
-          Explore the Bakerisms
-        </a>
-        <a class="btn btn-ghost" href="#watch">Watch Specials</a>
+        <a class="btn btn-primary" href="#watch">Watch Specials</a>
+        <a class="btn btn-ghost" href="#shows">Live Shows</a>
       </div>
       <div class="hero-wave" id="heroWave" aria-hidden="true"></div>
     </div>
@@ -84,23 +50,6 @@
     </figure>
   </div>
 </header>
-
-<section id="soundboard" class="board">
-  <div class="container">
-    <div class="board-head">
-      <span class="label">The Bakerisms</span>
-      <h2 class="h2">The Bakerisms</h2>
-      <p class="lead">Catchphrases fans quote back to him &mdash; a few of the lines they know by heart, from Skibbity Paps to Feel Every Piece.</p>
-    </div>
-    <ul class="pads">
-      <li class="pad"><span class="pad-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="pad-text">Skibbity Paps</span><span class="pad-no">01</span></li>
-      <li class="pad"><span class="pad-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="pad-text">Cram</span><span class="pad-no">02</span></li>
-      <li class="pad wide"><span class="pad-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="pad-text">Look At Who Ya Came To See</span><span class="pad-no">03</span></li>
-      <li class="pad"><span class="pad-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="pad-text">Get In On This</span><span class="pad-no">04</span></li>
-      <li class="pad"><span class="pad-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="pad-text">Feel Every Piece</span><span class="pad-no">05</span></li>
-    </ul>
-  </div>
-</section>
 
 <main>
 <section id="about" class="about">
@@ -167,10 +116,6 @@
 </section>
 
 
-<section class="ac-photo-journal ac-photo-journal--tony" aria-label="TONY BAKER / PHOTO JOURNAL"><div class="ac-gallery-head"><span class="ac-gallery-kicker">TONY BAKER / PHOTO JOURNAL</span><h2 class="ac-gallery-title">Every expression tells a story.</h2><p class="ac-gallery-subtitle">A closer look at the comedian and the personality behind the punchlines.</p></div><div class="ac-photo-grid"><figure class="ac-photo-tile"><div class="ac-photo-frame"><img src="https://static.wixstatic.com/media/54eb23_aa788233d45c4da481f60115ddc37e41~mv2.jpg" alt="Tony Baker giving a playful thumbs-up in a green jacket" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-fallback="assets/portrait.webp"></div><figcaption><strong>That Tony Baker energy</strong><span>The personality</span></figcaption></figure>
-<figure class="ac-photo-tile"><div class="ac-photo-frame"><img src="https://static.wixstatic.com/media/54eb23_c697aff43d7d4891bc0c01d5c777539d~mv2.jpg" alt="Tony Baker smiling with an outstretched hand in a studio portrait" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-fallback="assets/editorial.webp"></div><figcaption><strong>The close-up</strong><span>Portrait</span></figcaption></figure>
-<figure class="ac-photo-tile"><div class="ac-photo-frame"><img src="https://static.wixstatic.com/media/54eb23_ca6ab1e08cfa492daf2ab847c47acb24~mv2.jpg" alt="Tony Baker wearing a patterned shirt against a red backdrop" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-fallback="assets/portrait.webp"></div><figcaption><strong>In full color</strong><span>Editorial</span></figcaption></figure></div></section>
-
 <section id="shows" class="shows">
   <div class="container shows-inner">
     <div class="shows-copy">
@@ -230,7 +175,7 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-big">Tony Baker</div>
-    <p class="footer-links"><a href="#about">About</a> · <a href="#soundboard">Bakerisms</a> · <a href="#watch">Watch</a> · <a href="#shows">Shows</a> · <a href="#book">Book Tony</a></p>
+    <p class="footer-links"><a href="#about">About</a> · <a href="#watch">Watch</a> · <a href="#shows">Shows</a> · <a href="#book">Book Tony</a></p>
     <p class="concept-note">Independent design concept by Awe Concepts. Not affiliated with, authorized by, or endorsed by Tony Baker.</p>
     <p class="credit">Designed by <a href="https://aweconcepts.com/" target="_blank" rel="noopener"><strong>Awe Concepts</strong></a></p>
   </div>
