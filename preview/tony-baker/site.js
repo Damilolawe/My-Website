@@ -1,4 +1,4 @@
-// Tony Baker — voiceover studio concept interactions
+// Tony Baker — comedian and actor website interactions
 (function () {
   var nav = document.getElementById('nav');
   window.addEventListener('scroll', function () {
@@ -16,26 +16,10 @@
     a.addEventListener('click', function () { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); });
   });
 
-  // Signature: build the hero waveform — bars with varied height, delay and tempo
-  var wave = document.getElementById('heroWave');
-  if (wave) {
-    var count = 52;
-    for (var i = 0; i < count; i++) {
-      var bar = document.createElement('i');
-      // a loose sine envelope so the waveform reads like a voice, not a flat bar
-      var env = 0.35 + 0.65 * Math.abs(Math.sin((i / count) * Math.PI * 3));
-      bar.style.setProperty('--h', (env * 100).toFixed(0) + '%');
-      bar.style.height = (env * 100).toFixed(0) + '%';
-      bar.style.animationDelay = (-(i % 9) * 0.13).toFixed(2) + 's';
-      bar.style.animationDuration = (1.1 + (i % 5) * 0.14).toFixed(2) + 's';
-      wave.appendChild(bar);
-    }
-  }
-
   // Quiet reveal-on-scroll (elevation) — kept off under reduced-motion
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reduce && 'IntersectionObserver' in window) {
-    var revealEls = document.querySelectorAll('.board-head,.pads,.about-grid,.booth-grid,.ac-gallery-head,.ac-photo-tile,.shows-inner,.watch-grid,.merch-grid,.book-inner');
+    var revealEls = document.querySelectorAll('.board-head,.about-grid,.booth-grid,.shows-inner,.watch-grid,.merch-grid,.book-inner');
     revealEls.forEach(function (el) { el.classList.add('reveal'); });
     var rio = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); rio.unobserve(e.target); } });
