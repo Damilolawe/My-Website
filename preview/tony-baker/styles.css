@@ -176,6 +176,35 @@ strong{color:#fff;font-weight:600}
 #watch .track .show-cover{display:block;width:84px;height:84px;flex:0 0 84px;object-fit:cover;border-radius:7px;border:1px solid var(--line);background:var(--panel)}
 @media(max-width:440px){#watch .track{gap:9px;padding:12px 9px}#watch .track .show-cover{width:60px;height:68px;flex-basis:60px}#watch .t-body h3{font-size:15px}#watch .t-body p{font-size:12px}}
 
+
+/* Center the hero portrait and its subject at tablet and phone widths. */
+@media(max-width:960px){
+  .booth-grid > .portrait{
+    width:min(100%,420px);
+    max-width:420px;
+    justify-self:center;
+    margin-inline:auto;
+  }
+  .booth-grid .portrait-frame{
+    width:100%;
+    overflow:hidden;
+  }
+  .booth-grid .portrait-frame img{
+    width:112%;
+    max-width:none;
+    margin-left:6%;
+    height:auto;
+    object-position:center;
+  }
+  .booth-grid .portrait figcaption{
+    justify-content:center;
+    text-align:center;
+  }
+}
+@media(max-width:560px){
+  .booth-grid > .portrait{width:100%;max-width:420px;}
+}
+
 /* ---------- ELEVATION: quiet reveal + image-hover parity ---------- */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .reveal.visible{opacity:1;transform:none}
