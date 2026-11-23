@@ -8,7 +8,7 @@ on:
       - '.github/workflows/fat-boy-finesse-video-sync.yml'
   schedule:
     # Run off the hour: scheduled GitHub Actions can be delayed.
-    - cron: '3-58/5 * * * *'
+    - cron: '45 14 * * *'
   workflow_dispatch:
 
 permissions:

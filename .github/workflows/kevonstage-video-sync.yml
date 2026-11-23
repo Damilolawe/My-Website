@@ -7,7 +7,7 @@ on:
       - 'scripts/sync-kevonstage-video.mjs'
       - '.github/workflows/kevonstage-video-sync.yml'
   schedule:
-    - cron: '1-56/5 * * * *'
+    - cron: '20 14 * * *'
   workflow_dispatch:
 
 permissions:
