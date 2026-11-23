@@ -76,9 +76,10 @@ strong{color:#fff;font-weight:600}
 @keyframes tally{0%{box-shadow:0 0 0 0 rgba(255,91,91,.5)}70%{box-shadow:0 0 0 9px rgba(255,91,91,0)}100%{box-shadow:0 0 0 0 rgba(255,91,91,0)}}
 
 .wordmark{font-family:var(--display);font-weight:700;text-transform:uppercase;line-height:.92;letter-spacing:2px;
-  font-size:clamp(54px,11vw,148px)}
+  font-size:clamp(36px,8.5vw,68px)}
 .wm-line{display:block}
 .wm-line.alt{color:var(--gold)}
+.alt-letter{color:var(--gold)}
 .wordmark span{display:inline-block}
 /* Signature: signal-lock reveal on load */
 .wordmark .wm-line>span{opacity:0;transform:translateY(.18em);clip-path:inset(0 0 100% 0)}
