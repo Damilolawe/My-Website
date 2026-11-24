@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="./styles.css" />
+<link rel="stylesheet" href="./styles.css?v=tour-video-20261124" />
 
 </head>
 <body>
@@ -123,7 +123,11 @@
       <p>Tony's out here hitting the hottest clubs and theaters in the country. Don't miss your chance to catch Tony live and in person.</p>
       <a class="btn btn-primary" href="https://seatgeek.com/tony-baker-tickets" target="_blank" rel="noopener">See All Shows &amp; Tickets</a>
     </div>
-    <div class="live-graphic" aria-hidden="true">
+    <div class="tour-media">
+      <video id="tour-video" class="tour-video" controls playsinline preload="metadata" hidden aria-label="Tony Baker stand-up comedy performance">
+        <source src="./assets/tony-baker-live.mp4" type="video/mp4">
+      </video>
+      <div id="tour-graphic-fallback" class="live-graphic" aria-hidden="true">
       <div class="lg-stage">
         <div class="lg-rings">
           <span class="lg-ring lg-r1"></span>
@@ -145,6 +149,7 @@
         <span class="lg-tag">Clubs &amp; Theaters</span>
         <span class="lg-tag">Worldwide</span>
       </div>
+    </div>
     </div>
   </div>
 </section>
@@ -198,6 +203,6 @@
   </div>
 </footer>
 
-<script src="./site.js"></script>
+<script src="./site.js?v=tour-video-20261124"></script>
 </body>
 </html>

@@ -56,3 +56,16 @@
     wireCreatorPhotoFallbacks();
   }
 })();
+
+// Replace the decorative live graphic only when the local performance video can play.
+(function () {
+  var video = document.getElementById('tour-video');
+  var fallback = document.getElementById('tour-graphic-fallback');
+  if (!video || !fallback) return;
+  function showVideo() { video.hidden = false; fallback.hidden = true; }
+  function showFallback() { video.hidden = true; fallback.hidden = false; }
+  video.addEventListener('loadedmetadata', showVideo);
+  video.addEventListener('error', showFallback);
+  video.querySelector('source').addEventListener('error', showFallback);
+  if (video.readyState >= 1 && !video.error) showVideo();
+})();
