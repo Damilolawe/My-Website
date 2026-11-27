@@ -352,3 +352,6 @@ a{color:inherit;text-decoration:none}
 .video-facade:hover .vf-play,.video-facade:focus-visible .vf-play{transform:scale(1.08) rotate(-4deg);background:var(--orange)}
 .video-facade:focus-visible{outline:var(--inkw) solid var(--ice);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.video-facade img,.video-facade .vf-play{transition:none}.video-facade:hover img,.video-facade:focus-visible img{transform:none}}
+
+/* FOUC guard: reveal once the stylesheet applies */
+body{visibility:visible}

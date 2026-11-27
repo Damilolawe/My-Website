@@ -546,3 +546,6 @@ button.forecast:active{transform:translateY(0) scale(.98)}
 .vid-grid .vcard:nth-child(1) .thumb img.is-fallback{filter:hue-rotate(-12deg) saturate(1.1)}        /* warm dawn */
 .vid-grid .vcard:nth-child(2) .thumb img.is-fallback{filter:none}                                    /* clear midday */
 .vid-grid .vcard:nth-child(3) .thumb img.is-fallback{filter:hue-rotate(-30deg) saturate(1.2)}        /* sunset */
+
+/* FOUC guard: reveal once the stylesheet applies */
+body{visibility:visible}

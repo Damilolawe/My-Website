@@ -315,3 +315,6 @@ img{display:block;max-width:100%}
 .screen-feature-solo{grid-template-columns:1fr;min-height:clamp(220px,26vw,340px)}
 .screen-feature-solo .screen-text{padding:clamp(30px,5vw,68px)}
 .screen-feature-solo .screen-ghost-number{font-size:clamp(120px,20vw,300px)}
+
+/* FOUC guard: reveal once the stylesheet applies */
+body{visibility:visible}

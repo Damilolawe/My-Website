@@ -343,3 +343,6 @@ section[id]{scroll-margin-top:100px}
 
 /* Keep chips tidy on small screens */
 @media(max-width:640px){.topic-chips{gap:7px}.topic-chips li{padding:8px 12px;font-size:11px}}
+
+/* FOUC guard: reveal once the stylesheet applies */
+body{visibility:visible}

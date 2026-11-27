@@ -237,3 +237,6 @@ section[id]{scroll-margin-top:90px}
 .ac-photo-journal--keenan .ac-photo-tile.is-duotone .ac-photo-frame img{filter:grayscale(1) contrast(1.05) brightness(.96)}
 .ac-photo-journal--keenan .ac-photo-tile.is-duotone .ac-photo-frame{background:var(--wine-deep)}
 .ac-photo-journal--keenan .ac-photo-tile.is-duotone:hover .ac-photo-frame img{filter:grayscale(.4) contrast(1.05)}
+
+/* FOUC guard: reveal once the stylesheet applies */
+body{visibility:visible}

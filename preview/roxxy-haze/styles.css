@@ -487,3 +487,6 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.so-card:focus-visible,
 /* Spotify embed: brand gradient behind the player so the loading (or
    blocked) state reads as part of the zine, not a stark black panel. */
 .embed-spotify{background:linear-gradient(135deg,var(--violet) 0,var(--pink) 55%,var(--yellow) 120%)}
+
+/* FOUC guard: reveal once the stylesheet applies */
+body{visibility:visible}
