@@ -536,3 +536,13 @@ button.forecast:active{transform:translateY(0) scale(.98)}
 .feature-video.is-playing{cursor:auto;transform:none!important;transform-style:flat;}
 .feature-video.is-playing::after{display:none;}
 .feature-video.is-playing iframe{position:absolute;inset:0;display:block;width:100%;height:100%;border:0;z-index:5;}
+
+/* ---------- Premium refinement pass (Awe Concepts) ----------
+   When a YouTube thumbnail is unavailable, the cloud fallback appears.
+   Give each card a distinct "forecast" sky so the degraded state reads
+   as intentional, not three identical frames. Real thumbnails that load
+   keep their true colors (filter only targets .is-fallback). */
+.feature-video img.is-fallback{filter:saturate(1.05)}
+.vid-grid .vcard:nth-child(1) .thumb img.is-fallback{filter:hue-rotate(-12deg) saturate(1.1)}        /* warm dawn */
+.vid-grid .vcard:nth-child(2) .thumb img.is-fallback{filter:none}                                    /* clear midday */
+.vid-grid .vcard:nth-child(3) .thumb img.is-fallback{filter:hue-rotate(-30deg) saturate(1.2)}        /* sunset */
