@@ -42,6 +42,28 @@
   });
 })();
 
+// Click-to-play video facades: show authentic poster art, load the YouTube
+// iframe only on activation (lighter, works offline, real podcast branding).
+(function () {
+  document.querySelectorAll('.video-facade[data-embed]').forEach(function (facade) {
+    function play() {
+      var src = facade.getAttribute('data-embed');
+      if (!src) return;
+      var f = document.createElement('iframe');
+      f.src = src;
+      f.title = facade.getAttribute('aria-label') || 'Video player';
+      f.loading = 'eager';
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      f.setAttribute('allowfullscreen', '');
+      var frame = facade.parentNode;
+      frame.replaceChildren(f);
+      f.focus();
+    }
+    facade.addEventListener('click', play);
+  });
+})();
+
 // Creator photo fallback — local, CSP-safe replacement for unavailable external media.
 (function () {
   function wireCreatorPhotoFallbacks() {
