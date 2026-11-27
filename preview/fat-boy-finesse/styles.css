@@ -307,3 +307,39 @@ section[id]{scroll-margin-top:100px}
 
 /* Header artwork uses a verified intact WebP; fit the mascot to the type baseline. */
 .site-logo .panda-logo{align-self:center;image-rendering:auto}
+
+/* ============================================================
+   Premium refinement pass (Awe Concepts)
+   Adds depth, editorial topic chips, resilient Watch Room poster,
+   the studio credit and small contrast/rhythm nudges — no restructuring.
+   ============================================================ */
+
+/* Footer studio credit */
+.site-footer .credit{margin-top:18px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--smoke)}
+.site-footer .credit a{color:#cfcbc3;text-decoration:none;border-bottom:1px solid var(--red);padding-bottom:1px;transition:color .2s}
+.site-footer .credit a:hover{color:#fff}
+
+/* Editorial topic chips in the "Fresh off the feed" module */
+.topic-chips{display:flex;flex-wrap:wrap;gap:9px;margin:4px 0 26px;padding:0;list-style:none}
+.topic-chips li{font:800 11.5px/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:#e9e6df;padding:9px 14px;border:1px solid #3a3a3e;border-radius:999px;background:rgba(224,27,47,.08);transition:border-color .2s,background .2s}
+.topic-chips li:hover{border-color:var(--red);background:rgba(224,27,47,.16)}
+
+/* Hero depth: layered glow + soft top vignette for a richer black */
+.hero:after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(120% 80% at 15% -10%,rgba(224,27,47,.10),transparent 55%),
+  linear-gradient(180deg,rgba(0,0,0,.35),transparent 22%)}
+
+/* Resilient Watch Room: a branded poster sits behind the (hotlinked) thumbnail
+   so the panel always reads as intentional, even if the image is unavailable. */
+.live-fallback{background:
+  radial-gradient(90% 120% at 80% 10%,rgba(224,27,47,.38),transparent 60%),
+  linear-gradient(145deg,#1b1b1e,#101011)}
+.live-loading{background:
+  radial-gradient(90% 120% at 80% 10%,rgba(224,27,47,.22),transparent 60%),#121215}
+
+/* Slightly stronger secondary-text contrast for legibility on dark */
+.concept-note{color:#9b9992!important}
+.nav-links a{opacity:.86}
+
+/* Keep chips tidy on small screens */
+@media(max-width:640px){.topic-chips{gap:7px}.topic-chips li{padding:8px 12px;font-size:11px}}
