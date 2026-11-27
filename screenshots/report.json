@@ -1,10 +1,16 @@
 {
-  "generatedAt": "2026-11-27T05:58:38.972Z",
+  "generatedAt": "2026-11-27T19:16:47.684Z",
   "mode": "desktop",
   "baseUrl": "https://preview.aweconcepts.com",
   "testedSites": 33,
-  "issues": 3,
+  "issues": 4,
   "findings": [
+    {
+      "site": "shotsbyriq",
+      "viewport": "desktop-1440",
+      "type": "visual",
+      "message": "broken image: https://www.instagram.com/p/DeZ-_HAFOA6/media/?size=l"
+    },
     {
       "site": "shotsbyriq",
       "viewport": "desktop-1440",
