@@ -305,3 +305,32 @@ a{color:inherit;text-decoration:none}
   .hub { width: min(800px, 92vw); }
   .hub > .ac-photo-journal { padding: clamp(30px, 5vw, 54px); border-radius: 20px; }
 }
+
+/* ---------- Premium refinement pass (Awe Concepts) ----------
+   Replace repeated portrait "covers" (the same hero photo was showing as
+   all three podcast banners and twice in the gallery) with distinct
+   on-brand podcast cover tiles and a typographic screen-credits tile. */
+#podcasts .pod-cover{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  width:100%;aspect-ratio:16/10;margin:12px 0 16px;border-radius:12px;position:relative;overflow:hidden;
+  border:1px solid var(--line);background:radial-gradient(120% 120% at 50% 0%,rgba(198,241,53,.14),transparent 62%),var(--panel-2)}
+#podcasts .pod-cover .pc-mono{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,46px);letter-spacing:1px;line-height:1;color:var(--lime);text-shadow:0 0 20px rgba(198,241,53,.4)}
+#podcasts .pod-cover-mag{background:radial-gradient(120% 120% at 50% 0%,rgba(255,46,147,.2),transparent 62%),var(--panel-2)}
+#podcasts .pod-cover-mag .pc-mono{color:var(--magenta);text-shadow:0 0 20px rgba(255,46,147,.4)}
+#podcasts .pod-cover-ink{background:radial-gradient(120% 120% at 50% 0%,rgba(243,244,236,.12),transparent 62%),var(--panel-2)}
+#podcasts .pod-cover-ink .pc-mono{color:var(--ink);text-shadow:0 0 18px rgba(243,244,236,.25)}
+#podcasts .pod-cover .pc-wave{display:flex;align-items:flex-end;gap:5px;height:26px}
+#podcasts .pod-cover .pc-wave i{width:5px;border-radius:3px;background:currentColor;color:var(--lime-dim);opacity:.65;height:40%;animation:tm-wave 1.3s ease-in-out infinite alternate}
+#podcasts .pod-cover-mag .pc-wave i{color:var(--magenta-dim)}
+#podcasts .pod-cover-ink .pc-wave i{color:#8d8f86}
+#podcasts .pod-cover .pc-wave i:nth-child(2n){animation-duration:.9s}
+#podcasts .pod-cover .pc-wave i:nth-child(3n){animation-duration:1.6s;animation-delay:-.5s}
+#podcasts .pod-cover .pc-wave i:nth-child(4n){animation-delay:-.8s}
+@keyframes tm-wave{to{height:100%}}
+@media(prefers-reduced-motion:reduce){#podcasts .pod-cover .pc-wave i{animation:none;height:70%}}
+
+/* Typographic screen-credits tile in the Visual Notes gallery */
+.ac-photo-journal--tahir .ac-credits{aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;padding:22px;
+  background:linear-gradient(160deg,rgba(107,201,237,.12),transparent 60%),#0c1420}
+.ac-photo-journal--tahir .ac-credits ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;width:100%}
+.ac-photo-journal--tahir .ac-credits li{font-weight:700;font-size:clamp(.95rem,1.5vw,1.15rem);line-height:1.15;padding-bottom:11px;border-bottom:1px solid rgba(234,246,255,.14);color:#eaf6ff}
+.ac-photo-journal--tahir .ac-credits li:last-child{border-bottom:0;padding-bottom:0}

@@ -220,3 +220,20 @@ section[id]{scroll-margin-top:90px}
 .creator-portrait img,.creator-photo img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
 .creator-portrait:hover img,.creator-photo:hover img{transform:scale(1.04)}
 @media(prefers-reduced-motion:reduce){.creator-portrait:hover img,.creator-photo:hover img{transform:none}}
+
+/* ---------- Premium refinement pass (Awe Concepts) ---------- */
+/* Merch: feature the authentic tee as a framed product shot
+   on a tinted panel, replacing the duplicate faux-tee graphic. */
+.merch-feature{margin:0;position:relative;aspect-ratio:1;width:min(100%,440px);justify-self:end;border-radius:14px;overflow:hidden;
+  border:1px solid var(--line);background:radial-gradient(120% 120% at 50% 18%,var(--wine) 0,transparent 60%),var(--paper-2);
+  box-shadow:0 24px 60px rgba(32,27,21,.2);display:grid;place-items:center}
+.merch-feature img{width:84%;height:auto;aspect-ratio:1;object-fit:contain;border-radius:8px;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.merch-feature:hover img{transform:scale(1.035)}
+@media(max-width:900px){.merch-feature{margin:0 auto}}
+@media(prefers-reduced-motion:reduce){.merch-feature:hover img{transform:none}}
+
+/* Snapshots: a quiet duotone on the third tile so two shots from the
+   same shoot read as an intentional contact-sheet, not a repeat. */
+.ac-photo-journal--keenan .ac-photo-tile.is-duotone .ac-photo-frame img{filter:grayscale(1) contrast(1.05) brightness(.96)}
+.ac-photo-journal--keenan .ac-photo-tile.is-duotone .ac-photo-frame{background:var(--wine-deep)}
+.ac-photo-journal--keenan .ac-photo-tile.is-duotone:hover .ac-photo-frame img{filter:grayscale(.4) contrast(1.05)}

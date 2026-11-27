@@ -338,3 +338,17 @@ a{color:inherit;text-decoration:none}
   .panel-cover .hero-title{font-size:clamp(39px,10.5vw,58px)}
   .cover-photo{margin-bottom:26px;box-shadow:6px 6px 0 var(--magenta)}
 }
+
+/* ---------- Premium refinement pass (Awe Concepts) ----------
+   Podcast click-to-play facade: authentic Raised By Wolves cover art,
+   loads the iframe only on activation. On-brand ink-panel play button. */
+.video-facade{display:block;position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#000;overflow:hidden}
+.video-facade img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .4s}
+.video-facade:hover img,.video-facade:focus-visible img{transform:scale(1.04);filter:brightness(1.05)}
+.video-facade .vf-play{position:absolute;left:50%;top:50%;translate:-50% -50%;display:grid;place-items:center;
+  width:72px;height:72px;border-radius:50%;background:var(--magenta);color:var(--white);
+  border:var(--inkw) solid var(--ink);box-shadow:4px 4px 0 var(--ink);transition:transform .2s,background .2s}
+.video-facade .vf-play svg{width:30px;height:30px;margin-left:3px}
+.video-facade:hover .vf-play,.video-facade:focus-visible .vf-play{transform:scale(1.08) rotate(-4deg);background:var(--orange)}
+.video-facade:focus-visible{outline:var(--inkw) solid var(--ice);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.video-facade img,.video-facade .vf-play{transition:none}.video-facade:hover img,.video-facade:focus-visible img{transform:none}}

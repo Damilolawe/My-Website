@@ -259,7 +259,7 @@ if(watchRoom&&videoFrame&&liveFrame&&probeHost){
  syncNewUploads();
  // Safety net: if the player never signals ready (API blocked, offline), reveal the
  // tap-through fallback so the Watch Room is never stuck behind an endless loader.
- window.setTimeout(()=>{if(!mainReady&&currentMode!=='live')markFallback();},12000);
+ window.setTimeout(()=>{if(!mainReady&&currentMode!=='live')markFallback();},7000);
  document.addEventListener('visibilitychange',()=>{
   if(!document.hidden){
    syncNewUploads();

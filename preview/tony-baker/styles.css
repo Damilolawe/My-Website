@@ -197,8 +197,17 @@ strong{color:#fff;font-weight:600}
 
 /* Artwork for individually listed specials and shows */
 #watch .track{align-items:center}
-#watch .track .show-cover{display:block;width:84px;height:84px;flex:0 0 84px;object-fit:cover;border-radius:7px;border:1px solid var(--line);background:var(--panel)}
-@media(max-width:440px){#watch .track{gap:9px;padding:12px 9px}#watch .track .show-cover{width:60px;height:68px;flex-basis:60px}#watch .t-body h3{font-size:15px}#watch .t-body p{font-size:12px}}
+/* Cassette-style monogram tiles replace fragile hotlinked cover art:
+   on-brand with the amber console theme, one distinct tile per show. */
+#watch .track .show-cover{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  width:84px;height:84px;flex:0 0 84px;border-radius:7px;border:1px solid var(--line-2);
+  background:linear-gradient(145deg,rgba(255,159,46,.16),rgba(255,159,46,.03)),var(--panel);overflow:hidden}
+#watch .track .show-cover::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;
+  background:repeating-linear-gradient(90deg,var(--amber) 0 3px,transparent 3px 8px);opacity:.55}
+#watch .track .show-cover b{font-family:var(--mono);font-weight:700;font-size:22px;letter-spacing:-.02em;color:var(--amber);line-height:1}
+#watch .track .show-cover i{font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+#watch .track.feature .show-cover{background:linear-gradient(145deg,rgba(255,159,46,.28),rgba(255,159,46,.05)),var(--panel)}
+@media(max-width:440px){#watch .track{gap:9px;padding:12px 9px}#watch .track .show-cover{width:60px;height:68px;flex-basis:60px}#watch .track .show-cover b{font-size:18px}#watch .t-body h3{font-size:15px}#watch .t-body p{font-size:12px}}
 
 
 /* Center the hero portrait and its subject at tablet and phone widths. */

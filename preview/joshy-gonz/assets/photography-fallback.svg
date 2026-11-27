@@ -1,1 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000"><rect width="800" height="1000" fill="#223e2d"/><circle cx="400" cy="375" r="230" fill="none" stroke="#dfedda" stroke-width="7" opacity=".4"/><circle cx="400" cy="375" r="115" fill="none" stroke="#dfedda" stroke-width="7" opacity=".4"/><text x="400" y="760" text-anchor="middle" font-family="Georgia,serif" font-size="80" fill="#fff">Joshy Gonz</text><text x="400" y="818" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" letter-spacing="7" fill="#c6ddc3">PHOTOGRAPHY</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Joshy Gonz photography">
+  <rect width="800" height="1000" fill="#111012"/>
+  <rect x="26" y="26" width="748" height="948" fill="none" stroke="#d9cfbf" stroke-width="1.5" opacity=".28"/>
+  <g fill="none" stroke="#d9cfbf" opacity=".34">
+    <circle cx="400" cy="430" r="150" stroke-width="2"/>
+    <circle cx="400" cy="430" r="92" stroke-width="2"/>
+    <path d="M400 280 L470 430 L400 580 L330 430 Z" stroke-width="1.5" opacity=".6"/>
+  </g>
+  <g fill="#d9cfbf" opacity=".5">
+    <circle cx="44" cy="44" r="4"/><circle cx="756" cy="44" r="4"/>
+    <circle cx="44" cy="956" r="4"/><circle cx="756" cy="956" r="4"/>
+  </g>
+  <text x="400" y="726" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="74" font-style="italic" fill="#f3f1ec" opacity=".92">Joshy Gonz</text>
+  <text x="400" y="782" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" letter-spacing="9" fill="#8f8f8a">PHOTOGRAPHY</text>
+</svg>

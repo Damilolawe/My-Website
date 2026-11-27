@@ -274,3 +274,19 @@ img{display:block;max-width:100%}
   .podcast-cover{width:min(100%,420px);margin-inline:auto}
   .podcast-feature-text h2,.podcast-spotlight h2{font-size:clamp(38px,8vw,64px)}
 }
+
+/* ---------- Premium refinement pass (Awe Concepts) ----------
+   Photographer sites live or die on imagery. The portfolio images are
+   hotlinked from Joshy's own published Squarespace portfolio; if that CDN
+   blocks hotlinking, the on-palette film-frame placeholder shows instead.
+   Subtle per-slot variation keeps the degraded state from reading as a
+   wall of identical cards. Real photos (no .is-fallback) are untouched. */
+.frame img.is-fallback,.hero-media img.is-fallback,.media16 img.is-fallback,.archive-photo img.is-fallback{object-fit:cover}
+.index .item:nth-child(3n+1) .frame img.is-fallback{filter:brightness(1)}
+.index .item:nth-child(3n+2) .frame img.is-fallback{filter:brightness(.9) sepia(.12)}
+.index .item:nth-child(3n+3) .frame img.is-fallback{filter:brightness(1.08) contrast(.96)}
+.archive-photo:nth-child(2n) img.is-fallback{filter:brightness(.92)}
+.archive-photo:nth-child(3n) img.is-fallback{filter:brightness(1.07) sepia(.1)}
+.frame.ph-on,.archive-photo.ph-on{position:relative}
+.frame.ph-on::after,.archive-photo.ph-on::after{content:"Frame";position:absolute;left:14px;top:12px;z-index:2;
+  font-family:var(--sans);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);opacity:.55;pointer-events:none}
