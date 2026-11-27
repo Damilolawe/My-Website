@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="KevOnStage show artwork">
+<defs><linearGradient id="g" x1="0" x2="1" y2="1"><stop stop-color="#131722"/><stop offset="1" stop-color="#2a2d3e"/></linearGradient></defs>
+<rect width="640" height="400" fill="url(#g)"/>
+<rect x="150" y="26" width="340" height="348" rx="16" fill="none" stroke="#d9b85e" stroke-width="3.5" opacity=".7"/>
+<text x="320" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="5" fill="#d9b85e">ON SCREEN</text>
+<text x="320" y="214" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="40" font-weight="900" fill="#ffffff">KEVONSTAGE</text>
+<g fill="#d9b85e"><rect x="276" y="250" width="8" height="34" rx="3"/><rect x="290" y="240" width="8" height="44" rx="3"/><rect x="304" y="228" width="8" height="56" rx="3"/><rect x="318" y="246" width="8" height="38" rx="3"/><rect x="332" y="236" width="8" height="48" rx="3"/><rect x="346" y="256" width="8" height="28" rx="3"/><rect x="360" y="244" width="8" height="40" rx="3"/></g>
+<text x="320" y="322" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" fill="#d9d6e2">Shows · Specials · Series</text>
+</svg>
