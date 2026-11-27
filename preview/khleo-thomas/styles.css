@@ -306,3 +306,12 @@ img{display:block;max-width:100%}
   .stream-feature-photo{min-height:240px}
   .stream-feature-photo img{min-height:240px;max-height:390px;aspect-ratio:16/9}
 }
+
+/* ---------- Premium refinement pass (Awe Concepts) ----------
+   Imagery honesty: keep only the verified CC 2021 portrait (hero).
+   The acting-reel feature is now a full-width editorial statement with
+   the ZERO ghost number; the live/gaming feature restores the on-brand
+   arcade controller graphic in place of an uncleared press photo. */
+.screen-feature-solo{grid-template-columns:1fr;min-height:clamp(220px,26vw,340px)}
+.screen-feature-solo .screen-text{padding:clamp(30px,5vw,68px)}
+.screen-feature-solo .screen-ghost-number{font-size:clamp(120px,20vw,300px)}
