@@ -56,6 +56,17 @@
     spin();
   }
 
+  // Signature C: the tonearm drops onto the record when the album comes into view
+  var art = document.querySelector('.album-art');
+  if (art) {
+    if ('IntersectionObserver' in window && !reduce) {
+      var aio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('playing'); aio.unobserve(e.target); } });
+      }, { threshold: 0.4 });
+      aio.observe(art);
+    } else { art.classList.add('playing'); }
+  }
+
   // Smooth anchor scrolling
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
