@@ -549,3 +549,21 @@ button.forecast:active{transform:translateY(0) scale(.98)}
 
 /* FOUC guard: reveal once the stylesheet applies */
 body{visibility:visible}
+
+/* ============================================================
+   CHARACTER PASS (Awe Concepts / frontend-design)
+   Sunrise: on load the sun rises into place under a warm dawn wash
+   that lifts to full daylight, while the wordmark letters rise (existing).
+   Uses independent translate/scale so the 3D parallax transform is kept.
+   Reduced-motion rests on the final daylit state.
+   ============================================================ */
+.hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,173,84,.55),rgba(255,129,120,.28) 42%,rgba(255,255,255,0) 76%);
+  animation:pc-dawn 2.1s ease-out both}
+@keyframes pc-dawn{0%{opacity:1}100%{opacity:0}}
+.hero .sun{animation:pc-sunrise 1.8s cubic-bezier(.16,.84,.26,1) both}
+@keyframes pc-sunrise{0%{translate:0 180px;scale:.8;opacity:.15}100%{translate:0 0;scale:1;opacity:1}}
+@media(prefers-reduced-motion:reduce){
+  .hero::after{display:none}
+  .hero .sun{animation:none;translate:0 0;scale:1;opacity:1}
+}
