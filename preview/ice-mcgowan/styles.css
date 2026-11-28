@@ -352,3 +352,56 @@ a{color:inherit;text-decoration:none}
 .video-facade:hover .vf-play,.video-facade:focus-visible .vf-play{transform:scale(1.08) rotate(-4deg);background:var(--orange)}
 .video-facade:focus-visible{outline:var(--inkw) solid var(--ice);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.video-facade img,.video-facade .vf-play{transition:none}.video-facade:hover img,.video-facade:focus-visible img{transform:none}}
+
+/* FOUC guard: reveal once the stylesheet applies */
+body{visibility:visible}
+
+/* ============================================================
+   CHARACTER PASS (Awe Concepts / frontend-design)
+   One orchestrated moment: a manga "title-drop" hero entrance —
+   the page inks itself in like a splash panel. Everything else
+   stays quiet. Reduced motion and no-JS both land on the final state.
+   ============================================================ */
+
+/* title words must be inline-block to slam in */
+.hero-title .ink,.hero-title .charge{display:inline-block;will-change:transform}
+
+/* the entrance owns the hero: no generic fade on the cover panel */
+.panel-cover.reveal,.panel-cover{opacity:1!important;transform:none!important}
+
+/* speed-line impact burst behind the title, fired once on load */
+.ice-boot .panel-cover::before{content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;
+  background:repeating-conic-gradient(from 0deg at 50% 42%,rgba(255,255,255,.22) 0deg 1.2deg,transparent 1.2deg 7deg);
+  -webkit-mask-image:radial-gradient(circle at 50% 42%,#000 0,transparent 52%);
+  mask-image:radial-gradient(circle at 50% 42%,#000 0,transparent 52%);
+  opacity:0;animation:ice-burst .62s cubic-bezier(.2,.9,.2,1) .05s both}
+
+.ice-boot .halftone{animation:ice-flash .8s ease-out .05s both}
+.ice-boot .eyebrow{animation:ice-rise .5s ease-out .12s both}
+.ice-boot .hero-title .ink{animation:ice-slam-l .62s cubic-bezier(.18,.9,.2,1.05) .2s both}
+.ice-boot .hero-title .charge{animation:ice-slam-r .62s cubic-bezier(.18,.9,.2,1.05) .34s both}
+.ice-boot .cover-photo{animation:ice-photo-in .66s cubic-bezier(.2,.85,.2,1.02) .3s both}
+.ice-boot .bubble-cover{animation:ice-pop .5s cubic-bezier(.2,1.4,.4,1) .62s both}
+.ice-boot .hero-cta{animation:ice-rise .5s ease-out .78s both}
+
+@keyframes ice-burst{0%{opacity:0;transform:scale(1.75) rotate(-6deg)}38%{opacity:.85}100%{opacity:0;transform:scale(1) rotate(0)}}
+@keyframes ice-flash{0%{opacity:0}26%{opacity:.85}100%{opacity:.5}}
+@keyframes ice-slam-l{0%{opacity:0;transform:translateX(-128%) rotate(-7deg)}62%{opacity:1;transform:translateX(5%) rotate(1.5deg)}100%{transform:translateX(0) rotate(0)}}
+@keyframes ice-slam-r{0%{opacity:0;transform:translateX(128%) rotate(7deg)}62%{opacity:1;transform:translateX(-5%) rotate(-1.5deg)}100%{transform:translateX(0) rotate(0)}}
+@keyframes ice-photo-in{0%{opacity:0;transform:translate(-26px,26px) rotate(-4deg)}70%{opacity:1;transform:translate(4px,-3px) rotate(1.4deg)}100%{transform:translate(0,0) rotate(0)}}
+@keyframes ice-pop{0%{opacity:0;transform:scale(.72) rotate(-2deg)}70%{opacity:1;transform:scale(1.04)}100%{transform:scale(1) rotate(0)}}
+@keyframes ice-rise{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:none}}
+
+/* quiet character: nav links get an inked underline that draws on hover (answers the pointer) */
+.nav-links a{position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:3px;background:var(--ice);
+  transition:right .22s cubic-bezier(.2,.8,.2,1)}
+.nav-links a:hover::after,.nav-links a:focus-visible::after{right:0}
+.nav-links a.nav-cta::after{display:none}
+
+@media(prefers-reduced-motion:reduce){
+  .ice-boot .panel-cover::before{display:none}
+  .ice-boot .halftone,.ice-boot .eyebrow,.ice-boot .hero-title .ink,.ice-boot .hero-title .charge,
+  .ice-boot .cover-photo,.ice-boot .bubble-cover,.ice-boot .hero-cta{animation:none}
+  .nav-links a::after{transition:none}
+}
