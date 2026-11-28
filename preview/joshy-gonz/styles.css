@@ -293,3 +293,24 @@ img{display:block;max-width:100%}
 
 /* FOUC guard: reveal once the stylesheet applies */
 body{visibility:visible}
+
+/* ============================================================
+   CHARACTER PASS (Awe Concepts / frontend-design)
+   Darkroom "develop": on load the hero photograph emerges like a print
+   in the developer tray - dark and flat first, then contrast, colour and
+   focus arrive - while the title settles under it. Keeps the slow drift.
+   Reduced-motion rests on the finished print.
+   ============================================================ */
+.hero-media img{animation:drift 20s ease-in-out infinite alternate, jg-develop 2s ease-out both}
+@keyframes jg-develop{
+  0%{opacity:0;filter:brightness(.22) contrast(.5) saturate(.25) blur(3px)}
+  38%{opacity:1;filter:brightness(.55) contrast(.78) saturate(.55) blur(1.2px)}
+  100%{opacity:1;filter:none}}
+.hero-inner .label{animation:jg-rise .8s ease-out .9s both}
+.hero-title{animation:jg-rise .9s ease-out 1s both}
+.hero-aside{animation:jg-rise .8s ease-out 1.15s both}
+@keyframes jg-rise{from{opacity:0;transform:translateY(14px)}}
+@media(prefers-reduced-motion:reduce){
+  .hero-media img{animation:none;opacity:1;filter:none}
+  .hero-inner .label,.hero-title,.hero-aside{animation:none;opacity:1;transform:none}
+}
