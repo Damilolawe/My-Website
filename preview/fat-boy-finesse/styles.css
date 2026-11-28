@@ -346,3 +346,16 @@ section[id]{scroll-margin-top:100px}
 
 /* FOUC guard: reveal once the stylesheet applies */
 body{visibility:visible}
+
+/* ============================================================
+   CHARACTER PASS (Awe Concepts / frontend-design)
+   "Sillage": the red glow blooms outward on load like a spritz,
+   the headline rises through it. One moment; the site's existing
+   reduced-motion rule rests everything on the final state.
+   ============================================================ */
+.hero:before{animation:fbf-sillage 1.55s cubic-bezier(.22,.72,.2,1) both}
+@keyframes fbf-sillage{0%{opacity:0;transform:scale(.4)}48%{opacity:1}100%{opacity:1;transform:scale(1)}}
+.hero-by{animation:fbf-fade-up .8s ease-out .05s both}
+.hero-lede{animation:fbf-fade-up .9s ease-out .5s both}
+.hero-actions{animation:fbf-fade-up .9s ease-out .62s both}
+@keyframes fbf-fade-up{from{opacity:0;transform:translateY(10px)}}
