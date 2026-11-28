@@ -26,7 +26,7 @@
 
   // Signature: stagger the wordmark "signal lock", then arm the sequence
   var letters = document.querySelectorAll('.wordmark .wm-line > span');
-  letters.forEach(function (s, i) { s.style.animationDelay = (i * 0.022).toFixed(3) + 's'; });
+  letters.forEach(function (s, i) { s.style.animationDelay = (i * 0.055).toFixed(3) + 's'; });
   // Arm immediately so the name reads from the first paint, not after a blank beat.
   document.body.classList.add('sig-on');
 

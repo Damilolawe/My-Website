@@ -487,3 +487,30 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.so-card:focus-visible,
 /* Spotify embed: brand gradient behind the player so the loading (or
    blocked) state reads as part of the zine, not a stark black panel. */
 .embed-spotify{background:linear-gradient(135deg,var(--violet) 0,var(--pink) 55%,var(--yellow) 120%)}
+
+/* FOUC guard: reveal once the stylesheet applies */
+body{visibility:visible}
+
+/* ============================================================
+   CHARACTER PASS (Awe Concepts / frontend-design)
+   Zine "paste-up": on load the collage assembles - the title chunks
+   and the taped photo drop in, the stickers and note settle. Animates
+   independent translate/scale/opacity so each piece keeps its base tilt.
+   Reduced-motion rests on the final pasted-up state.
+   ============================================================ */
+.hero-collage .eyebrow.sticker-strip{animation:rox-drop .55s cubic-bezier(.2,.9,.3,1) .05s both}
+.hero-collage .ht-roxxy{animation:rox-slam-down .6s cubic-bezier(.2,1.1,.3,1) .16s both}
+.hero-collage .ht-haze{animation:rox-slam-up .6s cubic-bezier(.2,1.1,.3,1) .3s both}
+.hero-collage .hero-scatter{animation:rox-drop .55s cubic-bezier(.2,.9,.3,1) .5s both}
+.hero-collage .hero-note{animation:rox-drop .55s cubic-bezier(.2,.9,.3,1) .62s both}
+.pp-hero{animation:rox-paste .7s cubic-bezier(.2,1,.3,1.02) .4s both}
+.big-quote{animation:rox-fade 1s ease-out .2s both}
+@keyframes rox-slam-down{0%{opacity:0;translate:0 -70px;scale:1.08}100%{opacity:1;translate:0 0;scale:1}}
+@keyframes rox-slam-up{0%{opacity:0;translate:0 70px;scale:1.08}100%{opacity:1;translate:0 0;scale:1}}
+@keyframes rox-drop{0%{opacity:0;translate:0 18px}100%{opacity:1;translate:0 0}}
+@keyframes rox-paste{0%{opacity:0;translate:14px -26px;scale:.9}70%{opacity:1}100%{opacity:1;translate:0 0;scale:1}}
+@keyframes rox-fade{from{opacity:0}}
+@media(prefers-reduced-motion:reduce){
+  .hero-collage .eyebrow.sticker-strip,.hero-collage .ht-roxxy,.hero-collage .ht-haze,
+  .hero-collage .hero-scatter,.hero-collage .hero-note,.pp-hero,.big-quote{animation:none;opacity:1;translate:0 0;scale:1}
+}

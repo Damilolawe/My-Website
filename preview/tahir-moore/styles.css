@@ -334,3 +334,24 @@ a{color:inherit;text-decoration:none}
 .ac-photo-journal--tahir .ac-credits ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;width:100%}
 .ac-photo-journal--tahir .ac-credits li{font-weight:700;font-size:clamp(.95rem,1.5vw,1.15rem);line-height:1.15;padding-bottom:11px;border-bottom:1px solid rgba(234,246,255,.14);color:#eaf6ff}
 .ac-photo-journal--tahir .ac-credits li:last-child{border-bottom:0;padding-bottom:0}
+
+/* FOUC guard: reveal once the stylesheet applies */
+body{visibility:visible}
+
+/* ============================================================
+   CHARACTER PASS (Awe Concepts / frontend-design)
+   "Tune-in": the profile signs on like going live - the avatar pops
+   in with a lime glow pulse, then the name and the rest boot in
+   (the existing lime flicker on MOORE reads as the signal). Replaces
+   the single block fade. Reduced-motion rests on the final state.
+   ============================================================ */
+.profile.reveal{opacity:1!important;transform:none!important}
+.profile .avatar{animation:tm-pop .6s cubic-bezier(.2,1.2,.3,1) .1s both}
+.profile .eyebrow{animation:tm-boot .5s ease-out .34s both}
+.profile .profile-name{animation:tm-boot .55s ease-out .44s both}
+.profile .profile-roles{animation:tm-boot .5s ease-out .58s both}
+.profile .profile-sub{animation:tm-boot .5s ease-out .68s both}
+.profile .profile-cta{animation:tm-boot .5s ease-out .78s both}
+.profile .profile-social{animation:tm-boot .5s ease-out .88s both}
+@keyframes tm-pop{0%{opacity:0;transform:scale(.6);box-shadow:0 0 0 0 rgba(198,241,53,.6)}60%{opacity:1;box-shadow:0 0 36px 6px rgba(198,241,53,.5)}100%{opacity:1;transform:scale(1);box-shadow:0 0 0 0 rgba(198,241,53,0)}}
+@keyframes tm-boot{from{opacity:0;transform:translateY(14px)}}

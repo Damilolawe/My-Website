@@ -249,3 +249,26 @@ strong{color:#fff;font-weight:600}
 .tour-media{min-width:0;width:100%}
 .tour-video{display:block;width:100%;height:auto;aspect-ratio:910/512;object-fit:contain;background:#000;border:1px solid var(--line-2);border-radius:14px}
 .tour-media [hidden]{display:none!important}
+
+/* ============================================================
+   CHARACTER PASS (Awe Concepts / frontend-design)
+   Console "power-on": an amber glow flashes up on load, then the
+   soundboard channels (status, name, tagline, CTAs) boot in and the
+   name lights up amber as it lands. One moment; reduced-motion rests
+   on the final lit state.
+   ============================================================ */
+.booth::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(60% 55% at 28% 42%,rgba(255,159,46,.28),transparent 62%);
+  animation:tb-power 1.5s ease-out both}
+@keyframes tb-power{0%{opacity:0}22%{opacity:1}100%{opacity:0}}
+.console .status{animation:tb-boot .5s ease-out .18s both}
+.console .name{animation:tb-name .7s cubic-bezier(.2,.8,.2,1) .28s both}
+.console .tagline{animation:tb-boot .5s ease-out .5s both}
+.console .hero-cta{animation:tb-boot .5s ease-out .6s both}
+.booth-grid .portrait{animation:tb-boot .6s ease-out .44s both}
+@keyframes tb-boot{from{opacity:0;transform:translateY(12px)}}
+@keyframes tb-name{0%{opacity:0;transform:translateY(14px)}42%{opacity:1;text-shadow:0 0 36px rgba(255,159,46,.55)}100%{opacity:1;transform:none;text-shadow:none}}
+@media(prefers-reduced-motion:reduce){
+  .booth::after{display:none}
+  .console .status,.console .name,.console .tagline,.console .hero-cta,.booth-grid .portrait{animation:none;opacity:1;transform:none;text-shadow:none}
+}

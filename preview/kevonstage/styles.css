@@ -280,3 +280,28 @@ strong{color:#fff;font-weight:600}
 /* The YouTube iframe replaces only the button inside this locked screen. */
 .screen-frame.is-playing{position:relative;aspect-ratio:16/9;overflow:hidden;}
 .screen-frame.is-playing iframe{position:absolute;inset:0;display:block;width:100%;height:100%;border:0;}
+
+/* FOUC guard: reveal once the stylesheet applies */
+body{visibility:visible}
+
+/* ============================================================
+   CHARACTER PASS (Awe Concepts / frontend-design)
+   Broadcast "sign-on": the KEVONSTAGE wordmark ignites letter by letter
+   like a studio marquee powering up (a gold flash as each locks), then
+   the network line, copy, CTAs and featured screen come on air. Builds
+   on the existing staggered lock. Reduced-motion rests on the final state.
+   ============================================================ */
+.sig-on .wordmark .wm-line>span{animation:kos-ignite .5s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes kos-ignite{
+  0%{opacity:0;transform:translateY(.18em);clip-path:inset(0 0 100% 0);text-shadow:none}
+  62%{opacity:1;transform:none;clip-path:inset(0 0 -10% 0);text-shadow:0 0 24px rgba(228,180,59,.9),0 0 4px rgba(228,180,59,.7)}
+  100%{opacity:1;transform:none;clip-path:inset(0 0 -10% 0);text-shadow:none}}
+.stage-copy .now{animation:kos-boot .5s ease-out .05s both}
+.stage-copy .stage-sub{animation:kos-boot .5s ease-out .72s both}
+.stage-copy .stage-cta{animation:kos-boot .5s ease-out .82s both}
+.stage-screen{animation:kos-boot .6s ease-out .5s both}
+@keyframes kos-boot{from{opacity:0;transform:translateY(12px)}}
+@media(prefers-reduced-motion:reduce){
+  .sig-on .wordmark .wm-line>span{animation:none;opacity:1;transform:none;clip-path:none;text-shadow:none}
+  .stage-copy .now,.stage-copy .stage-sub,.stage-copy .stage-cta,.stage-screen{animation:none;opacity:1;transform:none}
+}
